@@ -52,6 +52,17 @@ Wrangler configuration is a template. Review the D1 database ID and binding befo
 7. Configure a custom domain and verify DNS/TLS.
 8. Configure Cron Triggers only after `functions/scheduled.ts` is implemented and tested.
 
+## Initial FondMart catalogue import
+
+Eight public FondMart dress listings have been added to the development catalogue with supplier product IDs, source URLs, listing thumbnails, short descriptions, and current public listing prices as observed on 11 October 2026. Source listing: https://fondmart.com/women-clothing/dresses/.
+
+- Supplier wholesale prices are stored in D1 `cost_cents`.
+- The visible storefront prices are draft suggestions set to approximately 2.5× the displayed supplier price. They are not final prices and do not account for shipping, duties, VAT/sales taxes, payment fees, refunds/returns, or other operating costs.
+- Size/variant details were not verified from the public catalogue, so the initial product entries deliberately have no selectable sizes and purchasing remains disabled.
+- Product images are linked to FondMart's listing CDN for this preview. Confirm reseller image-use permissions and product availability in the FondMart account before launch.
+- Public listing prices, variants, product images, and stock can change. Verify all details from the account or a current product data package before accepting orders.
+- Real 3D garment assets were not found in the public listing data. The viewer currently shows a stylized concept silhouette unless an accurate `.glb` model is added.
+
 ## Environment variables
 
 See `.env.example` for all expected names. In Cloudflare, use **Secrets** for private keys such as `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `PAYPAL_CLIENT_SECRET`, FondMart integration credentials (only after FondMart confirms the supported API/access method), `RESEND_API_KEY`, `ADMIN_PASSWORD`, and `APPROVAL_SECRET`.
