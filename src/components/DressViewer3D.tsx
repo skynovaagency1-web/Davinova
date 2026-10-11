@@ -73,8 +73,8 @@ function ConceptDress({ color }: { color: string }) {
       <torusGeometry args={[0.265, 0.018, 10, 80]} />
       <primitive object={waist} attach="material" />
     </mesh>
-    <mesh position={[0, -1.0, 0]} castShadow receiveShadow>
-      <sphereGeometry args={[0.18, 32, 20]} scale={[1, 0.13, 1]} />
+    <mesh position={[0, -1.0, 0]} scale={[1, 0.13, 1]} castShadow receiveShadow>
+      <sphereGeometry args={[0.18, 32, 20]} />
       <meshStandardMaterial color={color} roughness={0.52} />
     </mesh>
   </group>;
