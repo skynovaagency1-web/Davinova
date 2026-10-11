@@ -1,0 +1,1 @@
+Place product GLB files here using the product slug, e.g. `rosewater-satin-midi.glb`. Add `model3d` metadata to the product record and include required creator/license credit. 3D loading and fallback are planned for a later stage.
