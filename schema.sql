@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS products (
   slug TEXT NOT NULL UNIQUE,
   title TEXT NOT NULL,
   description TEXT NOT NULL DEFAULT '',
-  supplier TEXT NOT NULL CHECK (supplier IN ('cj','fondmart')),
+  supplier TEXT NOT NULL CHECK (supplier = 'fondmart'),
   supplier_product_id TEXT,
   supplier_product_url TEXT,
   price_cents INTEGER NOT NULL CHECK (price_cents >= 0),
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS order_items (
   quantity INTEGER NOT NULL CHECK (quantity > 0),
   unit_price_cents INTEGER NOT NULL CHECK (unit_price_cents >= 0),
   unit_cost_cents INTEGER NOT NULL DEFAULT 0 CHECK (unit_cost_cents >= 0),
-  supplier TEXT NOT NULL CHECK (supplier IN ('cj','fondmart')),
+  supplier TEXT NOT NULL CHECK (supplier = 'fondmart'),
   supplier_product_url TEXT
 );
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS approvals (
 CREATE TABLE IF NOT EXISTS supplier_orders (
   id TEXT PRIMARY KEY,
   order_id TEXT NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-  supplier TEXT NOT NULL CHECK (supplier IN ('cj','fondmart')),
+  supplier TEXT NOT NULL CHECK (supplier = 'fondmart'),
   supplier_order_id TEXT,
   status TEXT NOT NULL DEFAULT 'pending',
   tracking_number TEXT,
