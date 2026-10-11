@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { ContactShadows, Environment, Html, OrbitControls, useGLTF } from '@react-three/drei';
 import { LoaderCircle, Rotate3D } from 'lucide-react';
 import * as THREE from 'three';
+import { fabricColors } from '../lib/fabric';
 
 function GarmentModel({ url, scale = 1, rotationY = 0 }: { url: string; scale?: number; rotationY?: number }) {
   const { scene } = useGLTF(url);
@@ -52,7 +53,7 @@ function makeSkirtGeometry() {
   return geometry;
 }
 
-function ConceptDress({ color }: { color: string }) {
+export function ConceptDress({ color }: { color: string }) {
   const skirt = useMemo(() => makeSkirtGeometry(), []);
   const bodice = useMemo(() => new THREE.LatheGeometry([
     new THREE.Vector2(0.25, -0.17),
@@ -83,25 +84,6 @@ function ConceptDress({ color }: { color: string }) {
 function ViewerLoader() {
   return <Html center><span className="viewer-loading"><LoaderCircle size={18} className="viewer-spinner" /> Preparing your view…</span></Html>;
 }
-
-const fabricColors: Record<string, string> = {
-  blush: '#b67f86',
-  pink: '#c68b9b',
-  champagne: '#b9a17b',
-  navy: '#28354b',
-  'navy blue': '#28354b',
-  black: '#302c2b',
-  sage: '#929b80',
-  'light green': '#a0ad82',
-  'wine red': '#7f2d40',
-  brown: '#765244',
-  'multi-colour': '#937f99',
-  apricot: '#d4a17e',
-  burgundy: '#70263c',
-  berry: '#7f354d',
-  'powder blue': '#8faec8',
-  terracotta: '#a75f48',
-};
 
 export function DressViewer3D({ modelUrl, title, color = 'blush', scale, rotationY = 0 }: { modelUrl?: string; title: string; color?: string; scale?: number; rotationY?: number }) {
   const [fullscreen, setFullscreen] = useState(false);

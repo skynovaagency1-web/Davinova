@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Check, Heart, Ruler, Rotate3D } from 'lucide-react';
 import { products } from '../data/products';
 import { formatMoney } from '../lib/format';
+import { fullSizeImage } from '../lib/images';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
@@ -39,7 +40,7 @@ export function ProductPage() {
     <div className="product-detail">
       <div className="product-visual-column">
         {!view3d && <div className="product-gallery">
-          <img src={product.images[0]?.url} alt={product.images[0]?.alt ?? product.title} />
+          <img src={fullSizeImage(product.images[0]?.url)} alt={product.images[0]?.alt ?? product.title} onError={(event) => { const original = product.images[0]?.url; if (original && event.currentTarget.src !== original) event.currentTarget.src = original; }} />
           <span className="gallery-note">DAVINOVA · THE OCCASION EDIT</span>
         </div>}
         <div className="viewer-switch" role="group" aria-label="Product viewing mode">
