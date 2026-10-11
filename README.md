@@ -13,7 +13,7 @@ Browser (React + Vite + TypeScript + Tailwind)
                  ├─ Cloudflare D1 (products, orders, settings, audit trail)
                  ├─ Stripe Checkout + verified webhook (TODO: complete integration)
                  ├─ PayPal Checkout + verified webhook (TODO: complete integration)
-                 ├─ CJ Dropshipping API (TODO: verify current API docs)
+                 ├─ FondMart supplier workflow (product package import now; order/tracking integration TODO)
                  └─ Resend email API (TODO: implement templates + delivery)
 ```
 
@@ -54,7 +54,7 @@ Wrangler configuration is a template. Review the D1 database ID and binding befo
 
 ## Environment variables
 
-See `.env.example` for all expected names. In Cloudflare, use **Secrets** for private keys such as `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `PAYPAL_CLIENT_SECRET`, `CJ_API_KEY`, `RESEND_API_KEY`, `ADMIN_PASSWORD`, and `APPROVAL_SECRET`.
+See `.env.example` for all expected names. In Cloudflare, use **Secrets** for private keys such as `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `PAYPAL_CLIENT_SECRET`, FondMart integration credentials (only after FondMart confirms the supported API/access method), `RESEND_API_KEY`, `ADMIN_PASSWORD`, and `APPROVAL_SECRET`.
 
 ## Integrations and webhooks
 
@@ -62,7 +62,7 @@ The initial scaffold does not claim that payment verification or supplier order 
 
 - Implement Stripe webhook signature verification using the raw request body and test `checkout.session.completed` and refund events.
 - Implement PayPal webhook verification against PayPal's verification API and configure `PAYMENT.CAPTURE.COMPLETED` plus any additional event types required by the chosen checkout flow. Confirm event names against current PayPal docs.
-- Verify all CJ API v2 endpoints, token lifecycle, variant mapping, logistics, and payment requirements against https://developers.cjdropshipping.com/. The code must not make live calls while `DRY_RUN=true`.
+- For this custom React store, use FondMart's product data package to import supplier-approved product details and images. FondMart documents one-click automatic import for Shopify and a downloadable product-data package for third-party stores; confirm the package format and image usage permissions in your account before importing.\n- Confirm whether FondMart provides API access/order forwarding for this custom store. Do not invent endpoints or enable live supplier orders until FondMart provides current documentation and credentials. Keep `DRY_RUN=true`.
 - Implement Resend templates and handle delivery failures.
 - Add idempotency constraints for provider webhook event IDs before processing an event.
 
@@ -79,7 +79,7 @@ Edit `src/config/brand.ts` and replace files under `public/brand`. Product image
 - [ ] Complete and test checkout creation and webhook signature verification.
 - [ ] Complete PayPal webhook verification and refund flow.
 - [ ] Complete approval-token signing, expiry, single-use semantics, and owner approval UI.
-- [ ] Verify CJ API v2 endpoints and mapping against live official documentation.
+- [ ] Verify FondMart's supported integration method and mapping against live official documentation.
 - [ ] Implement supplier retries/backoff and scheduled tracking synchronization.
 - [ ] Implement Cloudflare Access + server-side admin password fallback and rate limiting.
 - [ ] Implement product/admin CRUD, image upload to R2, discount codes, newsletter, and contact email.
