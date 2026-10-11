@@ -122,7 +122,7 @@ export function DressViewer3D({ modelUrl, title, color = 'blush', scale, rotatio
         <Environment preset="studio" />
         <ContactShadows position={[0, -1.05, 0]} opacity={0.25} scale={3.2} blur={2.4} far={3} />
       </Suspense>
-      <OrbitControls makeDefault enablePan={false} minDistance={2.4} maxDistance={5.8} minPolarAngle={Math.PI / 3.2} maxPolarAngle={Math.PI * 0.76} />
+      <OrbitControls makeDefault enablePan={false} autoRotate autoRotateSpeed={0.7} minDistance={2.4} maxDistance={5.8} minPolarAngle={Math.PI / 3.2} maxPolarAngle={Math.PI * 0.76} />
     </Canvas>
     <div className="dress-viewer__hint">Drag to rotate · Scroll or pinch to zoom</div>
     {!modelUrl && <p className="dress-viewer__disclaimer">Concept silhouette only — not an exact representation of the garment.</p>}
