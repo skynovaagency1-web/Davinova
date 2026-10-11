@@ -62,7 +62,8 @@ The initial scaffold does not claim that payment verification or supplier order 
 
 - Implement Stripe webhook signature verification using the raw request body and test `checkout.session.completed` and refund events.
 - Implement PayPal webhook verification against PayPal's verification API and configure `PAYMENT.CAPTURE.COMPLETED` plus any additional event types required by the chosen checkout flow. Confirm event names against current PayPal docs.
-- For this custom React store, use FondMart's product data package to import supplier-approved product details and images. FondMart documents one-click automatic import for Shopify and a downloadable product-data package for third-party stores; confirm the package format and image usage permissions in your account before importing.\n- Confirm whether FondMart provides API access/order forwarding for this custom store. Do not invent endpoints or enable live supplier orders until FondMart provides current documentation and credentials. Keep `DRY_RUN=true`.
+- For this custom React store, use FondMart's product data package to import supplier-approved product details and images. FondMart documents one-click automatic import for Shopify and a downloadable product-data package for third-party stores; confirm the package format and image usage permissions in your account before importing.
+- Confirm whether FondMart provides API access/order forwarding for this custom store. Do not invent endpoints or enable live supplier orders until FondMart provides current documentation and credentials. Keep `DRY_RUN=true`.
 - Implement Resend templates and handle delivery failures.
 - Add idempotency constraints for provider webhook event IDs before processing an event.
 
