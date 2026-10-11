@@ -12,11 +12,11 @@ export interface Product {
   supplierProductUrl?: string;
   occasion: 'wedding-guest' | 'cocktail' | 'evening' | 'bridesmaid';
   color: string;
-  length: 'Mini' | 'Midi' | 'Maxi';
+  length?: 'Mini' | 'Midi' | 'Maxi';
   sleeve: string;
   neckline: string;
   tags: string[];
-  sizes: DressSize[];
+  sizes: DressSize[]; // Empty until FondMart size variants are verified.
   images: { url: string; alt: string }[];
   model3d?: { url: string; credit?: string; scale?: number; rotationY?: number };
   featured?: boolean;
