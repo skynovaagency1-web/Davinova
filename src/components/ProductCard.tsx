@@ -11,7 +11,7 @@ export function ProductCard({ product }: { product: Product }) {
         {product.compareAtCents && <span className="product-card__badge">A considered find</span>}
         <span className="product-card__arrow" aria-hidden="true"><ArrowUpRight size={18} /></span>
       </Link>
-      <div className="product-card__meta"><div><p className="eyebrow">{product.color} · {product.length}</p><h3><Link to={`/product/${product.slug}`}>{product.title}</Link></h3></div><p className="product-card__price">{formatMoney(product.priceCents)}{product.compareAtCents && <del>{formatMoney(product.compareAtCents)}</del>}</p></div>
+      <div className="product-card__meta"><div><p className="eyebrow">{product.length ? `${product.color} · ${product.length}` : product.color}</p><h3><Link to={`/product/${product.slug}`}>{product.title}</Link></h3></div><p className="product-card__price">{formatMoney(product.priceCents)}{product.compareAtCents && <del>{formatMoney(product.compareAtCents)}</del>}</p></div>
     </article>
   );
 }
