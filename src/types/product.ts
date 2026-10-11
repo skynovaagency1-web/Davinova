@@ -1,4 +1,4 @@
-export type Supplier = 'cj' | 'fondmart';
+export type Supplier = 'fondmart';
 export type DressSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | '2XL' | '3XL' | '4XL';
 
 export interface Product {
