@@ -7,6 +7,21 @@ import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
 
+const colourSwatches: Record<string, string> = {
+  champagne: '#d9c3a5',
+  black: '#262321',
+  sage: '#a4ad91',
+  navy: '#29374b',
+  'navy blue': '#29374b',
+  pink: '#c68b9b',
+  'light green': '#a0ad82',
+  'wine red': '#7f2d40',
+  brown: '#765244',
+  'multi-colour': 'linear-gradient(135deg, #cf9b9c 0 33%, #6b8199 33% 66%, #d5c19e 66%)',
+  apricot: '#d4a17e',
+  burgundy: '#70263c',
+};
+
 export function ProductPage() {
   const { slug } = useParams();
   const product = products.find((item) => item.slug === slug);
@@ -42,7 +57,7 @@ export function ProductPage() {
         <div className="detail-rule" />
         <div className="detail-field">
           <div className="field-heading"><span>Colour</span><strong>{product.color}</strong></div>
-          <span className="color-dot" style={{ background: product.color.toLowerCase() === 'champagne' ? '#d9c3a5' : product.color.toLowerCase() === 'black' ? '#262321' : product.color.toLowerCase() === 'sage' ? '#a4ad91' : product.color.toLowerCase() === 'navy' ? '#29374b' : '#d9aaa9' }} />
+          <span className="color-dot" style={{ background: colourSwatches[product.color.toLowerCase()] ?? '#d9aaa9' }} />
         </div>
         {product.sizes.length > 0 ? <div className="detail-field">
           <div className="field-heading"><span>Choose your size</span><button className="size-chart-link" onClick={() => alert('Size measurements must be verified against the supplier before publishing.')}><Ruler size={14} /> Size guide</button></div>
