@@ -45,9 +45,9 @@ export function ProductPage() {
         </div>}
         <div className="viewer-switch" role="group" aria-label="Product viewing mode">
           <button type="button" className={!view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(false)}>Editorial view</button>
-          <button type="button" className={view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(true)}><Rotate3D size={14} /> View in 3D</button>
+          {product.model3d?.url && <button type="button" className={view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(true)}><Rotate3D size={14} /> View in 3D</button>}
         </div>
-        {view3d && <DressViewer3D modelUrl={product.model3d?.url} title={product.title} color={product.color} scale={product.model3d?.scale} rotationY={product.model3d?.rotationY} />}
+        {view3d && product.model3d?.url && <DressViewer3D modelUrl={product.model3d.url} title={product.title} color={product.color} scale={product.model3d.scale} rotationY={product.model3d.rotationY} />}
         {!view3d && <p className="image-disclaimer">Supplier listing image · Verify reseller image rights before launch.</p>}
       </div>
       <div className="product-info">

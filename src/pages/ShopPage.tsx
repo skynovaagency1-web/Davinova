@@ -8,11 +8,10 @@ import { fabricColors } from '../lib/fabric';
 import { formatMoney } from '../lib/format';
 
 const occasions = [
-  ['all', 'All'],
-  ['wedding-guest', 'Wedding guest'],
-  ['cocktail', 'Cocktail'],
-  ['evening', 'Evening'],
-  ['bridesmaid', 'Bridesmaid'],
+  ['all', 'All styles'],
+  ['wedding-guest', 'Wedding Guest'],
+  ['cocktail-party', 'Cocktail & Party'],
+  ['maxi-holiday', 'Maxi & Holiday'],
 ] as const;
 
 const unique = (values: string[]) => [...new Set(values)].filter((value) => value && value !== 'Not specified').sort();
@@ -42,11 +41,11 @@ export function ShopPage() {
       (current.includes(value) ? current.filter((item) => item !== value) : [...current, value]).forEach((item) => next.append(key, item));
     });
   }
-  const activeCount = colors.length + sleeves.length + (priceCap < maxPrice ? 1 : 0);
+  const activeCount = colors.length + sleeves.length + (priceCap < maxPrice ? 1 : 0) + (occasion !== 'all' ? 1 : 0)
 
   const filtered = useMemo(() => {
     const list = products.filter((product) =>
-      (occasion === 'all' || product.occasion === occasion)
+      (occasion === 'all' || product.collectionCategory === occasion)
       && (colors.length === 0 || colors.includes(product.color))
       && (sleeves.length === 0 || sleeves.includes(product.sleeve))
       && product.priceCents <= priceCap);
@@ -57,7 +56,7 @@ export function ShopPage() {
     <fieldset><legend>Colour</legend><div className="swatch-list">{allColors.map((color) => <button type="button" key={color} className={colors.includes(color) ? 'swatch selected' : 'swatch'} onClick={() => toggle('color', color)} aria-pressed={colors.includes(color)}><i style={{ background: fabricColors[color.toLowerCase()] ?? '#b9a79b' }} />{color}</button>)}</div></fieldset>
     <fieldset><legend>Sleeve</legend><div className="chip-list">{allSleeves.map((sleeve) => <button type="button" key={sleeve} className={sleeves.includes(sleeve) ? 'chip selected' : 'chip'} onClick={() => toggle('sleeve', sleeve)} aria-pressed={sleeves.includes(sleeve)}>{sleeve}</button>)}</div></fieldset>
     <fieldset><legend>Price <span>up to {formatMoney(priceCap)}</span></legend><input type="range" min={1000} max={maxPrice} step={500} value={priceCap} onChange={(event) => update((next) => { if (Number(event.target.value) >= maxPrice) next.delete('max'); else next.set('max', event.target.value); })} aria-label="Maximum price" /></fieldset>
-    {activeCount > 0 && <button type="button" className="text-link" onClick={() => update((next) => { next.delete('color'); next.delete('sleeve'); next.delete('max'); })}>Clear filters</button>}
+    {activeCount > 0 && <button type="button" className="text-link" onClick={() => update((next) => { next.delete('color'); next.delete('sleeve'); next.delete('max'); next.delete('occasion'); })}>Clear filters</button>}
   </div>;
 
   return <section className="shop-page section">
@@ -78,7 +77,7 @@ export function ShopPage() {
         <motion.div className="product-grid" layout>
           {filtered.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}
         </motion.div>
-        {filtered.length === 0 && <div className="empty-results"><p>Nothing matches just yet.</p><button type="button" className="text-link" onClick={() => setParams({}, { replace: true })}>Show every dress</button></div>}
+        {filtered.length === 0 && <div className="empty-results"><p>{occasion === 'maxi-holiday' ? 'We are curating the first Maxi & Holiday edit.' : 'Nothing matches these filters just yet.'}</p><button type="button" className="text-link" onClick={() => setParams({}, { replace: true })}>Show every dress</button></div>}
       </div>
     </div>
     <AnimatePresence>{panelOpen && <>
