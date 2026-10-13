@@ -11,7 +11,7 @@ export function Layout() {
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const closeMenu = () => setMenuOpen(false);
 
-  useEffect(() => { closeMenu(); }, [pathname]);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   return <div className="site-shell">
     <div className="announcement">A little something special for every celebration <span>✦</span> Complimentary shipping over $150</div>
@@ -22,8 +22,8 @@ export function Layout() {
       <Link to="/cart" className="cart-link" aria-label={`Shopping bag, ${count} items`}><ShoppingBag size={20} /><span>Bag ({count})</span></Link>
     </header>
     <AnimatePresence>
-      {menuOpen && <motion.div className="mobile-menu-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeMenu}>
-        <motion.nav id="mobile-navigation" className="mobile-menu" aria-label="Mobile navigation" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -18 }} transition={{ duration: 0.24, ease: 'easeOut' }} onClick={(event) => event.stopPropagation()}>
+      {menuOpen && <motion.div className="mobile-menu-backdrop" tabIndex={-1} onKeyDown={(event) => { if (event.key === 'Escape') closeMenu(); }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeMenu}>
+        <motion.nav id="mobile-navigation" className="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -18 }} transition={{ duration: 0.24, ease: 'easeOut' }} onClick={(event) => event.stopPropagation()}>
           <div className="mobile-menu__top"><span>EXPLORE DAVINOVA</span><button type="button" className="icon-button" aria-label="Close menu" onClick={closeMenu}><X size={18} /></button></div>
           <Link to="/shop" onClick={closeMenu}>Shop all <span>↗</span></Link>
           <Link to="/shop?occasion=wedding-guest" onClick={closeMenu}>Wedding guest <span>↗</span></Link>
