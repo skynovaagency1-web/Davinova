@@ -1,4 +1,3 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,21 +5,6 @@ import { products } from '../data/products';
 import { ProductCard } from '../components/ProductCard';
 import { Cloth } from '../components/canvasui/Cloth';
 import { fullSizeImage } from '../lib/images';
-
-const HeroScene = lazy(() => import('../three/HeroScene'));
-
-// Only mount WebGL when it exists and the visitor hasn't asked for reduced motion;
-// otherwise the illustrated arch below stays as the hero art.
-function useCan3D() {
-  const [can, setCan] = useState(false);
-  useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const canvas = document.createElement('canvas');
-    const webgl = Boolean(canvas.getContext('webgl2') ?? canvas.getContext('webgl'));
-    setCan(webgl && !reduced);
-  }, []);
-  return can;
-}
 
 const riseIn = {
   hidden: { opacity: 0, y: 28 },
@@ -38,15 +22,20 @@ export function HomePage() {
         <motion.div className="hero-actions" variants={riseIn}><Link className="button button--dark" to="/shop">Discover the collection <ArrowRight size={16} /></Link><Link className="text-link" to="/about">Our point of view</Link></motion.div>
         <motion.div className="hero-note" variants={riseIn}><span className="hero-note__line" />Designed for the way you want to feel</motion.div>
       </motion.div>
-      <div className={can3D ? "hero-art hero-art--3d" : "hero-art"} aria-label="Davinova boutique, a dress turning on a plinth">
-        {can3D ? <motion.div className="hero-canvas" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}><Suspense fallback={null}><HeroScene /></Suspense></motion.div> : <>
-        <motion.div className="hero-sun" initial={{ opacity: 0, scale: 0.82 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.35, ease: 'easeOut' }} />
-        <motion.div className="hero-arch" initial={{ opacity: 0, y: 32, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 1, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}>
-          <motion.div className="hero-dress" initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-            <div className="dress-neck" /><div className="dress-bodice" /><div className="dress-skirt" /><div className="dress-fold dress-fold--one" /><div className="dress-fold dress-fold--two" />
-          </motion.div>
+      <div className="hero-art editorial-hero-art" aria-label="Davinova occasionwear editorial">
+        <motion.div className="hero-photo hero-photo--secondary" initial={{ opacity: 0, x: -22, rotate: -3 }} animate={{ opacity: 1, x: 0, rotate: -2 }} transition={{ duration: 0.9, delay: 0.35, ease: 'easeOut' }}>
+          <img src={fullSizeImage(products[1]?.images[0]?.url)} alt={products[1]?.images[0]?.alt ?? 'Davinova occasion dress in an editorial photograph'} loading="eager" />
+          <span className="hero-photo__label">THE COLOUR STORY <i>02</i></span>
         </motion.div>
-        <motion.div className="hero-art-caption" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.85, duration: 0.8 }}><span>THE SOFT STRUCTURE</span><span>FIG. 01 — 2026</span></motion.div></>}
+        <motion.div className="hero-photo hero-photo--primary" initial={{ opacity: 0, y: 28, clipPath: 'inset(0 0 100% 0)' }} animate={{ opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' }} transition={{ duration: 1.15, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
+          <img src={fullSizeImage(products[0]?.images[0]?.url)} alt={products[0]?.images[0]?.alt ?? 'Davinova evening dress'} loading="eager" />
+          <span className="hero-photo__label">THE OCCASION EDIT <i>01</i></span>
+        </motion.div>
+        <motion.div className="hero-photo hero-photo--tertiary" initial={{ opacity: 0, x: 25, y: 15, rotate: 4 }} animate={{ opacity: 1, x: 0, y: 0, rotate: 3 }} transition={{ duration: 1, delay: 0.48, ease: 'easeOut' }}>
+          <img src={fullSizeImage(products[5]?.images[0]?.url)} alt={products[5]?.images[0]?.alt ?? 'Davinova formal dress'} loading="eager" />
+          <span className="hero-photo__label">AFTER DARK <i>03</i></span>
+        </motion.div>
+        <motion.div className="hero-art-caption" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.8 }}><span>CURATED FOR THE MOMENT</span><span>DAVINOVA · 2026</span></motion.div>
         <div className="hero-vertical">OCCASIONWEAR / EST. IN FEELING</div>
       </div>
       <motion.a className="scroll-cue" href="#featured" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.15, duration: 0.7 }}><ArrowDown size={15} /> Scroll to explore</motion.a>
