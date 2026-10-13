@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildCJCreateOrderPayload, createCJOrder, isCJDryRun, type CJOrderInput } from '../functions/lib/cj';
+import { buildCJCreateOrderPayload, createCJOrder, isCJDryRun, type CJOrderInput } from '../server/cj';
 
 const sampleOrder: CJOrderInput = {
   orderNumber: 'DVN-TEST-001',

@@ -19,6 +19,5 @@ CURRENCY = "USD"
 DRY_RUN = "true"
 PAYPAL_ENV = "sandbox"
 
-[triggers]
-# Enable after scheduled tracking sync is implemented and tested.
-crons = ["15 * * * *"] # Hourly CJ tracking sync; no-ops while DRY_RUN=true.
+# Cloudflare Pages does not run Worker Cron Triggers. Scheduled tracking will be deployed
+# as a separate Worker when the supplier tracking integration is ready.

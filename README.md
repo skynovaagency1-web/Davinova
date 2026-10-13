@@ -30,10 +30,12 @@ To test Pages Functions locally after build, use `npx wrangler pages dev dist`. 
 
 ## Cloudflare
 1. Connect this repository to Cloudflare Pages; build command `npm run build`, output directory `dist`.
-2. Create D1, configure Pages binding `DB`, and replace the placeholder database ID in `wrangler.toml` with the ID from your account.
-3. Apply numbered migrations to an existing database. For a brand-new database choose one bootstrap path; don't apply both schema.sql and migrations/0001 to the same DB.
+2. The existing D1 database is `davinova-store-db`; the `DB` binding and database ID are recorded in `wrangler.toml`.
+3. Apply numbered migrations with `npx wrangler d1 migrations apply davinova-store-db --remote`. Do not run `schema.sql` on top of the numbered migrations.
 4. Configure secrets in the Cloudflare dashboard, not Git.
-5. Attach your custom domain only after staging and security checks.
+5. Attach your custom domain only after preview and security checks.
+
+The tracking-sync handler is prepared in `server/scheduled.ts`, but Cloudflare Pages does not support Worker Cron Triggers. Deploy it as a separate Worker before relying on automated tracking emails.
 
 ## CJ API references
 - https://developers.cjdropshipping.com/en/api/api2/
@@ -58,4 +60,4 @@ The public products endpoint returns only CJ-verified active products with a map
 - [ ] Finalize pricing, shipping, returns/refunds, privacy and support policy.
 - [ ] Run end-to-end, security, accessibility and performance tests.
 
-Related: [21st.dev audit](docs/21st-component-audit.md), [visual direction](docs/visual-direction.md), [supplier plan](docs/pinterest-and-commerce-recommendation.md).
+Related: [visual direction](docs/visual-direction.md), [supplier plan](docs/pinterest-and-commerce-recommendation.md).

@@ -1,6 +1,6 @@
-import { consumeApprovalToken, getApprovalTokenOrderId } from '../../lib/auth';
-import { createCJOrder, isCJDryRun, queryCJVariantStock } from '../../lib/cj';
-import type { CJEnv, CJOrderInput, CJOrderLine, CJShippingAddress } from '../../lib/cj';
+import { consumeApprovalToken, getApprovalTokenOrderId } from '../../../server/auth';
+import { createCJOrder, isCJDryRun, queryCJVariantStock } from '../../../server/cj';
+import type { CJEnv, CJOrderInput, CJOrderLine, CJShippingAddress } from '../../../server/cj';
 
 type Env = CJEnv;
 interface StoreOrder {

@@ -1,6 +1,6 @@
-import { getCJOrderDetails, isCJDryRun } from './lib/cj';
-import type { CJEnv } from './lib/cj';
-import { sendTransactionalEmail } from './lib/email';
+import { getCJOrderDetails, isCJDryRun } from './cj';
+import type { CJEnv } from './cj';
+import { sendTransactionalEmail } from './email';
 interface Env extends CJEnv { RESEND_API_KEY?:string; EMAIL_FROM?:string }
 interface ScheduledEvent {cron:string;scheduledTime:number}
 interface TrackRow {
