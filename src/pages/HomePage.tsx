@@ -12,7 +12,6 @@ const riseIn = {
 };
 
 export function HomePage() {
-  const can3D = useCan3D();
   return <>
     <section className="hero-section">
       <motion.div className="hero-copy" initial="hidden" animate="visible" transition={{ staggerChildren: 0.13, delayChildren: 0.12 }}>
