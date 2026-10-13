@@ -1,51 +1,33 @@
-# Pinterest research and commerce architecture for Davinova
+# Supplier and commerce plan for Davinova
 
-Research date: 13 October 2026
+Updated: 13 October 2026
 
-## Pinterest inspiration references
+## Decision
+- **CJ Dropshipping is the primary fulfilment supplier.** Use its documented Open API V2.0 only after a CJ account, API key, mapped product/variant IDs, current item costs and a suitable shipping option are confirmed.
+- **FondMart is a style-discovery catalog.** Send desired listing URLs as free CJ sourcing requests. The custom store assumes no FondMart order API; an exceptional FondMart fallback is placed manually by the owner.
+- Keep React/Vite on Cloudflare Pages and operational records in Cloudflare D1. Keep CJ secrets server-side.
+- Require one-tap owner approval before each supplier purchase. Keep DRY_RUN=true, CJ_SANDBOX=true and CJ_LIVE_ORDERS_ENABLED=false until tests and price checks pass.
+- Only a signature-verified and idempotently stored Stripe/PayPal paid event may create the owner approval request. Checkout and payment webhooks are currently disabled, so do not accept payments yet.
 
-These are references for art direction and interaction patterns, not assets to copy or a mandate to reproduce any one design.
+## Pricing and sourcing
+The plan proposes a $55-$70 retail target. Previous FondMart catalog observations ($8-$27) are not CJ prices. Calculate final prices from actual CJ item cost, selected shipping, payment fees, expected returns/advertising, taxes and other operating costs. Never sell until CJ confirms the exact dress, variant/size, stock, shipping quote and authorized image use.
 
-1. [High-end designer boutique — warm pink/white art direction](https://www.pinterest.com/pin/305048574772212242/). Notes on the pin describe blush/rose-gold color, watercolor texture, and clean typography. Use only a small muted rose accent from this reference; avoid making every surface pink.
-2. [Moody luxury fashion boutique campaign](https://www.pinterest.com/pin/402368547979155421/). Reference for richer contrast, fashion-campaign atmosphere, product/lifestyle photography and a more dramatic visual moment. Borrow the atmosphere rather than filling the entire interface with black and gold.
-3. [Ethereal Shopify boutique design for LILLOU](https://www.pinterest.com/pin/68187381854966297/). Reference for soft, feminine ecommerce styling and clean product presentation.
-4. [Luxury clothing-boutique Shopify design](https://uk.pinterest.com/pin/shopify-theme-clothing-boutique-website-for-fashion-boutique-aesthetic-luxury-website-design-luxury-fa-in-2025--974325700637389924/). Reference for luxury fashion-brand layout and e-commerce visual hierarchy.
+FondMart source IDs, URLs and source costs must be stored separately from CJ product and variant IDs. All existing items are unverified sourcing candidates.
 
-## Recommended combined direction
+## Categories
+1. Wedding Guest (first niche).
+2. Cocktail & Party (next).
+3. Maxi & Holiday (add before spring/summer once verified).
+4. Bridesmaid and Prom/Homecoming hidden for now. Plus-size and modest collections deferred.
 
-- Palette: warm ivory and stone, espresso/near-black for legible contrast, muted rose as a restrained accent, and champagne used sparingly.
-- Typography: expressive fashion-editorial serif for headlines; straightforward sans serif for prices, navigation, filters and size information.
-- Homepage: one strong editorial hero with real dress photography; selected dresses near the top; a focused occasion-led collection navigator; one tactile fabric/image interaction; simple footer.
-- Product cards: consistent photography crops, clear price and product title, subtle alternate-image hover where verified images exist, calm entrance transitions.
-- Product detail: real gallery first; clear color and size variants, fit details, shipping/returns, and a visible availability state. Don't advertise variants until FondMart confirms them.
-- Motion: restrained image reveals, soft page transitions, pointer-responsive product tilt on desktop only, and Canvas UI fabric movement in one feature area. Respect reduced-motion preference and keep touch interactions simple.
-- Do not imitate a Pinterest seller's complete template, copy its brand assets or use its images as Davinova product photography. Use only the visual principles; source original or authorized campaign/product images.
+## CJ order lifecycle
+CJ's API documents a multi-step purchase: create order, add to CJ cart, confirm cart, generate a parent order/payment ID, then pay CJ balance. Record external IDs and progress in D1. After a partial failure, flag for manual reconciliation rather than blindly repeating a purchase. Tracking should be checked after the supplier order is placed and emailed through a configured sender.
 
-## WooCommerce recommendation
-
-**Recommendation: use WooCommerce as a candidate commerce backend while retaining the custom React/Vite front end (headless WooCommerce), subject to testing FondMart's connection and checkout.**
-
-Why:
-- [FondMart's official WooCommerce connection guide](https://fondmart.com/faq/how-do-i-connect-woocommerce-stores-to-fondmart-.html) says the merchant connects a WooCommerce domain with a WooCommerce API key and secret, then imports FondMart products into the WooCommerce store.
-- [FondMart's auto-sync guide](https://fondmart.com/blog/how-to-associate-my-shopify-store-with-fondmart-app-.html) describes WooCommerce/Shopify sync for products, orders, shipping and inventory. Validate current plan support and exact behavior in the merchant account before relying on it.
-- [WooCommerce Store API documentation](https://woocommerce.com/document/woocommerce-store-api/) describes public, customer-facing endpoints for products, cart, shipping rates and checkout, enabling custom JavaScript storefronts.
-
-What this means for the architecture:
-- React/Vite + 21st.dev-inspired components + Canvas UI can remain the visual storefront.
-- WordPress/WooCommerce becomes the source of truth for real product variants, stock data, orders, discounts and customer checkout.
-- FondMart connects to WooCommerce via its supported integration. The custom front end talks to the WooCommerce Store API for products/cart/checkout.
-- Keep administrative credentials and WooCommerce REST API secrets on the server only; never embed them in Vite client-side code.
-
-Caveats:
-- A headless setup is more technical than installing a WooCommerce theme: product mapping, customer cart/session behavior, checkout, payment configuration, tax/shipping, CORS/domain routing and order-state tests must be implemented and tested.
-- WooCommerce by itself does not guarantee that FondMart has imported verified size variants, live stock, or that supplier-order forwarding works; verify this in a test order.
-- The current React storefront's locally defined product list and disabled checkout must not be treated as production commerce.
-- If minimizing ongoing technical complexity is more important than keeping a bespoke React front end, a conventional WordPress + WooCommerce theme is a simpler alternative, but would mean rebuilding the storefront in WordPress.
-
-## Next implementation gates
-
-1. Create a staging WordPress/WooCommerce store on managed hosting.
-2. Connect it to FondMart and test import, size/color variants, stock updates, order forwarding, shipping/tracking and cancellation/refund behavior using a test product/order.
-3. Confirm the chosen payment provider, currency, tax, delivery/returns policy and final prices.
-4. Implement the React-to-WooCommerce Store API integration, preserving API secrets on the server.
-5. Run end-to-end tests from browsing a real size variant through payment and a visible order in WooCommerce/FondMart before launch.
+## Launch gates
+- Create a CJ account/API key; validate authentication, stock and order API in CJ sandbox.
+- Source styles from FondMart and verify actual CJ SKU, variant/size, inventory, price, logistics and image rights.
+- Finish Stripe/PayPal checkout and verified webhooks; only then send owner approval email.
+- Verify one-time approval, DRY_RUN behavior, supplier sandbox order, failure reconciliation and duplicate-click protection.
+- Configure Resend verified sender and tracking mail.
+- Finalize prices, shipping, returns/refunds, privacy and support information.
+- Leave customer payments and live supplier purchasing disabled until all end-to-end tests pass.

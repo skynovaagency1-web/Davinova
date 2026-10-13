@@ -36,4 +36,4 @@ Use [landing-page inspiration](https://collectui.com/designs/landing-page-ui-des
 
 ## Current launch blockers
 
-FondMart product sizes and inventory are not verified, the retail prices are draft margins, checkout and supplier order forwarding are not live, and policy/support details still require owner review. The interface is a development preview until those workflows are implemented.
+CJ has not verified the eight FondMart-discovered style candidates, product/variant IDs, sizes, inventory, or delivered costs. The $55-$70 prices are draft targets. Stripe/PayPal checkout and verified payment webhooks remain disabled; final shipping/returns/privacy/support policies need owner review. The interface is a development preview until those workflows are implemented.
