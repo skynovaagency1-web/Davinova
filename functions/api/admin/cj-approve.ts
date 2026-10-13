@@ -9,7 +9,7 @@ interface StoreOrder {
 }
 interface StoreOrderLine {
   order_item_id: string; product_title: string; size: string; color: string; quantity: number;
-  product_id: string | null; variant_id: string | null; supplier: string | null; supplier_verified: number | null;
+  product_id: string | null; variant_id: string | null; supplier: string | null; supplier_verified: number | null; product_active: number | null; cost_cents: number | null; variant_active: number | null;
   cj_product_id: string | null; cj_variant_id: string | null; cj_sku: string | null; available_stock: number | null;
   stock_checked_at: string | null; image_url: string | null;
 }
@@ -46,7 +46,7 @@ async function getOrder(env: Env,id: string): Promise<StoreOrder | null> {
 }
 async function getLines(env: Env,id: string): Promise<StoreOrderLine[]> {
   const result=await env.DB.prepare(`SELECT oi.id AS order_item_id,oi.product_title,oi.size,oi.color,oi.quantity,oi.product_id,oi.variant_id,
-    p.supplier,p.supplier_verified,p.cj_product_id,pv.cj_variant_id,pv.cj_sku,pv.available_stock,pv.stock_checked_at,
+    p.supplier,p.supplier_verified,p.active AS product_active,p.cost_cents,p.cj_product_id,pv.active AS variant_active,pv.cj_variant_id,pv.cj_sku,pv.available_stock,pv.stock_checked_at,
     (SELECT i.url FROM product_images i WHERE i.product_id=p.id ORDER BY i.is_primary DESC,i.position LIMIT 1) AS image_url
     FROM order_items oi LEFT JOIN products p ON p.id=oi.product_id LEFT JOIN product_variants pv ON pv.id=oi.variant_id
     WHERE oi.order_id=? ORDER BY oi.id`).bind(id).all<StoreOrderLine>();
@@ -54,8 +54,11 @@ async function getLines(env: Env,id: string): Promise<StoreOrderLine[]> {
 }
 function mappingProblem(lines: StoreOrderLine[]): string | null {
   if(!lines.length) return 'This order has no line items.';
-  if(lines.some((line)=>line.supplier!=='cj' || line.supplier_verified!==1 || !line.cj_product_id || !line.cj_variant_id)) {
-    return 'At least one item is not mapped to a verified CJ product and variant. No supplier purchase is allowed.';
+  if(lines.some((line)=>line.supplier!=='cj' || line.supplier_verified!==1 || line.product_active!==1 || line.variant_active!==1 || !line.cj_product_id || !line.cj_variant_id)) {
+    return 'At least one item is not an active, verified CJ product/variant. No supplier purchase is allowed.';
+  }
+  if(lines.some((line)=>!Number.isSafeInteger(line.cost_cents) || (line.cost_cents ?? 0)<=0)) {
+    return 'CJ item cost has not been recorded. Confirm the current supplier price before approving any purchase.';
   }
   if(lines.some((line)=>!Number.isSafeInteger(line.quantity)||line.quantity<1||line.quantity>10)) return 'An order line has an invalid quantity.';
   return null;
