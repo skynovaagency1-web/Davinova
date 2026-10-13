@@ -7,7 +7,7 @@ interface Preview {
 }
 interface ApiError {error?:string}
 export function ApprovalPage() {
-  const [token,setToken]=useState(()=>new URLSearchParams(window.location.search).get('token') || '');
+  const [token]=useState(()=>new URLSearchParams(window.location.search).get('token') || '');
   const [preview,setPreview]=useState<Preview|null>(null);
   const [error,setError]=useState('');
   const [submitting,setSubmitting]=useState(false);

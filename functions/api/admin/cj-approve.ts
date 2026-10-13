@@ -2,7 +2,7 @@ import { consumeApprovalToken, getApprovalTokenOrderId } from '../../lib/auth';
 import { createCJOrder, isCJDryRun, queryCJVariantStock } from '../../lib/cj';
 import type { CJEnv, CJOrderInput, CJOrderLine, CJShippingAddress } from '../../lib/cj';
 
-interface Env extends CJEnv {}
+type Env = CJEnv;
 interface StoreOrder {
   id: string; order_number: string; email: string; payment_status: string; status: string;
   total_cents: number; currency: string; shipping_address_json: string;
