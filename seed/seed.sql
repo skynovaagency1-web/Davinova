@@ -2,7 +2,7 @@
 -- Do not sell any item until the exact CJ match, variant/size, stock, current cost,
 -- shipping method and commercial image permission are verified.
 -- Price values are draft retail targets in USD cents, not final validated prices.
-UPDATE products SET active=0 WHERE id IN ('dress-001','dress-002','dress-003','dress-004','dress-005','dress-006','dress-007','dress-008');
+UPDATE products SET active=0 WHERE id IN ('dress-001','dress-002','dress-003','dress-004','dress-005','dress-006','dress-007','dress-008','fdm-f00361671','fdm-f00361699','fdm-f00361436','fdm-f00361663','fdm-f00356114','fdm-f00361706','fdm-f00361731','fdm-f00361802');
 INSERT OR IGNORE INTO size_charts (id,name,unit,measurements_json,instructions) VALUES
 ('size-chart-standard','Davinova standard dress sizing','cm','{}','Awaiting a verified CJ size chart. Do not use unverified measurements.');
 INSERT OR IGNORE INTO products
