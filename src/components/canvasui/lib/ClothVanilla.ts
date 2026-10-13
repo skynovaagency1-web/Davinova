@@ -383,7 +383,9 @@ export function createCloth(
       );
       sourceCtx!.reset();
       wake();
-    } catch {}
+    } catch {
+      // Ignore transient canvas capture errors; normal HTML content remains visible.
+    }
   };
 
   function syncCanvasSize() {
