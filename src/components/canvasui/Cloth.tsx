@@ -6,6 +6,7 @@ import {
   useState,
   useSyncExternalStore,
   type ReactNode,
+  type CSSProperties,
 } from "react";
 
 import {
@@ -18,7 +19,7 @@ import {
 export interface ClothProps extends ClothOptions {
   children: ReactNode;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 const emptySubscribe = () => () => {};
