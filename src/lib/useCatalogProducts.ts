@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { products as seedProducts } from '../data/products';
 import type { CollectionCategory, Product } from '../types/product';
 
 interface CatalogueRow {
@@ -61,9 +60,9 @@ function toProduct(row: CatalogueRow): Product | null {
   };
 }
 
-/** Combines public Cloudflare catalogue entries with the static editorial fallback. */
+/** Loads only products saved from the CJ catalogue. Never fall back to FondMart research placeholders. */
 export function useCatalogProducts() {
-  const [catalogProducts, setCatalogProducts] = useState<Product[]>(seedProducts);
+  const [catalogProducts, setCatalogProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -76,13 +75,10 @@ export function useCatalogProducts() {
       .then((data) => {
         if (cancelled || !Array.isArray(data.products)) return;
         const mapped = data.products.map(toProduct).filter((item): item is Product => item !== null);
-        const ids = new Set(mapped.map((item) => item.id));
-        const slugs = new Set(mapped.map((item) => item.slug));
-        setCatalogProducts([...mapped, ...seedProducts.filter((item) => !ids.has(item.id) && !slugs.has(item.slug))]);
+        setCatalogProducts(mapped);
       })
       .catch(() => {
-        // A preview or local build may not have the database binding configured.
-        if (!cancelled) setCatalogProducts(seedProducts);
+        // Show an empty, accurate catalogue if the API/database is unavailable.
       })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
