@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
+import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { ProductCard } from '../components/ProductCard';
 import { Cloth } from '../components/canvasui/Cloth';
 import { fullSizeImage } from '../lib/images';
@@ -12,6 +12,8 @@ const riseIn = {
 };
 
 export function HomePage() {
+  const { products } = useCatalogProducts();
+
   return <>
     <section className="hero-section">
       <motion.div className="hero-copy" initial="hidden" animate="visible" transition={{ staggerChildren: 0.13, delayChildren: 0.12 }}>
