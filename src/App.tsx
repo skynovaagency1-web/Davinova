@@ -8,5 +8,25 @@ const ProductPage = lazy(() => import('./pages/ProductPage').then((m) => ({ defa
 const CartPage = lazy(() => import('./pages/CartPage').then((m) => ({ default: m.CartPage })));
 const InfoPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.InfoPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
+const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
 function PageLoader() { return <div className="page-loader" role="status">Preparing your edit…</div>; }
-export default function App() { return <BrowserRouter><Suspense fallback={<PageLoader />}><Routes><Route element={<Layout />}><Route index element={<HomePage />} /><Route path="shop" element={<ShopPage />} /><Route path="product/:slug" element={<ProductPage />} /><Route path="cart" element={<CartPage />} /><Route path="about" element={<InfoPage />} /><Route path="shipping" element={<InfoPage />} /><Route path="returns" element={<InfoPage />} /><Route path="privacy" element={<InfoPage />} /><Route path="contact" element={<InfoPage />} /><Route path="approve-cj" element={<ApprovalPage />} /><Route path="*" element={<NotFoundPage />} /></Route></Routes></Suspense></BrowserRouter>; }
+export default function App() {
+  return <BrowserRouter><Suspense fallback={<PageLoader />}>
+    <Routes>
+      <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
+      <Route element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="shop" element={<ShopPage />} />
+        <Route path="product/:slug" element={<ProductPage />} />
+        <Route path="cart" element={<CartPage />} />
+        <Route path="about" element={<InfoPage />} />
+        <Route path="shipping" element={<InfoPage />} />
+        <Route path="returns" element={<InfoPage />} />
+        <Route path="privacy" element={<InfoPage />} />
+        <Route path="contact" element={<InfoPage />} />
+        <Route path="approve-cj" element={<ApprovalPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  </Suspense></BrowserRouter>;
+}

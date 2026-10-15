@@ -288,3 +288,154 @@ export async function queryCJVariantStock(env: CJEnv, variantId: string): Promis
   }
   return [];
 }
+
+
+export interface CJCatalogSearchProduct {
+  id: string;
+  name: string;
+  sku: string;
+  imageUrl: string;
+  sellPriceUsd: number | null;
+  discountPriceUsd: number | null;
+  listedCount: number | null;
+  inventoryTotal: number | null;
+  verifiedInventory: number | null;
+  category: string;
+  freeShippingFlag: boolean | null;
+  saleStatus: string;
+  deliveryCycle: string;
+}
+
+interface CJListV2Product {
+  id?: string;
+  nameEn?: string;
+  sku?: string;
+  spu?: string;
+  bigImage?: string;
+  sellPrice?: string | number;
+  nowPrice?: string | number | null;
+  discountPrice?: string | number | null;
+  listedNum?: number;
+  warehouseInventoryNum?: number;
+  totalVerifiedInventory?: number;
+  categoryId?: string;
+  oneCategoryName?: string;
+  twoCategoryName?: string;
+  threeCategoryName?: string;
+  addMarkStatus?: number;
+  saleStatus?: string | number;
+  deliveryCycle?: string;
+}
+
+interface CJListV2Block { productList?: CJListV2Product[] }
+interface CJListV2Response {
+  pageSize?: number;
+  pageNumber?: number;
+  totalRecords?: number;
+  totalPages?: number;
+  content?: CJListV2Block[];
+}
+function numericValue(value: string | number | null | undefined): number | null {
+  if (value === null || value === undefined || value === '') return null;
+  const parsed = typeof value === 'number' ? value : Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+export async function searchCJProducts(
+  env: CJEnv,
+  keyword: string,
+  page = 1,
+  size = 10,
+): Promise<{ page: number; pageSize: number; totalRecords: number; items: CJCatalogSearchProduct[] }> {
+  const cleanKeyword = keyword.trim();
+  if (cleanKeyword.length < 2 || cleanKeyword.length > 100) {
+    throw new Error('Search keyword must be between 2 and 100 characters.');
+  }
+  const safePage = Number.isInteger(page) ? Math.max(1, Math.min(1000, page)) : 1;
+  const safeSize = Number.isInteger(size) ? Math.max(1, Math.min(10, size)) : 10;
+  const params = new URLSearchParams({
+    keyWord: cleanKeyword,
+    page: String(safePage),
+    size: String(safeSize),
+    features: 'enable_category',
+  });
+  const data = await request<CJListV2Response>(env, '/product/listV2?' + params.toString());
+  const products = (data.content ?? []).flatMap((block) => block.productList ?? []);
+  const items = products.map((product) => ({
+    id: product.id ?? '',
+    name: product.nameEn ?? 'Unnamed CJ product',
+    sku: product.spu ?? product.sku ?? '',
+    imageUrl: product.bigImage ?? '',
+    sellPriceUsd: numericValue(product.sellPrice),
+    discountPriceUsd: numericValue(product.nowPrice ?? product.discountPrice),
+    listedCount: numericValue(product.listedNum),
+    inventoryTotal: numericValue(product.warehouseInventoryNum),
+    verifiedInventory: numericValue(product.totalVerifiedInventory),
+    category: [product.oneCategoryName, product.twoCategoryName, product.threeCategoryName].filter(Boolean).join(' / '),
+    freeShippingFlag: typeof product.addMarkStatus === 'number' ? product.addMarkStatus === 1 : null,
+    saleStatus: String(product.saleStatus ?? ''),
+    deliveryCycle: product.deliveryCycle ?? '',
+  })).filter((product) => Boolean(product.id));
+  return { page: safePage, pageSize: safeSize, totalRecords: data.totalRecords ?? items.length, items };
+}
+
+interface CJProductInventoryDetail {
+  countryCode?: string;
+  totalInventory?: number;
+  cjInventory?: number;
+  factoryInventory?: number;
+  verifiedWarehouse?: number;
+}
+interface CJProductVariantDetail {
+  vid?: string;
+  variantNameEn?: string;
+  variantSku?: string;
+  variantKey?: string;
+  variantSellPrice?: number | string;
+  inventories?: CJProductInventoryDetail[];
+}
+interface CJProductDetailRecord {
+  pid?: string;
+  productNameEn?: string;
+  productSku?: string;
+  bigImage?: string;
+  productImageSet?: string[];
+  categoryName?: string;
+  sellPrice?: number | string;
+  description?: string;
+  status?: string;
+  variants?: CJProductVariantDetail[];
+}
+export async function getCJProductDetail(env: CJEnv, productId: string) {
+  const pid = productId.trim();
+  if (!pid || pid.length > 200 || !/^[a-zA-Z0-9-]+$/.test(pid)) {
+    throw new Error('A valid CJ product ID is required.');
+  }
+  const params = new URLSearchParams({ pid });
+  const data = await request<CJProductDetailRecord>(env, '/product/query?' + params.toString());
+  return {
+    id: data.pid ?? pid,
+    name: data.productNameEn ?? 'Unnamed CJ product',
+    sku: data.productSku ?? '',
+    imageUrl: data.bigImage ?? '',
+    imageUrls: Array.isArray(data.productImageSet) ? data.productImageSet.slice(0, 8) : [],
+    category: data.categoryName ?? '',
+    sellPriceUsd: numericValue(data.sellPrice),
+    description: (data.description ?? '').slice(0, 1600),
+    saleStatus: String(data.status ?? ''),
+    variants: (data.variants ?? []).slice(0, 100).map((variant) => ({
+      id: variant.vid ?? '',
+      name: variant.variantNameEn ?? '',
+      sku: variant.variantSku ?? '',
+      options: variant.variantKey ?? '',
+      sellPriceUsd: numericValue(variant.variantSellPrice),
+      inventory: (variant.inventories ?? []).map((stock) => ({
+        countryCode: stock.countryCode ?? '',
+        total: numericValue(stock.totalInventory),
+        cjStock: numericValue(stock.cjInventory),
+        factoryStock: numericValue(stock.factoryInventory),
+        verifiedWarehouse: stock.verifiedWarehouse === 1,
+      })).slice(0, 20),
+    })),
+  };
+}
