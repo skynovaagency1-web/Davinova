@@ -60,7 +60,7 @@ const money = (value: number | null) => value === null ? 'Not supplied' : new In
 
 export function CJCatalogAdminPage() {
   const [adminPassword, setAdminPassword] = useState('');
-  const [keyword, setKeyword] = useState('wedding guest dress');
+  const [keyword, setKeyword] = useState("Elegant Vintage Women's Boho Tassel Dress White Lace V Neck Fringe Sleeve Autumn Fashion Party Dress Wedding Guest Maxi Dresses");
   const [results, setResults] = useState<SearchProduct[]>([]);
   const [total, setTotal] = useState(0);
   const [details, setDetails] = useState<Record<string, ProductDetail>>({});
