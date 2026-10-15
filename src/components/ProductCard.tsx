@@ -16,8 +16,9 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
   const rotateX = useSpring(useTransform(py, [0, 1], [7, -7]), spring);
   const rotateY = useSpring(useTransform(px, [0, 1], [-9, 9]), spring);
   const glare = useTransform([px, py], ([x, y]: number[]) => `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,.38), rgba(255,255,255,0) 55%)`);
-  const [src, setSrc] = useState(fullSizeImage(product.images[0]?.url));
-  const [usingEditorial, setUsingEditorial] = useState(false);
+  const initialImage = fullSizeImage(product.images[0]?.url);
+  const [usingEditorial, setUsingEditorial] = useState(!initialImage);
+  const [src, setSrc] = useState(initialImage || editorialImageFor(product.color));
   const [fallbackFailed, setFallbackFailed] = useState(false);
   const second = product.images[1];
 
