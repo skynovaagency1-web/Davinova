@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Check, Eye, Heart, PackageCheck, Ruler, Rotate3D } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Eye, Heart, PackageCheck, Ruler, Rotate3D } from 'lucide-react';
 import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { formatMoney } from '../lib/format';
 import { fullSizeImage } from '../lib/images';
 import { editorialImageFor } from '../lib/editorialImages';
 import { productBackdropFor } from '../lib/productBackdrop';
-import { getWooCommercePageUrl, isProductPurchasable, isWooCommerceProduct } from '../lib/woocommerce';
+import { isProductPurchasable, isWooCommerceProduct } from '../lib/woocommerce';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
