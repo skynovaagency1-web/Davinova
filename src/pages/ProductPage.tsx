@@ -6,6 +6,7 @@ import { formatMoney } from '../lib/format';
 import { fullSizeImage } from '../lib/images';
 import { editorialImageFor } from '../lib/editorialImages';
 import { productBackdropFor } from '../lib/productBackdrop';
+import { getWooCommercePageUrl, isProductPurchasable, isWooCommerceProduct } from '../lib/woocommerce';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
@@ -50,7 +51,9 @@ export function ProductPage() {
     return <section className="section not-found"><p className="eyebrow">A little detour</p><h1>We couldn’t find that dress.</h1><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
   }
 
-  const browseOnly = Boolean(product.browseOnly || !product.supplierVerified);
+  const isWoo = isWooCommerceProduct(product);
+  const canPurchase = isProductPurchasable(product);
+  const browseOnly = isWoo ? !canPurchase : Boolean(product.browseOnly || !product.supplierVerified);
   const currentImage = product.images[selectedImageIndex] ?? product.images[0];
   const productBackdrop = productBackdropFor(product.color, product.title);
 
@@ -90,22 +93,25 @@ export function ProductPage() {
       <div className="product-info">
         <p className="eyebrow">{product.occasion.replace('-', ' ')} edit</p>
         <h1>{product.title}</h1>
-        <div className="detail-price">{browseOnly ? 'Coming soon' : <>{formatMoney(product.priceCents)} {product.compareAtCents && <del>{formatMoney(product.compareAtCents)}</del>}</>}</div>
+        <div className="detail-price">{browseOnly && !isWoo ? 'Coming soon' : <>{formatMoney(product.priceCents, product.currency)} {product.compareAtCents && <del>{formatMoney(product.compareAtCents, product.currency)}</del>}</>}</div>
         <p className="detail-description">{product.description}</p>
         <div className="detail-rule" />
         {!browseOnly && <div className="detail-field">
           <div className="field-heading"><span>Colour</span><strong>{product.color}</strong></div>
           <span className="color-dot" style={{ background: colourSwatches[product.color.toLowerCase()] ?? '#d9aaa9' }} />
         </div>}
-        {!browseOnly && product.sizes.length > 0 ? <div className="detail-field">
+        {isWoo ? <div className="detail-field">
+          <div className="field-heading"><span>Sizes & availability</span></div>
+          <p className="size-caption">{canPurchase ? 'Choose your exact size, colour and any product options on our secure store page. WooCommerce will verify live stock and calculate delivery and tax.' : product.inStock === false ? 'This item is currently out of stock on our store.' : 'This item is currently unavailable to purchase. Please check back soon.'}</p>
+        </div> : !browseOnly && product.sizes.length > 0 ? <div className="detail-field">
           <div className="field-heading"><span>Choose your size</span><button className="size-chart-link" onClick={() => alert('Size measurements must be verified against the supplier before publishing.')}><Ruler size={14} /> Size guide</button></div>
           <div className="size-options">{product.sizes.map((item) => <button key={item} className={size === item ? 'size-option selected' : 'size-option'} onClick={() => { setSize(item); setAdded(false); }} aria-pressed={size === item}>{item}</button>)}</div>
         </div> : <div className="detail-field">
           <div className="field-heading"><span>Sizes & availability</span></div>
           <p className="size-caption">We’re preparing this dress for the Davinova collection. Sizes, stock, the final price and delivery details are still being confirmed. This item cannot be purchased yet.</p>
         </div>}
-        <button className="button button--dark add-button" disabled={browseOnly || product.sizes.length === 0} onClick={() => { if (!size) { alert('Please choose a size first.'); return; } add(product, size); setAdded(true); }}><span>{browseOnly || product.sizes.length === 0 ? 'Coming soon — not available to purchase' : added ? 'Added to your bag' : 'Add to bag'}</span>{added ? <Check size={17} /> : <Heart size={17} />}</button>
-        <p className="shipping-note">Shipping estimates and terms will be shown after supplier and destination details are confirmed.</p>
+        {isWoo ? (canPurchase && product.woocommercePermalink ? <a className="button button--dark add-button" href={product.woocommercePermalink}><span>Choose options & shop securely</span><ArrowRight size={17} /></a> : <button className="button button--dark add-button" disabled><span>{product.inStock === false ? 'Currently out of stock' : 'Unavailable for purchase'}</span></button>) : <button className="button button--dark add-button" disabled={browseOnly || product.sizes.length === 0} onClick={() => { if (!size) { alert('Please choose a size first.'); return; } add(product, size); setAdded(true); }}><span>{browseOnly || product.sizes.length === 0 ? 'Coming soon — not available to purchase' : added ? 'Added to your bag' : 'Add to bag'}</span>{added ? <Check size={17} /> : <Heart size={17} />}</button>}
+        <p className="shipping-note">{isWoo ? 'Cart, payment, shipping estimates and taxes are securely managed by WooCommerce.' : 'Shipping estimates and terms will be shown after supplier and destination details are confirmed.'}</p>
         <div className="product-accordion">
           <details><summary>Details & care</summary><p>Product composition and care instructions are awaiting supplier verification. [EDIT ME]</p></details>
           <details><summary>Delivery & returns</summary><p>Shipping and return terms are placeholders. Review the policy pages before launch. [EDIT ME]</p></details>
