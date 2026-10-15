@@ -45,12 +45,13 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
           />
           {second && <img className="product-card__alt" src={fullSizeImage(second.url)} alt="" loading="lazy" aria-hidden="true" />}
           <motion.span className="product-card__glare" style={{ background: glare }} aria-hidden="true" />
-          {product.compareAtCents && <span className="product-card__badge">A considered find</span>}
-          {product.featured && !product.compareAtCents && <span className="product-card__badge">Editor’s pick</span>}
+          {(product.browseOnly || !product.supplierVerified) && <span className="product-card__badge">Coming soon</span>}
+          {!(product.browseOnly || !product.supplierVerified) && product.compareAtCents && <span className="product-card__badge">A considered find</span>}
+          {!(product.browseOnly || !product.supplierVerified) && product.featured && !product.compareAtCents && <span className="product-card__badge">Editor’s pick</span>}
           <span className="product-card__arrow" aria-hidden="true"><ArrowUpRight size={18} /></span>
         </Link>
       </motion.div>
-      <div className="product-card__meta"><div><p className="eyebrow">{product.length ? `${product.color} · ${product.length}` : product.color}</p><h3><Link to={`/product/${product.slug}`}>{product.title}</Link></h3></div><p className="product-card__price">{formatMoney(product.priceCents)}{product.compareAtCents && <del>{formatMoney(product.compareAtCents)}</del>}</p></div>
+      <div className="product-card__meta"><div><p className="eyebrow">{product.browseOnly || !product.supplierVerified ? 'A new selection · Details to follow' : product.length ? `${product.color} · ${product.length}` : product.color}</p><h3><Link to={`/product/${product.slug}`}>{product.title}</Link></h3></div><p className="product-card__price">{product.browseOnly || !product.supplierVerified ? 'Coming soon' : <>{formatMoney(product.priceCents)}{product.compareAtCents && <del>{formatMoney(product.compareAtCents)}</del>}</>}</p></div>
     </motion.article>
   );
 }
