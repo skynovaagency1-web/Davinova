@@ -69,6 +69,8 @@ export function CJCatalogAdminPage() {
   const [busy, setBusy] = useState(false);
   const [collectionCategory, setCollectionCategory] = useState<'wedding-guest' | 'cocktail-party' | 'maxi-holiday'>('wedding-guest');
   const [importedIds, setImportedIds] = useState<Record<string, string>>({});
+  const [selectedIds, setSelectedIds] = useState<Record<string, boolean>>({});
+  const [batchProgress, setBatchProgress] = useState('');
 
   async function readJson(response: Response): Promise<SearchResponse> {
     const data = await response.json() as SearchResponse;
@@ -99,6 +101,8 @@ export function CJCatalogAdminPage() {
       setResults(data.items ?? []);
       setTotal(data.totalRecords ?? data.items?.length ?? 0);
       setDetails({});
+      setSelectedIds({});
+      setBatchProgress('');
       setMessage('Read-only search finished. No products were imported and no orders were placed.');
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Could not search CJ right now.');
@@ -158,6 +162,57 @@ export function CJCatalogAdminPage() {
     }
   }
 
+  async function importSelected() {
+    const selected = results.filter((product) => selectedIds[product.id] && !importedIds[product.id]);
+    if (!adminPassword) {
+      setError('Enter the Davinova admin password configured in Cloudflare first.');
+      return;
+    }
+    if (selected.length === 0) {
+      setError('Select at least one dress to add.');
+      return;
+    }
+
+    setError('');
+    setMessage('');
+    setBusy(true);
+    let saved = 0;
+    const alreadyVerified: string[] = [];
+    const failures: string[] = [];
+    try {
+      for (let index = 0; index < selected.length; index += 1) {
+        const product = selected[index];
+        setBatchProgress(`Adding ${index + 1} of ${selected.length}: ${product.name}`);
+        try {
+          const response = await fetch('/api/admin/cj-import', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+            body: JSON.stringify({ productId: product.id, collectionCategory }),
+            cache: 'no-store',
+          });
+          const data = await readJson(response);
+          if (data.status === 'already_verified') alreadyVerified.push(product.name);
+          else saved += 1;
+          setImportedIds((current) => ({ ...current, [product.id]: data.productId || product.id }));
+          setSelectedIds((current) => ({ ...current, [product.id]: false }));
+        } catch (cause) {
+          failures.push(`${product.name}: ${cause instanceof Error ? cause.message : 'Import failed.'}`);
+        }
+      }
+      const summary = [`Finished: ${saved} dress(es) added for browsing.`];
+      if (alreadyVerified.length) summary.push(`${alreadyVerified.length} already-verified item(s) were left unchanged.`);
+      if (failures.length) summary.push(`${failures.length} failed: ${failures.join(' | ')}`);
+      setMessage(summary.join(' '));
+    } finally {
+      setBatchProgress('');
+      setBusy(false);
+    }
+  }
+
+  const selectableResults = results.filter((product) => !importedIds[product.id]);
+  const selectedCount = selectableResults.filter((product) => selectedIds[product.id]).length;
+  const allSelectableSelected = selectableResults.length > 0 && selectableResults.every((product) => selectedIds[product.id]);
+
   return (
     <main style={{ minHeight: '100vh', background: '#f5f0eb', color: '#292522', padding: '32px 18px 60px', fontFamily: 'DM Sans, Arial, sans-serif' }}>
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
@@ -197,12 +252,34 @@ export function CJCatalogAdminPage() {
             <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 32, fontWeight: 500, margin: 0 }}>Search results</h2>
             <span style={{ color: '#746960', fontSize: 13 }}>Up to 10 products shown · {total.toLocaleString()} matching CJ records reported</span>
           </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginTop: 16, padding: '12px 14px', background: '#efe5dc', borderRadius: 10 }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 13, cursor: busy ? 'wait' : 'pointer' }}>
+              <input type="checkbox" checked={allSelectableSelected} disabled={busy || selectableResults.length === 0} onChange={(event) => {
+                const checked = event.target.checked;
+                setSelectedIds((current) => {
+                  const next = { ...current };
+                  selectableResults.forEach((product) => { next[product.id] = checked; });
+                  return next;
+                });
+              }} />
+              Select all available results ({selectableResults.length})
+            </label>
+            <button type="button" onClick={importSelected} disabled={busy || selectedCount === 0} style={{ padding: '12px 16px', border: 0, borderRadius: 8, background: '#292522', color: '#fff', cursor: busy || selectedCount === 0 ? 'not-allowed' : 'pointer', opacity: busy || selectedCount === 0 ? .55 : 1 }}>
+              {busy && batchProgress ? 'Adding selected dresses…' : `Add ${selectedCount} selected dress${selectedCount === 1 ? '' : 'es'} (browse only)`}
+            </button>
+          </div>
+          {batchProgress && <p role="status" style={{ color: '#746960', fontSize: 13, marginTop: 10 }}>{batchProgress}</p>}
+          <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginTop: 10 }}>Choose several dresses and add them in one batch. Each listing stays marked Coming soon until its selling details are verified.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 16, marginTop: 16 }}>
             {results.map((product) => {
               const detail = details[product.id];
               return <article key={product.id} style={{ background: '#fffdfb', border: '1px solid #e4d8cf', borderRadius: 12, overflow: 'hidden' }}>
                 {product.imageUrl ? <img src={product.imageUrl} alt="" loading="lazy" onError={(event) => { event.currentTarget.style.display = 'none'; }} style={{ display: 'block', width: '100%', height: 270, objectFit: 'contain', background: '#f0e7df' }} /> : <div style={{ height: 270, display: 'grid', placeItems: 'center', background: '#f0e7df', color: '#82756d' }}>No image preview from CJ</div>}
                 <div style={{ padding: 16 }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 12, color: '#746960', marginBottom: 12, cursor: busy || Boolean(importedIds[product.id]) ? 'default' : 'pointer' }}>
+                    <input type="checkbox" checked={Boolean(selectedIds[product.id])} disabled={busy || Boolean(importedIds[product.id])} onChange={(event) => setSelectedIds((current) => ({ ...current, [product.id]: event.target.checked }))} />
+                    {importedIds[product.id] ? 'Already added to Davinova' : 'Select for batch import'}
+                  </label>
                   <p style={{ textTransform: 'uppercase', letterSpacing: '.12em', fontSize: 10, color: '#82756d' }}>{product.category || 'CJ catalogue'}</p>
                   <h3 style={{ fontSize: 17, fontWeight: 600, lineHeight: 1.4, margin: '6px 0 10px' }}>{product.name}</h3>
                   <p style={{ margin: '5px 0', fontSize: 13 }}>CJ product ID: <code>{product.id}</code></p>
