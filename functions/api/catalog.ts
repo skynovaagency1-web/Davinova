@@ -25,7 +25,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     return Response.json({ error: 'Unknown collection.' }, { status: 400 });
   }
 
-  const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,currency,occasion,
+  const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,cost_cents,currency,occasion,
     collection_category,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
     catalog_source_product_id,cj_product_id,supplier_verified,
     CASE WHEN EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) THEN 1 ELSE 0 END AS has_sellable_variant
