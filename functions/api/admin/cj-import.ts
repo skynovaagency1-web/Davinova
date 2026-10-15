@@ -55,13 +55,22 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
 
   try {
     const existing = await env.DB.prepare(
-      'SELECT id, title FROM products WHERE cj_product_id = ? OR catalog_source_product_id = ? LIMIT 1',
-    ).bind(productId, productId).first<{ id: string; title: string }>();
+      'SELECT id, title, supplier_verified FROM products WHERE cj_product_id = ? OR catalog_source_product_id = ? LIMIT 1',
+    ).bind(productId, productId).first<{ id: string; title: string; supplier_verified: number }>();
 
     if (existing) {
+      if (existing.supplier_verified !== 1) {
+        await env.DB.prepare(
+          'UPDATE products SET active=1, collection_category=?, updated_at=datetime(\'now\') WHERE id=? AND supplier_verified=0',
+        ).bind(collectionCategory, existing.id).run();
+        return json({
+          ok: true, alreadyImported: true, productId: existing.id, title: existing.title,
+          status: 'published_browse_only', message: 'The dress is listed for browsing only. It remains unavailable to purchase.',
+        });
+      }
       return json({
         ok: true, alreadyImported: true, productId: existing.id, title: existing.title,
-        status: 'draft_or_existing', message: 'This CJ product is already saved in Davinova.',
+        status: 'already_verified', message: 'This CJ product already exists in Davinova.',
       });
     }
 
@@ -86,7 +95,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
       ).bind(
         productKey, slug, detail.name.slice(0, 180), cleanDescription(detail.description),
         'cj', 'cj', detail.id, null, detail.id, 0, collectionCategory, itemCostCents, 0, 0, 'USD',
-        occasion, 'Not verified', 'Not verified', 'Not verified', 'Not verified', '[]', 0, 0,
+        occasion, 'Not verified', 'Not verified', 'Not verified', 'Not verified', '[]', 1, 0,
       ),
       ...images.map((url, index) => env.DB.prepare(
         'INSERT INTO product_images (id, product_id, url, alt, position, is_primary) VALUES (?,?,?,?,?,?)',
@@ -110,8 +119,8 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     await env.DB.batch(statements);
     return json({
       ok: true, alreadyImported: false, productId: productKey, title: detail.name,
-      status: 'unpublished_draft', imageCount: images.length, variantCount: detail.variants.length,
-      message: 'Saved as an unpublished draft. Stock, sizes, pricing, shipping, and image rights remain unverified.',
+      status: 'published_browse_only', imageCount: images.length, variantCount: detail.variants.length,
+      message: 'Listed on the public Davinova catalogue as Coming soon. It remains unavailable to purchase until size, stock, pricing, shipping, and image rights are verified.',
     }, 201);
   } catch (error) {
     const message = error instanceof Error ? error.message.slice(0, 260) : 'CJ product import failed.';
