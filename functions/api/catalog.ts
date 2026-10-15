@@ -30,7 +30,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     catalog_source_product_id,cj_product_id,supplier_verified,
     CASE WHEN EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) THEN 1 ELSE 0 END AS has_sellable_variant
     FROM products
-    WHERE active=1 AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')`;
+    WHERE active=1 AND supplier='cj' AND catalog_source='cj' AND cj_product_id IS NOT NULL AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')`;
   const statement = collection
     ? env.DB.prepare(base + ' AND collection_category=? ORDER BY featured DESC,created_at DESC').bind(collection)
     : env.DB.prepare(base + ' ORDER BY featured DESC,created_at DESC');
