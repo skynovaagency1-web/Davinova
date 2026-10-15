@@ -7,6 +7,7 @@ import { formatMoney } from '../lib/format';
 import { fullSizeImage } from '../lib/images';
 import { editorialImageFor } from '../lib/editorialImages';
 import { productBackdropFor } from '../lib/productBackdrop';
+import { isProductPurchasable, isWooCommerceProduct } from '../lib/woocommerce';
 
 const spring = { stiffness: 180, damping: 18, mass: 0.6 };
 
@@ -22,6 +23,9 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
   const [src, setSrc] = useState(initialImage || editorialImageFor(product.color));
   const [fallbackFailed, setFallbackFailed] = useState(false);
   const second = product.images[1];
+  const isWoo = isWooCommerceProduct(product);
+  const canPurchase = isProductPurchasable(product);
+  const browseOnly = isWoo ? !canPurchase : Boolean(product.browseOnly || !product.supplierVerified);
 
   function handleImageError() {
     if (!usingEditorial) {
@@ -69,13 +73,13 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
           {usingEditorial && !fallbackFailed && <span style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 3, background: 'rgba(255,253,251,.92)', color: '#5d4b42', padding: '7px 9px', fontSize: 9, letterSpacing: '.08em' }}>EDITORIAL INSPIRATION · NOT EXACT ITEM</span>}
           {second && !usingEditorial && <img className="product-card__photo product-card__photo--supplier product-card__alt" src={fullSizeImage(second.url)} alt="" loading="lazy" aria-hidden="true" />}
           <motion.span className="product-card__glare" style={{ background: glare }} aria-hidden="true" />
-          {(product.browseOnly || !product.supplierVerified) && <span className="product-card__badge">Coming soon</span>}
-          {!(product.browseOnly || !product.supplierVerified) && product.compareAtCents && <span className="product-card__badge">A considered find</span>}
-          {!(product.browseOnly || !product.supplierVerified) && product.featured && !product.compareAtCents && <span className="product-card__badge">Editor’s pick</span>}
+          {browseOnly && <span className="product-card__badge">{isWoo && product.inStock === false ? 'Out of stock' : 'Coming soon'}</span>}
+          {!browseOnly && product.compareAtCents && <span className="product-card__badge">A considered find</span>}
+          {!browseOnly && product.featured && !product.compareAtCents && <span className="product-card__badge">Editor’s pick</span>}
           <span className="product-card__arrow" aria-hidden="true"><ArrowUpRight size={18} /></span>
         </Link>
       </motion.div>
-      <div className="product-card__meta"><div><p className="eyebrow">{product.browseOnly || !product.supplierVerified ? 'A new selection · Details to follow' : product.length ? `${product.color} · ${product.length}` : product.color}</p><h3><Link to={`/product/${product.slug}`}>{product.title}</Link></h3></div><p className="product-card__price">{product.browseOnly || !product.supplierVerified ? 'Coming soon' : <>{formatMoney(product.priceCents)}{product.compareAtCents && <del>{formatMoney(product.compareAtCents)}</del>}</>}</p></div>
+      <div className="product-card__meta"><div><p className="eyebrow">{browseOnly ? (isWoo && product.inStock === false ? 'Currently unavailable' : 'A new selection · Details to follow') : product.length ? `${product.color} · ${product.length}` : product.color}</p><h3><Link to={`/product/${product.slug}`}>{product.title}</Link></h3></div><p className="product-card__price">{browseOnly && !isWoo ? 'Coming soon' : <>{formatMoney(product.priceCents, product.currency)}{product.compareAtCents && <del>{formatMoney(product.compareAtCents, product.currency)}</del>}</>}</p></div>
     </motion.article>
   );
 }
