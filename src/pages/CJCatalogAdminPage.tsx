@@ -99,6 +99,9 @@ export function CJCatalogAdminPage() {
   const [destinationCountryCode, setDestinationCountryCode] = useState('FR');
   const [freightQuotes, setFreightQuotes] = useState<Record<string, Record<string, FreightOption[]>>>({});
   const [freightErrors, setFreightErrors] = useState<Record<string, string>>({});
+  const [freightCountryErrors, setFreightCountryErrors] = useState<Record<string, Record<string, string>>>({});
+  const [bulkProgress, setBulkProgress] = useState<Record<string, string>>({});
+  const [bulkFinished, setBulkFinished] = useState<Record<string, boolean>>({});
   const [freightBusyVariant, setFreightBusyVariant] = useState<string | null>(null);
 
   async function readJson(response: Response): Promise<SearchResponse> {
@@ -159,6 +162,22 @@ export function CJCatalogAdminPage() {
   }
 
 
+  async function requestShippingQuote(variant: ProductDetail['variants'][number], countryCode: string): Promise<FreightOption[]> {
+    const params = new URLSearchParams({
+      vid: variant.id,
+      origin: sourceCountryCode,
+      country: countryCode,
+      quantity: '1',
+    });
+    const response = await fetch('/api/admin/cj-shipping?' + params.toString(), {
+      headers: { 'x-admin-password': adminPassword },
+      cache: 'no-store',
+    });
+    const data = await response.json() as FreightResponse;
+    if (!response.ok) throw new Error(data.error || 'CJ could not return a shipping quote.');
+    return (data.quotes ?? []).filter((quote) => quote.shippingUsd !== null || quote.totalPostageUsd !== null);
+  }
+
   async function checkShipping(variant: ProductDetail['variants'][number]) {
     if (!adminPassword) {
       setError('Enter the Davinova admin password first.');
@@ -168,24 +187,13 @@ export function CJCatalogAdminPage() {
       setError('This variant has no CJ variant ID, so it cannot be quoted.');
       return;
     }
+    if (freightBusyVariant) return;
     setError('');
     setMessage('');
     setFreightErrors((current) => ({ ...current, [variant.id]: '' }));
     setFreightBusyVariant(variant.id);
     try {
-      const params = new URLSearchParams({
-        vid: variant.id,
-        origin: sourceCountryCode,
-        country: destinationCountryCode,
-        quantity: '1',
-      });
-      const response = await fetch('/api/admin/cj-shipping?' + params.toString(), {
-        headers: { 'x-admin-password': adminPassword },
-        cache: 'no-store',
-      });
-      const data = await response.json() as FreightResponse;
-      if (!response.ok) throw new Error(data.error || 'CJ could not return a shipping quote.');
-      const quotes = (data.quotes ?? []).filter((quote) => quote.shippingUsd !== null || quote.totalPostageUsd !== null);
+      const quotes = await requestShippingQuote(variant, destinationCountryCode);
       setFreightQuotes((current) => ({
         ...current,
         [variant.id]: { ...(current[variant.id] ?? {}), [destinationCountryCode]: quotes },
@@ -194,11 +202,62 @@ export function CJCatalogAdminPage() {
         ? `CJ returned ${quotes.length} priced shipping method(s) for ${destinationCountryCode}. This is a preliminary estimate.`
         : `CJ returned no priced shipping method for ${destinationCountryCode}. That does not prove the route is permanently unavailable.`);
     } catch (cause) {
-      const message = cause instanceof Error ? cause.message : 'CJ shipping check failed.';
-      setFreightErrors((current) => ({ ...current, [variant.id]: message }));
+      const errorMessage = cause instanceof Error ? cause.message : 'CJ shipping check failed.';
+      setFreightErrors((current) => ({ ...current, [variant.id]: errorMessage }));
     } finally {
       setFreightBusyVariant(null);
     }
+  }
+
+  async function checkAllEurope(variant: ProductDetail['variants'][number]) {
+    if (!adminPassword) {
+      setError('Enter the Davinova admin password first.');
+      return;
+    }
+    if (!variant.id) {
+      setError('This variant has no CJ variant ID, so it cannot be quoted.');
+      return;
+    }
+    if (freightBusyVariant) return;
+
+    setError('');
+    setMessage('');
+    setFreightBusyVariant(variant.id);
+    setFreightErrors((current) => ({ ...current, [variant.id]: '' }));
+    setFreightCountryErrors((current) => ({ ...current, [variant.id]: {} }));
+    setBulkFinished((current) => ({ ...current, [variant.id]: false }));
+    setFreightQuotes((current) => ({ ...current, [variant.id]: {} }));
+    setBulkProgress((current) => ({ ...current, [variant.id]: `Starting checks for ${EUROPE_DESTINATIONS.length} destinations…` }));
+
+    let priced = 0;
+    let noPricedMethod = 0;
+    let failedCount = 0;
+    for (let index = 0; index < EUROPE_DESTINATIONS.length; index += 1) {
+      const [countryCode] = EUROPE_DESTINATIONS[index];
+      try {
+        const quotes = await requestShippingQuote(variant, countryCode);
+        setFreightQuotes((current) => ({
+          ...current,
+          [variant.id]: { ...(current[variant.id] ?? {}), [countryCode]: quotes },
+        }));
+        if (quotes.length) priced += 1;
+        else noPricedMethod += 1;
+      } catch (cause) {
+        const errorMessage = cause instanceof Error ? cause.message.slice(0, 140) : 'CJ shipping check failed.';
+        setFreightCountryErrors((current) => ({
+          ...current,
+          [variant.id]: { ...(current[variant.id] ?? {}), [countryCode]: errorMessage },
+        }));
+        failedCount += 1;
+      }
+      setBulkProgress((current) => ({
+        ...current,
+        [variant.id]: `Checked ${index + 1} of ${EUROPE_DESTINATIONS.length} destinations · priced routes: ${priced} · no priced method: ${noPricedMethod} · errors: ${failedCount}`,
+      }));
+    }
+    setBulkFinished((current) => ({ ...current, [variant.id]: true }));
+    setMessage(`European check finished for this variant: ${priced} destinations returned priced methods, ${noPricedMethod} returned no priced method, and ${failedCount} requests had errors. Estimates do not confirm stock or guarantee delivery.`);
+    setFreightBusyVariant(null);
   }
 
   return (
@@ -270,6 +329,31 @@ export function CJCatalogAdminPage() {
                         <div style={{ fontSize: 12, marginTop: 4 }}>SKU: <code>{variant.sku || 'not supplied'}</code> · {money(variant.sellPriceUsd)}</div>
                         {variant.inventory.length > 0 ? variant.inventory.map((stock, index) => <div key={stock.countryCode + index} style={{ color: '#746960', fontSize: 12, marginTop: 5 }}>{stock.countryCode || 'Warehouse'}: {stock.total ?? '—'} total · CJ {stock.cjStock ?? '—'} · factory {stock.factoryStock ?? '—'} · {stock.verifiedWarehouse ? 'verified' : 'not verified'}</div>) : <div style={{ color: '#746960', fontSize: 12, marginTop: 5 }}>No inventory records supplied.</div>}
                         <button type="button" onClick={() => checkShipping(variant)} disabled={Boolean(freightBusyVariant) || busy} style={{ marginTop: 11, padding: '9px 11px', border: '1px solid #bca99b', background: '#fff', borderRadius: 8, color: '#292522', cursor: freightBusyVariant || busy ? 'wait' : 'pointer', opacity: freightBusyVariant || busy ? .65 : 1 }}>{freightBusyVariant === variant.id ? 'Checking shipping…' : `Check shipping to ${destinationCountryCode}`}</button>
+                        <button type="button" onClick={() => checkAllEurope(variant)} disabled={Boolean(freightBusyVariant) || busy} style={{ display: 'block', marginTop: 8, padding: '9px 11px', border: '1px solid #292522', background: '#292522', borderRadius: 8, color: '#fff', cursor: freightBusyVariant || busy ? 'wait' : 'pointer', opacity: freightBusyVariant || busy ? .65 : 1 }}>{freightBusyVariant === variant.id ? 'Checking Europe…' : `Check all Europe (${EUROPE_DESTINATIONS.length} countries)`}</button>
+                        {bulkProgress[variant.id] && <p role="status" style={{ color: '#746960', fontSize: 12, marginTop: 8 }}>{bulkProgress[variant.id]}</p>}
+                        {freightErrors[variant.id] && <p role="alert" style={{ color: '#9b3125', fontSize: 12, marginTop: 8 }}>{freightErrors[variant.id]}</p>}
+                        {bulkFinished[variant.id] && <div style={{ marginTop: 10 }}>
+                          <p style={{ fontSize: 12, color: '#746960', lineHeight: 1.5 }}>Bulk results for origin {sourceCountryCode}, quantity 1. Countries without a priced route are not automatically confirmed as unavailable.</p>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: 8 }}>
+                            {EUROPE_DESTINATIONS.map(([countryCode, countryName]) => {
+                              const countryQuotes = freightQuotes[variant.id]?.[countryCode];
+                              const countryError = freightCountryErrors[variant.id]?.[countryCode];
+                              return <div key={countryCode} style={{ background: '#fffdfb', border: '1px solid #e4d8cf', borderRadius: 7, padding: 9, fontSize: 12 }}>
+                                <strong>{countryName} ({countryCode})</strong>
+                                {countryError && <div style={{ color: '#9b3125', marginTop: 5 }}>Error: {countryError}</div>}
+                                {!countryError && countryQuotes === undefined && <div style={{ color: '#82756d', marginTop: 5 }}>Not checked</div>}
+                                {!countryError && countryQuotes && countryQuotes.length === 0 && <div style={{ color: '#82756d', marginTop: 5 }}>No priced method returned</div>}
+                                {!countryError && countryQuotes && countryQuotes.slice(0, 2).map((quote, index) => <div key={quote.logisticName + index} style={{ lineHeight: 1.45, marginTop: 5 }}>
+                                  <div>{quote.logisticName || 'Shipping method'}</div>
+                                  <div><strong>{money(quote.totalPostageUsd ?? quote.shippingUsd)}</strong></div>
+                                  {quote.deliveryWindow && <div>{quote.deliveryWindow}</div>}
+                                  {quote.customsClearanceUsd !== null && quote.customsClearanceUsd > 0 && <div>Clearance: {money(quote.customsClearanceUsd)}</div>}
+                                  {quote.note && <div style={{ color: '#8b4d30' }}>{quote.note}</div>}
+                                </div>)}
+                              </div>;
+                            })}
+                          </div>
+                        </div>
                         {freightErrors[variant.id] && <p role="alert" style={{ color: '#9b3125', fontSize: 12, marginTop: 8 }}>{freightErrors[variant.id]}</p>}
                         {freightQuotes[variant.id]?.[destinationCountryCode] && <div style={{ marginTop: 10, borderTop: '1px solid #e4d8cf', paddingTop: 10 }}>
                           <div style={{ fontSize: 12, color: '#746960', marginBottom: 7 }}>Quote for {destinationCountryCode} · origin {sourceCountryCode} · quantity 1</div>
