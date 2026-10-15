@@ -6,7 +6,7 @@ type DbProduct = {
   occasion: string; collection_category: string; color: string; length: string | null;
   sleeve: string; neckline: string; tags_json: string; featured: number;
   supplier: string; catalog_source: string; catalog_source_product_id: string | null;
-  cj_product_id: string | null; supplier_verified: number;
+  cj_product_id: string | null; supplier_verified: number; has_sellable_variant: number;
 };
 type DbImage = { url: string; alt: string };
 
@@ -27,7 +27,8 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
 
   const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,currency,occasion,
     collection_category,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
-    catalog_source_product_id,cj_product_id,supplier_verified
+    catalog_source_product_id,cj_product_id,supplier_verified,
+    CASE WHEN EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) THEN 1 ELSE 0 END AS has_sellable_variant
     FROM products
     WHERE active=1 AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')`;
   const statement = collection
@@ -56,7 +57,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       cjProductId: row.cj_product_id ?? undefined,
       images: imageRows,
       featured: row.featured === 1,
-      browseOnly: !verified,
+      browseOnly: !(verified && row.has_sellable_variant === 1),
     });
   }
 
