@@ -284,7 +284,7 @@ export function CJCatalogAdminPage() {
         {results.length > 0 && <div style={{ marginTop: 28 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'baseline', flexWrap: 'wrap' }}>
             <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 32, fontWeight: 500, margin: 0 }}>Search results</h2>
-            <span style={{ color: '#746960', fontSize: 13 }}>Up to 10 products shown · {total.toLocaleString()} matching CJ records reported</span>
+            <span style={{ color: '#746960', fontSize: 13 }}>{results.length.toLocaleString()} loaded · {total.toLocaleString()} matching CJ records reported</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginTop: 16, padding: '12px 14px', background: '#efe5dc', borderRadius: 10 }}>
             <label style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 13, cursor: busy ? 'wait' : 'pointer' }}>
