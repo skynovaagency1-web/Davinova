@@ -44,3 +44,18 @@ After Cloudflare has rebuilt the site with the public store root:
 ## Important distinction: CJ sourcing and WooCommerce products
 
 The CJ importer and WooCommerce catalogue are separate steps. Saving a dress into Davinova's D1 catalogue does not automatically create a WordPress/WooCommerce product. Import the agreed CJ dress into WooCommerce (WooCommerce → Products → Import) only after converting the source data to the WooCommerce CSV format and verifying its product photos, price, size variations, stock and delivery. Keep it unpublished or not purchasable until those details are confirmed.
+
+
+## Step 6 — Connect this WooCommerce store to CJ Dropshipping
+
+Use CJ's current WooCommerce store authorization rather than exposing CJ credentials or WooCommerce API credentials to the Davinova browser.
+
+1. Sign in to the CJ Dropshipping dashboard and open the WooCommerce authorization / store-connection area.
+2. Choose the default WooCommerce authorization flow and enter the real WordPress/WooCommerce store URL. CJ should redirect you to your own WordPress site to approve access. Review the permissions and approve only for the store you control.
+3. Return to CJ and confirm the WooCommerce store reports Authorized / Activated.
+4. In CJ, list the agreed CJ dress to WooCommerce or open the Unconnected area and manually connect the exact WooCommerce product and each colour/size variation to the correct CJ product variant. Do not assume that matching product titles alone are enough.
+5. Verify prices, variant SKUs, stock settings, shipping method to the customer's destination, and the product image set in WooCommerce before publishing a sellable product.
+6. Run one end-to-end order using test payment first. CJ's current guidance says store orders need a valid paid order, an eligible processing status, an authorized store and connected products; test this exact path from WooCommerce to CJ before relying on automation.
+
+Never paste WooCommerce API keys or CJ API keys into Davinova's frontend build variables or a chat message. If the default CJ authorization fails, stop and use CJ's documented OAuth-plugin alternative rather than weakening WordPress permissions.
+
