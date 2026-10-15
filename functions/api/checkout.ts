@@ -194,7 +194,6 @@ async function loadApprovedProduct(env: Env, item: CartLineInput): Promise<Check
 }
 
 async function createStripeSession(
-  env: Env,
   secret: string,
   site: string,
   countries: string[],
@@ -365,7 +364,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     let session: StripeCheckoutSession;
     try {
       session = await createStripeSession(
-        env, stripe.secret, settings.site, settings.countries,
+        stripe.secret, settings.site, settings.countries,
         settings.shippingFeeCents, settings.shippingLabel, settings.autoTax,
         orderId, orderNumber, prepared,
       );
