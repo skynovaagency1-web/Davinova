@@ -31,11 +31,11 @@ export function ProductPage() {
   const [size, setSize] = useState<DressSize | ''>('');
   const [added, setAdded] = useState(false);
   const [view3d, setView3d] = useState(false);
-  const [usingEditorial, setUsingEditorial] = useState(false);
+  const [usingEditorial, setUsingEditorial] = useState(!fullSizeImage(product?.images[0]?.url));
   const [imageUnavailable, setImageUnavailable] = useState(false);
   const add = useCart((state) => state.add);
   useEffect(() => {
-    setUsingEditorial(false);
+    setUsingEditorial(!fullSizeImage(product?.images[0]?.url));
     setImageUnavailable(false);
   }, [product?.id]);
 
