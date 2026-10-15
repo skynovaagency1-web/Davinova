@@ -1,4 +1,4 @@
-import { getCJProductDetail, type CJEnv } from '../../server/cj';
+import { getCJProductDetail, type CJEnv } from '../../../server/cj';
 
 type CollectionCategory = 'wedding-guest' | 'cocktail-party' | 'maxi-holiday';
 type Env = CJEnv & { ADMIN_PASSWORD?: string };
