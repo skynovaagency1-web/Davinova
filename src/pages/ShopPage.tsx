@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { SlidersHorizontal, X } from 'lucide-react';
-import { products } from '../data/products';
+import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { ProductCard } from '../components/ProductCard';
 import { fabricColors } from '../lib/fabric';
 import { formatMoney } from '../lib/format';
@@ -14,15 +14,16 @@ const occasions = [
   ['maxi-holiday', 'Maxi & Holiday'],
 ] as const;
 
-const unique = (values: string[]) => [...new Set(values)].filter((value) => value && value !== 'Not specified').sort();
-const allColors = unique(products.map((product) => product.color));
-const allSleeves = unique(products.map((product) => product.sleeve));
-const maxPrice = Math.ceil(Math.max(...products.map((product) => product.priceCents)) / 1000) * 1000;
+const unique = (values: string[]) => [...new Set(values)].filter((value) => value && value !== 'Not specified' && value !== 'Not verified').sort();
 
 // All filters live in the URL so a filtered view can be shared or bookmarked.
 export function ShopPage() {
   const [params, setParams] = useSearchParams();
   const [panelOpen, setPanelOpen] = useState(false);
+  const { products, loading } = useCatalogProducts();
+  const allColors = unique(products.map((product) => product.color));
+  const allSleeves = unique(products.map((product) => product.sleeve));
+  const maxPrice = Math.max(10000, Math.ceil(Math.max(...products.map((product) => product.priceCents)) / 1000) * 1000);
   const occasion = params.get('occasion') ?? 'all';
   const colors = params.getAll('color');
   const sleeves = params.getAll('sleeve');
@@ -50,7 +51,7 @@ export function ShopPage() {
       && (sleeves.length === 0 || sleeves.includes(product.sleeve))
       && product.priceCents <= priceCap);
     return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : sort === 'name' ? a.title.localeCompare(b.title) : Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
-  }, [occasion, colors, sleeves, priceCap, sort]);
+  }, [products, occasion, colors, sleeves, priceCap, sort]);
 
   const filterPanel = <div className="filter-panel__groups">
     <fieldset><legend>Colour</legend><div className="swatch-list">{allColors.map((color) => <button type="button" key={color} className={colors.includes(color) ? 'swatch selected' : 'swatch'} onClick={() => toggle('color', color)} aria-pressed={colors.includes(color)}><i style={{ background: fabricColors[color.toLowerCase()] ?? '#b9a79b' }} />{color}</button>)}</div></fieldset>
@@ -68,7 +69,7 @@ export function ShopPage() {
     </LayoutGroup>
     <div className="shop-toolbar">
       <button type="button" className="filter-toggle" onClick={() => setPanelOpen(true)}><SlidersHorizontal size={16} /> Filters{activeCount > 0 && <b>{activeCount}</b>}</button>
-      <span>{filtered.length} {filtered.length === 1 ? 'style' : 'styles'} to fall for</span>
+      <span>{loading ? 'Preparing the latest edit…' : `${filtered.length} ${filtered.length === 1 ? 'style' : 'styles'} to fall for`}</span>
       <div><label htmlFor="sort-products" className="sr-only">Sort products</label><select id="sort-products" value={sort} onChange={(event) => update((next) => { if (event.target.value === 'featured') next.delete('sort'); else next.set('sort', event.target.value); })}><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name</option></select></div>
     </div>
     <div className="shop-layout">
