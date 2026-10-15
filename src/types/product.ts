@@ -29,4 +29,10 @@ export interface Product {
   model3d?: { url: string; credit?: string; scale?: number; rotationY?: number };
   featured?: boolean;
   browseOnly?: boolean;
+  currency?: string;
+  woocommerceProductId?: number;
+  woocommercePermalink?: string;
+  woocommerceType?: 'simple' | 'variable';
+  inStock?: boolean;
+  isPurchasable?: boolean;
 }
