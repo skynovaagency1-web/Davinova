@@ -139,7 +139,7 @@ function normalizeCart(value: unknown): CartLineInput[] | null {
     const row = item as Record<string, unknown>;
     if (typeof row.productId !== 'string' || !row.productId.trim() || row.productId.length > 120) return null;
     if (typeof row.size !== 'string' || !row.size.trim() || row.size.length > 40) return null;
-    if (!Number.isSafeInteger(row.quantity) || Number(row.quantity) < 1 || Number(row.quantity) > 10) return null;
+    if (typeof row.quantity !== 'number' || !Number.isSafeInteger(row.quantity) || row.quantity < 1 || row.quantity > 10) return null;
 
     const key = `${row.productId.trim()}::${row.size.trim().toLowerCase()}`;
     if (seen.has(key)) return null;
@@ -162,7 +162,7 @@ async function loadApprovedProduct(env: Env, item: CartLineInput): Promise<Check
     SELECT p.id AS product_id, p.title AS product_title, p.slug AS product_slug,
       p.price_cents, p.cost_cents, p.currency, p.supplier, p.supplier_verified,
       p.active AS product_active, p.catalog_source, p.cj_product_id,
-      v.id AS variant_id, v.size, v.color, v.sku, v.cj_variant_id,
+      v.id AS variant_id, v.size, v.color, v.sku, v.cj_sku, v.cj_variant_id,
       v.active AS variant_active, v.available_stock,
       (SELECT i.url FROM product_images i WHERE i.product_id=p.id
        ORDER BY i.is_primary DESC, i.position LIMIT 1) AS image_url
@@ -393,7 +393,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       actualTotal !== actualSubtotal + actualShipping + actualTax - actualDiscount
     ) {
       // Expire a session that does not match our order snapshot before exposing it.
-      await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(session.id!)}`, {
+      await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(session.id!)}/expire`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${stripe.secret}`,
