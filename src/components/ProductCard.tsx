@@ -61,7 +61,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
                 loading="lazy"
                 onError={handleImageError}
               />
-            : <div style={{ display: 'grid', placeItems: 'center', width: '100%', height: '100%', minHeight: 280, background: 'linear-gradient(145deg, #eee2d8, #c9b0a2)', color: '#4d4038', textAlign: 'center', padding: 24 }}>
+            : <div style={{ display: 'grid', placeItems: 'center', width: '100%', height: '100%', minHeight: 280, background: productBackdropFor(product.color, product.title), color: '#4d4038', textAlign: 'center', padding: 24 }}>
                 <span style={{ letterSpacing: '.18em', fontSize: 11 }}>DAVINOVA</span>
                 <span style={{ marginTop: 8, fontFamily: 'Georgia, serif', fontSize: 23 }}>The occasion edit</span>
                 <span style={{ marginTop: 10, fontSize: 11 }}>Image coming soon</span>
