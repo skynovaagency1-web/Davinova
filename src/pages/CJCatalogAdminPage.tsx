@@ -41,6 +41,40 @@ interface ProductDetail {
     inventory: Inventory[];
   }>;
 }
+
+interface FreightOption {
+  logisticName: string;
+  deliveryWindow: string;
+  shippingUsd: number | null;
+  totalPostageUsd: number | null;
+  taxesUsd: number | null;
+  customsClearanceUsd: number | null;
+  note: string;
+}
+interface FreightResponse {
+  ok?: boolean;
+  error?: string;
+  quotes?: FreightOption[];
+}
+const EUROPE_DESTINATIONS = [
+  ['AT', 'Austria'], ['BE', 'Belgium'], ['BG', 'Bulgaria'], ['HR', 'Croatia'],
+  ['CY', 'Cyprus'], ['CZ', 'Czechia'], ['DK', 'Denmark'], ['EE', 'Estonia'],
+  ['FI', 'Finland'], ['FR', 'France'], ['DE', 'Germany'], ['GR', 'Greece'],
+  ['HU', 'Hungary'], ['IE', 'Ireland'], ['IT', 'Italy'], ['LV', 'Latvia'],
+  ['LT', 'Lithuania'], ['LU', 'Luxembourg'], ['MT', 'Malta'], ['NL', 'Netherlands'],
+  ['PL', 'Poland'], ['PT', 'Portugal'], ['RO', 'Romania'], ['SK', 'Slovakia'],
+  ['SI', 'Slovenia'], ['ES', 'Spain'], ['SE', 'Sweden'], ['GB', 'United Kingdom'],
+  ['CH', 'Switzerland'], ['NO', 'Norway'], ['IS', 'Iceland'], ['LI', 'Liechtenstein'],
+  ['AL', 'Albania'], ['AD', 'Andorra'], ['BA', 'Bosnia and Herzegovina'],
+  ['MD', 'Moldova'], ['ME', 'Montenegro'], ['MK', 'North Macedonia'],
+  ['RS', 'Serbia'], ['UA', 'Ukraine'], ['TR', 'Türkiye'], ['MC', 'Monaco'],
+  ['SM', 'San Marino'], ['VA', 'Vatican City'], ['XK', 'Kosovo'],
+] as const;
+const SHIPPING_ORIGINS = [
+  ['CN', 'China (CN)'], ['DE', 'Germany (DE)'], ['PL', 'Poland (PL)'],
+  ['CZ', 'Czechia (CZ)'], ['ES', 'Spain (ES)'], ['US', 'United States (US)'],
+] as const;
+
 interface SearchResponse {
   ok?: boolean;
   error?: string;
@@ -61,6 +95,11 @@ export function CJCatalogAdminPage() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
+  const [sourceCountryCode, setSourceCountryCode] = useState('CN');
+  const [destinationCountryCode, setDestinationCountryCode] = useState('FR');
+  const [freightQuotes, setFreightQuotes] = useState<Record<string, Record<string, FreightOption[]>>>({});
+  const [freightErrors, setFreightErrors] = useState<Record<string, string>>({});
+  const [freightBusyVariant, setFreightBusyVariant] = useState<string | null>(null);
 
   async function readJson(response: Response): Promise<SearchResponse> {
     const data = await response.json() as SearchResponse;
@@ -119,6 +158,49 @@ export function CJCatalogAdminPage() {
     }
   }
 
+
+  async function checkShipping(variant: ProductDetail['variants'][number]) {
+    if (!adminPassword) {
+      setError('Enter the Davinova admin password first.');
+      return;
+    }
+    if (!variant.id) {
+      setError('This variant has no CJ variant ID, so it cannot be quoted.');
+      return;
+    }
+    setError('');
+    setMessage('');
+    setFreightErrors((current) => ({ ...current, [variant.id]: '' }));
+    setFreightBusyVariant(variant.id);
+    try {
+      const params = new URLSearchParams({
+        vid: variant.id,
+        origin: sourceCountryCode,
+        country: destinationCountryCode,
+        quantity: '1',
+      });
+      const response = await fetch('/api/admin/cj-shipping?' + params.toString(), {
+        headers: { 'x-admin-password': adminPassword },
+        cache: 'no-store',
+      });
+      const data = await response.json() as FreightResponse;
+      if (!response.ok) throw new Error(data.error || 'CJ could not return a shipping quote.');
+      const quotes = (data.quotes ?? []).filter((quote) => quote.shippingUsd !== null || quote.totalPostageUsd !== null);
+      setFreightQuotes((current) => ({
+        ...current,
+        [variant.id]: { ...(current[variant.id] ?? {}), [destinationCountryCode]: quotes },
+      }));
+      setMessage(quotes.length
+        ? `CJ returned ${quotes.length} priced shipping method(s) for ${destinationCountryCode}. This is a preliminary estimate.`
+        : `CJ returned no priced shipping method for ${destinationCountryCode}. That does not prove the route is permanently unavailable.`);
+    } catch (cause) {
+      const message = cause instanceof Error ? cause.message : 'CJ shipping check failed.';
+      setFreightErrors((current) => ({ ...current, [variant.id]: message }));
+    } finally {
+      setFreightBusyVariant(null);
+    }
+  }
+
   return (
     <main style={{ minHeight: '100vh', background: '#f5f0eb', color: '#292522', padding: '32px 18px 60px', fontFamily: 'DM Sans, Arial, sans-serif' }}>
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
@@ -131,6 +213,21 @@ export function CJCatalogAdminPage() {
           <label htmlFor="adminPassword" style={{ display: 'block', fontSize: 13, marginBottom: 7 }}>Davinova admin password</label>
           <input id="adminPassword" type="password" autoComplete="current-password" value={adminPassword} onChange={(event) => setAdminPassword(event.target.value)} placeholder="Enter the Cloudflare ADMIN_PASSWORD secret" style={{ boxSizing: 'border-box', width: '100%', padding: '12px 13px', border: '1px solid #d8cbc1', borderRadius: 8, background: '#fff', fontSize: 15 }} />
           <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginTop: 8 }}>The password stays in this page’s memory only and is sent to your own site over HTTPS. It is not saved in the browser.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12, marginTop: 14 }}>
+            <div>
+              <label htmlFor="sourceCountryCode" style={{ display: 'block', fontSize: 13, marginBottom: 7 }}>Shipping origin (must match stock location)</label>
+              <select id="sourceCountryCode" value={sourceCountryCode} onChange={(event) => setSourceCountryCode(event.target.value)} style={{ width: '100%', boxSizing: 'border-box', padding: '11px 12px', border: '1px solid #d8cbc1', borderRadius: 8, background: '#fff', fontSize: 14 }}>
+                {SHIPPING_ORIGINS.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="destinationCountryCode" style={{ display: 'block', fontSize: 13, marginBottom: 7 }}>European destination</label>
+              <select id="destinationCountryCode" value={destinationCountryCode} onChange={(event) => setDestinationCountryCode(event.target.value)} style={{ width: '100%', boxSizing: 'border-box', padding: '11px 12px', border: '1px solid #d8cbc1', borderRadius: 8, background: '#fff', fontSize: 14 }}>
+                {EUROPE_DESTINATIONS.map(([code, name]) => <option key={code} value={code}>{name}</option>)}
+              </select>
+            </div>
+          </div>
+          <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginTop: 8 }}>Choose a destination and check each variant. If CJ did not supply inventory records, the origin is an assumption and any quote is preliminary.</p>
           <form onSubmit={search} style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
             <label htmlFor="keyword" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)' }}>Search CJ</label>
             <input id="keyword" value={keyword} onChange={(event) => setKeyword(event.target.value)} placeholder="e.g. wedding guest dress" style={{ flex: '1 1 260px', minWidth: 0, padding: '13px 14px', border: '1px solid #d8cbc1', borderRadius: 8, background: '#fff', fontSize: 15 }} />
@@ -172,6 +269,21 @@ export function CJCatalogAdminPage() {
                         <div style={{ fontSize: 12, marginTop: 4 }}>VID: <code>{variant.id || 'not supplied'}</code></div>
                         <div style={{ fontSize: 12, marginTop: 4 }}>SKU: <code>{variant.sku || 'not supplied'}</code> · {money(variant.sellPriceUsd)}</div>
                         {variant.inventory.length > 0 ? variant.inventory.map((stock, index) => <div key={stock.countryCode + index} style={{ color: '#746960', fontSize: 12, marginTop: 5 }}>{stock.countryCode || 'Warehouse'}: {stock.total ?? '—'} total · CJ {stock.cjStock ?? '—'} · factory {stock.factoryStock ?? '—'} · {stock.verifiedWarehouse ? 'verified' : 'not verified'}</div>) : <div style={{ color: '#746960', fontSize: 12, marginTop: 5 }}>No inventory records supplied.</div>}
+                        <button type="button" onClick={() => checkShipping(variant)} disabled={Boolean(freightBusyVariant) || busy} style={{ marginTop: 11, padding: '9px 11px', border: '1px solid #bca99b', background: '#fff', borderRadius: 8, color: '#292522', cursor: freightBusyVariant || busy ? 'wait' : 'pointer', opacity: freightBusyVariant || busy ? .65 : 1 }}>{freightBusyVariant === variant.id ? 'Checking shipping…' : `Check shipping to ${destinationCountryCode}`}</button>
+                        {freightErrors[variant.id] && <p role="alert" style={{ color: '#9b3125', fontSize: 12, marginTop: 8 }}>{freightErrors[variant.id]}</p>}
+                        {freightQuotes[variant.id]?.[destinationCountryCode] && <div style={{ marginTop: 10, borderTop: '1px solid #e4d8cf', paddingTop: 10 }}>
+                          <div style={{ fontSize: 12, color: '#746960', marginBottom: 7 }}>Quote for {destinationCountryCode} · origin {sourceCountryCode} · quantity 1</div>
+                          {freightQuotes[variant.id][destinationCountryCode].length === 0
+                            ? <div style={{ fontSize: 12, color: '#746960' }}>No priced shipping methods were returned for this route.</div>
+                            : freightQuotes[variant.id][destinationCountryCode].map((quote, quoteIndex) => <div key={quote.logisticName + quoteIndex} style={{ background: '#fffdfb', border: '1px solid #e4d8cf', borderRadius: 7, padding: 9, marginTop: 7, fontSize: 12, lineHeight: 1.5 }}>
+                              <strong>{quote.logisticName || 'Shipping method'}</strong>
+                              <div>{quote.totalPostageUsd !== null ? 'Total postage estimate: ' : 'Shipping estimate: '}{money(quote.totalPostageUsd ?? quote.shippingUsd)}</div>
+                              {quote.deliveryWindow && <div>Estimated delivery: {quote.deliveryWindow}</div>}
+                              {quote.taxesUsd !== null && <div>Taxes: {money(quote.taxesUsd)}</div>}
+                              {quote.customsClearanceUsd !== null && <div>Customs clearance: {money(quote.customsClearanceUsd)}</div>}
+                              {quote.note && <div style={{ color: '#8b4d30' }}>{quote.note}</div>}
+                            </div>)}
+                        </div>}
                       </div>)}
                     </div>}
                     <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginTop: 12 }}>Before selection, we still need to verify shipping to France, total landed cost, variant sizing accuracy and image rights.</p>
