@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Check, Heart, Ruler, Rotate3D } from 'lucide-react';
+import { ArrowLeft, Check, Eye, Heart, PackageCheck, Ruler, Rotate3D, Sparkles } from 'lucide-react';
 import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { formatMoney } from '../lib/format';
 import { fullSizeImage } from '../lib/images';
 import { editorialImageFor } from '../lib/editorialImages';
+import { productBackdropFor } from '../lib/productBackdrop';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
@@ -31,11 +32,13 @@ export function ProductPage() {
   const [size, setSize] = useState<DressSize | ''>('');
   const [added, setAdded] = useState(false);
   const [view3d, setView3d] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [usingEditorial, setUsingEditorial] = useState(!fullSizeImage(product?.images[0]?.url));
   const [imageUnavailable, setImageUnavailable] = useState(false);
   const add = useCart((state) => state.add);
   useEffect(() => {
     setUsingEditorial(!fullSizeImage(product?.images[0]?.url));
+    setSelectedImageIndex(0);
     setImageUnavailable(false);
   }, [product?.id]);
 
@@ -48,18 +51,21 @@ export function ProductPage() {
   }
 
   const browseOnly = Boolean(product.browseOnly || !product.supplierVerified);
+  const currentImage = product.images[selectedImageIndex] ?? product.images[0];
+  const productBackdrop = productBackdropFor(product.color, product.title);
 
   return <section className="product-page section">
     <Link to="/shop" className="back-link"><ArrowLeft size={15} /> Back to the collection</Link>
     <div className="product-detail">
       <div className="product-visual-column">
-        {!view3d && <div className="product-gallery">
+        {!view3d && <div className="product-gallery" style={{ background: productBackdrop }}>
           {!imageUnavailable
             ? <img
-                src={usingEditorial ? editorialImageFor(product.color) : fullSizeImage(product.images[0]?.url)}
+                className={usingEditorial ? 'product-gallery__editorial-image' : 'product-gallery__supplier-image'}
+                src={usingEditorial ? editorialImageFor(product.color) : fullSizeImage(currentImage?.url)}
                 alt={usingEditorial
                   ? `Editorial inspiration for ${product.title}; not an exact product photograph`
-                  : product.images[0]?.alt ?? product.title}
+                  : currentImage?.alt ?? product.title}
                 onError={() => {
                   if (!usingEditorial) setUsingEditorial(true);
                   else setImageUnavailable(true);
@@ -73,12 +79,13 @@ export function ProductPage() {
           {usingEditorial && !imageUnavailable && <span style={{ position: 'absolute', left: 16, bottom: 16, background: 'rgba(255,253,251,.94)', color: '#5d4b42', padding: '8px 10px', fontSize: 10, letterSpacing: '.08em' }}>EDITORIAL INSPIRATION · NOT EXACT ITEM</span>}
           <span className="gallery-note">DAVINOVA · THE OCCASION EDIT</span>
         </div>}
+        {!view3d && product.images.length > 1 && !usingEditorial && <div className="product-thumbnails" aria-label="More product photos">{product.images.map((image, index) => <button key={image.url + index} type="button" className={selectedImageIndex === index ? 'product-thumbnail active' : 'product-thumbnail'} onClick={() => { setSelectedImageIndex(index); setUsingEditorial(false); setImageUnavailable(false); }} aria-label={`View product photo ${index + 1}`} aria-pressed={selectedImageIndex === index} style={{ background: productBackdrop }}><img src={fullSizeImage(image.url)} alt="" loading="lazy" /></button>)}</div>}
         <div className="viewer-switch" role="group" aria-label="Product viewing mode">
           <button type="button" className={!view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(false)}>Editorial view</button>
           {product.model3d?.url && <button type="button" className={view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(true)}><Rotate3D size={14} /> View in 3D</button>}
         </div>
         {view3d && product.model3d?.url && <DressViewer3D modelUrl={product.model3d.url} title={product.title} color={product.color} scale={product.model3d.scale} rotationY={product.model3d.rotationY} />}
-        {!view3d && <p className="image-disclaimer">{browseOnly ? 'Editorial inspiration only — this is not an exact photograph of the listed dress. Product-specific photos and availability are being confirmed.' : 'Product imagery supplied by our catalogue.'}</p>}
+        {!view3d && <p className="image-disclaimer">{usingEditorial ? 'Editorial inspiration only — this image is not an exact photograph of the listed dress.' : 'Supplier catalogue image. Stock, exact variant mapping, image-use rights and delivery details are still being checked.'}</p>}
       </div>
       <div className="product-info">
         <p className="eyebrow">{product.occasion.replace('-', ' ')} edit</p>
@@ -105,5 +112,13 @@ export function ProductPage() {
         </div>
       </div>
     </div>
+    <section className="product-journey" aria-label="How we prepare each dress">
+      <div className="product-journey__intro"><p className="eyebrow">A considered experience</p><h2>A little clarity,<br /><em>at every step.</em></h2><p>Beautiful clothes deserve clear information. We are preparing each listing carefully before orders open.</p></div>
+      <div className="product-journey__steps">
+        <article><span className="product-journey__number">01</span><div className="product-journey__icon"><Eye size={19} strokeWidth={1.5} /></div><h3>See the details</h3><p>{usingEditorial ? 'This is an editorial mood image, not an exact product photograph. We will show product-specific imagery when verified.' : 'Supplier catalogue imagery is shown clearly while we confirm image-use rights and exact product details.'}</p></article>
+        <article><span className="product-journey__number">02</span><div className="product-journey__icon"><Ruler size={19} strokeWidth={1.5} /></div><h3>Find your fit</h3><p>Size labels and measurements will be added after the supplier variants are mapped and checked.</p></article>
+        <article><span className="product-journey__number">03</span><div className="product-journey__icon"><PackageCheck size={19} strokeWidth={1.5} /></div><h3>Ready before checkout</h3><p>Stock, final pricing, delivery options and return terms must be confirmed before this dress can be purchased.</p></article>
+      </div>
+    </section>
   </section>;
 }
