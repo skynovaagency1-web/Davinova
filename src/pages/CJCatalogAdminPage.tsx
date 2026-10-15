@@ -49,6 +49,10 @@ interface SearchResponse {
   detail?: ProductDetail;
   productId?: string;
   alreadyImported?: boolean;
+  status?: string;
+  message?: string;
+  imageCount?: number;
+  variantCount?: number;
 }
 const money = (value: number | null) => value === null ? 'Not supplied' : new Intl.NumberFormat('en-US', {
   style: 'currency', currency: 'USD', maximumFractionDigits: 2,
