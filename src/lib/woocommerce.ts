@@ -81,7 +81,7 @@ function normaliseSize(value: string): DressSize | undefined {
   const size = value.trim().toUpperCase().replace(/[\s_-]/g, '');
   const aliases: Record<string, DressSize> = {
     XS: 'XS', XSMALL: 'XS', S: 'S', SMALL: 'S', M: 'M', MEDIUM: 'M',
-    L: 'L', LARGE: 'L', XL: 'XL', X-LARGE: 'XL', XXL: '2XL', '2XL': '2XL',
+    L: 'L', LARGE: 'L', XL: 'XL', XXL: '2XL', '2XL': '2XL',
     XXXL: '3XL', '3XL': '3XL', XXXXL: '4XL', '4XL': '4XL',
   };
   return aliases[size];
@@ -104,14 +104,15 @@ function mapWooProduct(item: WooStoreProduct): Product {
   const attributes = item.attributes ?? [];
   const findAttribute = (pattern: RegExp) =>
     attributes.find((attribute) => pattern.test(`${attribute.name ?? ''} ${attribute.taxonomy ?? ''}`));
-  const sizes = [...new Set((attributeValues(findAttribute(/size/i))).map(normaliseSize).filter((size): size is DressSize => Boolean(size)))];
+  const sizes = [...new Set(attributeValues(findAttribute(/size/i)).map(normaliseSize).filter((size): size is DressSize => Boolean(size)))];
   const colorValues = attributeValues(findAttribute(/colou?r/i));
   const color = colorValues[0] ?? 'As shown';
   const length = attributeValues(findAttribute(/length/i))[0] ?? 'Midi';
   const sleeve = attributeValues(findAttribute(/sleeve/i))[0] ?? '';
   const neckline = attributeValues(findAttribute(/neckline/i))[0] ?? '';
-  const priceCents = toCents(item.prices?.price, item.prices?.currency_minor_unit ?? 2);
-  const regularPriceCents = toCents(item.prices?.regular_price, item.prices?.currency_minor_unit ?? 2);
+  const minorUnit = item.prices?.currency_minor_unit ?? 2;
+  const priceCents = toCents(item.prices?.price, minorUnit);
+  const regularPriceCents = toCents(item.prices?.regular_price, minorUnit);
   const description = cleanText(item.short_description) || cleanText(item.description);
   const tags = [
     ...(item.tags ?? []).map((tag) => tag.name ?? tag.slug ?? ''),
@@ -125,6 +126,7 @@ function mapWooProduct(item: WooStoreProduct): Product {
     description,
     priceCents,
     compareAtCents: regularPriceCents > priceCents ? regularPriceCents : undefined,
+    currency: item.prices?.currency_code || (import.meta.env.VITE_CURRENCY as string | undefined) || 'USD',
     supplier: 'cj',
     occasion: productOccasion(item),
     color,
@@ -137,7 +139,6 @@ function mapWooProduct(item: WooStoreProduct): Product {
       url: image.src!,
       alt: image.alt || image.name || item.name,
     })),
-    currency: item.prices?.currency_code || (import.meta.env.VITE_CURRENCY as string | undefined) || 'USD',
     woocommerceProductId: item.id,
     woocommercePermalink: item.permalink,
     woocommerceType: item.type === 'variable' ? 'variable' : 'simple',
@@ -150,10 +151,10 @@ export async function fetchWooCommerceProducts(signal?: AbortSignal): Promise<Pr
 
   const products: Product[] = [];
   let page = 1;
-  let totalPages = 1;
-
-  while (page <= totalPages) {
-    const endpoint = `${storeUrl}/wp-json/wc/store/v1/products?per_page=100&page=${page}`;
+  const pageSize = 100;
+  // Avoid depending on custom pagination headers being exposed by the WordPress host's CORS policy.
+  while (page <= 100) {
+    const endpoint = `${storeUrl}/wp-json/wc/store/v1/products?per_page=${pageSize}&page=${page}`;
     const response = await fetch(endpoint, { method: 'GET', signal, headers: { Accept: 'application/json' } });
     if (!response.ok) {
       throw new Error(`WooCommerce catalogue request failed (HTTP ${response.status}). Check the store URL, Store API, and cross-origin access settings.`);
@@ -161,9 +162,9 @@ export async function fetchWooCommerceProducts(signal?: AbortSignal): Promise<Pr
     const result: unknown = await response.json();
     if (!Array.isArray(result)) throw new Error('WooCommerce returned an unexpected product response.');
     products.push(...result.map((item) => mapWooProduct(item as WooStoreProduct)));
-    totalPages = Math.max(1, Number(response.headers.get('X-WP-TotalPages') ?? 1) || 1);
+    if (result.length < pageSize) return products.filter((product) => product.inStock !== false);
     page += 1;
   }
 
-  return products.filter((product) => product.inStock !== false);
+  throw new Error('The WooCommerce catalogue contains more products than the current pagination safety limit.');
 }
