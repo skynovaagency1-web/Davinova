@@ -60,9 +60,11 @@ const money = (value: number | null) => value === null ? 'Not supplied' : new In
 
 export function CJCatalogAdminPage() {
   const [adminPassword, setAdminPassword] = useState('');
-  const [keyword, setKeyword] = useState("Elegant Vintage Women's Boho Tassel Dress White Lace V Neck Fringe Sleeve Autumn Fashion Party Dress Wedding Guest Maxi Dresses");
+  const [keyword, setKeyword] = useState("Elegant Vintage Women's Boho Tassel Dress");
   const [results, setResults] = useState<SearchProduct[]>([]);
   const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
   const [details, setDetails] = useState<Record<string, ProductDetail>>({});
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -100,12 +102,44 @@ export function CJCatalogAdminPage() {
       const data = await readJson(response);
       setResults(data.items ?? []);
       setTotal(data.totalRecords ?? data.items?.length ?? 0);
+      setPage(1);
+      setHasMore((data.items?.length ?? 0) < (data.totalRecords ?? data.items?.length ?? 0));
       setDetails({});
       setSelectedIds({});
       setBatchProgress('');
       setMessage('Read-only search finished. No products were imported and no orders were placed.');
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Could not search CJ right now.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function loadMoreResults() {
+    if (!adminPassword || !hasMore || busy) return;
+    setError('');
+    setMessage('');
+    setBusy(true);
+    const nextPage = page + 1;
+    try {
+      const params = new URLSearchParams({ q: keyword.trim(), page: String(nextPage), size: '10' });
+      const response = await fetch('/api/admin/cj-catalog?' + params.toString(), {
+        headers: { 'x-admin-password': adminPassword },
+        cache: 'no-store',
+      });
+      const data = await readJson(response);
+      const incoming = data.items ?? [];
+      setResults((current) => {
+        const seen = new Set(current.map((item) => item.id));
+        return [...current, ...incoming.filter((item) => !seen.has(item.id))];
+      });
+      const totalRecords = data.totalRecords ?? total;
+      setTotal(totalRecords);
+      setPage(nextPage);
+      setHasMore(nextPage * 10 < totalRecords && incoming.length > 0);
+      setMessage(incoming.length ? `Loaded ${incoming.length} more dresses. You can now select from all ${Math.min(nextPage * 10, totalRecords)} loaded results.` : 'No more products were returned for this search.');
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : 'Could not load more CJ products.');
     } finally {
       setBusy(false);
     }
@@ -308,6 +342,7 @@ export function CJCatalogAdminPage() {
               </article>;
             })}
           </div>
+          {hasMore && <div style={{ display: 'flex', justifyContent: 'center', marginTop: 26 }}><button type="button" onClick={loadMoreResults} disabled={busy} style={{ padding: '12px 18px', border: '1px solid #bca99b', background: '#fffdfb', borderRadius: 8, color: '#292522', cursor: busy ? 'wait' : 'pointer' }}>{busy ? 'Loading…' : `Load 10 more dresses · ${Math.max(0, total - results.length)} remaining`}</button></div>}
         </div>}
         {results.length === 0 && !busy && !error && <p style={{ color: '#82756d', marginTop: 26, fontSize: 14 }}>Search for dresses when you’re ready. Results will appear here for review before anything is imported.</p>}
         <footer style={{ marginTop: 38, color: '#93867c', fontSize: 12 }}>Davinova · Private sourcing workspace · No supplier purchases can be made here.</footer>
