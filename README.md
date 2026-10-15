@@ -61,3 +61,10 @@ The public products endpoint returns only CJ-verified active products with a map
 - [ ] Run end-to-end, security, accessibility and performance tests.
 
 Related: [visual direction](docs/visual-direction.md), [supplier plan](docs/pinterest-and-commerce-recommendation.md).
+
+
+## WooCommerce headless connection
+
+The Davinova-designed storefront can optionally use WooCommerce as the catalogue and checkout source of truth while keeping this React/Vite design. Set the public build variable `VITE_WOOCOMMERCE_URL` to the actual WordPress/WooCommerce root in Cloudflare Pages. `VITE_CURRENCY` and optional shop/cart/checkout path variables are documented in `.env.example`. The connector reads products from the public WooCommerce Store API; product purchase links, the bag and checkout go to native WooCommerce pages. No WooCommerce consumer secret is exposed to the browser. Setup and verification steps are in [docs/woocommerce-setup.md](docs/woocommerce-setup.md).
+
+CJ product sourcing is separate from WooCommerce product import. A CJ draft stored in Davinova's D1 database is not automatically a WordPress product. Convert / verify product data and import it via WooCommerce only once the correct images, price, stock, variants, shipping and selling permissions are confirmed.
