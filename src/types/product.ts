@@ -8,6 +8,7 @@ export interface Product {
   description: string;
   priceCents: number;
   compareAtCents?: number;
+  currency?: string;
   supplier: Supplier;
   supplierProductUrl?: string;
   occasion: 'wedding-guest' | 'cocktail' | 'evening' | 'bridesmaid';
@@ -20,4 +21,8 @@ export interface Product {
   images: { url: string; alt: string }[];
   model3d?: { url: string; credit?: string; scale?: number; rotationY?: number };
   featured?: boolean;
+  inStock?: boolean;
+  woocommerceProductId?: number;
+  woocommercePermalink?: string;
+  woocommerceType?: 'simple' | 'variable';
 }
