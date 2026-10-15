@@ -1,100 +1,63 @@
-# Davinova — occasion dress boutique
+# Davinova — occasionwear boutique
 
-A mobile-first, luxury-inspired dropshipping storefront for women's wedding-guest and occasion dresses. This repository is a staged handover project. The current scaffold includes the React storefront foundation, D1 schema/seed data, Cloudflare Pages Functions skeleton, and safe integration placeholders.
+React + Vite + TypeScript storefront, Cloudflare Pages Functions and D1. Development preview only — **not production-ready**. Do not accept customer payments or place live supplier orders yet.
 
-> **Important:** This is a development scaffold, not yet production-ready. Do not accept live payments or place live supplier orders until the TODOs and verification steps below are complete. `DRY_RUN=true` is the default.
+## Current plan
+- Primary fulfilment supplier: CJ Dropshipping Open API V2.0.
+- FondMart is a style-discovery catalog used to submit free CJ sourcing requests. No FondMart auto-order API is assumed; any rare fallback is an owner-placed manual order.
+- Frontend: Cloudflare Pages. Orders/catalog: D1. Email: Resend.
+- Safety defaults: DRY_RUN=true, CJ_SANDBOX=true and CJ_LIVE_ORDERS_ENABLED=false. One-tap owner approval is required before each supplier purchase.
 
-## Architecture
+## Launch categories
+1. Wedding Guest (first niche).
+2. Cocktail & Party (next).
+3. Maxi & Holiday (add before spring/summer when sourced products are verified).
+4. Bridesmaid and Prom/Homecoming hidden for now. Plus sizes and modest dresses deferred.
 
-```text
-Browser (React + Vite + TypeScript + Tailwind)
-  ├─ Public pages / product catalogue / local cart
-  └─ /api/* → Cloudflare Pages Functions
-                 ├─ Cloudflare D1 (products, orders, settings, audit trail)
-                 ├─ Stripe Checkout + verified webhook (TODO: complete integration)
-                 ├─ PayPal Checkout + verified webhook (TODO: complete integration)
-                 ├─ FondMart supplier workflow (product package import now; order/tracking integration TODO)
-                 └─ Resend email API (TODO: implement templates + delivery)
-```
-
-## Requirements
-
-- Node.js 20+
-- npm
-- Optional for local Cloudflare runtime: Wrangler CLI (installed through project dependencies)
+The eight current dresses are FondMart style references, not verified CJ products. Do not sell any item until CJ confirms the exact match and provides CJ product/variant IDs, actual sizes, stock, current item/shipping costs and commercial image permission. $55-$70 is a draft retail target, not final verified pricing.
 
 ## Local setup
-
-1. `npm install`
-2. Copy `.env.example` to `.dev.vars` and leave all payment/supplier keys unset while developing.
-3. `npm run dev` to start Vite.
-4. `npm run typecheck && npm run lint && npm test` for checks.
-
-To develop Pages Functions locally, use `npx wrangler pages dev dist` after `npm run build`. D1 local database setup:
-
-```bash
-npx wrangler d1 create davinova-db
-# Update database_id in wrangler.toml with the returned ID.
-npx wrangler d1 execute davinova-db --local --file=./schema.sql
-npx wrangler d1 execute davinova-db --local --file=./seed/seed.sql
+Node.js 20+ and npm are required.
+```sh
+npm install
+npm run dev
+npm run typecheck
+npm run lint
+npm test
+npm run build
 ```
+To test Pages Functions locally after build, use `npx wrangler pages dev dist`. Keep all supplier/payment credentials unset during local design work.
 
-Wrangler configuration is a template. Review the D1 database ID and binding before use.
+## Cloudflare
+1. Connect this repository to Cloudflare Pages; build command `npm run build`, output directory `dist`.
+2. The existing D1 database is `davinova-store-db`; the `DB` binding and database ID are recorded in `wrangler.toml`.
+3. Apply numbered migrations with `npx wrangler d1 migrations apply davinova-store-db --remote`. Do not run `schema.sql` on top of the numbered migrations.
+4. Configure secrets in the Cloudflare dashboard, not Git.
+5. Attach your custom domain only after preview and security checks.
 
-## Deploy to Cloudflare Pages
+The tracking-sync handler is prepared in `server/scheduled.ts`, but Cloudflare Pages does not support Worker Cron Triggers. Deploy it as a separate Worker before relying on automated tracking emails.
 
-1. Push this repository to GitHub.
-2. In Cloudflare Dashboard, create a Pages project connected to the repo.
-3. Build command: `npm run build`; output directory: `dist`.
-4. Create a D1 database and replace the placeholder `database_id` in `wrangler.toml`.
-5. Apply `schema.sql` and `seed/seed.sql` to the production database after reviewing them.
-6. Add environment variables and secrets in Pages settings. Never commit `.dev.vars` or real credentials.
-7. Configure a custom domain and verify DNS/TLS.
-8. Configure Cron Triggers only after `functions/scheduled.ts` is implemented and tested.
+## CJ API references
+- https://developers.cjdropshipping.com/en/api/api2/
+- https://developers.cjdropshipping.com/en/api/api2/api/auth.html
+- https://developers.cjdropshipping.com/en/api/start/Orders-Synchronization-Processing.html
+- https://developers.cjdropshipping.com/en/api/api2/api/shopping.html
+- https://developers.cjdropshipping.com/en/api/api2/api/logistic.html
 
-## Initial FondMart catalogue import
+Never expose CJ secrets in React or VITE_ variables. Configure server-side secrets only after creating the CJ account: CJ_API_KEY, CJ_TOKEN_ENCRYPTION_KEY, CJ_LOGISTIC_NAME (verified in CJ), CJ_FROM_COUNTRY_CODE=CN, CJ_SANDBOX=true, CJ_LIVE_ORDERS_ENABLED=false, DRY_RUN=true, RESEND_API_KEY, EMAIL_FROM, OWNER_EMAIL, SITE_URL.
 
-Eight public FondMart dress listings have been added to the development catalogue with supplier product IDs, source URLs, listing thumbnails, short descriptions, and current public listing prices as observed on 11 October 2026. Source listing: https://fondmart.com/women-clothing/dresses/.
+CJ's order flow is multi-step: create order, add to cart, confirm, generate the parent payment ID, then pay CJ balance. Save each external ID and step. If a provider call fails after a supplier order may have been created, flag for manual reconciliation rather than blindly retrying.
 
-- Supplier wholesale prices are stored in D1 `cost_cents`.
-- The visible storefront prices are draft suggestions set to approximately 2.5× the displayed supplier price. They are not final prices and do not account for shipping, duties, VAT/sales taxes, payment fees, refunds/returns, or other operating costs.
-- Size/variant details were not verified from the public catalogue, so the initial product entries deliberately have no selectable sizes and purchasing remains disabled.
-- Product images are linked to FondMart's listing CDN for this preview. Confirm reseller image-use permissions and product availability in the FondMart account before launch.
-- Public listing prices, variants, product images, and stock can change. Verify all details from the account or a current product data package before accepting orders.
-- Real 3D garment assets were not found in the public listing data. The viewer currently shows a stylized concept silhouette unless an accurate `.glb` model is added.
+The public products endpoint returns only CJ-verified active products with a mapped active variant and positive stock; it does not return wholesale costs or provider IDs.
 
-## Environment variables
+## Launch gates
+- [ ] Create CJ account/API key and validate auth, stock and ordering in sandbox.
+- [ ] Submit styles from FondMart and verify exact CJ model, variant/sizes, inventory, landed cost and image rights.
+- [ ] Finish Stripe Checkout + verified webhook and PayPal create/capture + verified webhook.
+- [ ] Trigger one-time owner approval only after verified payment is idempotently recorded.
+- [ ] Test CJ sandbox purchase, DRY_RUN, approval token expiry/replay, failure reconciliation and duplicate clicks.
+- [ ] Configure Resend verified sender and tracking emails.
+- [ ] Finalize pricing, shipping, returns/refunds, privacy and support policy.
+- [ ] Run end-to-end, security, accessibility and performance tests.
 
-See `.env.example` for all expected names. In Cloudflare, use **Secrets** for private keys such as `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `PAYPAL_CLIENT_SECRET`, FondMart integration credentials (only after FondMart confirms the supported API/access method), `RESEND_API_KEY`, `ADMIN_PASSWORD`, and `APPROVAL_SECRET`.
-
-## Integrations and webhooks
-
-The initial scaffold does not claim that payment verification or supplier order placement is complete. Before going live:
-
-- Implement Stripe webhook signature verification using the raw request body and test `checkout.session.completed` and refund events.
-- Implement PayPal webhook verification against PayPal's verification API and configure `PAYMENT.CAPTURE.COMPLETED` plus any additional event types required by the chosen checkout flow. Confirm event names against current PayPal docs.
-- For this custom React store, use FondMart's product data package to import supplier-approved product details and images. FondMart documents one-click automatic import for Shopify and a downloadable product-data package for third-party stores; confirm the package format and image usage permissions in your account before importing.
-- Confirm whether FondMart provides API access/order forwarding for this custom store. Do not invent endpoints or enable live supplier orders until FondMart provides current documentation and credentials. Keep `DRY_RUN=true`.
-- Implement Resend templates and handle delivery failures.
-- Add idempotency constraints for provider webhook event IDs before processing an event.
-
-## Netlify portability
-
-Keep business logic in `functions/lib` and avoid Cloudflare-specific APIs outside thin adapters. To move to Netlify, add a Netlify Functions adapter for each route, map environment variables, replace the D1 adapter with a compatible SQLite/hosted database strategy, and move scheduled work to Netlify Scheduled Functions. D1 itself is Cloudflare-specific, so database portability requires deliberate migration rather than a config-only change.
-
-## Rebranding
-
-Edit `src/config/brand.ts` and replace files under `public/brand`. Product imagery and GLB models belong under `public/images` and `public/models`.
-
-## Handover TODO
-
-- [ ] Complete and test checkout creation and webhook signature verification.
-- [ ] Complete PayPal webhook verification and refund flow.
-- [ ] Complete approval-token signing, expiry, single-use semantics, and owner approval UI.
-- [ ] Verify FondMart's supported integration method and mapping against live official documentation.
-- [ ] Implement supplier retries/backoff and scheduled tracking synchronization.
-- [ ] Implement Cloudflare Access + server-side admin password fallback and rate limiting.
-- [ ] Implement product/admin CRUD, image upload to R2, discount codes, newsletter, and contact email.
-- [ ] Replace all policy placeholders and confirm legal obligations for the markets served.
-- [ ] Replace sample product data and placeholder imagery with licensed supplier content.
-- [ ] Run Lighthouse and security review; add end-to-end tests before production.
+Related: [visual direction](docs/visual-direction.md), [supplier plan](docs/pinterest-and-commerce-recommendation.md).

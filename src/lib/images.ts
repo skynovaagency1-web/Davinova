@@ -1,6 +1,5 @@
-// FondMart listings link Alibaba CDN thumbnails such as `photo.jpg_300x300q90.webp`.
-// Dropping the size suffix serves the full-size original, which stays sharp on large cards.
+// Keep the catalog's original thumbnail URL intact. Some supplier CDNs return 404
+// when the generated "full-size" URL is inferred by removing image transformation suffixes.
 export function fullSizeImage(url: string | undefined) {
-  if (!url) return url;
-  return url.replace(/(\.(?:jpe?g|png))_\d+x\d+q\d+\.webp$/i, '$1');
+  return url;
 }

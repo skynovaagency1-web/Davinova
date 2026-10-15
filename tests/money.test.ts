@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calculateDiscount } from '../functions/lib/money';
+import { calculateDiscount } from '../server/money';
 
 describe('calculateDiscount', () => {
   it('calculates a percentage discount in cents', () => expect(calculateDiscount(10000, 'percent', 15)).toBe(1500));
