@@ -6,6 +6,7 @@ const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m
 const ShopPage = lazy(() => import('./pages/ShopPage').then((m) => ({ default: m.ShopPage })));
 const ProductPage = lazy(() => import('./pages/ProductPage').then((m) => ({ default: m.ProductPage })));
 const CartPage = lazy(() => import('./pages/CartPage').then((m) => ({ default: m.CartPage })));
+const OrderConfirmationPage = lazy(() => import('./pages/OrderConfirmationPage'));
 const InfoPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.InfoPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
 const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="shop" element={<ShopPage />} />
         <Route path="product/:slug" element={<ProductPage />} />
         <Route path="cart" element={<CartPage />} />
+        <Route path="order-confirmation" element={<OrderConfirmationPage />} />
         <Route path="about" element={<InfoPage />} />
         <Route path="shipping" element={<InfoPage />} />
         <Route path="returns" element={<InfoPage />} />
