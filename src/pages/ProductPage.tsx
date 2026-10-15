@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Check, Heart, Ruler, Rotate3D } from 'lucide-react';
 import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { formatMoney } from '../lib/format';
 import { fullSizeImage } from '../lib/images';
+import { editorialImageFor } from '../lib/editorialImages';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
@@ -30,7 +31,13 @@ export function ProductPage() {
   const [size, setSize] = useState<DressSize | ''>('');
   const [added, setAdded] = useState(false);
   const [view3d, setView3d] = useState(false);
+  const [usingEditorial, setUsingEditorial] = useState(false);
+  const [imageUnavailable, setImageUnavailable] = useState(false);
   const add = useCart((state) => state.add);
+  useEffect(() => {
+    setUsingEditorial(false);
+    setImageUnavailable(false);
+  }, [product?.id]);
 
   if (!product && loading) {
     return <section className="section not-found"><p className="eyebrow">The Davinova edit</p><h1>Opening this dress…</h1><p>Just a moment while we load the collection.</p><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
@@ -47,7 +54,23 @@ export function ProductPage() {
     <div className="product-detail">
       <div className="product-visual-column">
         {!view3d && <div className="product-gallery">
-          <img src={fullSizeImage(product.images[0]?.url)} alt={product.images[0]?.alt ?? product.title} onError={(event) => { const original = product.images[0]?.url; if (original && event.currentTarget.src !== original) event.currentTarget.src = original; }} />
+          {!imageUnavailable
+            ? <img
+                src={usingEditorial ? editorialImageFor(product.color) : fullSizeImage(product.images[0]?.url)}
+                alt={usingEditorial
+                  ? `Editorial inspiration for ${product.title}; not an exact product photograph`
+                  : product.images[0]?.alt ?? product.title}
+                onError={() => {
+                  if (!usingEditorial) setUsingEditorial(true);
+                  else setImageUnavailable(true);
+                }}
+              />
+            : <div style={{ display: 'grid', placeContent: 'center', minHeight: 420, padding: 24, background: 'linear-gradient(145deg, #eee2d8, #c9b0a2)', color: '#4d4038', textAlign: 'center' }}>
+                <span style={{ letterSpacing: '.18em', fontSize: 11 }}>DAVINOVA</span>
+                <span style={{ marginTop: 8, fontFamily: 'Georgia, serif', fontSize: 26 }}>The occasion edit</span>
+                <span style={{ marginTop: 10, fontSize: 12 }}>Product image coming soon</span>
+              </div>}
+          {usingEditorial && !imageUnavailable && <span style={{ position: 'absolute', left: 16, bottom: 16, background: 'rgba(255,253,251,.94)', color: '#5d4b42', padding: '8px 10px', fontSize: 10, letterSpacing: '.08em' }}>EDITORIAL INSPIRATION · NOT EXACT ITEM</span>}
           <span className="gallery-note">DAVINOVA · THE OCCASION EDIT</span>
         </div>}
         <div className="viewer-switch" role="group" aria-label="Product viewing mode">
@@ -55,7 +78,7 @@ export function ProductPage() {
           {product.model3d?.url && <button type="button" className={view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(true)}><Rotate3D size={14} /> View in 3D</button>}
         </div>
         {view3d && product.model3d?.url && <DressViewer3D modelUrl={product.model3d.url} title={product.title} color={product.color} scale={product.model3d.scale} rotationY={product.model3d.rotationY} />}
-        {!view3d && <p className="image-disclaimer">{browseOnly ? 'Product imagery and details are being finalised.' : 'Product imagery supplied by our catalogue.'}</p>}
+        {!view3d && <p className="image-disclaimer">{browseOnly ? 'Editorial inspiration only — this is not an exact photograph of the listed dress. Product-specific photos and availability are being confirmed.' : 'Product imagery supplied by our catalogue.'}</p>}
       </div>
       <div className="product-info">
         <p className="eyebrow">{product.occasion.replace('-', ' ')} edit</p>
@@ -67,7 +90,7 @@ export function ProductPage() {
           <div className="field-heading"><span>Colour</span><strong>{product.color}</strong></div>
           <span className="color-dot" style={{ background: colourSwatches[product.color.toLowerCase()] ?? '#d9aaa9' }} />
         </div>}
-        {product.sizes.length > 0 ? <div className="detail-field">
+        {!browseOnly && product.sizes.length > 0 ? <div className="detail-field">
           <div className="field-heading"><span>Choose your size</span><button className="size-chart-link" onClick={() => alert('Size measurements must be verified against the supplier before publishing.')}><Ruler size={14} /> Size guide</button></div>
           <div className="size-options">{product.sizes.map((item) => <button key={item} className={size === item ? 'size-option selected' : 'size-option'} onClick={() => { setSize(item); setAdded(false); }} aria-pressed={size === item}>{item}</button>)}</div>
         </div> : <div className="detail-field">
