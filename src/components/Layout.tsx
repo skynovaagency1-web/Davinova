@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ShoppingBag, Menu, X } from 'lucide-react';
+import { getWooCommercePageUrl, isWooCommerceConfigured } from '../lib/woocommerce';
 import { brand } from '../config/brand';
 import { useCart } from '../store/cart';
 
@@ -9,6 +10,8 @@ export function Layout() {
   const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
+  const wooCartUrl = getWooCommercePageUrl('cart');
+  const wooConfigured = isWooCommerceConfigured();
   const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);
@@ -19,7 +22,7 @@ export function Layout() {
       <button className="icon-button search-button" type="button" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} title={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
       <Link to="/" className="wordmark" aria-label={`${brand.name} home`}>{brand.name}<span>ATELIER</span></Link>
       <nav className="desktop-nav" aria-label="Main navigation"><NavLink to="/shop">Shop all</NavLink><Link to="/shop?occasion=wedding-guest">Wedding Guest</Link><Link to="/shop?occasion=cocktail-party">Cocktail & Party</Link><Link to="/shop?occasion=maxi-holiday">Maxi & Holiday</Link><Link to="/about">Our story</Link></nav>
-      <Link to="/cart" className="cart-link" aria-label={`Shopping bag, ${count} items`}><ShoppingBag size={20} /><span>Bag ({count})</span></Link>
+      {wooConfigured && wooCartUrl ? <a href={wooCartUrl} className="cart-link" aria-label="Open WooCommerce shopping basket"><ShoppingBag size={20} /><span>Bag</span></a> : <Link to="/cart" className="cart-link" aria-label={`Shopping bag, ${count} items`}><ShoppingBag size={20} /><span>Bag ({count})</span></Link>}
     </header>
     <AnimatePresence>
       {menuOpen && <motion.div className="mobile-menu-backdrop" tabIndex={-1} onKeyDown={(event) => { if (event.key === 'Escape') closeMenu(); }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeMenu}>
