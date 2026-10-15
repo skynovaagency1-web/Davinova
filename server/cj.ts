@@ -290,6 +290,76 @@ export async function queryCJVariantStock(env: CJEnv, variantId: string): Promis
 }
 
 
+
+export interface CJEUFreightQuote {
+  logisticName: string;
+  deliveryWindow: string;
+  shippingUsd: number | null;
+  totalPostageUsd: number | null;
+  taxesUsd: number | null;
+  customsClearanceUsd: number | null;
+  note: string;
+}
+interface CJFreightQuoteRecord {
+  logisticName?: string;
+  logisticAging?: string;
+  logisticPrice?: number | string | null;
+  totalPostageFee?: number | string | null;
+  taxesFee?: number | string | null;
+  clearanceOperationFee?: number | string | null;
+  errorEn?: string;
+  error?: string;
+  message?: string;
+}
+
+export async function calculateCJEUFreight(
+  env: CJEnv,
+  variantId: string,
+  sourceCountryCode: string,
+  destinationCountryCode: string,
+  quantity = 1,
+  zip = '',
+): Promise<{ sourceCountryCode: string; destinationCountryCode: string; quantity: number; quotes: CJEUFreightQuote[] }> {
+  const vid = variantId.trim();
+  const source = sourceCountryCode.trim().toUpperCase();
+  const destination = destinationCountryCode.trim().toUpperCase();
+  if (!vid || vid.length > 200 || !/^[a-zA-Z0-9-]+$/.test(vid)) throw new Error('A valid CJ variant ID is required.');
+  if (!/^[A-Z]{2}$/.test(source) || !/^[A-Z]{2}$/.test(destination)) throw new Error('Use valid two-letter country codes for origin and destination.');
+  if (!Number.isSafeInteger(quantity) || quantity < 1 || quantity > 10) throw new Error('Quote quantity must be between 1 and 10.');
+  if (zip.length > 20) throw new Error('Postal code must be 20 characters or fewer.');
+
+  const payload: Record<string, unknown> = {
+    startCountryCode: source,
+    endCountryCode: destination,
+    products: [{ quantity: quantity, vid: vid }],
+  };
+  if (zip.trim()) payload.zip = zip.trim();
+  const data = await request<unknown>(env, '/logistic/freightCalculate', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+  const records: CJFreightQuoteRecord[] = Array.isArray(data)
+    ? data as CJFreightQuoteRecord[]
+    : data && typeof data === 'object' && Array.isArray((data as { list?: unknown[] }).list)
+      ? (data as { list: CJFreightQuoteRecord[] }).list
+      : [];
+  const quotes = records.slice(0, 12).map((record) => ({
+    logisticName: (record.logisticName ?? '').slice(0, 100),
+    deliveryWindow: (record.logisticAging ?? '').slice(0, 40),
+    shippingUsd: numericValue(record.logisticPrice),
+    totalPostageUsd: numericValue(record.totalPostageFee),
+    taxesUsd: numericValue(record.taxesFee),
+    customsClearanceUsd: numericValue(record.clearanceOperationFee),
+    note: (record.errorEn || record.error || record.message || '').slice(0, 160),
+  }));
+  return {
+    sourceCountryCode: source,
+    destinationCountryCode: destination,
+    quantity: quantity,
+    quotes: quotes,
+  };
+}
+
 export interface CJCatalogSearchProduct {
   id: string;
   name: string;
