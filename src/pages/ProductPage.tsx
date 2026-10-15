@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Check, Eye, Heart, PackageCheck, Ruler, Rotate3D, Sparkles } from 'lucide-react';
+import { ArrowLeft, Check, Eye, Heart, PackageCheck, Ruler, Rotate3D } from 'lucide-react';
 import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { formatMoney } from '../lib/format';
 import { fullSizeImage } from '../lib/images';
@@ -71,7 +71,7 @@ export function ProductPage() {
                   else setImageUnavailable(true);
                 }}
               />
-            : <div style={{ display: 'grid', placeContent: 'center', minHeight: 420, padding: 24, background: 'linear-gradient(145deg, #eee2d8, #c9b0a2)', color: '#4d4038', textAlign: 'center' }}>
+            : <div style={{ display: 'grid', placeContent: 'center', minHeight: 420, padding: 24, background: productBackdrop, color: '#4d4038', textAlign: 'center' }}>
                 <span style={{ letterSpacing: '.18em', fontSize: 11 }}>DAVINOVA</span>
                 <span style={{ marginTop: 8, fontFamily: 'Georgia, serif', fontSize: 26 }}>The occasion edit</span>
                 <span style={{ marginTop: 10, fontSize: 12 }}>Product image coming soon</span>
