@@ -81,7 +81,7 @@ export function ProductPage() {
         </div>}
         {!view3d && product.images.length > 1 && !usingEditorial && <div className="product-thumbnails" aria-label="More product photos">{product.images.map((image, index) => <button key={image.url + index} type="button" className={selectedImageIndex === index ? 'product-thumbnail active' : 'product-thumbnail'} onClick={() => { setSelectedImageIndex(index); setUsingEditorial(false); setImageUnavailable(false); }} aria-label={`View product photo ${index + 1}`} aria-pressed={selectedImageIndex === index} style={{ background: productBackdrop }}><img src={fullSizeImage(image.url)} alt="" loading="lazy" /></button>)}</div>}
         <div className="viewer-switch" role="group" aria-label="Product viewing mode">
-          <button type="button" className={!view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(false)}>Editorial view</button>
+          <button type="button" className={!view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(false)}>{product.images.length && !usingEditorial ? 'Product photos' : 'Editorial view'}</button>
           {product.model3d?.url && <button type="button" className={view3d ? 'viewer-switch__button active' : 'viewer-switch__button'} onClick={() => setView3d(true)}><Rotate3D size={14} /> View in 3D</button>}
         </div>
         {view3d && product.model3d?.url && <DressViewer3D modelUrl={product.model3d.url} title={product.title} color={product.color} scale={product.model3d.scale} rotationY={product.model3d.rotationY} />}
