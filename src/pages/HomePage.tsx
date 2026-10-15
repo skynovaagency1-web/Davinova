@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { ProductCard } from '../components/ProductCard';
 import { Cloth } from '../components/canvasui/Cloth';
-import { fullSizeImage } from '../lib/images';
+import { editorialImages } from '../lib/editorialImages';
 
 const riseIn = {
   hidden: { opacity: 0, y: 28 },
@@ -25,18 +25,18 @@ export function HomePage() {
       </motion.div>
       <div className="hero-art editorial-hero-art" aria-label="Davinova occasionwear editorial">
         <motion.div className="hero-photo hero-photo--secondary" initial={{ opacity: 0, x: -22, rotate: -3 }} animate={{ opacity: 1, x: 0, rotate: -2 }} transition={{ duration: 0.9, delay: 0.35, ease: 'easeOut' }}>
-          <img src={fullSizeImage(products[1]?.images[0]?.url)} alt={products[1]?.images[0]?.alt ?? 'Davinova occasion dress in an editorial photograph'} loading="eager" />
+          <img src={editorialImages.burgundy} alt="Editorial inspiration: burgundy occasionwear, not an exact product photograph" loading="eager" />
           <span className="hero-photo__label">THE COLOUR STORY <i>02</i></span>
         </motion.div>
         <motion.div className="hero-photo hero-photo--primary" initial={{ opacity: 0, y: 28, clipPath: 'inset(0 0 100% 0)' }} animate={{ opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' }} transition={{ duration: 1.15, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
-          <img src={fullSizeImage(products[0]?.images[0]?.url)} alt={products[0]?.images[0]?.alt ?? 'Davinova evening dress'} loading="eager" />
+          <img src={editorialImages.black} alt="Editorial inspiration: black eveningwear, not an exact product photograph" loading="eager" />
           <span className="hero-photo__label">THE OCCASION EDIT <i>01</i></span>
         </motion.div>
         <motion.div className="hero-photo hero-photo--tertiary" initial={{ opacity: 0, x: 25, y: 15, rotate: 4 }} animate={{ opacity: 1, x: 0, y: 0, rotate: 3 }} transition={{ duration: 1, delay: 0.48, ease: 'easeOut' }}>
-          <img src={fullSizeImage(products[5]?.images[0]?.url)} alt={products[5]?.images[0]?.alt ?? 'Davinova formal dress'} loading="eager" />
+          <img src={editorialImages.blue} alt="Editorial inspiration: blue formalwear, not an exact product photograph" loading="eager" />
           <span className="hero-photo__label">AFTER DARK <i>03</i></span>
         </motion.div>
-        <motion.div className="hero-art-caption" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.8 }}><span>CURATED FOR THE MOMENT</span><span>DAVINOVA · 2026</span></motion.div>
+        <motion.div className="hero-art-caption" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.8 }}><span>EDITORIAL INSPIRATION ONLY</span><span>DAVINOVA · 2026</span></motion.div>
         <div className="hero-vertical">OCCASIONWEAR / EST. IN FEELING</div>
       </div>
       <motion.a className="scroll-cue" href="#featured" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.15, duration: 0.7 }}><ArrowDown size={15} /> Scroll to explore</motion.a>
@@ -53,7 +53,7 @@ export function HomePage() {
       <motion.div className="fabric-feature__visual" variants={riseIn}>
         <Cloth className="fabric-feature__cloth" pin="top" wind={1.15} speed={0.32} amplitude={14} drape={18} brush={0.72} brushSize={120} damping={1.15} light={0.42} sheen={0.14} shadow={0.2} cornerRadius={0} backing={[0.95, 0.92, 0.88]}>
           <div className="fabric-feature__image">
-            <img src={fullSizeImage(products[0]?.images[0]?.url)} alt={products[0]?.images[0]?.alt ?? 'Davinova occasion dress'} loading="lazy" />
+            <img src={editorialImages.black} alt="Editorial fashion inspiration; supplier-specific product photographs are being confirmed" loading="lazy" />
           </div>
         </Cloth>
         <div className="fabric-feature__stamp"><span>DAVINOVA</span><span>THE OCCASION EDIT · 01</span></div>
