@@ -2,7 +2,7 @@ interface Env { DB: D1Database }
 
 type DbProduct = {
   id: string; slug: string; title: string; description: string;
-  price_cents: number; compare_at_cents: number | null; currency: string;
+  price_cents: number; compare_at_cents: number | null; cost_cents: number; currency: string;
   occasion: string; collection_category: string; color: string; length: string | null;
   sleeve: string; neckline: string; tags_json: string; featured: number;
   supplier: string; catalog_source: string; catalog_source_product_id: string | null;
@@ -42,6 +42,14 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       'SELECT url,alt FROM product_images WHERE product_id=? ORDER BY is_primary DESC,position LIMIT 8',
     ).bind(row.id).all<DbImage>();
     const verified = row.supplier_verified === 1;
+    const { results: variantRows } = await env.DB.prepare(
+      "SELECT size FROM product_variants WHERE product_id=? AND active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 ORDER BY size",
+    ).bind(row.id).all<{ size: string }>();
+    const allowedSizes = new Set(['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL']);
+    const sizes = verified && row.price_cents > 0 && row.cost_cents > 0
+      ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => allowedSizes.has(size)))]
+      : [];
+    const purchasable = verified && row.has_sellable_variant === 1 && row.price_cents > 0 && row.cost_cents > 0 && sizes.length > 0;
     products.push({
       id: row.id, slug: row.slug, title: row.title, description: row.description,
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
@@ -51,13 +59,13 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       sleeve: row.sleeve === 'Not verified' ? '' : row.sleeve,
       neckline: row.neckline === 'Not verified' ? '' : row.neckline,
       tags: safeJsonArray(row.tags_json),
-      sizes: [],
+      sizes,
       supplier: 'cj', supplierVerified: verified,
       sourceSupplier: row.catalog_source, sourceSupplierProductId: row.catalog_source_product_id ?? undefined,
       cjProductId: row.cj_product_id ?? undefined,
       images: imageRows,
       featured: row.featured === 1,
-      browseOnly: !(verified && row.has_sellable_variant === 1),
+      browseOnly: !purchasable,
     });
   }
 
