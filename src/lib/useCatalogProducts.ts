@@ -18,6 +18,7 @@ interface CatalogueRow {
   sleeve?: string;
   neckline?: string;
   tags?: string[];
+  sizes?: string[];
   supplierVerified?: boolean;
   sourceSupplier?: Product['sourceSupplier'];
   sourceSupplierProductId?: string;
@@ -57,7 +58,7 @@ function toProduct(row: CatalogueRow): Product | null {
     sleeve: row.sleeve ?? '',
     neckline: row.neckline ?? '',
     tags: Array.isArray(row.tags) ? row.tags : [],
-    sizes: [],
+    sizes: Array.isArray(row.sizes) ? row.sizes.filter((size): size is Product['sizes'][number] => ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'].includes(size)) : [],
     images: row.images.filter((image) => image && typeof image.url === 'string' && image.url.startsWith('https://')),
     featured: row.featured === true,
     browseOnly: row.browseOnly !== false,
