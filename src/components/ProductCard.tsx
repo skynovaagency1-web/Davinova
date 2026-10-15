@@ -6,6 +6,7 @@ import type { Product } from '../types/product';
 import { formatMoney } from '../lib/format';
 import { fullSizeImage } from '../lib/images';
 import { editorialImageFor } from '../lib/editorialImages';
+import { productBackdropFor } from '../lib/productBackdrop';
 
 const spring = { stiffness: 180, damping: 18, mass: 0.6 };
 
@@ -49,9 +50,10 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
       layout
     >
       <motion.div className="product-card__stage" style={{ rotateX, rotateY, transformPerspective: 900 }}>
-        <Link ref={frame} to={`/product/${product.slug}`} className="product-card__image" aria-label={`View ${product.title}`} onPointerMove={onMove} onPointerLeave={onLeave}>
+        <Link ref={frame} to={`/product/${product.slug}`} className="product-card__image" style={{ background: productBackdropFor(product.color, product.title) }} aria-label={`View ${product.title}`} onPointerMove={onMove} onPointerLeave={onLeave}>
           {!fallbackFailed
             ? <img
+                className={usingEditorial ? 'product-card__photo product-card__photo--editorial' : 'product-card__photo product-card__photo--supplier'}
                 src={src}
                 alt={usingEditorial
                   ? `Editorial inspiration for ${product.title}; this is not an exact product photograph`
@@ -65,7 +67,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
                 <span style={{ marginTop: 10, fontSize: 11 }}>Image coming soon</span>
               </div>}
           {usingEditorial && !fallbackFailed && <span style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 3, background: 'rgba(255,253,251,.92)', color: '#5d4b42', padding: '7px 9px', fontSize: 9, letterSpacing: '.08em' }}>EDITORIAL INSPIRATION · NOT EXACT ITEM</span>}
-          {second && !usingEditorial && <img className="product-card__alt" src={fullSizeImage(second.url)} alt="" loading="lazy" aria-hidden="true" />}
+          {second && !usingEditorial && <img className="product-card__photo product-card__photo--supplier product-card__alt" src={fullSizeImage(second.url)} alt="" loading="lazy" aria-hidden="true" />}
           <motion.span className="product-card__glare" style={{ background: glare }} aria-hidden="true" />
           {(product.browseOnly || !product.supplierVerified) && <span className="product-card__badge">Coming soon</span>}
           {!(product.browseOnly || !product.supplierVerified) && product.compareAtCents && <span className="product-card__badge">A considered find</span>}
