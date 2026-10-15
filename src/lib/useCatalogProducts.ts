@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { CollectionCategory, Product } from '../types/product';
+import { previewFirstCjDress } from '../data/previewFirstCjDress';
 
 interface CatalogueRow {
   id: string;
@@ -75,10 +76,14 @@ export function useCatalogProducts() {
       .then((data) => {
         if (cancelled || !Array.isArray(data.products)) return;
         const mapped = data.products.map(toProduct).filter((item): item is Product => item !== null);
-        setCatalogProducts(mapped);
+        // Pages preview only: let the owner review the first real CJ item before production D1 is migrated.
+        const isPagesPreview = window.location.hostname === 'davinova.pages.dev' || window.location.hostname.endsWith('.davinova.pages.dev');
+        setCatalogProducts(mapped.length === 0 && isPagesPreview ? [previewFirstCjDress] : mapped);
       })
       .catch(() => {
-        // Show an empty, accurate catalogue if the API/database is unavailable.
+        // Never mask a production database issue with sample data. The first CJ product is a preview-only fallback.
+        const isPagesPreview = window.location.hostname === 'davinova.pages.dev' || window.location.hostname.endsWith('.davinova.pages.dev');
+        if (isPagesPreview) setCatalogProducts([previewFirstCjDress]);
       })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
