@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { CollectionCategory, Product } from '../types/product';
 import { previewFirstCjDress } from '../data/previewFirstCjDress';
+import { fetchWooCommerceProducts, isWooCommerceConfigured } from './woocommerce';
 
 interface CatalogueRow {
   id: string;
@@ -9,6 +10,7 @@ interface CatalogueRow {
   description?: string;
   priceCents?: number;
   compareAtCents?: number;
+  currency?: string;
   occasion?: Product['occasion'];
   collectionCategory?: CollectionCategory;
   color?: string;
@@ -42,6 +44,7 @@ function toProduct(row: CatalogueRow): Product | null {
     description: row.description ?? '',
     priceCents: Number.isFinite(row.priceCents) ? Math.max(0, Number(row.priceCents)) : 0,
     compareAtCents: Number.isFinite(row.compareAtCents) ? Number(row.compareAtCents) : undefined,
+    currency: row.currency || 'EUR',
     supplier: 'cj',
     supplierVerified: row.supplierVerified === true,
     sourceSupplier: row.sourceSupplier === 'fondmart' ? 'fondmart' : 'cj',
@@ -61,14 +64,43 @@ function toProduct(row: CatalogueRow): Product | null {
   };
 }
 
-/** Loads only products saved from the CJ catalogue. Never fall back to FondMart research placeholders. */
+/**
+ * The WooCommerce public Store API becomes the catalogue source of truth when configured.
+ * Otherwise, use the existing CJ/D1 browse-only catalogue. Never mix the two catalogues.
+ */
 export function useCatalogProducts() {
   const [catalogProducts, setCatalogProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    fetch('/api/catalog', { headers: { Accept: 'application/json' }, cache: 'no-store' })
+    const controller = new AbortController();
+
+    if (isWooCommerceConfigured()) {
+      setCatalogProducts([]);
+      setLoading(true);
+      setError(null);
+      fetchWooCommerceProducts(controller.signal)
+        .then((products) => {
+          if (cancelled) return;
+          setCatalogProducts(products);
+          setError(products.length ? null : 'No published products were returned by WooCommerce.');
+        })
+        .catch((cause: unknown) => {
+          if (cancelled || controller.signal.aborted) return;
+          setCatalogProducts([]);
+          setError(cause instanceof Error ? cause.message : 'Could not load the WooCommerce catalogue.');
+        })
+        .finally(() => { if (!cancelled) setLoading(false); });
+
+      return () => {
+        cancelled = true;
+        controller.abort();
+      };
+    }
+
+    fetch('/api/catalog', { headers: { Accept: 'application/json' }, cache: 'no-store', signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error('Catalogue endpoint unavailable');
         return await response.json() as { products?: CatalogueRow[] };
@@ -76,18 +108,27 @@ export function useCatalogProducts() {
       .then((data) => {
         if (cancelled || !Array.isArray(data.products)) return;
         const mapped = data.products.map(toProduct).filter((item): item is Product => item !== null);
-        // Pages preview only: let the owner review the first real CJ item before production D1 is migrated.
         const isPagesPreview = window.location.hostname === 'davinova.pages.dev' || window.location.hostname.endsWith('.davinova.pages.dev');
         setCatalogProducts(mapped.length === 0 && isPagesPreview ? [previewFirstCjDress] : mapped);
+        setError(null);
       })
-      .catch(() => {
-        // Never mask a production database issue with sample data. The first CJ product is a preview-only fallback.
+      .catch((cause: unknown) => {
+        if (cancelled || controller.signal.aborted) return;
         const isPagesPreview = window.location.hostname === 'davinova.pages.dev' || window.location.hostname.endsWith('.davinova.pages.dev');
-        if (isPagesPreview) setCatalogProducts([previewFirstCjDress]);
+        if (isPagesPreview) {
+          setCatalogProducts([previewFirstCjDress]);
+        } else {
+          setCatalogProducts([]);
+          setError(cause instanceof Error ? cause.message : 'Could not load the Davinova catalogue.');
+        }
       })
       .finally(() => { if (!cancelled) setLoading(false); });
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
   }, []);
 
-  return { products: catalogProducts, loading };
+  return { products: catalogProducts, loading, error };
 }
