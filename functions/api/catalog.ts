@@ -1,4 +1,5 @@
 interface Env { DB: D1Database }
+import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 
 type DbProduct = {
   id: string; slug: string; title: string; description: string;
@@ -50,15 +51,21 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => allowedSizes.has(size)))]
       : [];
     const purchasable = verified && row.has_sellable_variant === 1 && row.price_cents > 0 && row.cost_cents > 0 && sizes.length > 0;
+    const productTags = safeJsonArray(row.tags_json);
+    const storeAssignment = assignmentFromStoreTags(productTags);
     products.push({
       id: row.id, slug: row.slug, title: row.title, description: row.description,
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
       currency: row.currency, occasion: row.occasion, collectionCategory: row.collection_category,
+      storeCollection: storeAssignment?.collection,
+      storeCollectionLabel: storeAssignment?.collectionLabel,
+      storeSubcategory: storeAssignment?.subcategory,
+      storeSubcategoryLabel: storeAssignment?.subcategoryLabel,
       color: row.color === 'Not verified' ? '' : row.color,
       length: ['Mini','Midi','Maxi'].includes(row.length ?? '') ? row.length : undefined,
       sleeve: row.sleeve === 'Not verified' ? '' : row.sleeve,
       neckline: row.neckline === 'Not verified' ? '' : row.neckline,
-      tags: safeJsonArray(row.tags_json),
+      tags: publicProductTags(productTags),
       sizes,
       supplier: 'cj', supplierVerified: verified,
       sourceSupplier: row.catalog_source, sourceSupplierProductId: row.catalog_source_product_id ?? undefined,
