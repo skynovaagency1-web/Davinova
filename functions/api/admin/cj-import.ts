@@ -1,4 +1,5 @@
 import { getCJProductDetail, parseCJVariantOption, type CJEnv } from '../../../server/cj';
+import { manualStoreCollectionAssignment, storeCollectionAssignmentIsValid, writeStoreCollectionTags } from '../../../src/lib/storeCollectionTaxonomy';
 
 type CollectionCategory = 'wedding-guest' | 'cocktail-party' | 'maxi-holiday';
 type Env = CJEnv & { ADMIN_PASSWORD?: string };
@@ -37,6 +38,15 @@ function hasExtendedSizeEvidence(values: string[]): boolean {
     || /\b(1xl|2xl|3xl|4xl|5xl|6xl|1x|2x|3x|4x|5x|6x|xxl|xxxl|xxxxl)\b/.test(metadata);
 }
 
+function safeJsonArray(value: string): string[] {
+  try {
+    const parsed: unknown = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === 'string') : [];
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Adds a CJ catalogue item as a visible browse-only listing.
  * Listings remain unverified, have no sell price or confirmed stock, and cannot be purchased.
@@ -46,7 +56,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
   if (!sameOrigin(request)) return json({ error: 'Cross-origin request blocked.' }, 403);
   if (!env.DB) return json({ error: 'The Davinova database binding is unavailable.' }, 503);
 
-  let body: { productId?: unknown; collectionCategory?: unknown };
+  let body: { productId?: unknown; collectionCategory?: unknown; storeCollection?: unknown; storeSubcategory?: unknown };
   try { body = await request.json() as typeof body; }
   catch { return json({ error: 'Send a valid JSON request.' }, 400); }
 
@@ -56,8 +66,17 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     return json({ error: 'A valid CJ product ID is required.' }, 400);
   }
   if (typeof collectionCategory !== 'string' || !categories.includes(collectionCategory as CollectionCategory)) {
-    return json({ error: 'Choose Wedding Guest, Cocktail & Party, or Maxi & Holiday.' }, 400);
+    return json({ error: 'Choose an occasion collection: Wedding Guest, Cocktail & Party, or Maxi & Holiday.' }, 400);
   }
+  const storeCollection = typeof body.storeCollection === 'string' ? body.storeCollection : '';
+  const storeSubcategory = typeof body.storeSubcategory === 'string' ? body.storeSubcategory : '';
+  if (Boolean(storeCollection) !== Boolean(storeSubcategory)
+    || (storeCollection && !storeCollectionAssignmentIsValid(storeCollection, storeSubcategory))) {
+    return json({ error: 'Choose both a clothing collection and one of its subcategories.' }, 400);
+  }
+  const storeAssignment = storeCollection && storeSubcategory
+    ? manualStoreCollectionAssignment(storeCollection, storeSubcategory)
+    : undefined;
 
   try {
     const existing = await env.DB.prepare(
@@ -66,12 +85,22 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
 
     if (existing) {
       if (existing.supplier_verified !== 1) {
-        await env.DB.prepare(
-          'UPDATE products SET active=1, collection_category=?, updated_at=datetime(\'now\') WHERE id=? AND supplier_verified=0',
-        ).bind(collectionCategory, existing.id).run();
+        if (storeAssignment) {
+          const existingTagsRow = await env.DB.prepare('SELECT tags_json FROM products WHERE id=?')
+            .bind(existing.id).first<{ tags_json: string }>();
+          const oldTags = existingTagsRow?.tags_json ? safeJsonArray(existingTagsRow.tags_json) : [];
+          const newTags = writeStoreCollectionTags(oldTags, storeAssignment);
+          await env.DB.prepare(
+            "UPDATE products SET active=1, collection_category=?, tags_json=?, updated_at=datetime('now') WHERE id=? AND supplier_verified=0",
+          ).bind(collectionCategory, JSON.stringify(newTags), existing.id).run();
+        } else {
+          await env.DB.prepare(
+            "UPDATE products SET active=1, collection_category=?, updated_at=datetime('now') WHERE id=? AND supplier_verified=0",
+          ).bind(collectionCategory, existing.id).run();
+        }
         return json({
           ok: true, alreadyImported: true, productId: existing.id, title: existing.title,
-          status: 'published_browse_only', message: 'The dress is listed for browsing only. It remains unavailable to purchase.',
+          status: 'published_browse_only', message: 'The existing listing was updated without importing a duplicate.',
         });
       }
       return json({
@@ -95,9 +124,10 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
       : collectionCategory === 'maxi-holiday' ? 'evening' : 'wedding-guest';
     const images = [...new Set([detail.imageUrl, ...detail.imageUrls].filter((url) => Boolean(url) && safeImageUrl(url)))].slice(0, 8);
     const variantSizeLabels = detail.variants.map((variant) => variant.options || variant.name || '');
-    const tags = hasExtendedSizeEvidence([detail.name, detail.description, ...variantSizeLabels])
+    const baseTags = hasExtendedSizeEvidence([detail.name, detail.description, ...variantSizeLabels])
       ? ['plus-size', 'extended-size']
       : [];
+    const tags = storeAssignment ? writeStoreCollectionTags(baseTags, storeAssignment) : baseTags;
 
     const statements = [
       env.DB.prepare(
