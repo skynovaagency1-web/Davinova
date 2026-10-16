@@ -354,3 +354,5 @@
 @media (max-width: 640px) {
   .shop-page--curvy .shop-title { padding-top: 15px; }
 }
+
+.product-page--curvy .size-options { grid-template-columns: repeat(5, minmax(0, 1fr)); }
