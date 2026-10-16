@@ -25,12 +25,19 @@ export interface FakeOrder extends Row {
 
 export class FakeD1 {
   orders = new Map<string, FakeOrder>();
+  orderItems: Row[] = [];
   orderEvents: Row[] = [];
   webhookEvents = new Map<string, Row>();
   approvals: Row[] = [];
+  catalogRows = new Map<string, Row>();
+  variantStockWrites: Row[] = [];
 
   seedOrder(order: FakeOrder): void {
     this.orders.set(order.id, { ...order });
+  }
+
+  seedCatalogRow(productId: string, size: string, row: Row): void {
+    this.catalogRows.set(productId + '::' + size.toLowerCase(), { ...row });
   }
 
   prepare(sql: string) {
@@ -41,6 +48,12 @@ export class FakeD1 {
         first: async <T>() => this.queryFirst(statement, args) as T | null,
       }),
     };
+  }
+
+  async batch<T = unknown>(statements: Array<{ run: () => Promise<T> }>): Promise<T[]> {
+    const results: T[] = [];
+    for (const statement of statements) results.push(await statement.run());
+    return results;
   }
 
   private exec(sql: string, args: unknown[]): { meta: { changes: number } } {
@@ -88,21 +101,66 @@ export class FakeD1 {
       return { meta: { changes: 0 } };
     }
     if (sql.startsWith("UPDATE orders SET status='cancelled'")) {
-      const [id, paymentReference] = args as [string, string];
+      const [id, paymentReference] = args as [string, string | undefined];
       const order = this.orders.get(id);
-      if (order && order.status === 'pending_payment' && order.payment_reference === paymentReference) {
+      const referenceOk = paymentReference === undefined || order?.payment_reference === paymentReference;
+      if (order && order.status === 'pending_payment' && referenceOk) {
         order.status = 'cancelled';
         order.payment_status = 'unpaid';
         return { meta: { changes: 1 } };
       }
       return { meta: { changes: 0 } };
     }
-    if (sql.startsWith("UPDATE orders SET status='needs_attention'")) {
+    if (sql.startsWith("UPDATE orders SET status='needs_attention', payment_status='paid'")) {
       const [id, paymentReference] = args as [string, string];
       const order = this.orders.get(id);
       if (order && order.payment_reference === paymentReference) {
         order.status = 'needs_attention';
         order.payment_status = 'paid';
+        return { meta: { changes: 1 } };
+      }
+      return { meta: { changes: 0 } };
+    }
+    if (sql.startsWith("UPDATE orders SET status='needs_attention', updated_at=")) {
+      const [id] = args as [string];
+      const order = this.orders.get(id);
+      if (order) {
+        order.status = 'needs_attention';
+        return { meta: { changes: 1 } };
+      }
+      return { meta: { changes: 0 } };
+    }
+    if (sql.startsWith('UPDATE product_variants SET available_stock=?')) {
+      const [availableStock, cjVariantId] = args as [number, string];
+      this.variantStockWrites.push({ cj_variant_id: cjVariantId, available_stock: availableStock });
+      return { meta: { changes: 1 } };
+    }
+    if (sql.startsWith('INSERT INTO orders')) {
+      const [id, orderNumber, email, subtotalCents, shippingCents, totalCents, currency] = args as
+        [string, string, string, number, number, number, string];
+      this.orders.set(id, {
+        id, order_number: orderNumber, email, status: 'pending_payment',
+        payment_provider: 'stripe', payment_status: 'unpaid', payment_reference: undefined as unknown as string,
+        subtotal_cents: subtotalCents, shipping_cents: shippingCents, total_cents: totalCents, currency,
+      });
+      return { meta: { changes: 1 } };
+    }
+    if (sql.startsWith('INSERT INTO order_items')) {
+      const [itemId, orderId, productId] = args as [string, string, string];
+      this.orderItems.push({ id: itemId, order_id: orderId, product_id: productId });
+      return { meta: { changes: 1 } };
+    }
+    if (sql.startsWith('UPDATE orders SET payment_reference=?')) {
+      const [paymentReference, subtotalCents, shippingCents, discountCents, totalCents, currency, id] = args as
+        [string, number, number, number, number, string, string];
+      const order = this.orders.get(id);
+      if (order && order.status === 'pending_payment') {
+        order.payment_reference = paymentReference;
+        order.subtotal_cents = subtotalCents;
+        order.shipping_cents = shippingCents;
+        (order as Row).discount_cents = discountCents;
+        order.total_cents = totalCents;
+        order.currency = currency;
         return { meta: { changes: 1 } };
       }
       return { meta: { changes: 0 } };
@@ -190,6 +248,10 @@ export class FakeD1 {
       const [orderId] = args as [string];
       const eventType = this.extractEventType(sql);
       return this.orderEvents.find((row) => row.order_id === orderId && row.event_type === eventType) ?? null;
+    }
+    if (sql.startsWith('SELECT p.id AS product_id')) {
+      const [productId, size] = args as [string, string];
+      return this.catalogRows.get(productId + '::' + String(size).toLowerCase()) ?? null;
     }
     throw new Error('FakeD1: unhandled query: ' + sql);
   }
