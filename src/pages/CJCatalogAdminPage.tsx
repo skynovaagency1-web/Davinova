@@ -389,6 +389,7 @@ export function CJCatalogAdminPage() {
           collectionCategory: assignedCollection,
           storeCollection: assignedStore.collection,
           storeSubcategory: assignedStore.subcategory,
+          storeCollectionManual: Boolean(storeAssignments[product.id]),
         }),
         cache: 'no-store',
       });
