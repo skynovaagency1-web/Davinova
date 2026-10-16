@@ -58,16 +58,6 @@ function safeTags(value: string): string[] {
   }
 }
 
-function assignmentLabels(tagsJson: string) {
-  const assignment = assignmentFromStoreTags(safeTags(tagsJson));
-  return {
-    storeCollection: assignment?.collection,
-    storeCollectionLabel: assignment?.collectionLabel,
-    storeSubcategory: assignment?.subcategory,
-    storeSubcategoryLabel: assignment?.subcategoryLabel,
-  };
-}
-
 async function assignExistingProduct(
   body: AssignmentBody,
   env: Env,
