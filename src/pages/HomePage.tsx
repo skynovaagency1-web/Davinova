@@ -5,6 +5,9 @@ import { useCatalogProducts } from '../lib/useCatalogProducts';
 import { ProductCard } from '../components/ProductCard';
 import { Cloth } from '../components/canvasui/Cloth';
 import { editorialImages } from '../lib/editorialImages';
+import { StorefrontChooser } from '../components/StorefrontChooser';
+import { CurvyHomePage } from './CurvyHomePage';
+import { isCurvyStorefront } from '../lib/storefront';
 
 const riseIn = {
   hidden: { opacity: 0, y: 28 },
@@ -12,6 +15,10 @@ const riseIn = {
 };
 
 export function HomePage() {
+  return isCurvyStorefront() ? <CurvyHomePage /> : <StandardHomePage />;
+}
+
+function StandardHomePage() {
   const { products } = useCatalogProducts();
 
   return <>
@@ -41,6 +48,7 @@ export function HomePage() {
       </div>
       <motion.a className="scroll-cue" href="#featured" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.15, duration: 0.7 }}><ArrowDown size={15} /> Scroll to explore</motion.a>
     </section>
+    <StorefrontChooser />
     <motion.section className="intro-strip" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={riseIn}><p>For the <em>almost-dancing,</em> the long goodbyes, and the photographs you’ll keep.</p><span>Made for your kind of occasion.</span></motion.section>
     <motion.section className="fabric-feature section" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.16 } } }}>
       <motion.div className="fabric-feature__copy" variants={riseIn}>
