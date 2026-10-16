@@ -17,10 +17,10 @@ export function StorefrontChooser() {
           <div className="storefront-choice__wash" />
           <div className="storefront-choice__content">
             <span className="storefront-choice__number">01 / THE MAIN EDIT</span>
-            <h3>Standard <em>collection.</em></h3>
+            <h3>Slim <em>collection.</em></h3>
             <p>Considered occasionwear for weddings, celebrations, and the moments worth dressing for.</p>
             <Link className="storefront-choice__link" to="/shop?fit=standard">
-              Explore the standard edit <ArrowUpRight size={17} />
+              Explore the slim edit <ArrowUpRight size={17} />
             </Link>
           </div>
         </article>
