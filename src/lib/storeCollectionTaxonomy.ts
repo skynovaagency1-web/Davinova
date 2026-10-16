@@ -19,6 +19,7 @@ export interface StoreCollectionAssignment {
 
 const COLLECTION_TAG_PREFIX = '__davinova_store_collection__:';
 const SUBCATEGORY_TAG_PREFIX = '__davinova_store_subcategory__:';
+const MANUAL_ASSIGNMENT_TAG = '__davinova_store_manual__:true';
 
 function slugify(value: string): string {
   return value.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
@@ -244,9 +245,15 @@ export function suggestStoreCollection(
     ['Women’s Socks', ['sock', 'socks', 'stockings']],
     ['Women’s Hats & Caps', ['hat', 'hats', 'cap', 'caps', 'beanie', 'baseball cap']],
   ] as const;
-  for (const [label, terms] of accessoryRules) {
-    if (hasAny(...terms)) return assignmentFor('accessories', label);
+  const accessoryIsMainProduct = !hasAny('wrap dress', 'wrap dresses', 'scarf print', 'scarf pattern', 'cap sleeve', 'cap sleeves');
+  if (accessoryIsMainProduct) {
+    for (const [label, terms] of accessoryRules) {
+      if (hasAny(...terms)) return assignmentFor('accessories', label);
+    }
   }
+
+  // "Wedding guest" is not one of the supplied event subcategories; leave it for manual review.
+  if (hasAny('wedding guest', 'wedding guest dress', 'guest dress')) return undefined;
 
   // Preserve clear subtypes so denim/sweater/sweatshirt dresses aren't misfiled as occasion dresses.
   const clothingRules: Array<{ group: string; label?: string; terms: string[] }> = [
@@ -294,7 +301,7 @@ export function suggestStoreCollection(
     { group: 'weddings-and-events', label: 'Bridesmaid Dresses', terms: ['bridesmaid', 'bridesmaid dress'] },
     { group: 'weddings-and-events', label: 'Prom Dresses', terms: ['prom dress', 'prom dresses'] },
     { group: 'weddings-and-events', label: 'Flower Girl Dresses', terms: ['flower girl dress', 'flower-girl dress'] },
-    { group: 'weddings-and-events', label: 'Wedding Dresses', terms: ['wedding dress', 'wedding dresses', 'bridal gown', 'bride dress', 'wedding guest dress', 'wedding guest'] },
+    { group: 'weddings-and-events', label: 'Wedding Dresses', terms: ['wedding dress', 'wedding dresses', 'bridal gown', 'bride dress'] },
 
     { group: 'bottoms', label: 'Women’s Flare Pants', terms: ['flare pants', 'flared pants', 'flare trousers', 'bell bottom pants'] },
     { group: 'bottoms', label: 'Women’s Straight-Leg Pants', terms: ['straight leg pants', 'straight leg trousers'] },
@@ -364,17 +371,30 @@ export function findStoreCollectionGroup(collection: string): StoreCollectionGro
   return groupBySlug(collection);
 }
 
-export function writeStoreCollectionTags(tags: string[], assignment: StoreCollectionAssignment): string[] {
-  const existing = tags.filter((tag) => !tag.startsWith(COLLECTION_TAG_PREFIX) && !tag.startsWith(SUBCATEGORY_TAG_PREFIX));
+export function writeStoreCollectionTags(
+  tags: string[],
+  assignment: StoreCollectionAssignment,
+  manual = false,
+): string[] {
+  const existing = tags.filter((tag) =>
+    !tag.startsWith(COLLECTION_TAG_PREFIX)
+    && !tag.startsWith(SUBCATEGORY_TAG_PREFIX)
+    && tag !== MANUAL_ASSIGNMENT_TAG
+  );
   return [
     ...existing,
     COLLECTION_TAG_PREFIX + assignment.collection,
     ...(assignment.subcategory ? [SUBCATEGORY_TAG_PREFIX + assignment.subcategory] : []),
+    ...(manual ? [MANUAL_ASSIGNMENT_TAG] : []),
   ];
 }
 
+export function hasManualStoreCollectionAssignment(tags: string[]): boolean {
+  return tags.includes(MANUAL_ASSIGNMENT_TAG);
+}
+
 export function publicProductTags(tags: string[]): string[] {
-  return tags.filter((tag) => !tag.startsWith(COLLECTION_TAG_PREFIX) && !tag.startsWith(SUBCATEGORY_TAG_PREFIX));
+  return tags.filter((tag) => !tag.startsWith(COLLECTION_TAG_PREFIX) && !tag.startsWith(SUBCATEGORY_TAG_PREFIX) && tag !== MANUAL_ASSIGNMENT_TAG);
 }
 
 export function manualStoreCollectionAssignment(collection: string, subcategorySlug?: string): StoreCollectionAssignment | undefined {
