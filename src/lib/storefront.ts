@@ -15,7 +15,7 @@ export function isCurvyStorefront(): boolean {
 /**
  * Keep sizing edits separate. A dress belongs to the Curvy store only when its
  * metadata explicitly identifies plus sizing/extended sizes, or its verified
- * available size list includes 2XL–6XL. Unknown sizing is never guessed.
+ * size metadata includes common plus-size labels from 1X/1XL through 6X/6XL. Unknown sizing is never guessed.
  */
 export function isCurvyProduct(
   product: Pick<Product, 'title' | 'description' | 'tags' | 'sizes'>,
@@ -30,10 +30,10 @@ export function isCurvyProduct(
       metadata,
     );
   const includesExtendedSizes = product.sizes.some((size) =>
-    ['2XL', '3XL', '4XL', '5XL', '6XL'].includes(size),
+    ['1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X'].includes(size),
   );
   const titleListsExtendedSizes =
-    /\b(2xl|3xl|4xl|5xl|6xl|xxl|xxxl|xxxxl)\b/.test(metadata);
+    /\b(1xl|2xl|3xl|4xl|5xl|6xl|1x|2x|3x|4x|5x|6x|xxl|xxxl|xxxxl)\b/.test(metadata);
 
   return explicitlyCurvy || includesExtendedSizes || titleListsExtendedSizes;
 }
