@@ -440,7 +440,12 @@ export function CJCatalogAdminPage() {
           const response = await fetch('/api/admin/cj-import', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
-            body: JSON.stringify({ productId: product.id, collectionCategory: assignedCollection }),
+            body: JSON.stringify({
+              productId: product.id,
+              collectionCategory: assignedCollection,
+              storeCollection: assignedStore.collection,
+              storeSubcategory: assignedStore.subcategory,
+            }),
             cache: 'no-store',
           });
           const data = await readJson(response);
@@ -489,10 +494,48 @@ export function CJCatalogAdminPage() {
           </div>
           <div style={{ marginTop: 14, padding: 14, border: '1px solid #e4d8cf', borderRadius: 10, background: '#f7f1ec' }}>
             <strong style={{ display: 'block', fontSize: 14 }}>Already imported dresses</strong>
-            <p style={{ color: '#746960', fontSize: 12, lineHeight: 1.6, margin: '6px 0 12px' }}>Organize existing unverified CJ listings using clear clues in their saved titles, descriptions, and tags. Listings without a clear match stay where they are for manual review; supplier-verified listings are not changed.</p>
+            <p style={{ color: '#746960', fontSize: 12, lineHeight: 1.6, margin: '6px 0 12px' }}>Sort existing imported CJ products into your Davinova clothing collections and subcategories using their titles, descriptions, and tags. Items without a clear match stay unchanged for manual review; supplier-verified products are protected.</p>
             <button type="button" onClick={organizeExistingDresses} disabled={busy || !adminPassword} style={{ padding: '11px 15px', border: 0, borderRadius: 8, background: '#292522', color: '#fff', cursor: busy || !adminPassword ? 'not-allowed' : 'pointer', opacity: busy || !adminPassword ? .6 : 1 }}>
-              {busy ? 'Working…' : 'Organize existing CJ dresses'}
+              {busy ? 'Working…' : 'Organize existing imported products'}
             </button>
+            {needsReviewProducts.length > 0 && <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid #dfd3c8' }}>
+              <strong style={{ display: 'block', fontSize: 14 }}>Needs a manual collection match ({needsReviewProducts.length})</strong>
+              <p style={{ color: '#746960', fontSize: 12, lineHeight: 1.5 }}>These imported items did not have a clear title match. Choose the collection and subcategory you supplied; saving changes only the category metadata.</p>
+              <div style={{ display: 'grid', gap: 12, marginTop: 12 }}>
+                {needsReviewProducts.map((product) => {
+                  const selected = reviewAssignments[product.id];
+                  const selectedGroup = selected?.collection ?? product.currentCollection ?? '';
+                  const selectedSubcategory = selected?.subcategory ?? product.currentSubcategory ?? '';
+                  const subcategories = findStoreCollectionGroup(selectedGroup)?.subcategories ?? [];
+                  return <article key={product.id} style={{ padding: 12, border: '1px solid #e4d8cf', borderRadius: 9, background: '#fffdfb' }}>
+                    <strong style={{ display: 'block', fontSize: 13, lineHeight: 1.5 }}>{product.title}</strong>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 210px), 1fr))', gap: 9, marginTop: 10 }}>
+                      <label style={{ fontSize: 11 }}>
+                        Collection
+                        <select value={selectedGroup} onChange={(event) => setReviewAssignments((current) => ({
+                          ...current,
+                          [product.id]: { collection: event.target.value, subcategory: '' },
+                        }))} style={{ display: 'block', width: '100%', marginTop: 5, padding: 9, border: '1px solid #d8cbc1', borderRadius: 7, background: '#fff' }}>
+                          <option value="">Choose collection…</option>
+                          {storeCollectionGroups.map((group) => <option key={group.slug} value={group.slug}>{group.label}</option>)}
+                        </select>
+                      </label>
+                      <label style={{ fontSize: 11 }}>
+                        Subcategory
+                        <select value={selectedSubcategory} disabled={!selectedGroup} onChange={(event) => setReviewAssignments((current) => ({
+                          ...current,
+                          [product.id]: { collection: selectedGroup, subcategory: event.target.value },
+                        }))} style={{ display: 'block', width: '100%', marginTop: 5, padding: 9, border: '1px solid #d8cbc1', borderRadius: 7, background: '#fff' }}>
+                          <option value="">Choose subcategory…</option>
+                          {subcategories.map((subcategory) => <option key={subcategory.slug} value={subcategory.slug}>{subcategory.label}</option>)}
+                        </select>
+                      </label>
+                    </div>
+                    <button type="button" disabled={busy || !selectedGroup || !selectedSubcategory} onClick={() => saveReviewAssignment(product)} style={{ marginTop: 10, padding: '9px 12px', border: 0, borderRadius: 7, background: '#292522', color: '#fff', opacity: busy || !selectedGroup || !selectedSubcategory ? .6 : 1, cursor: busy || !selectedGroup || !selectedSubcategory ? 'not-allowed' : 'pointer' }}>Save category</button>
+                  </article>;
+                })}
+              </div>
+            </div>}
           </div>
         </section>
 
@@ -575,6 +618,38 @@ export function CJCatalogAdminPage() {
                       {collectionAssignments[product.id] ? 'Manually selected.' : suggestedCollection ? 'Suggested from the CJ title/category or inspected description.' : 'No clear match found. Choose a collection before adding this dress.'}
                     </p>
                   </div>
+                  <div style={{ marginTop: 12, padding: 11, background: '#f7f1ec', borderRadius: 8 }}>
+                    <label htmlFor={`store-collection-${product.id}`} style={{ display: 'block', fontSize: 12, fontWeight: 600, marginBottom: 6 }}>Clothing collection</label>
+                    <select
+                      id={`store-collection-${product.id}`}
+                      value={selectedStoreGroup}
+                      onChange={(event) => setStoreAssignments((current) => ({
+                        ...current,
+                        [product.id]: { collection: event.target.value, subcategory: '' },
+                      }))}
+                      style={{ width: '100%', padding: '9px 10px', border: '1px solid #d8cbc1', borderRadius: 7, background: '#fff', fontSize: 13 }}
+                    >
+                      <option value="">Choose one of your collections…</option>
+                      {storeCollectionGroups.map((group) => <option key={group.slug} value={group.slug}>{group.label}</option>)}
+                    </select>
+                    <label htmlFor={`store-subcategory-${product.id}`} style={{ display: 'block', fontSize: 12, fontWeight: 600, margin: '10px 0 6px' }}>Clothing subcategory</label>
+                    <select
+                      id={`store-subcategory-${product.id}`}
+                      value={selectedStoreSubcategory}
+                      disabled={!selectedStoreGroup}
+                      onChange={(event) => setStoreAssignments((current) => ({
+                        ...current,
+                        [product.id]: { collection: selectedStoreGroup, subcategory: event.target.value },
+                      }))}
+                      style={{ width: '100%', padding: '9px 10px', border: '1px solid #d8cbc1', borderRadius: 7, background: '#fff', fontSize: 13 }}
+                    >
+                      <option value="">Choose a subcategory…</option>
+                      {availableStoreSubcategories.map((subcategory) => <option key={subcategory.slug} value={subcategory.slug}>{subcategory.label}</option>)}
+                    </select>
+                    <p style={{ fontSize: 11, lineHeight: 1.5, color: '#746960', margin: '6px 0 0' }}>
+                      {storeAssignments[product.id] ? 'Manual clothing category selected.' : selectedStoreAssignment?.subcategoryLabel ? `Suggested: ${selectedStoreAssignment.collectionLabel} → ${selectedStoreAssignment.subcategoryLabel}.` : 'Choose the best clothing category and subcategory for this product.'}
+                    </p>
+                  </div>
                   <p style={{ margin: '5px 0', fontSize: 13 }}>CJ product ID: <code>{product.id}</code></p>
                   <p style={{ margin: '5px 0', fontSize: 13 }}>SKU: <code>{product.sku || 'Not supplied'}</code></p>
                   <p style={{ margin: '5px 0', fontSize: 13 }}>Listed item price: <strong>{money(product.discountPriceUsd ?? product.sellPriceUsd)}</strong></p>
@@ -592,7 +667,7 @@ export function CJCatalogAdminPage() {
                       </div>)}
                     </div>}
                     <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginTop: 12 }}>Before any draft can be published, we still need to verify stock, real-world size mapping, shipping to France, total landed cost, and commercial image rights.</p>
-                    <button type="button" onClick={() => saveDraft(product)} disabled={busy || !selectedCollection} style={{ marginTop: 8, padding: '12px 14px', border: 0, borderRadius: 8, background: importedIds[product.id] ? '#e2e8de' : '#292522', color: importedIds[product.id] ? '#466543' : '#fff', cursor: busy || !selectedCollection ? 'not-allowed' : 'pointer', opacity: busy || !selectedCollection ? .65 : 1 }}>
+                    <button type="button" onClick={() => saveDraft(product)} disabled={busy || !selectedCollection || !selectedStoreSubcategory} style={{ marginTop: 8, padding: '12px 14px', border: 0, borderRadius: 8, background: importedIds[product.id] ? '#e2e8de' : '#292522', color: importedIds[product.id] ? '#466543' : '#fff', cursor: busy || !selectedCollection || !selectedStoreSubcategory ? 'not-allowed' : 'pointer', opacity: busy || !selectedCollection || !selectedStoreSubcategory ? .65 : 1 }}>
                       {importedIds[product.id] ? 'Update collection' : busy ? 'Adding to website…' : 'Add to website (browse only)'}
                     </button>
                     {importedIds[product.id] && <p role="status" style={{ fontSize: 12, color: '#466543', marginTop: 8 }}>Saved in Davinova as {importedIds[product.id]}. Visible to browse, but unavailable to purchase.</p>}
