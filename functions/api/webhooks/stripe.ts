@@ -171,19 +171,63 @@ async function sendOwnerApprovalEmail(env: Env, order: StoreOrder, approvalToken
   if (!response.ok) throw new Error('Resend could not deliver the order approval notification.');
 }
 
-async function existingEvent(env: Env, eventId: string): Promise<boolean> {
-  const row = await env.DB.prepare('SELECT id FROM webhook_events WHERE id=? LIMIT 1')
-    .bind(eventId).first<{ id: string }>();
-  return Boolean(row);
+type EventClaim =
+  | { state: 'claimed'; token: string }
+  | { state: 'duplicate' }
+  | { state: 'busy' };
+
+/**
+ * Atomically claim an event before mutating an order. In-progress claims have
+ * a five-minute lease so a crashed invocation can be retried by Stripe.
+ */
+async function claimEvent(env: Env, eventId: string): Promise<EventClaim> {
+  const token = crypto.randomUUID();
+  const claimPayload = JSON.stringify({ claimToken: token });
+  const inserted = await env.DB.prepare(
+    "INSERT OR IGNORE INTO webhook_events (id, provider, event_type, processed_at, payload_json) VALUES (?, 'stripe', 'processing', datetime('now'), ?)",
+  ).bind(eventId, claimPayload).run();
+
+  if (Number(inserted.meta.changes) === 1) return { state: 'claimed', token };
+
+  const existing = await env.DB.prepare(
+    'SELECT event_type, processed_at FROM webhook_events WHERE id=? AND provider=\'stripe\' LIMIT 1',
+  ).bind(eventId).first<{ event_type: string; processed_at: string }>();
+
+  if (!existing) throw new Error('Could not inspect Stripe webhook event claim.');
+  if (existing.event_type !== 'processing') return { state: 'duplicate' };
+
+  const reclaimed = await env.DB.prepare(
+    "UPDATE webhook_events SET processed_at=datetime('now'), payload_json=? WHERE id=? AND provider='stripe' AND event_type='processing' AND processed_at=? AND processed_at < datetime('now','-5 minutes')",
+  ).bind(claimPayload, eventId, existing.processed_at).run();
+
+  if (Number(reclaimed.meta.changes) === 1) return { state: 'claimed', token };
+  return { state: 'busy' };
 }
-async function recordEvent(env: Env, event: StripeEvent, session?: StripeSession): Promise<void> {
+
+async function releaseEventClaim(env: Env, eventId: string, token: string): Promise<void> {
+  await env.DB.prepare(
+    "DELETE FROM webhook_events WHERE id=? AND provider='stripe' AND event_type='processing' AND payload_json=?",
+  ).bind(eventId, JSON.stringify({ claimToken: token })).run();
+}
+
+async function recordEvent(env: Env, event: StripeEvent, session: StripeSession | undefined, token: string): Promise<void> {
   const payload = {
     checkoutSessionId: session?.id || null,
     orderId: session?.metadata?.order_id || session?.client_reference_id || null,
     paymentStatus: session?.payment_status || null,
   };
-  await env.DB.prepare('INSERT OR IGNORE INTO webhook_events (id, provider, event_type, payload_json) VALUES (?, ?, ?, ?)')
-    .bind(event.id!, 'stripe', event.type || 'unknown', JSON.stringify(payload)).run();
+  const recorded = await env.DB.prepare(
+    "UPDATE webhook_events SET event_type=?, processed_at=datetime('now'), payload_json=? WHERE id=? AND provider='stripe' AND event_type='processing' AND payload_json=?",
+  ).bind(
+    event.type || 'unknown',
+    JSON.stringify(payload),
+    event.id!,
+    JSON.stringify({ claimToken: token }),
+  ).run();
+
+  if (Number(recorded.meta.changes) !== 1) {
+    throw new Error('Stripe webhook event claim expired before processing completed.');
+  }
 }
 
 /**
@@ -214,16 +258,20 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     return reply({ error: 'Stripe event mode does not match the configured checkout mode.' }, 400);
   }
 
+  let activeClaimToken: string | null = null;
   try {
-    if (await existingEvent(env, event.id)) return reply({ received: true, duplicate: true });
-
     const supported = new Set([
       'checkout.session.completed',
       'checkout.session.async_payment_succeeded',
       'checkout.session.async_payment_failed',
     ]);
     if (!supported.has(event.type)) {
-      await recordEvent(env, event);
+      const claim = await claimEvent(env, event.id);
+      if (claim.state === 'duplicate') return reply({ received: true, duplicate: true });
+      if (claim.state === 'busy') return reply({ error: 'Webhook event is already being processed; retry shortly.' }, 503);
+      activeClaimToken = claim.token;
+      await recordEvent(env, event, undefined, activeClaimToken);
+      activeClaimToken = null;
       return reply({ received: true, ignored: true });
     }
 
@@ -245,16 +293,25 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       return reply({ error: 'Checkout Session order number does not match the stored order.' }, 409);
     }
 
+    const claim = await claimEvent(env, event.id);
+    if (claim.state === 'duplicate') return reply({ received: true, duplicate: true });
+    if (claim.state === 'busy') return reply({ error: 'Webhook event is already being processed; retry shortly.' }, 503);
+    activeClaimToken = claim.token;
+
     if (event.type === 'checkout.session.async_payment_failed') {
       await env.DB.prepare(
         "UPDATE orders SET status='cancelled', payment_status='unpaid', updated_at=datetime('now') WHERE id=? AND status='pending_payment' AND payment_reference=?",
       ).bind(order.id, session.id).run();
-      await recordEvent(env, event, session);
+      await recordEvent(env, event, session, activeClaimToken!);
+
+      activeClaimToken = null;
       return reply({ received: true, paymentFailed: true });
     }
 
     if (session.payment_status !== 'paid' || session.status !== 'complete') {
-      await recordEvent(env, event, session);
+      await recordEvent(env, event, session, activeClaimToken!);
+
+      activeClaimToken = null;
       return reply({ received: true, awaitingPayment: true });
     }
 
@@ -276,7 +333,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         crypto.randomUUID(), order.id, order.status,
         JSON.stringify({ sessionId: session.id, stripeCurrency: currency, expectedCurrency: order.currency }),
       ).run();
-      await recordEvent(env, event, session);
+      await recordEvent(env, event, session, activeClaimToken!);
+
+      activeClaimToken = null;
       return reply({ received: true, needsAttention: true });
     }
 
@@ -292,12 +351,16 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         crypto.randomUUID(), order.id, order.status,
         JSON.stringify({ sessionId: session.id, countryCode: address?.countryCode || null }),
       ).run();
-      await recordEvent(env, event, session);
+      await recordEvent(env, event, session, activeClaimToken!);
+
+      activeClaimToken = null;
       return reply({ received: true, needsAttention: true });
     }
 
     if (!['pending_payment', 'pending_approval'].includes(order.status)) {
-      await recordEvent(env, event, session);
+      await recordEvent(env, event, session, activeClaimToken!);
+
+      activeClaimToken = null;
       return reply({ received: true, ignored: true, status: order.status });
     }
 
@@ -331,6 +394,8 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
           "UPDATE approvals SET used_at=datetime('now') WHERE order_id=? AND used_at IS NULL",
         ).bind(order.id).run();
         console.error('Owner approval notification failed:', error instanceof Error ? error.message : 'Unknown email failure');
+        await releaseEventClaim(env, event.id!, activeClaimToken!);
+        activeClaimToken = null;
         return reply({ error: 'Payment is recorded; order approval notification needs retry.' }, 503);
       }
       await env.DB.prepare(
@@ -341,9 +406,19 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       ).run();
     }
 
-    await recordEvent(env, event, session);
+    await recordEvent(env, event, session, activeClaimToken!);
+
+
+    activeClaimToken = null;
     return reply({ received: true, orderStatus: 'pending_approval' });
   } catch (error) {
+    if (activeClaimToken && event.id) {
+      try {
+        await releaseEventClaim(env, event.id, activeClaimToken);
+      } catch (releaseError) {
+        console.error('Stripe webhook claim release failed:', releaseError instanceof Error ? releaseError.message : 'Unknown claim-release failure');
+      }
+    }
     console.error('Stripe webhook processing failed:', error instanceof Error ? error.message : 'Unknown webhook failure');
     return reply({ error: 'Webhook processing failed and should be retried.' }, 503);
   }
