@@ -1,7 +1,7 @@
 export type Supplier = 'cj' | 'fondmart';
 export type CatalogSource = 'cj' | 'fondmart';
 export type CollectionCategory = 'wedding-guest' | 'cocktail-party' | 'maxi-holiday' | 'unassigned';
-export type DressSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | '2XL' | '3XL' | '4XL' | '5XL' | '6XL';
+export type DressSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | '1XL' | '2XL' | '3XL' | '4XL' | '5XL' | '6XL' | '1X' | '2X' | '3X' | '4X' | '5X' | '6X';
 
 export interface Product {
   id: string;
