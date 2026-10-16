@@ -169,6 +169,46 @@ export function CJCatalogAdminPage() {
     }
   }
 
+  async function saveReviewAssignment(product: NeedsReviewProduct) {
+    const assignment = reviewCollectionFor(product);
+    if (!assignment?.subcategory) {
+      setError('Choose a clothing collection and subcategory before saving this product.');
+      return;
+    }
+    if (!adminPassword) {
+      setError('Enter the Davinova admin password configured in Cloudflare first.');
+      return;
+    }
+    setError('');
+    setMessage('');
+    setBusy(true);
+    try {
+      const response = await fetch('/api/admin/cj-organize-collections', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+        body: JSON.stringify({
+          action: 'assign',
+          productId: product.id,
+          storeCollection: assignment.collection,
+          storeSubcategory: assignment.subcategory,
+        }),
+        cache: 'no-store',
+      });
+      const data = await readJson(response);
+      setNeedsReviewProducts((current) => current.filter((item) => item.id !== product.id));
+      setReviewAssignments((current) => {
+        const next = { ...current };
+        delete next[product.id];
+        return next;
+      });
+      setMessage(`Assigned “${product.title}” to ${data.product?.storeCollectionLabel ?? assignment.collectionLabel} → ${data.product?.storeSubcategoryLabel ?? assignment.subcategoryLabel}. No product was imported again.`);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : 'Could not save the product category.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function search(event?: FormEvent) {
     event?.preventDefault();
     setError('');
@@ -330,8 +370,13 @@ export function CJCatalogAdminPage() {
       return;
     }
     const assignedCollection = collectionFor(product);
+    const assignedStore = storeCollectionFor(product);
     if (!assignedCollection) {
-      setError('Choose a collection for this dress before adding it to Davinova.');
+      setError('Choose an occasion collection for this product before adding it to Davinova.');
+      return;
+    }
+    if (!assignedStore?.subcategory) {
+      setError('Choose a clothing collection and one of its subcategories before adding this product.');
       return;
     }
     setBusy(true);
@@ -339,7 +384,12 @@ export function CJCatalogAdminPage() {
       const response = await fetch('/api/admin/cj-import', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
-        body: JSON.stringify({ productId: product.id, collectionCategory: assignedCollection }),
+        body: JSON.stringify({
+          productId: product.id,
+          collectionCategory: assignedCollection,
+          storeCollection: assignedStore.collection,
+          storeSubcategory: assignedStore.subcategory,
+        }),
         cache: 'no-store',
       });
       const data = await readJson(response);
@@ -358,8 +408,8 @@ export function CJCatalogAdminPage() {
 
   async function importSelected() {
     const selected = results.filter((product) => selectedIds[product.id] && !importedIds[product.id]);
-    const ready = selected.filter((product) => Boolean(collectionFor(product)));
-    const awaitingCollection = selected.filter((product) => !collectionFor(product));
+    const ready = selected.filter((product) => Boolean(collectionFor(product)) && Boolean(storeCollectionFor(product)?.subcategory));
+    const awaitingCollection = selected.filter((product) => !collectionFor(product) || !storeCollectionFor(product)?.subcategory);
     if (!adminPassword) {
       setError('Enter the Davinova admin password configured in Cloudflare first.');
       return;
@@ -369,7 +419,7 @@ export function CJCatalogAdminPage() {
       return;
     }
     if (ready.length === 0) {
-      setError('Choose a collection for each selected dress. The CJ details did not provide a clear collection match.');
+      setError('Choose an occasion collection and a clothing collection/subcategory for each selected product.');
       return;
     }
 
@@ -383,7 +433,8 @@ export function CJCatalogAdminPage() {
       for (let index = 0; index < ready.length; index += 1) {
         const product = ready[index];
         const assignedCollection = collectionFor(product);
-        if (!assignedCollection) continue;
+        const assignedStore = storeCollectionFor(product);
+        if (!assignedCollection || !assignedStore?.subcategory) continue;
         setBatchProgress(`Adding ${index + 1} of ${ready.length}: ${product.name}`);
         try {
           const response = await fetch('/api/admin/cj-import', {
@@ -496,6 +547,10 @@ export function CJCatalogAdminPage() {
               const detail = details[product.id];
               const suggestedCollection = suggestCollectionCategory(product.name, product.category, detail?.description);
               const selectedCollection = collectionFor(product) ?? '';
+              const selectedStoreAssignment = storeCollectionFor(product);
+              const selectedStoreGroup = storeAssignments[product.id]?.collection ?? selectedStoreAssignment?.collection ?? '';
+              const selectedStoreSubcategory = storeAssignments[product.id]?.subcategory ?? selectedStoreAssignment?.subcategory ?? '';
+              const availableStoreSubcategories = findStoreCollectionGroup(selectedStoreGroup)?.subcategories ?? [];
               return <article key={product.id} style={{ background: '#fffdfb', border: '1px solid #e4d8cf', borderRadius: 12, overflow: 'hidden' }}>
                 {product.imageUrl ? <img src={product.imageUrl} alt="" loading="lazy" onError={(event) => { event.currentTarget.style.display = 'none'; }} style={{ display: 'block', width: '100%', height: 270, objectFit: 'contain', background: '#f0e7df' }} /> : <div style={{ height: 270, display: 'grid', placeItems: 'center', background: '#f0e7df', color: '#82756d' }}>No image preview from CJ</div>}
                 <div style={{ padding: 16 }}>
@@ -506,7 +561,7 @@ export function CJCatalogAdminPage() {
                   <p style={{ textTransform: 'uppercase', letterSpacing: '.12em', fontSize: 10, color: '#82756d' }}>{product.category || 'CJ catalogue'}</p>
                   <h3 style={{ fontSize: 17, fontWeight: 600, lineHeight: 1.4, margin: '6px 0 10px' }}>{product.name}</h3>
                   <div style={{ marginTop: 12, padding: 11, background: '#f7f1ec', borderRadius: 8 }}>
-                    <label htmlFor={`collection-${product.id}`} style={{ display: 'block', fontSize: 12, fontWeight: 600, marginBottom: 6 }}>Customer collection</label>
+                    <label htmlFor={`collection-${product.id}`} style={{ display: 'block', fontSize: 12, fontWeight: 600, marginBottom: 6 }}>Occasion collection</label>
                     <select id={`collection-${product.id}`} value={selectedCollection} onChange={(event) => setCollectionAssignments((current) => {
                       const next = { ...current };
                       if (event.target.value) next[product.id] = event.target.value as StoreCollectionCategory;
