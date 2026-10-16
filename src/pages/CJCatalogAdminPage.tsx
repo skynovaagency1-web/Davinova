@@ -54,6 +54,10 @@ interface SearchResponse {
   message?: string;
   imageCount?: number;
   variantCount?: number;
+  scannedCount?: number;
+  movedCount?: number;
+  alreadyCorrectCount?: number;
+  needsReviewCount?: number;
 }
 const money = (value: number | null) => value === null ? 'Not supplied' : new Intl.NumberFormat('en-US', {
   style: 'currency', currency: 'USD', maximumFractionDigits: 2,
@@ -87,6 +91,32 @@ export function CJCatalogAdminPage() {
     const data = await response.json() as SearchResponse;
     if (!response.ok) throw new Error(data.error || (response.status === 401 ? 'Admin password was not accepted.' : 'CJ request failed.'));
     return data;
+  }
+
+  async function organizeExistingDresses() {
+    setError('');
+    setMessage('');
+    if (!adminPassword) {
+      setError('Enter the Davinova admin password configured in Cloudflare first.');
+      return;
+    }
+    setBusy(true);
+    try {
+      const response = await fetch('/api/admin/cj-organize-collections', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+        body: JSON.stringify({}),
+        cache: 'no-store',
+      });
+      const data = await readJson(response);
+      setMessage(
+        `Checked ${data.scannedCount ?? 0} existing browse-only CJ dresses: moved ${data.movedCount ?? 0} to a clearer collection, ${data.alreadyCorrectCount ?? 0} already matched, and ${data.needsReviewCount ?? 0} left unchanged for manual review.`,
+      );
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : 'Could not organize existing dresses.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function search(event?: FormEvent) {
@@ -355,6 +385,13 @@ export function CJCatalogAdminPage() {
           </form>
           <div style={{ marginTop: 16, color: '#746960', fontSize: 13, lineHeight: 1.6 }}>
             Each dress is assigned to its own collection. Davinova suggests a collection only when the CJ title or category gives a clear clue; ambiguous dresses must be categorized manually before they are added.
+          </div>
+          <div style={{ marginTop: 14, padding: 14, border: '1px solid #e4d8cf', borderRadius: 10, background: '#f7f1ec' }}>
+            <strong style={{ display: 'block', fontSize: 14 }}>Already imported dresses</strong>
+            <p style={{ color: '#746960', fontSize: 12, lineHeight: 1.6, margin: '6px 0 12px' }}>Organize existing unverified CJ listings using clear clues in their saved titles, descriptions, and tags. Listings without a clear match stay where they are for manual review; supplier-verified listings are not changed.</p>
+            <button type="button" onClick={organizeExistingDresses} disabled={busy || !adminPassword} style={{ padding: '11px 15px', border: 0, borderRadius: 8, background: '#292522', color: '#fff', cursor: busy || !adminPassword ? 'not-allowed' : 'pointer', opacity: busy || !adminPassword ? .6 : 1 }}>
+              {busy ? 'Working…' : 'Organize existing CJ dresses'}
+            </button>
           </div>
         </section>
 
