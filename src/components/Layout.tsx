@@ -5,7 +5,6 @@ import { ShoppingBag, Menu, X } from 'lucide-react';
 import { getWooCommercePageUrl, isWooCommerceConfigured } from '../lib/woocommerce';
 import { brand } from '../config/brand';
 import { useCart } from '../store/cart';
-import { CURVY_STOREFRONT_URL, STANDARD_STOREFRONT_URL, isCurvyStorefront } from '../lib/storefront';
 
 export function Layout() {
   const { pathname } = useLocation();
@@ -13,36 +12,35 @@ export function Layout() {
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const wooCartUrl = getWooCommercePageUrl('cart');
   const wooConfigured = isWooCommerceConfigured();
-  const curvyStorefront = isCurvyStorefront();
   const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     setMenuOpen(false);
-    document.title = curvyStorefront ? 'Davinova Plus Size & Curvy — The Curve Edit' : 'Davinova — Occasion, beautifully considered';
-  }, [pathname, curvyStorefront]);
+    document.title = 'Davinova — Occasion, beautifully considered';
+  }, [pathname]);
 
   return <div className="site-shell">
-    <div className="announcement">{curvyStorefront ? 'The Curve Edit · Designed around extended-size discovery' : 'A considered edit for every celebration'} <span>✦</span> {curvyStorefront ? 'Your moment, your silhouette' : 'Discover your next occasion look'}</div>
+    <div className="announcement">A considered edit for every celebration <span>✦</span> Discover your next occasion look</div>
     <header className="site-header">
       <button className="icon-button search-button" type="button" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} title={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
-      <Link to="/" className="wordmark" aria-label={`${brand.name} home`}>{brand.name}<span>{curvyStorefront ? 'CURVE EDIT' : 'ATELIER'}</span></Link>
-      <nav className="desktop-nav" aria-label="Main navigation">{curvyStorefront ? <><NavLink to="/shop">Shop the Curvy edit</NavLink><Link to="/shop?occasion=wedding-guest">Wedding Guest</Link><Link to="/shop?occasion=cocktail-party">Cocktail & Party</Link><a href={STANDARD_STOREFRONT_URL}>Standard collection</a><Link to="/about">Our story</Link></> : <><NavLink to="/shop">Shop all</NavLink><Link to="/shop?occasion=wedding-guest">Wedding Guest</Link><Link to="/shop?occasion=cocktail-party">Cocktail & Party</Link><a href={CURVY_STOREFRONT_URL}>Plus Size &amp; Curvy</a><Link to="/about">Our story</Link></>}</nav>
+      <Link to="/" className="wordmark" aria-label={`${brand.name} home`}>{brand.name}<span>ATELIER</span></Link>
+      <nav className="desktop-nav" aria-label="Main navigation"><NavLink to="/shop">Shop all</NavLink><Link to="/shop?occasion=wedding-guest">Wedding Guest</Link><Link to="/shop?occasion=cocktail-party">Cocktail & Party</Link><Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link><Link to="/about">Our story</Link></nav>
       {wooConfigured && wooCartUrl ? <a href={wooCartUrl} className="cart-link" aria-label="Open WooCommerce shopping basket"><ShoppingBag size={20} /><span>Bag</span></a> : <Link to="/cart" className="cart-link" aria-label={`Shopping bag, ${count} items`}><ShoppingBag size={20} /><span>Bag ({count})</span></Link>}
     </header>
     <AnimatePresence>
       {menuOpen && <motion.div className="mobile-menu-backdrop" tabIndex={-1} onKeyDown={(event) => { if (event.key === 'Escape') closeMenu(); }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeMenu}>
         <motion.nav id="mobile-navigation" className="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -18 }} transition={{ duration: 0.24, ease: 'easeOut' }} onClick={(event) => event.stopPropagation()}>
-          <div className="mobile-menu__top"><span>{curvyStorefront ? 'EXPLORE THE CURVE EDIT' : 'EXPLORE DAVINOVA'}</span><button type="button" className="icon-button" aria-label="Close menu" onClick={closeMenu}><X size={18} /></button></div>
-          <Link to="/shop" onClick={closeMenu}>{curvyStorefront ? 'Shop the Curvy edit' : 'Shop all'} <span>↗</span></Link>
+          <div className="mobile-menu__top"><span>EXPLORE DAVINOVA</span><button type="button" className="icon-button" aria-label="Close menu" onClick={closeMenu}><X size={18} /></button></div>
+          <Link to="/shop" onClick={closeMenu}>Shop all <span>↗</span></Link>
           <Link to="/shop?occasion=wedding-guest" onClick={closeMenu}>Wedding Guest <span>↗</span></Link>
           <Link to="/shop?occasion=cocktail-party" onClick={closeMenu}>Cocktail &amp; Party <span>↗</span></Link>
-          {curvyStorefront ? <a href={STANDARD_STOREFRONT_URL} onClick={closeMenu}>Standard collection <span>↗</span></a> : <a href={CURVY_STOREFRONT_URL} onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></a>}
+          <Link to="/shop?fit=curvy" onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></Link>
           <Link to="/about" onClick={closeMenu}>Our story <span>↗</span></Link>
-          <div className="mobile-menu__foot"><p>{curvyStorefront ? 'Style for every curve, and every occasion.' : 'For the moments that stay with you.'}</p><span>{curvyStorefront ? 'THE CURVE EDIT · DAVINOVA' : 'OCCASIONWEAR · DAVINOVA ATELIER'}</span></div>
+          <div className="mobile-menu__foot"><p>For the moments that stay with you.</p><span>OCCASIONWEAR · DAVINOVA ATELIER</span></div>
         </motion.nav>
       </motion.div>}
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}><Outlet /></motion.div></main>
-    <footer className="site-footer"><div><Link to="/" className="wordmark footer-wordmark">{brand.name}<span>{curvyStorefront ? 'CURVE EDIT' : 'ATELIER'}</span></Link><p>{curvyStorefront ? 'Style for every curve, and every occasion.' : 'For the moments that stay with you.'}</p></div><div className="footer-links"><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></div><small>© {new Date().getFullYear()} {brand.name}. Thoughtfully dressed.</small></footer>
+    <footer className="site-footer"><div><Link to="/" className="wordmark footer-wordmark">{brand.name}<span>ATELIER</span></Link><p>For the moments that stay with you.</p></div><div className="footer-links"><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></div><small>© {new Date().getFullYear()} {brand.name}. Thoughtfully dressed.</small></footer>
   </div>;
 }

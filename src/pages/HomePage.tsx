@@ -6,8 +6,7 @@ import { ProductCard } from '../components/ProductCard';
 import { Cloth } from '../components/canvasui/Cloth';
 import { editorialImages } from '../lib/editorialImages';
 import { StorefrontChooser } from '../components/StorefrontChooser';
-import { CurvyHomePage } from './CurvyHomePage';
-import { isCurvyProduct, isCurvyStorefront } from '../lib/storefront';
+import { isCurvyProduct } from '../lib/storefront';
 
 const riseIn = {
   hidden: { opacity: 0, y: 28 },
@@ -15,10 +14,6 @@ const riseIn = {
 };
 
 export function HomePage() {
-  return isCurvyStorefront() ? <CurvyHomePage /> : <StandardHomePage />;
-}
-
-function StandardHomePage() {
   const { products } = useCatalogProducts();
   const standardProducts = products.filter((product) => !isCurvyProduct(product));
 

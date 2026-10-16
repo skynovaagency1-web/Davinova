@@ -10,7 +10,7 @@ import { isProductPurchasable, isWooCommerceProduct } from '../lib/woocommerce';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
-import { isCurvyProduct, isCurvyStorefront } from '../lib/storefront';
+import { isCurvyProduct } from '../lib/storefront';
 
 const colourSwatches: Record<string, string> = {
   champagne: '#d9c3a5',
@@ -30,9 +30,7 @@ const colourSwatches: Record<string, string> = {
 export function ProductPage() {
   const { slug } = useParams();
   const { products, loading } = useCatalogProducts();
-  const curvyStorefront = isCurvyStorefront();
-  const matchedProduct = products.find((item) => item.slug === slug);
-  const product = matchedProduct && (curvyStorefront ? isCurvyProduct(matchedProduct) : !isCurvyProduct(matchedProduct)) ? matchedProduct : undefined;
+  const product = products.find((item) => item.slug === slug);
   const [size, setSize] = useState<DressSize | ''>('');
   const [added, setAdded] = useState(false);
   const [view3d, setView3d] = useState(false);
@@ -47,20 +45,21 @@ export function ProductPage() {
   }, [product?.id, product?.images]);
 
   if (!product && loading) {
-    return <section className="section not-found"><p className="eyebrow">{curvyStorefront ? 'The Curve Edit' : 'The Davinova edit'}</p><h1>Opening this dress…</h1><p>Just a moment while we load the collection.</p><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
+    return <section className="section not-found"><p className="eyebrow">The Davinova edit</p><h1>Opening this dress…</h1><p>Just a moment while we load the collection.</p><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
   }
 
   if (!product) {
     return <section className="section not-found"><p className="eyebrow">A little detour</p><h1>We couldn’t find that dress.</h1><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
   }
 
+  const curvyProduct = isCurvyProduct(product);
   const isWoo = isWooCommerceProduct(product);
   const canPurchase = isProductPurchasable(product);
   const browseOnly = isWoo ? !canPurchase : Boolean(product.browseOnly || !product.supplierVerified);
   const currentImage = product.images[selectedImageIndex] ?? product.images[0];
   const productBackdrop = productBackdropFor(product.color, product.title);
 
-  return <section className={curvyStorefront ? 'product-page product-page--curvy section' : 'product-page section'}>
+  return <section className={curvyProduct ? 'product-page product-page--curvy section' : 'product-page section'}>
     <Link to="/shop" className="back-link"><ArrowLeft size={15} /> Back to the collection</Link>
     <div className="product-detail">
       <div className="product-visual-column">
@@ -83,7 +82,7 @@ export function ProductPage() {
                 <span style={{ marginTop: 10, fontSize: 12 }}>Product image coming soon</span>
               </div>}
           {usingEditorial && !imageUnavailable && <span style={{ position: 'absolute', left: 16, bottom: 16, background: 'rgba(255,253,251,.94)', color: '#5d4b42', padding: '8px 10px', fontSize: 10, letterSpacing: '.08em' }}>EDITORIAL INSPIRATION · NOT EXACT ITEM</span>}
-          <span className="gallery-note">{curvyStorefront ? "DAVINOVA · THE CURVE EDIT" : "DAVINOVA · THE OCCASION EDIT"}</span>
+          <span className="gallery-note">{curvyProduct ? "DAVINOVA · THE CURVE EDIT" : "DAVINOVA · THE OCCASION EDIT"}</span>
         </div>}
         {!view3d && product.images.length > 1 && !usingEditorial && <div className="product-thumbnails" aria-label="More product photos">{product.images.map((image, index) => <button key={image.url + index} type="button" className={selectedImageIndex === index ? 'product-thumbnail active' : 'product-thumbnail'} onClick={() => { setSelectedImageIndex(index); setUsingEditorial(false); setImageUnavailable(false); }} aria-label={`View product photo ${index + 1}`} aria-pressed={selectedImageIndex === index} style={{ background: productBackdrop }}><img src={fullSizeImage(image.url)} alt="" loading="lazy" /></button>)}</div>}
         <div className="viewer-switch" role="group" aria-label="Product viewing mode">

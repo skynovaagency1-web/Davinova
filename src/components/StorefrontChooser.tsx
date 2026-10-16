@@ -1,7 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { editorialImages } from '../lib/editorialImages';
-import { CURVY_STOREFRONT_URL } from '../lib/storefront';
 
 export function StorefrontChooser() {
   return (
@@ -20,7 +19,7 @@ export function StorefrontChooser() {
             <span className="storefront-choice__number">01 / THE MAIN EDIT</span>
             <h3>Standard <em>collection.</em></h3>
             <p>Considered occasionwear for weddings, celebrations, and the moments worth dressing for.</p>
-            <Link className="storefront-choice__link" to="/shop">
+            <Link className="storefront-choice__link" to="/shop?fit=standard">
               Explore the standard edit <ArrowUpRight size={17} />
             </Link>
           </div>
@@ -33,11 +32,11 @@ export function StorefrontChooser() {
             <span className="storefront-choice__number">02 / THE CURVE EDIT</span>
             <h3>Plus Size <em>&amp; Curvy.</em></h3>
             <p>An independent, size-inclusive edit built around extended sizing and feeling wonderful in your fit.</p>
-            <a className="storefront-choice__link" href={CURVY_STOREFRONT_URL}>
-              Enter the Curvy store <ArrowUpRight size={17} />
-            </a>
+            <Link className="storefront-choice__link" to="/shop?fit=curvy">
+              Explore the Curvy edit <ArrowUpRight size={17} />
+            </Link>
           </div>
-          <span className="storefront-choice__note">A SEPARATE STOREFRONT · SAME DAVINOVA FAMILY</span>
+          <span className="storefront-choice__note">A DEDICATED EDIT · SAME DAVINOVA STORE</span>
         </article>
       </div>
     </section>
