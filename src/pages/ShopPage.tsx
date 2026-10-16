@@ -17,7 +17,7 @@ const occasions = [
 
 const fits = [
   ['all', 'All fits'],
-  ['standard', 'Standard'],
+  ['standard', 'Slim'],
   ['curvy', 'Plus Size & Curvy'],
 ] as const;
 
