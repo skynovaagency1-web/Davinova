@@ -13,6 +13,8 @@ export function Layout() {
   const [womenMobileOpen, setWomenMobileOpen] = useState(false);
   const [accessoriesOpen, setAccessoriesOpen] = useState(false);
   const [accessoriesMobileOpen, setAccessoriesMobileOpen] = useState(false);
+  const [coupleParentChildOpen, setCoupleParentChildOpen] = useState(false);
+  const [coupleParentChildMobileOpen, setCoupleParentChildMobileOpen] = useState(false);
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const wooCartUrl = getWooCommercePageUrl('cart');
   const wooConfigured = isWooCommerceConfigured();
@@ -24,6 +26,8 @@ export function Layout() {
     setWomenMobileOpen(false);
     setAccessoriesOpen(false);
     setAccessoriesMobileOpen(false);
+    setCoupleParentChildOpen(false);
+    setCoupleParentChildMobileOpen(false);
     document.title = 'Davinova — Occasion, beautifully considered';
   }, [pathname]);
 
@@ -55,6 +59,19 @@ export function Layout() {
                 <span className="women-accessories__item">Women’s Hats &amp; Caps</span>
               </div>
             </div>
+            <div className="women-accessories women-couple-clothing">
+              <button type="button" className="women-accessories__trigger" aria-expanded={coupleParentChildOpen} aria-haspopup="true" onClick={() => setCoupleParentChildOpen((open) => !open)} onKeyDown={(event) => { if (event.key === 'Escape') setCoupleParentChildOpen(false); }}>
+                Couple &amp; Parent-Child Clothing <ChevronDown size={13} aria-hidden="true" />
+              </button>
+              <div className={coupleParentChildOpen ? 'women-accessories__dropdown is-open' : 'women-accessories__dropdown'}>
+                <span className="women-accessories__item">Couple &amp; Parent-Child Sweatshirts</span>
+                <span className="women-accessories__item">Couple &amp; Parent-Child Short-Sleeves</span>
+                <span className="women-accessories__item">Couple &amp; Parent-Child Jackets</span>
+                <span className="women-accessories__item">Couple &amp; Parent-Child Tops</span>
+                <span className="women-accessories__item">Couple &amp; Parent-Child Suits</span>
+                <span className="women-accessories__item">Couple &amp; Parent-Child Pants</span>
+              </div>
+            </div>
           </div>
         </div>
         <Link to="/about">Our story</Link>
@@ -84,6 +101,19 @@ export function Layout() {
                   <span className="mobile-accessories-nav__item">Women’s Gloves &amp; Mittens</span>
                   <span className="mobile-accessories-nav__item">Women’s Socks</span>
                   <span className="mobile-accessories-nav__item">Women’s Hats &amp; Caps</span>
+                </div>}
+              </div>
+              <div className="mobile-accessories-nav mobile-couple-clothing-nav">
+                <button type="button" className="mobile-accessories-nav__trigger" aria-expanded={coupleParentChildMobileOpen} aria-controls="mobile-couple-parent-child-collections" onClick={() => setCoupleParentChildMobileOpen((open) => !open)}>
+                  Couple &amp; Parent-Child Clothing <ChevronDown size={16} aria-hidden="true" />
+                </button>
+                {coupleParentChildMobileOpen && <div id="mobile-couple-parent-child-collections" className="mobile-accessories-nav__links">
+                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Sweatshirts</span>
+                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Short-Sleeves</span>
+                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Jackets</span>
+                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Tops</span>
+                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Suits</span>
+                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Pants</span>
                 </div>}
               </div>
             </div>}
