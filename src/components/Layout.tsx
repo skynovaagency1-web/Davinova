@@ -156,6 +156,7 @@ export function Layout() {
   const [womenMobileOpen, setWomenMobileOpen] = useState(false);
   const [accessoriesOpen, setAccessoriesOpen] = useState(false);
   const [accessoriesMobileOpen, setAccessoriesMobileOpen] = useState(false);
+  const [slimMobileOpen, setSlimMobileOpen] = useState(false);
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const wooCartUrl = getWooCommercePageUrl('cart');
   const wooConfigured = isWooCommerceConfigured();
@@ -167,6 +168,7 @@ export function Layout() {
     setWomenMobileOpen(false);
     setAccessoriesOpen(false);
     setAccessoriesMobileOpen(false);
+    setSlimMobileOpen(false);
     document.title = 'Davinova — Occasion, beautifully considered';
   }, [pathname]);
 
@@ -184,8 +186,10 @@ export function Layout() {
           <div className={womenMenuOpen ? 'women-nav__dropdown is-open' : 'women-nav__dropdown'}>
             <span className="women-nav__eyebrow">SHOP WOMEN</span>
             <div className="women-slim-group">
-              <Link to="/shop?fit=standard">Slim</Link>
-              {slimCategoryGroups.map((group) => <PlainTextMenuGroup key={group.title} title={group.title} items={group.items} />)}
+              <Link to="/shop?fit=standard" className="women-slim-link">Slim <ChevronDown size={13} aria-hidden="true" /></Link>
+              <div className="women-slim-flyout">
+                {slimCategoryGroups.map((group) => <PlainTextMenuGroup key={group.title} title={group.title} items={group.items} />)}
+              </div>
             </div>
             <Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link>
             <div className="women-accessories">
@@ -218,8 +222,15 @@ export function Layout() {
             </button>
             {womenMobileOpen && <div id="mobile-women-collections" className="mobile-women-nav__links">
               <div className="mobile-slim-group">
-                <Link to="/shop?fit=standard" onClick={closeMenu}>Slim <span>↗</span></Link>
-                {slimCategoryGroups.map((group) => <PlainTextMenuGroup key={group.title} title={group.title} items={group.items} mobile />)}
+                <div className="mobile-slim-row">
+                  <Link to="/shop?fit=standard" onClick={closeMenu}>Slim <span>↗</span></Link>
+                  <button type="button" className="mobile-slim-toggle" aria-label="Show Slim categories" aria-expanded={slimMobileOpen} aria-controls="mobile-slim-category-list" onClick={() => setSlimMobileOpen((open) => !open)}>
+                    <ChevronDown size={16} aria-hidden="true" />
+                  </button>
+                </div>
+                {slimMobileOpen && <div id="mobile-slim-category-list" className="mobile-slim-category-list">
+                  {slimCategoryGroups.map((group) => <PlainTextMenuGroup key={group.title} title={group.title} items={group.items} mobile />)}
+                </div>}
               </div>
               <Link to="/shop?fit=curvy" onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></Link>
               <div className="mobile-accessories-nav">
