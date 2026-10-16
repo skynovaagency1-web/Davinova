@@ -5,7 +5,7 @@ import { CURVY_STOREFRONT_URL } from '../lib/storefront';
 
 export function StorefrontChooser() {
   return (
-    <section className="storefront-chooser" aria-labelledby="storefront-chooser-title">
+    <section id="storefront-chooser" className="storefront-chooser" aria-labelledby="storefront-chooser-title">
       <div className="storefront-chooser__heading">
         <p className="eyebrow">Two edits. One Davinova.</p>
         <h2 id="storefront-chooser-title">Find your <em>kind of fit.</em></h2>

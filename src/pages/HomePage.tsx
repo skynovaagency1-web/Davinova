@@ -28,7 +28,7 @@ function StandardHomePage() {
         <motion.p className="eyebrow" variants={riseIn}>The occasion edit · 01 / 03</motion.p>
         <motion.h1 variants={riseIn}>Make room for<br /><em>the moment.</em></motion.h1>
         <motion.p className="hero-description" variants={riseIn}>Considered silhouettes for weddings, celebrations, and all the beautiful things in between.</motion.p>
-        <motion.div className="hero-actions" variants={riseIn}><Link className="button button--dark" to="/shop">Discover the collection <ArrowRight size={16} /></Link><Link className="text-link" to="/about">Our point of view</Link></motion.div>
+        <motion.div className="hero-actions" variants={riseIn}><a className="button button--dark" href="#storefront-chooser">Discover the collection <ArrowRight size={16} /></a><Link className="text-link" to="/about">Our point of view</Link></motion.div>
         <motion.div className="hero-note" variants={riseIn}><span className="hero-note__line" />Designed for the way you want to feel</motion.div>
       </motion.div>
       <div className="hero-art editorial-hero-art" aria-label="Davinova occasionwear editorial">
@@ -47,7 +47,7 @@ function StandardHomePage() {
         <motion.div className="hero-art-caption" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.8 }}><span>EDITORIAL INSPIRATION ONLY</span><span>DAVINOVA · 2026</span></motion.div>
         <div className="hero-vertical">OCCASIONWEAR / EST. IN FEELING</div>
       </div>
-      <motion.a className="scroll-cue" href="#featured" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.15, duration: 0.7 }}><ArrowDown size={15} /> Scroll to explore</motion.a>
+      <motion.a className="scroll-cue" href="#storefront-chooser" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.15, duration: 0.7 }}><ArrowDown size={15} /> Scroll to explore</motion.a>
     </section>
     <StorefrontChooser />
     <motion.section className="intro-strip" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={riseIn}><p>For the <em>almost-dancing,</em> the long goodbyes, and the photographs you’ll keep.</p><span>Made for your kind of occasion.</span></motion.section>
