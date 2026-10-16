@@ -260,12 +260,14 @@ export function suggestStoreCollection(
     { group: 'womens-denim', label: 'Women’s Denim Jackets', terms: ['denim jacket', 'jean jacket', 'jeans jacket'] },
     { group: 'womens-denim', label: 'Women’s Denim Dresses', terms: ['denim dress', 'jean dress'] },
     { group: 'womens-denim', label: 'Women’s Denim Skirts', terms: ['denim skirt', 'jean skirt'] },
+    { group: 'bottoms', label: 'Woman Jeans', terms: ['denim jeans', 'women jeans', 'womens jeans', 'jeans'] },
     { group: 'womens-denim', label: 'Women’s Denim Sets', terms: ['denim set', 'denim two piece', 'denim co ord'] },
     { group: 'womens-denim', label: 'Women’s Denim Tops', terms: ['denim top', 'denim shirt', 'denim blouse'] },
     { group: 'womens-denim', terms: ['denim', 'jean fabric', 'jeans fabric'] },
 
     { group: 'womens-jackets', label: 'Women’s Baseball Jackets', terms: ['baseball jacket', 'varsity jacket'] },
     { group: 'womens-jackets', label: 'Women’s Casual Jackets', terms: ['casual jacket'] },
+    { group: 'womens-jackets', label: 'Women’s Jackets', terms: ['womens jacket', 'women jacket', 'womens jackets', 'women jackets'] },
 
     { group: 'womens-sweatshirts-hoodies', label: 'Women’s Sweatshirt Dresses', terms: ['sweatshirt dress', 'hoodie dress'] },
     { group: 'womens-sweatshirts-hoodies', label: 'Women’s Zip-Up Hoodies', terms: ['zip up hoodie', 'zip-up hoodie', 'zip hoodie', 'zippered hoodie'] },
@@ -293,7 +295,7 @@ export function suggestStoreCollection(
     { group: 'outerwear-and-jackets', label: 'Leather & Suede', terms: ['leather jacket', 'suede jacket', 'leather and suede'] },
     { group: 'outerwear-and-jackets', label: 'Women’s Coats', terms: ['coat', 'coats'] },
     { group: 'outerwear-and-jackets', label: 'Women’s Outerwear', terms: ['outerwear', 'outer wear'] },
-    { group: 'outerwear-and-jackets', label: 'Basic Jacket', terms: ['basic jacket', 'basic jackets', 'jacket', 'jackets'] },
+    { group: 'outerwear-and-jackets', label: 'Basic Jacket', terms: ['basic jacket', 'basic jackets'] },
     { group: 'outerwear-and-jackets', label: 'Real Fur', terms: ['real fur', 'genuine fur'] },
 
     { group: 'weddings-and-events', label: 'Cocktail Dresses', terms: ['cocktail dress', 'cocktail dresses', 'party dress', 'party dresses'] },
