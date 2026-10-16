@@ -177,6 +177,15 @@ export class FakeD1 {
       const [id] = args as [string];
       return this.orders.get(id) ?? null;
     }
+    if (sql.startsWith('SELECT status, payment_status FROM orders')) {
+      const [paymentReference] = args as [string];
+      for (const order of this.orders.values()) {
+        if (order.payment_provider === 'stripe' && order.payment_reference === paymentReference) {
+          return { status: order.status, payment_status: order.payment_status };
+        }
+      }
+      return null;
+    }
     if (sql.startsWith('SELECT id FROM order_events')) {
       const [orderId] = args as [string];
       const eventType = this.extractEventType(sql);
