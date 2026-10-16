@@ -20,7 +20,9 @@ describe('isCurvyProduct', () => {
 
   it('recognises verified extended sizes', () => {
     expect(isCurvyProduct(product({ sizes: ['XL', '2XL'] }))).toBe(true);
-    expect(isCurvyProduct(product({ sizes: ['3XL'] }))).toBe(true);\n    expect(isCurvyProduct(product({ sizes: ['5XL'] }))).toBe(true);\n    expect(isCurvyProduct(product({ title: 'Evening dress available in 6XL' }))).toBe(true);
+    expect(isCurvyProduct(product({ sizes: ['3XL'] }))).toBe(true);
+    expect(isCurvyProduct(product({ sizes: ['5XL'] }))).toBe(true);
+    expect(isCurvyProduct(product({ title: 'Evening dress available in 6XL' }))).toBe(true);
   });
 
   it('does not guess when the available size metadata is unknown or standard-only', () => {
