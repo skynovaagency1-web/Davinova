@@ -73,6 +73,9 @@ export function CJCatalogAdminPage() {
   const [importedIds, setImportedIds] = useState<Record<string, string>>({});
   const [selectedIds, setSelectedIds] = useState<Record<string, boolean>>({});
   const [batchProgress, setBatchProgress] = useState('');
+  const [multiKeywords, setMultiKeywords] = useState('plus size dress, curvy dress, wedding guest dress, cocktail dress, evening gown');
+  const [pagesPerTerm, setPagesPerTerm] = useState(2);
+  const [multiSearchProgress, setMultiSearchProgress] = useState('');
 
   async function readJson(response: Response): Promise<SearchResponse> {
     const data = await response.json() as SearchResponse;
@@ -141,6 +144,70 @@ export function CJCatalogAdminPage() {
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Could not load more CJ products.');
     } finally {
+      setBusy(false);
+    }
+  }
+
+  async function searchMultipleTerms(event?: FormEvent) {
+    event?.preventDefault();
+    setError('');
+    setMessage('');
+    if (!adminPassword) {
+      setError('Enter the Davinova admin password configured in Cloudflare first.');
+      return;
+    }
+    const terms = [...new Set(
+      multiKeywords.split(/[,\n]/).map((term) => term.trim()).filter((term) => term.length >= 2 && term.length <= 100),
+    )].slice(0, 15);
+    if (terms.length === 0) {
+      setError('Enter at least one search term (2-100 characters), separated by commas or new lines.');
+      return;
+    }
+    const pages = Math.min(5, Math.max(1, Math.round(pagesPerTerm) || 1));
+
+    setBusy(true);
+    setResults([]);
+    setDetails({});
+    setSelectedIds({});
+    setHasMore(false);
+    const merged: SearchProduct[] = [];
+    const seen = new Set<string>();
+    const failures: string[] = [];
+    let fetched = 0;
+    const totalCalls = terms.length * pages;
+
+    try {
+      for (const term of terms) {
+        for (let pageNumber = 1; pageNumber <= pages; pageNumber += 1) {
+          fetched += 1;
+          setMultiSearchProgress(`Searching "${term}" (page ${pageNumber} of ${pages}) · call ${fetched} of ${totalCalls}`);
+          try {
+            const params = new URLSearchParams({ q: term, page: String(pageNumber), size: '10' });
+            const response = await fetch('/api/admin/cj-catalog?' + params.toString(), {
+              headers: { 'x-admin-password': adminPassword },
+              cache: 'no-store',
+            });
+            const data = await readJson(response);
+            const items = data.items ?? [];
+            for (const item of items) {
+              if (!seen.has(item.id)) {
+                seen.add(item.id);
+                merged.push(item);
+              }
+            }
+            setResults([...merged]);
+            if (items.length === 0) break; // No more pages for this term.
+          } catch (cause) {
+            failures.push(`"${term}" page ${pageNumber}: ${cause instanceof Error ? cause.message : 'search failed'}`);
+          }
+        }
+      }
+      setTotal(merged.length);
+      const summary = [`Found ${merged.length} unique dress(es) across ${terms.length} search term(s).`];
+      if (failures.length) summary.push(`${failures.length} search call(s) failed: ${failures.join(' | ')}`);
+      setMessage(summary.join(' '));
+    } finally {
+      setMultiSearchProgress('');
       setBusy(false);
     }
   }
@@ -272,6 +339,22 @@ export function CJCatalogAdminPage() {
               <option value="maxi-holiday">Maxi &amp; Holiday</option>
             </select>
           </div>
+        </section>
+
+        <section style={{ background: '#fffdfb', border: '1px solid #e4d8cf', borderRadius: 14, padding: 18, marginTop: 16 }}>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 24, fontWeight: 500, margin: '0 0 8px' }}>Search several terms at once</h2>
+          <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginBottom: 12 }}>CJ's search only matches one keyword at a time, so running several terms is the way to surface more of the catalogue in one pass. Results are merged and de-duplicated below, ready to select-all and batch import.</p>
+          <form onSubmit={searchMultipleTerms}>
+            <label htmlFor="multiKeywords" style={{ display: 'block', fontSize: 13, marginBottom: 7 }}>Search terms (comma or new-line separated, up to 15)</label>
+            <textarea id="multiKeywords" value={multiKeywords} onChange={(event) => setMultiKeywords(event.target.value)} rows={3} style={{ boxSizing: 'border-box', width: '100%', padding: '12px 13px', border: '1px solid #d8cbc1', borderRadius: 8, background: '#fff', fontSize: 14, fontFamily: 'inherit', resize: 'vertical' }} />
+            <div style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap', marginTop: 12 }}>
+              <label htmlFor="pagesPerTerm" style={{ fontSize: 13 }}>Pages per term (10 results each)</label>
+              <input id="pagesPerTerm" type="number" min={1} max={5} value={pagesPerTerm} onChange={(event) => setPagesPerTerm(Number(event.target.value))} style={{ width: 70, padding: '9px 10px', border: '1px solid #d8cbc1', borderRadius: 8, background: '#fff', fontSize: 14 }} />
+              <button type="submit" disabled={busy} style={{ padding: '13px 20px', border: 0, borderRadius: 8, background: '#292522', color: '#fff', cursor: busy ? 'wait' : 'pointer', opacity: busy ? .65 : 1 }}>{busy && multiSearchProgress ? 'Searching…' : 'Search all terms'}</button>
+            </div>
+            {multiSearchProgress && <p role="status" style={{ color: '#746960', fontSize: 13, marginTop: 10 }}>{multiSearchProgress}</p>}
+            <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginTop: 10 }}>CJ allows roughly one request per second, so this takes about a second per page per term — searching 5 terms at 2 pages each takes about 10 seconds.</p>
+          </form>
         </section>
 
         <section style={{ background: '#efe5dc', borderRadius: 12, padding: 16, marginTop: 16, fontSize: 13, lineHeight: 1.6 }}>
