@@ -61,7 +61,8 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const needsReview: Array<{ id: string; title: string; currentCollection: string }> = [];
 
     for (const row of results ?? []) {
-      const categoryClues = [row.occasion, row.length ?? '', ...safeTags(row.tags_json)].join(' ');
+      // Do not use the stored occasion here: it may simply mirror the current collection and bias reclassification.
+      const categoryClues = [row.length ?? '', ...safeTags(row.tags_json)].join(' ');
       const suggested = suggestCollectionCategory(row.title, categoryClues, row.description);
 
       if (!suggested) {
