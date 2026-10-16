@@ -11,6 +11,8 @@ export function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [womenMenuOpen, setWomenMenuOpen] = useState(false);
   const [womenMobileOpen, setWomenMobileOpen] = useState(false);
+  const [accessoriesOpen, setAccessoriesOpen] = useState(false);
+  const [accessoriesMobileOpen, setAccessoriesMobileOpen] = useState(false);
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const wooCartUrl = getWooCommercePageUrl('cart');
   const wooConfigured = isWooCommerceConfigured();
@@ -20,6 +22,8 @@ export function Layout() {
     setMenuOpen(false);
     setWomenMenuOpen(false);
     setWomenMobileOpen(false);
+    setAccessoriesOpen(false);
+    setAccessoriesMobileOpen(false);
     document.title = 'Davinova — Occasion, beautifully considered';
   }, [pathname]);
 
@@ -38,6 +42,19 @@ export function Layout() {
             <span className="women-nav__eyebrow">SHOP WOMEN</span>
             <Link to="/shop?fit=standard">Slim</Link>
             <Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link>
+            <div className="women-accessories">
+              <button type="button" className="women-accessories__trigger" aria-expanded={accessoriesOpen} aria-haspopup="true" onClick={() => setAccessoriesOpen((open) => !open)} onKeyDown={(event) => { if (event.key === 'Escape') setAccessoriesOpen(false); }}>
+                Accessories <ChevronDown size={13} aria-hidden="true" />
+              </button>
+              <div className={accessoriesOpen ? 'women-accessories__dropdown is-open' : 'women-accessories__dropdown'}>
+                <Link to="/shop?accessory=scarves-wraps">Scarves &amp; Wraps</Link>
+                <Link to="/shop?accessory=face-masks">Face Masks</Link>
+                <Link to="/shop?accessory=belts-cummerbunds">Belts &amp; Cummerbunds</Link>
+                <Link to="/shop?accessory=women-gloves-mittens">Women’s Gloves &amp; Mittens</Link>
+                <Link to="/shop?accessory=women-socks">Women’s Socks</Link>
+                <Link to="/shop?accessory=women-hats-caps">Women’s Hats &amp; Caps</Link>
+              </div>
+            </div>
           </div>
         </div>
         <Link to="/about">Our story</Link>
@@ -56,6 +73,19 @@ export function Layout() {
             {womenMobileOpen && <div id="mobile-women-collections" className="mobile-women-nav__links">
               <Link to="/shop?fit=standard" onClick={closeMenu}>Slim <span>↗</span></Link>
               <Link to="/shop?fit=curvy" onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></Link>
+              <div className="mobile-accessories-nav">
+                <button type="button" className="mobile-accessories-nav__trigger" aria-expanded={accessoriesMobileOpen} aria-controls="mobile-accessory-collections" onClick={() => setAccessoriesMobileOpen((open) => !open)}>
+                  Accessories <ChevronDown size={16} aria-hidden="true" />
+                </button>
+                {accessoriesMobileOpen && <div id="mobile-accessory-collections" className="mobile-accessories-nav__links">
+                  <Link to="/shop?accessory=scarves-wraps" onClick={closeMenu}>Scarves &amp; Wraps <span>↗</span></Link>
+                  <Link to="/shop?accessory=face-masks" onClick={closeMenu}>Face Masks <span>↗</span></Link>
+                  <Link to="/shop?accessory=belts-cummerbunds" onClick={closeMenu}>Belts &amp; Cummerbunds <span>↗</span></Link>
+                  <Link to="/shop?accessory=women-gloves-mittens" onClick={closeMenu}>Women’s Gloves &amp; Mittens <span>↗</span></Link>
+                  <Link to="/shop?accessory=women-socks" onClick={closeMenu}>Women’s Socks <span>↗</span></Link>
+                  <Link to="/shop?accessory=women-hats-caps" onClick={closeMenu}>Women’s Hats &amp; Caps <span>↗</span></Link>
+                </div>}
+              </div>
             </div>}
           </div>
           <Link to="/about" onClick={closeMenu}>Our story <span>↗</span></Link>
