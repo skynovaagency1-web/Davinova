@@ -73,14 +73,22 @@ export function ShopPage() {
   </div>;
 
   const curvyFit = fit === 'curvy';
+  const collectionLabel = occasions.find(([value]) => value === occasion)?.[1] ?? 'All styles';
+  const collectionDescription = occasion === 'wedding-guest'
+    ? 'A considered edit for wedding guests, bridesmaids, and the celebrations around them.'
+    : occasion === 'cocktail-party'
+      ? 'Confident dresses for parties, cocktail hours, birthdays, and evenings out.'
+      : occasion === 'maxi-holiday'
+        ? 'Maxi silhouettes and getaway-ready styles gathered in one easy-to-browse edit.'
+        : 'Pieces for the invitations you’ve been looking forward to.';
 
   return <section className={curvyFit ? 'shop-page shop-page--curvy section' : 'shop-page section'}>
     <motion.div className="shop-title" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-      <p className="eyebrow">{curvyFit ? 'Davinova · The Curve Edit' : 'The Davinova collection'}</p><h1>{curvyFit ? <>Occasionwear for <em>every curve.</em></> : <>Dress for <em>the occasion.</em></>}</h1><p>{curvyFit ? 'A size-inclusive edit, with extended-size details identified before a dress is offered for purchase.' : 'Pieces for the invitations you’ve been looking forward to.'}</p>
+      <p className="eyebrow">{curvyFit ? 'Davinova · The Curve Edit' : occasion === 'all' ? 'The Davinova collection' : `The ${collectionLabel} edit`}</p><h1>{curvyFit ? <>Occasionwear for <em>every curve.</em></> : occasion === 'wedding-guest' ? <>Find your <em>wedding guest look.</em></> : occasion === 'cocktail-party' ? <>Cocktail &amp; <em>party dressing.</em></> : occasion === 'maxi-holiday' ? <>The maxi &amp; <em>holiday edit.</em></> : <>Dress for <em>the occasion.</em></>}</h1><p>{curvyFit ? 'A size-inclusive edit, with extended-size details identified before a dress is offered for purchase.' : collectionDescription}</p>
     </motion.div>
     <LayoutGroup>
       <nav className="occasion-tabs" aria-label="Shop by fit">{fits.map(([value, label]) => <button type="button" key={value} className={fit === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('fit'); else next.set('fit', value); })}>{label}{fit === value && <motion.span layoutId="fit-underline" className="occasion-tabs__line" />}</button>)}</nav>
-      <nav className="occasion-tabs" aria-label="Shop by occasion">{occasions.map(([value, label]) => <button type="button" key={value} className={occasion === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('occasion'); else next.set('occasion', value); })}>{label}{occasion === value && <motion.span layoutId="occasion-underline" className="occasion-tabs__line" />}</button>)}</nav>
+      <nav className="occasion-tabs" aria-label="Shop by collection">{occasions.map(([value, label]) => <button type="button" key={value} className={occasion === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('occasion'); else next.set('occasion', value); })}>{label}{occasion === value && <motion.span layoutId="occasion-underline" className="occasion-tabs__line" />}</button>)}</nav>
     </LayoutGroup>
     <div className="shop-toolbar">
       <button type="button" className="filter-toggle" onClick={() => setPanelOpen(true)}><SlidersHorizontal size={16} /> Filters{activeCount > 0 && <b>{activeCount}</b>}</button>
