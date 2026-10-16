@@ -19,4 +19,4 @@ Do not merge or deploy unrelated Worker configuration as part of this domain ste
 
 ## Product separation
 
-The Curvy storefront displays products explicitly tagged as plus-size/curvy/extended-size, or whose available size list includes 2XL–4XL. Products with unknown fit metadata are not automatically classified as Curvy. Supplier availability, sizing, prices and shipping still need to be verified before a product can become purchasable.
+The Curvy storefront displays products explicitly tagged as plus-size/curvy/extended-size, or whose available size list includes 2XL–6XL. Products with unknown fit metadata are not automatically classified as Curvy. Supplier availability, sizing, prices and shipping still need to be verified before a product can become purchasable.
