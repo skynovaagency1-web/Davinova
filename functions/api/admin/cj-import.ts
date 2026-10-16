@@ -34,13 +34,13 @@ function cleanDescription(value: string): string {
 function hasExtendedSizeEvidence(values: string[]): boolean {
   const metadata = values.join(' ').toLowerCase().replace(/[_-]+/g, ' ');
   return /\b(plus size|plus sized|plussize|curvy|curve collection|extended size|extended sizing|full figure|full figured|big size|big sizes)\b/.test(metadata)
-    || /\b(2xl|3xl|4xl|5xl|6xl|xxl|xxxl|xxxxl)\b/.test(metadata);
+    || /\b(1xl|2xl|3xl|4xl|5xl|6xl|1x|2x|3x|4x|5x|6x|xxl|xxxl|xxxxl)\b/.test(metadata);
 }
 
 /**
- * Saves a CJ catalogue item as a private draft only.
- * Drafts are inactive, unverified, have no sell price or confirmed stock,
- * and are excluded from the public products endpoint. No supplier order is placed.
+ * Adds a CJ catalogue item as a visible browse-only listing.
+ * Listings remain unverified, have no sell price or confirmed stock, and cannot be purchased.
+ * No supplier order is placed.
  */
 export async function onRequestPost({ request, env }: Context): Promise<Response> {
   if (!sameOrigin(request)) return json({ error: 'Cross-origin request blocked.' }, 403);
