@@ -47,12 +47,12 @@ export function Layout() {
                 Accessories <ChevronDown size={13} aria-hidden="true" />
               </button>
               <div className={accessoriesOpen ? 'women-accessories__dropdown is-open' : 'women-accessories__dropdown'}>
-                <Link to="/shop?accessory=scarves-wraps">Scarves &amp; Wraps</Link>
-                <Link to="/shop?accessory=face-masks">Face Masks</Link>
-                <Link to="/shop?accessory=belts-cummerbunds">Belts &amp; Cummerbunds</Link>
-                <Link to="/shop?accessory=women-gloves-mittens">Women’s Gloves &amp; Mittens</Link>
-                <Link to="/shop?accessory=women-socks">Women’s Socks</Link>
-                <Link to="/shop?accessory=women-hats-caps">Women’s Hats &amp; Caps</Link>
+                <span className="women-accessories__item">Scarves &amp; Wraps</span>
+                <span className="women-accessories__item">Face Masks</span>
+                <span className="women-accessories__item">Belts &amp; Cummerbunds</span>
+                <span className="women-accessories__item">Women’s Gloves &amp; Mittens</span>
+                <span className="women-accessories__item">Women’s Socks</span>
+                <span className="women-accessories__item">Women’s Hats &amp; Caps</span>
               </div>
             </div>
           </div>
@@ -78,12 +78,12 @@ export function Layout() {
                   Accessories <ChevronDown size={16} aria-hidden="true" />
                 </button>
                 {accessoriesMobileOpen && <div id="mobile-accessory-collections" className="mobile-accessories-nav__links">
-                  <Link to="/shop?accessory=scarves-wraps" onClick={closeMenu}>Scarves &amp; Wraps <span>↗</span></Link>
-                  <Link to="/shop?accessory=face-masks" onClick={closeMenu}>Face Masks <span>↗</span></Link>
-                  <Link to="/shop?accessory=belts-cummerbunds" onClick={closeMenu}>Belts &amp; Cummerbunds <span>↗</span></Link>
-                  <Link to="/shop?accessory=women-gloves-mittens" onClick={closeMenu}>Women’s Gloves &amp; Mittens <span>↗</span></Link>
-                  <Link to="/shop?accessory=women-socks" onClick={closeMenu}>Women’s Socks <span>↗</span></Link>
-                  <Link to="/shop?accessory=women-hats-caps" onClick={closeMenu}>Women’s Hats &amp; Caps <span>↗</span></Link>
+                  <span className="mobile-accessories-nav__item">Scarves &amp; Wraps</span>
+                  <span className="mobile-accessories-nav__item">Face Masks</span>
+                  <span className="mobile-accessories-nav__item">Belts &amp; Cummerbunds</span>
+                  <span className="mobile-accessories-nav__item">Women’s Gloves &amp; Mittens</span>
+                  <span className="mobile-accessories-nav__item">Women’s Socks</span>
+                  <span className="mobile-accessories-nav__item">Women’s Hats &amp; Caps</span>
                 </div>}
               </div>
             </div>}
