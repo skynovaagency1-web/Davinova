@@ -33,7 +33,7 @@ export function isCurvyProduct(
     ['2XL', '3XL', '4XL', '5XL', '6XL'].includes(size),
   );
   const titleListsExtendedSizes =
-    /\\b(2xl|3xl|4xl|5xl|6xl|xxl|xxxl|xxxxl)\\b/.test(metadata);
+    /\b(2xl|3xl|4xl|5xl|6xl|xxl|xxxl|xxxxl)\b/.test(metadata);
 
   return explicitlyCurvy || includesExtendedSizes || titleListsExtendedSizes;
 }
