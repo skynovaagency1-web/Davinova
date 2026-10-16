@@ -87,3 +87,4 @@ CREATE INDEX IF NOT EXISTS idx_order_events_order ON order_events(order_id, crea
 CREATE INDEX IF NOT EXISTS idx_supplier_orders_status ON supplier_orders(status, next_retry_at);
 CREATE INDEX IF NOT EXISTS idx_cj_variants_lookup ON product_variants(cj_variant_id);
 CREATE INDEX IF NOT EXISTS idx_cj_products_lookup ON products(cj_product_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_order_events_owner_notified_once ON order_events(order_id) WHERE event_type = 'stripe_owner_approval_notified';

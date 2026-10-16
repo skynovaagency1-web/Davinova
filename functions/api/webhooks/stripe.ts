@@ -381,29 +381,40 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       ).run();
     }
 
-    const notificationExists = await env.DB.prepare(
-      "SELECT id FROM order_events WHERE order_id=? AND event_type='stripe_owner_approval_notified' LIMIT 1",
-    ).bind(order.id).first<{ id: string }>();
+    // Claim the notification slot atomically: a partial unique index on
+    // order_events(order_id) WHERE event_type='stripe_owner_approval_notified' (see
+    // migrations/0004_lock_owner_approval_notification.sql) lets only one concurrent
+    // webhook delivery win this INSERT OR IGNORE. Without this, two different Stripe
+    // event IDs reporting the same paid order (e.g. checkout.session.completed and
+    // checkout.session.async_payment_succeeded) could both pass a read-then-write
+    // "already notified?" check and send two separate approval emails/tokens.
+    const notifyClaim = await env.DB.prepare(
+      "INSERT OR IGNORE INTO order_events (id, order_id, event_type, from_status, to_status, message, metadata_json) VALUES (?, ?, 'stripe_owner_approval_notified', 'pending_payment', 'pending_approval', 'Owner approval notification claimed; awaiting delivery confirmation.', '{}')",
+    ).bind(crypto.randomUUID(), order.id).run();
 
-    if (!notificationExists) {
-      const approval = await createApprovalToken(order.id, env.DB, 24);
+    if (Number(notifyClaim.meta.changes) === 1) {
       try {
+        const approval = await createApprovalToken(order.id, env.DB, 24);
         await sendOwnerApprovalEmail(env, { ...order, email, status: 'pending_approval' }, approval.token);
+        await env.DB.prepare(
+          "UPDATE order_events SET message='Owner approval notification sent; supplier purchasing still requires explicit approval.', metadata_json=? WHERE order_id=? AND event_type='stripe_owner_approval_notified'",
+        ).bind(
+          JSON.stringify({ recipient: env.OWNER_EMAIL, expiresAt: approval.expiresAt }),
+          order.id,
+        ).run();
       } catch (error) {
         await env.DB.prepare(
           "UPDATE approvals SET used_at=datetime('now') WHERE order_id=? AND used_at IS NULL",
+        ).bind(order.id).run();
+        // Release the notification claim too, so a retried delivery can send the approval email again.
+        await env.DB.prepare(
+          "DELETE FROM order_events WHERE order_id=? AND event_type='stripe_owner_approval_notified'",
         ).bind(order.id).run();
         console.error('Owner approval notification failed:', error instanceof Error ? error.message : 'Unknown email failure');
         await releaseEventClaim(env, event.id!, activeClaimToken!);
         activeClaimToken = null;
         return reply({ error: 'Payment is recorded; order approval notification needs retry.' }, 503);
       }
-      await env.DB.prepare(
-        "INSERT INTO order_events (id, order_id, event_type, from_status, to_status, message, metadata_json) VALUES (?, ?, 'stripe_owner_approval_notified', 'pending_payment', 'pending_approval', 'Owner approval notification sent; supplier purchasing still requires explicit approval.', ?)",
-      ).bind(
-        crypto.randomUUID(), order.id,
-        JSON.stringify({ recipient: env.OWNER_EMAIL, expiresAt: approval.expiresAt }),
-      ).run();
     }
 
     await recordEvent(env, event, session, activeClaimToken!);
