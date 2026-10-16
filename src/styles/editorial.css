@@ -426,3 +426,108 @@
 @media (prefers-reduced-motion: reduce) {
   .product-card__photo--supplier, .product-gallery__supplier-image { animation: none !important; translate: 0 -5px; }
 }
+
+
+/* Accessories are expandable menu groups; their listed categories are deliberately plain text. */
+.women-accessories {
+  position: relative;
+  border-top: 1px solid #eee5dc;
+}
+.women-accessories__trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  border: 0;
+  background: transparent;
+  color: #493c34;
+  text-align: left;
+  font: 400 15px/1.2 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  cursor: pointer;
+}
+.women-accessories__trigger svg {
+  transition: transform .2s ease;
+  transform: rotate(-90deg);
+}
+.women-accessories__trigger[aria-expanded="true"] svg {
+  transform: rotate(0);
+}
+.women-accessories__dropdown {
+  position: absolute;
+  z-index: 121;
+  top: -1px;
+  left: calc(100% + 8px);
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 8px 16px;
+  border: 1px solid #e3d7cc;
+  background: #fbf8f4;
+  box-shadow: 0 18px 38px #2b1c141f;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.women-accessories__dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+.women-accessories__item {
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee5dc;
+  color: #493c34;
+  font: 400 15px/1.25 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+.women-accessories__item:last-child { border-bottom: 0; }
+.mobile-accessories-nav { border-top: 1px solid #e6dbd1; }
+.mobile-accessories-nav__trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 0;
+  border: 0;
+  background: transparent;
+  color: #493c34;
+  text-align: left;
+  font: 400 21px/1.2 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  cursor: pointer;
+}
+.mobile-accessories-nav__trigger svg { transition: transform .2s ease; }
+.mobile-accessories-nav__trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mobile-accessories-nav__links { padding: 0 0 8px 12px; }
+.mobile-accessories-nav__item {
+  display: block;
+  padding: 9px 0 9px 12px;
+  color: #65584f;
+  font: 400 18px/1.25 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+@media (max-width: 640px) {
+  .women-accessories__dropdown {
+    position: static;
+    min-width: 0;
+    padding: 0 0 6px 13px;
+    border: 0;
+    border-left: 1px solid #d9c9bd;
+    box-shadow: none;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+  .women-accessories__item {
+    border: 0;
+    padding: 10px 0 10px 10px;
+    color: #65584f;
+    font-size: 18px;
+  }
+}
