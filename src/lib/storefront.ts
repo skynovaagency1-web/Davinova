@@ -15,7 +15,7 @@ export function isCurvyStorefront(): boolean {
 /**
  * Keep sizing edits separate. A dress belongs to the Curvy store only when its
  * metadata explicitly identifies plus sizing/extended sizes, or its verified
- * available size list includes 2XL–4XL. Unknown sizing is never guessed.
+ * available size list includes 2XL–6XL. Unknown sizing is never guessed.
  */
 export function isCurvyProduct(
   product: Pick<Product, 'title' | 'description' | 'tags' | 'sizes'>,
