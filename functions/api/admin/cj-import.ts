@@ -93,7 +93,11 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     const itemCostCents = detail.sellPriceUsd === null ? null : Math.max(0, Math.round(detail.sellPriceUsd * 100));
     const occasion = collectionCategory === 'cocktail-party' ? 'cocktail'
       : collectionCategory === 'maxi-holiday' ? 'evening' : 'wedding-guest';
-    const images = [...new Set([detail.imageUrl, ...detail.imageUrls].filter((url) => Boolean(url) && safeImageUrl(url)))].slice(0, 8);\n    const variantSizeLabels = detail.variants.map((variant) => variant.options || variant.name || '');\n    const tags = hasExtendedSizeEvidence([detail.name, detail.description, ...variantSizeLabels])\n      ? ['plus-size', 'extended-size']\n      : [];
+    const images = [...new Set([detail.imageUrl, ...detail.imageUrls].filter((url) => Boolean(url) && safeImageUrl(url)))].slice(0, 8);
+    const variantSizeLabels = detail.variants.map((variant) => variant.options || variant.name || '');
+    const tags = hasExtendedSizeEvidence([detail.name, detail.description, ...variantSizeLabels])
+      ? ['plus-size', 'extended-size']
+      : [];
 
     const statements = [
       env.DB.prepare(
