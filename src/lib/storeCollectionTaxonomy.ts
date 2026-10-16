@@ -267,7 +267,7 @@ export function suggestStoreCollection(
 
     { group: 'womens-jackets', label: 'Women’s Baseball Jackets', terms: ['baseball jacket', 'varsity jacket'] },
     { group: 'womens-jackets', label: 'Women’s Casual Jackets', terms: ['casual jacket'] },
-    { group: 'womens-jackets', label: 'Women’s Jackets', terms: ['womens jacket', 'women jacket', 'womens jackets', 'women jackets'] },
+    { group: 'womens-jackets', terms: ['womens jacket', 'women jacket', 'womens jackets', 'women jackets'] },
 
     { group: 'womens-sweatshirts-hoodies', label: 'Women’s Sweatshirt Dresses', terms: ['sweatshirt dress', 'hoodie dress'] },
     { group: 'womens-sweatshirts-hoodies', label: 'Women’s Zip-Up Hoodies', terms: ['zip up hoodie', 'zip-up hoodie', 'zip hoodie', 'zippered hoodie'] },
