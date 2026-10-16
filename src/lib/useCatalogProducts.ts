@@ -13,6 +13,10 @@ interface CatalogueRow {
   currency?: string;
   occasion?: Product['occasion'];
   collectionCategory?: CollectionCategory;
+  storeCollection?: string;
+  storeCollectionLabel?: string;
+  storeSubcategory?: string;
+  storeSubcategoryLabel?: string;
   color?: string;
   length?: Product['length'];
   sleeve?: string;
@@ -52,6 +56,10 @@ function toProduct(row: CatalogueRow): Product | null {
     sourceSupplierProductId: row.sourceSupplierProductId,
     cjProductId: row.cjProductId,
     collectionCategory,
+    storeCollection: row.storeCollection,
+    storeCollectionLabel: row.storeCollectionLabel,
+    storeSubcategory: row.storeSubcategory,
+    storeSubcategoryLabel: row.storeSubcategoryLabel,
     occasion,
     color: row.color ?? '',
     length: row.length,
