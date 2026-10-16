@@ -10,6 +10,7 @@ import { isProductPurchasable, isWooCommerceProduct } from '../lib/woocommerce';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
 import type { DressSize } from '../types/product';
+import { isCurvyProduct, isCurvyStorefront } from '../lib/storefront';
 
 const colourSwatches: Record<string, string> = {
   champagne: '#d9c3a5',
@@ -29,7 +30,9 @@ const colourSwatches: Record<string, string> = {
 export function ProductPage() {
   const { slug } = useParams();
   const { products, loading } = useCatalogProducts();
-  const product = products.find((item) => item.slug === slug);
+  const curvyStorefront = isCurvyStorefront();
+  const matchedProduct = products.find((item) => item.slug === slug);
+  const product = matchedProduct && (curvyStorefront ? isCurvyProduct(matchedProduct) : !isCurvyProduct(matchedProduct)) ? matchedProduct : undefined;
   const [size, setSize] = useState<DressSize | ''>('');
   const [added, setAdded] = useState(false);
   const [view3d, setView3d] = useState(false);
@@ -44,7 +47,7 @@ export function ProductPage() {
   }, [product?.id]);
 
   if (!product && loading) {
-    return <section className="section not-found"><p className="eyebrow">The Davinova edit</p><h1>Opening this dress…</h1><p>Just a moment while we load the collection.</p><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
+    return <section className="section not-found"><p className="eyebrow">{curvyStorefront ? 'The Curve Edit' : 'The Davinova edit'}</p><h1>Opening this dress…</h1><p>Just a moment while we load the collection.</p><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
   }
 
   if (!product) {
