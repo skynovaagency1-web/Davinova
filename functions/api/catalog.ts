@@ -45,7 +45,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const { results: variantRows } = await env.DB.prepare(
       "SELECT size FROM product_variants WHERE product_id=? AND active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 ORDER BY size",
     ).bind(row.id).all<{ size: string }>();
-    const allowedSizes = new Set(['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL']);
+    const allowedSizes = new Set(['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL', '6XL']);
     const sizes = verified && row.price_cents > 0 && row.cost_cents > 0
       ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => allowedSizes.has(size)))]
       : [];
