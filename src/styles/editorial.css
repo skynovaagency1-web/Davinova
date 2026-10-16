@@ -486,6 +486,9 @@
   font: 400 15px/1.25 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
 }
 .women-accessories__item:last-child { border-bottom: 0; }
+.women-couple-clothing .women-accessories__trigger { font-size: 13px; }
+.women-couple-clothing .women-accessories__dropdown { min-width: 255px; }
+.mobile-couple-clothing-nav .mobile-accessories-nav__trigger { font-size: 18px; }
 .mobile-accessories-nav { border-top: 1px solid #e6dbd1; }
 .mobile-accessories-nav__trigger {
   display: flex;
