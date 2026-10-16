@@ -132,7 +132,7 @@ function checkoutSettings(env: Env): { site: string; countries: string[]; shippi
 export function resolveCheckoutReturnOrigin(requestUrl: string, canonicalSite: string, mode: 'test' | 'live'): string {
   const requested = new URL(requestUrl);
   const canonical = new URL(canonicalSite);
-  const baseHost = canonical.hostname.replace(/^www\\./, '');
+  const baseHost = canonical.hostname.startsWith('www.') ? canonical.hostname.slice(4) : canonical.hostname;
   const allowedHttpsOrigins = new Set([
     `https://${baseHost}`,
     `https://www.${baseHost}`,
