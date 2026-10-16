@@ -1,34 +1,93 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useCart } from '../store/cart';
+
+type PaymentState = 'checking' | 'paid' | 'failed' | 'unverified';
 
 export default function OrderConfirmationPage() {
   const [searchParams] = useSearchParams();
   const clear = useCart((state) => state.clear);
   const sessionId = searchParams.get('session_id') || '';
   const returnedFromStripe = /^cs_(test|live)_[A-Za-z0-9]+$/.test(sessionId);
+  const [paymentState, setPaymentState] = useState<PaymentState>('checking');
 
   useEffect(() => {
-    // The success URL is a customer experience only. The Stripe webhook, not this
-    // browser redirect, verifies payment and marks the order paid in D1.
-    if (returnedFromStripe) clear();
-  }, [clear, returnedFromStripe]);
+    if (!returnedFromStripe) {
+      setPaymentState('unverified');
+      return;
+    }
+
+    let cancelled = false;
+    let attempts = 0;
+    let timeoutId: number | undefined;
+
+    const checkPayment = async () => {
+      attempts += 1;
+      try {
+        const response = await fetch('/api/order-status?session_id=' + encodeURIComponent(sessionId), {
+          cache: 'no-store',
+          headers: { Accept: 'application/json' },
+        });
+        const result = await response.json() as { state?: string };
+        if (cancelled) return;
+
+        if (response.ok && result.state === 'paid') {
+          // Do not clear the customer's bag until the server reports a paid order.
+          clear();
+          setPaymentState('paid');
+          return;
+        }
+        if (response.ok && result.state === 'failed') {
+          setPaymentState('failed');
+          return;
+        }
+      } catch {
+        // A temporary status-check error must not delete the customer's bag.
+      }
+
+      if (attempts < 12) {
+        timeoutId = window.setTimeout(checkPayment, 1500);
+      } else {
+        setPaymentState('unverified');
+      }
+    };
+
+    void checkPayment();
+    return () => {
+      cancelled = true;
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+    };
+  }, [clear, returnedFromStripe, sessionId]);
+
+  const heading = paymentState === 'paid'
+    ? 'Thank you for your order.'
+    : paymentState === 'failed'
+      ? 'Payment was not completed.'
+      : paymentState === 'unverified'
+        ? 'Your order status.'
+        : 'Checking your payment…';
+
+  const message = paymentState === 'paid'
+    ? 'Payment has been confirmed by Davinova. Your order is recorded and awaiting the fulfilment review.'
+    : paymentState === 'failed'
+      ? 'Stripe reports that the payment did not complete. Your bag has been kept so you can try again.'
+      : paymentState === 'unverified'
+        ? 'We could not confirm the payment status yet. Your bag has been kept. Refresh this page later to check again.'
+        : 'We are checking the stored order status. Your bag will remain intact until payment is confirmed.';
 
   return <section className="section not-found">
     <p className="eyebrow">Davinova · Your order</p>
     <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
       <CheckCircle2 size={25} strokeWidth={1.5} aria-hidden="true" />
-      <h1 style={{ margin: 0 }}>{returnedFromStripe ? 'Thank you for your order.' : 'Your order status.'}</h1>
+      <h1 style={{ margin: 0 }}>{heading}</h1>
     </div>
+    <p>{message}</p>
     <p>
-      {returnedFromStripe
-        ? 'You have returned from Stripe Checkout. We are verifying the payment with Stripe and recording your order securely.'
-        : 'To protect your order, payment status is confirmed by the secure checkout service, not by this page.'}
+      Supplier fulfilment is not confirmed here. Every paid order is reviewed before the owner approves any CJ supplier purchase.
     </p>
-    <p>
-      Supplier fulfilment is not confirmed here. Davinova checks the paid order, product variant, stock and delivery details before the owner approves any CJ supplier order.
-    </p>
-    <Link className="button button--dark" to="/shop">Return to the collection <ArrowRight size={16} /></Link>
+    <Link className="button button--dark" to={paymentState === 'paid' ? '/shop' : '/cart'}>
+      {paymentState === 'paid' ? 'Return to the collection' : 'Return to your bag'} <ArrowRight size={16} />
+    </Link>
   </section>;
 }
