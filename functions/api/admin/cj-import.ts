@@ -87,7 +87,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     const itemCostCents = detail.sellPriceUsd === null ? null : Math.max(0, Math.round(detail.sellPriceUsd * 100));
     const occasion = collectionCategory === 'cocktail-party' ? 'cocktail'
       : collectionCategory === 'maxi-holiday' ? 'evening' : 'wedding-guest';
-    const images = [...new Set([detail.imageUrl, ...detail.imageUrls].filter((url) => Boolean(url) && safeImageUrl(url)))].slice(0, 8);
+    const images = [...new Set([detail.imageUrl, ...detail.imageUrls].filter((url) => Boolean(url) && safeImageUrl(url)))].slice(0, 8);\n    const variantSizeLabels = detail.variants.map((variant) => variant.options || variant.name || '');\n    const tags = hasExtendedSizeEvidence([detail.name, detail.description, ...variantSizeLabels])\n      ? ['plus-size', 'extended-size']\n      : [];
 
     const statements = [
       env.DB.prepare(
@@ -95,7 +95,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
       ).bind(
         productKey, slug, detail.name.slice(0, 180), cleanDescription(detail.description),
         'cj', 'cj', detail.id, null, detail.id, 0, collectionCategory, itemCostCents, 0, 0, 'USD',
-        occasion, 'Not verified', 'Not verified', 'Not verified', 'Not verified', '[]', 1, 0,
+        occasion, 'Not verified', 'Not verified', 'Not verified', 'Not verified', JSON.stringify(tags), 1, 0,
       ),
       ...images.map((url, index) => env.DB.prepare(
         'INSERT INTO product_images (id, product_id, url, alt, position, is_primary) VALUES (?,?,?,?,?,?)',
