@@ -36,9 +36,7 @@ export function Layout() {
           </button>
           <div className={womenMenuOpen ? 'women-nav__dropdown is-open' : 'women-nav__dropdown'}>
             <span className="women-nav__eyebrow">SHOP WOMEN</span>
-            <Link to="/shop?occasion=wedding-guest">Wedding Guest</Link>
-            <Link to="/shop?occasion=cocktail-party">Cocktail &amp; Party</Link>
-            <Link to="/shop?occasion=maxi-holiday">Maxi &amp; Holiday</Link>
+            <Link to="/shop?fit=standard">Slim</Link>
             <Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link>
           </div>
         </div>
@@ -56,9 +54,7 @@ export function Layout() {
               Women Clothing <ChevronDown size={18} aria-hidden="true" />
             </button>
             {womenMobileOpen && <div id="mobile-women-collections" className="mobile-women-nav__links">
-              <Link to="/shop?occasion=wedding-guest" onClick={closeMenu}>Wedding Guest <span>↗</span></Link>
-              <Link to="/shop?occasion=cocktail-party" onClick={closeMenu}>Cocktail &amp; Party <span>↗</span></Link>
-              <Link to="/shop?occasion=maxi-holiday" onClick={closeMenu}>Maxi &amp; Holiday <span>↗</span></Link>
+              <Link to="/shop?fit=standard" onClick={closeMenu}>Slim <span>↗</span></Link>
               <Link to="/shop?fit=curvy" onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></Link>
             </div>}
           </div>
