@@ -31,6 +31,12 @@ function cleanDescription(value: string): string {
   return value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 2000);
 }
 
+function hasExtendedSizeEvidence(values: string[]): boolean {
+  const metadata = values.join(' ').toLowerCase().replace(/[_-]+/g, ' ');
+  return /\b(plus size|plus sized|plussize|curvy|curve collection|extended size|extended sizing|full figure|full figured|big size|big sizes)\b/.test(metadata)
+    || /\b(2xl|3xl|4xl|5xl|6xl|xxl|xxxl|xxxxl)\b/.test(metadata);
+}
+
 /**
  * Saves a CJ catalogue item as a private draft only.
  * Drafts are inactive, unverified, have no sell price or confirmed stock,
