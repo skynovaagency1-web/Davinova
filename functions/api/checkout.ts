@@ -129,6 +129,25 @@ function checkoutSettings(env: Env): { site: string; countries: string[]; shippi
   };
 }
 
+export function resolveCheckoutReturnOrigin(requestUrl: string, canonicalSite: string, mode: 'test' | 'live'): string {
+  const requested = new URL(requestUrl);
+  const canonical = new URL(canonicalSite);
+  const baseHost = canonical.hostname.replace(/^www\\./, '');
+  const allowedHttpsOrigins = new Set([
+    `https://${baseHost}`,
+    `https://www.${baseHost}`,
+    `https://curvy.${baseHost}`,
+  ]);
+
+  if (requested.protocol === 'https:' && allowedHttpsOrigins.has(requested.origin)) {
+    return requested.origin;
+  }
+  if (mode === 'test' && requested.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(requested.hostname)) {
+    return requested.origin;
+  }
+  return canonical.origin;
+}
+
 function normalizeCart(value: unknown): CartLineInput[] | null {
   if (!Array.isArray(value) || value.length < 1 || value.length > 5) return null;
   const result: CartLineInput[] = [];
@@ -277,6 +296,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
   if (stripe instanceof Response) return stripe;
   const settings = checkoutSettings(env);
   if (settings instanceof Response) return settings;
+  const returnSite = resolveCheckoutReturnOrigin(request.url, settings.site, stripe.mode);
   if (!env.DB) return reply({ error: 'Commerce database is not configured.' }, 503);
 
   let body: unknown;
@@ -364,7 +384,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     let session: StripeCheckoutSession;
     try {
       session = await createStripeSession(
-        stripe.secret, settings.site, settings.countries,
+        stripe.secret, returnSite, settings.countries,
         settings.shippingFeeCents, settings.shippingLabel, settings.autoTax,
         orderId, orderNumber, prepared,
       );
