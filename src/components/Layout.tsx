@@ -44,7 +44,22 @@ export function Layout() {
           </button>
           <div className={womenMenuOpen ? 'women-nav__dropdown is-open' : 'women-nav__dropdown'}>
             <span className="women-nav__eyebrow">SHOP WOMEN</span>
-            <Link to="/shop?fit=standard">Slim</Link>
+            <div className="women-slim-group">
+              <Link to="/shop?fit=standard">Slim</Link>
+              <div className="women-accessories women-couple-clothing">
+                <button type="button" className="women-accessories__trigger" aria-expanded={coupleParentChildOpen} aria-haspopup="true" onClick={() => setCoupleParentChildOpen((open) => !open)} onKeyDown={(event) => { if (event.key === 'Escape') setCoupleParentChildOpen(false); }}>
+                  Couple &amp; Parent-Child Clothing <ChevronDown size={13} aria-hidden="true" />
+                </button>
+                <div className={coupleParentChildOpen ? 'women-accessories__dropdown is-open' : 'women-accessories__dropdown'}>
+                  <span className="women-accessories__item">Couple &amp; Parent-Child Sweatshirts</span>
+                  <span className="women-accessories__item">Couple &amp; Parent-Child Short-Sleeves</span>
+                  <span className="women-accessories__item">Couple &amp; Parent-Child Jackets</span>
+                  <span className="women-accessories__item">Couple &amp; Parent-Child Tops</span>
+                  <span className="women-accessories__item">Couple &amp; Parent-Child Suits</span>
+                  <span className="women-accessories__item">Couple &amp; Parent-Child Pants</span>
+                </div>
+              </div>
+            </div>
             <Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link>
             <div className="women-accessories">
               <button type="button" className="women-accessories__trigger" aria-expanded={accessoriesOpen} aria-haspopup="true" onClick={() => setAccessoriesOpen((open) => !open)} onKeyDown={(event) => { if (event.key === 'Escape') setAccessoriesOpen(false); }}>
@@ -57,19 +72,6 @@ export function Layout() {
                 <span className="women-accessories__item">Women’s Gloves &amp; Mittens</span>
                 <span className="women-accessories__item">Women’s Socks</span>
                 <span className="women-accessories__item">Women’s Hats &amp; Caps</span>
-              </div>
-            </div>
-            <div className="women-accessories women-couple-clothing">
-              <button type="button" className="women-accessories__trigger" aria-expanded={coupleParentChildOpen} aria-haspopup="true" onClick={() => setCoupleParentChildOpen((open) => !open)} onKeyDown={(event) => { if (event.key === 'Escape') setCoupleParentChildOpen(false); }}>
-                Couple &amp; Parent-Child Clothing <ChevronDown size={13} aria-hidden="true" />
-              </button>
-              <div className={coupleParentChildOpen ? 'women-accessories__dropdown is-open' : 'women-accessories__dropdown'}>
-                <span className="women-accessories__item">Couple &amp; Parent-Child Sweatshirts</span>
-                <span className="women-accessories__item">Couple &amp; Parent-Child Short-Sleeves</span>
-                <span className="women-accessories__item">Couple &amp; Parent-Child Jackets</span>
-                <span className="women-accessories__item">Couple &amp; Parent-Child Tops</span>
-                <span className="women-accessories__item">Couple &amp; Parent-Child Suits</span>
-                <span className="women-accessories__item">Couple &amp; Parent-Child Pants</span>
               </div>
             </div>
           </div>
@@ -88,7 +90,22 @@ export function Layout() {
               Women Clothing <ChevronDown size={18} aria-hidden="true" />
             </button>
             {womenMobileOpen && <div id="mobile-women-collections" className="mobile-women-nav__links">
-              <Link to="/shop?fit=standard" onClick={closeMenu}>Slim <span>↗</span></Link>
+              <div className="mobile-slim-group">
+                <Link to="/shop?fit=standard" onClick={closeMenu}>Slim <span>↗</span></Link>
+                <div className="mobile-accessories-nav mobile-couple-clothing-nav">
+                  <button type="button" className="mobile-accessories-nav__trigger" aria-expanded={coupleParentChildMobileOpen} aria-controls="mobile-couple-parent-child-collections" onClick={() => setCoupleParentChildMobileOpen((open) => !open)}>
+                    Couple &amp; Parent-Child Clothing <ChevronDown size={16} aria-hidden="true" />
+                  </button>
+                  {coupleParentChildMobileOpen && <div id="mobile-couple-parent-child-collections" className="mobile-accessories-nav__links">
+                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Sweatshirts</span>
+                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Short-Sleeves</span>
+                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Jackets</span>
+                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Tops</span>
+                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Suits</span>
+                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Pants</span>
+                  </div>}
+                </div>
+              </div>
               <Link to="/shop?fit=curvy" onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></Link>
               <div className="mobile-accessories-nav">
                 <button type="button" className="mobile-accessories-nav__trigger" aria-expanded={accessoriesMobileOpen} aria-controls="mobile-accessory-collections" onClick={() => setAccessoriesMobileOpen((open) => !open)}>
@@ -101,19 +118,6 @@ export function Layout() {
                   <span className="mobile-accessories-nav__item">Women’s Gloves &amp; Mittens</span>
                   <span className="mobile-accessories-nav__item">Women’s Socks</span>
                   <span className="mobile-accessories-nav__item">Women’s Hats &amp; Caps</span>
-                </div>}
-              </div>
-              <div className="mobile-accessories-nav mobile-couple-clothing-nav">
-                <button type="button" className="mobile-accessories-nav__trigger" aria-expanded={coupleParentChildMobileOpen} aria-controls="mobile-couple-parent-child-collections" onClick={() => setCoupleParentChildMobileOpen((open) => !open)}>
-                  Couple &amp; Parent-Child Clothing <ChevronDown size={16} aria-hidden="true" />
-                </button>
-                {coupleParentChildMobileOpen && <div id="mobile-couple-parent-child-collections" className="mobile-accessories-nav__links">
-                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Sweatshirts</span>
-                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Short-Sleeves</span>
-                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Jackets</span>
-                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Tops</span>
-                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Suits</span>
-                  <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Pants</span>
                 </div>}
               </div>
             </div>}
