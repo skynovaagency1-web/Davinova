@@ -1,5 +1,12 @@
 import { useState, type FormEvent } from 'react';
 import { collectionOptions, suggestCollectionCategory, type StoreCollectionCategory } from '../lib/collectionSuggestions';
+import {
+  findStoreCollectionGroup,
+  manualStoreCollectionAssignment,
+  storeCollectionGroups,
+  suggestStoreCollection,
+  type StoreCollectionAssignment,
+} from '../lib/storeCollectionTaxonomy';
 
 interface SearchProduct {
   id: string;
@@ -42,6 +49,18 @@ interface ProductDetail {
     inventory: Inventory[];
   }>;
 }
+interface NeedsReviewProduct {
+  id: string;
+  title: string;
+  currentCollection?: string;
+  currentCollectionLabel?: string;
+  currentSubcategory?: string;
+  currentSubcategoryLabel?: string;
+}
+interface CategorySelection {
+  collection: string;
+  subcategory: string;
+}
 interface SearchResponse {
   ok?: boolean;
   error?: string;
@@ -58,6 +77,10 @@ interface SearchResponse {
   movedCount?: number;
   alreadyCorrectCount?: number;
   needsReviewCount?: number;
+  needsReview?: NeedsReviewProduct[];
+  moved?: Array<{ id: string; title: string; collection: string; subcategory?: string }>;
+  assignedCount?: number;
+  product?: { id: string; title: string; storeCollectionLabel?: string; storeSubcategoryLabel?: string };
 }
 const money = (value: number | null) => value === null ? 'Not supplied' : new Intl.NumberFormat('en-US', {
   style: 'currency', currency: 'USD', maximumFractionDigits: 2,
@@ -75,6 +98,9 @@ export function CJCatalogAdminPage() {
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
   const [collectionAssignments, setCollectionAssignments] = useState<Record<string, StoreCollectionCategory>>({});
+  const [storeAssignments, setStoreAssignments] = useState<Record<string, CategorySelection>>({});
+  const [needsReviewProducts, setNeedsReviewProducts] = useState<NeedsReviewProduct[]>([]);
+  const [reviewAssignments, setReviewAssignments] = useState<Record<string, CategorySelection>>({});
   const [importedIds, setImportedIds] = useState<Record<string, string>>({});
   const [selectedIds, setSelectedIds] = useState<Record<string, boolean>>({});
   const [batchProgress, setBatchProgress] = useState('');
@@ -85,6 +111,28 @@ export function CJCatalogAdminPage() {
   function collectionFor(product: SearchProduct): StoreCollectionCategory | undefined {
     return collectionAssignments[product.id]
       ?? suggestCollectionCategory(product.name, product.category, details[product.id]?.description);
+  }
+
+  function storeCollectionFor(product: SearchProduct): StoreCollectionAssignment | undefined {
+    const selected = storeAssignments[product.id];
+    if (selected) {
+      return selected.collection && selected.subcategory
+        ? manualStoreCollectionAssignment(selected.collection, selected.subcategory)
+        : undefined;
+    }
+    return suggestStoreCollection(product.name, product.category, details[product.id]?.description);
+  }
+
+  function reviewCollectionFor(product: NeedsReviewProduct): StoreCollectionAssignment | undefined {
+    const selected = reviewAssignments[product.id];
+    if (selected) {
+      return selected.collection && selected.subcategory
+        ? manualStoreCollectionAssignment(selected.collection, selected.subcategory)
+        : undefined;
+    }
+    return product.currentCollection && product.currentSubcategory
+      ? manualStoreCollectionAssignment(product.currentCollection, product.currentSubcategory)
+      : undefined;
   }
 
   async function readJson(response: Response): Promise<SearchResponse> {
@@ -109,8 +157,10 @@ export function CJCatalogAdminPage() {
         cache: 'no-store',
       });
       const data = await readJson(response);
+      setNeedsReviewProducts(data.needsReview ?? []);
+      setReviewAssignments({});
       setMessage(
-        `Checked ${data.scannedCount ?? 0} existing browse-only CJ dresses: moved ${data.movedCount ?? 0} to a clearer collection, ${data.alreadyCorrectCount ?? 0} already matched, and ${data.needsReviewCount ?? 0} left unchanged for manual review.`,
+        `Checked ${data.scannedCount ?? 0} existing imported CJ products: sorted ${data.movedCount ?? 0} into the clothing collections you supplied, ${data.alreadyCorrectCount ?? 0} already matched, and ${data.needsReviewCount ?? 0} need a manual collection/subcategory choice. No products were imported again.`,
       );
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'Could not organize existing dresses.');
