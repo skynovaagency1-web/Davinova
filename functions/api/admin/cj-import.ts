@@ -56,7 +56,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
   if (!sameOrigin(request)) return json({ error: 'Cross-origin request blocked.' }, 403);
   if (!env.DB) return json({ error: 'The Davinova database binding is unavailable.' }, 503);
 
-  let body: { productId?: unknown; collectionCategory?: unknown; storeCollection?: unknown; storeSubcategory?: unknown };
+  let body: { productId?: unknown; collectionCategory?: unknown; storeCollection?: unknown; storeSubcategory?: unknown; storeCollectionManual?: unknown };
   try { body = await request.json() as typeof body; }
   catch { return json({ error: 'Send a valid JSON request.' }, 400); }
 
@@ -77,6 +77,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
   const storeAssignment = storeCollection && storeSubcategory
     ? manualStoreCollectionAssignment(storeCollection, storeSubcategory)
     : undefined;
+  const manualStoreAssignment = body.storeCollectionManual === true;
 
   try {
     const existing = await env.DB.prepare(
@@ -89,7 +90,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
           const existingTagsRow = await env.DB.prepare('SELECT tags_json FROM products WHERE id=?')
             .bind(existing.id).first<{ tags_json: string }>();
           const oldTags = existingTagsRow?.tags_json ? safeJsonArray(existingTagsRow.tags_json) : [];
-          const newTags = writeStoreCollectionTags(oldTags, storeAssignment);
+          const newTags = writeStoreCollectionTags(oldTags, storeAssignment, manualStoreAssignment);
           await env.DB.prepare(
             "UPDATE products SET active=1, collection_category=?, tags_json=?, updated_at=datetime('now') WHERE id=? AND supplier_verified=0",
           ).bind(collectionCategory, JSON.stringify(newTags), existing.id).run();
@@ -127,7 +128,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     const baseTags = hasExtendedSizeEvidence([detail.name, detail.description, ...variantSizeLabels])
       ? ['plus-size', 'extended-size']
       : [];
-    const tags = storeAssignment ? writeStoreCollectionTags(baseTags, storeAssignment) : baseTags;
+    const tags = storeAssignment ? writeStoreCollectionTags(baseTags, storeAssignment, manualStoreAssignment) : baseTags;
 
     const statements = [
       env.DB.prepare(
