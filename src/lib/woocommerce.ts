@@ -85,12 +85,28 @@ function attributeValues(attribute: WooAttribute | undefined): string[] {
   return terms?.length ? terms : (attribute.options ?? []).filter(Boolean);
 }
 
-function normaliseSize(value: string): DressSize | undefined {
+/**
+ * Straight sizes (XS-XL) and extended/curve sizes (1X/1XL through 6X/6XL) are
+ * distinct labels, not synonyms of each other: '1XL' is not the same size as
+ * 'XL'. Only the conventional "repeated X" spellings (XXL, XXXL, ...) are
+ * aliased to their '<n>XL' equivalent; every '<n>X' and '<n>XL' label is
+ * otherwise recognized as itself.
+ */
+export function normaliseSize(value: string): DressSize | undefined {
   const size = value.trim().toUpperCase().replace(/[\s_-]/g, '');
   const aliases: Record<string, DressSize> = {
-    XS: 'XS', XSMALL: 'XS', S: 'S', SMALL: 'S', M: 'M', MEDIUM: 'M',
-    L: 'L', LARGE: 'L', XL: 'XL', XXL: '2XL', '2XL': '2XL',
-    XXXL: '3XL', '3XL': '3XL', XXXXL: '4XL', '4XL': '4XL',
+    XS: 'XS', XSMALL: 'XS',
+    S: 'S', SMALL: 'S',
+    M: 'M', MEDIUM: 'M', MED: 'M',
+    L: 'L', LARGE: 'L',
+    XL: 'XL', XLARGE: 'XL',
+    '1XL': '1XL',
+    XXL: '2XL', '2XL': '2XL',
+    XXXL: '3XL', '3XL': '3XL',
+    XXXXL: '4XL', '4XL': '4XL',
+    XXXXXL: '5XL', '5XL': '5XL',
+    XXXXXXL: '6XL', '6XL': '6XL',
+    '1X': '1X', '2X': '2X', '3X': '3X', '4X': '4X', '5X': '5X', '6X': '6X',
   };
   return aliases[size];
 }

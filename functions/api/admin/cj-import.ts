@@ -1,4 +1,4 @@
-import { getCJProductDetail, type CJEnv } from '../../../server/cj';
+import { getCJProductDetail, parseCJVariantOption, type CJEnv } from '../../../server/cj';
 
 type CollectionCategory = 'wedding-guest' | 'cocktail-party' | 'maxi-holiday';
 type Env = CJEnv & { ADMIN_PASSWORD?: string };
@@ -115,12 +115,13 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
         index, index === 0 ? 1 : 0,
       )),
       ...detail.variants.map((variant, index) => {
-        const option = (variant.options || variant.name || 'Unmapped CJ variant').slice(0, 100);
+        const rawOption = (variant.options || variant.name || `Variant ${index + 1}`).slice(0, 100);
+        const { size, color } = parseCJVariantOption(rawOption);
         const variantId = `cjvar-${detail.id}-${variant.id}`.slice(0, 240);
         return env.DB.prepare(
           'INSERT INTO product_variants (id, product_id, size, color, sku, supplier_variant_id, cj_variant_id, cj_sku, available_stock, stock_checked_at, active) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
         ).bind(
-          variantId, productKey, option || `Variant ${index + 1}`, 'Not verified', null,
+          variantId, productKey, size, color, null,
           variant.id, variant.id, variant.sku || null, null, null, 0,
         );
       }),

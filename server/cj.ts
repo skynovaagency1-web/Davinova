@@ -439,3 +439,65 @@ export async function getCJProductDetail(env: CJEnv, productId: string) {
     })),
   };
 }
+
+/**
+ * Straight sizes (XS-XL) and extended/curve sizes (1X/1XL through 6X/6XL) are
+ * distinct labels, not synonyms of each other. Keep this in sync with
+ * normaliseSize in src/lib/woocommerce.ts.
+ */
+const CJ_SIZE_ALIASES: Record<string, string> = {
+  XS: 'XS', XSMALL: 'XS',
+  S: 'S', SMALL: 'S',
+  M: 'M', MEDIUM: 'M', MED: 'M',
+  L: 'L', LARGE: 'L',
+  XL: 'XL', XLARGE: 'XL',
+  '1XL': '1XL',
+  XXL: '2XL', '2XL': '2XL',
+  XXXL: '3XL', '3XL': '3XL',
+  XXXXL: '4XL', '4XL': '4XL',
+  XXXXXL: '5XL', '5XL': '5XL',
+  XXXXXXL: '6XL', '6XL': '6XL',
+  '1X': '1X', '2X': '2X', '3X': '3X', '4X': '4X', '5X': '5X', '6X': '6X',
+};
+
+function normalizeCJSizeToken(token: string): string | undefined {
+  return CJ_SIZE_ALIASES[token.trim().toUpperCase().replace(/[\s_-]/g, '')];
+}
+
+export interface ParsedCJVariantOption {
+  size: string;
+  color: string;
+}
+
+/**
+ * CJ returns a single combined option string per variant (its variantKey,
+ * e.g. "Black / 2XL", "2XL - Black", or just "2XL"), with no fixed separator
+ * or field order across products. Splitting it into separate size and colour
+ * values lets a verified variant's stored size match the exact label the
+ * storefront's size selector sends at checkout; storing the raw combined
+ * string (the previous behaviour) means an exact-match lookup can never
+ * succeed even after a human verifies and activates the variant.
+ *
+ * This only splits when the tokenized label contains exactly one recognized
+ * size token: zero matches (no size present) or more than one (ambiguous)
+ * both fall back to keeping the original string as-is for manual review,
+ * rather than guessing which part is the size.
+ */
+export function parseCJVariantOption(raw: string): ParsedCJVariantOption {
+  const trimmed = raw.trim();
+  const fallback: ParsedCJVariantOption = { size: trimmed || 'Not verified', color: 'Not verified' };
+  if (!trimmed) return fallback;
+
+  const tokens = trimmed.split(/[\s/,;_-]+/).map((token) => token.trim()).filter(Boolean);
+  if (tokens.length === 0) return fallback;
+
+  const sizeMatches = tokens
+    .map((token, index) => ({ index, size: normalizeCJSizeToken(token) }))
+    .filter((entry): entry is { index: number; size: string } => Boolean(entry.size));
+
+  if (sizeMatches.length !== 1) return fallback;
+
+  const { index: sizeIndex, size } = sizeMatches[0];
+  const color = tokens.filter((_, index) => index !== sizeIndex).join(' ');
+  return { size, color: color || 'Not verified' };
+}
