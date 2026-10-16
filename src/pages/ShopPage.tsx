@@ -66,7 +66,7 @@ export function ShopPage() {
     {activeCount > 0 && <button type="button" className="text-link" onClick={() => update((next) => { next.delete('color'); next.delete('sleeve'); next.delete('max'); next.delete('occasion'); })}>Clear filters</button>}
   </div>;
 
-  return <section className="shop-page section">
+  return <section className={curvyStorefront ? 'shop-page shop-page--curvy section' : 'shop-page section'}>
     <motion.div className="shop-title" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
       <p className="eyebrow">{curvyStorefront ? 'Davinova · The Curve Edit' : 'The Davinova collection'}</p><h1>{curvyStorefront ? <>Occasionwear for <em>every curve.</em></> : <>Dress for <em>the occasion.</em></>}</h1><p>{curvyStorefront ? 'A size-inclusive edit, with extended-size details identified before a dress is offered for purchase.' : 'Pieces for the invitations you’ve been looking forward to.'}</p>
     </motion.div>
