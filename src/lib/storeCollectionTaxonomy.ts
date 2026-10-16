@@ -23,7 +23,7 @@ const MANUAL_ASSIGNMENT_TAG = '__davinova_store_manual__:true';
 
 function slugify(value: string): string {
   return value.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    .replace(/[’']/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 function subcategory(label: string, ...matchTerms: string[]): StoreSubcategoryOption {
