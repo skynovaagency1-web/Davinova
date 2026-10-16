@@ -44,7 +44,7 @@ export function ProductPage() {
     setUsingEditorial(!fullSizeImage(product?.images[0]?.url));
     setSelectedImageIndex(0);
     setImageUnavailable(false);
-  }, [product?.id]);
+  }, [product?.id, product?.images]);
 
   if (!product && loading) {
     return <section className="section not-found"><p className="eyebrow">{curvyStorefront ? 'The Curve Edit' : 'The Davinova edit'}</p><h1>Opening this dress…</h1><p>Just a moment while we load the collection.</p><Link className="button button--dark" to="/shop">Back to the collection</Link></section>;
