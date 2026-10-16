@@ -534,3 +534,8 @@
     font-size: 18px;
   }
 }
+
+/* Slim's supplier taxonomy: every expandable title and its plain-text subcategories. */
+.women-slim-category .women-accessories__trigger { font-size: 13px; }
+.women-slim-category .women-accessories__dropdown { min-width: 255px; max-width: 310px; }
+.mobile-slim-category .mobile-accessories-nav__trigger { font-size: 18px; }
