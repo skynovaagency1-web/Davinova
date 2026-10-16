@@ -1,5 +1,6 @@
 import {
   assignmentFromStoreTags,
+  hasManualStoreCollectionAssignment,
   manualStoreCollectionAssignment,
   publicProductTags,
   storeCollectionAssignmentIsValid,
@@ -97,7 +98,7 @@ async function assignExistingProduct(
   const selected = manualStoreCollectionAssignment(collection, subcategory);
   if (!selected) return json({ error: 'Choose a valid clothing subcategory.' }, 400);
   const oldTags = safeTags(product.tags_json);
-  const newTags = writeStoreCollectionTags(oldTags, selected);
+  const newTags = writeStoreCollectionTags(oldTags, selected, true);
   const result = await env.DB.prepare(
     `UPDATE products
      SET tags_json=?, updated_at=datetime('now')
@@ -176,8 +177,13 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
     for (const row of results ?? []) {
       const tags = safeTags(row.tags_json);
-      const visibleTags = publicProductTags(tags);
       const current = assignmentFromStoreTags(tags);
+      if (hasManualStoreCollectionAssignment(tags)) {
+        alreadyCorrectCount += 1;
+        continue;
+      }
+
+      const visibleTags = publicProductTags(tags);
       const suggested = suggestStoreCollection(
         row.title,
         '',
@@ -185,38 +191,29 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         [row.length ?? '', ...visibleTags],
       );
 
-      if (!suggested) {
-        if (current) {
-          // Preserve an existing manual or previous category when today's clues are inconclusive.
-          alreadyCorrectCount += 1;
-        } else {
-          needsReview.push({
-            id: row.id,
-            title: row.title,
-            currentCollection: current?.collection,
-            currentCollectionLabel: current?.collectionLabel,
-            currentSubcategory: current?.subcategory,
-            currentSubcategoryLabel: current?.subcategoryLabel,
-          });
-        }
+      // The automatic sorter must find both the user's collection and a specific
+      // subcategory. Broad or conflicting clues are surfaced for a human decision.
+      if (!suggested?.subcategory) {
+        needsReview.push({
+          id: row.id,
+          title: row.title,
+          currentCollection: current?.collection,
+          currentCollectionLabel: current?.collectionLabel,
+          currentSubcategory: current?.subcategory,
+          currentSubcategoryLabel: current?.subcategoryLabel,
+        });
         continue;
       }
 
-      const effective = suggested.subcategory
-        ? suggested
-        : current?.collection === suggested.collection && current.subcategory
-          ? { ...suggested, subcategory: current.subcategory, subcategoryLabel: current.subcategoryLabel }
-          : suggested;
-
       if (
-        current?.collection === effective.collection
-        && current?.subcategory === effective.subcategory
+        current?.collection === suggested.collection
+        && current?.subcategory === suggested.subcategory
       ) {
         alreadyCorrectCount += 1;
         continue;
       }
 
-      const newTagsJson = JSON.stringify(writeStoreCollectionTags(tags, effective));
+      const newTagsJson = JSON.stringify(writeStoreCollectionTags(tags, suggested));
       plannedMoves.push({
         id: row.id,
         title: row.title,
