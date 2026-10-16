@@ -1,10 +1,153 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ShoppingBag, Menu, X, ChevronDown } from 'lucide-react';
 import { getWooCommercePageUrl, isWooCommerceConfigured } from '../lib/woocommerce';
 import { brand } from '../config/brand';
 import { useCart } from '../store/cart';
+
+type PlainTextCategoryGroup = { title: string; items: string[] };
+
+const slimCategoryGroups: PlainTextCategoryGroup[] = [
+  {
+    "title": "Couple & Parent-Child Clothing",
+    "items": [
+      "Couple & Parent-Child Sweatshirts",
+      "Couple & Parent-Child Short-Sleeves",
+      "Couple & Parent-Child Jackets",
+      "Couple & Parent-Child Tops",
+      "Couple & Parent-Child Suits",
+      "Couple & Parent-Child Pants"
+    ]
+  },
+  {
+    "title": "Women's Jackets",
+    "items": [
+      "Women's Casual Jackets",
+      "Women's Baseball Jackets"
+    ]
+  },
+  {
+    "title": "Women's Sweatshirts & Hoodies",
+    "items": [
+      "Women's Sweatpants",
+      "Women's Sweatsuit Sets",
+      "Women's Sweatshirt Dresses",
+      "Women's Zip-Up Hoodies"
+    ]
+  },
+  {
+    "title": "Women's Sweaters",
+    "items": [
+      "Women's Cardigans",
+      "Women's Knit Sets",
+      "Women's Knit Skirts",
+      "Women's Knit Bottoms",
+      "Women's Sweater Dresses"
+    ]
+  },
+  {
+    "title": "Women's Denim",
+    "items": [
+      "Women's Denim Tops",
+      "Women's Denim Jackets",
+      "Women's Denim Sets",
+      "Women's Denim Skirts",
+      "Women's Denim Dresses"
+    ]
+  },
+  {
+    "title": "Tops & Sets",
+    "items": [
+      "Ladies Short Sleeve",
+      "Women's Camis",
+      "Women's Vests",
+      "Women's Short-Sleeved Shirts",
+      "Women's Long-Sleeved Shirts",
+      "Women's Suit Sets",
+      "Women's Activewear Sets",
+      "Women's Casual Sets",
+      "Women's Three-Piece Sets",
+      "Women's Tube Tops",
+      "Women's Sleeveless Tops",
+      "Blouses & Shirts",
+      "Woman Hoodies & Sweatshirts",
+      "Jumpsuits",
+      "Rompers",
+      "Lady Dresses",
+      "Sweaters",
+      "Suits & Sets"
+    ]
+  },
+  {
+    "title": "Bottoms",
+    "items": [
+      "Women's Skirts",
+      "Women's Overalls",
+      "Women's Flare Pants",
+      "Women's Straight-Leg Pants",
+      "Women's Suit Pants",
+      "Women's Cargo Pants",
+      "Leggings",
+      "Skirts",
+      "Woman Jeans",
+      "Woman Shorts",
+      "Pants & Capris",
+      "Wide Leg Pants"
+    ]
+  },
+  {
+    "title": "Outerwear & Jackets",
+    "items": [
+      "Blazers",
+      "Wool & Blend",
+      "Women's Padded Jackets",
+      "Women's Coats",
+      "Women's Sherpa Jackets",
+      "Women's Fur Coats",
+      "Women's Fur-Paneled Jackets",
+      "Women's Wool Coats",
+      "Women's Outerwear",
+      "Women's Shell Jackets",
+      "Women's Blazers",
+      "Women's Capes",
+      "Woman Trench",
+      "Basic Jacket",
+      "Leather & Suede",
+      "Real Fur"
+    ]
+  },
+  {
+    "title": "Weddings & Events",
+    "items": [
+      "Cocktail Dresses",
+      "Evening Dresses",
+      "Bridesmaid Dresses",
+      "Prom Dresses",
+      "Wedding Dresses",
+      "Flower Girl Dresses"
+    ]
+  }
+];
+
+function PlainTextMenuGroup({ title, items, mobile = false }: PlainTextCategoryGroup & { mobile?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const listId = useId();
+  const wrapperClass = mobile ? 'mobile-accessories-nav mobile-slim-category' : 'women-accessories women-slim-category';
+  const triggerClass = mobile ? 'mobile-accessories-nav__trigger' : 'women-accessories__trigger';
+  const listClass = mobile ? 'mobile-accessories-nav__links' : 'women-accessories__dropdown';
+  const itemClass = mobile ? 'mobile-accessories-nav__item' : 'women-accessories__item';
+  const itemsMarkup = items.map((item) => <span key={item} className={itemClass}>{item}</span>);
+
+  return <div className={wrapperClass}>
+    <button type="button" className={triggerClass} aria-expanded={open} aria-controls={listId} onClick={() => setOpen((previous) => !previous)} onKeyDown={(event) => { if (event.key === 'Escape') setOpen(false); }}>
+      {title} <ChevronDown size={mobile ? 16 : 13} aria-hidden="true" />
+    </button>
+    {mobile
+      ? open && <div id={listId} className={listClass}>{itemsMarkup}</div>
+      : <div id={listId} className={open ? `${listClass} is-open` : listClass}>{itemsMarkup}</div>}
+  </div>;
+}
 
 export function Layout() {
   const { pathname } = useLocation();
@@ -13,8 +156,6 @@ export function Layout() {
   const [womenMobileOpen, setWomenMobileOpen] = useState(false);
   const [accessoriesOpen, setAccessoriesOpen] = useState(false);
   const [accessoriesMobileOpen, setAccessoriesMobileOpen] = useState(false);
-  const [coupleParentChildOpen, setCoupleParentChildOpen] = useState(false);
-  const [coupleParentChildMobileOpen, setCoupleParentChildMobileOpen] = useState(false);
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const wooCartUrl = getWooCommercePageUrl('cart');
   const wooConfigured = isWooCommerceConfigured();
@@ -26,8 +167,6 @@ export function Layout() {
     setWomenMobileOpen(false);
     setAccessoriesOpen(false);
     setAccessoriesMobileOpen(false);
-    setCoupleParentChildOpen(false);
-    setCoupleParentChildMobileOpen(false);
     document.title = 'Davinova — Occasion, beautifully considered';
   }, [pathname]);
 
@@ -46,19 +185,7 @@ export function Layout() {
             <span className="women-nav__eyebrow">SHOP WOMEN</span>
             <div className="women-slim-group">
               <Link to="/shop?fit=standard">Slim</Link>
-              <div className="women-accessories women-couple-clothing">
-                <button type="button" className="women-accessories__trigger" aria-expanded={coupleParentChildOpen} aria-haspopup="true" onClick={() => setCoupleParentChildOpen((open) => !open)} onKeyDown={(event) => { if (event.key === 'Escape') setCoupleParentChildOpen(false); }}>
-                  Couple &amp; Parent-Child Clothing <ChevronDown size={13} aria-hidden="true" />
-                </button>
-                <div className={coupleParentChildOpen ? 'women-accessories__dropdown is-open' : 'women-accessories__dropdown'}>
-                  <span className="women-accessories__item">Couple &amp; Parent-Child Sweatshirts</span>
-                  <span className="women-accessories__item">Couple &amp; Parent-Child Short-Sleeves</span>
-                  <span className="women-accessories__item">Couple &amp; Parent-Child Jackets</span>
-                  <span className="women-accessories__item">Couple &amp; Parent-Child Tops</span>
-                  <span className="women-accessories__item">Couple &amp; Parent-Child Suits</span>
-                  <span className="women-accessories__item">Couple &amp; Parent-Child Pants</span>
-                </div>
-              </div>
+              {slimCategoryGroups.map((group) => <PlainTextMenuGroup key={group.title} title={group.title} items={group.items} />)}
             </div>
             <Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link>
             <div className="women-accessories">
@@ -92,19 +219,7 @@ export function Layout() {
             {womenMobileOpen && <div id="mobile-women-collections" className="mobile-women-nav__links">
               <div className="mobile-slim-group">
                 <Link to="/shop?fit=standard" onClick={closeMenu}>Slim <span>↗</span></Link>
-                <div className="mobile-accessories-nav mobile-couple-clothing-nav">
-                  <button type="button" className="mobile-accessories-nav__trigger" aria-expanded={coupleParentChildMobileOpen} aria-controls="mobile-couple-parent-child-collections" onClick={() => setCoupleParentChildMobileOpen((open) => !open)}>
-                    Couple &amp; Parent-Child Clothing <ChevronDown size={16} aria-hidden="true" />
-                  </button>
-                  {coupleParentChildMobileOpen && <div id="mobile-couple-parent-child-collections" className="mobile-accessories-nav__links">
-                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Sweatshirts</span>
-                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Short-Sleeves</span>
-                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Jackets</span>
-                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Tops</span>
-                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Suits</span>
-                    <span className="mobile-accessories-nav__item">Couple &amp; Parent-Child Pants</span>
-                  </div>}
-                </div>
+                {slimCategoryGroups.map((group) => <PlainTextMenuGroup key={group.title} title={group.title} items={group.items} mobile />)}
               </div>
               <Link to="/shop?fit=curvy" onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></Link>
               <div className="mobile-accessories-nav">
