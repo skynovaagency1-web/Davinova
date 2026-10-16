@@ -60,7 +60,7 @@ export function ProductPage() {
   const currentImage = product.images[selectedImageIndex] ?? product.images[0];
   const productBackdrop = productBackdropFor(product.color, product.title);
 
-  return <section className="product-page section">
+  return <section className={curvyStorefront ? 'product-page product-page--curvy section' : 'product-page section'}>
     <Link to="/shop" className="back-link"><ArrowLeft size={15} /> Back to the collection</Link>
     <div className="product-detail">
       <div className="product-visual-column">
@@ -83,7 +83,7 @@ export function ProductPage() {
                 <span style={{ marginTop: 10, fontSize: 12 }}>Product image coming soon</span>
               </div>}
           {usingEditorial && !imageUnavailable && <span style={{ position: 'absolute', left: 16, bottom: 16, background: 'rgba(255,253,251,.94)', color: '#5d4b42', padding: '8px 10px', fontSize: 10, letterSpacing: '.08em' }}>EDITORIAL INSPIRATION · NOT EXACT ITEM</span>}
-          <span className="gallery-note">DAVINOVA · THE OCCASION EDIT</span>
+          <span className="gallery-note">{curvyStorefront ? "DAVINOVA · THE CURVE EDIT" : "DAVINOVA · THE OCCASION EDIT"}</span>
         </div>}
         {!view3d && product.images.length > 1 && !usingEditorial && <div className="product-thumbnails" aria-label="More product photos">{product.images.map((image, index) => <button key={image.url + index} type="button" className={selectedImageIndex === index ? 'product-thumbnail active' : 'product-thumbnail'} onClick={() => { setSelectedImageIndex(index); setUsingEditorial(false); setImageUnavailable(false); }} aria-label={`View product photo ${index + 1}`} aria-pressed={selectedImageIndex === index} style={{ background: productBackdrop }}><img src={fullSizeImage(image.url)} alt="" loading="lazy" /></button>)}</div>}
         <div className="viewer-switch" role="group" aria-label="Product viewing mode">
