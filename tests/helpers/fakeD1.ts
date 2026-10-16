@@ -31,6 +31,7 @@ export class FakeD1 {
   approvals: Row[] = [];
   catalogRows = new Map<string, Row>();
   variantStockWrites: Row[] = [];
+  adminAuthAttempts = new Map<string, Row>();
 
   seedOrder(order: FakeOrder): void {
     this.orders.set(order.id, { ...order });
@@ -223,6 +224,16 @@ export class FakeD1 {
       }
       return { meta: { changes } };
     }
+    if (sql.startsWith('INSERT INTO admin_auth_attempts')) {
+      const [ip, failures, lockedUntil] = args as [string, number, string | null];
+      this.adminAuthAttempts.set(ip, { ip, failures, locked_until: lockedUntil, updated_at: new Date().toISOString() });
+      return { meta: { changes: 1 } };
+    }
+    if (sql.startsWith('DELETE FROM admin_auth_attempts')) {
+      const [ip] = args as [string];
+      const existed = this.adminAuthAttempts.delete(ip);
+      return { meta: { changes: existed ? 1 : 0 } };
+    }
     throw new Error('FakeD1: unhandled statement: ' + sql);
   }
 
@@ -252,6 +263,10 @@ export class FakeD1 {
     if (sql.startsWith('SELECT p.id AS product_id')) {
       const [productId, size] = args as [string, string];
       return this.catalogRows.get(productId + '::' + String(size).toLowerCase()) ?? null;
+    }
+    if (sql.startsWith('SELECT locked_until FROM admin_auth_attempts') || sql.startsWith('SELECT failures, locked_until FROM admin_auth_attempts')) {
+      const [ip] = args as [string];
+      return this.adminAuthAttempts.get(ip) ?? null;
     }
     throw new Error('FakeD1: unhandled query: ' + sql);
   }

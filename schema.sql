@@ -88,3 +88,7 @@ CREATE INDEX IF NOT EXISTS idx_supplier_orders_status ON supplier_orders(status,
 CREATE INDEX IF NOT EXISTS idx_cj_variants_lookup ON product_variants(cj_variant_id);
 CREATE INDEX IF NOT EXISTS idx_cj_products_lookup ON products(cj_product_id);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_order_events_owner_notified_once ON order_events(order_id) WHERE event_type = 'stripe_owner_approval_notified';
+CREATE TABLE IF NOT EXISTS admin_auth_attempts (
+  ip TEXT PRIMARY KEY, failures INTEGER NOT NULL DEFAULT 0, locked_until TEXT,
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
