@@ -323,3 +323,34 @@
 @media (prefers-reduced-motion: reduce) {
   .storefront-choice > img { transition: none; }
 }
+
+
+/* Give Curvy listing and detail routes their own editorial palette too. */
+.shop-page--curvy,
+.product-page--curvy {
+  background: #f8f3ef;
+}
+.shop-page--curvy .shop-title h1 em,
+.shop-page--curvy .section-heading h2 em {
+  color: #96696f;
+}
+.shop-page--curvy .shop-title .eyebrow,
+.product-page--curvy .product-info > .eyebrow {
+  color: #8a6266;
+}
+.shop-page--curvy .occasion-tabs button.active,
+.shop-page--curvy .filter-toggle:hover {
+  color: #8a5d62;
+}
+.shop-page--curvy .occasion-tabs__line {
+  background: #96696f;
+}
+.product-page--curvy .product-gallery {
+  background-color: #f0e3df;
+}
+.product-page--curvy .product-info h1 {
+  color: #3b2e30;
+}
+@media (max-width: 640px) {
+  .shop-page--curvy .shop-title { padding-top: 15px; }
+}
