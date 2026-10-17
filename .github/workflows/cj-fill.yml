@@ -1,6 +1,10 @@
 name: Fill categories from CJ
 
 on:
+  # Manual runs need this file on the default branch; on this branch, editing scripts/cj-fill.json starts a run.
+  push:
+    branches: [feature/3d-fashion-storefront]
+    paths: [scripts/cj-fill.json]
   workflow_dispatch:
     inputs:
       target:
@@ -27,13 +31,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - id: request
+        run: echo "json=$(jq -c . scripts/cj-fill.json)" >> "$GITHUB_OUTPUT"
       - name: Import from CJ
         run: node --experimental-strip-types scripts/cj-fill.ts
         env:
           ADMIN_PASSWORD: ${{ secrets.DAVINOVA_ADMIN_PASSWORD }}
-          TARGET: ${{ inputs.target }}
-          MAX_IMPORTS: ${{ inputs.max_imports }}
-          ONLY: ${{ inputs.only }}
+          TARGET: ${{ inputs.target || fromJSON(steps.request.outputs.json).target }}
+          MAX_IMPORTS: ${{ inputs.max_imports || fromJSON(steps.request.outputs.json).max_imports }}
+          ONLY: ${{ inputs.only || fromJSON(steps.request.outputs.json).only }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
