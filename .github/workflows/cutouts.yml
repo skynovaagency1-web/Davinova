@@ -29,5 +29,6 @@ jobs:
           git add public/cutouts public/images
           git diff --cached --quiet && exit 0
           git commit -m "Add background-free product cutouts"
-          git pull --rebase origin ${{ github.ref_name }}
+          # Other runs may have pushed cutouts meanwhile; on overlapping lines keep this run's newer results.
+          git pull --rebase -X theirs origin ${{ github.ref_name }}
           git push origin HEAD:${{ github.ref_name }}

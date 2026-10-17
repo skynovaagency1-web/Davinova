@@ -45,7 +45,8 @@ jobs:
           python-version: '3.11'
       - run: pip install "rembg[cpu]==2.0.85" pillow opencv-python-headless
       - name: Check photos of the new products
-        run: sleep 90 && python scripts/cutouts.py
+        # Start from the latest cutouts so only the new products are checked.
+        run: git pull --ff-only origin ${{ github.ref_name }} && sleep 30 && python scripts/cutouts.py
       - name: Commit cutouts
         run: |
           git config user.name "davinova-bot"
@@ -53,5 +54,6 @@ jobs:
           git add public/cutouts
           git diff --cached --quiet && exit 0
           git commit -m "Check photos of newly imported products"
-          git pull --rebase origin ${{ github.ref_name }}
+          # Other runs may have pushed cutouts meanwhile; on overlapping lines keep this run's newer results.
+          git pull --rebase -X theirs origin ${{ github.ref_name }}
           git push origin HEAD:${{ github.ref_name }}
