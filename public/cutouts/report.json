@@ -24,6 +24,21 @@
   "url": null,
   "v": 2
  },
+ "cj-04A645F7-CE9E-41F2-9DE9-3F23B481184A": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-0F1A73EC-E5A0-42A9-8FE9-1C5254977646": {
   "photo": 1,
   "rejected": [
@@ -36,6 +51,21 @@
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/20200808/18345218508.jpg",
+  "v": 2
+ },
+ "cj-0FEF02DA-1352-4F25-83CD-EE9C6B6092D9": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-123210CC-D00F-4E17-A92B-36477847F998": {
@@ -60,6 +90,74 @@
   "url": null,
   "v": 2
  },
+ "cj-1358228017108881408": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: several people",
+   "2: no face (headless or cropped)",
+   "3: cut off at the bottom",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1359390204670119936": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1360403824778547200": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1364102996962709504": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1369091614923952128": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: half-body shot",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: several people",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1371661505661112320": {
   "photo": null,
   "rejected": [
@@ -78,6 +176,21 @@
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/1615962886934.jpg",
+  "v": 2
+ },
+ "cj-1372833774362038272": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-1373908970883911680": {
@@ -139,6 +252,18 @@
   "url": "https://cf.cjdropshipping.com/1617680819897.jpg",
   "v": 2
  },
+ "cj-1379285915159105536": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1379298390273298432": {
   "photo": null,
   "rejected": [
@@ -186,6 +311,19 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/08/18/08/b0970a03-d7eb-4a9c-8e74-44c736e62e96.jpg",
   "v": 2
  },
+ "cj-1380751419296059392": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1380803190391443456": {
   "photo": 0,
   "rejected": [],
@@ -196,6 +334,69 @@
   "photo": 0,
   "rejected": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/01/20/02/934ef507-29b7-4d31-be31-84ffd69999cf.jpg",
+  "v": 2
+ },
+ "cj-1381481879127068672": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: faded cutout",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1381840537379803136": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1382171229682798592": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1382266950448713728": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1382870642919084032": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-1384444773527588864": {
@@ -258,6 +459,71 @@
   "url": "https://cf.cjdropshipping.com/1619760892078.jpg",
   "v": 2
  },
+ "cj-1388304419917008896": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: cut off at the bottom",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1388306488891674624": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1389401429181075456": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1389861492572164096": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1390220380060389376": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1390572322016071680": {
   "photo": null,
   "rejected": [
@@ -273,12 +539,76 @@
   "url": null,
   "v": 2
  },
+ "cj-1391657680325709824": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1392719718007312384": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1393559945584185344": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
    "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1393564114730749952": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1394135808264507392": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: faded cutout",
+   "3: head cut off by the frame",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1394177005708251136": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: half-body shot",
    "3: no face (headless or cropped)",
    "4: no face (headless or cropped)",
    "5: no face (headless or cropped)"
@@ -364,6 +694,21 @@
   "url": "https://cf.cjdropshipping.com/1623737714031.jpg",
   "v": 2
  },
+ "cj-1405772486058053632": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1405802324835831808": {
   "photo": 1,
   "rejected": [
@@ -384,12 +729,53 @@
   "url": null,
   "v": 2
  },
+ "cj-1410790203655852032": {
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: head cut off by the frame",
+   "5: no face (headless or cropped)",
+   "6: collage or several figures",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1411609929151811584": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1412284467908841472": {
   "photo": 1,
   "rejected": [
    "0: no face (headless or cropped)"
   ],
   "url": "https://cf.cjdropshipping.com/cd0890be-b41f-4a50-bae7-a42ef235482d.jpg",
+  "v": 2
+ },
+ "cj-1413013718249377792": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: no face (headless or cropped)",
+   "5: cut off at the bottom"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-1416689643893690368": {
@@ -410,6 +796,21 @@
   "url": null,
   "v": 2
  },
+ "cj-1418415617471549440": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1419205273666588672": {
   "photo": null,
   "rejected": [
@@ -418,6 +819,21 @@
    "2: no face (headless or cropped)",
    "3: faded cutout",
    "4: no real face"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1422814835531452416": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -464,6 +880,31 @@
   "url": null,
   "v": 2
  },
+ "cj-1424283355561725952": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1426012486863294464": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1427908193249529856": {
   "photo": null,
   "rejected": [
@@ -488,6 +929,18 @@
    "4: no face (headless or cropped)",
    "5: no face (headless or cropped)",
    "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1432515067273940992": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -518,6 +971,20 @@
   "url": null,
   "v": 2
  },
+ "cj-1435162096642953216": {
+  "photo": null,
+  "rejected": [
+   "0: faded cutout",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1437962440129253376": {
   "photo": null,
   "rejected": [
@@ -533,7 +1000,105 @@
   "url": null,
   "v": 2
  },
+ "cj-1440484632205332480": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: cut off at the bottom",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1441214927472824320": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: half-body shot",
+   "4: cut off at the bottom",
+   "5: half-body shot",
+   "6: cut off at the bottom",
+   "7: half-body shot"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1441241802828025856": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1443059888401027072": {
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1444132140966088704": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-14474622-9E06-42A8-A2D2-44C1A3F28724": {
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1448135542540734464": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1451081265544564736": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
@@ -578,10 +1143,78 @@
   "url": null,
   "v": 2
  },
+ "cj-1451811703674245120": {
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1451842753762824192": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1451867396880076800": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1451888708360998912": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom",
+   "5: no face (headless or cropped)",
+   "6: cut off at the bottom",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1452549799793528832": {
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/687d3fb2-ef67-4e20-89b5-d752ef7ea853.jpg",
+  "v": 2
+ },
+ "cj-1454623662098485248": {
+  "photo": null,
+  "rejected": [
+   "0: half-body shot",
+   "1: half-body shot",
+   "2: half-body shot",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-1455837698970488832": {
@@ -647,6 +1280,33 @@
   "url": "https://cf.cjdropshipping.com/6bbdcdfe-7ac4-4a48-81c3-004d46d0b9a1.jpg",
   "v": 2
  },
+ "cj-1460512657873440768": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1460640517539893248": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1460836727575941120": {
   "photo": null,
   "rejected": [
@@ -656,6 +1316,21 @@
    "3: cut off at the bottom",
    "4: cut off at the bottom",
    "5: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1470623280636497920": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -675,6 +1350,32 @@
   "url": null,
   "v": 2
  },
+ "cj-1480842928686501888": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1481173876296781824": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1483353905764110336": {
   "photo": null,
   "rejected": [
@@ -686,6 +1387,18 @@
    "5: no face (headless or cropped)",
    "6: no face (headless or cropped)",
    "7: several people"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1491693014203109376": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -786,6 +1499,21 @@
   "url": null,
   "v": 2
  },
+ "cj-1545696602155921408": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: half-body shot",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: cut off at the bottom",
+   "7: head cut off by the frame"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1547487648091222016": {
   "photo": null,
   "rejected": [
@@ -810,6 +1538,25 @@
    "5: no face (headless or cropped)",
    "6: no face (headless or cropped)",
    "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1559419927092801536": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/55755169-5f80-42c0-8683-d0a8120504b9.jpg",
+  "v": 2
+ },
+ "cj-1560550965563109376": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -866,7 +1613,31 @@
   "url": "https://cf.cjdropshipping.com/e8e136a7-0784-417c-b407-13160a35ca57.jpg",
   "v": 2
  },
+ "cj-1598243953906823168": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1600115952618844160": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1604709751609372672": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
@@ -924,6 +1695,21 @@
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/2da90761-1832-4456-9b03-c0ff64b261a1.jpg",
+  "v": 2
+ },
+ "cj-1626498160287821824": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-1630487662643654656": {
@@ -987,6 +1773,21 @@
   "url": null,
   "v": 2
  },
+ "cj-1640250867154694144": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1641774636239163392": {
   "photo": null,
   "rejected": [
@@ -1014,6 +1815,33 @@
   "url": null,
   "v": 2
  },
+ "cj-1648519689963843584": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1677238062503436288": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: half-body shot",
+   "2: half-body shot",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1685102135031107584": {
   "photo": 1,
   "rejected": [
@@ -1023,6 +1851,29 @@
   "v": 2
  },
  "cj-1699719412372213760": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1700045773867593728": {
+  "photo": 1,
+  "rejected": [
+   "0: several people"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/26f71b26-49ed-48c5-bd19-b43974648918.jpg",
+  "v": 2
+ },
+ "cj-1700103678939635712": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
@@ -1047,6 +1898,35 @@
   "url": "https://cf.cjdropshipping.com/quick/product/0ce6a865-3031-4cd0-9892-a607fc64d002.jpg",
   "v": 2
  },
+ "cj-1702237779423404032": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1707960135605702656": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: no face (headless or cropped)",
+   "2: several people",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1710830682760552448": {
   "photo": null,
   "rejected": [
@@ -1058,6 +1938,21 @@
    "5: half-body shot",
    "6: half-body shot",
    "7: half-body shot"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1712317553118289920": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -1209,6 +2104,35 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2023/12/06/11/38e5d9ec-4072-46ed-ba3b-18a92fe96485.jpg",
   "v": 2
  },
+ "cj-1734497455187701760": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1739185700039299072": {
+  "photo": 7,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: cut off at the bottom",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: cut off at the bottom",
+   "6: no face (headless or cropped)"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/2e359d68-af7f-4b52-b1d4-26120e180750.jpg",
+  "v": 2
+ },
  "cj-1739480494913359872": {
   "photo": null,
   "rejected": [
@@ -1299,6 +2223,28 @@
    "7: no face (headless or cropped)"
   ],
   "url": null,
+  "v": 2
+ },
+ "cj-1748610423651311616": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: several people",
+   "2: half-body shot",
+   "3: several people",
+   "4: several people"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1748622865127182336": {
+  "photo": 3,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/dfaa6568-b2f4-49da-a94f-bfd7d48436b1.jpg",
   "v": 2
  },
  "cj-1748995066124840960": {
@@ -1476,6 +2422,36 @@
   "url": null,
   "v": 2
  },
+ "cj-1779756850070687744": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: half-body shot",
+   "5: collage or several figures",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1780770519168593920": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: half-body shot",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: cut off at the bottom",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1782072926905716736": {
   "photo": null,
   "rejected": [
@@ -1485,6 +2461,21 @@
    "3: no face (headless or cropped)",
    "4: no face (headless or cropped)",
    "5: head cut off by the frame",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1783683689629622272": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
    "6: no face (headless or cropped)",
    "7: no face (headless or cropped)"
   ],
@@ -1501,12 +2492,61 @@
   "url": "https://cf.cjdropshipping.com/27f8ba47-8c2e-4c4d-8b68-cf722b147a02.jpg",
   "v": 2
  },
+ "cj-1789582843635576832": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1789583725731262464": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1789892129850920960": {
   "photo": 1,
   "rejected": [
    "0: several people"
   ],
   "url": "https://oss-cf.cjdropshipping.com/product/2024/05/13/05/477cc85f-d261-436f-a322-e55b541495c0_trans.jpeg",
+  "v": 2
+ },
+ "cj-1796083600790659072": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/508d546f-4aee-4932-877b-b104c3255539.jpg",
+  "v": 2
+ },
+ "cj-1797094088789987328": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-1797179443908190208": {
@@ -1549,6 +2589,14 @@
   "url": "https://cf.cjdropshipping.com/quick/product/ad66b6ab-f8d1-4805-97bc-008bec8a26dd.jpg",
   "v": 2
  },
+ "cj-1798091753015226368": {
+  "photo": 1,
+  "rejected": [
+   "0: no face (headless or cropped)"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/bf85dfe9-fe12-4d88-9b58-9abfe2202a37.jpg",
+  "v": 2
+ },
  "cj-1798538111996272640": {
   "photo": 0,
   "rejected": [],
@@ -1578,6 +2626,21 @@
    "2: cut off at the bottom"
   ],
   "url": "https://cf.cjdropshipping.com/81779239-c7c8-4546-8e77-0043d28afa5a.jpg",
+  "v": 2
+ },
+ "cj-1838417726793469952": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-1844192333555191808": {
@@ -1646,6 +2709,21 @@
    "2: cut off at the bottom",
    "3: cut off at the bottom",
    "4: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1850419850775515136": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: cut off at the bottom",
+   "7: cut off at the bottom"
   ],
   "url": null,
   "v": 2
@@ -1724,6 +2802,21 @@
   "url": null,
   "v": 2
  },
+ "cj-1921095771973496833": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: head cut off by the frame",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1923274556805111810": {
   "photo": null,
   "rejected": [
@@ -1778,6 +2871,126 @@
   "url": null,
   "v": 2
  },
+ "cj-1976122580765663234": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: several people",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1990343647387377665": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: cut off at the bottom",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1990346741994795010": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1990969196757573634": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1991035880106614785": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1991061620126638082": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-1EB60B75-F61B-4BBB-92D8-28C19BE71DB2": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: several people",
+   "2: several people",
+   "3: several people"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2090631546551701506": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2093611354014015490": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2094361340233277441": {
   "photo": null,
   "rejected": [
@@ -1803,6 +3016,56 @@
    "4: no face (headless or cropped)",
    "5: no face (headless or cropped)",
    "6: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2094981050785959937": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: cut off at the bottom",
+   "2: no face (headless or cropped)",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2094990265411801090": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2095382353997115394": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2095756668165849090": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -1847,6 +3110,20 @@
   "url": null,
   "v": 2
  },
+ "cj-2096150939453771777": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2096155390342246402": {
   "photo": null,
   "rejected": [
@@ -1858,6 +3135,88 @@
    "5: no face (headless or cropped)",
    "6: no face (headless or cropped)",
    "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2096444634273972225": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2096487035080310785": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2096500324552179714": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2096502897170481153": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2096847261486833665": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2096871035228827649": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2096885531838439425": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -1874,12 +3233,58 @@
   "url": null,
   "v": 2
  },
+ "cj-2096889092045369345": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2097164993419202562": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2097532386978217986": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
    "2: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2097599911296417793": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2097603550677221377": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -1960,6 +3365,67 @@
   "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/8e7d99c8-4264-4237-b308-c4acf521ef58.jpg",
   "v": 2
  },
+ "cj-2098334378731208705": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2098600407562952706": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2098613033848250370": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2100105591599296513": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2100108780079837186": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2406081116381602900": {
   "photo": null,
   "rejected": [
@@ -1969,6 +3435,36 @@
    "3: no face (headless or cropped)",
    "4: no face (headless or cropped)",
    "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2406090702321627300": {
+  "photo": null,
+  "rejected": [
+   "0: head cut off by the frame",
+   "1: head cut off by the frame",
+   "2: faded cutout",
+   "3: head cut off by the frame",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: cut off at the bottom",
+   "7: head cut off by the frame"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2406090719271627000": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: cut off at the bottom",
    "6: no face (headless or cropped)",
    "7: no face (headless or cropped)"
   ],
@@ -2028,10 +3524,70 @@
   "url": null,
   "v": 2
  },
+ "cj-2406120514411604600": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2406130348551613200": {
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/c64c5cb8-40ef-4a5c-96f7-a85f8f60fd68.jpg",
+  "v": 2
+ },
+ "cj-2406140140011614000": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: head cut off by the frame",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2406150602001600200": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2406150612021627400": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2406150632011626200": {
@@ -2077,6 +3633,21 @@
   "url": null,
   "v": 2
  },
+ "cj-2406150725361629500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2406150733501601000": {
   "photo": null,
   "rejected": [
@@ -2115,6 +3686,21 @@
   "v": 2
  },
  "cj-2406230807451621000": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2406230811111602500": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
@@ -2251,6 +3837,36 @@
   "url": "https://cf.cjdropshipping.com/quick/product/93fa67e6-45ef-418a-800f-4c3bfc580e91.jpg",
   "v": 2
  },
+ "cj-2407010718181613200": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2407010739191606100": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: no face (headless or cropped)",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2407100256581614700": {
   "photo": null,
   "rejected": [
@@ -2293,6 +3909,21 @@
   "url": "https://cf.cjdropshipping.com/quick/product/470e09e3-a1a5-4dd2-9380-fe341d4a414b.jpg",
   "v": 2
  },
+ "cj-2407201214521600000": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2407230621391604400": {
   "photo": 0,
   "rejected": [],
@@ -2303,6 +3934,93 @@
   "photo": 0,
   "rejected": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2024/08/20/11/ec89d241-b522-4ba8-955c-111ae02ece84.jpg",
+  "v": 2
+ },
+ "cj-2409010140591605600": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2409080213391616400": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: no face (headless or cropped)",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2409160218151624000": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2409190838221609500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: head cut off by the frame",
+   "2: head cut off by the frame",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: head cut off by the frame",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2410010420261606700": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2410010756161608400": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2410010916161603100": {
@@ -2359,6 +4077,33 @@
    "5: no face (headless or cropped)",
    "6: no face (headless or cropped)",
    "7: collage or several figures"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2410200623011605500": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2410210723531612700": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: head cut off by the frame",
+   "3: head cut off by the frame",
+   "4: cut off at the bottom",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -2426,6 +4171,19 @@
   "url": null,
   "v": 2
  },
+ "cj-2411040537321600800": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2411050212471609500": {
   "photo": null,
   "rejected": [
@@ -2444,6 +4202,19 @@
    "0: several people"
   ],
   "url": "https://cf.cjdropshipping.com/quick/product/e7869ef9-47d0-4d6a-8217-ce292bd2c07c.jpg",
+  "v": 2
+ },
+ "cj-2411070627291616500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2411080228091604900": {
@@ -2498,11 +4269,38 @@
   "url": "https://cf.cjdropshipping.com/quick/product/e987d3b6-6cc9-4d6a-8122-82b6b55403fa.jpg",
   "v": 2
  },
+ "cj-2411130251321619300": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2411130602581626900": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2411140647111625500": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -2532,6 +4330,18 @@
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/c2e5d69a-f417-41aa-b999-cf300903c277.jpg",
+  "v": 2
+ },
+ "cj-2411190656051629100": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2411200718151620300": {
@@ -2579,6 +4389,21 @@
   "url": null,
   "v": 2
  },
+ "cj-2411240238511620800": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2412030108181607100": {
   "photo": 0,
   "rejected": [],
@@ -2600,6 +4425,49 @@
   "url": null,
   "v": 2
  },
+ "cj-2412070355501627400": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/5bc6d627-f462-4580-9ec7-f84e5f37b94c.jpg",
+  "v": 2
+ },
+ "cj-2412130201431606600": {
+  "photo": 1,
+  "rejected": [
+   "0: no face (headless or cropped)"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/4befed36-683a-4787-809e-e0f825577496.jpg",
+  "v": 2
+ },
+ "cj-2412130204331629600": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2412130600471604600": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: faded cutout"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2412160725401601500": {
   "photo": null,
   "rejected": [
@@ -2607,6 +4475,49 @@
    "1: no face (headless or cropped)",
    "2: no face (headless or cropped)",
    "3: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2412180259521623500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2412180328421609400": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2412280334291629300": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -2632,6 +4543,14 @@
    "0: several people"
   ],
   "url": "https://cf.cjdropshipping.com/quick/product/54f2795c-0a62-48d4-99d7-d9d25781054f.jpg",
+  "v": 2
+ },
+ "cj-2501050617151623700": {
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/324cbd0c-6cd4-4c46-a6ff-316821729cec.jpg",
   "v": 2
  },
  "cj-2501060221421604700": {
@@ -2670,10 +4589,61 @@
   "url": null,
   "v": 2
  },
+ "cj-2501101128501623000": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2501101238581627200": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/0fbc0b27-9a2b-4895-99b7-7fa35a6dead7.jpg",
+  "v": 2
+ },
+ "cj-2501140519191606500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: cut off at the bottom",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: cut off at the bottom",
+   "7: head cut off by the frame"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2501140900141605900": {
   "photo": 0,
   "rejected": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/01/15/03/204efab3-7a02-4766-a326-d9059b6c48ba.jpg",
+  "v": 2
+ },
+ "cj-2501150350221601300": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2501200238091606500": {
@@ -2736,6 +4706,12 @@
   "url": null,
   "v": 2
  },
+ "cj-2502021159561628200": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/5bc003df-197b-415e-8881-e6f1b0adb849.jpg",
+  "v": 2
+ },
  "cj-2502050234041617500": {
   "photo": null,
   "rejected": [
@@ -2778,6 +4754,102 @@
   "url": null,
   "v": 2
  },
+ "cj-2502110257171626200": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: no face (headless or cropped)",
+   "6: cut off at the bottom",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2502111145081610700": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2502111214401606700": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2502120155271624700": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2502130826361608600": {
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/b46585e6-701c-4483-9259-3b808dfbfaed.jpg",
+  "v": 2
+ },
+ "cj-2502140236171616600": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2502150935051605500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2502170630471607400": {
   "photo": null,
   "rejected": [
@@ -2789,6 +4861,21 @@
    "5: cut off at the bottom",
    "6: cut off at the bottom",
    "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2502200153241621800": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -2850,6 +4937,21 @@
   "url": null,
   "v": 2
  },
+ "cj-2503071007031602800": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2503071354111613200": {
   "photo": null,
   "rejected": [
@@ -2887,6 +4989,18 @@
   "url": null,
   "v": 2
  },
+ "cj-2503160325111628600": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2503180733401605100": {
   "photo": null,
   "rejected": [
@@ -2914,12 +5028,151 @@
   "url": null,
   "v": 2
  },
+ "cj-2503250957011604300": {
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/d13a5098-a61a-4cba-b348-fb3b6b01a281.jpg",
+  "v": 2
+ },
  "cj-2503261022041605200": {
   "photo": 1,
   "rejected": [
    "0: collage or several figures"
   ],
   "url": "https://cf.cjdropshipping.com/quick/product/bdc88eef-30f7-4706-8cdb-765315bb372e.jpg",
+  "v": 2
+ },
+ "cj-2503270946321617700": {
+  "photo": 5,
+  "rejected": [
+   "0: head cut off by the frame",
+   "1: cut off at the bottom",
+   "2: no face (headless or cropped)",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/547c3d08-1f91-4430-af8c-db45f584ab17.jpg",
+  "v": 2
+ },
+ "cj-2503290428101616000": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2503290506531629600": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2504020411331621100": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2504060138511623800": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/04/06/01/71dee322-bf61-43fb-bd92-bd41da76d22f_trans.jpeg",
+  "v": 2
+ },
+ "cj-2504090659321605500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2504100843401605100": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2504120135221608800": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2504150332481609300": {
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/75cb3407-72a7-4844-8567-82740a682ace.jpg",
+  "v": 2
+ },
+ "cj-2504160344151604300": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/d1093518-81e8-4f3d-a95e-8b6129e63ffa.jpg",
+  "v": 2
+ },
+ "cj-2504160653241609800": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2504200603441620400": {
@@ -3025,6 +5278,15 @@
   "url": null,
   "v": 2
  },
+ "cj-2505020645521600400": {
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/074ceec9-db9f-4492-962a-937b1415c6d4.jpg",
+  "v": 2
+ },
  "cj-2505041140501628500": {
   "photo": 0,
   "rejected": [],
@@ -3108,6 +5370,21 @@
   "url": null,
   "v": 2
  },
+ "cj-2505200955431614500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2505221007471603800": {
   "photo": 1,
   "rejected": [
@@ -3122,6 +5399,18 @@
    "0: no face (headless or cropped)"
   ],
   "url": "https://cf.cjdropshipping.com/quick/product/99c48de2-0211-46b9-b9d8-52b14022cb78.jpg",
+  "v": 2
+ },
+ "cj-2505240531491622900": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: no face (headless or cropped)",
+   "2: cut off at the bottom",
+   "3: head cut off by the frame",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2505240606271600600": {
@@ -3162,12 +5451,42 @@
   "url": null,
   "v": 2
  },
+ "cj-2505280711381621100": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2505290923491608900": {
   "photo": 1,
   "rejected": [
    "0: cut off at the bottom"
   ],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/05/29/09/1742a6cb-d61b-4d1c-a628-04ca63a8c8fe.jpg",
+  "v": 2
+ },
+ "cj-2505310840451628200": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: head cut off by the frame",
+   "2: head cut off by the frame",
+   "3: head cut off by the frame",
+   "4: head cut off by the frame",
+   "5: half-body shot",
+   "6: half-body shot",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-2506110159081605000": {
@@ -3286,6 +5605,33 @@
   "url": null,
   "v": 2
  },
+ "cj-2507170732361605300": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: cut off at the bottom",
+   "2: head cut off by the frame",
+   "3: head cut off by the frame",
+   "4: head cut off by the frame"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2508020325201629100": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2508100348201628100": {
   "photo": null,
   "rejected": [
@@ -3304,6 +5650,30 @@
   "url": "https://cf.cjdropshipping.com/quick/product/fedc32d6-1031-44bd-8641-817b5e053760.jpg",
   "v": 2
  },
+ "cj-2508140936271626100": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2508170339411603300": {
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "url": "https://cf.cjdropshipping.com/quick/product/3f8d1245-d37a-43a5-9dba-4cdec6fc9a81.jpg",
+  "v": 2
+ },
  "cj-2508220256081619400": {
   "photo": null,
   "rejected": [
@@ -3320,6 +5690,27 @@
   "v": 2
  },
  "cj-2508221237331612500": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2508260245161622300": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/3be71e0e-2d8d-4384-9c45-1394c493a3c9.jpg",
+  "v": 2
+ },
+ "cj-2508260823221615300": {
   "photo": null,
   "rejected": [
    "0: no face (headless or cropped)",
@@ -3373,6 +5764,27 @@
    "3: no face (headless or cropped)",
    "4: no face (headless or cropped)",
    "5: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2509161023171621600": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/09/16/10/d20238e0-02b1-45aa-8e23-66a2c8b3d4a4.jpg",
+  "v": 2
+ },
+ "cj-2510200508561611600": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
@@ -3613,6 +6025,24 @@
   "url": null,
   "v": 2
  },
+ "cj-50141CCE-B9B3-4355-9505-5C07B4140316": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-5B183750-7F33-4286-8EBD-EA603EA22F92": {
+  "photo": 2,
+  "rejected": [
+   "0: several people",
+   "1: several people"
+  ],
+  "url": "https://cf.cjdropshipping.com/15663168/1851945853758.jpg",
+  "v": 2
+ },
  "cj-5DB15A51-77A0-450B-901C-CD0E99A30E26": {
   "photo": null,
   "rejected": [
@@ -3630,6 +6060,37 @@
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/15131808/3903771026_1033202686.400x400.jpg",
+  "v": 2
+ },
+ "cj-7FEAAE37-9EC7-440B-8F86-A044F1ACC1DD": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: cut off at the bottom",
+   "2: no face (headless or cropped)",
+   "3: half-body shot",
+   "4: no face (headless or cropped)",
+   "5: several people",
+   "6: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-9C382316-6022-4A3C-A5F7-603D20B5B23F": {
+  "photo": 1,
+  "rejected": [
+   "0: several people"
+  ],
+  "url": "https://cf.cjdropshipping.com/15131808/2583252029_1214073187.jpg",
+  "v": 2
+ },
+ "cj-A5BDF5DC-E821-45E6-AE00-FCEDD1901EF4": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-A78066F6-B2D8-4008-BF80-2240131587A6": {
@@ -3659,6 +6120,21 @@
   "url": null,
   "v": 2
  },
+ "cj-A919647A-822C-43BE-82C7-AF0696C5D3DD": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-AD203C44-8E98-4CD9-A57A-4821AFD0E4BD": {
   "photo": null,
   "rejected": [
@@ -3673,12 +6149,101 @@
   "url": null,
   "v": 2
  },
+ "cj-B873F92F-9CA7-4E07-9831-58DDB388836F": {
+  "photo": 1,
+  "rejected": [
+   "0: several people"
+  ],
+  "url": "https://cf.cjdropshipping.com/15131808/4304368996_530682740.jpg",
+  "v": 2
+ },
+ "cj-BB3F2D46-EB14-4D45-94B1-CF00A82858CE": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: collage or several figures",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-BB41D4C5-B348-40EC-9013-1E9E68B7EB7F": {
+  "photo": 3,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: head cut off by the frame",
+   "2: faded cutout"
+  ],
+  "url": "https://cf.cjdropshipping.com/15511104/16149120800.jpg",
+  "v": 2
+ },
+ "cj-BF4B7BFA-9A5F-4059-8351-56380736EAE8": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: several people",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: half-body shot",
+   "6: several people",
+   "7: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-C2B1AFA2-4E49-4F70-8A34-49A70C132C59": {
+  "photo": 3,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: cut off at the bottom",
+   "2: no face (headless or cropped)"
+  ],
+  "url": "https://cf.cjdropshipping.com/2046/165600158564.jpg",
+  "v": 2
+ },
  "cj-C485292B-FCC4-4FD8-BD39-549C6CFA2762": {
   "photo": 1,
   "rejected": [
    "0: several people"
   ],
   "url": "https://cf.cjdropshipping.com/15568992/30698254719377.jpg",
+  "v": 2
+ },
+ "cj-C7808BCA-4EA9-4F5C-B390-EC37249441EA": {
+  "photo": 1,
+  "rejected": [
+   "0: several people"
+  ],
+  "url": "https://cf.cjdropshipping.com/20210104/1409805734520.jpg",
+  "v": 2
+ },
+ "cj-C8A69B40-2B37-48E2-B6C2-1E04AB1E8424": {
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: several people",
+   "3: no face (headless or cropped)",
+   "4: half-body shot",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-CE191950-2509-431F-9373-A63FFB865CC0": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)"
+  ],
+  "url": null,
   "v": 2
  },
  "cj-D45C6E11-BC20-458A-996B-B3642745B7A5": {
@@ -3734,6 +6299,21 @@
    "2: no face (headless or cropped)",
    "3: no face (headless or cropped)",
    "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-F2402047-1B73-480A-8FEB-9920DBD5F77F": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: no face (headless or cropped)",
+   "7: no face (headless or cropped)"
   ],
   "url": null,
   "v": 2
