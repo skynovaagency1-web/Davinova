@@ -193,7 +193,7 @@
 .w-mega__cols--cats .w-mega__links a { padding: 5px 12px; font-size: 13px; line-height: 1.25; }
 .w-mega__cols--cats a.w-mega__group { opacity: .9; color: inherit; }
 .w-mega__cols--cats a.is-empty { opacity: .45; }
-.drawer-sub { display: grid; gap: 2px; margin: -4px 0 10px 4px; padding-left: 14px; border-left: 1px solid currentColor; opacity: .85; }
+.drawer-sub { display: grid; gap: 2px; margin: 4px 0 6px 4px; padding-left: 14px; border-left: 1px solid currentColor; opacity: .85; }
 .w-drawer .drawer-sub a { font: 500 14px/1.6 var(--nova-display); letter-spacing: 0; }
 .w-drawer .drawer-about { font: 600 15px/1.4 var(--nova-display); opacity: .85; }
 .m-drawer .drawer-sub { margin: 0; padding: 6px 24px 12px 40px; border-left: 0; border-bottom: 1px solid rgba(255, 255, 255, .1); }
@@ -261,3 +261,5 @@
 .idx .nova-collection-card { min-height: 180px; }
 .idx .nova-collection-card.is-empty { opacity: .6; }
 .idx .nova-collection-card__img:empty { background: linear-gradient(140deg, rgba(255,240,215,.25), rgba(233,178,90,.2)); }
+.idx__all { font-weight: 700; margin-top: 4px; }
+.w-drawer .drawer-title { margin-top: 8px; }
