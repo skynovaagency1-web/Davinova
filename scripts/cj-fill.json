@@ -1,1 +1,1 @@
-{ "target": "6", "max_imports": "200", "only": "", "run": 3 }
+{ "target": "4", "max_imports": "100", "only": "lady-dresses,evening-dresses,cocktail-dresses,wedding-dresses,bridesmaid-dresses", "plus": "1", "run": 4 }

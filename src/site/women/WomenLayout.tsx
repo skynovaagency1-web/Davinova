@@ -10,7 +10,7 @@ import { CloudSky } from '../shared/Cloud';
 import { HangingBag } from '../shared/HangingBag';
 import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
-import { isCurvyProduct } from '../../lib/storefront';
+import { isCurvyLook } from '../../lib/curvyLooks';
 import type { Product } from '../../types/product';
 
 const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing');
@@ -18,7 +18,7 @@ const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' 
 /** Phone menu: four titles, each with its stocked types as sub-titles. */
 function drawerSections(products: Product[]) {
   const women = products.filter((product) => product.department !== 'men');
-  const has = (group: string, sub?: string, fit?: 'standard' | 'curvy') => women.some((product) => product.storeCollection === group && (!sub || product.storeSubcategory === sub) && (!fit || (fit === 'curvy') === isCurvyProduct(product)));
+  const has = (group: string, sub?: string, fit?: 'standard' | 'curvy') => women.some((product) => product.storeCollection === group && (!sub || product.storeSubcategory === sub) && (!fit || (fit === 'curvy') === isCurvyLook(product)));
   const fitSection = (fit: 'standard' | 'curvy', label: string, to: string) => ({
     label, to, subs: CLOTHING.filter((group) => has(group.slug, undefined, fit)).map((group) => ({ to: `${categoryPath(group.slug)}&fit=${fit}`, label: group.label })),
   });

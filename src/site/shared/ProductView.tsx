@@ -5,7 +5,8 @@ import { ArrowLeft, ArrowRight, Check, ChevronRight, ShoppingBag } from 'lucide-
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { formatMoney } from '../../lib/format';
 import { isProductPurchasable, isWooCommerceProduct } from '../../lib/woocommerce';
-import { isCurvyProduct, productPath } from '../../lib/storefront';
+import { productPath } from '../../lib/storefront';
+import { isCurvyLook } from '../../lib/curvyLooks';
 import { useCart } from '../../store/cart';
 import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
@@ -86,7 +87,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
     <div className="pv-grid">
       <div className="pv-stage">
         <div className="pv-stage__banner">
-          <div><strong>{word}</strong><span>{variant === 'men' ? 'Davinova Homme' : isCurvyProduct(product) ? 'The curve edit' : 'The occasion edit'}</span></div>
+          <div><strong>{word}</strong><span>{variant === 'men' ? 'Davinova Homme' : isCurvyLook(product) ? 'The curve edit' : 'The occasion edit'}</span></div>
           <ul>{uses.map((use) => <li key={use}><ChevronRight size={14} />{use}</li>)}</ul>
         </div>
         <div className={`pv-stage__product${index === 0 && cutout ? ' pv-stage__product--pop' : ''}`}>

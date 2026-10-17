@@ -17,6 +17,9 @@ const SITE = process.env.SITE ?? 'https://feature-3d-fashion-storefron.davinova.
 const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
 const TARGET = Number(process.env.TARGET ?? 6);
 const MAX_IMPORTS = Number(process.env.MAX_IMPORTS ?? 120);
+// PLUS=1 looks only for plus-size versions (titles must say so); the curvy section is then picked by eye.
+const PLUS = process.env.PLUS === '1';
+const PLUS_TITLE = /\b(plus[ -]size|curvy|curve)\b/i;
 const ONLY = (process.env.ONLY ?? '').split(',').map((value) => value.trim()).filter(Boolean);
 const DRESS_FIRST = ['weddings-and-events', 'tops-and-sets:lady-dresses', 'womens-sweaters:womens-sweater-dresses', 'womens-denim:womens-denim-dresses', 'womens-sweatshirts-hoodies:womens-sweatshirt-dresses'];
 const NOT_FOR_STORE = /\b(kids?|child|children|toddler|baby|boys?|pet|dog|cat|pajamas?|pyjamas?|lingerie|costume|cosplay|halloween)\b/i;
@@ -51,11 +54,11 @@ async function main() {
   const summary: string[] = [];
   for (const { group, sub } of slots) {
     if (imported >= MAX_IMPORTS) break;
-    const have = shown(group.slug, sub.slug);
+    const have = PLUS ? 0 : shown(group.slug, sub.slug);
     let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
-    const words = [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
+    const words = PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, 'plus size dress', 'plus size women dress'] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
       for (let page = 1; page <= 5 && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
@@ -65,6 +68,7 @@ async function main() {
         if (!result.items.length) break;
         for (const item of result.items) {
           if (need <= 0 || imported >= MAX_IMPORTS || known.has(item.id)) continue;
+          if (PLUS && !PLUS_TITLE.test(item.name)) continue;
           if (NOT_FOR_STORE.test(item.name) && sub.slug !== 'flower-girl-dresses' && group.slug !== 'couple-parent-child-clothing') continue;
           const fit = suggestStoreCollection(item.name, item.category);
           if (fit?.collection !== group.slug || fit.subcategory !== sub.slug) continue;

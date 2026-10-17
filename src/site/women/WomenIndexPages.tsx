@@ -4,7 +4,7 @@ import type { Product } from '../../types/product';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { useCutouts } from '../../lib/useCutouts';
 import { CATEGORY_GROUPS, categoryPath, titleParts } from '../../lib/categories';
-import { isCurvyProduct } from '../../lib/storefront';
+import { isCurvyLook } from '../../lib/curvyLooks';
 
 type Card = { key: string; label: string; line: string; to: string; items: Product[] };
 
@@ -60,9 +60,9 @@ export function CategoriesPage() {
 export function FitsPage() {
   const { products, loading } = useCatalogProducts();
   const all = women(products);
-  const curvy = all.filter((product) => isCurvyProduct(product));
+  const curvy = all.filter((product) => isCurvyLook(product));
   const cards: Card[] = [
-    { key: 'standard', label: 'Slim fit', line: 'Sizes XS to XL', to: '/shop?fit=standard', items: all.filter((product) => !isCurvyProduct(product)) },
+    { key: 'standard', label: 'Slim fit', line: 'Sizes XS to XL', to: '/shop?fit=standard', items: all.filter((product) => !isCurvyLook(product)) },
     { key: 'curvy', label: 'Curvy plus size', line: 'Sizes 1X and up', to: '/shop?fit=curvy', items: curvy },
     { key: 'all', label: 'All fits', line: 'Every dress in the store', to: '/shop', items: [...all].reverse() }, // reversed so its photo differs from the other two
   ];
@@ -85,7 +85,7 @@ const FIT_SECTIONS = [
 ] as const;
 
 function inFit(product: Product, fit: 'standard' | 'curvy') {
-  return (fit === 'curvy') === isCurvyProduct(product);
+  return (fit === 'curvy') === isCurvyLook(product);
 }
 
 /** /slim and /plus-size: the clothing categories, each opening the shop filtered to that fit. */

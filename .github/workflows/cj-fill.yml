@@ -40,6 +40,7 @@ jobs:
           TARGET: ${{ inputs.target || fromJSON(steps.request.outputs.json).target }}
           MAX_IMPORTS: ${{ inputs.max_imports || fromJSON(steps.request.outputs.json).max_imports }}
           ONLY: ${{ inputs.only || fromJSON(steps.request.outputs.json).only }}
+          PLUS: ${{ fromJSON(steps.request.outputs.json).plus || '' }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
