@@ -1,0 +1,31 @@
+name: Product cutouts
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/3d-fashion-storefront]
+    paths: [scripts/cutouts.py, .github/workflows/cutouts.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  cutouts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "rembg[cpu]==2.0.85" pillow
+      - run: python scripts/cutouts.py
+      - name: Commit cutouts
+        run: |
+          git config user.name "davinova-bot"
+          git config user.email "davinova-bot@users.noreply.github.com"
+          git add public/cutouts public/images
+          git diff --cached --quiet && exit 0
+          git commit -m "Add background-free product cutouts"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
