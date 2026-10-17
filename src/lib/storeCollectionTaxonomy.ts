@@ -184,13 +184,34 @@ export function normalizeStoreText(value: string): string {
     .trim();
 }
 
+/** The men's shop runs on its own list, kept apart so the women's menus and auto-sorting never see it. */
+export const MEN_FORMAL = 'mens-formal';
+export const menStoreCollectionGroups: StoreCollectionGroup[] = [
+  {
+    slug: MEN_FORMAL,
+    label: 'Men’s Formal',
+    subcategories: [
+      subcategory('Wedding Suits', 'wedding suit', 'groom suit', 'groomsmen suit', 'three piece suit', 'slim fit suit', 'business suit'),
+      subcategory('Tuxedos & Dinner Jackets', 'tuxedo', 'dinner jacket', 'evening suit', 'velvet blazer', 'smoking jacket'),
+      subcategory('Linen & Summer Suits', 'linen suit', 'summer suit', 'linen blazer', 'cotton linen suit', 'beach wedding suit'),
+    ],
+  },
+];
+
+/** The men's occasion each men's sub-category belongs to (Wedding, Black tie, Holiday). */
+export const MEN_OCCASION_BY_SUBCATEGORY: Record<string, 'wedding-guest' | 'cocktail-party' | 'maxi-holiday'> = {
+  'wedding-suits': 'wedding-guest',
+  'tuxedos-and-dinner-jackets': 'cocktail-party',
+  'linen-and-summer-suits': 'maxi-holiday',
+};
+
 function hasPhrase(text: string, phrase: string): boolean {
   const normalizedPhrase = normalizeStoreText(phrase);
   return Boolean(normalizedPhrase) && ((' ' + text + ' ').includes(' ' + normalizedPhrase + ' '));
 }
 
 function groupBySlug(slug: string): StoreCollectionGroup | undefined {
-  return storeCollectionGroups.find((group) => group.slug === slug);
+  return storeCollectionGroups.find((group) => group.slug === slug) ?? menStoreCollectionGroups.find((group) => group.slug === slug);
 }
 
 function assignmentFor(groupSlug: string, subcategoryLabel?: string): StoreCollectionAssignment | undefined {

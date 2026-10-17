@@ -11,7 +11,7 @@
  * ONLY (optional comma-separated sub-category slugs).
  */
 import { readFileSync } from 'node:fs';
-import { storeCollectionGroups, suggestStoreCollection } from '../src/lib/storeCollectionTaxonomy.ts';
+import { menStoreCollectionGroups, storeCollectionGroups, suggestStoreCollection } from '../src/lib/storeCollectionTaxonomy.ts';
 
 const SITE = process.env.SITE ?? 'https://feature-3d-fashion-storefron.davinova.pages.dev';
 const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
@@ -20,6 +20,22 @@ const MAX_IMPORTS = Number(process.env.MAX_IMPORTS ?? 120);
 // PLUS=1 looks only for plus-size versions (titles must say so); the curvy section is then picked by eye.
 const PLUS = process.env.PLUS === '1';
 const PLUS_TITLE = /\b(plus[ -]size|curvy|curve)\b/i;
+// MEN=1 fills the men's formal list instead: titles must name men and the sub-category's own garment.
+const MEN = process.env.MEN === '1';
+const MEN_TITLE = /\b(men|mens|men's|male|groom|groomsman|groomsmen|gentleman|gentlemen)\b/i;
+const WOMEN_TITLE = /\b(women|womens|women's|woman|ladies|lady|female|girls?)\b/i;
+const MEN_SEARCH: Record<string, string[]> = {
+  'wedding-suits': ['men wedding suit', 'groom suit', 'men slim fit suit', 'men three piece suit'],
+  'tuxedos-and-dinner-jackets': ['men tuxedo', 'men dinner jacket', 'men velvet blazer', 'men tuxedo suit'],
+  'linen-and-summer-suits': ['men linen suit', 'men summer suit', 'men linen blazer', 'men beach wedding suit'],
+};
+const MEN_FITS: Record<string, RegExp> = {
+  'wedding-suits': /\bsuits?\b/i,
+  'tuxedos-and-dinner-jackets': /\b(tuxedos?|dinner jackets?|smoking jackets?|velvet (blazer|suit)s?)\b/i,
+  'linen-and-summer-suits': /\blinen\b.*\b(suits?|blazers?)\b|\b(suits?|blazers?)\b.*\blinen\b/i,
+};
+// Casual pieces that only borrow the word "suit".
+const NOT_TAILORING = /\b(tracksuit|sweatsuit|swimsuit|jogging|sports? suit|pajama|hoodie|sweat|shorts? suit|t-?shirt)\b/i;
 const ONLY = (process.env.ONLY ?? '').split(',').map((value) => value.trim()).filter(Boolean);
 const DRESS_FIRST = ['weddings-and-events', 'tops-and-sets:lady-dresses', 'womens-sweaters:womens-sweater-dresses', 'womens-denim:womens-denim-dresses', 'womens-sweatshirts-hoodies:womens-sweatshirt-dresses'];
 const NOT_FOR_STORE = /\b(kids?|child|children|toddler|baby|boys?|pet|dog|cat|pajamas?|pyjamas?|lingerie|costume|cosplay|halloween)\b/i;
@@ -46,7 +62,7 @@ async function main() {
   // A product only counts once its photo passed the check (unchecked new imports count too, so re-runs don't over-import).
   const shown = (group: string, sub: string) => catalog.products.filter((product) => product.storeCollection === group && product.storeSubcategory === sub && manifest[product.id] !== null).length;
 
-  const slots = storeCollectionGroups.flatMap((group) => group.subcategories.map((sub) => ({ group, sub })))
+  const slots = (MEN ? menStoreCollectionGroups : storeCollectionGroups).flatMap((group) => group.subcategories.map((sub) => ({ group, sub })))
     .filter(({ sub }) => !ONLY.length || ONLY.includes(sub.slug))
     .sort((a, b) => rank(a.group.slug, a.sub.slug) - rank(b.group.slug, b.sub.slug));
 
@@ -58,7 +74,7 @@ async function main() {
     let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
-    const words = PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, 'plus size dress', 'plus size women dress'] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
+    const words = MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, 'plus size dress', 'plus size women dress'] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
       for (let page = 1; page <= 5 && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
@@ -70,8 +86,14 @@ async function main() {
           if (need <= 0 || imported >= MAX_IMPORTS || known.has(item.id)) continue;
           if (PLUS && !PLUS_TITLE.test(item.name)) continue;
           if (NOT_FOR_STORE.test(item.name) && sub.slug !== 'flower-girl-dresses' && group.slug !== 'couple-parent-child-clothing') continue;
-          const fit = suggestStoreCollection(item.name, item.category);
-          if (fit?.collection !== group.slug || fit.subcategory !== sub.slug) continue;
+          if (MEN) {
+            if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || NOT_TAILORING.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
+            // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.
+            if (sub.slug === 'wedding-suits' && (MEN_FITS['tuxedos-and-dinner-jackets'].test(item.name) || /\blinen\b/i.test(item.name))) continue;
+          } else {
+            const fit = suggestStoreCollection(item.name, item.category);
+            if (fit?.collection !== group.slug || fit.subcategory !== sub.slug) continue;
+          }
           await sleep(1200);
           try {
             await admin('/api/admin/cj-import', { method: 'POST', body: JSON.stringify({ productId: item.id, storeCollection: group.slug, storeSubcategory: sub.slug }) });
