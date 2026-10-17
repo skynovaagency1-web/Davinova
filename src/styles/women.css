@@ -415,7 +415,7 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .nova-collection-card__img--pop { overflow: visible; background: radial-gradient(ellipse at 50% 80%, rgba(255, 240, 215, .35), rgba(255, 240, 215, .06)); position: relative; }
 .nova-collection-card__img--pop img { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 128%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 16px 16px rgba(20, 8, 0, .45)); }
 
-.pv-stage__product--pop img { border-radius: 0 !important; filter: drop-shadow(0 34px 30px rgba(20, 8, 0, .45)); transform-origin: 50% 100%; scale: 1.12; }
+.pv-stage__product--pop img { border-radius: 0 !important; filter: drop-shadow(0 34px 30px rgba(20, 8, 0, .45)); transform-origin: 50% 100%; }
 
 /* ---------- Hanging bag in the footer ---------- */
 .w-footer { position: relative; overflow: visible; }

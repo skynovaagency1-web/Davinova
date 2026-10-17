@@ -14,7 +14,7 @@
 .pv-stage__banner span { display: block; margin-top: 10px; font-size: 14px; opacity: .8; }
 .pv-stage__banner ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 12px; font-size: 13px; white-space: nowrap; }
 .pv-stage__banner li { display: flex; align-items: center; gap: 8px; }
-.pv-stage__product { position: relative; width: min(60%, 470px); aspect-ratio: 3 / 4; margin-top: -44px; display: grid; place-items: center; }
+.pv-stage__product { position: relative; width: min(40%, 320px); aspect-ratio: 3 / 4; margin-top: -44px; display: grid; place-items: center; }
 .pv-stage__product::after { content: ''; position: absolute; z-index: -1; left: 14%; right: 14%; bottom: -16px; height: 34px; border-radius: 50%; background: radial-gradient(closest-side, rgba(35, 20, 10, .32), transparent); filter: blur(4px); }
 .pv-stage__product img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 30px 30px rgba(35, 20, 8, .16)); animation: pv-pop .6s cubic-bezier(.2,.7,.2,1); }
 .pv-stage__missing { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 24px; background: rgba(255,255,255,.6); color: var(--muted); font-size: 13px; }
@@ -103,7 +103,7 @@
   .pv-stage { min-height: 0; padding: 12px 12px 110px; }
   .pv-stage__banner { flex-direction: column; padding: 22px 20px 70px; }
   .pv-stage__banner ul { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; }
-  .pv-stage__product { width: 86%; margin-top: -54px; }
+  .pv-stage__product { width: 70%; margin-top: -54px; }
   .pv-callout { position: relative; left: auto; top: auto; flex-direction: row; align-items: baseline; gap: 8px; max-width: none; margin-top: 12px; align-self: flex-start; }
   .pv-callout svg, .pv-stage__number { display: none; }
   .pv-stage__thumbs button { width: 46px; height: 58px; }

@@ -92,7 +92,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
         <div className={`pv-stage__product${index === 0 && cutout ? ' pv-stage__product--pop' : ''}`}>
           {photo?.url && !broken
             // Floating loop adapted from "Product Bounce Card" (ruixen.ui, 21st.dev), slowed down for clothing.
-            ? <motion.img key={photo.url} src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -14, 0], rotateY: [0, 4, -4, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} style={{ transformStyle: 'preserve-3d' }} />
+            ? <motion.img key={photo.url} src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} />
             : <div className="pv-stage__missing">Photo coming soon</div>}
         </div>
         {specs.slice(0, 2).map(([label, value], i) => <span key={label} className={`pv-callout pv-callout--${i + 1}`}><b>{value}</b>{label}<svg viewBox="0 0 120 40" aria-hidden="true"><path d={i ? 'M4 6 C30 2 34 30 60 22 S100 30 116 36' : 'M4 30 C24 40 40 8 64 18 S98 4 116 10'} /></svg></span>)}
