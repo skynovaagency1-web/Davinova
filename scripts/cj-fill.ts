@@ -51,20 +51,20 @@ const JEWELRY_SEARCH: Record<string, string[]> = {
   'mens-watches': ['men watch', 'men quartz watch', 'men luxury watch', 'men chronograph watch'],
 };
 const JEWELRY_FITS: Record<string, RegExp> = {
-  'bridal-sets': /(bridal|wedding|bride).*(sets?|necklace)|(sets?|necklace).*(bridal|wedding|bride)/i,
-  'wedding-hair': /(tiaras?|crowns?|hair ?(comb|pin|clip|vine|band)s?|hairpins?|headpieces?)/i,
-  'engagement-rings': /(engagement|wedding|proposal|moissanite|solitaire).*rings?|rings?.*(engagement|wedding|proposal)/i,
-  fashion: /(earrings?|necklaces?|bracelets?|bangles?|pendants?|chokers?)/i,
-  fine: /(925|sterling|18k|14k|solid gold|pearls?|moissanite)/i,
-  'womens-watches': /watch(es)?/i,
-  'mens-wedding-bands': /rings?|bands?/i,
-  cufflinks: /(cuff ?links?|tie (clip|bar|pin)s?)/i,
-  'mens-chains-bracelets': /(chains?|bracelets?|necklaces?)/i,
-  'mens-watches': /watch(es)?/i,
+  'bridal-sets': /\b(bridal|wedding|bride)\b.*\b(sets?|necklace)\b|\b(sets?|necklace)\b.*\b(bridal|wedding|bride)\b/i,
+  'wedding-hair': /\b(tiaras?|crowns?|hair ?(comb|pin|clip|vine|band)s?|hairpins?|headpieces?)\b/i,
+  'engagement-rings': /\b(engagement|wedding|proposal|moissanite|solitaire)\b.*\brings?\b|\brings?\b.*\b(engagement|wedding|proposal)\b/i,
+  fashion: /\b(earrings?|necklaces?|bracelets?|bangles?|pendants?|chokers?)\b/i,
+  fine: /\b(925|sterling|18k|14k|solid gold|pearls?|moissanite)\b/i,
+  'womens-watches': /\bwatch(es)?\b/i,
+  'mens-wedding-bands': /\brings?\b|\bbands?\b/i,
+  cufflinks: /\b(cuff ?links?|tie (clip|bar|pin)s?)\b/i,
+  'mens-chains-bracelets': /\b(chains?|bracelets?|necklaces?)\b/i,
+  'mens-watches': /\bwatch(es)?\b/i,
 };
 const MEN_PIECES = ['mens-wedding-bands', 'mens-chains-bracelets', 'mens-watches'];
 // Things that share jewelry words but are not jewelry (or are for kids, pets, phones).
-const NOT_JEWELRY = /(smart ?watch|watch ?band|watch ?strap|phone ?case|jewelry ?box|storage|display|stand|organizer|holder|tool|kit|beads? for|diy|keychain|key ?ring|nose|belly|tattoo|smart)/i;
+const NOT_JEWELRY = /\b(smart ?watch|watch ?band|watch ?strap|phone ?case|jewelry ?box|storage|display|stand|organizer|holder|tool|kit|beads? for|diy|keychain|key ?ring|nose|belly|tattoo|smart)\b/i;
 const ONLY = (process.env.ONLY ?? '').split(',').map((value) => value.trim()).filter(Boolean);
 const DRESS_FIRST = ['weddings-and-events', 'tops-and-sets:lady-dresses', 'womens-sweaters:womens-sweater-dresses', 'womens-denim:womens-denim-dresses', 'womens-sweatshirts-hoodies:womens-sweatshirt-dresses'];
 const NOT_FOR_STORE = /\b(kids?|child|children|toddler|baby|boys?|pet|dog|cat|pajamas?|pyjamas?|lingerie|costume|cosplay|halloween)\b/i;
