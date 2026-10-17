@@ -205,13 +205,37 @@ export const MEN_OCCASION_BY_SUBCATEGORY: Record<string, 'wedding-guest' | 'cock
   'linen-and-summer-suits': 'maxi-holiday',
 };
 
+/** Jewelry & Watches for both shops, also kept apart from the women's clothing list. Slugs match the Jewelry & Watches menu. */
+export const JEWELRY_COLLECTION = 'jewelry-and-watches';
+const jewelrySub = (slug: string, label: string, ...matchTerms: string[]): StoreSubcategoryOption => ({ slug, label, matchTerms: [label, ...matchTerms] });
+export const jewelryStoreCollectionGroups: StoreCollectionGroup[] = [
+  {
+    slug: JEWELRY_COLLECTION,
+    label: 'Jewelry & Watches',
+    subcategories: [
+      jewelrySub('bridal-sets', 'Bridal Jewelry Sets', 'bridal jewelry set', 'wedding jewelry set'),
+      jewelrySub('wedding-hair', 'Wedding Hair Jewelry', 'tiara', 'bridal hair comb', 'bridal hairpin'),
+      jewelrySub('engagement-rings', 'Engagement Rings', 'engagement ring', 'moissanite ring'),
+      jewelrySub('fashion', 'Fashion Jewelry', 'statement earrings', 'statement necklace'),
+      jewelrySub('fine', 'Fine Jewelry', '925 silver necklace', 'pearl earrings'),
+      jewelrySub('womens-watches', 'Women’s Watches', 'women watch', 'ladies watch'),
+      jewelrySub('mens-wedding-bands', 'Men’s Wedding Bands', 'men wedding band', 'men ring'),
+      jewelrySub('cufflinks', 'Cufflinks & Tie Clips', 'cufflinks', 'tie clip'),
+      jewelrySub('mens-chains-bracelets', 'Men’s Chains & Bracelets', 'men chain necklace', 'men bracelet'),
+      jewelrySub('mens-watches', 'Men’s Watches', 'men watch', 'men wrist watch'),
+    ],
+  },
+];
+export const MEN_JEWELRY = ['mens-wedding-bands', 'cufflinks', 'mens-chains-bracelets', 'mens-watches'];
+
 function hasPhrase(text: string, phrase: string): boolean {
   const normalizedPhrase = normalizeStoreText(phrase);
   return Boolean(normalizedPhrase) && ((' ' + text + ' ').includes(' ' + normalizedPhrase + ' '));
 }
 
 function groupBySlug(slug: string): StoreCollectionGroup | undefined {
-  return storeCollectionGroups.find((group) => group.slug === slug) ?? menStoreCollectionGroups.find((group) => group.slug === slug);
+  return storeCollectionGroups.find((group) => group.slug === slug) ?? menStoreCollectionGroups.find((group) => group.slug === slug)
+    ?? jewelryStoreCollectionGroups.find((group) => group.slug === slug);
 }
 
 function assignmentFor(groupSlug: string, subcategoryLabel?: string): StoreCollectionAssignment | undefined {
