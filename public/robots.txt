@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
-Sitemap: https://example.com/sitemap.xml
+Disallow: /admin/
+Disallow: /cart
+Disallow: /approve-cj
+
+Sitemap: https://davinova.com/sitemap.xml

@@ -3,3 +3,11 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# The one-time CJ owner-approval token is carried in this page's URL query string.
+# strict-origin-when-cross-origin sends the full URL (including the token) as the
+# Referer header on same-origin requests, such as this page's own JS/CSS chunks,
+# so it can end up in Cloudflare's own access logs. Use the strictest policy here.
+/approve-cj*
+  ! Referrer-Policy
+  Referrer-Policy: no-referrer

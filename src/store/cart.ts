@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Product, DressSize } from '../types/product';
+import type { Product, ProductSize } from '../types/product';
 
-export interface CartItem { productId: string; size: DressSize; quantity: number }
+export interface CartItem { productId: string; size: ProductSize; quantity: number }
 interface CartState {
   items: CartItem[];
-  add: (product: Product, size: DressSize, quantity?: number) => void;
-  remove: (productId: string, size: DressSize) => void;
-  setQuantity: (productId: string, size: DressSize, quantity: number) => void;
+  add: (product: Product, size: ProductSize, quantity?: number) => void;
+  remove: (productId: string, size: ProductSize) => void;
+  setQuantity: (productId: string, size: ProductSize, quantity: number) => void;
   clear: () => void;
 }
 
