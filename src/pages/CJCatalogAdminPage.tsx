@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { collectionOptions, suggestCollectionCategory, type StoreCollectionCategory } from '../lib/collectionSuggestions';
+import { suggestCollectionCategory, type StoreCollectionCategory } from '../lib/collectionSuggestions';
 import {
   findStoreCollectionGroup,
   manualStoreCollectionAssignment,
@@ -97,7 +97,7 @@ export function CJCatalogAdminPage() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
-  const [collectionAssignments, setCollectionAssignments] = useState<Record<string, StoreCollectionCategory>>({});
+  const [collectionAssignments] = useState<Record<string, StoreCollectionCategory>>({});
   const [storeAssignments, setStoreAssignments] = useState<Record<string, CategorySelection>>({});
   const [needsReviewProducts, setNeedsReviewProducts] = useState<NeedsReviewProduct[]>([]);
   const [reviewAssignments, setReviewAssignments] = useState<Record<string, CategorySelection>>({});
@@ -371,10 +371,6 @@ export function CJCatalogAdminPage() {
     }
     const assignedCollection = collectionFor(product);
     const assignedStore = storeCollectionFor(product);
-    if (!assignedCollection) {
-      setError('Choose an occasion collection for this product before adding it to Davinova.');
-      return;
-    }
     if (!assignedStore?.subcategory) {
       setError('Choose a clothing collection and one of its subcategories before adding this product.');
       return;
@@ -409,8 +405,8 @@ export function CJCatalogAdminPage() {
 
   async function importSelected() {
     const selected = results.filter((product) => selectedIds[product.id] && !importedIds[product.id]);
-    const ready = selected.filter((product) => Boolean(collectionFor(product)) && Boolean(storeCollectionFor(product)?.subcategory));
-    const awaitingCollection = selected.filter((product) => !collectionFor(product) || !storeCollectionFor(product)?.subcategory);
+    const ready = selected.filter((product) => Boolean(storeCollectionFor(product)?.subcategory));
+    const awaitingCollection = selected.filter((product) => !storeCollectionFor(product)?.subcategory);
     if (!adminPassword) {
       setError('Enter the Davinova admin password configured in Cloudflare first.');
       return;
@@ -420,7 +416,7 @@ export function CJCatalogAdminPage() {
       return;
     }
     if (ready.length === 0) {
-      setError('Choose an occasion collection and a clothing collection/subcategory for each selected product.');
+      setError('Choose a category and sub-category for each selected product.');
       return;
     }
 
@@ -435,7 +431,7 @@ export function CJCatalogAdminPage() {
         const product = ready[index];
         const assignedCollection = collectionFor(product);
         const assignedStore = storeCollectionFor(product);
-        if (!assignedCollection || !assignedStore?.subcategory) continue;
+        if (!assignedStore?.subcategory) continue;
         setBatchProgress(`Adding ${index + 1} of ${ready.length}: ${product.name}`);
         try {
           const response = await fetch('/api/admin/cj-import', {
@@ -589,8 +585,6 @@ export function CJCatalogAdminPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 16, marginTop: 16 }}>
             {results.map((product) => {
               const detail = details[product.id];
-              const suggestedCollection = suggestCollectionCategory(product.name, product.category, detail?.description);
-              const selectedCollection = collectionFor(product) ?? '';
               const selectedStoreAssignment = storeCollectionFor(product);
               const selectedStoreGroup = storeAssignments[product.id]?.collection ?? selectedStoreAssignment?.collection ?? '';
               const selectedStoreSubcategory = storeAssignments[product.id]?.subcategory ?? selectedStoreAssignment?.subcategory ?? '';
@@ -604,21 +598,6 @@ export function CJCatalogAdminPage() {
                   </label>
                   <p style={{ textTransform: 'uppercase', letterSpacing: '.12em', fontSize: 10, color: '#82756d' }}>{product.category || 'CJ catalogue'}</p>
                   <h3 style={{ fontSize: 17, fontWeight: 600, lineHeight: 1.4, margin: '6px 0 10px' }}>{product.name}</h3>
-                  <div style={{ marginTop: 12, padding: 11, background: '#f7f1ec', borderRadius: 8 }}>
-                    <label htmlFor={`collection-${product.id}`} style={{ display: 'block', fontSize: 12, fontWeight: 600, marginBottom: 6 }}>Occasion collection</label>
-                    <select id={`collection-${product.id}`} value={selectedCollection} onChange={(event) => setCollectionAssignments((current) => {
-                      const next = { ...current };
-                      if (event.target.value) next[product.id] = event.target.value as StoreCollectionCategory;
-                      else delete next[product.id];
-                      return next;
-                    })} style={{ width: '100%', padding: '9px 10px', border: '1px solid #d8cbc1', borderRadius: 7, background: '#fff', fontSize: 13 }}>
-                      <option value="">Choose collection manually…</option>
-                      {collectionOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-                    </select>
-                    <p style={{ fontSize: 11, lineHeight: 1.5, color: '#746960', margin: '6px 0 0' }}>
-                      {collectionAssignments[product.id] ? 'Manually selected.' : suggestedCollection ? 'Suggested from the CJ title/category or inspected description.' : 'No clear match found. Choose a collection before adding this dress.'}
-                    </p>
-                  </div>
                   <div style={{ marginTop: 12, padding: 11, background: '#f7f1ec', borderRadius: 8 }}>
                     <label htmlFor={`store-collection-${product.id}`} style={{ display: 'block', fontSize: 12, fontWeight: 600, marginBottom: 6 }}>Clothing collection</label>
                     <select
@@ -668,7 +647,7 @@ export function CJCatalogAdminPage() {
                       </div>)}
                     </div>}
                     <p style={{ color: '#82756d', fontSize: 12, lineHeight: 1.5, marginTop: 12 }}>Before any draft can be published, we still need to verify stock, real-world size mapping, shipping to France, total landed cost, and commercial image rights.</p>
-                    <button type="button" onClick={() => saveDraft(product)} disabled={busy || !selectedCollection || !selectedStoreSubcategory} style={{ marginTop: 8, padding: '12px 14px', border: 0, borderRadius: 8, background: importedIds[product.id] ? '#e2e8de' : '#292522', color: importedIds[product.id] ? '#466543' : '#fff', cursor: busy || !selectedCollection || !selectedStoreSubcategory ? 'not-allowed' : 'pointer', opacity: busy || !selectedCollection || !selectedStoreSubcategory ? .65 : 1 }}>
+                    <button type="button" onClick={() => saveDraft(product)} disabled={busy || !selectedStoreSubcategory} style={{ marginTop: 8, padding: '12px 14px', border: 0, borderRadius: 8, background: importedIds[product.id] ? '#e2e8de' : '#292522', color: importedIds[product.id] ? '#466543' : '#fff', cursor: busy || !selectedStoreSubcategory ? 'not-allowed' : 'pointer', opacity: busy || !selectedStoreSubcategory ? .65 : 1 }}>
                       {importedIds[product.id] ? 'Update collection' : busy ? 'Adding to website…' : 'Add to website (browse only)'}
                     </button>
                     {importedIds[product.id] && <p role="status" style={{ fontSize: 12, color: '#466543', marginTop: 8 }}>Saved in Davinova as {importedIds[product.id]}. Visible to browse, but unavailable to purchase.</p>}

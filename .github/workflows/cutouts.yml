@@ -9,6 +9,8 @@ on:
 permissions:
   contents: write
 
+concurrency: cutouts
+
 jobs:
   cutouts:
     runs-on: ubuntu-latest

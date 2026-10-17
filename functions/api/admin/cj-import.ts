@@ -40,6 +40,7 @@ function hasExtendedSizeEvidence(values: string[]): boolean {
 
 function detectDepartment(values: string[]): 'women' | 'men' {
   const metadata = values.join(' ').toLowerCase();
+  if (/\b(women|womens|women's|woman|ladies|lady|female|girls?)\b/.test(metadata)) return 'women';
   return /\b(men's|mens|men |for men|groom|groomsman|suit|blazer|tuxedo)\b/.test(metadata) ? 'men' : 'women';
 }
 
@@ -66,22 +67,20 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
   catch { return json({ error: 'Send a valid JSON request.' }, 400); }
 
   const productId = typeof body.productId === 'string' ? body.productId.trim() : '';
-  const collectionCategory = body.collectionCategory;
   if (!productId || !/^[a-zA-Z0-9-]{1,200}$/.test(productId)) {
     return json({ error: 'A valid CJ product ID is required.' }, 400);
   }
-  if (typeof collectionCategory !== 'string' || !categories.includes(collectionCategory as CollectionCategory)) {
-    return json({ error: 'Choose an occasion collection: Wedding Guest, Cocktail & Party, or Maxi & Holiday.' }, 400);
-  }
   const storeCollection = typeof body.storeCollection === 'string' ? body.storeCollection : '';
   const storeSubcategory = typeof body.storeSubcategory === 'string' ? body.storeSubcategory : '';
-  if (Boolean(storeCollection) !== Boolean(storeSubcategory)
-    || (storeCollection && !storeCollectionAssignmentIsValid(storeCollection, storeSubcategory))) {
-    return json({ error: 'Choose both a clothing collection and one of its subcategories.' }, 400);
+  if (!storeCollection || !storeSubcategory || !storeCollectionAssignmentIsValid(storeCollection, storeSubcategory)) {
+    return json({ error: 'Choose one of your categories and one of its sub-categories.' }, 400);
   }
-  const storeAssignment = storeCollection && storeSubcategory
-    ? manualStoreCollectionAssignment(storeCollection, storeSubcategory)
-    : undefined;
+  // The shop runs on the owner's categories. The old occasion column is still required by the database,
+  // so it is filled from the sub-category unless one is sent.
+  const collectionCategory: CollectionCategory = typeof body.collectionCategory === 'string' && categories.includes(body.collectionCategory as CollectionCategory)
+    ? body.collectionCategory as CollectionCategory
+    : storeSubcategory === 'cocktail-dresses' || storeSubcategory === 'prom-dresses' ? 'cocktail-party' : 'wedding-guest';
+  const storeAssignment = manualStoreCollectionAssignment(storeCollection, storeSubcategory);
   const manualStoreAssignment = body.storeCollectionManual === true;
 
   try {
