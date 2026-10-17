@@ -40,7 +40,7 @@ async function admin<T>(path: string, init: RequestInit = {}): Promise<T> {
 
 async function main() {
   if (!PASSWORD) throw new Error('Add the DAVINOVA_ADMIN_PASSWORD secret to the GitHub repository first.');
-  const catalog = await (await fetch(SITE + '/api/catalog')).json() as { products: { id: string; cjProductId?: string; storeCollection?: string; storeSubcategory?: string }[] };
+  const catalog = await (await fetch(SITE + '/api/catalog?all=1')).json() as { products: { id: string; cjProductId?: string; storeCollection?: string; storeSubcategory?: string }[] };
   const manifest = JSON.parse(readFileSync('public/cutouts/manifest.json', 'utf8')) as Record<string, string | null>;
   const known = new Set(catalog.products.map((product) => product.cjProductId).filter(Boolean));
   // A product only counts once its photo passed the check (unchecked new imports count too, so re-runs don't over-import).
