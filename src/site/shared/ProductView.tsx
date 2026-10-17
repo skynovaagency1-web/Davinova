@@ -12,16 +12,27 @@ import type { Product, ProductSize } from '../../types/product';
 
 type Variant = 'women' | 'men';
 
+// Keyed by the product's sub-category, then its category, then the shelf (watches, jewelry).
 const usesByCollection: Record<string, string[]> = {
-  'wedding-guest': ['for the ceremony', 'for the reception', 'for the after-party'],
-  'cocktail-party': ['for cocktail hour', 'for the party', 'for date night'],
-  'maxi-holiday': ['for the holiday', 'for garden parties', 'for summer weddings'],
-  evening: ['for black tie', 'for the gala', 'for the reception'],
-  bridal: ['for the ceremony', 'for the photos', 'for your first dance'],
-  everyday: ['for brunch', 'for the office', 'for the weekend'],
+  'cocktail-dresses': ['for cocktail hour', 'for the party', 'for date night'],
+  'evening-dresses': ['for black tie', 'for the gala', 'for the reception'],
+  'wedding-dresses': ['for the ceremony', 'for the photos', 'for your first dance'],
+  'bridesmaid-dresses': ['for the ceremony', 'for the reception', 'for the photos'],
+  'prom-dresses': ['for prom night', 'for the photos', 'for the after-party'],
+  'flower-girl-dresses': ['for the aisle', 'for the photos', 'for the reception'],
+  'weddings-and-events': ['for the ceremony', 'for the reception', 'for the after-party'],
+  'couple-parent-child-clothing': ['for family photos', 'for the holidays', 'for days out together'],
+  'womens-sweaters': ['for cool evenings', 'for the weekend', 'for travel'],
+  'womens-denim': ['for brunch', 'for the weekend', 'for travel'],
+  'tops-and-sets': ['for brunch', 'for the office', 'for the weekend'],
   watches: ['for every day', 'for the occasion', 'as a gift'],
 };
-const wordByCollection: Record<string, string> = { 'wedding-guest': 'Guest', 'cocktail-party': 'Cocktail', 'maxi-holiday': 'Holiday', evening: 'Evening', bridal: 'Bridal', everyday: 'Everyday', watches: 'Time' };
+const wordByCollection: Record<string, string> = {
+  'cocktail-dresses': 'Cocktail', 'evening-dresses': 'Evening', 'wedding-dresses': 'Bridal', 'bridesmaid-dresses': 'Bridesmaid', 'prom-dresses': 'Prom', 'flower-girl-dresses': 'Flower girl',
+  'weddings-and-events': 'Occasion', 'couple-parent-child-clothing': 'Together', 'womens-sweaters': 'Knit', 'womens-denim': 'Denim', 'tops-and-sets': 'Everyday', accessories: 'Finish', watches: 'Time',
+};
+const keysOf = (item: Product) => [item.storeSubcategory, item.storeCollection, item.shelf].filter((key): key is string => Boolean(key));
+const lookup = <T,>(table: Record<string, T>, item: Product) => keysOf(item).map((key) => table[key]).find((value) => value !== undefined);
 
 /** Product page shared by both storefronts: a poster-style stage, then the buying panel. */
 export function ProductView({ variant }: { variant: Variant }) {
@@ -55,13 +66,13 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const photo = index === 0 && cutout ? { url: cutout, alt: photos[0]?.alt ?? product.title } : photos[index] ?? photos[0];
   const isWoo = isWooCommerceProduct(product);
   const canBuy = isWoo ? isProductPurchasable(product) : !product.browseOnly && product.supplierVerified && product.sizes.length > 0;
-  const word = variant === 'men' ? 'Formal' : wordByCollection[product.shelf ?? product.collectionCategory] ?? 'Occasion';
-  const uses = variant === 'men' ? ['for the wedding', 'for the dinner', 'for the gala'] : usesByCollection[product.shelf ?? product.collectionCategory] ?? usesByCollection['wedding-guest'];
+  const word = variant === 'men' ? 'Formal' : lookup(wordByCollection, product) ?? 'Occasion';
+  const uses = variant === 'men' ? ['for the wedding', 'for the dinner', 'for the gala'] : lookup(usesByCollection, product) ?? usesByCollection['weddings-and-events'];
   const specs = ([['Colour', product.color], ['Length', product.length], ['Neckline', product.neckline], ['Sleeve', product.sleeve]] as [string, string | undefined][])
     .filter((entry): entry is [string, string] => Boolean(entry[1]));
   const bigNumber = product.sizes.length > 1 ? { value: product.sizes.length, label: 'sizes to choose from' }
     : photos.length > 1 ? { value: photos.length, label: 'angles to explore' } : null;
-  const related = products.filter((item) => item.id !== product.id && item.department === product.department && (item.shelf ?? item.collectionCategory) === (product.shelf ?? product.collectionCategory) && item.images[0]?.url).slice(0, 8);
+  const related = products.filter((item) => item.id !== product.id && item.department === product.department && (product.storeCollection ? item.storeCollection === product.storeCollection : item.shelf === product.shelf) && item.images[0]?.url).slice(0, 8);
   const price = canBuy || isWoo ? formatMoney(product.priceCents, product.currency) : 'Coming soon';
 
   function addToBag() {
@@ -92,7 +103,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
       </div>
 
       <aside className="pv-buy">
-        <span className="pv-buy__tag">{variant === 'men' ? 'Men · Formal' : (product.shelf ?? product.collectionCategory).replace('-', ' ')}</span>
+        <span className="pv-buy__tag">{variant === 'men' ? 'Men · Formal' : (product.storeSubcategoryLabel ?? product.storeCollectionLabel ?? 'Occasion')}</span>
         <h1>{product.title}</h1>
         <div className="pv-buy__price">{price}{canBuy && product.compareAtCents && <del>{formatMoney(product.compareAtCents, product.currency)}</del>}</div>
         {product.description && <p className="pv-buy__desc">{product.description}</p>}

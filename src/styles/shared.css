@@ -188,6 +188,11 @@
 .w-mega__cols { display: grid; grid-template-columns: repeat(3, auto); gap: 8px 18px; align-items: start; }
 .w-mega__cols .w-mega__links { align-content: start; min-width: 180px; }
 .w-mega__group { padding: 6px 12px 4px; font: 600 11px 'IBM Plex Mono', monospace; letter-spacing: .14em; text-transform: uppercase; opacity: .6; }
+.w-mega__cols--cats { grid-template-columns: repeat(5, minmax(170px, 1fr)); gap: 14px 10px; max-height: min(72vh, 640px); overflow-y: auto; width: min(1040px, calc(100vw - 200px)); }
+.w-mega__cols--cats .w-mega__links { min-width: 0; gap: 1px; }
+.w-mega__cols--cats .w-mega__links a { padding: 5px 12px; font-size: 13px; line-height: 1.25; }
+.w-mega__cols--cats a.w-mega__group { opacity: .9; color: inherit; }
+.w-mega__cols--cats a.is-empty { opacity: .45; }
 .drawer-sub { display: grid; gap: 2px; margin: -4px 0 10px 4px; padding-left: 14px; border-left: 1px solid currentColor; opacity: .85; }
 .w-drawer .drawer-sub a { font: 500 17px/1.6 var(--nova-display); letter-spacing: 0; }
 .w-drawer .drawer-about { font: 600 18px/1.4 var(--nova-display); opacity: .85; }

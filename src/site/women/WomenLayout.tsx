@@ -8,15 +8,12 @@ import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
 import { HangingBag } from '../shared/HangingBag';
+import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 
 const links = [
   ['/shop', 'Shop'],
-  ['/shop?occasion=wedding-guest', 'Wedding guest'],
-  ['/shop?occasion=cocktail-party', 'Cocktail'],
-  ['/shop?occasion=maxi-holiday', 'Holiday'],
-  ['/shop?occasion=evening', 'Evening'],
-  ['/shop?occasion=bridal', 'Bridal'],
+  ...CATEGORY_GROUPS.map((group) => [categoryPath(group.slug), group.label] as const),
   ['/shop?fit=curvy', 'Curvy'],
   ['/jewelry', 'Jewelry & Watches'],
 ] as const;
