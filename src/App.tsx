@@ -11,6 +11,8 @@ const MenShop = lazy(() => import('./site/men/MenShop').then((m) => ({ default: 
 const ProductView = lazy(() => import('./site/shared/ProductView').then((m) => ({ default: m.ProductView })));
 const BagView = lazy(() => import('./site/shared/BagView').then((m) => ({ default: m.BagView })));
 const OrderConfirmationPage = lazy(() => import('./pages/OrderConfirmationPage'));
+const CategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.CategoriesPage })));
+const FitsPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.FitsPage })));
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
 const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
 const InfoPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.InfoPage })));
@@ -39,6 +41,8 @@ export default function App() {
       <Route element={<WomenLayout />}>
         <Route index element={menHost ? <Navigate to="/men" replace /> : <WomenHome />} />
         <Route path="shop" element={<WomenShop />} />
+        <Route path="categories" element={<CategoriesPage />} />
+        <Route path="fits" element={<FitsPage />} />
         <Route path="watches" element={<WatchesPage />} />
         <Route path="jewelry" element={<JewelryPage dept="women" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
