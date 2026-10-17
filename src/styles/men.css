@@ -126,3 +126,15 @@
 .m-footer { background: linear-gradient(180deg, #2a2a2c 0%, #111113 100%); }
 .pv--men { --banner: linear-gradient(120deg, #111113 0%, #3a3a3d 60%, #6a6a6e 100%); }
 .pv--men .pv-buy__cta:not(:disabled), .bag--men .bag__cta { background: linear-gradient(135deg, #3d3d40 0%, #121214 100%); }
+
+/* Dress code, decoded */
+.m-codes { padding: clamp(40px, 5vw, 70px) clamp(14px, 2.6vw, 40px) 0; }
+.m-codes__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--m-line); }
+.m-code { display: grid; gap: 10px; align-content: start; padding: 26px 22px; border-right: 1px solid var(--m-line); }
+.m-code:last-child { border-right: 0; }
+.m-code i { font: 500 12px var(--m-mono); font-style: normal; opacity: .55; }
+.m-code strong { font: 800 26px/1 var(--m-display); font-stretch: 80%; }
+.m-code p { margin: 0; font: 400 13px/1.6 var(--m-mono); opacity: .75; }
+@media (max-width: 860px) { .m-codes__grid { grid-template-columns: 1fr 1fr; } .m-code:nth-child(2) { border-right: 0; } }
+.m-split-wrap .split { margin-inline: clamp(14px, 2.6vw, 40px); }
+.m-split-wrap .split__door { border-radius: 0; }

@@ -4,6 +4,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { Logo } from '../shared/Logo';
+import { DeptSwitch } from '../shared/DeptSwitch';
 
 const links = [
   ['/men/shop', 'All formal'],
@@ -25,6 +26,7 @@ export function MenLayout() {
   }, [pathname, search]);
 
   return <div className="m-shell">
+    <DeptSwitch active="men" />
     <header className="m-header">
       <button type="button" className="m-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
       <Link to="/men" className="m-wordmark" aria-label="Davinova Homme home"><Logo tone="metal" sub="HOMME" /></Link>

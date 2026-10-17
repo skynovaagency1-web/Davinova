@@ -1,29 +1,29 @@
 /* Women's storefront: lilac, glass, bold split type. */
 :root {
-  --nova-ink: #141018;
-  --nova-lilac: #6b4bd6;
-  --nova-lilac-soft: #9a7ff0;
-  --nova-panel: linear-gradient(135deg, #8f72ee 0%, #7a5be3 55%, #a38af3 100%);
-  --nova-canvas: #f4f1fb;
-  --nova-muted: #8d86a0;
+  --nova-ink: #22140b;
+  --nova-lilac: #a0561a;
+  --nova-lilac-soft: #d9a25a;
+  --nova-panel: linear-gradient(135deg, #8a4a1a 0%, #b8661e 55%, #d9a04a 100%);
+  --nova-canvas: #f5ece0;
+  --nova-muted: #9a8470;
   --nova-display: 'Archivo', 'DM Sans', sans-serif;
 }
 
 .glass {
   background: rgba(255, 255, 255, .26);
   border: 1px solid rgba(255, 255, 255, .6);
-  box-shadow: 0 18px 40px rgba(40, 20, 90, .14), inset 0 1px 0 rgba(255, 255, 255, .5);
+  box-shadow: 0 18px 40px rgba(45, 22, 8, .14), inset 0 1px 0 rgba(255, 255, 255, .5);
   backdrop-filter: blur(18px) saturate(1.4);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
 }
 .nova-chip { display: inline-flex; align-items: center; gap: 7px; font: 600 12px/1 var(--nova-display); color: inherit; opacity: .9; }
 .nova-pill-button { display: inline-flex; align-items: center; gap: 16px; padding: 7px 7px 7px 22px; border-radius: 999px; background: var(--nova-ink); color: #fff; font: 600 14px/1 var(--nova-display); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s; }
 .nova-pill-button span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.7); transition: transform .3s; }
-.nova-pill-button:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(20,16,24,.3); }
+.nova-pill-button:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(34,20,11,.3); }
 .nova-pill-button:hover span { transform: rotate(-45deg); }
 
 /* ---------- Hero ---------- */
-.nova-hero { position: relative; margin: 16px clamp(12px, 2.6vw, 40px) 0; padding: clamp(26px, 3vw, 44px) clamp(22px, 3vw, 44px) clamp(22px, 2.4vw, 34px); border-radius: 36px; background: #fdfcff; box-shadow: 0 30px 80px rgba(80, 50, 160, .12); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 26px 0; min-height: min(780px, 92vh); isolation: isolate; color: var(--nova-ink); }
+.nova-hero { position: relative; margin: 16px clamp(12px, 2.6vw, 40px) 0; padding: clamp(26px, 3vw, 44px) clamp(22px, 3vw, 44px) clamp(22px, 2.4vw, 34px); border-radius: 36px; background: #fffaf3; box-shadow: 0 30px 80px rgba(90, 50, 15, .12); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 26px 0; min-height: min(780px, 92vh); isolation: isolate; color: var(--nova-ink); }
 .nova-hero__title { margin: 0; display: flex; flex-direction: column; line-height: .86; letter-spacing: -.035em; z-index: 3; position: relative; }
 .nova-hero__title i { font: italic 800 clamp(26px, 3.4vw, 54px)/1 var(--nova-display); }
 .nova-hero__title b { font: 900 clamp(54px, 8.2vw, 132px)/.9 var(--nova-display); font-stretch: 112%; color: var(--nova-lilac); }
@@ -43,7 +43,7 @@
 .nova-hero__side { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 40px; }
 .nova-hero__perks { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; font-size: 11px; text-align: center; line-height: 1.25; }
 .nova-hero__perks li { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.nova-feature-card { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 210px; padding: 12px 12px 14px; border-radius: 24px; background: #fff; color: var(--nova-ink); box-shadow: 0 20px 50px rgba(40, 20, 90, .25); text-align: center; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.nova-feature-card { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 210px; padding: 12px 12px 14px; border-radius: 24px; background: #fff; color: var(--nova-ink); box-shadow: 0 20px 50px rgba(45, 22, 8, .25); text-align: center; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
 .nova-feature-card:hover { transform: translateY(-4px) rotate(-1deg); }
 .nova-feature-card__label { font: 600 12px/1 var(--nova-display); color: #fff; position: absolute; top: -22px; }
 .nova-feature-card__img { width: 100%; aspect-ratio: 1; border-radius: 18px; overflow: hidden; background: #efeaff; }
@@ -52,10 +52,10 @@
 .nova-feature-card__price { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: var(--nova-lilac); color: #fff; font: 600 12px/1 var(--nova-display); }
 
 .nova-hero__model { position: absolute; z-index: 2; left: 50%; bottom: clamp(22px, 2.4vw, 34px); width: clamp(260px, 30vw, 420px); height: calc(100% - 70px); transform: translateX(-50%); }
-.nova-hero__model img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; border-radius: 999px 999px 28px 28px; box-shadow: 0 30px 60px rgba(40, 20, 90, .3); }
+.nova-hero__model img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; border-radius: 999px 999px 28px 28px; box-shadow: 0 30px 60px rgba(45, 22, 8, .3); }
 .nova-hero__model--cutout { height: calc(100% - 10px); width: clamp(320px, 38vw, 540px); }
-.nova-hero__model--cutout img { object-fit: contain; object-position: center bottom; border-radius: 0; box-shadow: none; filter: drop-shadow(0 30px 40px rgba(40, 20, 90, .35)); }
-.nova-hero__ring { position: absolute; left: -18%; right: -18%; top: 12%; height: 120px; border: 1.5px solid rgba(107, 75, 214, .45); border-radius: 50%; transform: rotate(-8deg); z-index: 3; pointer-events: none; animation: nova-orbit 7s ease-in-out infinite alternate; }
+.nova-hero__model--cutout img { object-fit: contain; object-position: center bottom; border-radius: 0; box-shadow: none; filter: drop-shadow(0 30px 40px rgba(45, 22, 8, .35)); }
+.nova-hero__ring { position: absolute; left: -18%; right: -18%; top: 12%; height: 120px; border: 1.5px solid rgba(170, 95, 30, .45); border-radius: 50%; transform: rotate(-8deg); z-index: 3; pointer-events: none; animation: nova-orbit 7s ease-in-out infinite alternate; }
 
 .nova-float { position: absolute; z-index: 4; display: flex; align-items: center; border-radius: 999px; padding: 6px; }
 .nova-float--sizes { left: 50%; margin-left: calc(-1 * clamp(260px, 30vw, 420px) / 2 - 120px); bottom: 70px; gap: 4px; }
@@ -74,9 +74,9 @@
 .nova-collections__head h2 { margin: 0; font: 300 clamp(38px, 5vw, 72px)/1 var(--nova-display); letter-spacing: -.035em; }
 .nova-collections__head h2 b { font-weight: 900; font-stretch: 112%; color: var(--nova-lilac); }
 .nova-collections__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px; }
-.nova-collection-card { position: relative; display: grid; grid-template-columns: 44% 1fr; gap: 16px; align-items: center; padding: 10px; min-height: 190px; border-radius: 28px; background: #fff; box-shadow: 0 16px 40px rgba(60, 40, 120, .08); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; height: 100%; }
-.nova-collection-card:hover { transform: translateY(-5px); box-shadow: 0 26px 60px rgba(60, 40, 120, .16); }
-.nova-collection-card__img { align-self: stretch; border-radius: 20px; overflow: hidden; background: #ece6fb; }
+.nova-collection-card { position: relative; display: grid; grid-template-columns: 44% 1fr; gap: 16px; align-items: center; padding: 10px; min-height: 190px; border-radius: 28px; background: #fff; box-shadow: 0 16px 40px rgba(70, 40, 15, .08); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; height: 100%; }
+.nova-collection-card:hover { transform: translateY(-5px); box-shadow: 0 26px 60px rgba(70, 40, 15, .16); }
+.nova-collection-card__img { align-self: stretch; border-radius: 20px; overflow: hidden; background: #efdfc8; }
 .nova-collection-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
 .nova-collection-card:hover .nova-collection-card__img img { transform: scale(1.07); }
 .nova-collection-card__text { display: flex; flex-direction: column; padding-right: 30px; }
@@ -119,7 +119,7 @@
 
 /* ---------- Women's shell ---------- */
 .w-shell { min-height: 100vh; background: var(--nova-canvas); color: var(--nova-ink); font-family: var(--nova-display); }
-.w-header { position: sticky; top: 10px; z-index: 50; margin: 10px clamp(12px, 2.6vw, 40px) 0; height: 64px; padding: 0 12px 0 22px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-radius: 999px; background: rgba(255, 255, 255, .72); border: 1px solid rgba(255, 255, 255, .9); box-shadow: 0 12px 40px rgba(60, 40, 120, .1); backdrop-filter: blur(20px) saturate(1.5); -webkit-backdrop-filter: blur(20px) saturate(1.5); }
+.w-header { position: sticky; top: 10px; z-index: 50; margin: 10px clamp(12px, 2.6vw, 40px) 0; height: 64px; padding: 0 12px 0 22px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-radius: 999px; background: rgba(255, 255, 255, .72); border: 1px solid rgba(255, 255, 255, .9); box-shadow: 0 12px 40px rgba(70, 40, 15, .1); backdrop-filter: blur(20px) saturate(1.5); -webkit-backdrop-filter: blur(20px) saturate(1.5); }
 .w-header__menu { display: none; border: 0; background: transparent; padding: 8px; color: inherit; }
 .w-nav { display: flex; gap: clamp(12px, 1.6vw, 26px); font-size: 13px; font-weight: 500; }
 .w-nav a { position: relative; padding: 6px 0; opacity: .75; transition: opacity .2s; }
@@ -128,14 +128,14 @@
 .w-wordmark { font: 900 20px/1 var(--nova-display); font-stretch: 115%; letter-spacing: .02em; }
 .w-header__right { justify-self: end; display: flex; align-items: center; gap: 8px; }
 .w-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; transition: background .2s; }
-.w-icon:hover { background: #efeafc; }
+.w-icon:hover { background: #f2e4d0; }
 .w-switch { padding: 9px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--nova-ink); color: #fff; }
 .w-bag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--nova-lilac); color: var(--nova-lilac); font-size: 12px; font-weight: 600; }
 .w-drawer { position: fixed; inset: 0; z-index: 45; padding: 110px 28px 40px; background: var(--nova-panel); color: #fff; display: flex; flex-direction: column; gap: 10px; }
 .w-drawer a { font: 800 clamp(34px, 9vw, 52px)/1.1 var(--nova-display); letter-spacing: -.02em; }
 .w-drawer__switch { margin-top: auto; font-size: 18px !important; font-weight: 600 !important; }
 .w-footer { margin: 80px clamp(12px, 2.6vw, 40px) 16px; padding: 30px clamp(20px, 3vw, 44px) 22px; border-radius: 36px; background: var(--nova-ink); color: #fff; overflow: hidden; }
-.w-footer__big { font: 900 clamp(60px, 15vw, 240px)/.85 var(--nova-display); font-stretch: 125%; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(185, 163, 245, .7); white-space: nowrap; }
+.w-footer__big { font: 900 clamp(60px, 15vw, 240px)/.85 var(--nova-display); font-stretch: 125%; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(230, 190, 120, .7); white-space: nowrap; }
 .w-footer__row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 24px; font-size: 14px; }
 .w-footer__row p { margin: 0; opacity: .75; }
 .w-footer__row nav { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -143,7 +143,7 @@
 
 /* ---------- Women's cards and shop ---------- */
 .w-card { min-width: 0; }
-.w-card__img { position: relative; display: block; aspect-ratio: 3 / 4; border-radius: 26px; overflow: hidden; background: #fff; box-shadow: 0 14px 34px rgba(60, 40, 120, .08); }
+.w-card__img { position: relative; display: block; aspect-ratio: 3 / 4; border-radius: 26px; overflow: hidden; background: #fff; box-shadow: 0 14px 34px rgba(70, 40, 15, .08); }
 .w-card__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .5s; }
 .w-card__alt { opacity: 0; }
 .w-card:hover .w-card__img img { transform: scale(1.05); }
@@ -213,17 +213,17 @@
 .w-mega { display: flex; align-items: center; gap: 4px; }
 .w-mega__item { position: relative; }
 .w-mega__trigger { display: inline-block; padding: 8px 12px; border: 0; border-radius: 999px; background: transparent; color: var(--nova-ink); font: 500 13px/1 var(--nova-display); opacity: .8; transition: background .2s, opacity .2s; }
-.w-mega__trigger:hover, .w-mega__trigger.active { opacity: 1; background: #efeafc; }
+.w-mega__trigger:hover, .w-mega__trigger.active { opacity: 1; background: #f2e4d0; }
 .w-mega__anchor { position: absolute; top: calc(100% + 10px); left: 0; padding-top: 6px; }
-.w-mega__panel { overflow: hidden; border-radius: 22px; background: rgba(255, 255, 255, .95); border: 1px solid rgba(20, 16, 24, .08); box-shadow: 0 24px 60px rgba(40, 20, 90, .18); backdrop-filter: blur(16px); }
+.w-mega__panel { overflow: hidden; border-radius: 22px; background: rgba(255, 255, 255, .95); border: 1px solid rgba(34, 20, 11, .08); box-shadow: 0 24px 60px rgba(45, 22, 8, .18); backdrop-filter: blur(16px); }
 .w-mega__inner { width: max-content; padding: 16px; }
 .w-mega__links { display: grid; gap: 4px; min-width: 200px; }
 .w-mega__links a { padding: 10px 12px; border-radius: 12px; font-size: 14px; transition: background .2s, padding .2s; }
-.w-mega__links a:hover { background: #f3effd; padding-left: 16px; }
+.w-mega__links a:hover { background: #f5ebdd; padding-left: 16px; }
 .w-mega__products { display: grid; grid-template-columns: repeat(3, 210px); gap: 12px; }
 .w-mega__product { display: grid; gap: 10px; padding: 8px; border-radius: 16px; transition: background .2s; }
-.w-mega__product:hover { background: #f3effd; }
-.w-mega__product > span { display: block; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #ece6fb; }
+.w-mega__product:hover { background: #f5ebdd; }
+.w-mega__product > span { display: block; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #efdfc8; }
 .w-mega__product img { width: 100%; height: 100%; object-fit: cover; }
 .w-mega__product strong { display: block; font: 700 15px/1.2 var(--nova-display); }
 .w-mega__product small { font-size: 12px; color: var(--nova-muted); }
@@ -231,31 +231,171 @@
 
 /* ---------- Gradient layer ---------- */
 :root {
-  --g-brand: linear-gradient(110deg, #5b3fd1 0%, #9b5cf0 40%, #e86fc0 75%, #ff9a8b 100%);
-  --g-dark: linear-gradient(120deg, #141018 0%, #34206e 100%);
-  --nova-panel: linear-gradient(135deg, #6d4fe6 0%, #9a5ff0 45%, #e67ac8 85%, #ffa7a0 100%);
+  --g-brand: linear-gradient(110deg, #5a2d0c 0%, #b8661e 40%, #d9902f 75%, #f0c674 100%);
+  --g-dark: linear-gradient(120deg, #22140b 0%, #5a2d0c 100%);
+  --nova-panel: linear-gradient(135deg, #6d4fe6 0%, #9a5ff0 45%, #e67ac8 85%, #f0bf73 100%);
 }
 .w-shell { background:
-  radial-gradient(60vw 50vw at 0% 0%, rgba(155, 92, 240, .16), transparent 60%),
-  radial-gradient(50vw 40vw at 100% 30%, rgba(255, 140, 180, .16), transparent 60%),
-  radial-gradient(60vw 50vw at 30% 100%, rgba(120, 160, 255, .14), transparent 60%),
-  #f7f4fd; background-attachment: fixed; }
+  radial-gradient(60vw 50vw at 0% 0%, rgba(200, 120, 40, .16), transparent 60%),
+  radial-gradient(50vw 40vw at 100% 30%, rgba(255, 190, 110, .16), transparent 60%),
+  radial-gradient(60vw 50vw at 30% 100%, rgba(255, 210, 140, .14), transparent 60%),
+  #f8f0e4; background-attachment: fixed; }
 .nova-hero__title b, .nova-collections__head h2 b, .w-new__head b, .pv--women .pv-related h2 b, .bag--women h1 b {
   background: var(--g-brand); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: g-shift 8s ease-in-out infinite alternate; }
 .nova-hero__panel, .w-shop__band, .w-drawer { background: var(--nova-panel); background-size: 160% 160%; animation: g-pan 14s ease-in-out infinite alternate; }
 .nova-pill-button, .w-switch, .w-shop__more button { background: var(--g-dark); }
 .nova-feature-card__price, .w-card__arrow { background: var(--g-brand); }
-.w-card__price { background: linear-gradient(110deg, #efe7ff, #ffe6f1); color: #6a3fd0; }
+.w-card__price { background: linear-gradient(110deg, #f4e2c8, #f9e2c2); color: #6a3fd0; }
 .w-bag { border: 0; background: var(--g-brand); color: #fff; }
 .w-filters__row button.active { background: var(--g-brand); border-color: transparent; }
-.w-mega__trigger:hover, .w-mega__trigger.active { background: linear-gradient(110deg, #efe7ff, #ffe9f3); }
+.w-mega__trigger:hover, .w-mega__trigger.active { background: linear-gradient(110deg, #f4e2c8, #fbe8cf); }
 .nova-collection-card:hover .nova-collection-card__arrow { background: var(--g-brand); border-color: transparent; }
-.w-footer { background: linear-gradient(160deg, #141018 0%, #2a1858 70%, #4a1f5e 100%); }
+.w-footer { background: linear-gradient(160deg, #22140b 0%, #2a1858 70%, #4a1f5e 100%); }
 .w-footer__big { -webkit-text-stroke: 0; background: var(--g-brand); -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .9; }
 .nova-reach { background: linear-gradient(160deg, #f1e3d6 0%, #e7cbbd 50%, #d9b8c9 100%); }
-.pv--women { --banner: linear-gradient(120deg, #3b2280 0%, #7b4be0 50%, #d96bbf 100%); --accent: #7b4be0; }
+.pv--women { --banner: linear-gradient(120deg, #4a2410 0%, #b06420 50%, #d96bbf 100%); --accent: #b06420; }
 .pv--women .pv-buy__cta:not(:disabled), .bag--women .bag__cta { background: var(--g-brand); background-size: 200% 100%; transition: background-position .5s, transform .25s; }
 .pv--women .pv-buy__cta:not(:disabled):hover, .bag--women .bag__cta:hover { background-position: 100% 0; }
 @keyframes g-shift { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 @keyframes g-pan { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
 @media (prefers-reduced-motion: reduce) { .nova-hero__title b, .nova-hero__panel, .w-shop__band, .w-drawer { animation: none; } }
+
+/* Shared section heading */
+.w-sec-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
+.w-sec-head h2 { margin: 0; display: flex; align-items: center; gap: 12px; font: 300 clamp(36px, 5vw, 68px)/1 var(--nova-display); letter-spacing: -.035em; }
+.w-sec-head h2 b { font-weight: 900; font-stretch: 112%; background: var(--g-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.w-sec-head__note { margin: 0; color: var(--nova-muted); max-width: 36ch; }
+
+/* Shop by category */
+.w-cats, .w-trend, .w-codes { padding: clamp(50px, 6vw, 90px) clamp(16px, 4vw, 60px) 0; }
+.w-cats__rail { display: grid; grid-auto-flow: column; grid-auto-columns: 132px; gap: 18px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.w-cat { display: grid; justify-items: center; gap: 6px; text-align: center; scroll-snap-align: start; }
+.w-cat__ring { width: 122px; height: 122px; border-radius: 50%; padding: 4px; background: var(--g-brand); transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
+.w-cat__ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #fff; background: #f6e8d4; }
+.w-cat strong { font: 700 14px/1.2 var(--nova-display); }
+.w-cat small { color: var(--nova-muted); font-size: 12px; }
+.w-cat:hover .w-cat__ring { transform: translateY(-6px) rotate(-4deg); }
+
+/* Trending now */
+.w-trend__flame { color: #d9902f; }
+.w-trend__tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.w-trend__tabs button { padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(34, 20, 11, .12); background: rgba(255, 255, 255, .7); font: 600 13px var(--nova-display); cursor: pointer; }
+.w-trend__tabs button.active { background: var(--g-brand); color: #fff; border-color: transparent; }
+.w-trend__rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 270px); gap: 22px; overflow-x: auto; padding: 10px 0 14px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.w-trend__item { position: relative; scroll-snap-align: start; }
+.w-trend__rank { position: absolute; z-index: 2; left: -6px; top: -14px; font: 900 64px/1 var(--nova-display); font-stretch: 112%; color: transparent; -webkit-text-stroke: 2px #b8661e; pointer-events: none; }
+.w-trend__more { display: inline-block; margin-top: 10px; font-weight: 700; color: var(--nova-lilac); }
+
+/* Dress-code guide */
+.w-codes__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.w-code { position: relative; display: grid; align-content: start; gap: 10px; min-height: 250px; padding: 24px; border-radius: 28px; background: #fff; box-shadow: 0 18px 50px rgba(90, 50, 15, .08); transition: transform .35s cubic-bezier(.2, .7, .2, 1), background .35s, color .35s; }
+.w-code__no { font: 500 12px 'IBM Plex Mono', monospace; color: var(--nova-muted); }
+.w-code strong { font: 800 26px/1.05 var(--nova-display); letter-spacing: -.02em; }
+.w-code p { margin: 0; color: var(--nova-muted); font-size: 14px; line-height: 1.5; }
+.w-code__tag { margin-top: auto; display: inline-flex; align-items: center; gap: 6px; justify-self: start; padding: 8px 14px; border-radius: 999px; background: #f6e8d4; color: var(--nova-lilac); font-weight: 700; font-size: 13px; }
+.w-code:hover { transform: translateY(-6px); background: var(--g-dark); color: #fff; }
+.w-code:hover p, .w-code:hover .w-code__no { color: rgba(255, 255, 255, .7); }
+.w-code:hover .w-code__tag { background: var(--g-brand); color: #fff; }
+@media (max-width: 960px) { .w-codes__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .w-codes__grid { grid-template-columns: 1fr; } .w-code { min-height: 0; } }
+
+/* Curve edit */
+.w-curvy { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 24px; margin: clamp(50px, 6vw, 90px) clamp(12px, 2.6vw, 40px) 0; padding: clamp(28px, 4vw, 60px); border-radius: 36px; background: var(--g-brand); background-size: 200% 100%; animation: g-pan 14s ease-in-out infinite alternate; color: #fff; }
+.w-curvy__copy { display: grid; gap: 14px; justify-items: start; }
+.w-curvy h2 { margin: 0; font: 300 clamp(34px, 4.6vw, 64px)/1 var(--nova-display); letter-spacing: -.03em; }
+.w-curvy h2 b { font-weight: 900; font-stretch: 112%; display: block; }
+.w-curvy p { margin: 0; max-width: 40ch; opacity: .9; }
+.w-curvy .nova-pill-button { background: #fff; color: #22140b; }
+.w-curvy__fan { position: relative; height: clamp(240px, 26vw, 360px); }
+.w-curvy__fan img { position: absolute; top: 50%; left: 50%; width: 42%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 22px; border: 4px solid #fff; box-shadow: 0 24px 50px rgba(45, 22, 8, .3); transform: translate(calc(-50% + (var(--i) - 1.5) * 34%), -50%) rotate(calc((var(--i) - 1.5) * 8deg)); transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+.w-curvy:hover .w-curvy__fan img { transform: translate(calc(-50% + (var(--i) - 1.5) * 46%), -52%) rotate(calc((var(--i) - 1.5) * 11deg)); }
+@media (max-width: 760px) { .w-curvy { grid-template-columns: 1fr; } .w-curvy__fan img { width: 46%; } }
+
+/* ---------- Amber glass theme (user's reference: brown-to-gold backdrop, clear glass cards, steam behind) ---------- */
+:root {
+  --amber-bg: linear-gradient(125deg, #2a1206 0%, #5a2a0c 28%, #9a5216 58%, #d08a2e 82%, #e9b25a 100%);
+  --amber-text: #fbf1e2;
+  --amber-soft: rgba(251, 241, 226, .72);
+  --amber-line: rgba(255, 240, 215, .38);
+  --amber-glass: rgba(255, 245, 230, .08);
+  --amber-glass-strong: rgba(60, 28, 8, .38);
+  --g-text: linear-gradient(110deg, #fff6e6 0%, #f3cf85 45%, #ffe7b8 70%, #e9b25a 100%);
+  --nova-muted: rgba(251, 241, 226, .68);
+}
+.w-shell { position: relative; isolation: isolate; background: #6b3410; color: var(--amber-text); }
+.w-shell > :not(.cloud-sky) { position: relative; z-index: 1; }
+.w-shell > .w-header { position: sticky; z-index: 50; }
+
+/* steam */
+.cloud { pointer-events: none; }
+.cloud svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* The gradient lives on this fixed layer (not background-attachment: fixed, which iPhones ignore). */
+.cloud-sky { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: var(--amber-bg); }
+.cloud-sky .cloud { position: absolute; will-change: transform; }
+.cloud--a { width: min(900px, 110vw); left: 50%; top: 4%; margin-left: max(-450px, -55vw); opacity: .55; animation: steam-a 38s ease-in-out infinite alternate; }
+.cloud--b { width: min(700px, 90vw); left: -12%; top: 48%; opacity: .32; animation: steam-b 46s ease-in-out infinite alternate; }
+.cloud--c { width: min(760px, 95vw); right: -14%; top: 62%; opacity: .3; animation: steam-c 52s ease-in-out infinite alternate; }
+@keyframes steam-a { from { transform: translate(-3%, 0) scale(1); } to { transform: translate(4%, 3%) scale(1.12); } }
+@keyframes steam-b { from { transform: translate(0, 0) rotate(0); } to { transform: translate(12%, -6%) rotate(8deg) scale(1.1); } }
+@keyframes steam-c { from { transform: translate(0, 0) scale(1.05); } to { transform: translate(-10%, -8%) scale(.92) rotate(-6deg); } }
+.nova-hero__cloud { position: absolute; z-index: 0; left: 50%; top: 50%; width: min(1100px, 130%); transform: translate(-50%, -48%); opacity: .9; animation: steam-hero 18s ease-in-out infinite alternate; }
+@keyframes steam-hero { from { transform: translate(-50%, -48%) scale(1); } to { transform: translate(-48%, -52%) scale(1.08) rotate(2deg); } }
+
+/* glass surfaces */
+.nova-hero, .nova-hero__panel, .nova-collection-card, .w-code, .perks--women .perk, .w-shop__band, .w-curvy, .nova-reach, .w-footer, .pv--women .pv-buy, .pv--women .pv-stage, .bag--women .bag__line, .bag--women .bag__summary, .bag--women .bag__notice, .split__door--women, .w-mega__panel, .w-filters, .nova-feature-card {
+  background: var(--amber-glass); border: 1px solid var(--amber-line); color: var(--amber-text);
+  box-shadow: 0 30px 70px rgba(30, 12, 2, .28), inset 0 1px 0 rgba(255, 245, 230, .25);
+  backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); animation: none;
+}
+.nova-hero { background: rgba(255, 245, 230, .04); }
+.nova-hero__panel { background: rgba(60, 28, 8, .22); }
+.nova-hero__panel::before { display: none; }
+.w-footer, .w-mega__panel, .w-drawer { background: rgba(40, 18, 5, .55); }
+.w-drawer { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); animation: none; }
+.w-header { background: rgba(255, 245, 230, .12); border: 1px solid var(--amber-line); color: var(--amber-text); box-shadow: 0 12px 40px rgba(30, 12, 2, .25); }
+.w-header .logo { color: var(--amber-text); }
+.w-mega__trigger { color: var(--amber-text); }
+.w-mega__trigger:hover, .w-mega__trigger.active, .w-icon:hover { background: rgba(255, 245, 230, .14); }
+.w-mega__links a:hover, .w-mega__product:hover { background: rgba(255, 245, 230, .1); }
+.w-switch { background: transparent; border: 1px solid var(--amber-line); color: var(--amber-text); }
+.w-bag, .nova-feature-card__price, .w-card__arrow, .w-filters__row button.active, .w-trend__tabs button.active, .nova-collection-card:hover .nova-collection-card__arrow { background: linear-gradient(110deg, #f6d796, #e9b25a 60%, #c9832a); color: #2a1206; border-color: transparent; }
+.nova-pill-button, .w-shop__more button { background: transparent; border: 1px solid rgba(255, 245, 230, .7); color: var(--amber-text); letter-spacing: .12em; text-transform: uppercase; font-size: 12px; }
+.nova-pill-button:hover, .w-shop__more button:hover { background: rgba(255, 245, 230, .14); }
+.w-curvy .nova-pill-button { background: transparent; color: var(--amber-text); }
+
+/* type on the dark backdrop */
+.nova-hero__title b, .nova-collections__head h2 b, .w-new__head b, .w-sec-head h2 b, .pv--women .pv-related h2 b, .bag--women h1 b, .w-footer__big, .w-curvy h2 b {
+  background: var(--g-text); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: g-shift 8s ease-in-out infinite alternate; }
+.nova-hero__title i { color: var(--amber-text); }
+.nova-hero__ghost { color: transparent; -webkit-text-stroke: 1.5px rgba(255, 240, 215, .35); }
+html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
+.nova-collections { background: transparent; color: var(--amber-text); }
+.nova-collections__head .nova-chip, .w-trend__more, .w-trend__flame { color: #f3cf85; }
+.nova-collection-card__text em, .nova-collection-card__text small, .w-code p, .w-code__no { color: var(--amber-soft); }
+.nova-collection-card__arrow { border-color: var(--amber-line); }
+.w-code__tag { background: rgba(255, 245, 230, .12); color: #f6d796; }
+.w-code:hover { background: rgba(255, 245, 230, .16); }
+.w-code:hover .w-code__tag { background: linear-gradient(110deg, #f6d796, #e9b25a); color: #2a1206; }
+.w-card__img { background: rgba(255, 245, 230, .1); border: 1px solid var(--amber-line); box-shadow: 0 20px 40px rgba(30, 12, 2, .3); }
+.w-card__price { background: rgba(255, 245, 230, .14); color: #f6d796; border: 1px solid var(--amber-line); }
+.w-card__badge { background: rgba(42, 18, 6, .55); color: var(--amber-text); }
+.w-trend__tabs button, .w-filters__row button, .w-filters__sort select { background: rgba(255, 245, 230, .08); border: 1px solid var(--amber-line); color: var(--amber-text); }
+.w-filters__sort select option { color: #22140b; }
+.w-trend__rank { -webkit-text-stroke-color: #f3cf85; }
+.w-cat__ring { background: linear-gradient(135deg, #fff1d6, #e9b25a 50%, #9a5216); }
+.w-cat__ring img { border-color: rgba(42, 18, 6, .6); }
+.w-cat small { color: var(--amber-soft); }
+.split__door--women::after { background: linear-gradient(180deg, rgba(42, 18, 6, 0) 25%, rgba(42, 18, 6, .75)); }
+.split__door--women img { opacity: .9; }
+.nova-reach { color: var(--amber-text); }
+.nova-reach__card { border: 1px solid var(--amber-line); }
+.perks--women .perk { color: var(--amber-text); }
+.perks--women .perk svg { color: #f3cf85; }
+.w-footer__big { opacity: .85; }
+.pv--women { --accent: #e9b25a; --ink: var(--amber-text); --muted: var(--amber-soft); --card: rgba(255, 245, 230, .08); --stage: rgba(255, 245, 230, .05); --banner: linear-gradient(120deg, rgba(42, 18, 6, .7), rgba(154, 82, 22, .55)); }
+.bag--women { --accent: #e9b25a; --ink: var(--amber-text); --muted: var(--amber-soft); --card: rgba(255, 245, 230, .08); }
+.pv--women .pv-buy__cta:not(:disabled), .bag--women .bag__cta { background: linear-gradient(110deg, #f6d796, #e9b25a 60%, #c9832a); color: #2a1206; }
+.pv--women .pv-back { border: 1px solid var(--amber-line); color: var(--amber-text); }
+.pv--women .pv-buy__sizes button, .pv--women .pv-buy__specs > div { background: rgba(255, 245, 230, .08); color: var(--amber-text); border-color: var(--amber-line); }
+.pv--women .pv-stage__product img { mix-blend-mode: normal; border-radius: 22px; }
+@media (prefers-reduced-motion: reduce) { .cloud-sky .cloud, .nova-hero__cloud { animation-duration: 90s; } }

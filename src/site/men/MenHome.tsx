@@ -6,20 +6,29 @@ import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { formatMoney } from '../../lib/format';
 import { productPath } from '../../lib/storefront';
 import { MenCard } from './MenCard';
+import { ShopSplit } from '../shared/ShopSplit';
+import { Perks } from '../shared/Perks';
 
-// A transparent PNG of a man in a suit; until it exists the hero shows the featured product photo.
-const MEN_CUTOUT = '/images/men-model.png';
+// The owner's own photo with the background removed; if it fails to load the hero shows the featured product photo.
+const MEN_CUTOUT = '/images/men-model.webp';
 const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 const occasions = [
   ['01', 'Wedding', 'Suits for the ceremony', '/men/shop?occasion=wedding-guest'],
   ['02', 'Black tie', 'Dinner jackets and evenings', '/men/shop?occasion=cocktail-party'],
   ['03', 'Holiday', 'Light tailoring for travel', '/men/shop?occasion=maxi-holiday'],
 ] as const;
+const codes = [
+  ['BLACK TIE', 'Tuxedo or dinner jacket, bow tie, black oxfords. Nothing patterned.'],
+  ['COCKTAIL', 'Dark suit, crisp shirt; a tie is optional but sharpens it.'],
+  ['GARDEN WEDDING', 'Lighter suit in navy, grey or beige. Loafers work.'],
+  ['DESTINATION', 'Linen or cotton tailoring, open collar, no heavy wool.'],
+] as const;
 
 /** Men's home: a HUD-style hero around the model, occasion tiles and the latest looks. */
 export function MenHome() {
   const { products, loading } = useCatalogProducts();
   const men = products.filter((product) => product.department === 'men');
+  const women = products.filter((product) => product.department === 'women');
   const looks = men.filter((product) => product.images[0]?.url).slice(0, 4);
   const [active, setActive] = useState(0);
   const [size, setSize] = useState('M');
@@ -33,7 +42,7 @@ export function MenHome() {
 
       <div className="m-hero__model">
         {hasCutout
-          ? <img className="m-hero__cutout" src={MEN_CUTOUT} alt="Davinova Homme model in a suit" onError={() => setHasCutout(false)} />
+          ? <img className="m-hero__cutout" src={MEN_CUTOUT} alt="Davinova Homme model" onError={() => setHasCutout(false)} />
           : look ? <AnimatePresence mode="wait"><motion.img key={look.id} className="m-hero__photo" src={look.images[0].url} alt={look.title} initial={{ opacity: 0, scale: 1.04 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} /></AnimatePresence>
           : <div className="m-hero__placeholder">{loading ? 'LOADING…' : 'NEW LOOKS / SOON'}</div>}
       </div>
@@ -64,5 +73,13 @@ export function MenHome() {
       {men.length === 0 && !loading && <p className="m-empty">The first men's looks are being added. Check back soon.</p>}
       <div className="m-grid">{men.slice(0, 8).map((product, index) => <MenCard key={product.id} product={product} index={index} />)}</div>
     </section>
+
+    <section className="m-codes">
+      <div className="m-latest__head"><h2>DRESS CODE <i>/ DECODED</i></h2></div>
+      <div className="m-codes__grid">{codes.map(([title, tip], index) => <div key={title} className="m-code"><i>{String(index + 1).padStart(2, '0')}</i><strong>{title}</strong><p>{tip}</p></div>)}</div>
+    </section>
+
+    <div className="m-split-wrap"><ShopSplit womenImage={women.find((product) => product.images[0]?.url)?.images[0].url} womenCount={women.length} menCount={men.length} /></div>
+    <Perks variant="men" />
   </>;
 }

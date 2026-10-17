@@ -3,7 +3,7 @@ import { useId } from 'react';
 type Tone = 'brand' | 'metal';
 
 const stops: Record<Tone, string[]> = {
-  brand: ['#5b3fd1', '#9b5cf0', '#e86fc0', '#ff9a8b'],
+  brand: ['#5a2d0c', '#b8661e', '#d9902f', '#f0c674'],
   metal: ['#1b1b1b', '#7a7a80', '#c8c8cc', '#3a3a3e'],
 };
 
@@ -37,7 +37,7 @@ function Gradient({ id, tone }: { id: string; tone: Tone }) {
 function Shimmer({ id }: { id: string }) {
   return <linearGradient id={id} gradientUnits="userSpaceOnUse" x1="-120" y1="0" x2="0" y2="0" spreadMethod="pad">
     <stop offset="0" stopColor="currentColor" /><stop offset=".35" stopColor="currentColor" />
-    <stop offset=".5" stopColor="#9b5cf0" /><stop offset=".6" stopColor="#e86fc0" />
+    <stop offset=".5" stopColor="#b8661e" /><stop offset=".6" stopColor="#d9902f" />
     <stop offset=".75" stopColor="currentColor" /><stop offset="1" stopColor="currentColor" />
     <animateTransform attributeName="gradientTransform" type="translate" values="-40 0;440 0;440 0" keyTimes="0;.55;1" dur="4.5s" repeatCount="indefinite" />
   </linearGradient>;

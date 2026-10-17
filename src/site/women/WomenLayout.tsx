@@ -5,6 +5,8 @@ import { Menu, Search, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { WomenMegaNav } from './WomenMegaNav';
 import { Logo } from '../shared/Logo';
+import { DeptSwitch } from '../shared/DeptSwitch';
+import { CloudSky } from '../shared/Cloud';
 
 const links = [
   ['/shop', 'Shop'],
@@ -26,6 +28,8 @@ export function WomenLayout() {
   }, [pathname, search]);
 
   return <div className="w-shell">
+    <CloudSky />
+    <DeptSwitch active="women" />
     <header className="w-header">
       <button type="button" className="w-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
       <WomenMegaNav />

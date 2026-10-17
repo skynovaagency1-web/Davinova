@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
 import { editorialImages } from '../../lib/editorialImages';
 import { formatMoney } from '../../lib/format';
+import { Cloud } from '../shared/Cloud';
 
 const spring = { stiffness: 90, damping: 18, mass: 0.6 };
 const HERO_CUTOUT = '/images/hero-model.png';
 const sizes = ['XS', 'S', 'M', 'L', 'XL'];
-const tones = ['#141018', '#6b4bd6', '#b9a3f5', '#e8b7c8', '#d9c3a5'];
+const tones = ['#22140b', '#a0561a', '#d9902f', '#f0c674', '#f4e2c8'];
 
-/** Home hero: split headline, cut-through model photo, lilac panel and floating glass widgets. */
+/** Home hero: split headline, cut-through model photo, glass panel over steam and floating glass widgets. */
 export function NovaHero({ products }: { products: Product[] }) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -34,6 +35,7 @@ export function NovaHero({ products }: { products: Product[] }) {
   }
 
   return <section className="nova-hero" onPointerMove={onMove} onPointerLeave={() => { mx.set(0); my.set(0); }}>
+    <Cloud className="nova-hero__cloud" seed={5} />
     <div className="nova-hero__ghost" aria-hidden="true">DAVINOVA</div>
     <motion.h1 className="nova-hero__title nova-hero__title--left" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
       <i>Dress the</i><b>MOMENT</b>
