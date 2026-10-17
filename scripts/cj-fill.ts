@@ -52,12 +52,12 @@ async function main() {
   for (const { group, sub } of slots) {
     if (imported >= MAX_IMPORTS) break;
     const have = shown(group.slug, sub.slug);
-    let need = Math.max(0, TARGET - have) * 2; // extra, because the photo check hides some
+    let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
-    const words = [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 3)];
+    const words = [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
-      for (let page = 1; page <= 3 && need > 0 && imported < MAX_IMPORTS; page++) {
+      for (let page = 1; page <= 5 && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
         let result: Search;
         try { result = await admin<Search>(`/api/admin/cj-catalog?q=${encodeURIComponent(keyword)}&page=${page}&size=10`); }

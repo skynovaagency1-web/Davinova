@@ -13,8 +13,9 @@ import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 
 const links = [
   ['/shop', 'Shop'],
+  ['/categories', 'Categories'],
   ...CATEGORY_GROUPS.map((group) => [categoryPath(group.slug), group.label] as const),
-  ['/shop?fit=curvy', 'Curvy'],
+  ['/fits', 'Fits'],
   ['/jewelry', 'Jewelry & Watches'],
 ] as const;
 
