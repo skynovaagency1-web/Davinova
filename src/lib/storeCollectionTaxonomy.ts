@@ -40,10 +40,7 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
     label: 'Accessories',
     subcategories: [
       subcategory('Scarves & Wraps', 'scarf', 'scarves', 'wrap', 'wraps', 'shawl'),
-      subcategory('Face Masks', 'face mask', 'face masks'),
       subcategory('Belts & Cummerbunds', 'belt', 'belts', 'cummerbund', 'cummerbunds'),
-      subcategory('Women’s Gloves & Mittens', 'glove', 'gloves', 'mitten', 'mittens'),
-      subcategory('Women’s Socks', 'sock', 'socks', 'stockings'),
       subcategory('Women’s Hats & Caps', 'hat', 'hats', 'cap', 'caps', 'beanie', 'baseball cap'),
     ],
   },
