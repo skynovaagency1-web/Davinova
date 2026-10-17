@@ -60,7 +60,7 @@ export function MenLayout() {
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}><Outlet /></motion.div></main>
     <footer className="w-footer m-footer">
-      <HangingWatch to={jewelryPath('men', 'mens-watches')} />
+      <HangingWatch to="/men/bag" />
       <div className="w-footer__big" aria-hidden="true">DAVINOVA</div>
       <Logo tone="metal" sub="HOMME" />
       <div className="w-footer__row">

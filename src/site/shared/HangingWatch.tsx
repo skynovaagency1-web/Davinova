@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const TICKS = Array.from({ length: 60 }, (_, i) => i);
 
-/** A steel pocket watch on its chain, swinging from the top of the men's footer. Its hands keep real time. Links to men's watches. */
+/** A steel pocket watch on its chain, swinging from the top of the men's footer. Its hands keep real time. Opens the bag (cart). */
 export function HangingWatch({ to }: { to: string }) {
   const now = new Date();
   const seconds = now.getSeconds();
@@ -10,7 +10,7 @@ export function HangingWatch({ to }: { to: string }) {
   const hours = (now.getHours() % 12) + minutes / 60;
   // Negative delays start each hand where the clock is now; the CSS turns them at real speed.
   const hand = (period: number, done: number) => ({ animationDuration: `${period}s`, animationDelay: `-${done}s` });
-  return <Link to={to} className="hang-bag hang-watch" aria-label="Shop men's watches">
+  return <Link to={to} className="hang-bag hang-watch" aria-label="Open your bag">
     <svg viewBox="0 0 220 420" aria-hidden="true">
       <defs>
         <linearGradient id="hw-steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffffff" /><stop offset=".4" stopColor="#c9c9cd" /><stop offset=".7" stopColor="#7d7d82" /><stop offset="1" stopColor="#e6e6e8" /></linearGradient>
@@ -45,6 +45,6 @@ export function HangingWatch({ to }: { to: string }) {
       <circle cx="110" cy="300" r="4" fill="#1b1b1d" />
       <circle cx="110" cy="300" r="80" fill="url(#hw-glass)" />
     </svg>
-    <span className="hang-bag__tag">Watches</span>
+    <span className="hang-bag__tag">Your bag</span>
   </Link>;
 }
