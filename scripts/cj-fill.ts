@@ -43,8 +43,8 @@ async function main() {
   // A product only counts once its photo passed the check (unchecked new imports count too, so re-runs don't over-import).
   const shown = (group: string, sub: string) => catalog.products.filter((product) => product.storeCollection === group && product.storeSubcategory === sub && manifest[product.id] !== null).length;
 
-  const slots = storeCollectionGroups.flatMap((group) => group.subcategories.map((sub) => ({ group, sub })))
-    .filter(({ group, sub }) => !ONLY.length || ONLY.includes(sub.slug))
+  const slots = storeCollectionGroups.flatMap((group) => group.subcategories.map((sub) => ({ sub })))
+    .filter(({ sub }) => !ONLY.length || ONLY.includes(sub.slug))
     .sort((a, b) => rank(a.group.slug, a.sub.slug) - rank(b.group.slug, b.sub.slug));
 
   let imported = 0;
