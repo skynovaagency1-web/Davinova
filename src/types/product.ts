@@ -22,6 +22,8 @@ export interface Product {
   cjProductId?: string;
   cjVariantId?: string;
   collectionCategory: CollectionCategory;
+  /** Storefront shelf worked out from the title (see lib/shelves.ts); 'hidden' items are not shown. */
+  shelf?: import('../lib/shelves').Shelf;
   storeCollection?: string;
   storeCollectionLabel?: string;
   storeSubcategory?: string;

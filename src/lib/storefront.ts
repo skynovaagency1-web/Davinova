@@ -30,3 +30,8 @@ export function isCurvyProduct(
 
   return explicitlyCurvy || includesExtendedSizes || titleListsExtendedSizes;
 }
+
+/** Men's products live in the separate men's storefront under /men. */
+export function productPath(product: { slug: string; department?: string }): string {
+  return product.department === 'men' ? `/men/product/${product.slug}` : `/product/${product.slug}`;
+}
