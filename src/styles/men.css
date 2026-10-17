@@ -146,3 +146,78 @@
 @media (prefers-reduced-motion: reduce) { .m-hero__cutout { animation: none; } }
 .m-home { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, .15); }
 .m-home:hover { background: rgba(0, 0, 0, .06); }
+
+/* ---------- Glass layer: the women's glass design, in the men's grey (user, 2026-10-17) ---------- */
+.m-shell {
+  --amber-bg: linear-gradient(160deg, #e6e6e4 0%, #d4d4d2 38%, #c2c2bf 72%, #a9a9a6 100%);
+  --amber-text: #18181a;
+  --amber-soft: rgba(24, 24, 26, .66);
+  --amber-line: rgba(255, 255, 255, .75);
+  --amber-glass: rgba(255, 255, 255, .26);
+  --g-text: linear-gradient(110deg, #111113 0%, #55555a 40%, #1d1d1f 70%, #7a7a80 100%);
+  --nova-muted: rgba(24, 24, 26, .62);
+  --steel: linear-gradient(110deg, #f4f4f2, #c4c4c8 55%, #8d8d92);
+  position: relative; isolation: isolate; background: #cfcfcc; color: var(--amber-text);
+}
+.m-shell > :not(.cloud-sky) { position: relative; z-index: 1; }
+.m-shell > .m-header { position: sticky; z-index: 50; }
+html:has(.m-shell), body:has(.m-shell) { background: #c9c9c6; }
+.m-shell .cloud--a { opacity: .75; }
+
+/* floating glass header, like the women's */
+.m-shell .m-header { top: 10px; margin: 10px clamp(12px, 2.6vw, 40px) 0; border-radius: 999px; background: rgba(255, 255, 255, .34); border: 1px solid var(--amber-line); box-shadow: 0 12px 40px rgba(20, 20, 24, .14); backdrop-filter: blur(20px) saturate(1.3); -webkit-backdrop-filter: blur(20px) saturate(1.3); }
+.m-shell .m-nav a.active, .m-shell .m-bag { border-radius: 999px; }
+.m-shell .m-switch { border-radius: 999px; border-color: rgba(24, 24, 26, .4); }
+
+/* glass surfaces */
+.m-shell .nova-collection-card, .m-shell .w-code, .m-shell .perks--men .perk, .m-shell .w-footer {
+  background: var(--amber-glass); border: 1px solid var(--amber-line); color: var(--amber-text);
+  box-shadow: 0 30px 70px rgba(20, 20, 24, .16), inset 0 1px 0 rgba(255, 255, 255, .6);
+  backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); border-radius: 28px;
+}
+.m-shell .w-sec-head h2 b, .m-shell .nova-collections__head h2 b, .m-shell .w-new__head b { background: var(--g-text); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: g-shift 8s ease-in-out infinite alternate; }
+.m-shell .nova-collections { background: transparent; color: var(--amber-text); }
+.m-shell .nova-collections__head .nova-chip, .m-shell .w-trend__more, .m-shell .w-trend__flame { color: #3a3a3e; }
+.m-shell .nova-collection-card__text em, .m-shell .nova-collection-card__text small, .m-shell .w-code p, .m-shell .w-code__no, .m-shell .w-cat small { color: var(--amber-soft); }
+.m-shell .nova-collection-card__arrow { border-color: rgba(24, 24, 26, .25); }
+.m-shell .nova-collection-card__img { background: radial-gradient(ellipse at 50% 80%, rgba(255, 255, 255, .7), rgba(255, 255, 255, .15)); }
+.m-shell .nova-collection-card__img--pop img { filter: drop-shadow(0 16px 16px rgba(10, 10, 14, .35)); }
+.m-collections__no { display: grid; place-items: center; height: 100%; font: 900 64px/1 var(--m-display); font-style: normal; font-stretch: 80%; color: transparent; -webkit-text-stroke: 1.5px rgba(24, 24, 26, .35); }
+
+/* buttons, chips and prices: brushed steel instead of gold */
+.m-shell .w-card__arrow, .m-shell .w-trend__tabs button.active, .m-shell .nova-collection-card:hover .nova-collection-card__arrow, .m-shell .w-code:hover .w-code__tag { background: linear-gradient(135deg, #3d3d40, #121214); color: #f2f2f2; border-color: transparent; }
+.m-shell .w-trend__tabs button { background: rgba(255, 255, 255, .3); border: 1px solid var(--amber-line); color: var(--amber-text); }
+.m-shell .w-trend__rank { -webkit-text-stroke-color: #4a4a4e; }
+.m-shell .w-code:hover { background: rgba(255, 255, 255, .45); color: var(--amber-text); }
+.m-shell .w-code:hover p, .m-shell .w-code:hover .w-code__no { color: var(--amber-soft); }
+
+/* product cards: clear glass, the suit stands up out of it */
+.m-shell .w-card__img { background: rgba(255, 255, 255, .26); border: 1px solid var(--amber-line); box-shadow: 0 20px 40px rgba(20, 20, 24, .16); }
+.m-shell .w-card__price { background: rgba(255, 255, 255, .4); color: #1d1d1f; border: 1px solid var(--amber-line); }
+.m-shell .w-card__badge { background: rgba(24, 24, 26, .7); color: #f2f2f2; }
+.m-shell .w-card--pop .w-card__img { background: none; border: 0; box-shadow: none; }
+.m-shell .w-card--pop .w-card__img::before { box-shadow: 0 24px 50px rgba(20, 20, 24, .18), inset 0 1px 0 rgba(255, 255, 255, .7); }
+.m-shell .w-card--pop .w-card__cutout { filter: drop-shadow(0 22px 22px rgba(10, 10, 14, .35)); }
+.m-grid--glass { gap: 34px 18px; padding-top: 30px; }
+
+/* round category tiles in steel */
+.m-shell .w-cat__ring { background: var(--steel); }
+.m-shell .w-cat__ring img { border-color: rgba(24, 24, 26, .4); }
+.m-shell .w-cat__ring--pop::before { background: radial-gradient(circle at 50% 30%, #fafaf8, #a9a9ad); }
+.m-shell .w-cat__ring--pop .w-cat__cut { filter: drop-shadow(0 8px 10px rgba(10, 10, 14, .35)); }
+.m-cats__empty { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle at 50% 30%, #fafaf8, #b9b9bd); color: #2a2a2d; font: 900 44px/1 var(--m-display); font-stretch: 80%; }
+
+/* perks */
+.m-shell .perks--men .perk { font-family: var(--m-display); }
+.m-shell .perks--men .perk svg { color: #3a3a3e; }
+
+/* footer: dark glass like the women's, with the hanging watch */
+.m-shell .w-footer { margin-top: 80px; background: rgba(18, 18, 20, .82); color: #ececec; border-color: rgba(255, 255, 255, .25); }
+.m-shell .w-footer__big { -webkit-text-stroke: 0; background: linear-gradient(110deg, #ffffff 0%, #9d9da2 45%, #f0f0f0 70%, #707075 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: g-shift 8s ease-in-out infinite alternate; opacity: .9; }
+.m-shell .w-footer .logo { color: #ececec; }
+.hang-watch { top: calc(30px + var(--foot-word) * .85 + 14px - var(--bag-w) * 1.91 * .49); filter: drop-shadow(0 30px 30px rgba(0, 0, 0, .55)); }
+.hang-watch .hang-bag__tag { color: #d8d8dc; }
+.hang-watch__hand { transform-box: view-box; transform-origin: 110px 300px; animation-name: watch-turn; animation-timing-function: linear; animation-iteration-count: infinite; }
+.hang-watch__hand--sec { animation-timing-function: steps(60); }
+@keyframes watch-turn { to { transform: rotate(360deg); } }
+.m-shell .w-sec-head h2.m-h2-block { display: block; }
