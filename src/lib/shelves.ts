@@ -19,7 +19,7 @@ export const SHELVES: { key: Exclude<Shelf, 'hidden' | 'watches'>; label: string
 const rules: [Shelf, RegExp][] = [
   ['watches', /\bwrist ?watch|\bwatch(es)?\b/],
   ['maxi-holiday', /\bcover[\s-]?up\b/],
-  ['hidden', /parent[\s-]child|mother[\s-](and[\s-])?daughter|\bkids?\b|child|\bgirls?\b|little girl|\bpet\b|\bdog\b|pajama|homewear|home wear|home service|swimsuit|swim\b|bathing suit|surgical|protective suit|work clothes|\bbib\b|costume|\bcos\b|cosplay|coslpay|halloween|hanfu|xiuhe|official robes|pants suit|wide leg pants|t-shirt|sweater parent/],
+  ['hidden', /parent[\s-]child|mother[\s-](and[\s-])?daughter|\bkids?\b|child|\bgirls?\b|little girl|\bpet\b|\bdog\b|pajama|homewear|home wear|home service|swimsuit|swim\b|bathing suit|surgical|protective suit|work clothes|\bbib\b|costume|\bcos\b|cosplay|coslpay|halloween|hanfu|xiuhe|official robes|pants suit|wide leg pants|t-shirt|sweater parent|performance vest|gown shawl/],
   ['wedding-guest', /bridesmaid|sisters dress|girlfriends/],
   ['bridal', /wedding dress|wedding gown|bride|bridal|wedding veil|light wedding|wedding photography|toast dress|wedding bridal/],
   ['cocktail-party', /cocktail|party|club|nightclub|sequin|glitter|sparkl|\bmini\b|bodycon|birthday|tube top dress/],

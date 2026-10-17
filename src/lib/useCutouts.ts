@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
 // public/cutouts/manifest.json maps product id → background-free photo, made by the "Product cutouts" GitHub Action.
-let request: Promise<Record<string, string>> | null = null;
-let cache: Record<string, string> = {};
+let request: Promise<Record<string, string | null>> | null = null;
+let cache: Record<string, string | null> = {};
 
 function load() {
   request ??= fetch('/cutouts/manifest.json')
     .then((response) => (response.ok ? response.json() : {}))
     .catch(() => ({}))
-    .then((data: Record<string, string>) => (cache = data));
+    .then((data: Record<string, string | null>) => (cache = data));
   return request;
 }
 
@@ -16,5 +16,5 @@ function load() {
 export function useCutouts(): (id: string) => string | undefined {
   const [map, setMap] = useState(cache);
   useEffect(() => { let alive = true; load().then((data) => { if (alive) setMap(data); }); return () => { alive = false; }; }, []);
-  return (id) => map[id];
+  return (id) => map[id] ?? undefined;
 }

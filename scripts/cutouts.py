@@ -19,6 +19,15 @@ OUT = 'public/cutouts'
 MAX_HEIGHT = 900
 
 
+
+def is_ghostly(image):
+    """True when the model left mostly see-through pixels (a faded, half-erased product)."""
+    alpha = image.getchannel('A').histogram()
+    total = image.width * image.height
+    solid = sum(alpha[204:]) / total
+    semi = sum(alpha[26:204]) / total
+    return solid < 0.08 or semi > solid * 0.6
+
 def fetch(url: str) -> bytes:
     request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (davinova cutout bot)'})
     with urllib.request.urlopen(request, timeout=60) as response:
@@ -60,6 +69,11 @@ def main() -> int:
             # Reject results where almost nothing survived (model failed on the photo).
             if result.getchannel('A').getbbox() is None or result.width * result.height < 40_000:
                 raise ValueError('cutout too small')
+            if is_ghostly(result):
+                manifest[pid] = None  # keep the framed photo; don't retry on every run
+                failed += 1
+                print('ghostly', pid)
+                continue
             name = f"{pid}.webp"
             result.save(os.path.join(OUT, name), 'WEBP', quality=86, method=6)
             manifest[pid] = f"/cutouts/{name}"
