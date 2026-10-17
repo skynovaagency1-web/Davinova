@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { SlidersHorizontal, X } from 'lucide-react';
@@ -20,6 +20,8 @@ const fits = [
   ['standard', 'Slim'],
   ['curvy', 'Plus Size & Curvy'],
 ] as const;
+
+const PAGE_SIZE = 24;
 
 const unique = (values: string[]) => [...new Set(values)].filter((value) => value && value !== 'Not specified' && value !== 'Not verified').sort();
 
@@ -72,6 +74,21 @@ export function ShopPage() {
     {activeCount > 0 && <button type="button" className="text-link" onClick={() => update((next) => { next.delete('color'); next.delete('sleeve'); next.delete('max'); next.delete('occasion'); next.delete('fit'); })}>Clear filters</button>}
   </div>;
 
+  // Render the first PAGE_SIZE cards, then add more as the shopper nears the end of the grid.
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinel = useRef<HTMLDivElement>(null);
+  const hasMore = visibleCount < filtered.length;
+  useEffect(() => { setVisibleCount(PAGE_SIZE); }, [params]);
+  useEffect(() => {
+    const node = sentinel.current;
+    if (!node || !hasMore || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) setVisibleCount((count) => count + PAGE_SIZE);
+    }, { rootMargin: '600px 0px' });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hasMore, visibleCount]);
+
   const curvyFit = fit === 'curvy';
   const collectionLabel = occasions.find(([value]) => value === occasion)?.[1] ?? 'All styles';
   const collectionDescription = occasion === 'wedding-guest'
@@ -99,8 +116,9 @@ export function ShopPage() {
       <aside className="filter-sidebar" aria-label="Filters">{filterPanel}</aside>
       <div>
         <motion.div className="product-grid" layout>
-          {filtered.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}
+          {filtered.slice(0, visibleCount).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}
         </motion.div>
+        {hasMore && <div ref={sentinel} className="empty-results"><button type="button" className="text-link" onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}>Show more ({filtered.length - visibleCount} more)</button></div>}
         {filtered.length === 0 && <div className="empty-results"><p>{curvyFit ? 'We are curating the first verified Plus Size & Curvy edit. Dresses will appear here when extended-size details are identified.' : occasion === 'maxi-holiday' ? 'We are curating the first Maxi & Holiday edit.' : 'Nothing matches these filters just yet.'}</p><button type="button" className="text-link" onClick={() => setParams({}, { replace: true })}>{curvyFit ? 'Clear filters' : 'Show every dress'}</button></div>}
       </div>
     </div>
