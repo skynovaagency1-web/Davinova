@@ -63,7 +63,6 @@
 .pv-related__rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 210px); gap: 16px; overflow-x: auto; padding-bottom: 12px; }
 .pv-related__item span { display: block; aspect-ratio: 3 / 4; border-radius: calc(var(--radius) - 8px); overflow: hidden; background: #fff; }
 .pv-related__item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
-.pv-related__item:hover img { transform: scale(1.02); }
 .pv-related__item strong { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 8px; font-size: 12px; font-weight: 500; }
 
 /* Men's product page reads like a spec sheet. */

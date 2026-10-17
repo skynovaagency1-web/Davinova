@@ -3,6 +3,7 @@ import type { CollectionCategory, Product } from '../types/product';
 import { previewFirstCjDress } from '../data/previewFirstCjDress';
 import { fetchWooCommerceProducts, isWooCommerceConfigured } from './woocommerce';
 import { shelfFor } from './shelves';
+import { loadCutouts } from './useCutouts';
 
 interface CatalogueRow {
   id: string;
@@ -82,8 +83,8 @@ let cjCatalogueRequest: Promise<Product[]> | null = null;
 
 function loadCjCatalogue(): Promise<Product[]> {
   if (!cjCatalogueRequest) {
-    cjCatalogueRequest = fetch('/api/catalog', { headers: { Accept: 'application/json' } })
-      .then(async (response) => {
+    cjCatalogueRequest = Promise.all([fetch('/api/catalog', { headers: { Accept: 'application/json' } }), loadCutouts()])
+      .then(async ([response, cutouts]) => {
         if (!response.ok) throw new Error('Catalogue endpoint unavailable');
         const data = await response.json() as { products?: CatalogueRow[] };
         if (!Array.isArray(data.products)) throw new Error('Catalogue response was not a product list');
@@ -91,7 +92,9 @@ function loadCjCatalogue(): Promise<Product[]> {
           .filter((item): item is Product => item !== null)
           .map((item) => ({ ...item, shelf: shelfFor(item) }))
           // Pyjamas, kids' clothes, pet costumes and the like are not part of the store.
-          .filter((item) => item.shelf !== 'hidden');
+          .filter((item) => item.shelf !== 'hidden')
+          // Only products whose photo passed the photo check (whole model, nothing cut off) are shown.
+          .filter((item) => typeof cutouts[item.id] === 'string');
       })
       .catch((cause: unknown) => {
         cjCatalogueRequest = null; // allow a retry on the next page visit

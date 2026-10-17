@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [feature/3d-fashion-storefront]
-    paths: [scripts/cutouts.py, .github/workflows/cutouts.yml]
+    paths: [scripts/cutouts.py, scripts/models/**, .github/workflows/cutouts.yml]
 
 permissions:
   contents: write
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install "rembg[cpu]==2.0.85" pillow
+      - run: pip install "rembg[cpu]==2.0.85" pillow opencv-python-headless
       - run: python scripts/cutouts.py
       - name: Commit cutouts
         run: |
