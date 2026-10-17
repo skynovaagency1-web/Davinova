@@ -21,7 +21,7 @@ import numpy as np
 from PIL import Image
 from rembg import new_session, remove
 
-CATALOG_URL = os.environ.get('CATALOG_URL', 'https://feature-3d-fashion-storefron.davinova.pages.dev/api/catalog')
+CATALOG_URL = os.environ.get('CATALOG_URL', 'https://feature-3d-fashion-storefron.davinova.pages.dev/api/catalog?all=1')
 HERO_URL = 'https://images.unsplash.com/photo-1568251188392-ae32f898cb3b?auto=format&fit=crop&w=1400&q=85'
 FACE_MODEL = os.path.join(os.path.dirname(__file__), 'models', 'face_detection_yunet_2023mar.onnx')
 OUT = 'public/cutouts'
