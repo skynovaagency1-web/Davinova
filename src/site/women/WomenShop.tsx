@@ -26,7 +26,7 @@ export function WomenShop() {
   const style = params.get('style') ?? '';
   const styleLabel = STYLE_CATEGORIES.find((item) => item.key === style)?.label;
 
-  const women = useMemo(() => products.filter((product) => product.department === 'women' && product.shelf !== 'watches'), [products]);
+  const women = useMemo(() => products.filter((product) => product.department === 'women' && product.shelf !== 'watches' && product.shelf !== 'jewelry'), [products]);
   const colours = useMemo(() => [...new Set(women.map((product) => product.color).filter(Boolean))].sort().slice(0, 14), [women]);
   const filtered = useMemo(() => {
     const list = women.filter((product) =>

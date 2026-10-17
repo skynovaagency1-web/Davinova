@@ -5,9 +5,9 @@ import type { Product } from '../types/product';
  * costumes and bridal gowns all landed in "wedding guest"), so the storefront sorts each product by
  * what its own title says. Anything that is not a women's dress goes to "hidden" and is not shown.
  */
-export type Shelf = 'wedding-guest' | 'cocktail-party' | 'evening' | 'bridal' | 'maxi-holiday' | 'everyday' | 'watches' | 'hidden';
+export type Shelf = 'wedding-guest' | 'cocktail-party' | 'evening' | 'bridal' | 'maxi-holiday' | 'everyday' | 'watches' | 'jewelry' | 'hidden';
 
-export const SHELVES: { key: Exclude<Shelf, 'hidden' | 'watches'>; label: string; short: string; line: string }[] = [
+export const SHELVES: { key: Exclude<Shelf, 'hidden' | 'watches' | 'jewelry'>; label: string; short: string; line: string }[] = [
   { key: 'wedding-guest', label: 'Wedding guest', short: 'Guest', line: 'Ceremony to last dance' },
   { key: 'cocktail-party', label: 'Cocktail & party', short: 'Cocktail', line: 'Made for after dark' },
   { key: 'evening', label: 'Evening gowns', short: 'Evening', line: 'Black tie and galas' },
@@ -18,6 +18,7 @@ export const SHELVES: { key: Exclude<Shelf, 'hidden' | 'watches'>; label: string
 
 const rules: [Shelf, RegExp][] = [
   ['watches', /\bwrist ?watch|\bwatch(es)?\b/],
+  ['jewelry', /jewel|necklace|earring|bracelet|bangle|pendant|\brings?\b|tiara|crown|hairpin|hair clip|hair comb|headpiece|headband|brooch|anklet/],
   ['maxi-holiday', /\bcover[\s-]?up\b/],
   ['hidden', /parent[\s-]child|mother[\s-](and[\s-])?daughter|\bkids?\b|child|\bgirls?\b|little girl|\bpet\b|\bdog\b|pajama|homewear|home wear|home service|swimsuit|swim\b|bathing suit|surgical|protective suit|work clothes|\bbib\b|costume|\bcos\b|cosplay|coslpay|halloween|hanfu|xiuhe|official robes|pants suit|wide leg pants|t-shirt|sweater parent|performance vest|gown shawl/],
   ['wedding-guest', /bridesmaid|sisters dress|girlfriends/],
@@ -30,8 +31,9 @@ const rules: [Shelf, RegExp][] = [
 ];
 
 export function shelfFor(product: Pick<Product, 'title' | 'tags' | 'department'>): Shelf {
-  if (product.department === 'men') return 'everyday';
   const text = [product.title, ...product.tags.filter((tag) => !tag.startsWith('__'))].join(' ').toLowerCase();
-  for (const [shelf, pattern] of rules) if (pattern.test(text)) return shelf;
+  for (const [shelf, pattern] of rules.slice(0, 2)) if (pattern.test(text)) return shelf;
+  if (product.department === 'men') return 'everyday';
+  for (const [shelf, pattern] of rules.slice(2)) if (pattern.test(text)) return shelf;
   return 'hidden';
 }

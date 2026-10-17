@@ -16,7 +16,7 @@ import { WatchPoster } from './WatchPoster';
 /** Women's home: hero, both shops, categories, collections, trending, featured look, guides and new arrivals. */
 export function WomenHome() {
   const { products } = useCatalogProducts();
-  const women = products.filter((product) => product.department === 'women' && product.shelf !== 'watches');
+  const women = products.filter((product) => product.department === 'women' && product.shelf !== 'watches' && product.shelf !== 'jewelry');
   const men = products.filter((product) => product.department === 'men');
   const withImages = women.filter((product) => product.images[0]?.url);
 

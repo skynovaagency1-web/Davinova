@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const content: Record<string, { title: string; text: string }> = {
   about: { title: 'A feeling, not just a dress.', text: 'Davinova is an occasionwear edit for weddings, celebrations and evenings that call for something special. We are carefully sourcing each style and checking its fit, availability and delivery details before opening orders.' },
@@ -8,7 +8,7 @@ const content: Record<string, { title: string; text: string }> = {
   contact: { title: 'We’re here to help.', text: 'Davinova customer support details are being set up. A monitored support address and contact process will be published before the store opens for orders.' },
 };
 export function InfoPage() {
-  const { slug = 'about' } = useParams();
+  const slug = useLocation().pathname.split('/').filter(Boolean).pop() ?? 'about';
   const page = content[slug] ?? content.about;
   return <section className="info-page section"><p className="eyebrow">Davinova notes</p><h1>{page.title}</h1><p>{page.text}</p><Link className="button button--dark" to="/shop">Explore the collection</Link></section>;
 }

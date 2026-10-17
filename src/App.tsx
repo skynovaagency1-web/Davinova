@@ -11,6 +11,8 @@ const MenShop = lazy(() => import('./site/men/MenShop').then((m) => ({ default: 
 const ProductView = lazy(() => import('./site/shared/ProductView').then((m) => ({ default: m.ProductView })));
 const BagView = lazy(() => import('./site/shared/BagView').then((m) => ({ default: m.BagView })));
 const OrderConfirmationPage = lazy(() => import('./pages/OrderConfirmationPage'));
+const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
+const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
 const InfoPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.InfoPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
 const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
@@ -29,17 +31,22 @@ export default function App() {
         <Route path="shop" element={<MenShop />} />
         <Route path="product/:slug" element={<ProductView variant="men" />} />
         <Route path="bag" element={<BagView variant="men" />} />
+        <Route path="about" element={<AboutPage dept="men" />} />
+        <Route path="jewelry" element={<JewelryPage dept="men" />} />
+        <Route path="jewelry/:type" element={<JewelryPage dept="men" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route element={<WomenLayout />}>
         <Route index element={menHost ? <Navigate to="/men" replace /> : <WomenHome />} />
         <Route path="shop" element={<WomenShop />} />
         <Route path="watches" element={<WatchesPage />} />
+        <Route path="jewelry" element={<JewelryPage dept="women" />} />
+        <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
         <Route path="product/:slug" element={<ProductView variant="women" />} />
         <Route path="bag" element={<BagView variant="women" />} />
         <Route path="cart" element={<BagView variant="women" />} />
         <Route path="order-confirmation" element={<OrderConfirmationPage />} />
-        <Route path="about" element={<InfoPage />} />
+        <Route path="about" element={<AboutPage dept="women" />} />
         <Route path="shipping" element={<InfoPage />} />
         <Route path="returns" element={<InfoPage />} />
         <Route path="privacy" element={<InfoPage />} />

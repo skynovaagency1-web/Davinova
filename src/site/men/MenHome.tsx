@@ -10,7 +10,8 @@ import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 
 // The owner's own photo with the background removed; if it fails to load the hero shows the featured product photo.
-const MEN_CUTOUT = '/images/men-model.webp';
+// The founder's suit photo (background removed). Until it exists the hero shows the latest looks.
+const MEN_CUTOUT = '/images/men-suit.webp';
 const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 const occasions = [
   ['01', 'Wedding', 'Suits for the ceremony', '/men/shop?occasion=wedding-guest'],

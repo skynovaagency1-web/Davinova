@@ -5,6 +5,7 @@ import { Menu, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
+import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 
 const links = [
   ['/men/shop', 'All formal'],
@@ -30,7 +31,15 @@ export function MenLayout() {
     <header className="m-header">
       <button type="button" className="m-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
       <Link to="/men" className="m-wordmark" aria-label="Davinova Homme home"><Logo tone="metal" sub="HOMME" /></Link>
-      <nav className="m-nav" aria-label="Men's navigation">{links.map(([to, label], index) => <Link key={to} to={to} className={current === to ? 'active' : ''}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}</nav>
+      <nav className="m-nav" aria-label="Men's navigation">{links.map(([to, label], index) => <Link key={to} to={to} className={current === to ? 'active' : ''}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}
+        <div className="m-nav__drop">
+          <Link to={jewelryPath('men')} className={pathname.startsWith('/men/jewelry') ? 'active' : ''}><i>05</i>Jewelry &amp; Watches</Link>
+          <div className="m-nav__menu">{jewelryMenu('men').map((group) => <div key={group.title}>
+            <span>{group.title}</span>
+            {group.items.map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}
+          </div>)}</div>
+        </div>
+      </nav>
       <div className="m-header__right">
         <Link to="/" className="m-switch">Women ↗</Link>
         <Link to="/men/bag" className="m-bag" aria-label={`Bag, ${count} items`}><ShoppingBag size={16} /><span>{String(count).padStart(2, '0')}</span></Link>
@@ -39,6 +48,9 @@ export function MenLayout() {
     <AnimatePresence>
       {open && <motion.nav className="m-drawer" aria-label="Men's mobile navigation" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}>
         {links.map(([to, label], index) => <Link key={to} to={to}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}
+        <Link to={jewelryPath('men')}><i>05</i>Jewelry &amp; Watches</Link>
+        <div className="drawer-sub">{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
+        <Link to="/men/about"><i>↗</i>About the founder</Link>
         <Link to="/"><i>↗</i>Women's shop</Link>
       </motion.nav>}
     </AnimatePresence>
@@ -46,7 +58,7 @@ export function MenLayout() {
     <footer className="m-footer">
       <div className="m-footer__grid">
         <span className="m-wordmark"><Logo tone="metal" sub="HOMME" /></span>
-        <nav aria-label="Footer"><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></nav>
+        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></nav>
       </div>
       <div className="m-footer__bar"><span>© {new Date().getFullYear()} DAVINOVA</span><span>FORMALWEAR / FOR THE OCCASION</span><span className="m-barcode" aria-hidden="true" /></div>
     </footer>

@@ -8,6 +8,7 @@ import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
 import { HangingBag } from '../shared/HangingBag';
+import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 
 const links = [
   ['/shop', 'Shop'],
@@ -17,7 +18,7 @@ const links = [
   ['/shop?occasion=evening', 'Evening'],
   ['/shop?occasion=bridal', 'Bridal'],
   ['/shop?fit=curvy', 'Curvy'],
-  ['/watches', 'Watches'],
+  ['/jewelry', 'Jewelry & Watches'],
 ] as const;
 
 /** The women's storefront: floating header, lilac menu and footer. */
@@ -47,6 +48,8 @@ export function WomenLayout() {
     <AnimatePresence>
       {open && <motion.nav className="w-drawer" aria-label="Mobile" initial={{ clipPath: 'circle(0% at 30px 30px)' }} animate={{ clipPath: 'circle(150% at 30px 30px)' }} exit={{ clipPath: 'circle(0% at 30px 30px)' }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
         {links.map(([to, label], index) => <motion.div key={to} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 + index * 0.05 }}><Link to={to}>{label}</Link></motion.div>)}
+        <div className="drawer-sub">{jewelryMenu('women').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('women', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
+        <Link to="/about" className="drawer-about">About the founder</Link>
         <Link to="/men" className="w-drawer__switch">Men's shop ↗</Link>
       </motion.nav>}
     </AnimatePresence>

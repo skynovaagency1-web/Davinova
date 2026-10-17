@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { SHELVES } from '../../lib/shelves';
+import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 
 // Adapted from Aceternity's "Navbar Menu" on 21st.dev: one shared panel springs between items on hover.
 const spring = { type: 'spring', mass: 0.5, damping: 11.5, stiffness: 100, restDelta: 0.001, restSpeed: 0.001 } as const;
@@ -52,7 +53,14 @@ export function WomenMegaNav() {
         <Link to="/shop">All fits</Link>
       </div>
     </Item>
-    <Link to="/watches" className="w-mega__trigger">Watches</Link>
+    <Item label="Jewelry & Watches" active={active} setActive={setActive}>
+      <div className="w-mega__cols">
+        {jewelryMenu('women').map((group) => <div key={group.title} className="w-mega__links">
+          <span className="w-mega__group">{group.title}</span>
+          {group.items.map((item) => <Link key={item} to={jewelryPath('women', item)}>{JEWELRY_TYPES[item].label}</Link>)}
+        </div>)}
+      </div>
+    </Item>
     <Link to="/about" className="w-mega__trigger">About</Link>
   </nav>;
 }
