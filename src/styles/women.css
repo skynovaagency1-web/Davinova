@@ -130,9 +130,9 @@
 .w-icon:hover { background: #f2e4d0; }
 .w-switch { padding: 9px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--nova-ink); color: #fff; }
 .w-bag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--nova-lilac); color: var(--nova-lilac); font-size: 12px; font-weight: 600; }
-.w-drawer { position: fixed; inset: 0; z-index: 45; padding: 110px 28px 40px; background: var(--nova-panel); color: #fff; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
-.w-drawer a { font: 800 clamp(34px, 9vw, 52px)/1.1 var(--nova-display); letter-spacing: -.02em; }
-.w-drawer__switch { margin-top: auto; font-size: 18px !important; font-weight: 600 !important; }
+.w-drawer { position: fixed; inset: 0; z-index: 45; padding: 110px 28px 40px; background: var(--nova-panel); color: #fff; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; }
+.w-drawer a { font: 700 clamp(20px, 5.4vw, 28px)/1.25 var(--nova-display); letter-spacing: -.02em; }
+.w-drawer__switch { margin-top: auto; font-size: 15px !important; font-weight: 600 !important; }
 .w-footer { --foot-word: clamp(48px, 12.6vw, 200px); --bag-w: clamp(84px, 8vw, 116px); margin: 80px clamp(12px, 2.6vw, 40px) 16px; padding: 30px clamp(20px, 3vw, 44px) 22px; border-radius: 36px; background: var(--nova-ink); color: #fff; overflow: hidden; }
 .w-footer__big { font: 900 var(--foot-word)/.85 var(--nova-display); font-stretch: 125%; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(230, 190, 120, .7); white-space: nowrap; }
 .w-footer__row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 24px; font-size: 14px; }
