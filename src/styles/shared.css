@@ -119,15 +119,18 @@
 .logo__sub { font: 500 8.5px/1 'IBM Plex Mono', monospace; letter-spacing: .5em; font-style: normal; padding-left: 1px; }
 .logo-mark { flex: none; overflow: visible; }
 .logo-line { stroke-dasharray: 100; stroke-dashoffset: 100; animation: logo-draw 1.1s cubic-bezier(.65, 0, .35, 1) forwards; }
-.logo-star { transform-box: fill-box; transform-origin: center; animation: logo-twinkle 3.2s ease-in-out 1.4s infinite; }
+/* The O: a ring with a gap that keeps circling, so the mark is never still. */
+.logo-orbit { stroke-dasharray: 78 22; animation: logo-orbit 3.6s linear infinite; }
+.logo-star { transform-box: fill-box; transform-origin: center; animation: logo-twinkle 2.4s ease-in-out infinite; }
 .logo:hover .logo-star, .logo-mark:hover .logo-star { animation: logo-spin .9s cubic-bezier(.34, 1.56, .64, 1); }
 .logo--metal { color: #1b1b1b; }
 .logo--light, .w-footer .logo { color: #fff; }
 .m-footer .logo { color: #e8e8e8; }
 @keyframes logo-draw { to { stroke-dashoffset: 0; } }
-@keyframes logo-twinkle { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(.78) rotate(45deg); } }
+@keyframes logo-twinkle { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; } 50% { transform: scale(.6) rotate(90deg); opacity: .75; } }
+@keyframes logo-orbit { to { stroke-dashoffset: -100; } }
 @keyframes logo-spin { from { transform: rotate(0) scale(1); } 50% { transform: rotate(180deg) scale(1.3); } to { transform: rotate(360deg) scale(1); } }
 @media (max-width: 760px) { .logo__word { height: 18px; } }
 @media (prefers-reduced-motion: reduce) {
-  .logo-line, .logo-star { animation: none; stroke-dashoffset: 0; }
+  .logo-line { animation: none; stroke-dashoffset: 0; }
 }
