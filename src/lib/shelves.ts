@@ -1,4 +1,5 @@
 import type { Product } from '../types/product';
+import { JEWELRY_COLLECTION } from './storeCollectionTaxonomy';
 
 /**
  * Where each women's product sits in the shop. Supplier categories were imported loosely (pyjamas, pet
@@ -30,7 +31,8 @@ const rules: [Shelf, RegExp][] = [
   ['everyday', /dress|skirt/],
 ];
 
-export function shelfFor(product: Pick<Product, 'title' | 'tags' | 'department'>): Shelf {
+export function shelfFor(product: Pick<Product, 'title' | 'tags' | 'department' | 'storeCollection' | 'storeSubcategory'>): Shelf {
+  if (product.storeCollection === JEWELRY_COLLECTION) return /watches$/.test(product.storeSubcategory ?? '') ? 'watches' : 'jewelry';
   const text = [product.title, ...product.tags.filter((tag) => !tag.startsWith('__'))].join(' ').toLowerCase();
   for (const [shelf, pattern] of rules.slice(0, 2)) if (pattern.test(text)) return shelf;
   if (product.department === 'men') return 'everyday';

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { WomenCard } from './WomenCard';
 import { WatchPoster } from './WatchPoster';
+import { jewelryTypeOf } from '../shared/jewelry';
 
 const promises = [
   ['Made to be worn', 'Everyday watches that still feel like an occasion.'],
@@ -12,7 +13,7 @@ const promises = [
 /** Watches: the campaign poster up top, then every product on the watches shelf. */
 export function WatchesPage() {
   const { products, loading } = useCatalogProducts();
-  const watches = products.filter((product) => product.shelf === 'watches');
+  const watches = products.filter((product) => jewelryTypeOf(product) === 'womens-watches');
 
   return <section className="w-watches">
     <div className="w-watches__hero">

@@ -8,10 +8,10 @@
  * without a flawless photo, so this imports a few extra.
  *
  * Env: SITE, ADMIN_PASSWORD (GitHub secret DAVINOVA_ADMIN_PASSWORD), TARGET (default 6), MAX_IMPORTS (default 120),
- * ONLY (optional comma-separated sub-category slugs).
+ * ONLY (optional comma-separated sub-category slugs), MEN=1 (men's formal list), JEWELRY=1 (Jewelry & Watches list).
  */
 import { readFileSync } from 'node:fs';
-import { menStoreCollectionGroups, storeCollectionGroups, suggestStoreCollection } from '../src/lib/storeCollectionTaxonomy.ts';
+import { jewelryStoreCollectionGroups, menStoreCollectionGroups, storeCollectionGroups, suggestStoreCollection } from '../src/lib/storeCollectionTaxonomy.ts';
 
 const SITE = process.env.SITE ?? 'https://feature-3d-fashion-storefron.davinova.pages.dev';
 const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
@@ -36,6 +36,35 @@ const MEN_FITS: Record<string, RegExp> = {
 };
 // Casual pieces that only borrow the word "suit".
 const NOT_TAILORING = /\b(tracksuit|sweatsuit|swimsuit|jogging|sports? suit|pajama|hoodie|sweat|shorts? suit|t-?shirt)\b/i;
+// JEWELRY=1 fills Jewelry & Watches for both shops: titles must name the piece, and men's pieces must not say women.
+const JEWELRY = process.env.JEWELRY === '1';
+const JEWELRY_SEARCH: Record<string, string[]> = {
+  'bridal-sets': ['bridal jewelry set', 'wedding jewelry set necklace earrings', 'rhinestone bridal necklace set'],
+  'wedding-hair': ['bridal tiara', 'wedding crown', 'bridal hair comb', 'bridal hairpin pearl'],
+  'engagement-rings': ['engagement ring', 'moissanite engagement ring', 'zircon engagement ring', 'wedding ring women'],
+  fashion: ['statement earrings', 'statement necklace women', 'gold hoop earrings', 'women bracelet fashion'],
+  fine: ['925 sterling silver necklace women', 'pearl earrings', '18k gold necklace women', 'sterling silver earrings'],
+  'womens-watches': ['women watch', 'ladies quartz watch', 'women bracelet watch', 'ladies gold watch'],
+  'mens-wedding-bands': ['men wedding band', 'men tungsten ring', 'men titanium ring', 'men wedding ring'],
+  cufflinks: ['cufflinks', 'tie clip', 'cufflinks tie clip set'],
+  'mens-chains-bracelets': ['men chain necklace', 'men cuban chain', 'men bracelet stainless steel', 'men beaded bracelet'],
+  'mens-watches': ['men watch', 'men quartz watch', 'men luxury watch', 'men chronograph watch'],
+};
+const JEWELRY_FITS: Record<string, RegExp> = {
+  'bridal-sets': /(bridal|wedding|bride).*(sets?|necklace)|(sets?|necklace).*(bridal|wedding|bride)/i,
+  'wedding-hair': /(tiaras?|crowns?|hair ?(comb|pin|clip|vine|band)s?|hairpins?|headpieces?)/i,
+  'engagement-rings': /(engagement|wedding|proposal|moissanite|solitaire).*rings?|rings?.*(engagement|wedding|proposal)/i,
+  fashion: /(earrings?|necklaces?|bracelets?|bangles?|pendants?|chokers?)/i,
+  fine: /(925|sterling|18k|14k|solid gold|pearls?|moissanite)/i,
+  'womens-watches': /watch(es)?/i,
+  'mens-wedding-bands': /rings?|bands?/i,
+  cufflinks: /(cuff ?links?|tie (clip|bar|pin)s?)/i,
+  'mens-chains-bracelets': /(chains?|bracelets?|necklaces?)/i,
+  'mens-watches': /watch(es)?/i,
+};
+const MEN_PIECES = ['mens-wedding-bands', 'mens-chains-bracelets', 'mens-watches'];
+// Things that share jewelry words but are not jewelry (or are for kids, pets, phones).
+const NOT_JEWELRY = /(smart ?watch|watch ?band|watch ?strap|phone ?case|jewelry ?box|storage|display|stand|organizer|holder|tool|kit|beads? for|diy|keychain|key ?ring|nose|belly|tattoo|smart)/i;
 const ONLY = (process.env.ONLY ?? '').split(',').map((value) => value.trim()).filter(Boolean);
 const DRESS_FIRST = ['weddings-and-events', 'tops-and-sets:lady-dresses', 'womens-sweaters:womens-sweater-dresses', 'womens-denim:womens-denim-dresses', 'womens-sweatshirts-hoodies:womens-sweatshirt-dresses'];
 const NOT_FOR_STORE = /\b(kids?|child|children|toddler|baby|boys?|pet|dog|cat|pajamas?|pyjamas?|lingerie|costume|cosplay|halloween)\b/i;
@@ -62,7 +91,7 @@ async function main() {
   // A product only counts once its photo passed the check (unchecked new imports count too, so re-runs don't over-import).
   const shown = (group: string, sub: string) => catalog.products.filter((product) => product.storeCollection === group && product.storeSubcategory === sub && manifest[product.id] !== null).length;
 
-  const slots = (MEN ? menStoreCollectionGroups : storeCollectionGroups).flatMap((group) => group.subcategories.map((sub) => ({ group, sub })))
+  const slots = (JEWELRY ? jewelryStoreCollectionGroups : MEN ? menStoreCollectionGroups : storeCollectionGroups).flatMap((group) => group.subcategories.map((sub) => ({ group, sub })))
     .filter(({ sub }) => !ONLY.length || ONLY.includes(sub.slug))
     .sort((a, b) => rank(a.group.slug, a.sub.slug) - rank(b.group.slug, b.sub.slug));
 
@@ -74,7 +103,7 @@ async function main() {
     let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
-    const words = MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, 'plus size dress', 'plus size women dress'] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
+    const words = JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, 'plus size dress', 'plus size women dress'] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
       for (let page = 1; page <= 5 && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
@@ -86,7 +115,11 @@ async function main() {
           if (need <= 0 || imported >= MAX_IMPORTS || known.has(item.id)) continue;
           if (PLUS && !PLUS_TITLE.test(item.name)) continue;
           if (NOT_FOR_STORE.test(item.name) && sub.slug !== 'flower-girl-dresses' && group.slug !== 'couple-parent-child-clothing') continue;
-          if (MEN) {
+          if (JEWELRY) {
+            if (NOT_JEWELRY.test(item.name) || !JEWELRY_FITS[sub.slug]?.test(item.name)) continue;
+            if (MEN_PIECES.includes(sub.slug) && (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name))) continue;
+            if (sub.slug.startsWith('womens') && MEN_TITLE.test(item.name) && !WOMEN_TITLE.test(item.name)) continue;
+          } else if (MEN) {
             if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || NOT_TAILORING.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
             // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.
             if (sub.slug === 'wedding-suits' && (MEN_FITS['tuxedos-and-dinner-jackets'].test(item.name) || /\blinen\b/i.test(item.name))) continue;

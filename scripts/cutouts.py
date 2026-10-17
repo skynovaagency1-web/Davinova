@@ -30,6 +30,7 @@ GATE_VERSION = 2  # bump to re-check every product after changing the rules
 MAX_TRIES = 8
 OBJECT_PRODUCT = re.compile(r'\bwrist ?watch|\bwatch(es)?\b|jewel|necklace|earring|bracelet|bangle|pendant|\brings?\b|tiara|crown|hairpin|hair clip|hair comb|headpiece|brooch|anklet', re.I)
 GROUP_PRODUCT = 'couple-parent-child-clothing'
+JEWELRY_COLLECTION = 'jewelry-and-watches'
 
 
 def is_ghostly(image):
@@ -116,7 +117,7 @@ def finish(cutout: Image.Image) -> Image.Image:
 
 
 def kind_of(product) -> str:
-    if OBJECT_PRODUCT.search(product.get('title', '')):
+    if product.get('storeCollection') == JEWELRY_COLLECTION or OBJECT_PRODUCT.search(product.get('title', '')):
         return 'object'
     return 'group' if product.get('storeCollection') == GROUP_PRODUCT else 'person'
 
