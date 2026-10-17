@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/index.css';
-import './styles/editorial.css';
-import './styles/storefronts.css';
+import './styles/women.css';
+import './styles/men.css';
+import './styles/shared.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

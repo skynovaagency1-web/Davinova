@@ -1,25 +1,41 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Layout } from './components/Layout';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { WomenLayout } from './site/women/WomenLayout';
+import { MenLayout } from './site/men/MenLayout';
 import { ApprovalPage } from './pages/ApprovalPage';
-const HomePage = lazy(() => import('./pages/HomePage').then((m) => ({ default: m.HomePage })));
-const ShopPage = lazy(() => import('./pages/ShopPage').then((m) => ({ default: m.ShopPage })));
-const ProductPage = lazy(() => import('./pages/ProductPage').then((m) => ({ default: m.ProductPage })));
-const CartPage = lazy(() => import('./pages/CartPage').then((m) => ({ default: m.CartPage })));
+const WomenHome = lazy(() => import('./site/women/WomenHome').then((m) => ({ default: m.WomenHome })));
+const WomenShop = lazy(() => import('./site/women/WomenShop').then((m) => ({ default: m.WomenShop })));
+const MenHome = lazy(() => import('./site/men/MenHome').then((m) => ({ default: m.MenHome })));
+const MenShop = lazy(() => import('./site/men/MenShop').then((m) => ({ default: m.MenShop })));
+const ProductView = lazy(() => import('./site/shared/ProductView').then((m) => ({ default: m.ProductView })));
+const BagView = lazy(() => import('./site/shared/BagView').then((m) => ({ default: m.BagView })));
 const OrderConfirmationPage = lazy(() => import('./pages/OrderConfirmationPage'));
 const InfoPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.InfoPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
 const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
-function PageLoader() { return <div className="page-loader" role="status">Preparing your edit…</div>; }
+
+function PageLoader() { return <div className="page-loader" role="status">Loading…</div>; }
+
+// men.<domain> opens the men's storefront directly, like a separate site.
+const menHost = typeof window !== 'undefined' && window.location.hostname.startsWith('men.');
+
 export default function App() {
   return <BrowserRouter><Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
-      <Route element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="shop" element={<ShopPage />} />
-        <Route path="product/:slug" element={<ProductPage />} />
-        <Route path="cart" element={<CartPage />} />
+      <Route path="/men" element={<MenLayout />}>
+        <Route index element={<MenHome />} />
+        <Route path="shop" element={<MenShop />} />
+        <Route path="product/:slug" element={<ProductView variant="men" />} />
+        <Route path="bag" element={<BagView variant="men" />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+      <Route element={<WomenLayout />}>
+        <Route index element={menHost ? <Navigate to="/men" replace /> : <WomenHome />} />
+        <Route path="shop" element={<WomenShop />} />
+        <Route path="product/:slug" element={<ProductView variant="women" />} />
+        <Route path="bag" element={<BagView variant="women" />} />
+        <Route path="cart" element={<BagView variant="women" />} />
         <Route path="order-confirmation" element={<OrderConfirmationPage />} />
         <Route path="about" element={<InfoPage />} />
         <Route path="shipping" element={<InfoPage />} />
