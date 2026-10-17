@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Menu, ShoppingBag, X } from 'lucide-react';
+import { Home, Menu, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
@@ -41,6 +41,7 @@ export function MenLayout() {
         </div>
       </nav>
       <div className="m-header__right">
+        <Link to="/men" className="m-home" aria-label="Home"><Home size={16} /></Link>
         <Link to="/" className="m-switch">Women ↗</Link>
         <Link to="/men/bag" className="m-bag" aria-label={`Bag, ${count} items`}><ShoppingBag size={16} /><span>{String(count).padStart(2, '0')}</span></Link>
       </div>

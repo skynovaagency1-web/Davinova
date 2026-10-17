@@ -1,4 +1,4 @@
-interface Env { DB: D1Database }
+interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 
 type DbProduct = {
@@ -26,6 +26,13 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     return Response.json({ error: 'Unknown collection.' }, { status: 400 });
   }
 
+  // The whole catalogue is the same for every visitor, so answer from Cloudflare's edge cache when we can.
+  const cache = (globalThis as unknown as { caches?: { default: Cache } }).caches?.default;
+  const cacheKey = new Request(url.toString(), { method: 'GET' });
+  const cached = await cache?.match(cacheKey);
+  if (cached) return cached;
+  const shown = await photoCheckedIds(env, request);
+
   const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,cost_cents,currency,occasion,
     collection_category,department,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
     catalog_source_product_id,cj_product_id,supplier_verified,
@@ -47,6 +54,8 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
 
   const products = [];
   for (const row of results) {
+    // Products whose photo failed the photo check are never shown, so don't send them.
+    if (shown && !shown.has(row.id)) continue;
     const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url, alt }));
     const variantRows = sizesByProduct.get(row.id) ?? [];
     const verified = row.supplier_verified === 1;
@@ -81,12 +90,26 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     });
   }
 
-  return Response.json({ products }, {
+  const response = Response.json({ products }, {
     headers: {
-      'Cache-Control': 'public, max-age=30, s-maxage=60',
+      'Cache-Control': 'public, max-age=60, s-maxage=300',
       'X-Content-Type-Options': 'nosniff',
     },
   });
+  if (cache) await cache.put(cacheKey, response.clone());
+  return response;
+}
+
+/** Ids with a passing photo in public/cutouts/manifest.json; undefined (show everything) if it can't be read. */
+async function photoCheckedIds(env: Env, request: Request): Promise<Set<string> | undefined> {
+  try {
+    const response = await (env.ASSETS?.fetch(new URL('/cutouts/manifest.json', request.url).toString()) ?? fetch(new URL('/cutouts/manifest.json', request.url)));
+    if (!response.ok) return undefined;
+    const manifest = await response.json() as Record<string, string | null>;
+    return new Set(Object.keys(manifest).filter((id) => typeof manifest[id] === 'string'));
+  } catch {
+    return undefined;
+  }
 }
 
 function groupByProduct<T extends { product_id: string }>(rows: T[]): Map<string, T[]> {

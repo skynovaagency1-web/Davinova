@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Menu, Search, ShoppingBag, X } from 'lucide-react';
+import { Home, Menu, Search, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { WomenMegaNav } from './WomenMegaNav';
 import { Logo } from '../shared/Logo';
@@ -54,6 +54,7 @@ export function WomenLayout() {
       <WomenMegaNav />
       <Link to="/" className="w-wordmark" aria-label="Davinova home"><Logo /></Link>
       <div className="w-header__right">
+        <Link to="/" className="w-icon w-home" aria-label="Home"><Home size={18} /></Link>
         <Link to="/shop" className="w-icon" aria-label="Browse the shop"><Search size={18} /></Link>
         <Link to="/men" className="w-switch">Men ↗</Link>
         <Link to="/bag" className="w-bag" aria-label={`Bag, ${count} items`}><ShoppingBag size={16} /><span>{count} {count === 1 ? 'item' : 'items'}</span></Link>
@@ -61,6 +62,7 @@ export function WomenLayout() {
     </header>
     <AnimatePresence>
       {open && <motion.nav className="w-drawer" aria-label="Mobile" initial={{ clipPath: 'circle(0% at 30px 30px)' }} animate={{ clipPath: 'circle(150% at 30px 30px)' }} exit={{ clipPath: 'circle(0% at 30px 30px)' }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+        <Link to="/" className="drawer-about">Home</Link>
         {drawerSections(products).map((section, index) => <motion.div key={section.to} className="drawer-title" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 + index * 0.05 }}>
           <Link to={section.to}>{section.label}</Link>
           {section.subs.length > 0 && <div className="drawer-sub">{section.subs.map((sub) => <Link key={sub.to} to={sub.to}>{sub.label}</Link>)}</div>}

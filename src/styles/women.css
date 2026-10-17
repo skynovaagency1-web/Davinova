@@ -201,6 +201,7 @@
   .w-header { grid-template-columns: auto 1fr auto; padding: 0 8px 0 10px; }
   .w-header__menu { display: grid; place-items: center; z-index: 2; }
   .w-nav, .w-switch, .w-icon { display: none; }
+  .w-icon.w-home { display: grid; width: 36px; height: 36px; }
   .w-wordmark { justify-self: center; font-size: 17px; }
   .w-bag span { display: none; }
   .w-filters { top: 80px; margin: -22px 8px 24px; }
