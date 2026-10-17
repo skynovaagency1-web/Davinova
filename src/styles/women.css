@@ -422,14 +422,14 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 
 /* ---------- Hanging bag in the footer ---------- */
 .w-footer { position: relative; overflow: visible; }
-.hang-bag { position: absolute; z-index: 3; top: -2px; right: clamp(20px, 7vw, 120px); width: clamp(110px, 12vw, 170px); transform-origin: 50% 0; animation: bag-swing 4.2s ease-in-out infinite alternate; filter: drop-shadow(0 30px 30px rgba(10, 4, 0, .55)); }
+.hang-bag { position: absolute; z-index: 3; top: -72px; right: clamp(20px, 6vw, 100px); width: clamp(100px, 10vw, 140px); transform-origin: 50% 0; animation: bag-swing 4.2s ease-in-out infinite alternate; filter: drop-shadow(0 30px 30px rgba(10, 4, 0, .55)); }
 .hang-bag svg { display: block; width: 100%; height: auto; overflow: visible; }
 .hang-bag__tag { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); white-space: nowrap; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .25em; text-transform: uppercase; color: #f3cf85; opacity: 0; transition: opacity .3s; }
 .hang-bag:hover { animation-play-state: paused; }
 .hang-bag:hover .hang-bag__tag { opacity: 1; }
 @keyframes bag-swing { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
 .w-footer__big { position: relative; z-index: 1; }
-@media (max-width: 760px) { .hang-bag { width: 92px; right: 18px; top: -10px; } }
+@media (max-width: 760px) { .hang-bag { width: 92px; right: 18px; top: -56px; } }
 
 /* ---------- Watch campaign + Watches page ---------- */
 .watch-poster { position: relative; display: block; overflow: hidden; border-radius: 32px; border: 1px solid var(--amber-line); box-shadow: 0 40px 80px rgba(20, 8, 0, .35); isolation: isolate; }
