@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
-export const WATCH_POSTER = '/images/watch-poster.jpg';
+export const WATCH_POSTER = '/images/watch-poster-2.jpg';
 
 /** The "reach for it" watch campaign: the poster, a headline over it, and a link into the Watches page. */
 export function WatchPoster({ linked = true }: { linked?: boolean }) {
