@@ -112,3 +112,28 @@
   .bag__end { grid-column: 2; flex-direction: row; justify-content: space-between; align-items: center; }
 }
 @media (prefers-reduced-motion: reduce) { .pv-stage__product img { animation: none; } }
+
+/* ---------- Logo ---------- */
+.logo { display: inline-flex; align-items: center; gap: 10px; line-height: 1; }
+.logo-mark { flex: none; overflow: visible; }
+.logo-mark__d { stroke-dasharray: 100; stroke-dashoffset: 100; animation: logo-draw 1.4s cubic-bezier(.65, 0, .35, 1) .1s forwards; }
+.logo-mark__star { transform-box: fill-box; transform-origin: center; transform: scale(0) rotate(-90deg); animation: logo-star-in .7s cubic-bezier(.34, 1.56, .64, 1) 1.1s forwards, logo-twinkle 3.2s ease-in-out 2s infinite; }
+.logo-mark__spark { transform-box: fill-box; transform-origin: center; opacity: 0; animation: logo-spark 3.2s ease-in-out 2.4s infinite; }
+.logo:hover .logo-mark__star, .logo-mark:hover .logo-mark__star { animation: logo-spin .9s cubic-bezier(.34, 1.56, .64, 1); transform: none; }
+.logo__word { display: inline-flex; flex-direction: column; font: 900 20px/1 'Archivo', sans-serif; font-stretch: 115%; letter-spacing: .04em; background: linear-gradient(110deg, #141018 0%, #141018 40%, #9b5cf0 50%, #e86fc0 55%, #141018 65%, #141018 100%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: logo-shine 6s ease-in-out 1.6s infinite; }
+.logo__word i { margin-top: 3px; font: 500 9px/1 'IBM Plex Mono', monospace; letter-spacing: .4em; font-style: normal; }
+.logo--metal .logo__word { background-image: linear-gradient(110deg, #1b1b1b 0%, #1b1b1b 40%, #8a8a8e 50%, #ffffff 54%, #1b1b1b 64%, #1b1b1b 100%); }
+.logo--light .logo__word, .w-footer .logo__word { background-image: linear-gradient(110deg, #fff 0%, #fff 40%, #c9b4ff 50%, #ffb4dc 55%, #fff 65%, #fff 100%); }
+.m-footer .logo__word { background-image: linear-gradient(110deg, #e8e8e8 0%, #e8e8e8 40%, #ffffff 52%, #8a8a8e 58%, #e8e8e8 66%, #e8e8e8 100%); }
+@keyframes logo-draw { to { stroke-dashoffset: 0; } }
+@keyframes logo-star-in { to { transform: scale(1) rotate(0deg); } }
+@keyframes logo-twinkle { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(.82) rotate(45deg); } }
+@keyframes logo-spin { from { transform: rotate(0) scale(1); } 50% { transform: rotate(180deg) scale(1.25); } to { transform: rotate(360deg) scale(1); } }
+@keyframes logo-spark { 0%, 60%, 100% { opacity: 0; transform: scale(.2); } 75% { opacity: 1; transform: scale(1.3); } }
+@keyframes logo-shine { 0% { background-position: 100% 0; } 50%, 100% { background-position: 0% 0; } }
+@media (max-width: 760px) { .logo__word { font-size: 17px; } .logo-mark { width: 28px; height: 28px; } }
+@media (prefers-reduced-motion: reduce) {
+  .logo-mark__d, .logo-mark__star, .logo-mark__spark, .logo__word { animation: none; }
+  .logo-mark__d { stroke-dashoffset: 0; }
+  .logo-mark__star { transform: none; }
+}

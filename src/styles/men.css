@@ -114,3 +114,15 @@
   .m-occasions { grid-template-columns: 1fr; }
   .m-occasion { border-right: 0; border-bottom: 1px solid var(--m-line); }
 }
+
+/* ---------- Gradient layer: brushed metal ---------- */
+.m-shell { background: linear-gradient(180deg, #dcdcda 0%, #cfcfcc 40%, #c4c4c1 100%); }
+.m-panel { background: linear-gradient(160deg, #3a3a3c 0%, #1c1c1e 100%); }
+.m-hero__spec { background: linear-gradient(160deg, #f2f2f0 0%, #d6d6d3 60%, #c2c2bf 100%); }
+.m-hero__spec h1, .m-hero__cta, .m-bag, .m-nav a.active, .m-tabs button.active, .m-card__no, .m-shop__more button { background: linear-gradient(135deg, #3d3d40 0%, #121214 100%); }
+.m-latest__head h2, .m-shop__head h1, .m-occasion strong, .m-hero__edition b { background: linear-gradient(180deg, #2a2a2c 0%, #5a5a5e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.m-occasion:hover strong { background: linear-gradient(180deg, #ffffff, #a9a9ad); -webkit-background-clip: text; background-clip: text; }
+.m-occasion:hover { background: linear-gradient(135deg, #2c2c2e, #111); }
+.m-footer { background: linear-gradient(180deg, #2a2a2c 0%, #111113 100%); }
+.pv--men { --banner: linear-gradient(120deg, #111113 0%, #3a3a3d 60%, #6a6a6e 100%); }
+.pv--men .pv-buy__cta:not(:disabled), .bag--men .bag__cta { background: linear-gradient(135deg, #3d3d40 0%, #121214 100%); }

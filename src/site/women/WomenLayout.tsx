@@ -4,6 +4,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, Search, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { WomenMegaNav } from './WomenMegaNav';
+import { Logo } from '../shared/Logo';
 
 const links = [
   ['/shop', 'Shop'],
@@ -28,7 +29,7 @@ export function WomenLayout() {
     <header className="w-header">
       <button type="button" className="w-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
       <WomenMegaNav />
-      <Link to="/" className="w-wordmark">DAVINOVA</Link>
+      <Link to="/" className="w-wordmark" aria-label="Davinova home"><Logo /></Link>
       <div className="w-header__right">
         <Link to="/shop" className="w-icon" aria-label="Browse the shop"><Search size={18} /></Link>
         <Link to="/men" className="w-switch">Men ↗</Link>
@@ -44,6 +45,7 @@ export function WomenLayout() {
     <main><motion.div key={pathname} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}><Outlet /></motion.div></main>
     <footer className="w-footer">
       <div className="w-footer__big" aria-hidden="true">DAVINOVA</div>
+      <Logo tone="brand" />
       <div className="w-footer__row">
         <p>Dresses for the moments you'll keep.</p>
         <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></nav>
