@@ -126,6 +126,8 @@ def main() -> int:
     manifest_path, report_path = os.path.join(OUT, 'manifest.json'), os.path.join(OUT, 'report.json')
     manifest = json.load(open(manifest_path)) if os.path.exists(manifest_path) else {}
     report = json.load(open(report_path)) if os.path.exists(report_path) else {}
+    # Photos the owner's reviewer turned down by eye (back views, props, crowds) stay hidden whatever the check says.
+    rejects = set(json.load(open(os.path.join(OUT, 'rejects.json')))) if os.path.exists(os.path.join(OUT, 'rejects.json')) else set()
     products = json.loads(fetch(CATALOG_URL))['products']
     session = new_session(os.environ.get('REMBG_MODEL', 'isnet-general-use'))
     detector = cv2.FaceDetectorYN.create(FACE_MODEL, '', (320, 320), 0.6)
@@ -139,6 +141,9 @@ def main() -> int:
     passed = rejected = 0
     for product in products:
         pid, images = product['id'], product.get('images') or []
+        if pid in rejects:
+            manifest[pid] = None
+            continue
         if report.get(pid, {}).get('v') == GATE_VERSION:
             continue
         kind, reasons, chosen = kind_of(product), [], None
