@@ -15,6 +15,7 @@ const CategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then((m
 const FitsPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.FitsPage })));
 const FitCategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.FitCategoriesPage })));
 const GroupPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.GroupPage })));
+const BeautyPage = lazy(() => import('./site/women/BeautyPage').then((m) => ({ default: m.BeautyPage })));
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
 const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
 const InfoPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.InfoPage })));
@@ -50,6 +51,7 @@ export default function App() {
         <Route path="accessories" element={<GroupPage slug="accessories" />} />
         <Route path="couple" element={<GroupPage slug="couple-parent-child-clothing" />} />
         <Route path="watches" element={<WatchesPage />} />
+        <Route path="beauty" element={<BeautyPage />} />
         <Route path="jewelry" element={<JewelryPage dept="women" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
         <Route path="product/:slug" element={<ProductView variant="women" />} />
