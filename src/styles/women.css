@@ -133,8 +133,8 @@
 .w-drawer { position: fixed; inset: 0; z-index: 45; padding: 110px 28px 40px; background: var(--nova-panel); color: #fff; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
 .w-drawer a { font: 800 clamp(34px, 9vw, 52px)/1.1 var(--nova-display); letter-spacing: -.02em; }
 .w-drawer__switch { margin-top: auto; font-size: 18px !important; font-weight: 600 !important; }
-.w-footer { margin: 80px clamp(12px, 2.6vw, 40px) 16px; padding: 30px clamp(20px, 3vw, 44px) 22px; border-radius: 36px; background: var(--nova-ink); color: #fff; overflow: hidden; }
-.w-footer__big { font: 900 clamp(60px, 15vw, 240px)/.85 var(--nova-display); font-stretch: 125%; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(230, 190, 120, .7); white-space: nowrap; }
+.w-footer { --foot-word: clamp(48px, 12.6vw, 200px); --bag-w: clamp(84px, 8vw, 116px); margin: 80px clamp(12px, 2.6vw, 40px) 16px; padding: 30px clamp(20px, 3vw, 44px) 22px; border-radius: 36px; background: var(--nova-ink); color: #fff; overflow: hidden; }
+.w-footer__big { font: 900 var(--foot-word)/.85 var(--nova-display); font-stretch: 125%; letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(230, 190, 120, .7); white-space: nowrap; }
 .w-footer__row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-top: 24px; font-size: 14px; }
 .w-footer__row p { margin: 0; opacity: .75; }
 .w-footer__row nav { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -419,14 +419,16 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 
 /* ---------- Hanging bag in the footer ---------- */
 .w-footer { position: relative; overflow: visible; }
-.hang-bag { position: absolute; z-index: 3; top: -72px; right: clamp(20px, 6vw, 100px); width: clamp(100px, 10vw, 140px); transform-origin: 50% 0; animation: bag-swing 4.2s ease-in-out infinite alternate; filter: drop-shadow(0 30px 30px rgba(10, 4, 0, .55)); }
+/* The bag's body hangs just below the big wordmark (body starts 56% down the drawing), between the tagline and the links. */
+.hang-bag { position: absolute; z-index: 3; top: calc(30px + var(--foot-word) * .85 + 14px - var(--bag-w) * 1.91 * .56); left: 50%; width: var(--bag-w); transform-origin: 50% 0; animation: bag-swing 4.2s ease-in-out infinite alternate; filter: drop-shadow(0 30px 30px rgba(10, 4, 0, .55)); }
 .hang-bag svg { display: block; width: 100%; height: auto; overflow: visible; }
 .hang-bag__tag { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); white-space: nowrap; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .25em; text-transform: uppercase; color: #f3cf85; opacity: 0; transition: opacity .3s; }
 .hang-bag:hover { animation-play-state: paused; }
 .hang-bag:hover .hang-bag__tag { opacity: 1; }
 @keyframes bag-swing { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
 .w-footer__big { position: relative; z-index: 1; }
-@media (max-width: 760px) { .hang-bag { width: 92px; right: 18px; top: -56px; } }
+.w-footer__row { min-height: calc(var(--bag-w) * 1.91 * .44 + 10px); align-items: end; }
+@media (max-width: 760px) { .w-footer { --bag-w: 70px; } .hang-bag { left: auto; right: 18px; } }
 
 /* ---------- Watch campaign + Watches page ---------- */
 .watch-poster { position: relative; display: block; overflow: hidden; border-radius: 32px; border: 1px solid var(--amber-line); box-shadow: 0 40px 80px rgba(20, 8, 0, .35); isolation: isolate; }
