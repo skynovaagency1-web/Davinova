@@ -41,12 +41,15 @@ export function jewelryPath(dept: Dept, type?: JewelryType) {
 /** Which jewelry sub-type a product belongs to, read from its title. */
 export function jewelryTypeOf(product: Pick<Product, 'title' | 'shelf' | 'department' | 'storeCollection' | 'storeSubcategory'>): JewelryType | undefined {
   // Pieces imported straight into a Jewelry & Watches sub-category keep it.
-  if (product.storeCollection === JEWELRY_COLLECTION && product.storeSubcategory && product.storeSubcategory in JEWELRY_TYPES) return product.storeSubcategory as JewelryType;
   const text = product.title.toLowerCase();
+  // (A "crown" search also found crown-shaped rings and pendants; those go by their title instead.)
+  const hairPiece = /tiara|hair|headdress|headpiece|headband|big crown/.test(text);
+  if (product.storeCollection === JEWELRY_COLLECTION && product.storeSubcategory && product.storeSubcategory in JEWELRY_TYPES
+    && (product.storeSubcategory !== 'wedding-hair' || hairPiece)) return product.storeSubcategory as JewelryType;
   if (product.shelf === 'watches') return /\bmen'?s\b|\bmale\b|\bgentlemen\b/.test(text) || product.department === 'men' ? 'mens-watches' : 'womens-watches';
   if (product.shelf !== 'jewelry') return undefined;
   if (/engagement|wedding ring|proposal/.test(text)) return 'engagement-rings';
-  if (/tiara|crown|hair|headpiece|headband/.test(text)) return 'wedding-hair';
+  if (hairPiece) return 'wedding-hair';
   if (/bridal|bride|wedding/.test(text)) return 'bridal-sets';
   if (/\b(14|18)k\b|925|sterling|solid gold|diamond|moissanite|pearl/.test(text)) return 'fine';
   return 'fashion';
