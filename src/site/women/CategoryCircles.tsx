@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
-import { isCurvyProduct } from '../../lib/storefront';
+import { isCurvyLook } from '../../lib/curvyLooks';
 import { STYLE_CATEGORIES, matchesStyle } from '../shared/styleCategories';
 import { useCutouts } from '../../lib/useCutouts';
 
@@ -11,7 +11,7 @@ export function CategoryCircles({ products }: { products: Product[] }) {
       const items = products.filter((product) => matchesStyle(product, category.key));
       return { key: category.key, label: category.label, to: `/shop?style=${category.key}`, items };
     }),
-    { key: 'curvy', label: 'Curvy', to: '/shop?fit=curvy', items: products.filter(isCurvyProduct) },
+    { key: 'curvy', label: 'Curvy', to: '/shop?fit=curvy', items: products.filter((product) => isCurvyLook(product)) },
   ].filter((tile) => tile.items.length > 0).sort((a, b) => b.items.length - a.items.length);
 
   const cutoutFor = useCutouts();

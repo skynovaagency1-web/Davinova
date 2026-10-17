@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
-import { isCurvyProduct } from '../../lib/storefront';
+import { isCurvyLook } from '../../lib/curvyLooks';
 import { usePaged } from '../shared/usePaged';
 import { WomenCard } from './WomenCard';
 import { STYLE_CATEGORIES, matchesStyle } from '../shared/styleCategories';
@@ -29,7 +29,7 @@ export function WomenShop() {
   const filtered = useMemo(() => {
     const list = women.filter((product) =>
       (collection === 'all' || inCategory(product, collection, sub))
-      && (fit === 'all' || (fit === 'curvy') === isCurvyProduct(product))
+      && (fit === 'all' || (fit === 'curvy') === isCurvyLook(product))
       && (!colour || product.color === colour)
       && (!style || matchesStyle(product, style)));
     return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : sort === 'name' ? a.title.localeCompare(b.title) : Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
