@@ -65,6 +65,79 @@
 }
 @media (prefers-reduced-motion: reduce) { .hero-photo--secondary, .hero-photo--tertiary { animation: none !important; } }
 
+/* Women Clothing dropdown: collections live under one clear parent navigation item. */
+.women-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.women-nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 10px 0;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.women-nav__trigger svg {
+  transition: transform .2s ease;
+}
+.women-nav:hover .women-nav__trigger svg,
+.women-nav:focus-within .women-nav__trigger svg,
+.women-nav__trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.women-nav__dropdown {
+  position: absolute;
+  z-index: 120;
+  top: calc(100% - 1px);
+  left: -18px;
+  display: flex;
+  flex-direction: column;
+  min-width: 224px;
+  padding: 14px 18px 12px;
+  border: 1px solid #e3d7cc;
+  background: #fbf8f4;
+  box-shadow: 0 18px 38px #2b1c141f;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(7px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.women-nav:hover .women-nav__dropdown,
+.women-nav:focus-within .women-nav__dropdown,
+.women-nav__dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.women-nav__eyebrow {
+  padding: 6px 0 10px;
+  color: #96857a;
+  font: 600 8px/1.4 'DM Sans', sans-serif;
+  letter-spacing: .16em;
+}
+.desktop-nav .women-nav__dropdown a {
+  display: block;
+  padding: 11px 0;
+  border-top: 1px solid #eee5dc;
+  color: #493c34;
+  font: 400 15px/1.2 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+.desktop-nav .women-nav__dropdown a:hover,
+.desktop-nav .women-nav__dropdown a:focus-visible {
+  color: #956f6b;
+  opacity: 1;
+}
+.mobile-women-nav { display: none; }
+
 .mobile-menu-backdrop { display: none; }
 .mobile-menu__top { display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid #dfd3c8; padding-bottom:18px; margin-bottom:5px; color:#8b7d72; font-size:8px; letter-spacing:.16em; }
 .mobile-menu__top .icon-button { display:inline-flex; align-items:center; justify-content:center; }
@@ -77,6 +150,34 @@
   .mobile-menu > a { display:flex; align-items:center; justify-content:space-between; padding:19px 0; border-bottom:1px solid #e6dbd1; font:400 27px/1.1 'Cormorant Garamond','Playfair Display',Georgia,serif; transition:padding .25s ease,color .25s ease; }
   .mobile-menu > a:hover { padding-left:5px; color:#956f6b; }
   .mobile-menu > a span { font:400 14px 'DM Sans',sans-serif; color:#9c8e82; }
+  .mobile-women-nav { display: block; border-bottom: 1px solid #e6dbd1; }
+  .mobile-women-nav__trigger {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 19px 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: 400 27px/1.1 'Cormorant Garamond','Playfair Display',Georgia,serif;
+    cursor: pointer;
+  }
+  .mobile-women-nav__trigger svg { transition: transform .2s ease; }
+  .mobile-women-nav__trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .mobile-women-nav__links { padding: 0 0 10px 15px; border-left: 1px solid #d9c9bd; margin: 0 0 12px 2px; }
+  .mobile-women-nav__links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0 11px 12px;
+    color: #65584f;
+    font: 400 20px/1.2 'Cormorant Garamond','Playfair Display',Georgia,serif;
+  }
+  .mobile-women-nav__links a span { color: #9c8e82; font: 400 12px 'DM Sans',sans-serif; }
+  .mobile-women-nav__links a:hover { color: #956f6b; }
 }
 
 
@@ -324,4 +425,204 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .product-card__photo--supplier, .product-gallery__supplier-image { animation: none !important; translate: 0 -5px; }
+}
+
+
+/* Accessories are expandable menu groups; their listed categories are deliberately plain text. */
+.women-accessories {
+  position: relative;
+  border-top: 1px solid #eee5dc;
+}
+.women-accessories__trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  border: 0;
+  background: transparent;
+  color: #493c34;
+  text-align: left;
+  font: 400 15px/1.2 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  cursor: pointer;
+}
+.women-accessories__trigger svg {
+  transition: transform .2s ease;
+  transform: rotate(-90deg);
+}
+.women-accessories__trigger[aria-expanded="true"] svg {
+  transform: rotate(0);
+}
+.women-accessories__dropdown {
+  position: absolute;
+  z-index: 121;
+  top: -1px;
+  left: calc(100% + 8px);
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  padding: 8px 16px;
+  border: 1px solid #e3d7cc;
+  background: #fbf8f4;
+  box-shadow: 0 18px 38px #2b1c141f;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.women-accessories__dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+.women-accessories__item {
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee5dc;
+  color: #493c34;
+  font: 400 15px/1.25 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+.women-accessories__item:last-child { border-bottom: 0; }
+.women-couple-clothing .women-accessories__trigger { font-size: 13px; }
+.women-couple-clothing .women-accessories__dropdown { min-width: 255px; }
+.mobile-couple-clothing-nav .mobile-accessories-nav__trigger { font-size: 18px; }
+.mobile-accessories-nav { border-top: 1px solid #e6dbd1; }
+.mobile-accessories-nav__trigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 0;
+  border: 0;
+  background: transparent;
+  color: #493c34;
+  text-align: left;
+  font: 400 21px/1.2 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  cursor: pointer;
+}
+.mobile-accessories-nav__trigger svg { transition: transform .2s ease; }
+.mobile-accessories-nav__trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mobile-accessories-nav__links { padding: 0 0 8px 12px; }
+.mobile-accessories-nav__item {
+  display: block;
+  padding: 9px 0 9px 12px;
+  color: #65584f;
+  font: 400 18px/1.25 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+@media (max-width: 640px) {
+  .women-accessories__dropdown {
+    position: static;
+    min-width: 0;
+    padding: 0 0 6px 13px;
+    border: 0;
+    border-left: 1px solid #d9c9bd;
+    box-shadow: none;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+  .women-accessories__item {
+    border: 0;
+    padding: 10px 0 10px 10px;
+    color: #65584f;
+    font-size: 18px;
+  }
+}
+
+/* Slim's supplier taxonomy: every expandable title and its plain-text subcategories. */
+.women-slim-category .women-accessories__trigger { font-size: 13px; }
+.women-slim-category .women-accessories__dropdown { min-width: 255px; max-width: 310px; }
+.mobile-slim-category .mobile-accessories-nav__trigger { font-size: 18px; }
+
+
+/* Keep the Women Clothing dropdown to three primary choices; Slim opens its taxonomy to the side. */
+.women-slim-group {
+  position: relative;
+}
+.women-nav__dropdown .women-slim-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.women-slim-link > svg {
+  transform: rotate(-90deg);
+  flex: 0 0 auto;
+}
+.women-slim-flyout {
+  position: absolute;
+  z-index: 122;
+  top: -1px;
+  left: calc(100% + 8px);
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  padding: 8px 16px;
+  border: 1px solid #e3d7cc;
+  background: #fbf8f4;
+  box-shadow: 0 18px 38px #2b1c141f;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.women-slim-group:hover .women-slim-flyout,
+.women-slim-group:focus-within .women-slim-flyout {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+.women-slim-flyout .women-slim-category {
+  border-top: 1px solid #eee5dc;
+}
+.women-slim-flyout .women-slim-category:first-child {
+  border-top: 0;
+}
+.women-slim-flyout .women-slim-category .women-accessories__dropdown {
+  width: 255px;
+  max-height: min(72vh, 680px);
+  overflow-y: auto;
+}
+
+/* On mobile, Slim keeps its shop link and has a separate control to reveal the category list. */
+.mobile-slim-row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #e6dbd1;
+}
+.mobile-slim-row > a {
+  flex: 1;
+  min-width: 0;
+  border-bottom: 0;
+}
+.mobile-slim-toggle {
+  display: inline-flex;
+  width: 44px;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-bottom: 0;
+  background: transparent;
+  color: #65584f;
+  cursor: pointer;
+}
+.mobile-slim-toggle svg {
+  transition: transform .2s ease;
+}
+.mobile-slim-toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.mobile-slim-category-list {
+  margin: 0 0 8px 12px;
+  padding-left: 10px;
+  border-left: 1px solid #d9c9bd;
 }

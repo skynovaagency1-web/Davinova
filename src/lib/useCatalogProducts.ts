@@ -14,6 +14,10 @@ interface CatalogueRow {
   occasion?: Product['occasion'];
   collectionCategory?: CollectionCategory;
   department?: Product['department'];
+  storeCollection?: string;
+  storeCollectionLabel?: string;
+  storeSubcategory?: string;
+  storeSubcategoryLabel?: string;
   color?: string;
   length?: Product['length'];
   sleeve?: string;
@@ -53,6 +57,10 @@ function toProduct(row: CatalogueRow): Product | null {
     sourceSupplierProductId: row.sourceSupplierProductId,
     cjProductId: row.cjProductId,
     collectionCategory,
+    storeCollection: row.storeCollection,
+    storeCollectionLabel: row.storeCollectionLabel,
+    storeSubcategory: row.storeSubcategory,
+    storeSubcategoryLabel: row.storeSubcategoryLabel,
     occasion,
     department: row.department === 'men' ? 'men' : 'women',
     color: row.color ?? '',
@@ -65,6 +73,27 @@ function toProduct(row: CatalogueRow): Product | null {
     featured: row.featured === true,
     browseOnly: row.browseOnly !== false,
   };
+}
+
+// Shared by every page in the session, so moving between the shop, a product and the bag
+// reuses one catalogue download instead of fetching all products again on each page.
+let cjCatalogueRequest: Promise<Product[]> | null = null;
+
+function loadCjCatalogue(): Promise<Product[]> {
+  if (!cjCatalogueRequest) {
+    cjCatalogueRequest = fetch('/api/catalog', { headers: { Accept: 'application/json' } })
+      .then(async (response) => {
+        if (!response.ok) throw new Error('Catalogue endpoint unavailable');
+        const data = await response.json() as { products?: CatalogueRow[] };
+        if (!Array.isArray(data.products)) throw new Error('Catalogue response was not a product list');
+        return data.products.map(toProduct).filter((item): item is Product => item !== null);
+      })
+      .catch((cause: unknown) => {
+        cjCatalogueRequest = null; // allow a retry on the next page visit
+        throw cause;
+      });
+  }
+  return cjCatalogueRequest;
 }
 
 /**
@@ -103,20 +132,15 @@ export function useCatalogProducts() {
       };
     }
 
-    fetch('/api/catalog', { headers: { Accept: 'application/json' }, cache: 'no-store', signal: controller.signal })
-      .then(async (response) => {
-        if (!response.ok) throw new Error('Catalogue endpoint unavailable');
-        return await response.json() as { products?: CatalogueRow[] };
-      })
-      .then((data) => {
-        if (cancelled || !Array.isArray(data.products)) return;
-        const mapped = data.products.map(toProduct).filter((item): item is Product => item !== null);
+    loadCjCatalogue()
+      .then((mapped) => {
+        if (cancelled) return;
         const isPagesPreview = window.location.hostname === 'davinova.pages.dev' || window.location.hostname.endsWith('.davinova.pages.dev');
         setCatalogProducts(mapped.length === 0 && isPagesPreview ? [previewFirstCjDress] : mapped);
         setError(null);
       })
       .catch((cause: unknown) => {
-        if (cancelled || controller.signal.aborted) return;
+        if (cancelled) return;
         const isPagesPreview = window.location.hostname === 'davinova.pages.dev' || window.location.hostname.endsWith('.davinova.pages.dev');
         if (isPagesPreview) {
           setCatalogProducts([previewFirstCjDress]);

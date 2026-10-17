@@ -1,4 +1,5 @@
 interface Env { DB: D1Database }
+import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 
 type DbProduct = {
   id: string; slug: string; title: string; description: string;
@@ -31,35 +32,45 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     CASE WHEN EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) THEN 1 ELSE 0 END AS has_sellable_variant
     FROM products
     WHERE active=1 AND supplier='cj' AND catalog_source='cj' AND cj_product_id IS NOT NULL AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')`;
-  const statement = collection
-    ? env.DB.prepare(base + ' AND collection_category=? ORDER BY featured DESC,created_at DESC').bind(collection)
-    : env.DB.prepare(base + ' ORDER BY featured DESC,created_at DESC');
-  const { results } = await statement.all<DbProduct>();
+  const filter = collection ? ' AND collection_category=?' : '';
+  const binds = collection ? [collection] : [];
+  const ids = `SELECT id FROM products WHERE active=1 AND supplier='cj' AND catalog_source='cj' AND cj_product_id IS NOT NULL AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')${filter}`;
+  // One round trip for products, images and sizes. Querying per product made ~400 sequential calls for 200 products.
+  const [productsResult, imagesResult, variantsResult] = await env.DB.batch([
+    env.DB.prepare(base + filter + ' ORDER BY featured DESC,created_at DESC').bind(...binds),
+    env.DB.prepare(`SELECT product_id,url,alt FROM product_images WHERE product_id IN (${ids}) ORDER BY product_id,is_primary DESC,position`).bind(...binds),
+    env.DB.prepare(`SELECT product_id,size FROM product_variants WHERE active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 AND product_id IN (${ids}) ORDER BY product_id,size`).bind(...binds),
+  ]);
+  const results = (productsResult.results ?? []) as DbProduct[];
+  const imagesByProduct = groupByProduct((imagesResult.results ?? []) as (DbImage & { product_id: string })[]);
+  const sizesByProduct = groupByProduct((variantsResult.results ?? []) as { product_id: string; size: string }[]);
 
   const products = [];
   for (const row of results) {
-    const { results: imageRows } = await env.DB.prepare(
-      'SELECT url,alt FROM product_images WHERE product_id=? ORDER BY is_primary DESC,position LIMIT 8',
-    ).bind(row.id).all<DbImage>();
+    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url, alt }));
+    const variantRows = sizesByProduct.get(row.id) ?? [];
     const verified = row.supplier_verified === 1;
-    const { results: variantRows } = await env.DB.prepare(
-      "SELECT size FROM product_variants WHERE product_id=? AND active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 ORDER BY size",
-    ).bind(row.id).all<{ size: string }>();
     const allowedSizes = new Set(['XS', 'S', 'M', 'L', 'XL', 'XXL', '1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X']);
     const sizes = verified && row.price_cents > 0 && row.cost_cents > 0
       ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => allowedSizes.has(size)))]
       : [];
     const purchasable = verified && row.has_sellable_variant === 1 && row.price_cents > 0 && row.cost_cents > 0 && sizes.length > 0;
+    const productTags = safeJsonArray(row.tags_json);
+    const storeAssignment = assignmentFromStoreTags(productTags);
     products.push({
       id: row.id, slug: row.slug, title: row.title, description: row.description,
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
       currency: row.currency, occasion: row.occasion, collectionCategory: row.collection_category,
       department: row.department === 'men' ? 'men' : 'women',
+      storeCollection: storeAssignment?.collection,
+      storeCollectionLabel: storeAssignment?.collectionLabel,
+      storeSubcategory: storeAssignment?.subcategory,
+      storeSubcategoryLabel: storeAssignment?.subcategoryLabel,
       color: row.color === 'Not verified' ? '' : row.color,
       length: ['Mini','Midi','Maxi'].includes(row.length ?? '') ? row.length : undefined,
       sleeve: row.sleeve === 'Not verified' ? '' : row.sleeve,
       neckline: row.neckline === 'Not verified' ? '' : row.neckline,
-      tags: safeJsonArray(row.tags_json),
+      tags: publicProductTags(productTags),
       sizes,
       supplier: 'cj', supplierVerified: verified,
       sourceSupplier: row.catalog_source, sourceSupplierProductId: row.catalog_source_product_id ?? undefined,
@@ -76,6 +87,16 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       'X-Content-Type-Options': 'nosniff',
     },
   });
+}
+
+function groupByProduct<T extends { product_id: string }>(rows: T[]): Map<string, T[]> {
+  const grouped = new Map<string, T[]>();
+  for (const row of rows) {
+    const list = grouped.get(row.product_id);
+    if (list) list.push(row);
+    else grouped.set(row.product_id, [row]);
+  }
+  return grouped;
 }
 
 function safeJsonArray(value: string): string[] {

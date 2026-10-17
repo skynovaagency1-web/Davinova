@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { SlidersHorizontal, X } from 'lucide-react';
@@ -17,7 +17,7 @@ const occasions = [
 
 const fits = [
   ['all', 'All fits'],
-  ['standard', 'Standard'],
+  ['standard', 'Slim'],
   ['curvy', 'Plus Size & Curvy'],
 ] as const;
 
@@ -25,6 +25,8 @@ const departments = [
   ['women', "Women's"],
   ['men', "Men's"],
 ] as const;
+
+const PAGE_SIZE = 24;
 
 const unique = (values: string[]) => [...new Set(values)].filter((value) => value && value !== 'Not specified' && value !== 'Not verified').sort();
 
@@ -80,17 +82,40 @@ export function ShopPage() {
     {activeCount > 0 && <button type="button" className="text-link" onClick={() => update((next) => { next.delete('color'); next.delete('sleeve'); next.delete('max'); next.delete('occasion'); next.delete('fit'); })}>Clear filters</button>}
   </div>;
 
+  // Render the first PAGE_SIZE cards, then add more as the shopper nears the end of the grid.
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinel = useRef<HTMLDivElement>(null);
+  const hasMore = visibleCount < filtered.length;
+  useEffect(() => { setVisibleCount(PAGE_SIZE); }, [params]);
+  useEffect(() => {
+    const node = sentinel.current;
+    if (!node || !hasMore || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) setVisibleCount((count) => count + PAGE_SIZE);
+    }, { rootMargin: '600px 0px' });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hasMore, visibleCount]);
+
   const curvyFit = fit === 'curvy';
   const mensDepartment = department === 'men';
+  const collectionLabel = occasions.find(([value]) => value === occasion)?.[1] ?? 'All styles';
+  const collectionDescription = occasion === 'wedding-guest'
+    ? 'A considered edit for wedding guests, bridesmaids, and the celebrations around them.'
+    : occasion === 'cocktail-party'
+      ? 'Confident dresses for parties, cocktail hours, birthdays, and evenings out.'
+      : occasion === 'maxi-holiday'
+        ? 'Maxi silhouettes and getaway-ready styles gathered in one easy-to-browse edit.'
+        : 'Pieces for the invitations you’ve been looking forward to.';
 
   return <section className={curvyFit ? 'shop-page shop-page--curvy section' : 'shop-page section'}>
     <motion.div className="shop-title" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-      <p className="eyebrow">{mensDepartment ? "Davinova Men's" : curvyFit ? 'Davinova · The Curve Edit' : 'The Davinova collection'}</p><h1>{mensDepartment ? <>Formalwear for <em>the occasion.</em></> : curvyFit ? <>Occasionwear for <em>every curve.</em></> : <>Dress for <em>the occasion.</em></>}</h1><p>{mensDepartment ? 'Suits, blazers and dress shirts for weddings, cocktail evenings and holidays.' : curvyFit ? 'A size-inclusive edit, with extended-size details identified before a dress is offered for purchase.' : 'Pieces for the invitations you’ve been looking forward to.'}</p>
+      <p className="eyebrow">{mensDepartment ? "Davinova Men's" : curvyFit ? 'Davinova · The Curve Edit' : occasion === 'all' ? 'The Davinova collection' : `The ${collectionLabel} edit`}</p><h1>{mensDepartment ? <>Formalwear for <em>the occasion.</em></> : curvyFit ? <>Occasionwear for <em>every curve.</em></> : occasion === 'wedding-guest' ? <>Find your <em>wedding guest look.</em></> : occasion === 'cocktail-party' ? <>Cocktail &amp; <em>party dressing.</em></> : occasion === 'maxi-holiday' ? <>The maxi &amp; <em>holiday edit.</em></> : <>Dress for <em>the occasion.</em></>}</h1><p>{mensDepartment ? 'Suits, blazers and dress shirts for weddings, cocktail evenings and holidays.' : curvyFit ? 'A size-inclusive edit, with extended-size details identified before a dress is offered for purchase.' : collectionDescription}</p>
     </motion.div>
     <LayoutGroup>
       <nav className="occasion-tabs" aria-label="Shop by department">{departments.map(([value, label]) => <button type="button" key={value} className={department === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'women') next.delete('dept'); else next.set('dept', value); next.delete('fit'); })}>{label}{department === value && <motion.span layoutId="dept-underline" className="occasion-tabs__line" />}</button>)}</nav>
       {!mensDepartment && <nav className="occasion-tabs" aria-label="Shop by fit">{fits.map(([value, label]) => <button type="button" key={value} className={fit === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('fit'); else next.set('fit', value); })}>{label}{fit === value && <motion.span layoutId="fit-underline" className="occasion-tabs__line" />}</button>)}</nav>}
-      <nav className="occasion-tabs" aria-label="Shop by occasion">{occasions.map(([value, label]) => <button type="button" key={value} className={occasion === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('occasion'); else next.set('occasion', value); })}>{label}{occasion === value && <motion.span layoutId="occasion-underline" className="occasion-tabs__line" />}</button>)}</nav>
+      <nav className="occasion-tabs" aria-label="Shop by collection">{occasions.map(([value, label]) => <button type="button" key={value} className={occasion === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('occasion'); else next.set('occasion', value); })}>{label}{occasion === value && <motion.span layoutId="occasion-underline" className="occasion-tabs__line" />}</button>)}</nav>
     </LayoutGroup>
     <div className="shop-toolbar">
       <button type="button" className="filter-toggle" onClick={() => setPanelOpen(true)}><SlidersHorizontal size={16} /> Filters{activeCount > 0 && <b>{activeCount}</b>}</button>
@@ -101,8 +126,9 @@ export function ShopPage() {
       <aside className="filter-sidebar" aria-label="Filters">{filterPanel}</aside>
       <div>
         <motion.div className="product-grid" layout>
-          {filtered.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}
+          {filtered.slice(0, visibleCount).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}
         </motion.div>
+        {hasMore && <div ref={sentinel} className="empty-results"><button type="button" className="text-link" onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}>Show more ({filtered.length - visibleCount} more)</button></div>}
         {filtered.length === 0 && <div className="empty-results"><p>{mensDepartment ? 'We are curating the first Davinova Men\'s edit. Formalwear will appear here as it is added.' : curvyFit ? 'We are curating the first verified Plus Size & Curvy edit. Dresses will appear here when extended-size details are identified.' : occasion === 'maxi-holiday' ? 'We are curating the first Maxi & Holiday edit.' : 'Nothing matches these filters just yet.'}</p><button type="button" className="text-link" onClick={() => setParams({}, { replace: true })}>{curvyFit || mensDepartment ? 'Clear filters' : 'Show every dress'}</button></div>}
       </div>
     </div>

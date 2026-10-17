@@ -22,6 +22,10 @@ export interface Product {
   cjProductId?: string;
   cjVariantId?: string;
   collectionCategory: CollectionCategory;
+  storeCollection?: string;
+  storeCollectionLabel?: string;
+  storeSubcategory?: string;
+  storeSubcategoryLabel?: string;
   occasion: 'wedding-guest' | 'cocktail' | 'evening' | 'bridesmaid';
   department: Department;
   color: string;
