@@ -460,8 +460,23 @@ const CJ_SIZE_ALIASES: Record<string, string> = {
   '1X': '1X', '2X': '2X', '3X': '3X', '4X': '4X', '5X': '5X', '6X': '6X',
 };
 
-function normalizeCJSizeToken(token: string): string | undefined {
-  return CJ_SIZE_ALIASES[token.trim().toUpperCase().replace(/[\s_-]/g, '')];
+/**
+ * Men's formalwear uses plain letter sizing (S/M/L/XL/XXL) rather than the
+ * women's XL/1XL/2XL curve scheme, so "XXL" means a distinct, larger size
+ * than women's "2XL" rather than being the same label. Keep this in sync
+ * with MensSize in src/types/product.ts.
+ */
+const CJ_MENS_SIZE_ALIASES: Record<string, string> = {
+  S: 'S', SMALL: 'S',
+  M: 'M', MEDIUM: 'M', MED: 'M',
+  L: 'L', LARGE: 'L',
+  XL: 'XL', XLARGE: 'XL',
+  XXL: 'XXL', '2XL': 'XXL',
+};
+
+function normalizeCJSizeToken(token: string, department: 'women' | 'men' = 'women'): string | undefined {
+  const key = token.trim().toUpperCase().replace(/[\s_-]/g, '');
+  return department === 'men' ? CJ_MENS_SIZE_ALIASES[key] : CJ_SIZE_ALIASES[key];
 }
 
 export interface ParsedCJVariantOption {
@@ -483,7 +498,7 @@ export interface ParsedCJVariantOption {
  * both fall back to keeping the original string as-is for manual review,
  * rather than guessing which part is the size.
  */
-export function parseCJVariantOption(raw: string): ParsedCJVariantOption {
+export function parseCJVariantOption(raw: string, department: 'women' | 'men' = 'women'): ParsedCJVariantOption {
   const trimmed = raw.trim();
   const fallback: ParsedCJVariantOption = { size: trimmed || 'Not verified', color: 'Not verified' };
   if (!trimmed) return fallback;
@@ -492,7 +507,7 @@ export function parseCJVariantOption(raw: string): ParsedCJVariantOption {
   if (tokens.length === 0) return fallback;
 
   const sizeMatches = tokens
-    .map((token, index) => ({ index, size: normalizeCJSizeToken(token) }))
+    .map((token, index) => ({ index, size: normalizeCJSizeToken(token, department) }))
     .filter((entry): entry is { index: number; size: string } => Boolean(entry.size));
 
   if (sizeMatches.length !== 1) return fallback;

@@ -37,6 +37,11 @@ function hasExtendedSizeEvidence(values: string[]): boolean {
     || /\b(1xl|2xl|3xl|4xl|5xl|6xl|1x|2x|3x|4x|5x|6x|xxl|xxxl|xxxxl)\b/.test(metadata);
 }
 
+function detectDepartment(values: string[]): 'women' | 'men' {
+  const metadata = values.join(' ').toLowerCase();
+  return /\b(men's|mens|men |for men|groom|groomsman|suit|blazer|tuxedo)\b/.test(metadata) ? 'men' : 'women';
+}
+
 /**
  * Adds a CJ catalogue item as a visible browse-only listing.
  * Listings remain unverified, have no sell price or confirmed stock, and cannot be purchased.
@@ -98,14 +103,15 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     const tags = hasExtendedSizeEvidence([detail.name, detail.description, ...variantSizeLabels])
       ? ['plus-size', 'extended-size']
       : [];
+    const department = detectDepartment([detail.name, detail.description, detail.category]);
 
     const statements = [
       env.DB.prepare(
-        'INSERT INTO products (id, slug, title, description, supplier, catalog_source, catalog_source_product_id, catalog_source_url, cj_product_id, supplier_verified, collection_category, catalog_source_cost_cents, price_cents, cost_cents, currency, occasion, color, length, sleeve, neckline, tags_json, active, featured) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        'INSERT INTO products (id, slug, title, description, supplier, catalog_source, catalog_source_product_id, catalog_source_url, cj_product_id, supplier_verified, collection_category, catalog_source_cost_cents, price_cents, cost_cents, currency, occasion, department, color, length, sleeve, neckline, tags_json, active, featured) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
       ).bind(
         productKey, slug, detail.name.slice(0, 180), cleanDescription(detail.description),
         'cj', 'cj', detail.id, null, detail.id, 0, collectionCategory, itemCostCents, 0, 0, 'USD',
-        occasion, 'Not verified', 'Not verified', 'Not verified', 'Not verified', JSON.stringify(tags), 1, 0,
+        occasion, department, 'Not verified', 'Not verified', 'Not verified', 'Not verified', JSON.stringify(tags), 1, 0,
       ),
       ...images.map((url, index) => env.DB.prepare(
         'INSERT INTO product_images (id, product_id, url, alt, position, is_primary) VALUES (?,?,?,?,?,?)',
@@ -116,7 +122,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
       )),
       ...detail.variants.map((variant, index) => {
         const rawOption = (variant.options || variant.name || `Variant ${index + 1}`).slice(0, 100);
-        const { size, color } = parseCJVariantOption(rawOption);
+        const { size, color } = parseCJVariantOption(rawOption, department);
         const variantId = `cjvar-${detail.id}-${variant.id}`.slice(0, 240);
         return env.DB.prepare(
           'INSERT INTO product_variants (id, product_id, size, color, sku, supplier_variant_id, cj_variant_id, cj_sku, available_stock, stock_checked_at, active) VALUES (?,?,?,?,?,?,?,?,?,?,?)',

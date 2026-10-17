@@ -2,12 +2,13 @@ import { describe, expect, it } from 'vitest';
 import type { Product } from '../types/product';
 import { isCurvyProduct } from './storefront';
 
-function product(overrides: Partial<Pick<Product, 'title' | 'description' | 'tags' | 'sizes'>> = {}) {
+function product(overrides: Partial<Pick<Product, 'title' | 'description' | 'tags' | 'sizes' | 'department'>> = {}) {
   return {
     title: 'Elegant occasion dress',
     description: '',
     tags: [],
     sizes: [],
+    department: 'women' as const,
     ...overrides,
   };
 }
@@ -29,5 +30,9 @@ describe('isCurvyProduct', () => {
   it('does not guess when the available size metadata is unknown or standard-only', () => {
     expect(isCurvyProduct(product())).toBe(false);
     expect(isCurvyProduct(product({ sizes: ['XS', 'S', 'M', 'L', 'XL'] }))).toBe(false);
+  });
+
+  it('never treats a men\'s item as curvy, even if its own XXL label would otherwise match', () => {
+    expect(isCurvyProduct(product({ department: 'men', sizes: ['XXL'], title: 'Classic suit, sizes S to XXL' }))).toBe(false);
   });
 });

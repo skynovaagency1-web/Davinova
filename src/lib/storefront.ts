@@ -4,10 +4,15 @@ import type { Product } from '../types/product';
  * Keep sizing edits separate. A dress belongs to the Curvy store only when its
  * metadata explicitly identifies plus sizing/extended sizes, or its verified
  * size metadata includes common plus-size labels from 1X/1XL through 6X/6XL. Unknown sizing is never guessed.
+ *
+ * The Curvy fit is a women's-only concept: a men's formalwear item's own "XXL"
+ * label (a plain letter size, not a women's curve size) must never be read as
+ * extended-size evidence, so men's products always report false here.
  */
 export function isCurvyProduct(
-  product: Pick<Product, 'title' | 'description' | 'tags' | 'sizes'>,
+  product: Pick<Product, 'title' | 'description' | 'tags' | 'sizes' | 'department'>,
 ): boolean {
+  if (product.department === 'men') return false;
   const metadata = [product.title, product.description, ...product.tags]
     .join(' ')
     .toLowerCase()

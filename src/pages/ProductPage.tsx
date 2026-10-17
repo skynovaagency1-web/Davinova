@@ -9,7 +9,7 @@ import { productBackdropFor } from '../lib/productBackdrop';
 import { isProductPurchasable, isWooCommerceProduct } from '../lib/woocommerce';
 import { useCart } from '../store/cart';
 import { DressViewer3D } from '../components/DressViewer3D';
-import type { DressSize } from '../types/product';
+import type { ProductSize } from '../types/product';
 import { isCurvyProduct } from '../lib/storefront';
 
 const colourSwatches: Record<string, string> = {
@@ -31,7 +31,7 @@ export function ProductPage() {
   const { slug } = useParams();
   const { products, loading } = useCatalogProducts();
   const product = products.find((item) => item.slug === slug);
-  const [size, setSize] = useState<DressSize | ''>('');
+  const [size, setSize] = useState<ProductSize | ''>('');
   const [added, setAdded] = useState(false);
   const [view3d, setView3d] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);

@@ -180,6 +180,7 @@ export function mapWooCommerceProduct(item: WooStoreProduct): Product {
     sourceSupplier: 'cj',
     collectionCategory,
     occasion: productOccasion(item),
+    department: 'women',
     color,
     length: /^(mini|midi|maxi)$/i.test(lengthValue) ? (lengthValue[0].toUpperCase() + lengthValue.slice(1).toLowerCase()) as Product['length'] : 'Midi',
     sleeve,

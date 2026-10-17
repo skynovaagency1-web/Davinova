@@ -15,7 +15,7 @@ const riseIn = {
 
 export function HomePage() {
   const { products } = useCatalogProducts();
-  const standardProducts = products.filter((product) => !isCurvyProduct(product));
+  const standardProducts = products.filter((product) => product.department === 'women' && !isCurvyProduct(product));
 
   return <>
     <section className="hero-section">

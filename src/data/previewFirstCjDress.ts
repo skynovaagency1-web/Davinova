@@ -19,6 +19,7 @@ export const previewFirstCjDress: Product = {
   cjProductId: '2607170630321612300',
   collectionCategory: 'wedding-guest',
   occasion: 'wedding-guest',
+  department: 'women',
   color: 'White',
   length: 'Maxi',
   sleeve: 'Three-quarter sleeve',

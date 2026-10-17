@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS products (
   sleeve TEXT NOT NULL DEFAULT 'Sleeveless', neckline TEXT NOT NULL DEFAULT 'V-neck', tags_json TEXT NOT NULL DEFAULT '[]',
   model3d_json TEXT, seo_title TEXT, seo_description TEXT, active INTEGER NOT NULL DEFAULT 1 CHECK (active IN (0,1)),
   featured INTEGER NOT NULL DEFAULT 0 CHECK (featured IN (0,1)), popularity INTEGER NOT NULL DEFAULT 0,
-  created_at TEXT NOT NULL DEFAULT (datetime('now')), updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  created_at TEXT NOT NULL DEFAULT (datetime('now')), updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  department TEXT NOT NULL DEFAULT 'women' CHECK (department IN ('women','men'))
 );
 CREATE TABLE IF NOT EXISTS product_variants (
   id TEXT PRIMARY KEY, product_id TEXT NOT NULL REFERENCES products(id) ON DELETE CASCADE, size TEXT NOT NULL, color TEXT NOT NULL,

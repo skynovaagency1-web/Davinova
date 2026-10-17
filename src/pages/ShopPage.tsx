@@ -21,6 +21,11 @@ const fits = [
   ['curvy', 'Plus Size & Curvy'],
 ] as const;
 
+const departments = [
+  ['women', "Women's"],
+  ['men', "Men's"],
+] as const;
+
 const unique = (values: string[]) => [...new Set(values)].filter((value) => value && value !== 'Not specified' && value !== 'Not verified').sort();
 
 // All filters live in the URL so a filtered view can be shared or bookmarked.
@@ -28,10 +33,13 @@ export function ShopPage() {
   const [params, setParams] = useSearchParams();
   const [panelOpen, setPanelOpen] = useState(false);
   const { products: catalogueProducts, loading } = useCatalogProducts();
-  const fit = params.get('fit') ?? 'all';
+  const department = params.get('dept') === 'men' ? 'men' : 'women';
+  const fit = department === 'men' ? 'all' : params.get('fit') ?? 'all';
   const products = useMemo(
-    () => catalogueProducts.filter((product) => fit === 'all' ? true : fit === 'curvy' ? isCurvyProduct(product) : !isCurvyProduct(product)),
-    [catalogueProducts, fit],
+    () => catalogueProducts
+      .filter((product) => product.department === department)
+      .filter((product) => fit === 'all' ? true : fit === 'curvy' ? isCurvyProduct(product) : !isCurvyProduct(product)),
+    [catalogueProducts, department, fit],
   );
   const allColors = unique(products.map((product) => product.color));
   const allSleeves = unique(products.map((product) => product.sleeve));
@@ -73,13 +81,15 @@ export function ShopPage() {
   </div>;
 
   const curvyFit = fit === 'curvy';
+  const mensDepartment = department === 'men';
 
   return <section className={curvyFit ? 'shop-page shop-page--curvy section' : 'shop-page section'}>
     <motion.div className="shop-title" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-      <p className="eyebrow">{curvyFit ? 'Davinova · The Curve Edit' : 'The Davinova collection'}</p><h1>{curvyFit ? <>Occasionwear for <em>every curve.</em></> : <>Dress for <em>the occasion.</em></>}</h1><p>{curvyFit ? 'A size-inclusive edit, with extended-size details identified before a dress is offered for purchase.' : 'Pieces for the invitations you’ve been looking forward to.'}</p>
+      <p className="eyebrow">{mensDepartment ? "Davinova Men's" : curvyFit ? 'Davinova · The Curve Edit' : 'The Davinova collection'}</p><h1>{mensDepartment ? <>Formalwear for <em>the occasion.</em></> : curvyFit ? <>Occasionwear for <em>every curve.</em></> : <>Dress for <em>the occasion.</em></>}</h1><p>{mensDepartment ? 'Suits, blazers and dress shirts for weddings, cocktail evenings and holidays.' : curvyFit ? 'A size-inclusive edit, with extended-size details identified before a dress is offered for purchase.' : 'Pieces for the invitations you’ve been looking forward to.'}</p>
     </motion.div>
     <LayoutGroup>
-      <nav className="occasion-tabs" aria-label="Shop by fit">{fits.map(([value, label]) => <button type="button" key={value} className={fit === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('fit'); else next.set('fit', value); })}>{label}{fit === value && <motion.span layoutId="fit-underline" className="occasion-tabs__line" />}</button>)}</nav>
+      <nav className="occasion-tabs" aria-label="Shop by department">{departments.map(([value, label]) => <button type="button" key={value} className={department === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'women') next.delete('dept'); else next.set('dept', value); next.delete('fit'); })}>{label}{department === value && <motion.span layoutId="dept-underline" className="occasion-tabs__line" />}</button>)}</nav>
+      {!mensDepartment && <nav className="occasion-tabs" aria-label="Shop by fit">{fits.map(([value, label]) => <button type="button" key={value} className={fit === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('fit'); else next.set('fit', value); })}>{label}{fit === value && <motion.span layoutId="fit-underline" className="occasion-tabs__line" />}</button>)}</nav>}
       <nav className="occasion-tabs" aria-label="Shop by occasion">{occasions.map(([value, label]) => <button type="button" key={value} className={occasion === value ? 'active' : ''} onClick={() => update((next) => { if (value === 'all') next.delete('occasion'); else next.set('occasion', value); })}>{label}{occasion === value && <motion.span layoutId="occasion-underline" className="occasion-tabs__line" />}</button>)}</nav>
     </LayoutGroup>
     <div className="shop-toolbar">
@@ -93,7 +103,7 @@ export function ShopPage() {
         <motion.div className="product-grid" layout>
           {filtered.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}
         </motion.div>
-        {filtered.length === 0 && <div className="empty-results"><p>{curvyFit ? 'We are curating the first verified Plus Size & Curvy edit. Dresses will appear here when extended-size details are identified.' : occasion === 'maxi-holiday' ? 'We are curating the first Maxi & Holiday edit.' : 'Nothing matches these filters just yet.'}</p><button type="button" className="text-link" onClick={() => setParams({}, { replace: true })}>{curvyFit ? 'Clear filters' : 'Show every dress'}</button></div>}
+        {filtered.length === 0 && <div className="empty-results"><p>{mensDepartment ? 'We are curating the first Davinova Men\'s edit. Formalwear will appear here as it is added.' : curvyFit ? 'We are curating the first verified Plus Size & Curvy edit. Dresses will appear here when extended-size details are identified.' : occasion === 'maxi-holiday' ? 'We are curating the first Maxi & Holiday edit.' : 'Nothing matches these filters just yet.'}</p><button type="button" className="text-link" onClick={() => setParams({}, { replace: true })}>{curvyFit || mensDepartment ? 'Clear filters' : 'Show every dress'}</button></div>}
       </div>
     </div>
     <AnimatePresence>{panelOpen && <>

@@ -24,7 +24,7 @@ export function Layout() {
     <header className="site-header">
       <button className="icon-button search-button" type="button" aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'} title={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
       <Link to="/" className="wordmark" aria-label={`${brand.name} home`}>{brand.name}<span>ATELIER</span></Link>
-      <nav className="desktop-nav" aria-label="Main navigation"><NavLink to="/shop">Shop all</NavLink><Link to="/shop?occasion=wedding-guest">Wedding Guest</Link><Link to="/shop?occasion=cocktail-party">Cocktail & Party</Link><Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link><Link to="/about">Our story</Link></nav>
+      <nav className="desktop-nav" aria-label="Main navigation"><NavLink to="/shop">Shop all</NavLink><Link to="/shop?occasion=wedding-guest">Wedding Guest</Link><Link to="/shop?occasion=cocktail-party">Cocktail & Party</Link><Link to="/shop?fit=curvy">Plus Size &amp; Curvy</Link><Link to="/shop?dept=men">Men's</Link><Link to="/about">Our story</Link></nav>
       {wooConfigured && wooCartUrl ? <a href={wooCartUrl} className="cart-link" aria-label="Open WooCommerce shopping basket"><ShoppingBag size={20} /><span>Bag</span></a> : <Link to="/cart" className="cart-link" aria-label={`Shopping bag, ${count} items`}><ShoppingBag size={20} /><span>Bag ({count})</span></Link>}
     </header>
     <AnimatePresence>
@@ -35,6 +35,7 @@ export function Layout() {
           <Link to="/shop?occasion=wedding-guest" onClick={closeMenu}>Wedding Guest <span>↗</span></Link>
           <Link to="/shop?occasion=cocktail-party" onClick={closeMenu}>Cocktail &amp; Party <span>↗</span></Link>
           <Link to="/shop?fit=curvy" onClick={closeMenu}>Plus Size &amp; Curvy <span>↗</span></Link>
+          <Link to="/shop?dept=men" onClick={closeMenu}>Men's <span>↗</span></Link>
           <Link to="/about" onClick={closeMenu}>Our story <span>↗</span></Link>
           <div className="mobile-menu__foot"><p>For the moments that stay with you.</p><span>OCCASIONWEAR · DAVINOVA ATELIER</span></div>
         </motion.nav>

@@ -3,7 +3,7 @@ interface Env { DB: D1Database }
 type DbProduct = {
   id: string; slug: string; title: string; description: string;
   price_cents: number; compare_at_cents: number | null; cost_cents: number; currency: string;
-  occasion: string; collection_category: string; color: string; length: string | null;
+  occasion: string; collection_category: string; department: string; color: string; length: string | null;
   sleeve: string; neckline: string; tags_json: string; featured: number;
   supplier: string; catalog_source: string; catalog_source_product_id: string | null;
   cj_product_id: string | null; supplier_verified: number; has_sellable_variant: number;
@@ -26,7 +26,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   }
 
   const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,cost_cents,currency,occasion,
-    collection_category,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
+    collection_category,department,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
     catalog_source_product_id,cj_product_id,supplier_verified,
     CASE WHEN EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) THEN 1 ELSE 0 END AS has_sellable_variant
     FROM products
@@ -45,7 +45,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const { results: variantRows } = await env.DB.prepare(
       "SELECT size FROM product_variants WHERE product_id=? AND active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 ORDER BY size",
     ).bind(row.id).all<{ size: string }>();
-    const allowedSizes = new Set(['XS', 'S', 'M', 'L', 'XL', '1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X']);
+    const allowedSizes = new Set(['XS', 'S', 'M', 'L', 'XL', 'XXL', '1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X']);
     const sizes = verified && row.price_cents > 0 && row.cost_cents > 0
       ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => allowedSizes.has(size)))]
       : [];
@@ -54,6 +54,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       id: row.id, slug: row.slug, title: row.title, description: row.description,
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
       currency: row.currency, occasion: row.occasion, collectionCategory: row.collection_category,
+      department: row.department === 'men' ? 'men' : 'women',
       color: row.color === 'Not verified' ? '' : row.color,
       length: ['Mini','Midi','Maxi'].includes(row.length ?? '') ? row.length : undefined,
       sleeve: row.sleeve === 'Not verified' ? '' : row.sleeve,

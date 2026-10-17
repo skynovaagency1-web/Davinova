@@ -13,6 +13,7 @@ interface CatalogueRow {
   currency?: string;
   occasion?: Product['occasion'];
   collectionCategory?: CollectionCategory;
+  department?: Product['department'];
   color?: string;
   length?: Product['length'];
   sleeve?: string;
@@ -53,12 +54,13 @@ function toProduct(row: CatalogueRow): Product | null {
     cjProductId: row.cjProductId,
     collectionCategory,
     occasion,
+    department: row.department === 'men' ? 'men' : 'women',
     color: row.color ?? '',
     length: row.length,
     sleeve: row.sleeve ?? '',
     neckline: row.neckline ?? '',
     tags: Array.isArray(row.tags) ? row.tags : [],
-    sizes: Array.isArray(row.sizes) ? row.sizes.filter((size): size is Product['sizes'][number] => ['XS', 'S', 'M', 'L', 'XL', '1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X'].includes(size)) : [],
+    sizes: Array.isArray(row.sizes) ? row.sizes.filter((size): size is Product['sizes'][number] => ['XS', 'S', 'M', 'L', 'XL', 'XXL', '1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X'].includes(size)) : [],
     images: row.images.filter((image) => image && typeof image.url === 'string' && image.url.startsWith('https://')),
     featured: row.featured === true,
     browseOnly: row.browseOnly !== false,

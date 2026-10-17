@@ -56,4 +56,17 @@ describe('parseCJVariantOption', () => {
     // "S" here is a stand-in colour code with no digit, should not resolve as a size unless recognized.
     expect(parseCJVariantOption('Champagne')).toEqual({ size: 'Champagne', color: 'Not verified' });
   });
+
+  it("reads a men's XXL as its own plain letter size, not as the women's 2XL curve size", () => {
+    expect(parseCJVariantOption('Black / XXL', 'men')).toEqual({ size: 'XXL', color: 'Black' });
+    expect(parseCJVariantOption('Black / 2XL', 'men')).toEqual({ size: 'XXL', color: 'Black' });
+  });
+
+  it("still reads a women's \"XXL\" as the 2XL curve size under the default women's department", () => {
+    expect(parseCJVariantOption('Black / XXL')).toEqual({ size: '2XL', color: 'Black' });
+  });
+
+  it("does not recognize a women's curve size label (like 3XL) under the men's department", () => {
+    expect(parseCJVariantOption('Black / 3XL', 'men')).toEqual({ size: 'Black / 3XL', color: 'Not verified' });
+  });
 });
