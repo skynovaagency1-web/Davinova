@@ -360,6 +360,19 @@
   "url": null,
   "v": 2
  },
+ "cj-1381896173211750400": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: head cut off by the frame",
+   "2: no face (headless or cropped)",
+   "3: cut off at the bottom",
+   "4: no face (headless or cropped)",
+   "5: head cut off by the frame"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1382171229682798592": {
   "photo": null,
   "rejected": [
@@ -3365,6 +3378,21 @@
   "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/8e7d99c8-4264-4237-b308-c4acf521ef58.jpg",
   "v": 2
  },
+ "cj-2098317323086913537": {
+  "photo": null,
+  "rejected": [
+   "0: several people",
+   "1: several people",
+   "2: several people",
+   "3: several people",
+   "4: head cut off by the frame",
+   "5: head cut off by the frame",
+   "6: several people",
+   "7: head cut off by the frame"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2098334378731208705": {
   "photo": null,
   "rejected": [
@@ -3403,6 +3431,12 @@
    "4: no face (headless or cropped)"
   ],
   "url": null,
+  "v": 2
+ },
+ "cj-2099377429520023554": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/a5c3735a-50b9-4ef4-bbcf-2cdf69180684.jpg",
   "v": 2
  },
  "cj-2100105591599296513": {
