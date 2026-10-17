@@ -7,6 +7,7 @@ import { formatMoney } from '../../lib/format';
 import { isProductPurchasable, isWooCommerceProduct } from '../../lib/woocommerce';
 import { isCurvyProduct, productPath } from '../../lib/storefront';
 import { useCart } from '../../store/cart';
+import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
 
 type Variant = 'women' | 'men';
@@ -15,8 +16,12 @@ const usesByCollection: Record<string, string[]> = {
   'wedding-guest': ['for the ceremony', 'for the reception', 'for the after-party'],
   'cocktail-party': ['for cocktail hour', 'for the party', 'for date night'],
   'maxi-holiday': ['for the holiday', 'for garden parties', 'for summer weddings'],
+  evening: ['for black tie', 'for the gala', 'for the reception'],
+  bridal: ['for the ceremony', 'for the photos', 'for your first dance'],
+  everyday: ['for brunch', 'for the office', 'for the weekend'],
+  watches: ['for every day', 'for the occasion', 'as a gift'],
 };
-const wordByCollection: Record<string, string> = { 'wedding-guest': 'Guest', 'cocktail-party': 'Cocktail', 'maxi-holiday': 'Holiday' };
+const wordByCollection: Record<string, string> = { 'wedding-guest': 'Guest', 'cocktail-party': 'Cocktail', 'maxi-holiday': 'Holiday', evening: 'Evening', bridal: 'Bridal', everyday: 'Everyday', watches: 'Time' };
 
 /** Product page shared by both storefronts: a poster-style stage, then the buying panel. */
 export function ProductView({ variant }: { variant: Variant }) {
@@ -42,19 +47,21 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const [sizeHint, setSizeHint] = useState(false);
   const add = useCart((state) => state.add);
   const still = useReducedMotion();
+  const cutout = useCutouts()(product.id);
   useEffect(() => { window.scrollTo({ top: 0 }); }, []);
 
   const photos = product.images;
-  const photo = photos[index] ?? photos[0];
+  // The first view uses the cut-out (if one exists) so the dress stands out of the poster.
+  const photo = index === 0 && cutout ? { url: cutout, alt: photos[0]?.alt ?? product.title } : photos[index] ?? photos[0];
   const isWoo = isWooCommerceProduct(product);
   const canBuy = isWoo ? isProductPurchasable(product) : !product.browseOnly && product.supplierVerified && product.sizes.length > 0;
-  const word = variant === 'men' ? 'Formal' : wordByCollection[product.collectionCategory] ?? 'Occasion';
-  const uses = variant === 'men' ? ['for the wedding', 'for the dinner', 'for the gala'] : usesByCollection[product.collectionCategory] ?? usesByCollection['wedding-guest'];
+  const word = variant === 'men' ? 'Formal' : wordByCollection[product.shelf ?? product.collectionCategory] ?? 'Occasion';
+  const uses = variant === 'men' ? ['for the wedding', 'for the dinner', 'for the gala'] : usesByCollection[product.shelf ?? product.collectionCategory] ?? usesByCollection['wedding-guest'];
   const specs = ([['Colour', product.color], ['Length', product.length], ['Neckline', product.neckline], ['Sleeve', product.sleeve]] as [string, string | undefined][])
     .filter((entry): entry is [string, string] => Boolean(entry[1]));
   const bigNumber = product.sizes.length > 1 ? { value: product.sizes.length, label: 'sizes to choose from' }
     : photos.length > 1 ? { value: photos.length, label: 'angles to explore' } : null;
-  const related = products.filter((item) => item.id !== product.id && item.department === product.department && item.collectionCategory === product.collectionCategory && item.images[0]?.url).slice(0, 8);
+  const related = products.filter((item) => item.id !== product.id && item.department === product.department && (item.shelf ?? item.collectionCategory) === (product.shelf ?? product.collectionCategory) && item.images[0]?.url).slice(0, 8);
   const price = canBuy || isWoo ? formatMoney(product.priceCents, product.currency) : 'Coming soon';
 
   function addToBag() {
@@ -71,7 +78,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           <div><strong>{word}</strong><span>{variant === 'men' ? 'Davinova Homme' : isCurvyProduct(product) ? 'The curve edit' : 'The occasion edit'}</span></div>
           <ul>{uses.map((use) => <li key={use}><ChevronRight size={14} />{use}</li>)}</ul>
         </div>
-        <div className="pv-stage__product">
+        <div className={`pv-stage__product${index === 0 && cutout ? ' pv-stage__product--pop' : ''}`}>
           {photo?.url && !broken
             // Floating loop adapted from "Product Bounce Card" (ruixen.ui, 21st.dev), slowed down for clothing.
             ? <motion.img key={photo.url} src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -14, 0], rotateY: [0, 4, -4, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} style={{ transformStyle: 'preserve-3d' }} />
@@ -85,7 +92,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
       </div>
 
       <aside className="pv-buy">
-        <span className="pv-buy__tag">{variant === 'men' ? 'Men · Formal' : product.collectionCategory.replace('-', ' ')}</span>
+        <span className="pv-buy__tag">{variant === 'men' ? 'Men · Formal' : (product.shelf ?? product.collectionCategory).replace('-', ' ')}</span>
         <h1>{product.title}</h1>
         <div className="pv-buy__price">{price}{canBuy && product.compareAtCents && <del>{formatMoney(product.compareAtCents, product.currency)}</del>}</div>
         {product.description && <p className="pv-buy__desc">{product.description}</p>}

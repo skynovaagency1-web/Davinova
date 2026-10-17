@@ -3,20 +3,24 @@ import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
 import { editorialImages } from '../../lib/editorialImages';
+import { SHELVES } from '../../lib/shelves';
+import { useCutouts } from '../../lib/useCutouts';
 
-const collections = [
-  { key: 'wedding-guest', title: 'Wedding Guest', sub: 'Collection', line: 'Ceremony to last dance', to: '/shop?occasion=wedding-guest', fallback: editorialImages.black },
-  { key: 'cocktail-party', title: 'Cocktail', sub: '& Party', line: 'Made for after dark', to: '/shop?occasion=cocktail-party', fallback: editorialImages.burgundy },
-  { key: 'maxi-holiday', title: 'Maxi', sub: '& Holiday', line: 'Long, light, sun-ready', to: '/shop?occasion=maxi-holiday', fallback: editorialImages.blue },
-];
+const titles: Record<string, [string, string]> = {
+  'wedding-guest': ['Wedding Guest', 'Collection'], 'cocktail-party': ['Cocktail', '& Party'], evening: ['Evening', 'Gowns'],
+  'maxi-holiday': ['Maxi', '& Holiday'], bridal: ['Bridal', 'Collection'], everyday: ['Everyday', 'Dresses'],
+};
+const collections = SHELVES.map((shelf) => ({ key: shelf.key, title: titles[shelf.key][0], sub: titles[shelf.key][1], line: shelf.line, to: `/shop?occasion=${shelf.key}`, fallback: editorialImages.black }));
 
 /** Featured collections as rounded cards with a photo, a two-weight title and an arrow chip. */
 export function CollectionCards({ products }: { products: Product[] }) {
+  const cutoutFor = useCutouts();
   const cards = collections.map((collection) => {
-    const inCollection = products.filter((product) => product.collectionCategory === collection.key);
+    const inCollection = products.filter((product) => product.shelf === collection.key);
+    const popper = inCollection.find((product) => cutoutFor(product.id));
     const cover = inCollection.find((product) => product.images[0]?.url)?.images[0]?.url;
-    return { ...collection, count: inCollection.length, image: cover ?? collection.fallback };
-  });
+    return { ...collection, count: inCollection.length, image: cover ?? collection.fallback, cut: popper ? cutoutFor(popper.id) : undefined };
+  }).filter((card) => card.count > 0);
 
   return <section className="nova-collections" id="collections">
     <div className="nova-collections__head">
@@ -26,7 +30,7 @@ export function CollectionCards({ products }: { products: Product[] }) {
     <div className="nova-collections__grid">
       {cards.map((card, index) => <motion.div key={card.key} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}>
         <Link to={card.to} className="nova-collection-card">
-          <span className="nova-collection-card__img"><img src={card.image} alt="" loading="lazy" /></span>
+          <span className={`nova-collection-card__img${card.cut ? ' nova-collection-card__img--pop' : ''}`}><img src={card.cut ?? card.image} alt="" loading="lazy" /></span>
           <span className="nova-collection-card__text">
             <strong>{card.title}</strong>
             <em>{card.sub}</em>

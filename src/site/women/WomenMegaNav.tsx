@@ -2,15 +2,12 @@ import { useState, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
+import { SHELVES } from '../../lib/shelves';
 
 // Adapted from Aceternity's "Navbar Menu" on 21st.dev: one shared panel springs between items on hover.
 const spring = { type: 'spring', mass: 0.5, damping: 11.5, stiffness: 100, restDelta: 0.001, restSpeed: 0.001 } as const;
 
-const occasions = [
-  ['wedding-guest', 'Wedding guest', 'Ceremony to last dance'],
-  ['cocktail-party', 'Cocktail & party', 'Made for after dark'],
-  ['maxi-holiday', 'Maxi & holiday', 'Long, light, sun-ready'],
-] as const;
+const occasions = SHELVES.map((shelf) => [shelf.key, shelf.label, shelf.line] as const);
 
 function Item({ label, active, setActive, children }: { label: string; active: string | null; setActive: (value: string) => void; children: ReactNode }) {
   return <div className="w-mega__item" onMouseEnter={() => setActive(label)} onFocus={() => setActive(label)}>
@@ -29,7 +26,7 @@ function Item({ label, active, setActive, children }: { label: string; active: s
 export function WomenMegaNav() {
   const [active, setActive] = useState<string | null>(null);
   const { products } = useCatalogProducts();
-  const cover = (key: string) => products.find((product) => product.department === 'women' && product.collectionCategory === key && product.images[0]?.url)?.images[0]?.url;
+  const cover = (key: string) => products.find((product) => product.department === 'women' && product.shelf === key && product.images[0]?.url)?.images[0]?.url;
 
   return <nav className="w-mega" aria-label="Main" onMouseLeave={() => setActive(null)} onClick={() => setActive(null)}>
     <Item label="Shop" active={active} setActive={setActive}>
@@ -55,6 +52,7 @@ export function WomenMegaNav() {
         <Link to="/shop">All fits</Link>
       </div>
     </Item>
+    <Link to="/watches" className="w-mega__trigger">Watches</Link>
     <Link to="/about" className="w-mega__trigger">About</Link>
   </nav>;
 }

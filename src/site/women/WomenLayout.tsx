@@ -7,13 +7,17 @@ import { WomenMegaNav } from './WomenMegaNav';
 import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
+import { HangingBag } from '../shared/HangingBag';
 
 const links = [
   ['/shop', 'Shop'],
   ['/shop?occasion=wedding-guest', 'Wedding guest'],
   ['/shop?occasion=cocktail-party', 'Cocktail'],
   ['/shop?occasion=maxi-holiday', 'Holiday'],
+  ['/shop?occasion=evening', 'Evening'],
+  ['/shop?occasion=bridal', 'Bridal'],
   ['/shop?fit=curvy', 'Curvy'],
+  ['/watches', 'Watches'],
 ] as const;
 
 /** The women's storefront: floating header, lilac menu and footer. */
@@ -48,6 +52,7 @@ export function WomenLayout() {
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}><Outlet /></motion.div></main>
     <footer className="w-footer">
+      <HangingBag />
       <div className="w-footer__big" aria-hidden="true">DAVINOVA</div>
       <Logo tone="brand" />
       <div className="w-footer__row">

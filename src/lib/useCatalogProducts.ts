@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { CollectionCategory, Product } from '../types/product';
 import { previewFirstCjDress } from '../data/previewFirstCjDress';
 import { fetchWooCommerceProducts, isWooCommerceConfigured } from './woocommerce';
+import { shelfFor } from './shelves';
 
 interface CatalogueRow {
   id: string;
@@ -86,7 +87,11 @@ function loadCjCatalogue(): Promise<Product[]> {
         if (!response.ok) throw new Error('Catalogue endpoint unavailable');
         const data = await response.json() as { products?: CatalogueRow[] };
         if (!Array.isArray(data.products)) throw new Error('Catalogue response was not a product list');
-        return data.products.map(toProduct).filter((item): item is Product => item !== null);
+        return data.products.map(toProduct)
+          .filter((item): item is Product => item !== null)
+          .map((item) => ({ ...item, shelf: shelfFor(item) }))
+          // Pyjamas, kids' clothes, pet costumes and the like are not part of the store.
+          .filter((item) => item.shelf !== 'hidden');
       })
       .catch((cause: unknown) => {
         cjCatalogueRequest = null; // allow a retry on the next page visit

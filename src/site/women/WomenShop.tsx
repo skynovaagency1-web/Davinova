@@ -5,12 +5,14 @@ import { isCurvyProduct } from '../../lib/storefront';
 import { usePaged } from '../shared/usePaged';
 import { WomenCard } from './WomenCard';
 import { STYLE_CATEGORIES, matchesStyle } from '../shared/styleCategories';
+import { SHELVES } from '../../lib/shelves';
 
-const collections = [['all', 'All'], ['wedding-guest', 'Wedding guest'], ['cocktail-party', 'Cocktail & party'], ['maxi-holiday', 'Maxi & holiday']] as const;
+const collections = [['all', 'All'], ...SHELVES.map((shelf) => [shelf.key, shelf.label] as const)] as const;
 const fits = [['all', 'All fits'], ['standard', 'Slim'], ['curvy', 'Curvy']] as const;
 const sorts = [['featured', 'Featured'], ['price-low', 'Price ↑'], ['price-high', 'Price ↓'], ['name', 'A–Z']] as const;
 const titles: Record<string, [string, string]> = {
   all: ['The', 'EDIT'], 'wedding-guest': ['Wedding', 'GUEST'], 'cocktail-party': ['Cocktail', 'PARTY'], 'maxi-holiday': ['Maxi', 'HOLIDAY'],
+  evening: ['Evening', 'GOWNS'], bridal: ['The', 'BRIDE'], everyday: ['Every', 'DAY'],
 };
 
 /** Women's shop: big title band, sticky glass filter bar, paged grid. Filters live in the URL. */
@@ -24,11 +26,11 @@ export function WomenShop() {
   const style = params.get('style') ?? '';
   const styleLabel = STYLE_CATEGORIES.find((item) => item.key === style)?.label;
 
-  const women = useMemo(() => products.filter((product) => product.department === 'women'), [products]);
+  const women = useMemo(() => products.filter((product) => product.department === 'women' && product.shelf !== 'watches'), [products]);
   const colours = useMemo(() => [...new Set(women.map((product) => product.color).filter(Boolean))].sort().slice(0, 14), [women]);
   const filtered = useMemo(() => {
     const list = women.filter((product) =>
-      (collection === 'all' || product.collectionCategory === collection)
+      (collection === 'all' || product.shelf === collection)
       && (fit === 'all' || (fit === 'curvy') === isCurvyProduct(product))
       && (!colour || product.color === colour)
       && (!style || matchesStyle(product, style)));

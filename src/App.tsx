@@ -5,6 +5,7 @@ import { MenLayout } from './site/men/MenLayout';
 import { ApprovalPage } from './pages/ApprovalPage';
 const WomenHome = lazy(() => import('./site/women/WomenHome').then((m) => ({ default: m.WomenHome })));
 const WomenShop = lazy(() => import('./site/women/WomenShop').then((m) => ({ default: m.WomenShop })));
+const WatchesPage = lazy(() => import('./site/women/WatchesPage').then((m) => ({ default: m.WatchesPage })));
 const MenHome = lazy(() => import('./site/men/MenHome').then((m) => ({ default: m.MenHome })));
 const MenShop = lazy(() => import('./site/men/MenShop').then((m) => ({ default: m.MenShop })));
 const ProductView = lazy(() => import('./site/shared/ProductView').then((m) => ({ default: m.ProductView })));
@@ -33,6 +34,7 @@ export default function App() {
       <Route element={<WomenLayout />}>
         <Route index element={menHost ? <Navigate to="/men" replace /> : <WomenHome />} />
         <Route path="shop" element={<WomenShop />} />
+        <Route path="watches" element={<WatchesPage />} />
         <Route path="product/:slug" element={<ProductView variant="women" />} />
         <Route path="bag" element={<BagView variant="women" />} />
         <Route path="cart" element={<BagView variant="women" />} />

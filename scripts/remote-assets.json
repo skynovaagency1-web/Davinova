@@ -1,3 +1,10 @@
 [
-  { "url": "https://cdn.alexya.ai/00ce295a-825c-4c8d-b7e4-f1f904ffee5a/images/output/generated-1792231917075.jpg", "path": "public/images/watch-poster.jpg" }
+  {
+    "url": "https://cdn.alexya.ai/00ce295a-825c-4c8d-b7e4-f1f904ffee5a/images/output/generated-1792231917075.jpg",
+    "path": "public/images/watch-poster.jpg"
+  },
+  {
+    "url": "https://cdn.alexya.ai/00ce295a-825c-4c8d-b7e4-f1f904ffee5a/images/output/generated-1792232233516.jpg",
+    "path": "public/images/watch-poster-2.jpg"
+  }
 ]

@@ -399,3 +399,58 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .pv--women .pv-buy__sizes button, .pv--women .pv-buy__specs > div { background: rgba(255, 245, 230, .08); color: var(--amber-text); border-color: var(--amber-line); }
 .pv--women .pv-stage__product img { mix-blend-mode: normal; border-radius: 22px; }
 @media (prefers-reduced-motion: reduce) { .cloud-sky .cloud, .nova-hero__cloud { animation-duration: 90s; } }
+
+/* ---------- 3D pop-out: cut-out dresses stand up out of their cards ---------- */
+.w-card--pop .w-card__img { overflow: visible; background: none; border: 0; box-shadow: none; perspective: 900px; }
+.w-card--pop .w-card__img::before { content: ""; position: absolute; inset: 22% 0 0; border-radius: 26px; background: var(--amber-glass); border: 1px solid var(--amber-line); box-shadow: 0 24px 50px rgba(30, 12, 2, .32), inset 0 1px 0 rgba(255, 245, 230, .25); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+.w-card--pop .w-card__cutout { position: absolute; left: 50%; bottom: 4%; height: 104%; width: auto; max-width: 112%; object-fit: contain; object-position: bottom; transform: translateX(-50%); transform-origin: 50% 100%; filter: drop-shadow(0 22px 22px rgba(20, 8, 0, .45)); transition: transform .6s cubic-bezier(.2, .7, .2, 1), filter .6s; }
+.w-card--pop:hover .w-card__cutout { transform: translateX(-50%) translateY(-10px) scale(1.06) rotateX(6deg); filter: drop-shadow(0 34px 28px rgba(20, 8, 0, .5)); }
+.w-card--pop:hover .w-card__img::before { transform: rotateX(8deg); }
+.w-card--pop .w-card__badge { top: calc(22% + 12px); }
+.w-card--pop .w-card__arrow { z-index: 2; }
+
+.w-cat__ring--pop { position: relative; overflow: visible; }
+.w-cat__ring--pop .w-cat__cut { position: absolute; left: 4px; right: 4px; bottom: 4px; width: calc(100% - 8px); height: 150%; object-fit: contain; object-position: bottom; border: 0; border-radius: 0; background: none; clip-path: inset(-60% 0 0 0 round 0 0 57px 57px); filter: drop-shadow(0 8px 10px rgba(20, 8, 0, .4)); transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
+.w-cat__ring--pop::before { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: radial-gradient(circle at 50% 30%, #fbe8cf, #c98a3a); }
+.w-cat:hover .w-cat__cut { transform: translateY(-6px) scale(1.05); }
+
+.nova-collection-card__img--pop { overflow: visible; background: radial-gradient(ellipse at 50% 80%, rgba(255, 240, 215, .35), rgba(255, 240, 215, .06)); position: relative; }
+.nova-collection-card__img--pop img { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 128%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 16px 16px rgba(20, 8, 0, .45)); }
+.nova-collection-card:hover .nova-collection-card__img--pop img { transform: translateY(-8px) scale(1.05); }
+
+.pv-stage__product--pop img { border-radius: 0 !important; filter: drop-shadow(0 34px 30px rgba(20, 8, 0, .45)); transform-origin: 50% 100%; scale: 1.12; }
+
+/* ---------- Hanging bag in the footer ---------- */
+.w-footer { position: relative; overflow: visible; }
+.hang-bag { position: absolute; z-index: 3; top: -2px; right: clamp(20px, 7vw, 120px); width: clamp(110px, 12vw, 170px); transform-origin: 50% 0; animation: bag-swing 4.2s ease-in-out infinite alternate; filter: drop-shadow(0 30px 30px rgba(10, 4, 0, .55)); }
+.hang-bag svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hang-bag__tag { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); white-space: nowrap; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .25em; text-transform: uppercase; color: #f3cf85; opacity: 0; transition: opacity .3s; }
+.hang-bag:hover { animation-play-state: paused; }
+.hang-bag:hover .hang-bag__tag { opacity: 1; }
+@keyframes bag-swing { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+.w-footer__big { position: relative; z-index: 1; }
+@media (max-width: 760px) { .hang-bag { width: 92px; right: 18px; top: -10px; } }
+
+/* ---------- Watch campaign + Watches page ---------- */
+.watch-poster { position: relative; display: block; overflow: hidden; border-radius: 32px; border: 1px solid var(--amber-line); box-shadow: 0 40px 80px rgba(20, 8, 0, .35); isolation: isolate; }
+.watch-poster img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+.watch-poster:hover img { transform: scale(1.03); }
+.watch-poster__head { position: absolute; top: 6%; left: 0; right: 0; text-align: center; font: 400 clamp(30px, 4.4vw, 60px)/1 'Playfair Display', Georgia, serif; color: #22140b; letter-spacing: -.01em; }
+.watch-poster__head em { font-style: italic; }
+.watch-poster__go { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; background: rgba(34, 20, 11, .78); color: #fbf1e2; font: 600 13px var(--nova-display); letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(8px); white-space: nowrap; }
+.w-watch-feature { padding: clamp(50px, 6vw, 90px) clamp(16px, 4vw, 60px) 0; }
+.w-watch-feature .watch-poster { max-width: 760px; margin: 0 auto; aspect-ratio: 3 / 4; }
+.w-watches { padding: 22px clamp(12px, 2.6vw, 40px) 0; display: grid; gap: 40px; }
+.w-watches__hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 60px); align-items: center; padding: clamp(24px, 4vw, 56px); border-radius: 36px; background: var(--amber-glass); border: 1px solid var(--amber-line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.w-watches__copy { display: grid; gap: 18px; justify-items: start; }
+.w-watches__copy .nova-chip { color: #f3cf85; }
+.w-watches__copy h1 { margin: 0; font: 300 clamp(44px, 6vw, 96px)/.95 var(--nova-display); letter-spacing: -.035em; }
+.w-watches__copy h1 b { font-weight: 900; font-stretch: 112%; background: var(--g-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.w-watches__copy p { margin: 0; max-width: 44ch; color: var(--amber-soft); line-height: 1.6; }
+.w-watches__copy ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 12px; }
+.w-watches__copy li { display: grid; gap: 2px; padding-left: 16px; border-left: 2px solid #e9b25a; }
+.w-watches__copy li span { color: var(--amber-soft); font-size: 14px; }
+.w-watches .watch-poster { aspect-ratio: 3 / 4; }
+.w-watches__empty { display: grid; justify-items: center; gap: 12px; text-align: center; padding: 50px 20px; border-radius: 28px; border: 1px dashed var(--amber-line); }
+.w-watches__empty span { color: var(--amber-soft); max-width: 46ch; }
+@media (max-width: 860px) { .w-watches__hero { grid-template-columns: 1fr; } }

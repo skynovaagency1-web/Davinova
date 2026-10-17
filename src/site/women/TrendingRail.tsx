@@ -4,13 +4,13 @@ import { Flame } from 'lucide-react';
 import type { Product } from '../../types/product';
 import { WomenCard } from './WomenCard';
 
-const tabs = [['all', 'All'], ['wedding-guest', 'Wedding guest'], ['cocktail-party', 'Cocktail'], ['maxi-holiday', 'Holiday']] as const;
+const tabs = [['all', 'All'], ['wedding-guest', 'Wedding guest'], ['cocktail-party', 'Cocktail'], ['evening', 'Evening'], ['maxi-holiday', 'Holiday']] as const;
 
 /** "Trending now": a ranked rail with occasion tabs. Featured looks lead, then the rest of the collection. */
 export function TrendingRail({ products }: { products: Product[] }) {
   const [tab, setTab] = useState<string>('all');
   const list = useMemo(() => products
-    .filter((product) => product.images[0]?.url && (tab === 'all' || product.collectionCategory === tab))
+    .filter((product) => product.images[0]?.url && (tab === 'all' || product.shelf === tab))
     .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length)
     .slice(0, 10), [products, tab]);
   if (products.length === 0) return null;

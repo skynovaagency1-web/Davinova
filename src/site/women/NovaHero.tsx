@@ -8,7 +8,7 @@ import { formatMoney } from '../../lib/format';
 import { Cloud } from '../shared/Cloud';
 
 const spring = { stiffness: 90, damping: 18, mass: 0.6 };
-const HERO_CUTOUT = '/images/hero-model.png';
+const HERO_CUTOUT = '/images/hero-model.webp';
 const sizes = ['XS', 'S', 'M', 'L', 'XL'];
 const tones = ['#22140b', '#a0561a', '#d9902f', '#f0c674', '#f4e2c8'];
 
