@@ -31,7 +31,8 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   const cacheKey = new Request(url.toString(), { method: 'GET' });
   const cached = await cache?.match(cacheKey);
   if (cached) return cached;
-  const shown = await photoCheckedIds(env, request);
+  // ?all=1 (used by the import and photo-check scripts) includes products not yet shown.
+  const shown = url.searchParams.get('all') === '1' ? undefined : await photoCheckedIds(env, request);
 
   const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,cost_cents,currency,occasion,
     collection_category,department,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
