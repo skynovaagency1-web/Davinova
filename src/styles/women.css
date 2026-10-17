@@ -90,12 +90,12 @@
 @keyframes nova-orbit { from { transform: rotate(-10deg) scaleX(1); } to { transform: rotate(-4deg) scaleX(1.06); } }
 @keyframes nova-pop { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
 
-@media (max-width: 980px) {
+@media (max-width: 1200px) {
   .nova-hero__panel { grid-template-columns: 1fr; padding-top: 30px; }
   .nova-hero__side { align-items: flex-start; }
   .nova-float { display: none; }
 }
-@media (max-width: 760px) {
+@media (max-width: 1200px) {
   .nova-hero { grid-template-columns: 1fr; margin: 10px 10px 0; padding: 22px 16px 16px; border-radius: 28px; gap: 6px; }
   .nova-hero__title b { font-size: clamp(50px, 16vw, 80px); }
   .nova-hero__title--right { align-items: flex-start; text-align: left; }
@@ -454,3 +454,54 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-watches__empty { display: grid; justify-items: center; gap: 12px; text-align: center; padding: 50px 20px; border-radius: 28px; border: 1px dashed var(--amber-line); }
 .w-watches__empty span { color: var(--amber-soft); max-width: 46ch; }
 @media (max-width: 860px) { .w-watches__hero { grid-template-columns: 1fr; } }
+
+/* ---------- Phones & tablets: keep the desktop look, two cards per row ---------- */
+@media (max-width: 1200px) {
+  .nova-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 0; gap: 0 10px; padding: 20px 14px 14px; }
+  .nova-hero__title i { font-size: clamp(14px, 4.2vw, 22px); }
+  .nova-hero__title b { font-size: clamp(26px, 7.5vw, 56px); }
+  .nova-hero__title { z-index: 4; }
+  .nova-hero__title--right { align-items: flex-end; text-align: right; }
+  .nova-hero__spark { left: auto; right: -2px; top: -22px; width: 22px; }
+  .nova-hero__model { grid-column: 1 / -1; height: 360px; margin: 6px 0 -70px; }
+  .nova-hero__model--cutout { width: 132%; height: auto; aspect-ratio: 1165 / 871; margin: 0 0 -78px -16%; }
+  .nova-hero__ghost { display: block; bottom: auto; top: 128px; font-size: 25vw; -webkit-text-stroke-width: 1px; }
+  .nova-hero__panel { grid-column: 1 / -1; padding: 86px 18px 20px; }
+  .nova-hero__copy h2 { font-size: 24px; }
+}
+@media (min-width: 761px) and (max-width: 1200px) {
+  .nova-hero { margin: 14px 18px 0; padding: 30px 30px 24px; }
+  .nova-hero__title b { font-size: 7.6vw; }
+  .nova-hero__title i { font-size: 28px; }
+  .nova-hero__model--cutout { width: min(100%, 820px); margin: 0 auto -120px; }
+  .nova-hero__ghost { top: 190px; font-size: 22vw; }
+  .nova-hero__panel { padding: 130px 34px 30px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+  .nova-hero__side { margin-top: 0; }
+}
+@media (max-width: 1100px) {
+  .nova-collection-card { grid-template-columns: 1fr; gap: 10px; min-height: 0; padding: 8px 8px 14px; border-radius: 22px; align-items: start; }
+  .nova-collection-card__img { aspect-ratio: 4 / 5; border-radius: 16px; }
+  .nova-collection-card__text { padding: 0 4px; }
+}
+@media (max-width: 760px) {
+  .nova-collections__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .nova-collection-card__text strong, .nova-collection-card__text em { font-size: 17px; }
+  .nova-collection-card__text small { margin-top: 6px; font-size: 11px; }
+  .nova-collection-card__arrow { width: 32px; height: 32px; top: 12px; right: 12px; z-index: 2; background: rgba(34, 20, 11, .35); backdrop-filter: blur(6px); }
+
+  .w-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
+  .w-trend__rail { grid-auto-columns: calc((100% - 12px) / 2); gap: 12px; }
+  .w-trend__rank { font-size: 46px; }
+
+}
+@media (max-width: 520px) {
+  .w-codes__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .w-code { padding: 16px 14px; border-radius: 22px; gap: 8px; }
+  .w-code strong { font-size: 19px; }
+  .w-code p { font-size: 12.5px; }
+  .w-code__tag { padding: 6px 10px; font-size: 11.5px; }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .nova-collections__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .w-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
