@@ -5,6 +5,8 @@ import { Home, Menu, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
+import { CloudSky } from '../shared/Cloud';
+import { HangingWatch } from '../shared/HangingWatch';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 
 const links = [
@@ -27,6 +29,7 @@ export function MenLayout() {
   }, [pathname, search]);
 
   return <div className="m-shell">
+    <CloudSky />
     <DeptSwitch active="men" />
     <header className="m-header">
       <button type="button" className="m-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
@@ -56,12 +59,15 @@ export function MenLayout() {
       </motion.nav>}
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}><Outlet /></motion.div></main>
-    <footer className="m-footer">
-      <div className="m-footer__grid">
-        <span className="m-wordmark"><Logo tone="metal" sub="HOMME" /></span>
+    <footer className="w-footer m-footer">
+      <HangingWatch to="/men/bag" />
+      <div className="w-footer__big" aria-hidden="true">DAVINOVA</div>
+      <Logo tone="metal" sub="HOMME" />
+      <div className="w-footer__row">
+        <p>Formalwear for the moments you'll keep.</p>
         <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></nav>
       </div>
-      <div className="m-footer__bar"><span>© {new Date().getFullYear()} DAVINOVA</span><span>FORMALWEAR / FOR THE OCCASION</span><span className="m-barcode" aria-hidden="true" /></div>
+      <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
   </div>;
 }

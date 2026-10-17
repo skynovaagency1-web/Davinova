@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { WomenCard } from '../women/WomenCard';
-import { MenCard } from '../men/MenCard';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath, jewelryTypeOf, type Dept, type JewelryType } from './jewelry';
 
 /** Jewelry & Watches: one page per sub-menu item, with the other items as tabs. */
@@ -15,7 +14,6 @@ export function JewelryPage({ dept }: { dept: Dept }) {
     return kind && allowed.includes(kind) && (!current || kind === current);
   });
   const info = current ? JEWELRY_TYPES[current] : { label: 'Jewelry & Watches', line: 'Wedding sets, rings and watches to finish the look' };
-  const Card = dept === 'men' ? MenCard : WomenCard;
 
   return <section className={`jw jw--${dept}`}>
     <header className="jw__head">
@@ -31,7 +29,7 @@ export function JewelryPage({ dept }: { dept: Dept }) {
       </div>)}
     </nav>
     {pieces.length > 0
-      ? <div className={dept === 'men' ? 'm-grid' : 'w-grid'}>{pieces.map((product, index) => <Card key={product.id} product={product} index={index} />)}</div>
+      ? <div className={dept === 'men' ? 'm-grid m-grid--glass' : 'w-grid'}>{pieces.map((product, index) => <WomenCard key={product.id} product={product} index={index} />)}</div>
       : !loading && <div className="jw__empty">
         <strong>The first pieces are on their way.</strong>
         <span>We're choosing them now. In the meantime, find the look to wear them with.</span>

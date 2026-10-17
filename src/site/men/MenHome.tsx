@@ -5,7 +5,11 @@ import { ArrowRight } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { formatMoney } from '../../lib/format';
 import { productPath } from '../../lib/storefront';
-import { MenCard } from './MenCard';
+import { WomenCard as ProductCard } from '../women/WomenCard';
+import { formalMen } from './menFormal';
+import { MenCollections } from './MenCollections';
+import { MenCircles } from './MenCircles';
+import { MenTrending } from './MenTrending';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 
@@ -13,11 +17,6 @@ import { Perks } from '../shared/Perks';
 // The founder's suit photo (background removed). Until it exists the hero shows the latest looks.
 const MEN_CUTOUT = '/images/men-suit.webp';
 const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
-const occasions = [
-  ['01', 'Wedding', 'Suits for the ceremony', '/men/shop?occasion=wedding-guest'],
-  ['02', 'Black tie', 'Dinner jackets and evenings', '/men/shop?occasion=cocktail-party'],
-  ['03', 'Holiday', 'Light tailoring for travel', '/men/shop?occasion=maxi-holiday'],
-] as const;
 const codes = [
   ['BLACK TIE', 'Tuxedo or dinner jacket, bow tie, black oxfords. Nothing patterned.'],
   ['COCKTAIL', 'Dark suit, crisp shirt; a tie is optional but sharpens it.'],
@@ -25,10 +24,10 @@ const codes = [
   ['DESTINATION', 'Linen or cotton tailoring, open collar, no heavy wool.'],
 ] as const;
 
-/** Men's home: a HUD-style hero around the model, occasion tiles and the latest looks. */
+/** Men's home: the HUD hero, then the same glass sections as the women's shop, in the men's grey. */
 export function MenHome() {
   const { products, loading } = useCatalogProducts();
-  const men = products.filter((product) => product.department === 'men');
+  const men = formalMen(products);
   const women = products.filter((product) => product.department === 'women');
   const looks = men.filter((product) => product.images[0]?.url).slice(0, 4);
   const [active, setActive] = useState(0);
@@ -67,17 +66,19 @@ export function MenHome() {
       <div className="m-hero__badge"><span className="m-mono">DH</span><span className="m-hero__badgebox">LOOK<br /><b>{String(active + 1).padStart(3, '0')}</b></span></div>
     </section>
 
-    <section className="m-occasions">{occasions.map(([no, title, line, to]) => <Link key={no} to={to} className="m-occasion"><i>{no}</i><strong>{title}</strong><span>{line}</span><ArrowRight size={18} /></Link>)}</section>
+    <MenCircles products={men} />
+    <MenCollections products={men} />
+    <MenTrending products={men} />
 
-    <section className="m-latest">
-      <div className="m-latest__head"><h2>LATEST <i>/ {String(men.length).padStart(3, '0')} LOOKS</i></h2><Link to="/men/shop">VIEW ALL <ArrowRight size={14} /></Link></div>
-      {men.length === 0 && !loading && <p className="m-empty">The first men's looks are being added. Check back soon.</p>}
-      <div className="m-grid">{men.slice(0, 8).map((product, index) => <MenCard key={product.id} product={product} index={index} />)}</div>
+    <section className="w-codes">
+      <div className="w-sec-head"><h2 className="m-h2-block">Dress code, <b>decoded</b></h2><p className="w-sec-head__note">What each invitation really means, and what to wear.</p></div>
+      <div className="w-codes__grid">{codes.map(([title, tip], index) => <div key={title} className="w-code"><span className="w-code__no">{String(index + 1).padStart(2, '0')}</span><strong>{title}</strong><p>{tip}</p></div>)}</div>
     </section>
 
-    <section className="m-codes">
-      <div className="m-latest__head"><h2>DRESS CODE <i>/ DECODED</i></h2></div>
-      <div className="m-codes__grid">{codes.map(([title, tip], index) => <div key={title} className="m-code"><i>{String(index + 1).padStart(2, '0')}</i><strong>{title}</strong><p>{tip}</p></div>)}</div>
+    <section className="w-new">
+      <div className="w-new__head"><h2>New <b>in</b></h2><Link to="/men/shop" className="w-new__all">See all <ArrowRight size={16} /></Link></div>
+      {men.length === 0 && !loading && <p className="m-empty">The first men's looks are being added. Check back soon.</p>}
+      <div className="w-new__rail">{men.slice(0, 12).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
     </section>
 
     <div className="m-split-wrap"><ShopSplit womenImage={women.find((product) => product.images[0]?.url)?.images[0].url} womenCount={women.length} menCount={men.length} /></div>
