@@ -428,8 +428,14 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .hang-bag:hover .hang-bag__tag { opacity: 1; }
 @keyframes bag-swing { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
 .w-footer__big { position: relative; z-index: 1; }
+/* the bag hangs from the apex of the last "A" */
+.w-footer__hook { position: relative; display: inline-block; width: 0; height: 0; vertical-align: top; }
+/* the hook sits just before the last "A"; --a-mid is the middle of that letter */
+.w-footer { --a-mid: .43em; }
+.w-footer__hook .hang-bag__tag { -webkit-text-stroke: 0; }
+.w-footer__hook .hang-bag { top: .02em; left: calc(var(--a-mid) - var(--bag-w) / 2); font-size: var(--foot-word); }
 .w-footer__row { min-height: calc(var(--bag-w) * 1.91 * .44 + 10px); align-items: end; }
-@media (max-width: 760px) { .w-footer { --bag-w: 70px; } .hang-bag { left: auto; right: 18px; } }
+@media (max-width: 760px) { .w-footer { --bag-w: 70px; } }
 
 /* ---------- Watch campaign + Watches page ---------- */
 .watch-poster { position: relative; display: block; overflow: hidden; border-radius: 32px; border: 1px solid var(--amber-line); box-shadow: 0 40px 80px rgba(20, 8, 0, .35); isolation: isolate; }
