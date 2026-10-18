@@ -3,7 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { usePaged } from '../shared/usePaged';
 import { WomenCard as ProductCard } from '../women/WomenCard';
-import { formalMen } from './menFormal';
+import { MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
+import { MEN_CATEGORIES, formalMen } from './menFormal';
 
 const tabs = [['all', 'ALL'], ['wedding-guest', 'WEDDING'], ['cocktail-party', 'BLACK TIE'], ['maxi-holiday', 'HOLIDAY']] as const;
 const sorts = [['featured', 'FEATURED'], ['price-low', 'PRICE ↑'], ['price-high', 'PRICE ↓']] as const;
@@ -13,12 +14,18 @@ export function MenShop() {
   const [params, setParams] = useSearchParams();
   const { products, loading } = useCatalogProducts();
   const occasion = params.get('occasion') ?? 'all';
+  const cat = params.get('cat') ?? 'all';
   const sort = params.get('sort') ?? 'featured';
+  const all = useMemo(() => formalMen(products), [products]);
+  // Only categories that have something in them get a tab.
+  const cats = MEN_CATEGORIES.filter((item) => all.some((product) => product.storeSubcategory === item.sub));
   const filtered = useMemo(() => {
-    const list = formalMen(products).filter((product) => occasion === 'all' || product.collectionCategory === occasion);
+    // Occasions sort the suits; accessories only show under All or their own category.
+    const list = all.filter((product) => (occasion === 'all' || (product.storeCollection === MEN_FORMAL && product.collectionCategory === occasion))
+      && (cat === 'all' || product.storeSubcategory === cat));
     return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
-  }, [products, occasion, sort]);
-  const { visible, remaining, more, sentinel } = usePaged(filtered, `${occasion}|${sort}`);
+  }, [all, occasion, cat, sort]);
+  const { visible, remaining, more, sentinel } = usePaged(filtered, `${occasion}|${cat}|${sort}`);
 
   function set(key: string, value: string, empty: string) {
     const next = new URLSearchParams(params);
@@ -33,6 +40,7 @@ export function MenShop() {
     </div>
     <div className="m-shop__bar">
       <div className="m-tabs" role="group" aria-label="Occasion">{tabs.map(([value, label], index) => <button key={value} type="button" className={occasion === value ? 'active' : ''} onClick={() => set('occasion', value, 'all')}><i>{String(index).padStart(2, '0')}</i>{label}</button>)}</div>
+      {cats.length > 1 && <div className="m-tabs" role="group" aria-label="Category">{[{ sub: 'all', short: 'Everything' }, ...cats].map((item) => <button key={item.sub} type="button" className={cat === item.sub ? 'active' : ''} onClick={() => set('cat', item.sub, 'all')}>{item.short.toUpperCase()}</button>)}</div>}
       <div className="m-tabs" role="group" aria-label="Sort">{sorts.map(([value, label]) => <button key={value} type="button" className={sort === value ? 'active' : ''} onClick={() => set('sort', value, 'featured')}>{label}</button>)}</div>
     </div>
     {!loading && filtered.length === 0 && <p className="m-empty">No looks here yet. New formalwear is on the way.</p>}
