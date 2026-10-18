@@ -516,3 +516,28 @@ export function parseCJVariantOption(raw: string, department: 'women' | 'men' = 
   const color = tokens.filter((_, index) => index !== sizeIndex).join(' ');
   return { size, color: color || 'Not verified' };
 }
+
+export interface CJFreightOption { name: string; priceUsd: number; days: string }
+
+/** Shipping quotes for one unit of a variant, cheapest first. */
+export async function calculateCJFreight(env: CJEnv, variantId: string, endCountryCode = 'US', startCountryCode = 'CN'): Promise<CJFreightOption[]> {
+  const data = await request<{ logisticName?: string; logisticPrice?: number | string; logisticAging?: string }[]>(env, '/logistic/freightCalculate', {
+    method: 'POST',
+    body: JSON.stringify({ startCountryCode, endCountryCode, products: [{ quantity: 1, vid: variantId }] }),
+  });
+  return (Array.isArray(data) ? data : [])
+    .map((row) => ({ name: row.logisticName ?? '', priceUsd: numericValue(row.logisticPrice) ?? Infinity, days: row.logisticAging ?? '' }))
+    .filter((row) => Number.isFinite(row.priceUsd))
+    .sort((a, b) => a.priceUsd - b.priceUsd);
+}
+
+/** Total stock per variant (CJ warehouse + factory), keyed by variant ID. */
+export async function getCJProductStock(env: CJEnv, productId: string): Promise<Record<string, number>> {
+  const data = await request<{ variantInventories?: { vid?: string; inventory?: { totalInventory?: number | string }[] }[] }>(env, '/product/stock/getInventoryByPid?' + new URLSearchParams({ pid: productId }).toString());
+  const stock: Record<string, number> = {};
+  for (const row of data?.variantInventories ?? []) {
+    if (!row.vid) continue;
+    stock[row.vid] = (row.inventory ?? []).reduce((sum, place) => sum + (numericValue(place.totalInventory) ?? 0), 0);
+  }
+  return stock;
+}
