@@ -68,7 +68,7 @@
 .nova-float__caret { position: absolute; top: -10px; width: 0; height: 0; border: 6px solid transparent; border-top-color: #fff; transform: translateX(-50%); transition: left .3s cubic-bezier(.2,.7,.2,1); }
 
 /* ---------- Featured collections ---------- */
-.nova-collections { padding: clamp(60px, 7vw, 100px) clamp(16px, 4vw, 60px); background: var(--nova-canvas); color: var(--nova-ink); }
+.nova-collections { padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 60px); background: var(--nova-canvas); color: var(--nova-ink); }
 .nova-collections__head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
 .nova-collections__head .nova-chip { color: var(--nova-lilac); }
 .nova-collections__head h2 { margin: 0; font: 300 clamp(38px, 5vw, 72px)/1 var(--nova-display); letter-spacing: -.035em; }
@@ -171,7 +171,7 @@
 .w-shop__more button { padding: 14px 24px; border-radius: 999px; border: 0; background: var(--nova-ink); color: #fff; font: 600 13px var(--nova-display); }
 
 /* ---------- New in rail ---------- */
-.w-new { padding: clamp(50px, 6vw, 90px) clamp(16px, 4vw, 60px) 0; }
+.w-new { padding: clamp(36px, 4.5vw, 64px) clamp(16px, 4vw, 60px) 0; }
 .w-new__head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 24px; }
 .w-new__head h2 { margin: 0; font: 300 clamp(38px, 5vw, 72px)/1 var(--nova-display); letter-spacing: -.035em; }
 .w-new__head b { font-weight: 900; font-stretch: 112%; color: var(--nova-lilac); }
@@ -261,12 +261,12 @@
 
 /* Shared section heading */
 .w-sec-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
-.w-sec-head h2 { margin: 0; display: flex; align-items: center; gap: 12px; font: 300 clamp(36px, 5vw, 68px)/1 var(--nova-display); letter-spacing: -.035em; }
+.w-sec-head h2 { margin: 0; display: flex; align-items: center; gap: 12px; font: 300 clamp(30px, 3.8vw, 52px)/1 var(--nova-display); letter-spacing: -.035em; }
 .w-sec-head h2 b { font-weight: 900; font-stretch: 112%; background: var(--g-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .w-sec-head__note { margin: 0; color: var(--nova-muted); max-width: 36ch; }
 
 /* Shop by category */
-.w-cats, .w-trend, .w-codes { padding: clamp(50px, 6vw, 90px) clamp(16px, 4vw, 60px) 0; }
+.w-cats, .w-trend, .w-codes { padding: clamp(36px, 4.5vw, 64px) clamp(16px, 4vw, 60px) 0; }
 .w-cats__rail { display: grid; grid-auto-flow: column; grid-auto-columns: 132px; gap: 18px; overflow-x: auto; padding-top: 64px; padding-bottom: 12px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
 .w-cat { display: grid; justify-items: center; gap: 6px; text-align: center; scroll-snap-align: start; }
 .w-cat__ring { width: 122px; height: 122px; border-radius: 50%; padding: 4px; background: var(--g-brand); transition: transform .4s cubic-bezier(.2, .7, .2, 1); }
@@ -444,8 +444,8 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .watch-poster__head { position: absolute; top: 6%; left: 0; right: 0; text-align: center; font: 400 clamp(30px, 4.4vw, 60px)/1 'Playfair Display', Georgia, serif; color: #22140b; letter-spacing: -.01em; }
 .watch-poster__head em { font-style: italic; }
 .watch-poster__go { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; background: rgba(34, 20, 11, .78); color: #fbf1e2; font: 600 13px var(--nova-display); letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(8px); white-space: nowrap; }
-.w-watch-feature { padding: clamp(50px, 6vw, 90px) clamp(16px, 4vw, 60px) 0; }
-.w-watch-feature .watch-poster { max-width: 760px; margin: 0 auto; aspect-ratio: 3 / 4; }
+.w-watch-feature { padding: clamp(36px, 4.5vw, 64px) clamp(16px, 4vw, 60px) 0; }
+.w-watch-feature .watch-poster { max-width: min(460px, 100%); margin: 0 auto; aspect-ratio: 3 / 4; }
 .heel-poster .watch-poster__go { bottom: 11%; background: rgba(251, 241, 226, .92); color: #2e2019; }
 .w-watches { padding: 22px clamp(12px, 2.6vw, 40px) 0; display: grid; gap: 40px; }
 .w-watches__hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 60px); align-items: center; padding: clamp(24px, 4vw, 56px); border-radius: 36px; background: var(--amber-glass); border: 1px solid var(--amber-line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
