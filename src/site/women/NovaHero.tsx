@@ -10,7 +10,7 @@ import { Cloud } from '../shared/Cloud';
 const spring = { stiffness: 90, damping: 18, mass: 0.6 };
 const HERO_CUTOUT = '/images/hero-model.webp';
 const sizes = ['XS', 'S', 'M', 'L', 'XL'];
-const tones = ['#22140b', '#a0561a', '#d9902f', '#f0c674', '#f4e2c8'];
+const tones = ['#22170f', '#3c2a21', '#6b5444', '#8e735b', '#cdb69e'];
 
 /** Home hero: split headline, cut-through model photo, glass panel over steam and floating glass widgets. */
 export function NovaHero({ products }: { products: Product[] }) {

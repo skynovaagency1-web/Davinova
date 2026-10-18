@@ -7,8 +7,8 @@ cutout) and public/cutouts/report.json (which photo was used, or why each one fa
 
 The photo check rejects: cut-off heads or faces, headless or half-body shots, cut-off hems, collages and
 colour grids, extra people (except couple and parent-child sets), and faded cutouts. Jewelry and watches
-skip the face rules but must still be one whole, uncropped object. Men's clothing is shown as a floating
-garment with no model ("ghost mannequin"): a clothing model erases the head, skin and props, so faces don't matter.
+skip the face rules but must still be one whole, uncropped object. Clothing with no good model photo is shown
+as a floating garment instead (public/cutouts/<id>.float.webp): a clothing model erases the head, skin and props.
 """
 import io
 import json
@@ -27,15 +27,16 @@ HERO_URL = 'https://images.unsplash.com/photo-1568251188392-ae32f898cb3b?auto=fo
 FACE_MODEL = os.path.join(os.path.dirname(__file__), 'models', 'face_detection_yunet_2023mar.onnx')
 OUT = 'public/cutouts'
 MAX_HEIGHT = 900
-GATE_VERSION = 2  # bump to re-check every product after changing the rules
-GARMENT_VERSION = 1  # the same, for the floating men's clothing only
+GATE_VERSION = 3  # bump to re-check every product after changing the rules
+FLOAT_FROM = 2  # results from before floating clothes existed: passes stay, failed clothing gets a floating try
+FLOAT_TRIES = 3
+LIMIT = int(os.environ.get('LIMIT', '300'))  # products checked per run, so one run fits in the job's time limit
 MAX_TRIES = 8
 OBJECT_PRODUCT = re.compile(r'\bwrist ?watch|\bwatch(es)?\b|jewel|necklace|earring|bracelet|bangle|pendant|\brings?\b|tiara|crown|hairpin|hair clip|hair comb|headpiece|brooch|anklet', re.I)
 GROUP_PRODUCT = 'couple-parent-child-clothing'
 JEWELRY_COLLECTION = 'jewelry-and-watches'
 # Ties, shoes and belts are shown on their own, like jewelry.
 OBJECT_COLLECTIONS = {JEWELRY_COLLECTION, 'mens-accessories'}
-GARMENT_COLLECTIONS = {'mens-formal'}
 
 
 def is_ghostly(image):
@@ -147,8 +148,6 @@ def finish(cutout: Image.Image) -> Image.Image:
 
 
 def kind_of(product) -> str:
-    if product.get('storeCollection') in GARMENT_COLLECTIONS:
-        return 'garment'
     if product.get('storeCollection') in OBJECT_COLLECTIONS or OBJECT_PRODUCT.search(product.get('title', '')):
         return 'object'
     return 'group' if product.get('storeCollection') == GROUP_PRODUCT else 'person'
@@ -172,32 +171,31 @@ def main() -> int:
         except Exception as error:  # keep going: the site falls back to the framed photo
             print('hero failed', error)
 
-    passed = rejected = 0
+    passed = rejected = done = 0
     for product in products:
         pid, images = product['id'], product.get('images') or []
         if pid in rejects:
             manifest[pid] = None
             continue
-        kind, reasons, chosen = kind_of(product), [], None
-        version = f'garment-{GARMENT_VERSION}' if kind == 'garment' else GATE_VERSION
-        if report.get(pid, {}).get('v') == version:
+        kind, reasons, chosen, floating = kind_of(product), [], None, False
+        old = report.get(pid, {})
+        if old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person')):
             continue
-        for index, photo in enumerate(images[:MAX_TRIES]):
+        if done >= LIMIT:
+            continue
+        done += 1
+        # Clothing photos already checked under the previous rules failed on the model; only the floating cut is new.
+        model_photos = [] if kind == 'person' and old.get('v') == FLOAT_FROM else images[:MAX_TRIES]
+        for index, photo in enumerate(model_photos):
             try:
                 image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
-                faces = [] if kind in ('object', 'garment') else find_faces(detector, image)
+                faces = [] if kind == 'object' else find_faces(detector, image)
                 # Skip the slow background removal when the faces alone already rule the photo out.
                 if kind == 'person' and len(faces) != 1:
                     reasons.append(f'{index}: ' + ('no face (headless or cropped)' if not faces else 'several people'))
                     continue
                 cutout = remove(image, session=session)
-                if kind == 'garment':
-                    cloth_session = cloth_session or new_session('u2net_cloth_seg')
-                    garment, problem = ghost(image, cutout, cloth_session)
-                    if not problem:
-                        problem, cutout = photo_problem(image, garment, faces, 'object'), garment
-                else:
-                    problem = photo_problem(image, cutout, faces, kind)
+                problem = photo_problem(image, cutout, faces, kind)
                 if problem:
                     reasons.append(f'{index}: {problem}')
                     continue
@@ -206,20 +204,38 @@ def main() -> int:
                 break
             except Exception as error:
                 reasons.append(f'{index}: failed {error}')
+        if chosen is None and kind == 'person':
+            # No photo works on the model: show the clothes floating on their own instead.
+            cloth_session = cloth_session or new_session('u2net_cloth_seg')
+            for index, photo in enumerate(images[:FLOAT_TRIES]):
+                try:
+                    image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                    garment, problem = ghost(image, remove(image, session=session), cloth_session)
+                    problem = problem or photo_problem(image, garment, [], 'object')
+                    if problem:
+                        reasons.append(f'floating {index}: {problem}')
+                        continue
+                    chosen, floating = index, True
+                    finish(garment).save(os.path.join(OUT, f'{pid}.float.webp'), 'WEBP', quality=86, method=6)
+                    break
+                except Exception as error:
+                    reasons.append(f'floating {index}: failed {error}')
+        for name in (f'{pid}.webp', f'{pid}.float.webp'):
+            kept = chosen is not None and name == (f'{pid}.float.webp' if floating else f'{pid}.webp')
+            if not kept and os.path.exists(os.path.join(OUT, name)):
+                os.remove(os.path.join(OUT, name))
         if chosen is None:
             manifest[pid] = None
-            if os.path.exists(os.path.join(OUT, f'{pid}.webp')):
-                os.remove(os.path.join(OUT, f'{pid}.webp'))
             rejected += 1
         else:
-            manifest[pid] = f'/cutouts/{pid}.webp'
+            manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
             passed += 1
-        report[pid] = {'v': version, 'photo': chosen, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
-        print(pid, 'photo', chosen, reasons)
+        report[pid] = {'v': GATE_VERSION, 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
+        print(pid, 'floating' if floating else 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)
     json.dump(report, open(report_path, 'w'), indent=1, sort_keys=True)
-    print(f'passed {passed}, hidden {rejected}, total {len(manifest)}')
+    print(f'passed {passed}, hidden {rejected}, total {len(manifest)}, limit reached: {done >= LIMIT}')
     return 0
 
 

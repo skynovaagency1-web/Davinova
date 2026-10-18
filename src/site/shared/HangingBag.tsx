@@ -5,7 +5,7 @@ export function HangingBag({ to = '/bag' }: { to?: string }) {
   return <Link to={to} className="hang-bag" aria-label="Open your bag">
     <svg viewBox="0 0 220 420" aria-hidden="true">
       <defs>
-        <linearGradient id="hb-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fff1c9" /><stop offset=".45" stopColor="#e9b25a" /><stop offset="1" stopColor="#9a5216" /></linearGradient>
+        <linearGradient id="hb-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f5ebe0" /><stop offset=".45" stopColor="#b89a7e" /><stop offset="1" stopColor="#6b5444" /></linearGradient>
         <linearGradient id="hb-leather" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#3a3330" /><stop offset=".35" stopColor="#141110" /><stop offset="1" stopColor="#050404" /></linearGradient>
         <linearGradient id="hb-flap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#2c2624" /><stop offset="1" stopColor="#0b0909" /></linearGradient>
         <radialGradient id="hb-shine" cx=".3" cy=".25" r=".6"><stop offset="0" stopColor="#fff" stopOpacity=".28" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></radialGradient>

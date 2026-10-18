@@ -3,8 +3,10 @@ import { useId } from 'react';
 type Tone = 'brand' | 'metal';
 
 const stops: Record<Tone, string[]> = {
-  brand: ['#5a2d0c', '#b8661e', '#d9902f', '#f0c674'],
-  metal: ['#1b1b1b', '#7a7a80', '#c8c8cc', '#3a3a3e'],
+  // Women: Bronze Eclipse (user's palette pick, 2026-10-18).
+  brand: ['#3c2a21', '#8e735b', '#cdb69e', '#f2e6d8'],
+  // Men: silver-sage, from the charcoal & sage palette.
+  metal: ['#6f736d', '#a5aaa3', '#e8ebe6', '#8d8d8d'],
 };
 
 const STAR = 'M33 19 C34 27.5 36.5 30.5 45 32 C36.5 33.5 34 36.5 33 45 C32 36.5 29.5 33.5 21 32 C29.5 30.5 32 27.5 33 19 Z';
@@ -34,10 +36,13 @@ function Gradient({ id, tone }: { id: string; tone: Tone }) {
 }
 
 /** A band of the brand gradient that sweeps across the ink-coloured letters, over and over. */
-function Shimmer({ id }: { id: string }) {
+const sweep: Record<Tone, [string, string]> = { brand: ['#8e735b', '#e8d8c4'], metal: ['#a5aaa3', '#ffffff'] };
+
+function Shimmer({ id, tone }: { id: string; tone: Tone }) {
+  const [a, b] = sweep[tone];
   return <linearGradient id={id} gradientUnits="userSpaceOnUse" x1="-120" y1="0" x2="0" y2="0" spreadMethod="pad">
     <stop offset="0" stopColor="currentColor" /><stop offset=".35" stopColor="currentColor" />
-    <stop offset=".5" stopColor="#b8661e" /><stop offset=".6" stopColor="#d9902f" />
+    <stop offset=".5" stopColor={a} /><stop offset=".6" stopColor={b} />
     <stop offset=".75" stopColor="currentColor" /><stop offset="1" stopColor="currentColor" />
     <animateTransform attributeName="gradientTransform" type="translate" values="-40 0;440 0;440 0" keyTimes="0;.55;1" dur="4.5s" repeatCount="indefinite" />
   </linearGradient>;
@@ -62,7 +67,7 @@ export function Logo({ tone = 'brand', sub }: { tone?: Tone; sub?: string }) {
   const id = useId().replace(/:/g, '');
   return <span className={`logo logo--${tone}`}>
     <svg className="logo__word" viewBox="-2 10 301 44" role="img" aria-label={sub ? `Davinova ${sub}` : 'Davinova'}>
-      <defs><Gradient id={`g${id}`} tone={tone} /><Shimmer id={`s${id}`} /></defs>
+      <defs><Gradient id={`g${id}`} tone={tone} /><Shimmer id={`s${id}`} tone={tone} /></defs>
       {GLYPHS.map(({ ch, x, d }, i) => <g key={i}>
         <path className={ch === 'O' ? 'logo-orbit' : 'logo-line'} d={d} fill="none" stroke={ch === 'O' ? `url(#g${id})` : `url(#s${id})`} strokeWidth="3.6" strokeLinecap={ch === 'O' ? 'round' : undefined} pathLength={100} style={{ animationDelay: `${i * 0.1}s` }} />
         {ch === 'O' && <g transform={starAt(x + 20, 32, .62)}><path className="logo-star" d={STAR} fill={`url(#g${id})`} /></g>}

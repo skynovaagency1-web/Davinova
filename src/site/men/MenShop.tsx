@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { usePaged } from '../shared/usePaged';
+import { isFloating, useCutouts } from '../../lib/useCutouts';
 import { WomenCard as ProductCard } from '../women/WomenCard';
 import { MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
 import { MEN_CATEGORIES, formalMen } from './menFormal';
@@ -25,7 +26,13 @@ export function MenShop() {
       && (cat === 'all' || product.storeSubcategory === cat));
     return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
   }, [all, occasion, cat, sort]);
-  const { visible, remaining, more, sentinel } = usePaged(filtered, `${occasion}|${cat}|${sort}`);
+  // Photos on a model and floating clothes (model erased) are shown apart, never mixed in one grid.
+  const cutoutFor = useCutouts();
+  const floating = filtered.filter((product) => isFloating(cutoutFor(product.id)));
+  const onModel = filtered.filter((product) => !isFloating(cutoutFor(product.id)));
+  const look = params.get('look') === 'floating' || !onModel.length ? 'floating' : 'model';
+  const shown = look === 'floating' ? floating : onModel;
+  const { visible, remaining, more, sentinel } = usePaged(shown, `${occasion}|${cat}|${sort}|${look}`);
 
   function set(key: string, value: string, empty: string) {
     const next = new URLSearchParams(params);
@@ -44,6 +51,10 @@ export function MenShop() {
       <div className="m-tabs" role="group" aria-label="Sort">{sorts.map(([value, label]) => <button key={value} type="button" className={sort === value ? 'active' : ''} onClick={() => set('sort', value, 'featured')}>{label}</button>)}</div>
     </div>
     {!loading && filtered.length === 0 && <p className="m-empty">No looks here yet. New formalwear is on the way.</p>}
+    {floating.length > 0 && onModel.length > 0 && <div className="look-switch" role="group" aria-label="Photo style">
+      <button type="button" className={look === 'model' ? 'active' : ''} onClick={() => set('look', 'model', 'model')}>ON MODEL <i>{onModel.length}</i></button>
+      <button type="button" className={look === 'floating' ? 'active' : ''} onClick={() => set('look', 'floating', 'model')}>FLOATING <i>{floating.length}</i></button>
+    </div>}
     <div className="m-grid m-grid--glass">{visible.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
     {remaining > 0 && <div ref={sentinel} className="m-shop__more"><button type="button" onClick={more}>LOAD MORE / {remaining}</button></div>}
   </section>;

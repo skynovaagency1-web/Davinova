@@ -1,9 +1,9 @@
 /* Women's storefront: lilac, glass, bold split type. */
 :root {
   --nova-ink: #22140b;
-  --nova-lilac: #a0561a;
-  --nova-lilac-soft: #d9a25a;
-  --nova-panel: linear-gradient(135deg, #8a4a1a 0%, #b8661e 55%, #d9a04a 100%);
+  --nova-lilac: #6b5444;
+  --nova-lilac-soft: #cdb69e;
+  --nova-panel: linear-gradient(135deg, #3c2a21 0%, #6b5444 55%, #8e735b 100%);
   --nova-canvas: #f5ece0;
   --nova-muted: #9a8470;
   --nova-display: 'Archivo', 'DM Sans', sans-serif;
@@ -230,8 +230,8 @@
 
 /* ---------- Gradient layer ---------- */
 :root {
-  --g-brand: linear-gradient(110deg, #5a2d0c 0%, #b8661e 40%, #d9902f 75%, #f0c674 100%);
-  --g-dark: linear-gradient(120deg, #22140b 0%, #5a2d0c 100%);
+  --g-brand: linear-gradient(110deg, #3c2a21 0%, #6b5444 40%, #8e735b 75%, #cdb69e 100%);
+  --g-dark: linear-gradient(120deg, #22170f 0%, #3c2a21 100%);
   --nova-panel: linear-gradient(135deg, #6d4fe6 0%, #9a5ff0 45%, #e67ac8 85%, #f0bf73 100%);
 }
 .w-shell { background:
@@ -276,13 +276,13 @@
 .w-cat:hover .w-cat__ring { transform: translateY(-6px) rotate(-4deg); }
 
 /* Trending now */
-.w-trend__flame { color: #d9902f; }
+.w-trend__flame { color: #cdb69e; }
 .w-trend__tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .w-trend__tabs button { padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(34, 20, 11, .12); background: rgba(255, 255, 255, .7); font: 600 13px var(--nova-display); cursor: pointer; }
 .w-trend__tabs button.active { background: var(--g-brand); color: #fff; border-color: transparent; }
 .w-trend__rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 270px); gap: 22px; overflow-x: auto; padding: 10px 0 14px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
 .w-trend__item { position: relative; scroll-snap-align: start; }
-.w-trend__rank { position: absolute; z-index: 2; left: -6px; top: -14px; font: 900 64px/1 var(--nova-display); font-stretch: 112%; color: transparent; -webkit-text-stroke: 2px #b8661e; pointer-events: none; }
+.w-trend__rank { position: absolute; z-index: 2; left: -6px; top: -14px; font: 900 64px/1 var(--nova-display); font-stretch: 112%; color: transparent; -webkit-text-stroke: 2px #8e735b; pointer-events: none; }
 .w-trend__more { display: inline-block; margin-top: 10px; font-weight: 700; color: var(--nova-lilac); }
 
 /* Dress-code guide */
@@ -310,18 +310,18 @@
 .w-curvy:hover .w-curvy__fan img { transform: translate(calc(-50% + (var(--i) - 1.5) * 46%), -52%) rotate(calc((var(--i) - 1.5) * 11deg)); }
 @media (max-width: 760px) { .w-curvy { grid-template-columns: 1fr; } .w-curvy__fan img { width: 46%; } }
 
-/* ---------- Amber glass theme (user's reference: brown-to-gold backdrop, clear glass cards, steam behind) ---------- */
+/* ---------- Bronze Eclipse glass theme (user's palette pick 2026-10-18: #3C2A21 → #8E735B; was brown-to-gold), clear glass cards, steam behind ---------- */
 :root {
-  --amber-bg: linear-gradient(125deg, #2a1206 0%, #5a2a0c 28%, #9a5216 58%, #d08a2e 82%, #e9b25a 100%);
+  --amber-bg: linear-gradient(160deg, #2e2019 0%, #3c2a21 30%, #5a4536 62%, #8e735b 100%);
   --amber-text: #fbf1e2;
   --amber-soft: rgba(251, 241, 226, .72);
   --amber-line: rgba(255, 240, 215, .38);
   --amber-glass: rgba(255, 245, 230, .08);
   --amber-glass-strong: rgba(60, 28, 8, .38);
-  --g-text: linear-gradient(110deg, #fff6e6 0%, #f3cf85 45%, #ffe7b8 70%, #e9b25a 100%);
+  --g-text: linear-gradient(110deg, #fff6e6 0%, #cdb69e 45%, #f2e6d8 70%, #b89a7e 100%);
   --nova-muted: rgba(251, 241, 226, .68);
 }
-.w-shell { position: relative; isolation: isolate; background: #6b3410; color: var(--amber-text); }
+.w-shell { position: relative; isolation: isolate; background: #3c2a21; color: var(--amber-text); }
 .w-shell > :not(.cloud-sky) { position: relative; z-index: 1; }
 .w-shell > .w-header { position: sticky; z-index: 50; }
 
@@ -358,7 +358,7 @@
 .w-mega__trigger:hover, .w-mega__trigger.active, .w-icon:hover { background: rgba(255, 245, 230, .14); }
 .w-mega__links a:hover, .w-mega__product:hover { background: rgba(255, 245, 230, .1); }
 .w-switch { background: transparent; border: 1px solid var(--amber-line); color: var(--amber-text); }
-.w-bag, .nova-feature-card__price, .w-card__arrow, .w-filters__row button.active, .w-trend__tabs button.active, .nova-collection-card:hover .nova-collection-card__arrow { background: linear-gradient(110deg, #f6d796, #e9b25a 60%, #c9832a); color: #2a1206; border-color: transparent; }
+.w-bag, .nova-feature-card__price, .w-card__arrow, .w-filters__row button.active, .w-trend__tabs button.active, .nova-collection-card:hover .nova-collection-card__arrow { background: linear-gradient(110deg, #ecdcc8, #b89a7e 60%, #8e735b); color: #2a1d16; border-color: transparent; }
 .nova-pill-button, .w-shop__more button { background: transparent; border: 1px solid rgba(255, 245, 230, .7); color: var(--amber-text); letter-spacing: .12em; text-transform: uppercase; font-size: 12px; }
 .nova-pill-button:hover, .w-shop__more button:hover { background: rgba(255, 245, 230, .14); }
 .w-curvy .nova-pill-button { background: transparent; color: var(--amber-text); }
@@ -370,19 +370,19 @@
 .nova-hero__ghost { color: transparent; -webkit-text-stroke: 1.5px rgba(255, 240, 215, .35); }
 html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .nova-collections { background: transparent; color: var(--amber-text); }
-.nova-collections__head .nova-chip, .w-trend__more, .w-trend__flame { color: #f3cf85; }
+.nova-collections__head .nova-chip, .w-trend__more, .w-trend__flame { color: #cdb69e; }
 .nova-collection-card__text em, .nova-collection-card__text small, .w-code p, .w-code__no { color: var(--amber-soft); }
 .nova-collection-card__arrow { border-color: var(--amber-line); }
-.w-code__tag { background: rgba(255, 245, 230, .12); color: #f6d796; }
+.w-code__tag { background: rgba(255, 245, 230, .12); color: #ecdcc8; }
 .w-code:hover { background: rgba(255, 245, 230, .16); }
-.w-code:hover .w-code__tag { background: linear-gradient(110deg, #f6d796, #e9b25a); color: #2a1206; }
+.w-code:hover .w-code__tag { background: linear-gradient(110deg, #ecdcc8, #b89a7e); color: #2a1d16; }
 .w-card__img { background: rgba(255, 245, 230, .1); border: 1px solid var(--amber-line); box-shadow: 0 20px 40px rgba(30, 12, 2, .3); }
-.w-card__price { background: rgba(255, 245, 230, .14); color: #f6d796; border: 1px solid var(--amber-line); }
+.w-card__price { background: rgba(255, 245, 230, .14); color: #ecdcc8; border: 1px solid var(--amber-line); }
 .w-card__badge { background: rgba(42, 18, 6, .55); color: var(--amber-text); }
 .w-trend__tabs button, .w-filters__row button, .w-filters__sort select { background: rgba(255, 245, 230, .08); border: 1px solid var(--amber-line); color: var(--amber-text); }
 .w-filters__sort select option { color: #22140b; }
-.w-trend__rank { -webkit-text-stroke-color: #f3cf85; }
-.w-cat__ring { background: linear-gradient(135deg, #fff1d6, #e9b25a 50%, #9a5216); }
+.w-trend__rank { -webkit-text-stroke-color: #cdb69e; }
+.w-cat__ring { background: linear-gradient(135deg, #f5ebe0, #b89a7e 50%, #6b5444); }
 .w-cat__ring img { border-color: rgba(42, 18, 6, .6); }
 .w-cat small { color: var(--amber-soft); }
 .split__door--women::after { background: linear-gradient(180deg, rgba(42, 18, 6, 0) 25%, rgba(42, 18, 6, .75)); }
@@ -390,11 +390,11 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .nova-reach { color: var(--amber-text); }
 .nova-reach__card { border: 1px solid var(--amber-line); }
 .perks--women .perk { color: var(--amber-text); }
-.perks--women .perk svg { color: #f3cf85; }
+.perks--women .perk svg { color: #cdb69e; }
 .w-footer__big { opacity: .85; }
-.pv--women { --accent: #e9b25a; --ink: var(--amber-text); --muted: var(--amber-soft); --card: rgba(255, 245, 230, .08); --stage: rgba(255, 245, 230, .05); --banner: linear-gradient(120deg, rgba(42, 18, 6, .7), rgba(154, 82, 22, .55)); }
-.bag--women { --accent: #e9b25a; --ink: var(--amber-text); --muted: var(--amber-soft); --card: rgba(255, 245, 230, .08); }
-.pv--women .pv-buy__cta:not(:disabled), .bag--women .bag__cta { background: linear-gradient(110deg, #f6d796, #e9b25a 60%, #c9832a); color: #2a1206; }
+.pv--women { --accent: #b89a7e; --ink: var(--amber-text); --muted: var(--amber-soft); --card: rgba(255, 245, 230, .08); --stage: rgba(255, 245, 230, .05); --banner: linear-gradient(120deg, rgba(42, 18, 6, .7), rgba(154, 82, 22, .55)); }
+.bag--women { --accent: #b89a7e; --ink: var(--amber-text); --muted: var(--amber-soft); --card: rgba(255, 245, 230, .08); }
+.pv--women .pv-buy__cta:not(:disabled), .bag--women .bag__cta { background: linear-gradient(110deg, #ecdcc8, #b89a7e 60%, #8e735b); color: #2a1d16; }
 .pv--women .pv-back { border: 1px solid var(--amber-line); color: var(--amber-text); }
 .pv--women .pv-buy__sizes button, .pv--women .pv-buy__specs > div { background: rgba(255, 245, 230, .08); color: var(--amber-text); border-color: var(--amber-line); }
 .pv--women .pv-stage__product img { mix-blend-mode: normal; border-radius: 22px; }
@@ -423,7 +423,7 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 /* The bag's body hangs just below the big wordmark (body starts 56% down the drawing), between the tagline and the links. */
 .hang-bag { position: absolute; z-index: 3; top: calc(30px + var(--foot-word) * .85 + 14px - var(--bag-w) * 1.91 * .56); left: 50%; width: var(--bag-w); transform-origin: 50% 0; animation: bag-swing 4.2s ease-in-out infinite alternate; filter: drop-shadow(0 30px 30px rgba(10, 4, 0, .55)); }
 .hang-bag svg { display: block; width: 100%; height: auto; overflow: visible; }
-.hang-bag__tag { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); white-space: nowrap; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .25em; text-transform: uppercase; color: #f3cf85; opacity: 0; transition: opacity .3s; }
+.hang-bag__tag { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); white-space: nowrap; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .25em; text-transform: uppercase; color: #cdb69e; opacity: 0; transition: opacity .3s; }
 .hang-bag:hover { animation-play-state: paused; }
 .hang-bag:hover .hang-bag__tag { opacity: 1; }
 @keyframes bag-swing { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
@@ -443,12 +443,12 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-watches { padding: 22px clamp(12px, 2.6vw, 40px) 0; display: grid; gap: 40px; }
 .w-watches__hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 60px); align-items: center; padding: clamp(24px, 4vw, 56px); border-radius: 36px; background: var(--amber-glass); border: 1px solid var(--amber-line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
 .w-watches__copy { display: grid; gap: 18px; justify-items: start; }
-.w-watches__copy .nova-chip { color: #f3cf85; }
+.w-watches__copy .nova-chip { color: #cdb69e; }
 .w-watches__copy h1 { margin: 0; font: 300 clamp(44px, 6vw, 96px)/.95 var(--nova-display); letter-spacing: -.035em; }
 .w-watches__copy h1 b { font-weight: 900; font-stretch: 112%; background: var(--g-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .w-watches__copy p { margin: 0; max-width: 44ch; color: var(--amber-soft); line-height: 1.6; }
 .w-watches__copy ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 12px; }
-.w-watches__copy li { display: grid; gap: 2px; padding-left: 16px; border-left: 2px solid #e9b25a; }
+.w-watches__copy li { display: grid; gap: 2px; padding-left: 16px; border-left: 2px solid #b89a7e; }
 .w-watches__copy li span { color: var(--amber-soft); font-size: 14px; }
 .w-watches .watch-poster { aspect-ratio: 3 / 4; }
 .w-watches__empty { display: grid; justify-items: center; gap: 12px; text-align: center; padding: 50px 20px; border-radius: 28px; border: 1px dashed var(--amber-line); }
@@ -514,3 +514,21 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 @keyframes beauty-sweep { 0%, 15% { background-position: 120% 0; } 70%, 100% { background-position: -40% 0; } }
 @keyframes beauty-like { 0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(.6); } 38% { opacity: 1; transform: translate(-50%, -50%) scale(1.35); } 46%, 85% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } }
 .w-watches .beauty-poster { aspect-ratio: 560 / 752; }
+
+/* floating clothes (model erased; cut-outs named *.float.webp): a lit studio box, the garment drifts above its own shadow */
+.w-card--float .w-card__img { isolation: isolate; background: radial-gradient(120% 80% at 50% 18%, #f6efe7 0%, #dccbb9 46%, #8e735b 100%); border: 1px solid var(--amber-line, rgba(255, 255, 255, .75)); box-shadow: 0 20px 40px rgba(20, 20, 24, .16), inset 0 1px 0 rgba(255, 255, 255, .8); }
+.w-card--float .w-card__img::after { content: ""; position: absolute; z-index: -1; left: 50%; bottom: 6%; width: 52%; height: 5%; border-radius: 50%; background: radial-gradient(closest-side, rgba(20, 20, 24, .42), transparent); transform: translateX(-50%); animation: w-float-shadow 6.5s ease-in-out infinite; }
+.w-card--float .w-card__cutout { inset: 7% 10% 14%; width: 80%; height: 79%; object-fit: contain; filter: drop-shadow(0 14px 16px rgba(10, 10, 14, .22)); animation: w-float 6.5s ease-in-out infinite; }
+.w-card--float:hover .w-card__cutout { filter: drop-shadow(0 18px 18px rgba(10, 10, 14, .3)); }
+@keyframes w-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-4%) rotate(1deg); } }
+@keyframes w-float-shadow { 0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); } 50% { opacity: .6; transform: translateX(-50%) scale(.82); } }
+@media (prefers-reduced-motion: reduce) { .w-card--float .w-card__cutout, .w-card--float .w-card__img::after { animation: none; } }
+
+/* On model | Floating switch above the shop grids */
+.look-switch { display: flex; width: max-content; max-width: 100%; margin: 26px auto 6px; padding: 5px; gap: 4px; border-radius: 999px; background: rgba(255, 245, 230, .14); border: 1px solid var(--amber-line, rgba(255, 255, 255, .6)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.look-switch button { padding: 10px 22px; border: 0; border-radius: 999px; background: none; color: inherit; font: 600 13px/1 inherit; letter-spacing: .02em; cursor: pointer; transition: background .3s, color .3s; }
+.look-switch button i { margin-left: 6px; font-style: normal; opacity: .6; }
+.look-switch button.active { background: linear-gradient(110deg, #ecdcc8, #b89a7e 60%, #8e735b); color: #2a1d16; }
+.m-shell .look-switch { background: rgba(255, 255, 255, .34); color: #1d1d1f; }
+.m-shell .look-switch button { font-family: var(--m-mono); font-size: 12px; }
+.m-shell .look-switch button.active { background: linear-gradient(135deg, #3d3d40, #121214); color: #f2f2f2; }
