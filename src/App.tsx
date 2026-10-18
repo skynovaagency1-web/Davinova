@@ -18,7 +18,8 @@ const GroupPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => 
 const BeautyPage = lazy(() => import('./site/women/BeautyPage').then((m) => ({ default: m.BeautyPage })));
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
 const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
-const InfoPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.InfoPage })));
+const HelpPage = lazy(() => import('./site/shared/HelpPages').then((m) => ({ default: m.HelpPage })));
+const MenCategoriesPage = lazy(() => import('./site/men/MenCategoriesPage').then((m) => ({ default: m.MenCategoriesPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
 const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
 
@@ -37,6 +38,14 @@ export default function App() {
         <Route path="product/:slug" element={<ProductView variant="men" />} />
         <Route path="bag" element={<BagView variant="men" />} />
         <Route path="about" element={<AboutPage dept="men" />} />
+        <Route path="categories" element={<MenCategoriesPage />} />
+        <Route path="shipping" element={<HelpPage dept="men" slug="shipping" />} />
+        <Route path="returns" element={<HelpPage dept="men" slug="returns" />} />
+        <Route path="size-guide" element={<HelpPage dept="men" slug="size-guide" />} />
+        <Route path="faq" element={<HelpPage dept="men" slug="faq" />} />
+        <Route path="contact" element={<HelpPage dept="men" slug="contact" />} />
+        <Route path="privacy" element={<HelpPage dept="men" slug="privacy" />} />
+        <Route path="terms" element={<HelpPage dept="men" slug="terms" />} />
         <Route path="jewelry" element={<JewelryPage dept="men" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="men" />} />
         <Route path="*" element={<NotFoundPage />} />
@@ -59,10 +68,13 @@ export default function App() {
         <Route path="cart" element={<BagView variant="women" />} />
         <Route path="order-confirmation" element={<OrderConfirmationPage />} />
         <Route path="about" element={<AboutPage dept="women" />} />
-        <Route path="shipping" element={<InfoPage />} />
-        <Route path="returns" element={<InfoPage />} />
-        <Route path="privacy" element={<InfoPage />} />
-        <Route path="contact" element={<InfoPage />} />
+        <Route path="shipping" element={<HelpPage dept="women" slug="shipping" />} />
+        <Route path="returns" element={<HelpPage dept="women" slug="returns" />} />
+        <Route path="size-guide" element={<HelpPage dept="women" slug="size-guide" />} />
+        <Route path="faq" element={<HelpPage dept="women" slug="faq" />} />
+        <Route path="contact" element={<HelpPage dept="women" slug="contact" />} />
+        <Route path="privacy" element={<HelpPage dept="women" slug="privacy" />} />
+        <Route path="terms" element={<HelpPage dept="women" slug="terms" />} />
         <Route path="approve-cj" element={<ApprovalPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

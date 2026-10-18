@@ -6,10 +6,10 @@ import { useCutouts } from '../../lib/useCutouts';
 import { CATEGORY_GROUPS, categoryPath, titleParts } from '../../lib/categories';
 import { isCurvyLook } from '../../lib/curvyLooks';
 
-type Card = { key: string; label: string; line: string; to: string; items: Product[] };
+export type Card = { key: string; label: string; line: string; to: string; items: Product[] };
 
 /** A glass card with a popped-out photo of one product from the set; empty sets say "Coming soon". */
-function IndexCard({ card }: { card: Card }) {
+export function IndexCard({ card }: { card: Card }) {
   const cutoutFor = useCutouts();
   const cover = card.items.find((product) => cutoutFor(product.id));
   const [title, sub] = titleParts(card.label);

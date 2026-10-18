@@ -77,7 +77,7 @@ export function WomenLayout() {
       <Logo tone="brand" />
       <div className="w-footer__row">
         <p>Dresses for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></nav>
+        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></nav>
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
