@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
-import { menStoreCollectionGroups } from '../../lib/storeCollectionTaxonomy';
+import { MEN_ACCESSORIES, MEN_EVERYDAY, MEN_FORMAL, MEN_LOUNGE, menStoreCollectionGroups } from '../../lib/storeCollectionTaxonomy';
 import { IndexCard } from '../women/WomenIndexPages';
 import { menCategoryPath } from './menFormal';
 
-/** /men/categories: every men's category with its types, stocked ones first. */
+/** /men/categories: every men's category with its types, clothes first. */
 export function MenCategoriesPage() {
   const { products, loading } = useCatalogProducts();
   const men = products.filter((product) => product.department === 'men');
+  // Clothes first, then shoes, ties, belts and hats (the accessories).
+  const order = [MEN_FORMAL, MEN_EVERYDAY, MEN_LOUNGE, MEN_ACCESSORIES];
   const groups = menStoreCollectionGroups
     .map((group) => ({ group, items: men.filter((product) => product.storeCollection === group.slug) }))
-    .sort((a, b) => b.items.length - a.items.length);
+    .sort((a, b) => order.indexOf(a.group.slug) - order.indexOf(b.group.slug));
 
   return <section className="jw jw--men idx">
     <header className="jw__head">
