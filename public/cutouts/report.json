@@ -640,14 +640,14 @@
  "cj-1376730184245448704": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: collage or several figures",
+   "2: clothes covered by a hand or bag",
+   "3: collage or several figures",
+   "4: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-1377523521093242880": {
   "photo": 0,
@@ -728,16 +728,10 @@
   "v": 2
  },
  "cj-1379978084803022848": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/1617847008852.png",
+  "v": "garment-1"
  },
  "cj-1380009450810773504": {
   "photo": 5,
@@ -1076,18 +1070,10 @@
   "v": 2
  },
  "cj-1391647269878632448": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/1620629371810.jpg",
+  "v": "garment-1"
  },
  "cj-1391657680325709824": {
   "photo": null,
@@ -1225,19 +1211,15 @@
   "v": 2
  },
  "cj-1396658316222009344": {
-  "photo": null,
+  "photo": 4,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: cut off at the bottom",
-   "7: no face (headless or cropped)"
+   "0: clothes cut off at the edge",
+   "1: clothes covered by a hand or bag",
+   "2: collage or several figures",
+   "3: collage or several figures"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/1621823877739.jpg",
+  "v": "garment-1"
  },
  "cj-1396743414548140032": {
   "photo": 0,
@@ -1336,16 +1318,13 @@
   "v": 2
  },
  "cj-1403525996090626048": {
-  "photo": null,
+  "photo": 2,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
+   "0: cut off at the bottom",
+   "1: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/1623461415919.jpg",
+  "v": "garment-1"
  },
  "cj-1403628671645913088": {
   "photo": null,
@@ -1378,14 +1357,14 @@
   "photo": null,
   "rejected": [
    "0: cut off at the bottom",
-   "1: cut off at the bottom",
-   "2: collage or several figures",
+   "1: clothes covered by a hand or bag",
+   "2: clothes covered by a hand or bag",
    "3: cut off at the bottom",
    "4: cut off at the bottom",
-   "5: cut off at the bottom"
+   "5: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-1405098542342737920": {
   "photo": null,
@@ -1424,16 +1403,10 @@
   "v": 2
  },
  "cj-1405822637829132288": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: head cut off by the frame",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/1624009085643.jpg",
+  "v": "garment-1"
  },
  "cj-1406076233728528384": {
   "photo": null,
@@ -2418,19 +2391,10 @@
   "v": 2
  },
  "cj-1493049143487238144": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/afa848ee-850d-4e45-b357-486a93732d5c.jpg",
+  "v": "garment-1"
  },
  "cj-1493832020864929792": {
   "photo": 1,
@@ -2487,16 +2451,10 @@
   "v": 2
  },
  "cj-1507921033016389632": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/2cb472f1-8c27-496d-806d-f71cb97951ac.jpg",
+  "v": "garment-1"
  },
  "cj-1513049904200036352": {
   "photo": 0,
@@ -2771,13 +2729,12 @@
   "v": 2
  },
  "cj-1572109991966945280": {
-  "photo": 2,
+  "photo": 1,
   "rejected": [
-   "0: cut off at the bottom",
-   "1: cut off at the bottom"
+   "0: cut off at the bottom"
   ],
-  "url": "https://cf.cjdropshipping.com/ccf8a750-ea72-4570-8b25-fcfc0f8f5161.jpg",
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/967273f5-5a5a-49ea-abc7-5598e381a437.jpg",
+  "v": "garment-1"
  },
  "cj-1575007430336065536": {
   "photo": null,
@@ -3168,19 +3125,10 @@
   "v": 2
  },
  "cj-1658032413747982336": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/0e9452fb-9c9f-43af-a3a5-81e678860a1c.jpg",
+  "v": "garment-1"
  },
  "cj-1659821053436243968": {
   "photo": null,
@@ -3257,19 +3205,10 @@
   "v": 2
  },
  "cj-1672575917161459712": {
-  "photo": null,
-  "rejected": [
-   "0: head cut off by the frame",
-   "1: head cut off by the frame",
-   "2: head cut off by the frame",
-   "3: head cut off by the frame",
-   "4: head cut off by the frame",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/523b1fe5-2726-4009-9d0c-ac7d00d4e7b8.jpg",
+  "v": "garment-1"
  },
  "cj-1676876865589485568": {
   "photo": 0,
@@ -3383,19 +3322,10 @@
   "v": 2
  },
  "cj-1700305498140057600": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/4a4c11f2-2148-46aa-b90c-bf87ba5e7376.jpg",
+  "v": "garment-1"
  },
  "cj-1701123195492904960": {
   "photo": 3,
@@ -3562,34 +3492,23 @@
   "v": 2
  },
  "cj-1719000313555853312": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/a7f1e2db-1478-4558-9195-4dd1c1a25e23.jpg",
+  "v": "garment-1"
  },
  "cj-1719902004312551424": {
-  "photo": null,
+  "photo": 6,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: half-body shot",
-   "7: no face (headless or cropped)"
+   "0: clothes cut off at the edge",
+   "1: no clothes found",
+   "2: no clothes found",
+   "3: clothes cut off at the edge",
+   "4: clothes cut off at the edge",
+   "5: clothes cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/11/14/08/77648250-c2f3-40bf-af72-e8add3f11672.jpg",
+  "v": "garment-1"
  },
  "cj-1722078294327177216": {
   "photo": 1,
@@ -3663,18 +3582,10 @@
   "v": 2
  },
  "cj-1724677176408150016": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/13fc9f98-2837-42d7-a2fb-d03ecf3fc602.jpg",
+  "v": "garment-1"
  },
  "cj-1724713587068899328": {
   "photo": 0,
@@ -3748,34 +3659,20 @@
   "v": 2
  },
  "cj-1733076075539861504": {
-  "photo": null,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: no clothes found"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/8403bbb2-e4ff-46d6-a887-619351943f7a.jpg",
+  "v": "garment-1"
  },
  "cj-1734093692736122880": {
-  "photo": null,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/17022528/1734093707856187392.jpg",
+  "v": "garment-1"
  },
  "cj-1734497455187701760": {
   "photo": null,
@@ -3804,19 +3701,10 @@
   "v": 2
  },
  "cj-1736247421455306752": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/08/04/09/ba2f5d72-873d-47e4-b320-513f5d8a59f9.jpg",
+  "v": "garment-1"
  },
  "cj-1738130139428429824": {
   "photo": null,
@@ -3998,19 +3886,10 @@
   "v": 2
  },
  "cj-1747065570203275264": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/543af1c4-4419-4d1d-a91b-b1779054d8ec.jpg",
+  "v": "garment-1"
  },
  "cj-1747231058896105472": {
   "photo": 1,
@@ -4114,17 +3993,17 @@
  "cj-1752265544423714816": {
   "photo": null,
   "rejected": [
-   "0: head cut off by the frame",
-   "1: no face (headless or cropped)",
-   "2: cut off at the bottom",
-   "3: no face (headless or cropped)",
-   "4: cut off at the bottom",
-   "5: cut off at the bottom",
-   "6: cut off at the bottom",
-   "7: no face (headless or cropped)"
+   "0: clothes cut off at the edge",
+   "1: clothes covered by a hand or bag",
+   "2: clothes cut off at the edge",
+   "3: clothes covered by a hand or bag",
+   "4: clothes cut off at the edge",
+   "5: clothes cut off at the edge",
+   "6: clothes cut off at the edge",
+   "7: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-1753316882289012736": {
   "photo": null,
@@ -4148,12 +4027,10 @@
   "v": 2
  },
  "cj-1757369344281030656": {
-  "photo": 1,
-  "rejected": [
-   "0: no face (headless or cropped)"
-  ],
-  "url": "https://cf.cjdropshipping.com/quick/product/f9aca966-82c5-42ce-8b67-590f97e2c2f8.jpg",
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/8a817e75-4fc7-4fe8-b9c3-cb7f161f7d1b.jpg",
+  "v": "garment-1"
  },
  "cj-1757999928284028928": {
   "photo": null,
@@ -4233,17 +4110,17 @@
  "cj-1763038949997555712": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: head cut off by the frame",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: cut off at the bottom",
+   "2: clothes covered by a hand or bag",
+   "3: clothes cut off at the edge",
+   "4: clothes covered by a hand or bag",
+   "5: clothes covered by a hand or bag",
+   "6: clothes covered by a hand or bag",
+   "7: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-1763088766794731520": {
   "photo": null,
@@ -4354,19 +4231,10 @@
   "v": 2
  },
  "cj-1768940104875249664": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/18c7b3d3-4a92-42a1-822c-e55f1c549eb7.jpg",
+  "v": "garment-1"
  },
  "cj-1769904297875091456": {
   "photo": 1,
@@ -4535,64 +4403,32 @@
   "v": 2
  },
  "cj-1777513416274481152": {
-  "photo": null,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: no clothes found"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/72357f4d-9d49-40de-af35-2594a1ff205a.jpg",
+  "v": "garment-1"
  },
  "cj-1777939664138145792": {
-  "photo": null,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/bc7bd7f9-5635-4440-a04a-2525b05ef223.jpg",
+  "v": "garment-1"
  },
  "cj-1778320215491751936": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/d325cb60-fab9-4b14-8f1b-286b4aed516d.jpg",
+  "v": "garment-1"
  },
  "cj-1778327224748347392": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/04/12/03/6391288b-f375-41db-a448-bd476492d3f8_fine.jpeg",
+  "v": "garment-1"
  },
  "cj-1779063167310639104": {
   "photo": null,
@@ -4657,17 +4493,17 @@
  "cj-1781262651817988096": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: cut off at the bottom",
+   "1: no clothes found",
+   "2: clothes cut off at the edge",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: no clothes found",
+   "6: no clothes found",
+   "7: cut off at the bottom"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-1781922405913468928": {
   "photo": null,
@@ -4971,45 +4807,28 @@
   "v": 2
  },
  "cj-1795016208689934336": {
-  "photo": null,
+  "photo": 5,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
+   "0: clothes cut off at the edge",
+   "1: clothes cut off at the edge",
+   "2: no clothes found",
    "3: cut off at the bottom",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: cut off at the bottom",
-   "7: cut off at the bottom"
+   "4: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/14563775-fed7-4a8d-b5cf-b02b8e33d699.jpg",
+  "v": "garment-1"
  },
  "cj-1795331123610918912": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/7fa765bd-fde3-4f41-a004-59956b88e215.jpg",
+  "v": "garment-1"
  },
  "cj-1795333297774530560": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/17118a51-9a21-482d-9016-8aff136d28f8.jpg",
+  "v": "garment-1"
  },
  "cj-1795685779142873088": {
   "photo": 0,
@@ -5306,16 +5125,12 @@
   "v": 2
  },
  "cj-1798256060520861696": {
-  "photo": null,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
+   "0: collage or several figures"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/73ff7b08-ebe1-4b72-8102-d74f5b855001.jpg",
+  "v": "garment-1"
  },
  "cj-1798538111996272640": {
   "photo": 0,
@@ -7782,19 +7597,10 @@
   "v": 2
  },
  "cj-2406120724261610300": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/93f9b4bc-6654-44e4-852f-ebd3f66d6c2c.jpg",
+  "v": "garment-1"
  },
  "cj-2406130317581628200": {
   "photo": 4,
@@ -7831,17 +7637,17 @@
  "cj-2406140236131600400": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: clothes covered by a hand or bag",
+   "2: clothes cut off at the edge",
+   "3: clothes covered by a hand or bag",
+   "4: clothes covered by a hand or bag",
+   "5: clothes covered by a hand or bag",
+   "6: clothes covered by a hand or bag",
+   "7: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2406140316551609100": {
   "photo": 3,
@@ -8147,19 +7953,10 @@
   "v": 2
  },
  "cj-2406210813551611300": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/f751f3a4-2807-4f58-ada8-adb6b2fc4bc5.jpg",
+  "v": "garment-1"
  },
  "cj-2406210824191606300": {
   "photo": null,
@@ -8439,19 +8236,10 @@
   "v": 2
  },
  "cj-2406261021061627000": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/06/26/10/5243cea0-5e60-498e-b0d8-c9b38ec54c1f.jpg",
+  "v": "garment-1"
  },
  "cj-2406261041281623300": {
   "photo": null,
@@ -8546,19 +8334,10 @@
   "v": 2
  },
  "cj-2406280528441618200": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/21138ecb-ac9d-4312-be8b-236be427e7d8.jpg",
+  "v": "garment-1"
  },
  "cj-2406280620161619000": {
   "photo": null,
@@ -8597,19 +8376,13 @@
   "v": 2
  },
  "cj-2406280929561613400": {
-  "photo": null,
+  "photo": 2,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/86a8d3fc-7bf3-416e-87ab-ab1f4e19b726.jpg",
+  "v": "garment-1"
  },
  "cj-2406281403121606800": {
   "photo": null,
@@ -8876,17 +8649,10 @@
   "v": 2
  },
  "cj-2407090941491610500": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/19756120-1e9b-419d-b8d1-9852a4beb99e.jpg",
+  "v": "garment-1"
  },
  "cj-2407100256581614700": {
   "photo": null,
@@ -9915,15 +9681,10 @@
   "v": 2
  },
  "cj-2411170609141601100": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/11/17/06/fd12dfb3-019f-4ecc-916d-55b2938029a0_trans.jpeg",
+  "v": "garment-1"
  },
  "cj-2411181231141603500": {
   "photo": null,
@@ -10681,17 +10442,17 @@
  "cj-2501080622071625000": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom",
+   "6: cut off at the bottom",
+   "7: cut off at the bottom"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2501080647491602400": {
   "photo": 0,
@@ -10812,16 +10573,10 @@
   "v": 2
  },
  "cj-2501150756191615500": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/01/15/07/a340ecdd-2cf0-4925-b5b1-9772aee88d52.jpg",
+  "v": "garment-1"
  },
  "cj-2501150941261629800": {
   "photo": null,
@@ -11498,18 +11253,10 @@
   "v": 2
  },
  "cj-2502260230111628800": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/e0e61378-32f4-47a5-b8f1-a24efc81ab38.jpg",
+  "v": "garment-1"
  },
  "cj-2502260530451609400": {
   "photo": 0,
@@ -11530,18 +11277,10 @@
   "v": 2
  },
  "cj-2503040403581629800": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/ab34145a-0ab3-4e57-9ffd-59264641b244.jpg",
+  "v": "garment-1"
  },
  "cj-2503060925001611300": {
   "photo": null,
@@ -11699,17 +11438,10 @@
   "v": 2
  },
  "cj-2503130943371625500": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/03/13/09/08ee2ab3-d917-4b12-a30f-33416b27146e.jpg",
+  "v": "garment-1"
  },
  "cj-2503140747341600500": {
   "photo": null,
@@ -11872,19 +11604,10 @@
   "v": 2
  },
  "cj-2503270738241602700": {
-  "photo": null,
-  "rejected": [
-   "0: cut off at the bottom",
-   "1: head cut off by the frame",
-   "2: cut off at the bottom",
-   "3: head cut off by the frame",
-   "4: cut off at the bottom",
-   "5: cut off at the bottom",
-   "6: cut off at the bottom",
-   "7: head cut off by the frame"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/e3714481-b27d-41de-9289-8857d4a6c87f.jpg",
+  "v": "garment-1"
  },
  "cj-2503270946321617700": {
   "photo": 5,
@@ -11899,19 +11622,10 @@
   "v": 2
  },
  "cj-2503290126151615800": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/f0339e59-d84e-48b7-9a7e-8b0f5a04a5d1.jpg",
+  "v": "garment-1"
  },
  "cj-2503290315251622900": {
   "photo": 1,
@@ -11965,18 +11679,10 @@
   "v": 2
  },
  "cj-2504010740421628800": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/04/01/07/d10af43f-eec3-4ce7-a5da-bf3d1ac76d1d.jpg",
+  "v": "garment-1"
  },
  "cj-2504020411331621100": {
   "photo": null,
@@ -12133,16 +11839,10 @@
   "v": 2
  },
  "cj-2504170202411613700": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/cddcd826-7804-41fd-9a3c-dc54e0cd13ab.jpg",
+  "v": "garment-1"
  },
  "cj-2504180158321625400": {
   "photo": 1,
@@ -12198,14 +11898,14 @@
  "cj-2504210155411604400": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: no clothes found",
+   "2: cut off at the bottom",
+   "3: clothes covered by a hand or bag",
+   "4: no clothes found"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2504210225471601200": {
   "photo": null,
@@ -12226,17 +11926,16 @@
   "v": 2
  },
  "cj-2504211300131607900": {
-  "photo": null,
+  "photo": 5,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/a1749e15-844f-4e90-b3b8-33db0524500d.jpg",
+  "v": "garment-1"
  },
  "cj-2504220158071614900": {
   "photo": null,
@@ -12282,17 +11981,17 @@
  "cj-2504240455061625300": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: head cut off by the frame",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: cut off at the bottom",
+   "1: clothes cut off at the edge",
+   "2: cut off at the bottom",
+   "3: clothes cut off at the edge",
+   "4: cut off at the bottom",
+   "5: clothes cut off at the edge",
+   "6: cut off at the bottom",
+   "7: cut off at the bottom"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2504240503331600600": {
   "photo": null,
@@ -12400,17 +12099,10 @@
   "v": 2
  },
  "cj-2505040937251628300": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/2a437fa4-e93e-44c3-b668-6e44209f0c55.jpg",
+  "v": "garment-1"
  },
  "cj-2505041140501628500": {
   "photo": 0,
@@ -12421,17 +12113,17 @@
  "cj-2505070740131600700": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: clothes covered by a hand or bag",
+   "2: clothes covered by a hand or bag",
+   "3: clothes covered by a hand or bag",
+   "4: clothes covered by a hand or bag",
+   "5: clothes covered by a hand or bag",
+   "6: clothes covered by a hand or bag",
+   "7: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2505100143121614800": {
   "photo": null,
@@ -12585,18 +12277,10 @@
   "v": 2
  },
  "cj-2505140644311612000": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/05/14/08/816d3554-d8ef-4855-afa0-2911b6485fba.jpg",
+  "v": "garment-1"
  },
  "cj-2505140650431603000": {
   "photo": null,
@@ -12687,19 +12371,14 @@
   "v": 2
  },
  "cj-2505160512591603400": {
-  "photo": null,
+  "photo": 3,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes cut off at the edge",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/9775510e-06e0-459e-9f23-b8df8858c7f9.jpg",
+  "v": "garment-1"
  },
  "cj-2505170330451624800": {
   "photo": null,
@@ -12776,19 +12455,10 @@
   "v": 2
  },
  "cj-2505210133521621300": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/05/21/01/3ef94ed3-9bb8-41d0-af58-1a9c2e1b8bad_fine.jpeg",
+  "v": "garment-1"
  },
  "cj-2505211151341602900": {
   "photo": null,
@@ -12806,32 +12476,16 @@
   "v": 2
  },
  "cj-2505220153191618600": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/05/22/01/43c19821-22ed-4374-90bf-2b5504323103.jpg",
+  "v": "garment-1"
  },
  "cj-2505220805001601700": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/ff1e60b4-4f6d-42b1-aa04-4ec5f73669e1.jpg",
+  "v": "garment-1"
  },
  "cj-2505221007471603800": {
   "photo": 1,
@@ -12855,19 +12509,10 @@
   "v": 2
  },
  "cj-2505230300161621600": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/05/23/02/9287867c-1fe1-4580-b156-80843ac1cd90_fine.jpeg",
+  "v": "garment-1"
  },
  "cj-2505230516001606500": {
   "photo": null,
@@ -13088,19 +12733,14 @@
   "v": 2
  },
  "cj-2506030034371623900": {
-  "photo": null,
+  "photo": 3,
   "rejected": [
    "0: cut off at the bottom",
-   "1: no face (headless or cropped)",
-   "2: head cut off by the frame",
-   "3: head cut off by the frame",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: cut off at the bottom",
-   "7: head cut off by the frame"
+   "1: clothes cut off at the edge",
+   "2: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/09/25/03/561a1b50-041d-46e4-9afc-ab6b9c0762b3.jpg",
+  "v": "garment-1"
  },
  "cj-2506030519341602800": {
   "photo": null,
@@ -13115,19 +12755,10 @@
   "v": 2
  },
  "cj-2506040534341607600": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/92042126-23ac-4ff7-bb85-4a96d7e4c635.jpg",
+  "v": "garment-1"
  },
  "cj-2506040900131600300": {
   "photo": 2,
@@ -13203,17 +12834,10 @@
   "v": 2
  },
  "cj-2506110234521622300": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/06/11/02/f202ae20-dfe4-49d5-9f94-5fc41da18951.jpg",
+  "v": "garment-1"
  },
  "cj-2506120311261627100": {
   "photo": null,
@@ -13230,19 +12854,10 @@
   "v": 2
  },
  "cj-2506120949061620900": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/38f636f8-6e08-4689-8578-04fbd49b60c8.jpg",
+  "v": "garment-1"
  },
  "cj-2506130622541610100": {
   "photo": null,
@@ -13312,19 +12927,10 @@
   "v": 2
  },
  "cj-2506170449171602000": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/a8286d1b-d9e1-46e4-8963-ea28237b76d8.jpg",
+  "v": "garment-1"
  },
  "cj-2506180622161626700": {
   "photo": null,
@@ -13392,33 +12998,24 @@
   "v": 2
  },
  "cj-2506240708201628500": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/06/24/07/89328f0a-ce94-4873-8f42-b2f18d17007d_fine.jpeg",
+  "v": "garment-1"
  },
  "cj-2506240755401628700": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: head cut off by the frame",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: clothes covered by a hand or bag",
+   "2: clothes covered by a hand or bag",
+   "3: clothes covered by a hand or bag",
+   "4: clothes covered by a hand or bag",
+   "5: clothes covered by a hand or bag",
+   "6: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2506241335041627900": {
   "photo": null,
@@ -13468,19 +13065,17 @@
   "v": 2
  },
  "cj-2506280741031609800": {
-  "photo": null,
+  "photo": 6,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/c3edd74a-8113-4400-b96a-56f071eb564c.jpg",
+  "v": "garment-1"
  },
  "cj-2506291033261604300": {
   "photo": null,
@@ -13500,17 +13095,17 @@
  "cj-2506300700061626800": {
   "photo": null,
   "rejected": [
-   "0: cut off at the bottom",
-   "1: cut off at the bottom",
-   "2: no face (headless or cropped)",
-   "3: cut off at the bottom",
-   "4: cut off at the bottom",
-   "5: cut off at the bottom",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: clothes covered by a hand or bag",
+   "2: clothes covered by a hand or bag",
+   "3: clothes covered by a hand or bag",
+   "4: clothes covered by a hand or bag",
+   "5: clothes covered by a hand or bag",
+   "6: clothes covered by a hand or bag",
+   "7: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2507010307051614100": {
   "photo": null,
@@ -13542,19 +13137,12 @@
   "v": 2
  },
  "cj-2507010713421609500": {
-  "photo": null,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/quick/product/6702cf22-05e3-497f-98f5-ac49ab615a60.jpg",
+  "v": "garment-1"
  },
  "cj-2507011212121610000": {
   "photo": 0,
@@ -13563,18 +13151,10 @@
   "v": 2
  },
  "cj-2507040308231608600": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/07/04/03/031354e5-1420-4fff-9a5b-65f18009407e_trans.jpeg",
+  "v": "garment-1"
  },
  "cj-2507080346301618800": {
   "photo": 1,
@@ -13675,19 +13255,16 @@
   "v": 2
  },
  "cj-2507150835221622400": {
-  "photo": null,
+  "photo": 5,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: clothes covered by a hand or bag",
+   "2: clothes covered by a hand or bag",
+   "3: clothes covered by a hand or bag",
+   "4: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/07/15/08/a57eff86-a0ae-4375-b2ee-b9ead1a03df6.jpg",
+  "v": "garment-1"
  },
  "cj-2507170732361605300": {
   "photo": null,
@@ -13827,16 +13404,12 @@
   "v": 2
  },
  "cj-2507310640101627800": {
-  "photo": null,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
+   "0: clothes cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/07/31/06/7141ffba-2240-439b-8c78-1f2e02ec70e1.jpg",
+  "v": "garment-1"
  },
  "cj-2507310916521626000": {
   "photo": null,
@@ -14109,18 +13682,13 @@
   "v": 2
  },
  "cj-2508270743361616100": {
-  "photo": null,
+  "photo": 2,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
+   "0: clothes cut off at the edge",
+   "1: clothes cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/08/29/01/a6d74c3e-2500-4045-b38e-b1dd50792c5e.jpg",
+  "v": "garment-1"
  },
  "cj-2508280233101609900": {
   "photo": null,
@@ -14153,19 +13721,10 @@
   "v": 2
  },
  "cj-2508311014161625200": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/03748972-15ab-4e94-a466-8d38b11c25f7.jpg",
+  "v": "garment-1"
  },
  "cj-2508311307561629400": {
   "photo": null,
@@ -14223,17 +13782,10 @@
   "v": 2
  },
  "cj-2509110744221602300": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/09/11/07/781ad36c-74e1-497d-8dbf-79f101f907f8.jpg",
+  "v": "garment-1"
  },
  "cj-2509161023171621600": {
   "photo": 0,
@@ -14274,17 +13826,17 @@
  "cj-2509260822551625300": {
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes cut off at the edge",
+   "1: no clothes found",
+   "2: clothes cut off at the edge",
+   "3: clothes cut off at the edge",
+   "4: clothes cut off at the edge",
+   "5: clothes cut off at the edge",
+   "6: clothes cut off at the edge",
+   "7: clothes cut off at the edge"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-250FBEF0-1740-4F1D-84E1-5EFE01965B02": {
   "photo": 1,
@@ -14297,30 +13849,23 @@
  "cj-2510020656221643600": {
   "photo": null,
   "rejected": [
-   "0: collage or several figures",
-   "1: cut off at the bottom",
-   "2: cut off at the bottom",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "0: clothes covered by a hand or bag",
+   "1: clothes covered by a hand or bag",
+   "2: clothes covered by a hand or bag",
+   "3: clothes covered by a hand or bag",
+   "4: clothes covered by a hand or bag",
+   "5: clothes covered by a hand or bag",
+   "6: clothes covered by a hand or bag",
+   "7: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 2
+  "v": "garment-1"
  },
  "cj-2510060603341610400": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/f192febd-4be0-48cf-bb65-c205a3261e06.jpg",
+  "v": "garment-1"
  },
  "cj-2510100741141634900": {
   "photo": null,
@@ -14434,19 +13979,10 @@
   "v": 2
  },
  "cj-2603040521441608000": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/0c8f656f-5d72-4aba-aff0-c45f97ceb6a2.jpg",
+  "v": "garment-1"
  },
  "cj-2603140555441616000": {
   "photo": 1,
@@ -15189,12 +14725,10 @@
   "v": 2
  },
  "cj-9A3AD494-4B06-4905-AC8F-CCAB37BD9D01": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/203009/11067989184.jpg",
+  "v": "garment-1"
  },
  "cj-9C382316-6022-4A3C-A5F7-603D20B5B23F": {
   "photo": 1,
@@ -15337,18 +14871,14 @@
   "v": 2
  },
  "cj-B22DA63C-9691-4B35-9266-4AB33DB98ABB": {
-  "photo": null,
+  "photo": 3,
   "rejected": [
    "0: cut off at the bottom",
-   "1: no face (headless or cropped)",
-   "2: several people",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
+   "1: product too small",
+   "2: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "url": "https://cf.cjdropshipping.com/2048/4677737529290.png",
+  "v": "garment-1"
  },
  "cj-B4D41874-841A-4B4F-8B68-BDF8AE50B19F": {
   "photo": 0,
@@ -15475,16 +15005,10 @@
   "v": 2
  },
  "cj-C590EC1D-5782-49E2-8F61-B95A54E1CD9F": {
-  "photo": null,
-  "rejected": [
-   "0: cut off at the bottom",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: cut off at the bottom",
-   "4: cut off at the bottom"
-  ],
-  "url": null,
-  "v": 2
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/20200623/1706097548183.jpg",
+  "v": "garment-1"
  },
  "cj-C6084E17-EFBE-42A6-9544-6C4877EC39DD": {
   "photo": 3,
