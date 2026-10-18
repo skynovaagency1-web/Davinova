@@ -294,3 +294,48 @@
   .idx .nova-collection-card { min-height: 0; }
   .idx__subs a { padding: 5px 8px; font-size: 10.5px; }
 }
+
+/* Wishlist heart (cards and product page), wishlist, gift card and referral pages. */
+.wish { position: absolute; right: 12px; top: 12px; z-index: 3; display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(255, 250, 244, .88); color: #3c2a21; box-shadow: 0 4px 14px rgba(0, 0, 0, .12); cursor: pointer; transition: transform .2s; }
+.wish:hover { transform: scale(1.08); }
+.wish.is-saved { color: #b4473b; }
+.w-card--pop .wish { top: calc(22% + 12px); }
+.m-shell .wish { background: rgba(240, 241, 238, .92); color: #1f1f1f; }
+.m-shell .wish.is-saved { color: #9b2f2f; }
+.pv-wish { display: inline-flex; align-items: center; justify-content: center; width: 52px; flex: none; border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; cursor: pointer; }
+.pv-wish.is-saved { color: #b4473b; }
+.extra .w-grid, .extra .m-grid { margin-bottom: 30px; }
+.extra__note { opacity: .75; }
+.extra__sub { margin: 10px 0 16px; font: 800 clamp(18px, 2vw, 24px) 'Archivo', sans-serif; }
+.extra__clear { border: 1px solid currentColor; border-radius: 999px; padding: 10px 18px; background: transparent; color: inherit; font-weight: 600; cursor: pointer; opacity: .8; }
+.gift { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 50px); align-items: start; }
+.gift__card { position: relative; aspect-ratio: 1.586; border-radius: 22px; padding: clamp(18px, 3vw, 30px); display: grid; align-content: space-between; overflow: hidden; color: #fbf1e2; background: radial-gradient(120% 90% at 20% 10%, #8e735b, #3c2a21 55%, #2e2019); box-shadow: 0 30px 60px rgba(20, 10, 4, .35); }
+.gift__card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .18) 45%, transparent 60%); animation: gift-sheen 4.5s ease-in-out infinite; }
+.gift__card--men { color: #f2f3f0; background: radial-gradient(120% 90% at 20% 10%, #8d8d8d, #3a3b39 55%, #1c1d1b); }
+@keyframes gift-sheen { from { transform: translateX(-60%); } to { transform: translateX(60%); } }
+.gift__brand { font: 500 clamp(16px, 2vw, 22px) 'Archivo', sans-serif; letter-spacing: .4em; }
+.gift__amount { font: 400 clamp(46px, 7vw, 84px)/1 'Playfair Display', Georgia, serif; }
+.gift__line { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+.gift__amounts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 4px 0 16px; }
+.gift__amounts button, .refer__btns button { padding: 12px 8px; border: 1px solid currentColor; border-radius: 999px; background: transparent; color: inherit; font: 700 15px 'Archivo', sans-serif; cursor: pointer; }
+.gift__amounts button.active { background: #fbf1e2; color: #2e2019; border-color: transparent; }
+.jw--men .gift__amounts button.active { background: #1b1b1b; color: #eee; }
+.gift__buy { display: inline-flex; align-items: center; gap: 10px; margin: 8px 0; padding: 14px 22px; border: 0; border-radius: 999px; background: rgba(251, 241, 226, .9); color: #2e2019; font: 700 14px 'Archivo', sans-serif; opacity: .7; }
+.gift__ideas { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.refer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
+.refer__no { font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .2em; opacity: .7; }
+.refer__step h2 { margin-top: 6px !important; }
+.refer__share { display: grid; gap: 12px; }
+.refer__share code { padding: 12px 16px; border-radius: 14px; background: rgba(0, 0, 0, .18); font: 500 14px 'IBM Plex Mono', monospace; overflow-wrap: anywhere; }
+.refer__btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.refer__btns button { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; }
+.jw--women .help__body, .jw--men .help__body { min-width: 0; }
+@media (max-width: 760px) {
+  .gift, .refer { grid-template-columns: 1fr; }
+  .wish { width: 32px; height: 32px; right: 8px; top: 8px; }
+}
+.pv-buy__row { display: flex; gap: 10px; }
+.pv-buy__row .pv-buy__cta { flex: 1; width: auto; }
+.pv--men .pv-wish { border-radius: 4px; }
+.w-wishlink, .m-wishlink { position: relative; }
+.w-wishlink i, .m-wishlink i { position: absolute; top: -2px; right: -4px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 999px; background: #b4473b; color: #fff; font: 700 10px/17px 'Archivo', sans-serif; font-style: normal; text-align: center; }

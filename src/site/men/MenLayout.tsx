@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Home, Menu, ShoppingBag, X } from 'lucide-react';
+import { Heart, Home, Menu, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
@@ -9,6 +9,7 @@ import { CloudSky } from '../shared/Cloud';
 import { HangingWatch } from '../shared/HangingWatch';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 import { MEN_CATEGORIES, menCategoryPath } from './menFormal';
+import { useWishlist } from '../../store/wishlist';
 
 const links = [
   ['/men/shop', 'All formal'],
@@ -21,6 +22,7 @@ const links = [
 export function MenLayout() {
   const { pathname, search } = useLocation();
   const [open, setOpen] = useState(false);
+  const wished = useWishlist((state) => state.ids.length);
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const current = pathname + search;
 
@@ -46,6 +48,7 @@ export function MenLayout() {
       </nav>
       <div className="m-header__right">
         <Link to="/men" className="m-home" aria-label="Home"><Home size={16} /></Link>
+        <Link to="/men/wishlist" className="m-home m-wishlink" aria-label={`Wishlist, ${wished} saved`}><Heart size={16} />{wished > 0 && <i>{wished}</i>}</Link>
         <Link to="/" className="m-switch">Women ↗</Link>
         <Link to="/men/bag" className="m-bag" aria-label={`Bag, ${count} items`}><ShoppingBag size={16} /><span>{String(count).padStart(2, '0')}</span></Link>
       </div>
@@ -57,6 +60,9 @@ export function MenLayout() {
         <Link to={jewelryPath('men')}><i>05</i>Jewelry &amp; Watches</Link>
         <div className="drawer-sub">{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
         <Link to="/men/categories"><i>↗</i>All categories</Link>
+        <Link to="/men/wishlist"><i>♡</i>Wishlist</Link>
+        <Link to="/men/gift-cards"><i>↗</i>Gift cards</Link>
+        <Link to="/men/refer"><i>↗</i>Refer a friend</Link>
         <Link to="/men/about"><i>↗</i>About the founder</Link>
         <Link to="/"><i>↗</i>Women's shop</Link>
       </motion.nav>}
@@ -67,7 +73,7 @@ export function MenLayout() {
       <Logo tone="metal" sub="HOMME" />
       <div className="w-footer__row">
         <p>Formalwear for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/categories">Categories</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
+        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>

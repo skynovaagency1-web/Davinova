@@ -6,6 +6,7 @@ import type { Product } from '../../types/product';
 import { formatMoney } from '../../lib/format';
 import { productPath } from '../../lib/storefront';
 import { isFloating, useCutouts } from '../../lib/useCutouts';
+import { WishButton } from '../shared/WishButton';
 
 /**
  * Women's product card. When the dress has a cut-out photo, the glass card is only the lower part and
@@ -28,6 +29,7 @@ export function WomenCard({ product, index = 0 }: { product: Product; index?: nu
       {!cutout && second && !broken && <img className="w-card__alt" src={second} alt="" aria-hidden="true" loading="lazy" />}
       {product.browseOnly && <span className="w-card__badge">Coming soon</span>}
       <span className="w-card__arrow"><ArrowUpRight size={16} /></span>
+      <WishButton productId={product.id} title={product.title} />
     </Link>
     <div className="w-card__meta">
       <Link to={href}><h3>{product.title}</h3></Link>
