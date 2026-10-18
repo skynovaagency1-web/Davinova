@@ -10,6 +10,7 @@ import { isCurvyLook } from '../../lib/curvyLooks';
 import { useCart } from '../../store/cart';
 import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
+import { WishButton } from './WishButton';
 
 type Variant = 'women' | 'men';
 
@@ -113,13 +114,14 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}</span>
           <div role="group" aria-label="Sizes">{product.sizes.map((item) => <button key={item} type="button" className={size === item ? 'active' : ''} aria-pressed={size === item} onClick={() => { setSize(item); setAdded(false); setSizeHint(false); }}>{item}</button>)}</div>
         </div>}
-        {isWoo
+        <div className="pv-buy__row">{isWoo
           ? (canBuy && product.woocommercePermalink
             ? <a className="pv-buy__cta" href={product.woocommercePermalink}>Choose options <ArrowRight size={18} /></a>
             : <button type="button" className="pv-buy__cta" disabled>Unavailable</button>)
           : canBuy
             ? <button type="button" className="pv-buy__cta" onClick={addToBag}>{added ? <>Added to bag <Check size={18} /></> : <>Add to bag <ShoppingBag size={18} /></>}</button>
             : <button type="button" className="pv-buy__cta" disabled>Coming soon</button>}
+          <WishButton productId={product.id} title={product.title} className="pv-wish" /></div>
         {added && <Link className="pv-buy__bag" to={variant === 'men' ? '/men/bag' : '/bag'}>View bag & checkout <ArrowRight size={14} /></Link>}
         <p className="pv-buy__note">{canBuy ? 'Sizes, stock and price are rechecked at secure checkout.' : 'We’re still confirming sizes, stock and delivery for this piece.'}</p>
         <details><summary>Delivery & returns</summary><p>Delivery options and our return policy are shown before you pay. See <Link to="/shipping">shipping</Link> and <Link to="/returns">returns</Link>.</p></details>

@@ -17,6 +17,9 @@ const FitCategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then
 const GroupPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.GroupPage })));
 const BeautyPage = lazy(() => import('./site/women/BeautyPage').then((m) => ({ default: m.BeautyPage })));
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
+const WishlistPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.WishlistPage })));
+const GiftCardPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.GiftCardPage })));
+const ReferralPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.ReferralPage })));
 const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
 const HelpPage = lazy(() => import('./site/shared/HelpPages').then((m) => ({ default: m.HelpPage })));
 const MenCategoriesPage = lazy(() => import('./site/men/MenCategoriesPage').then((m) => ({ default: m.MenCategoriesPage })));
@@ -48,6 +51,9 @@ export default function App() {
         <Route path="terms" element={<HelpPage dept="men" slug="terms" />} />
         <Route path="jewelry" element={<JewelryPage dept="men" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="men" />} />
+        <Route path="wishlist" element={<WishlistPage dept="men" />} />
+        <Route path="gift-cards" element={<GiftCardPage dept="men" />} />
+        <Route path="refer" element={<ReferralPage dept="men" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route element={<WomenLayout />}>
@@ -63,6 +69,9 @@ export default function App() {
         <Route path="beauty" element={<BeautyPage />} />
         <Route path="jewelry" element={<JewelryPage dept="women" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
+        <Route path="wishlist" element={<WishlistPage dept="women" />} />
+        <Route path="gift-cards" element={<GiftCardPage dept="women" />} />
+        <Route path="refer" element={<ReferralPage dept="women" />} />
         <Route path="product/:slug" element={<ProductView variant="women" />} />
         <Route path="bag" element={<BagView variant="women" />} />
         <Route path="cart" element={<BagView variant="women" />} />

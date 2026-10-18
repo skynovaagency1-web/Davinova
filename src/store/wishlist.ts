@@ -1,0 +1,15 @@
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+interface WishlistState {
+  ids: string[];
+  toggle: (productId: string) => void;
+  clear: () => void;
+}
+
+/** Saved products, kept in this browser (no account needed). Shared by both shops. */
+export const useWishlist = create<WishlistState>()(persist((set) => ({
+  ids: [],
+  toggle: (productId) => set((state) => ({ ids: state.ids.includes(productId) ? state.ids.filter((id) => id !== productId) : [productId, ...state.ids] })),
+  clear: () => set({ ids: [] }),
+}), { name: 'davinova-wishlist-v1' }));
