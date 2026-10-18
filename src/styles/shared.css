@@ -289,6 +289,7 @@
 .w-shell, .m-shell { overflow-x: clip; }
 @media (max-width: 760px) {
   .w-new__rail, .pv-related__rail { grid-auto-columns: calc((100% - 12px) / 2); gap: 12px; }
+  .m-grid, .m-grid--glass, .w-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
   .idx__groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 10px; }
   .idx .nova-collection-card { min-height: 0; }
   .idx__subs a { padding: 5px 8px; font-size: 10.5px; }
