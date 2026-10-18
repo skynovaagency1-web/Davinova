@@ -34,7 +34,29 @@ function subcategory(label: string, ...matchTerms: string[]): StoreSubcategoryOp
   };
 }
 
+export const WOMEN_BAGS = 'womens-bags';
+export const WOMEN_SHOES = 'womens-shoes';
+/** Pieces shown floating on their own (never on a model): bags, shoes and men's accessories. */
+export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories'];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
+  {
+    slug: WOMEN_BAGS,
+    label: 'Bags',
+    subcategories: [
+      subcategory('Clutches & Evening Bags', 'clutch', 'evening bag', 'wedding clutch', 'party bag'),
+      subcategory('Handbags', 'handbag', 'shoulder bag', 'crossbody bag'),
+      subcategory('Totes', 'tote bag', 'tote'),
+    ],
+  },
+  {
+    slug: WOMEN_SHOES,
+    label: 'Shoes',
+    subcategories: [
+      subcategory('Heels', 'high heels', 'pumps', 'stiletto', 'heeled sandals'),
+      subcategory('Flats & Sandals', 'flats', 'sandals', 'ballet flats', 'mules'),
+      subcategory('Boots', 'ankle boots', 'knee high boots', 'boots'),
+    ],
+  },
   {
     slug: 'accessories',
     label: 'Accessories',
@@ -209,6 +231,10 @@ export const menStoreCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Dress Shoes', 'oxford shoes', 'loafers', 'derby shoes', 'brogues'),
       subcategory('Belts & Suspenders', 'leather belt', 'suspenders', 'braces'),
       subcategory('Hats & Caps', 'baseball cap', 'fedora', 'beanie', 'bucket hat'),
+      subcategory('Loafers', 'loafers', 'penny loafers', 'slip-on shoes'),
+      subcategory('Sneakers', 'sneakers', 'trainers', 'casual shoes'),
+      subcategory('Briefcases', 'briefcase', 'laptop bag', 'business bag'),
+      subcategory('Messenger Bags & Backpacks', 'messenger bag', 'backpack', 'crossbody bag'),
     ],
   },
   // Named like CJ's own Men's Clothing categories (user, 2026-10-18).

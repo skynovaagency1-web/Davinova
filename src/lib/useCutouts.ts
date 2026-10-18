@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FLOATING_COLLECTIONS } from './storeCollectionTaxonomy';
 
 // public/cutouts/manifest.json maps product id → background-free photo, made by the "Product cutouts" GitHub Action.
 let request: Promise<Record<string, string | null>> | null = null;
@@ -21,7 +22,7 @@ export function useCutouts(): (id: string) => string | undefined {
 
 /**
  * Floating pieces, shown apart from model photos: clothes cut out with the model erased (no photo worked on
- * the model), and men's accessories (ties, shoes, belts, hats), which never have a model.
+ * the model), and bags, shoes and men's accessories, which never have a model.
  */
 export const isFloating = (cutout: string | undefined, storeCollection?: string) =>
-  Boolean(cutout && (cutout.endsWith('.float.webp') || storeCollection === 'mens-accessories'));
+  Boolean(cutout && (cutout.endsWith('.float.webp') || FLOATING_COLLECTIONS.includes(storeCollection ?? '')));
