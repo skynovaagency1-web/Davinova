@@ -46,3 +46,8 @@ export function formalMen(products: Product[]) {
 
 /** Clothes only, for the rails (Trending now, New in): no ties, shoes, belts or hats. */
 export const menClothes = (products: Product[]) => formalMen(products).filter((product) => product.storeCollection !== MEN_ACCESSORIES);
+
+/** Wedding-suit photos for the Men door of the Women | Men banner (owner: never boxers or loungewear there). */
+export const menDoorImages = (products: Product[]) => formalMen(products)
+  .filter((product) => product.storeSubcategory === 'wedding-suits' && product.images[0]?.url)
+  .slice(0, 24).map((product) => product.images[0].url);
