@@ -7,7 +7,8 @@ cutout) and public/cutouts/report.json (which photo was used, or why each one fa
 
 The photo check rejects: cut-off heads or faces, headless or half-body shots, cut-off hems, collages and
 colour grids, extra people (except couple and parent-child sets), and faded cutouts. Jewelry and watches
-skip the face rules but must still be one whole, uncropped object.
+skip the face rules but must still be one whole, uncropped object. Men's clothing is shown as a floating
+garment with no model ("ghost mannequin"): a clothing model erases the head, skin and props, so faces don't matter.
 """
 import io
 import json
@@ -27,12 +28,14 @@ FACE_MODEL = os.path.join(os.path.dirname(__file__), 'models', 'face_detection_y
 OUT = 'public/cutouts'
 MAX_HEIGHT = 900
 GATE_VERSION = 2  # bump to re-check every product after changing the rules
+GARMENT_VERSION = 1  # the same, for the floating men's clothing only
 MAX_TRIES = 8
 OBJECT_PRODUCT = re.compile(r'\bwrist ?watch|\bwatch(es)?\b|jewel|necklace|earring|bracelet|bangle|pendant|\brings?\b|tiara|crown|hairpin|hair clip|hair comb|headpiece|brooch|anklet', re.I)
 GROUP_PRODUCT = 'couple-parent-child-clothing'
 JEWELRY_COLLECTION = 'jewelry-and-watches'
 # Ties, shoes and belts are shown on their own, like jewelry.
 OBJECT_COLLECTIONS = {JEWELRY_COLLECTION, 'mens-accessories'}
+GARMENT_COLLECTIONS = {'mens-formal'}
 
 
 def is_ghostly(image):
@@ -109,6 +112,31 @@ def photo_problem(image: Image.Image, cutout: Image.Image, faces, kind: str):
     return None
 
 
+def ghost(image: Image.Image, cutout: Image.Image, session):
+    """Keep only the clothes: erase the model's head, skin, hair, bags and shoes. Returns (garment, problem)."""
+    clothes = np.array(remove(image, session=session, cc='attire', only_mask=True))
+    mask = (np.minimum(clothes, np.array(cutout.getchannel('A'))) > 128).astype(np.uint8)
+    size = max(3, int(0.012 * max(mask.shape))) | 1
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((size, size), np.uint8))
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
+    if count < 2:
+        return None, 'no clothes found'
+    areas = stats[1:, cv2.CC_STAT_AREA]
+    mask = np.isin(labels, [i + 1 for i, area in enumerate(areas) if area > 0.4 * areas.max()]).astype(np.uint8)
+    # A hand or bag held over the clothes leaves a hole; a garment with a big hole isn't shown.
+    filled = mask.copy()
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cv2.drawContours(filled, contours, -1, 1, cv2.FILLED)
+    if (filled.sum() - mask.sum()) > 0.03 * filled.sum():
+        return None, 'clothes covered by a hand or bag'
+    rows, cols = np.where(mask)
+    if rows.min() <= 1 or cols.min() <= 1 or cols.max() >= mask.shape[1] - 2:
+        return None, 'clothes cut off at the edge'
+    garment = cutout.copy()
+    garment.putalpha(Image.fromarray(cv2.GaussianBlur(mask * 255, (0, 0), 1.2)))
+    return garment, None
+
+
 def finish(cutout: Image.Image) -> Image.Image:
     box = cutout.getchannel('A').point(lambda a: 255 if a > 8 else 0).getbbox()
     if box:
@@ -119,6 +147,8 @@ def finish(cutout: Image.Image) -> Image.Image:
 
 
 def kind_of(product) -> str:
+    if product.get('storeCollection') in GARMENT_COLLECTIONS:
+        return 'garment'
     if product.get('storeCollection') in OBJECT_COLLECTIONS or OBJECT_PRODUCT.search(product.get('title', '')):
         return 'object'
     return 'group' if product.get('storeCollection') == GROUP_PRODUCT else 'person'
@@ -134,6 +164,7 @@ def main() -> int:
     products = json.loads(fetch(CATALOG_URL))['products']
     session = new_session(os.environ.get('REMBG_MODEL', 'isnet-general-use'))
     detector = cv2.FaceDetectorYN.create(FACE_MODEL, '', (320, 320), 0.6)
+    cloth_session = None
 
     if not os.path.exists('public/images/hero-model.webp'):
         try:
@@ -147,19 +178,26 @@ def main() -> int:
         if pid in rejects:
             manifest[pid] = None
             continue
-        if report.get(pid, {}).get('v') == GATE_VERSION:
-            continue
         kind, reasons, chosen = kind_of(product), [], None
+        version = f'garment-{GARMENT_VERSION}' if kind == 'garment' else GATE_VERSION
+        if report.get(pid, {}).get('v') == version:
+            continue
         for index, photo in enumerate(images[:MAX_TRIES]):
             try:
                 image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
-                faces = [] if kind == 'object' else find_faces(detector, image)
+                faces = [] if kind in ('object', 'garment') else find_faces(detector, image)
                 # Skip the slow background removal when the faces alone already rule the photo out.
                 if kind == 'person' and len(faces) != 1:
                     reasons.append(f'{index}: ' + ('no face (headless or cropped)' if not faces else 'several people'))
                     continue
                 cutout = remove(image, session=session)
-                problem = photo_problem(image, cutout, faces, kind)
+                if kind == 'garment':
+                    cloth_session = cloth_session or new_session('u2net_cloth_seg')
+                    garment, problem = ghost(image, cutout, cloth_session)
+                    if not problem:
+                        problem, cutout = photo_problem(image, garment, faces, 'object'), garment
+                else:
+                    problem = photo_problem(image, cutout, faces, kind)
                 if problem:
                     reasons.append(f'{index}: {problem}')
                     continue
@@ -176,7 +214,7 @@ def main() -> int:
         else:
             manifest[pid] = f'/cutouts/{pid}.webp'
             passed += 1
-        report[pid] = {'v': GATE_VERSION, 'photo': chosen, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
+        report[pid] = {'v': version, 'photo': chosen, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
         print(pid, 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)
