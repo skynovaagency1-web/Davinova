@@ -1,1 +1,1 @@
-{ "target": "10", "max_imports": "250", "only": "lady-dresses,evening-dresses,cocktail-dresses,wedding-dresses,bridesmaid-dresses", "plus": "1", "run": 12 }
+{ "target": "10", "max_imports": "300", "only": "hats-and-caps,outerwear-and-jackets,bottoms,t-shirts,mens-sleep-and-lounge,shorts,briefs,robes,man-pajama-sets,boxers,long-johns", "men": "1", "run": 13 }
