@@ -282,3 +282,9 @@
 .idx .nova-collection-card__img:empty { background: linear-gradient(140deg, rgba(255,240,215,.25), rgba(233,178,90,.2)); }
 .idx__all { font-weight: 700; margin-top: 4px; }
 .w-drawer .drawer-title { margin-top: 8px; }
+
+/* Pop-out posters: transparent cut-outs whose people and products step out of a gold frame, so no card around them. */
+.watch-poster.poster-pop, .m-shell .watch-poster.poster-pop { overflow: visible; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.poster-pop img { object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .35)); }
+.poster-pop:hover img { transform: scale(1.02); }
+.watch-poster.poster-pop .watch-poster__go, .m-shell .shoe-poster.poster-pop .watch-poster__go { bottom: 1.5%; }
