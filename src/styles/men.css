@@ -215,11 +215,11 @@ html:has(.m-shell), body:has(.m-shell) { background: #c9c9c6; }
 .m-shell .w-footer { margin-top: 80px; background: rgba(18, 18, 20, .82); color: #ececec; border-color: rgba(255, 255, 255, .25); }
 .m-shell .w-footer__big { -webkit-text-stroke: 0; background: linear-gradient(110deg, #ffffff 0%, #9d9da2 45%, #f0f0f0 70%, #707075 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: g-shift 8s ease-in-out infinite alternate; opacity: .9; }
 .m-shell .w-footer .logo { color: #ececec; }
-.hang-watch { top: calc(30px + var(--foot-word) * .85 + 14px - var(--bag-w) * 1.91 * .49); filter: drop-shadow(0 30px 30px rgba(0, 0, 0, .55)); }
+.hang-watch { top: calc(30px + var(--foot-word) * .85 + 14px - var(--bag-w) * 1.91 * .62); width: calc(var(--bag-w) * 1.2); filter: drop-shadow(0 30px 30px rgba(0, 0, 0, .55)); }
 .hang-watch .hang-bag__tag { color: #d8d8dc; }
-.hang-watch__hand { transform-box: view-box; transform-origin: 110px 300px; animation-name: watch-turn; animation-timing-function: linear; animation-iteration-count: infinite; }
-.hang-watch__hand--sec { animation-timing-function: steps(60); }
-@keyframes watch-turn { to { transform: rotate(360deg); } }
+.hang-watch__chain { position: relative; left: 70%; width: 16% !important; transform: translateX(-50%); margin-bottom: -4%; }
+.hang-watch__img { display: block; width: 100%; height: auto; }
+@media (max-width: 760px) { .hang-watch { top: calc(30px + var(--foot-word) * .85 + 14px - var(--bag-w) * 1.91 * .42); } }
 .m-shell .w-sec-head h2.m-h2-block { display: block; }
 
 
