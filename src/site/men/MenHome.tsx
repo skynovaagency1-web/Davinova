@@ -93,7 +93,7 @@ export function MenHome() {
       <div className="w-new__rail">{clothes.slice(0, 12).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
     </section>
 
-    <div className="m-split-wrap"><ShopSplit womenImage={women.find((product) => product.images[0]?.url)?.images[0].url} womenCount={women.length} menCount={men.length} /></div>
+    <div className="m-split-wrap"><ShopSplit womenImages={women.filter((product) => product.images[0]?.url).slice(0, 24).map((product) => product.images[0].url)} menImages={clothes.filter((product) => product.images[0]?.url).slice(0, 24).map((product) => product.images[0].url)} womenCount={women.length} menCount={men.length} /></div>
     <Perks variant="men" />
   </>;
 }

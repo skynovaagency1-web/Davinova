@@ -11,6 +11,7 @@ import { TrendingRail } from './TrendingRail';
 import { DressCodeGuide } from './DressCodeGuide';
 import { CurvyEdit } from './CurvyEdit';
 import { ShopSplit } from '../shared/ShopSplit';
+import { menClothes } from '../men/menFormal';
 import { Perks } from '../shared/Perks';
 import { BagPoster } from './BagPoster';
 import { BeautyPoster } from './BeautyPoster';
@@ -24,7 +25,7 @@ export function WomenHome() {
 
   return <>
     <NovaHero products={women} />
-    <ShopSplit womenImage={withImages[2]?.images[0].url} womenCount={women.length} menCount={men.length} />
+    <ShopSplit womenImages={withImages.slice(0, 24).map((product) => product.images[0].url)} menImages={menClothes(products).filter((product) => product.images[0]?.url).slice(0, 24).map((product) => product.images[0].url)} womenCount={women.length} menCount={men.length} />
     <CategoryCircles products={women} />
     <CollectionCards products={women} />
     <TrendingRail products={women} />
