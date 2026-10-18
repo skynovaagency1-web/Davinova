@@ -10,6 +10,7 @@ import { formalMen, menClothes } from './menFormal';
 import { MenCollections } from './MenCollections';
 import { MenCircles } from './MenCircles';
 import { MenTrending } from './MenTrending';
+import { ShoePoster } from './ShoePoster';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 
@@ -70,6 +71,10 @@ export function MenHome() {
     <MenCircles products={men} />
     <MenCollections products={men} />
     <MenTrending products={clothes} />
+    <section className="w-watch-feature">
+      <div className="w-sec-head"><h2>New: <b>shoes</b></h2><p className="w-sec-head__note">Patent, polished, made for the entrance.</p></div>
+      <ShoePoster />
+    </section>
 
     <section className="w-codes">
       <div className="w-sec-head"><h2 className="m-h2-block">Dress code, <b>decoded</b></h2><p className="w-sec-head__note">What each invitation really means, and what to wear.</p></div>

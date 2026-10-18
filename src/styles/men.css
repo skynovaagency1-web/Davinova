@@ -281,3 +281,7 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
 .m-shell .m-hero__edition span { color: var(--cs-sage); }
 .m-shell .m-hero__glow { color: #f2f3f0; -webkit-text-fill-color: #f2f3f0; box-shadow: 0 0 0 2px #e8ebe6, 0 0 26px 4px rgba(165, 170, 163, .7), inset 0 0 18px rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .08); }
 .m-shell .m-latest__head h2, .m-shell .m-shop__head h1, .m-shell .m-occasion strong, .m-shell .m-hero__edition b { background: linear-gradient(180deg, #ffffff 0%, #a5aaa3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+
+/* New: shoes poster (its own headline and wordmark are in the picture, so the button sits above the wordmark) */
+.m-shell .shoe-poster { border-color: rgba(191, 191, 190, .3); box-shadow: 0 40px 80px rgba(0, 0, 0, .45); }
+.m-shell .shoe-poster .watch-poster__go { bottom: 12%; background: var(--cs-button); color: #1f1f1f; }
