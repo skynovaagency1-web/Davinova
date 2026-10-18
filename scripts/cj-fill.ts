@@ -19,6 +19,7 @@ const TARGET = Number(process.env.TARGET ?? 6);
 const MAX_IMPORTS = Number(process.env.MAX_IMPORTS ?? 120);
 // PLUS=1 looks only for plus-size versions (titles must say so); the curvy section is then picked by eye.
 const PLUS = process.env.PLUS === '1';
+const PLUS_SEARCH = ['plus size dress', 'plus size women dress', 'plus size maxi dress', 'plus size party dress', 'plus size bodycon dress', 'plus size evening gown', 'plus size african dress', 'curvy women dress', 'plus size wedding guest dress', 'plus size mermaid dress'];
 const PLUS_TITLE = /\b(plus[ -]size|curvy|curve)\b/i;
 // MEN=1 fills the men's formal list instead: titles must name men and the sub-category's own garment.
 const MEN = process.env.MEN === '1';
@@ -28,12 +29,24 @@ const MEN_SEARCH: Record<string, string[]> = {
   'wedding-suits': ['men wedding suit', 'groom suit', 'men slim fit suit', 'men three piece suit'],
   'tuxedos-and-dinner-jackets': ['men tuxedo', 'men dinner jacket', 'men velvet blazer', 'men tuxedo suit'],
   'linen-and-summer-suits': ['men linen suit', 'men summer suit', 'men linen blazer', 'men beach wedding suit'],
+  'blazers-and-waistcoats': ['men blazer', 'men sport coat', 'men waistcoat', 'men suit vest'],
+  'dress-shirts': ['men dress shirt', 'men formal shirt', 'men tuxedo shirt', 'men slim fit shirt'],
+  'ties-and-bow-ties': ['men necktie', 'men bow tie', 'men tie set pocket square', 'men silk tie'],
+  'dress-shoes': ['men oxford shoes', 'men leather dress shoes', 'men loafers', 'men derby shoes'],
+  'belts-and-suspenders': ['men leather belt', 'men suspenders', 'men dress belt'],
 };
 const MEN_FITS: Record<string, RegExp> = {
   'wedding-suits': /\bsuits?\b/i,
   'tuxedos-and-dinner-jackets': /\b(tuxedos?|dinner jackets?|smoking jackets?|velvet (blazer|suit)s?)\b/i,
   'linen-and-summer-suits': /\blinen\b.*\b(suits?|blazers?)\b|\b(suits?|blazers?)\b.*\blinen\b/i,
+  'blazers-and-waistcoats': /\b(blazers?|sport coats?|suit jackets?|waistcoats?|suit vests?|vests?)\b/i,
+  'dress-shirts': /\b(dress|formal|tuxedo|business|office) shirts?\b|\bshirts?\b.*\b(formal|business|wedding)\b/i,
+  'ties-and-bow-ties': /\b(neck ?ties?|bow ?ties?|ties?|pocket squares?|cravats?)\b/i,
+  'dress-shoes': /\b(oxfords?|loafers?|brogues?|derby|dress shoes|leather shoes|formal shoes)\b/i,
+  'belts-and-suspenders': /\b(belts?|suspenders?|braces)\b/i,
 };
+// Accessories that only borrow a word (tie clips belong with cufflinks; shoe care is not shoes).
+const NOT_ACCESSORY = /\b(tie ?(clip|bar|pin)s?|cufflinks?|shoe ?(polish|brush|horn|tree|lace)s?|insoles?|belt ?buckles? only|seat ?belt|sneakers?|sandals?|slippers?|boots?)\b/i;
 // Casual pieces that only borrow the word "suit".
 const NOT_TAILORING = /\b(tracksuit|sweatsuit|swimsuit|jogging|sports? suit|pajama|hoodie|sweat|shorts? suit|t-?shirt)\b/i;
 // JEWELRY=1 fills Jewelry & Watches for both shops: titles must name the piece, and men's pieces must not say women.
@@ -103,9 +116,9 @@ async function main() {
     let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
-    const words = JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, 'plus size dress', 'plus size women dress'] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
+    const words = JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, ...PLUS_SEARCH] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
-      for (let page = 1; page <= 5 && need > 0 && imported < MAX_IMPORTS; page++) {
+      for (let page = 1; page <= (PLUS ? 10 : 5) && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
         let result: Search;
         try { result = await admin<Search>(`/api/admin/cj-catalog?q=${encodeURIComponent(keyword)}&page=${page}&size=10`); }
@@ -120,16 +133,22 @@ async function main() {
             if (MEN_PIECES.includes(sub.slug) && (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name))) continue;
             if (sub.slug.startsWith('womens') && MEN_TITLE.test(item.name) && !WOMEN_TITLE.test(item.name)) continue;
           } else if (MEN) {
-            if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || NOT_TAILORING.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
+            if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || NOT_TAILORING.test(item.name) || NOT_ACCESSORY.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
             // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.
             if (sub.slug === 'wedding-suits' && (MEN_FITS['tuxedos-and-dinner-jackets'].test(item.name) || /\blinen\b/i.test(item.name))) continue;
-          } else {
+          }
+          let target = { collection: group.slug, subcategory: sub.slug };
+          if (!JEWELRY && !MEN) {
             const fit = suggestStoreCollection(item.name, item.category);
-            if (fit?.collection !== group.slug || fit.subcategory !== sub.slug) continue;
+            if (fit?.collection === group.slug && fit.subcategory === sub.slug) { /* fits the slot */ }
+            // Plus-size dresses rarely sort into the exact slot searched; keep any dress, filed where its title says.
+            else if (PLUS && fit?.subcategory && DRESS_FIRST.some((key) => key === fit.collection || key === `${fit.collection}:${fit.subcategory}`)) target = { collection: fit.collection, subcategory: fit.subcategory };
+            else if (PLUS && /\b(dress|gown)\b/i.test(item.name)) target = { collection: 'tops-and-sets', subcategory: 'lady-dresses' };
+            else continue;
           }
           await sleep(1200);
           try {
-            await admin('/api/admin/cj-import', { method: 'POST', body: JSON.stringify({ productId: item.id, storeCollection: group.slug, storeSubcategory: sub.slug }) });
+            await admin('/api/admin/cj-import', { method: 'POST', body: JSON.stringify({ productId: item.id, storeCollection: target.collection, storeSubcategory: target.subcategory }) });
             known.add(item.id); imported++; added++; need--;
             console.log(`+ ${sub.label}: ${item.name}`);
           } catch (error) { console.log(`  skip ${item.id}: ${(error as Error).message}`); }

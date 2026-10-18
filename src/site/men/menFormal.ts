@@ -1,5 +1,5 @@
 import type { Product } from '../../types/product';
-import { MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
+import { MEN_ACCESSORIES, MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
 
 /** The men's three occasions, each backed by one sub-category of the men's formal list. */
 export const MEN_OCCASIONS = [
@@ -8,9 +8,23 @@ export const MEN_OCCASIONS = [
   { no: '03', key: 'maxi-holiday', sub: 'linen-and-summer-suits', title: 'Holiday', short: 'Linen', line: 'Light tailoring for travel' },
 ] as const;
 
+/** Every men's category, in menu order: the three suits first, then the rest of the look. */
+export const MEN_CATEGORIES = [
+  { sub: 'wedding-suits', short: 'Suits' },
+  { sub: 'tuxedos-and-dinner-jackets', short: 'Tuxedos' },
+  { sub: 'linen-and-summer-suits', short: 'Linen' },
+  { sub: 'blazers-and-waistcoats', short: 'Blazers' },
+  { sub: 'dress-shirts', short: 'Shirts' },
+  { sub: 'ties-and-bow-ties', short: 'Ties' },
+  { sub: 'dress-shoes', short: 'Shoes' },
+  { sub: 'belts-and-suspenders', short: 'Belts' },
+] as const;
+
+export const menCategoryPath = (sub: string) => `/men/shop?cat=${sub}`;
+
 export const menOccasionPath = (key: string) => `/men/shop?occasion=${key}`;
 
-/** Only the formalwear chosen for the men's shop; stray casual imports never show here. */
+/** Only the formalwear and accessories chosen for the men's shop; stray casual imports never show here. */
 export function formalMen(products: Product[]) {
-  return products.filter((product) => product.department === 'men' && product.storeCollection === MEN_FORMAL);
+  return products.filter((product) => product.department === 'men' && (product.storeCollection === MEN_FORMAL || product.storeCollection === MEN_ACCESSORIES));
 }

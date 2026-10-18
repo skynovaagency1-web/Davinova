@@ -8,6 +8,7 @@ import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
 import { HangingWatch } from '../shared/HangingWatch';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
+import { MEN_CATEGORIES, menCategoryPath } from './menFormal';
 
 const links = [
   ['/men/shop', 'All formal'],
@@ -52,6 +53,7 @@ export function MenLayout() {
     <AnimatePresence>
       {open && <motion.nav className="m-drawer" aria-label="Men's mobile navigation" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}>
         {links.map(([to, label], index) => <Link key={to} to={to}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}
+        <div className="drawer-sub">{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}</div>
         <Link to={jewelryPath('men')}><i>05</i>Jewelry &amp; Watches</Link>
         <div className="drawer-sub">{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
         <Link to="/men/about"><i>↗</i>About the founder</Link>

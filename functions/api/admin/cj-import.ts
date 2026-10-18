@@ -1,5 +1,5 @@
 import { getCJProductDetail, parseCJVariantOption, type CJEnv } from '../../../server/cj';
-import { JEWELRY_COLLECTION, MEN_FORMAL, MEN_JEWELRY, MEN_OCCASION_BY_SUBCATEGORY, manualStoreCollectionAssignment, storeCollectionAssignmentIsValid, writeStoreCollectionTags } from '../../../src/lib/storeCollectionTaxonomy';
+import { JEWELRY_COLLECTION, MEN_ACCESSORIES, MEN_FORMAL, MEN_JEWELRY, MEN_OCCASION_BY_SUBCATEGORY, manualStoreCollectionAssignment, storeCollectionAssignmentIsValid, writeStoreCollectionTags } from '../../../src/lib/storeCollectionTaxonomy';
 
 type CollectionCategory = 'wedding-guest' | 'cocktail-party' | 'maxi-holiday';
 type Env = CJEnv & { ADMIN_PASSWORD?: string };
@@ -77,7 +77,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
   }
   // The shop runs on the owner's categories. The old occasion column is still required by the database,
   // so it is filled from the sub-category unless one is sent.
-  const forMen = storeCollection === MEN_FORMAL;
+  const forMen = storeCollection === MEN_FORMAL || storeCollection === MEN_ACCESSORIES;
   const collectionCategory: CollectionCategory = typeof body.collectionCategory === 'string' && categories.includes(body.collectionCategory as CollectionCategory)
     ? body.collectionCategory as CollectionCategory
     : forMen ? MEN_OCCASION_BY_SUBCATEGORY[storeSubcategory] ?? 'wedding-guest'

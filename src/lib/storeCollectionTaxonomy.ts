@@ -186,6 +186,7 @@ export function normalizeStoreText(value: string): string {
 
 /** The men's shop runs on its own list, kept apart so the women's menus and auto-sorting never see it. */
 export const MEN_FORMAL = 'mens-formal';
+export const MEN_ACCESSORIES = 'mens-accessories';
 export const menStoreCollectionGroups: StoreCollectionGroup[] = [
   {
     slug: MEN_FORMAL,
@@ -194,6 +195,17 @@ export const menStoreCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Wedding Suits', 'wedding suit', 'groom suit', 'groomsmen suit', 'three piece suit', 'slim fit suit', 'business suit'),
       subcategory('Tuxedos & Dinner Jackets', 'tuxedo', 'dinner jacket', 'evening suit', 'velvet blazer', 'smoking jacket'),
       subcategory('Linen & Summer Suits', 'linen suit', 'summer suit', 'linen blazer', 'cotton linen suit', 'beach wedding suit'),
+      subcategory('Blazers & Waistcoats', 'blazer', 'sport coat', 'waistcoat', 'suit vest'),
+      subcategory('Dress Shirts', 'dress shirt', 'formal shirt', 'tuxedo shirt'),
+    ],
+  },
+  {
+    slug: MEN_ACCESSORIES,
+    label: 'Men’s Accessories',
+    subcategories: [
+      subcategory('Ties & Bow Ties', 'necktie', 'bow tie', 'pocket square'),
+      subcategory('Dress Shoes', 'oxford shoes', 'loafers', 'derby shoes', 'brogues'),
+      subcategory('Belts & Suspenders', 'leather belt', 'suspenders', 'braces'),
     ],
   },
 ];
