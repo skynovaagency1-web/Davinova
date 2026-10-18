@@ -3896,13 +3896,14 @@
   "v": 0
  },
  "cj-1757369344281030656": {
-  "floating": false,
-  "photo": 1,
+  "floating": true,
+  "photo": 7,
   "rejected": [
    "0: no face (headless or cropped)"
   ],
-  "url": "https://cf.cjdropshipping.com/quick/product/f9aca966-82c5-42ce-8b67-590f97e2c2f8.jpg",
-  "v": 3
+  "url": "https://cf.cjdropshipping.com/quick/product/f3c1c959-e8fd-4e0e-a105-81381869fbb3.jpg",
+  "v": 3,
+  "note": "recut by hand: front photos hide the feet in sea splash"
  },
  "cj-1757999928284028928": {
   "photo": null,
