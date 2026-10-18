@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check, ChevronRight, ShoppingBag } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { formatMoney } from '../../lib/format';
@@ -58,7 +58,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const [added, setAdded] = useState(false);
   const [sizeHint, setSizeHint] = useState(false);
   const add = useCart((state) => state.add);
-  const still = useReducedMotion();
+  const still = false;
   const cutout = useCutouts()(product.id);
   useEffect(() => { window.scrollTo({ top: 0 }); }, []);
 
