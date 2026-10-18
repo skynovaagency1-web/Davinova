@@ -3,7 +3,8 @@ import { useId } from 'react';
 type Tone = 'brand' | 'metal';
 
 const stops: Record<Tone, string[]> = {
-  brand: ['#5a2d0c', '#b8661e', '#d9902f', '#f0c674'],
+  // Women: Bronze Eclipse (user's palette pick, 2026-10-18).
+  brand: ['#3c2a21', '#8e735b', '#cdb69e', '#f2e6d8'],
   // Men: silver-sage, from the charcoal & sage palette.
   metal: ['#6f736d', '#a5aaa3', '#e8ebe6', '#8d8d8d'],
 };
@@ -35,7 +36,7 @@ function Gradient({ id, tone }: { id: string; tone: Tone }) {
 }
 
 /** A band of the brand gradient that sweeps across the ink-coloured letters, over and over. */
-const sweep: Record<Tone, [string, string]> = { brand: ['#b8661e', '#d9902f'], metal: ['#a5aaa3', '#ffffff'] };
+const sweep: Record<Tone, [string, string]> = { brand: ['#8e735b', '#e8d8c4'], metal: ['#a5aaa3', '#ffffff'] };
 
 function Shimmer({ id, tone }: { id: string; tone: Tone }) {
   const [a, b] = sweep[tone];
