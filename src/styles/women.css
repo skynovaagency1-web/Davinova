@@ -446,6 +446,8 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .watch-poster__go { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; background: rgba(34, 20, 11, .78); color: #fbf1e2; font: 600 13px var(--nova-display); letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(8px); white-space: nowrap; }
 .w-watch-feature { padding: clamp(36px, 4.5vw, 64px) clamp(16px, 4vw, 60px) 0; }
 .w-watch-feature .watch-poster { max-width: min(460px, 100%); margin: 0 auto; aspect-ratio: 3 / 4; }
+.bag-poster .watch-poster__head { top: 14%; left: auto; right: -2%; width: 36%; text-align: right; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.05; color: #fbf1e2; text-shadow: 0 2px 14px rgba(46, 32, 25, .5); }
+.bag-poster .watch-poster__go { left: 30%; }
 .heel-poster .watch-poster__go { bottom: 11%; background: rgba(251, 241, 226, .92); color: #2e2019; }
 .w-watches { padding: 22px clamp(12px, 2.6vw, 40px) 0; display: grid; gap: 40px; }
 .w-watches__hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 60px); align-items: center; padding: clamp(24px, 4vw, 56px); border-radius: 36px; background: var(--amber-glass); border: 1px solid var(--amber-line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
