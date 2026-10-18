@@ -113,8 +113,6 @@
   .nova-feature-card__img { width: 84px; flex: none; }
   .nova-collection-card { grid-template-columns: 40% 1fr; min-height: 160px; }
 }
-@media (prefers-reduced-motion: reduce) {
-}
 
 /* ---------- Women's shell ---------- */
 .w-shell { min-height: 100vh; background: var(--nova-canvas); color: var(--nova-ink); font-family: var(--nova-display); }
@@ -257,7 +255,6 @@
 .pv--women .pv-buy__cta:not(:disabled):hover, .bag--women .bag__cta:hover { background-position: 100% 0; }
 @keyframes g-shift { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 @keyframes g-pan { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
-@media (prefers-reduced-motion: reduce) { .nova-hero__title b, .nova-hero__panel, .w-shop__band, .w-drawer { animation: none; } }
 
 /* Shared section heading */
 .w-sec-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
@@ -398,7 +395,6 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .pv--women .pv-back { border: 1px solid var(--amber-line); color: var(--amber-text); }
 .pv--women .pv-buy__sizes button, .pv--women .pv-buy__specs > div { background: rgba(255, 245, 230, .08); color: var(--amber-text); border-color: var(--amber-line); }
 .pv--women .pv-stage__product img { mix-blend-mode: normal; border-radius: 22px; }
-@media (prefers-reduced-motion: reduce) { .cloud-sky .cloud, .nova-hero__cloud { animation-duration: 90s; } }
 
 /* ---------- 3D pop-out: cut-out dresses stand up out of their cards ---------- */
 .w-card--pop .w-card__img { overflow: visible; background: none; border: 0; box-shadow: none; perspective: 900px; }
@@ -531,7 +527,6 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-card--float:hover .w-card__cutout { filter: drop-shadow(0 18px 18px rgba(10, 10, 14, .3)); }
 @keyframes w-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-4%) rotate(1deg); } }
 @keyframes w-float-shadow { 0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); } 50% { opacity: .6; transform: translateX(-50%) scale(.82); } }
-@media (prefers-reduced-motion: reduce) { .w-card--float .w-card__cutout, .w-card--float .w-card__img::after { animation: none; } }
 
 /* On model | Floating switch above the shop grids */
 .look-switch { display: flex; width: max-content; max-width: 100%; margin: 26px auto 6px; padding: 5px; gap: 4px; border-radius: 999px; background: rgba(255, 245, 230, .14); border: 1px solid var(--amber-line, rgba(255, 255, 255, .6)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
@@ -587,4 +582,3 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
   .w-exem__card { --w: 74px; top: 64%; border-radius: 12px; }
   .w-exem__nav { width: 38px; height: 38px; }
 }
-@media (prefers-reduced-motion: reduce) { .w-exem__card { transition: none; } }
