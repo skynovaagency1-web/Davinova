@@ -4,7 +4,7 @@ import { WOMEN_BAGS } from '../../lib/storeCollectionTaxonomy';
 import { categoryPath } from '../../lib/categories';
 import { WATCH_POSTER } from './WatchPoster';
 
-// Until the bag version of the poster exists, the watch poster stands in.
+// If the bag poster fails to load, the watch poster stands in.
 export const BAG_POSTER = '/images/bag-poster.jpg';
 
 /** The "reach for it" campaign, now with one of our bags in place of the watch; it opens the Bags page. */
