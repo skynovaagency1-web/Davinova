@@ -11,6 +11,7 @@ import { MenCollections } from './MenCollections';
 import { MenCircles } from './MenCircles';
 import { MenTrending } from './MenTrending';
 import { ShoePoster } from './ShoePoster';
+import { MenWatchPoster } from './MenWatchPoster';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 
@@ -79,6 +80,11 @@ export function MenHome() {
     <section className="w-codes">
       <div className="w-sec-head"><h2 className="m-h2-block">Dress code, <b>decoded</b></h2><p className="w-sec-head__note">What each invitation really means, and what to wear.</p></div>
       <div className="w-codes__grid">{codes.map(([title, tip], index) => <div key={title} className="w-code"><span className="w-code__no">{String(index + 1).padStart(2, '0')}</span><strong>{title}</strong><p>{tip}</p></div>)}</div>
+    </section>
+
+    <section className="w-watch-feature">
+      <div className="w-sec-head"><h2>New: <b>watches</b></h2><p className="w-sec-head__note">Rose gold, Roman numerals, built to be noticed.</p></div>
+      <MenWatchPoster />
     </section>
 
     <section className="w-new">
