@@ -56,6 +56,7 @@ export function MenLayout() {
         <div className="drawer-sub">{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}</div>
         <Link to={jewelryPath('men')}><i>05</i>Jewelry &amp; Watches</Link>
         <div className="drawer-sub">{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
+        <Link to="/men/categories"><i>↗</i>All categories</Link>
         <Link to="/men/about"><i>↗</i>About the founder</Link>
         <Link to="/"><i>↗</i>Women's shop</Link>
       </motion.nav>}
@@ -66,7 +67,7 @@ export function MenLayout() {
       <Logo tone="metal" sub="HOMME" />
       <div className="w-footer__row">
         <p>Formalwear for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></nav>
+        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/categories">Categories</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
