@@ -15,6 +15,7 @@ import { menClothes } from '../men/menFormal';
 import { Perks } from '../shared/Perks';
 import { BagPoster } from './BagPoster';
 import { BeautyPoster } from './BeautyPoster';
+import { HeelPoster } from './HeelPoster';
 
 /** Women's home: hero, both shops, categories, collections, trending, featured look, guides and new arrivals. */
 export function WomenHome() {
@@ -36,6 +37,10 @@ export function WomenHome() {
     </section>
     <DressCodeGuide />
     <CurvyEdit products={women} />
+    <section className="w-watch-feature">
+      <div className="w-sec-head"><h2>New: <b>heels</b></h2><p className="w-sec-head__note">Red patent, sky-high, made to be seen.</p></div>
+      <HeelPoster />
+    </section>
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>beauty</b></h2><p className="w-sec-head__note">Fragrance, lips and glow for every woman.</p></div>
       <BeautyPoster />
