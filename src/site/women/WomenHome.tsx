@@ -17,6 +17,7 @@ import { Perks } from '../shared/Perks';
 import { BagPoster } from './BagPoster';
 import { BeautyPoster } from './BeautyPoster';
 import { HeelPoster } from './HeelPoster';
+import { Exemplaire } from './Exemplaire';
 
 /** Women's home: hero, both shops, categories, collections, trending, featured look, guides and new arrivals. */
 export function WomenHome() {
@@ -35,6 +36,7 @@ export function WomenHome() {
     <CategoryCircles products={onModel} />
     <CollectionCards products={onModel} />
     <TrendingRail products={onModel} />
+    <Exemplaire products={onModel} />
     <ReachFeature product={withImages[4] ?? withImages[0]} />
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>bags</b></h2><p className="w-sec-head__note">Clutches and handbags to finish every look.</p></div>
