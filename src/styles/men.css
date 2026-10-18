@@ -222,8 +222,6 @@ html:has(.m-shell), body:has(.m-shell) { background: #c9c9c6; }
 @keyframes watch-turn { to { transform: rotate(360deg); } }
 .m-shell .w-sec-head h2.m-h2-block { display: block; }
 
-/* floating clothes: a cool grey studio instead of the women's warm one */
-.m-shell .w-card--float .w-card__img { background: radial-gradient(120% 80% at 50% 18%, #fbfbf8 0%, #e3e2dc 46%, #b9b8b1 100%); }
 
 /* ---------- Charcoal & sage (user's palette pick, 2026-10-18): #494949 · #A5AAA3 · #8D8D8D · #A4A7AB · #BFBFBE ---------- */
 .m-shell {
@@ -269,9 +267,8 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
 .m-shell .w-card__price { background: rgba(165, 170, 163, .18); color: #e8ebe6; }
 .m-shell .w-card__badge { background: rgba(236, 237, 234, .88); color: #1f1f1f; }
 .m-shell .w-card--pop .w-card__img::before { box-shadow: 0 24px 50px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .15); }
-.m-shell .w-card--float .w-card__img { background: radial-gradient(120% 80% at 50% 15%, #8f918d 0%, #565756 45%, #2e2e2e 100%); box-shadow: 0 20px 40px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .18); }
-.m-shell .w-card--float .w-card__img::after { background: radial-gradient(closest-side, rgba(0, 0, 0, .6), transparent); }
-.m-shell .w-card--float .w-card__cutout { filter: drop-shadow(0 14px 16px rgba(0, 0, 0, .4)); }
+.m-shell .w-card--float .w-card__img { background: var(--coffee-studio); box-shadow: 0 20px 40px rgba(0, 0, 0, .35); }
+.m-shell .w-card--float:nth-child(even) .w-card__img { background: var(--coffee-studio-alt); }
 .m-shell .w-cat__ring img { border-color: rgba(236, 237, 234, .35); }
 .m-shell .w-cat__ring--pop::before, .m-shell .m-cats__empty { background: radial-gradient(circle at 50% 30%, #e8ebe6, #7d827b); }
 .m-shell .look-switch { background: rgba(255, 255, 255, .06); color: #ecedea; }

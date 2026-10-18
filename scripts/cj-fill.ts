@@ -34,6 +34,18 @@ const MEN_SEARCH: Record<string, string[]> = {
   'ties-and-bow-ties': ['men necktie', 'men bow tie', 'men tie set pocket square', 'men silk tie'],
   'dress-shoes': ['men oxford shoes', 'men leather dress shoes', 'men loafers', 'men derby shoes'],
   'belts-and-suspenders': ['men leather belt', 'men suspenders', 'men dress belt'],
+  'hats-and-caps': ['men baseball cap', 'men fedora hat', 'men beanie', 'men bucket hat'],
+  // Named after CJ's Men's Clothing categories (user, 2026-10-18).
+  'outerwear-and-jackets': ['men jacket', 'men coat', 'men bomber jacket', 'men puffer jacket', 'men windbreaker'],
+  bottoms: ['men pants', 'men cargo pants', 'men jeans', 'men trousers', 'men joggers'],
+  't-shirts': ['men t-shirt', 'men oversized t-shirt', 'men polo shirt', 'men graphic tee'],
+  'mens-sleep-and-lounge': ['men loungewear set', 'men home wear', 'men lounge set'],
+  shorts: ['men lounge shorts', 'men sleep shorts', 'men casual shorts', 'men home shorts'],
+  briefs: ['men briefs', 'men underwear briefs'],
+  robes: ['men bathrobe', 'men robe', 'men kimono robe'],
+  'man-pajama-sets': ['men pajama set', 'men pajamas', 'men sleepwear set'],
+  boxers: ['men boxers', 'men boxer briefs', 'men boxer shorts'],
+  'long-johns': ['men long johns', 'men thermal underwear set', 'men thermal base layer'],
 };
 const MEN_FITS: Record<string, RegExp> = {
   'wedding-suits': /\bsuits?\b/i,
@@ -44,6 +56,17 @@ const MEN_FITS: Record<string, RegExp> = {
   'ties-and-bow-ties': /\b(neck ?ties?|bow ?ties?|ties?|pocket squares?|cravats?)\b/i,
   'dress-shoes': /\b(oxfords?|loafers?|brogues?|derby|dress shoes|leather shoes|formal shoes)\b/i,
   'belts-and-suspenders': /\b(belts?|suspenders?|braces)\b/i,
+  'hats-and-caps': /\b(hats?|caps?|fedoras?|beanies?|berets?)\b/i,
+  'outerwear-and-jackets': /\b(jackets?|coats?|bombers?|parkas?|windbreakers?|puffers?|overcoats?|trench)\b/i,
+  bottoms: /\b(pants|trousers|jeans|joggers|chinos|sweatpants)\b/i,
+  't-shirts': /\b(t-?shirts?|tees?|polo)\b/i,
+  'mens-sleep-and-lounge': /\b(lounge(wear)?|home ?wear|homewear|sleepwear|nightwear)\b/i,
+  shorts: /\bshorts\b/i,
+  briefs: /\bbriefs?\b/i,
+  robes: /\b(robes?|bathrobes?|night ?gowns?)\b/i,
+  'man-pajama-sets': /\b(pajamas?|pyjamas?|sleepwear)\b/i,
+  boxers: /\bboxers?\b/i,
+  'long-johns': /\b(long johns|thermal|base ?layer)\b/i,
 };
 // Accessories that only borrow a word (tie clips belong with cufflinks; shoe care is not shoes).
 const NOT_ACCESSORY = /\b(tie ?(clip|bar|pin)s?|cufflinks?|shoe ?(polish|brush|horn|tree|lace)s?|insoles?|belt ?buckles? only|seat ?belt|sneakers?|sandals?|slippers?|boots?)\b/i;
@@ -133,7 +156,11 @@ async function main() {
             if (MEN_PIECES.includes(sub.slug) && (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name))) continue;
             if (sub.slug.startsWith('womens') && MEN_TITLE.test(item.name) && !WOMEN_TITLE.test(item.name)) continue;
           } else if (MEN) {
-            if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || NOT_TAILORING.test(item.name) || NOT_ACCESSORY.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
+            if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
+            if (group.slug === 'mens-formal' && NOT_TAILORING.test(item.name)) continue;
+            if (group.slug === 'mens-accessories' && NOT_ACCESSORY.test(item.name)) continue;
+            // Lounge shorts are not swim trunks; casual tees are not sets.
+            if (sub.slug === 'shorts' && /\b(swim|board|beach)\b/i.test(item.name)) continue;
             // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.
             if (sub.slug === 'wedding-suits' && (MEN_FITS['tuxedos-and-dinner-jackets'].test(item.name) || /\blinen\b/i.test(item.name))) continue;
           }

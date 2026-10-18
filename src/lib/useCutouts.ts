@@ -19,5 +19,9 @@ export function useCutouts(): (id: string) => string | undefined {
   return (id) => map[id] ?? undefined;
 }
 
-/** Clothes cut out with the model erased (no photo worked on the model): shown floating, apart from model photos. */
-export const isFloating = (cutout: string | undefined) => Boolean(cutout?.endsWith('.float.webp'));
+/**
+ * Floating pieces, shown apart from model photos: clothes cut out with the model erased (no photo worked on
+ * the model), and men's accessories (ties, shoes, belts, hats), which never have a model.
+ */
+export const isFloating = (cutout: string | undefined, storeCollection?: string) =>
+  Boolean(cutout && (cutout.endsWith('.float.webp') || storeCollection === 'mens-accessories'));

@@ -19,7 +19,7 @@ export function WomenCard({ product, index = 0 }: { product: Product; index?: nu
   const image = product.images[0]?.url;
   const second = product.images[1]?.url;
   const href = productPath(product);
-  const kind = cutout ? (isFloating(cutout) ? ' w-card--float' : ' w-card--pop') : '';
+  const kind = cutout ? (isFloating(cutout, product.storeCollection) ? ' w-card--float' : ' w-card--pop') : '';
   return <motion.article className={`w-card${kind}`} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}>
     <Link to={href} className="w-card__img" aria-label={product.title}>
       {cutout

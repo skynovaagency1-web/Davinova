@@ -186,7 +186,12 @@ def main() -> int:
         done += 1
         # Clothing photos already checked under the previous rules failed on the model; only the floating cut is new.
         model_photos = [] if kind == 'person' and old.get('v') == FLOAT_FROM else images[:MAX_TRIES]
+        # Photos the owner's reviewer turned down by eye are never picked again ('skip' in the report).
+        skip = set(old.get('skip', []))
         for index, photo in enumerate(model_photos):
+            if photo['url'] in skip:
+                reasons.append(f'{index}: turned down by eye')
+                continue
             try:
                 image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
                 faces = [] if kind == 'object' else find_faces(detector, image)
@@ -208,6 +213,8 @@ def main() -> int:
             # No photo works on the model: show the clothes floating on their own instead.
             cloth_session = cloth_session or new_session('u2net_cloth_seg')
             for index, photo in enumerate(images[:FLOAT_TRIES]):
+                if photo['url'] in skip:
+                    continue
                 try:
                     image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
                     garment, problem = ghost(image, remove(image, session=session), cloth_session)
@@ -230,7 +237,7 @@ def main() -> int:
         else:
             manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
             passed += 1
-        report[pid] = {'v': GATE_VERSION, 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
+        report[pid] = {'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
         print(pid, 'floating' if floating else 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)
