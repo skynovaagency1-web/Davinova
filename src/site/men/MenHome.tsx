@@ -13,6 +13,7 @@ import { ShoePoster } from './ShoePoster';
 import { MenWatchPoster } from './MenWatchPoster';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
+import { jewelryPath, jewelryTypeOf } from '../shared/jewelry';
 
 // The founder's suit photo (background removed). Until it exists the hero shows the latest looks.
 const MEN_CUTOUT = '/images/men-suit.webp';
@@ -29,6 +30,7 @@ export function MenHome() {
   const men = formalMen(products);
   const clothes = menClothes(products);
   const women = products.filter((product) => product.department === 'women');
+  const watches = products.filter((product) => jewelryTypeOf(product) === 'mens-watches' && product.images[0]?.url);
   const looks = clothes.filter((product) => product.images[0]?.url).slice(0, 6);
   const [active, setActive] = useState(0);
   const [hasCutout, setHasCutout] = useState(true);
@@ -91,9 +93,9 @@ export function MenHome() {
     </section>
 
     <section className="w-new">
-      <div className="w-new__head"><h2>New <b>in</b></h2><Link to="/men/shop" className="w-new__all">See all <ArrowRight size={16} /></Link></div>
-      {men.length === 0 && !loading && <p className="m-empty">The first men's looks are being added. Check back soon.</p>}
-      <div className="w-new__rail">{clothes.slice(0, 12).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
+      <div className="w-new__head"><h2>New <b>in</b></h2><Link to={jewelryPath('men', 'mens-watches')} className="w-new__all">See all <ArrowRight size={16} /></Link></div>
+      {watches.length === 0 && !loading && <p className="m-empty">New watches are being added. Check back soon.</p>}
+      <div className="w-new__rail">{watches.slice(0, 12).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
     </section>
 
     <div className="m-split-wrap"><ShopSplit womenImages={women.filter((product) => product.images[0]?.url).slice(0, 24).map((product) => product.images[0].url)} menImages={menDoorImages(products)} womenCount={women.length} menCount={men.length} /></div>
