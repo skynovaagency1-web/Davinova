@@ -8,31 +8,31 @@ export const MEN_OCCASIONS = [
   { no: '03', key: 'maxi-holiday', sub: 'linen-and-summer-suits', title: 'Holiday', short: 'Linen', line: 'Light tailoring for travel' },
 ] as const;
 
-/** Every men's category, in menu order: the three suits first, then the rest of the look. */
+/** Every men's category, in menu order (owner's choice): clothes, then shoes, ties, belts and hats; bags last. */
 export const MEN_CATEGORIES = [
   { sub: 'wedding-suits', short: 'Suits' },
   { sub: 'tuxedos-and-dinner-jackets', short: 'Tuxedos' },
   { sub: 'linen-and-summer-suits', short: 'Linen' },
   { sub: 'blazers-and-waistcoats', short: 'Blazers' },
   { sub: 'dress-shirts', short: 'Shirts' },
-  { sub: 'ties-and-bow-ties', short: 'Ties' },
-  { sub: 'dress-shoes', short: 'Shoes' },
-  { sub: 'belts-and-suspenders', short: 'Belts' },
-  { sub: 'hats-and-caps', short: 'Hats' },
-  { sub: 'loafers', short: 'Loafers' },
-  { sub: 'sneakers', short: 'Sneakers' },
-  { sub: 'briefcases', short: 'Briefcases' },
-  { sub: 'messenger-bags-and-backpacks', short: 'Bags' },
   { sub: 'outerwear-and-jackets', short: 'Outerwear' },
   { sub: 'bottoms', short: 'Bottoms' },
   { sub: 't-shirts', short: 'T-Shirts' },
-  { sub: 'mens-sleep-and-lounge', short: 'Lounge' },
   { sub: 'shorts', short: 'Shorts' },
-  { sub: 'briefs', short: 'Briefs' },
+  { sub: 'mens-sleep-and-lounge', short: 'Lounge' },
   { sub: 'robes', short: 'Robes' },
   { sub: 'man-pajama-sets', short: 'Pajamas' },
   { sub: 'boxers', short: 'Boxers' },
+  { sub: 'briefs', short: 'Briefs' },
   { sub: 'long-johns', short: 'Long Johns' },
+  { sub: 'dress-shoes', short: 'Shoes' },
+  { sub: 'loafers', short: 'Loafers' },
+  { sub: 'sneakers', short: 'Sneakers' },
+  { sub: 'ties-and-bow-ties', short: 'Ties' },
+  { sub: 'belts-and-suspenders', short: 'Belts' },
+  { sub: 'hats-and-caps', short: 'Hats' },
+  { sub: 'briefcases', short: 'Briefcases' },
+  { sub: 'messenger-bags-and-backpacks', short: 'Bags' },
 ] as const;
 
 export const menCategoryPath = (sub: string) => `/men/shop?cat=${sub}`;

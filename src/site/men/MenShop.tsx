@@ -24,7 +24,12 @@ export function MenShop() {
     // Occasions sort the suits; accessories only show under All or their own category.
     const list = all.filter((product) => (occasion === 'all' || (product.storeCollection === MEN_FORMAL && product.collectionCategory === occasion))
       && (cat === 'all' || product.storeSubcategory === cat));
-    return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
+    // Featured follows the category order: clothes, then shoes, ties, belts and hats.
+    const rank = (product: (typeof list)[number]) => {
+      const index = MEN_CATEGORIES.findIndex((item) => item.sub === product.storeSubcategory);
+      return index < 0 ? MEN_CATEGORIES.length : index;
+    };
+    return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : rank(a) - rank(b) || Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
   }, [all, occasion, cat, sort]);
   // Photos on a model and floating clothes (model erased) are shown apart, never mixed in one grid.
   const cutoutFor = useCutouts();
