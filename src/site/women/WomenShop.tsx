@@ -37,8 +37,8 @@ export function WomenShop() {
   }, [women, collection, sub, fit, colour, style, sort]);
   // Photos on a model and floating clothes (model erased) are shown apart, never mixed in one grid.
   const cutoutFor = useCutouts();
-  const floating = filtered.filter((product) => isFloating(cutoutFor(product.id)));
-  const onModel = filtered.filter((product) => !isFloating(cutoutFor(product.id)));
+  const floating = filtered.filter((product) => isFloating(cutoutFor(product.id), product.storeCollection));
+  const onModel = filtered.filter((product) => !isFloating(cutoutFor(product.id), product.storeCollection));
   const look = params.get('look') === 'floating' || !onModel.length ? 'floating' : 'model';
   const shown = look === 'floating' ? floating : onModel;
   const { visible, remaining, more, sentinel } = usePaged(shown, `${collection}|${sub}|${fit}|${colour}|${style}|${sort}|${look}`);

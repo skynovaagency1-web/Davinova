@@ -34,7 +34,29 @@ function subcategory(label: string, ...matchTerms: string[]): StoreSubcategoryOp
   };
 }
 
+export const WOMEN_BAGS = 'womens-bags';
+export const WOMEN_SHOES = 'womens-shoes';
+/** Pieces shown floating on their own (never on a model): bags, shoes and men's accessories. */
+export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories'];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
+  {
+    slug: WOMEN_BAGS,
+    label: 'Bags',
+    subcategories: [
+      subcategory('Clutches & Evening Bags', 'clutch', 'evening bag', 'wedding clutch', 'party bag'),
+      subcategory('Handbags', 'handbag', 'shoulder bag', 'crossbody bag'),
+      subcategory('Totes', 'tote bag', 'tote'),
+    ],
+  },
+  {
+    slug: WOMEN_SHOES,
+    label: 'Shoes',
+    subcategories: [
+      subcategory('Heels', 'high heels', 'pumps', 'stiletto', 'heeled sandals'),
+      subcategory('Flats & Sandals', 'flats', 'sandals', 'ballet flats', 'mules'),
+      subcategory('Boots', 'ankle boots', 'knee high boots', 'boots'),
+    ],
+  },
   {
     slug: 'accessories',
     label: 'Accessories',
@@ -187,6 +209,8 @@ export function normalizeStoreText(value: string): string {
 /** The men's shop runs on its own list, kept apart so the women's menus and auto-sorting never see it. */
 export const MEN_FORMAL = 'mens-formal';
 export const MEN_ACCESSORIES = 'mens-accessories';
+export const MEN_EVERYDAY = 'mens-everyday';
+export const MEN_LOUNGE = 'mens-underwear-loungewear';
 export const menStoreCollectionGroups: StoreCollectionGroup[] = [
   {
     slug: MEN_FORMAL,
@@ -206,9 +230,40 @@ export const menStoreCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Ties & Bow Ties', 'necktie', 'bow tie', 'pocket square'),
       subcategory('Dress Shoes', 'oxford shoes', 'loafers', 'derby shoes', 'brogues'),
       subcategory('Belts & Suspenders', 'leather belt', 'suspenders', 'braces'),
+      subcategory('Hats & Caps', 'baseball cap', 'fedora', 'beanie', 'bucket hat'),
+      subcategory('Loafers', 'loafers', 'penny loafers', 'slip-on shoes'),
+      subcategory('Sneakers', 'sneakers', 'trainers', 'casual shoes'),
+      subcategory('Briefcases', 'briefcase', 'laptop bag', 'business bag'),
+      subcategory('Messenger Bags & Backpacks', 'messenger bag', 'backpack', 'crossbody bag'),
+    ],
+  },
+  // Named like CJ's own Men's Clothing categories (user, 2026-10-18).
+  {
+    slug: MEN_EVERYDAY,
+    label: 'Men’s Clothing',
+    subcategories: [
+      subcategory('Outerwear & Jackets', 'jacket', 'coat', 'bomber', 'windbreaker', 'puffer'),
+      subcategory('Bottoms', 'pants', 'trousers', 'jeans', 'cargo pants', 'joggers'),
+      subcategory('T-Shirts', 't-shirt', 'tee', 'polo shirt'),
+    ],
+  },
+  {
+    slug: MEN_LOUNGE,
+    label: 'Underwear & Loungewear',
+    subcategories: [
+      subcategory('Men’s Sleep & Lounge', 'lounge set', 'loungewear', 'home wear'),
+      subcategory('Shorts', 'lounge shorts', 'sleep shorts', 'home shorts'),
+      subcategory('Briefs', 'briefs', 'underwear'),
+      subcategory('Robes', 'bathrobe', 'robe', 'night gown'),
+      subcategory('Man Pajama Sets', 'pajama set', 'pyjamas', 'sleepwear set'),
+      subcategory('Boxers', 'boxers', 'boxer briefs', 'boxer shorts'),
+      subcategory('Long Johns', 'long johns', 'thermal underwear', 'base layer'),
     ],
   },
 ];
+
+/** Every men's collection: imports into these are filed under the men's department. */
+export const MEN_COLLECTIONS = [MEN_FORMAL, MEN_ACCESSORIES, MEN_EVERYDAY, MEN_LOUNGE];
 
 /** The men's occasion each men's sub-category belongs to (Wedding, Black tie, Holiday). */
 export const MEN_OCCASION_BY_SUBCATEGORY: Record<string, 'wedding-guest' | 'cocktail-party' | 'maxi-holiday'> = {

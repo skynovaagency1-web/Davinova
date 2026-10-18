@@ -428,8 +428,14 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .hang-bag:hover .hang-bag__tag { opacity: 1; }
 @keyframes bag-swing { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
 .w-footer__big { position: relative; z-index: 1; }
+/* the bag hangs from the apex of the last "A" */
+.w-footer__hook { position: relative; display: inline-block; width: 0; height: 0; vertical-align: top; }
+/* the hook sits just before the last "A"; --a-mid is the middle of that letter */
+.w-footer { --a-mid: .43em; }
+.w-footer__hook .hang-bag__tag { -webkit-text-stroke: 0; }
+.w-footer__hook .hang-bag { top: .02em; left: calc(var(--a-mid) - var(--bag-w) / 2); font-size: var(--foot-word); }
 .w-footer__row { min-height: calc(var(--bag-w) * 1.91 * .44 + 10px); align-items: end; }
-@media (max-width: 760px) { .w-footer { --bag-w: 70px; } .hang-bag { left: auto; right: 18px; } }
+@media (max-width: 760px) { .w-footer { --bag-w: 70px; } }
 
 /* ---------- Watch campaign + Watches page ---------- */
 .watch-poster { position: relative; display: block; overflow: hidden; border-radius: 32px; border: 1px solid var(--amber-line); box-shadow: 0 40px 80px rgba(20, 8, 0, .35); isolation: isolate; }
@@ -516,7 +522,7 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-watches .beauty-poster { aspect-ratio: 560 / 752; }
 
 /* floating clothes (model erased; cut-outs named *.float.webp): a lit studio box, the garment drifts above its own shadow */
-.w-card--float .w-card__img { isolation: isolate; background: radial-gradient(120% 80% at 50% 18%, #f6efe7 0%, #dccbb9 46%, #8e735b 100%); border: 1px solid var(--amber-line, rgba(255, 255, 255, .75)); box-shadow: 0 20px 40px rgba(20, 20, 24, .16), inset 0 1px 0 rgba(255, 255, 255, .8); }
+.w-card--float .w-card__img { isolation: isolate; background: var(--coffee-studio); border: 1px solid var(--amber-line, rgba(255, 255, 255, .75)); box-shadow: 0 20px 40px rgba(20, 20, 24, .16), inset 0 1px 0 rgba(255, 255, 255, .8); }
 .w-card--float .w-card__img::after { content: ""; position: absolute; z-index: -1; left: 50%; bottom: 6%; width: 52%; height: 5%; border-radius: 50%; background: radial-gradient(closest-side, rgba(20, 20, 24, .42), transparent); transform: translateX(-50%); animation: w-float-shadow 6.5s ease-in-out infinite; }
 .w-card--float .w-card__cutout { inset: 7% 10% 14%; width: 80%; height: 79%; object-fit: contain; filter: drop-shadow(0 14px 16px rgba(10, 10, 14, .22)); animation: w-float 6.5s ease-in-out infinite; }
 .w-card--float:hover .w-card__cutout { filter: drop-shadow(0 18px 18px rgba(10, 10, 14, .3)); }
@@ -532,3 +538,22 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .m-shell .look-switch { background: rgba(255, 255, 255, .34); color: #1d1d1f; }
 .m-shell .look-switch button { font-family: var(--m-mono); font-size: 12px; }
 .m-shell .look-switch button.active { background: linear-gradient(135deg, #3d3d40, #121214); color: #f2f2f2; }
+
+/* Coffee luxury studio for floating pieces (user's "Coffee Brand" palette, 2026-10-18): cream with soft espresso, latte and mocha haze */
+:root {
+  --coffee-studio:
+    radial-gradient(circle at 88% 16%, rgba(62, 44, 35, .55), transparent 34%),
+    radial-gradient(circle at 8% 72%, rgba(200, 155, 123, .7), transparent 38%),
+    radial-gradient(circle at 72% 98%, rgba(111, 78, 55, .5), transparent 36%),
+    linear-gradient(180deg, #f8efe6 0%, #f1e3d3 100%);
+  --coffee-studio-alt:
+    radial-gradient(circle at 12% 14%, rgba(111, 78, 55, .45), transparent 34%),
+    radial-gradient(circle at 92% 66%, rgba(200, 155, 123, .7), transparent 38%),
+    radial-gradient(circle at 24% 100%, rgba(62, 44, 35, .45), transparent 36%),
+    linear-gradient(180deg, #f8efe6 0%, #f1e3d3 100%);
+}
+.w-card--float:nth-child(even) .w-card__img { background: var(--coffee-studio-alt); }
+.w-card--float .w-card__img { border-color: rgba(241, 227, 211, .7); }
+.w-card--float .w-card__img::after { background: radial-gradient(closest-side, rgba(62, 44, 35, .5), transparent); }
+.w-card--float .w-card__cutout { filter: drop-shadow(0 14px 16px rgba(62, 44, 35, .3)); }
+.w-card--float .w-card__badge { background: rgba(62, 44, 35, .78); color: #f1e3d3; }

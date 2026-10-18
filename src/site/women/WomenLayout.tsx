@@ -73,8 +73,7 @@ export function WomenLayout() {
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}><Outlet /></motion.div></main>
     <footer className="w-footer">
-      <HangingBag />
-      <div className="w-footer__big" aria-hidden="true">DAVINOVA</div>
+      <div className="w-footer__big"><span aria-hidden="true">DAVINOV</span><span className="w-footer__hook"><HangingBag /></span><span aria-hidden="true">A</span></div>
       <Logo tone="brand" />
       <div className="w-footer__row">
         <p>Dresses for the moments you'll keep.</p>

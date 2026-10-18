@@ -32,8 +32,24 @@ const MEN_SEARCH: Record<string, string[]> = {
   'blazers-and-waistcoats': ['men blazer', 'men sport coat', 'men waistcoat', 'men suit vest'],
   'dress-shirts': ['men dress shirt', 'men formal shirt', 'men tuxedo shirt', 'men slim fit shirt'],
   'ties-and-bow-ties': ['men necktie', 'men bow tie', 'men tie set pocket square', 'men silk tie'],
-  'dress-shoes': ['men oxford shoes', 'men leather dress shoes', 'men loafers', 'men derby shoes'],
+  'dress-shoes': ['men oxford shoes', 'men leather dress shoes', 'men derby shoes', 'men brogues'],
   'belts-and-suspenders': ['men leather belt', 'men suspenders', 'men dress belt'],
+  loafers: ['men loafers', 'men penny loafers', 'men leather loafers'],
+  sneakers: ['men leather sneakers', 'men white sneakers', 'men casual sneakers'],
+  briefcases: ['men leather briefcase', 'men business bag', 'men laptop bag'],
+  'messenger-bags-and-backpacks': ['men messenger bag', 'men leather backpack', 'men crossbody bag'],
+  'hats-and-caps': ['men baseball cap', 'men fedora hat', 'men beanie', 'men bucket hat'],
+  // Named after CJ's Men's Clothing categories (user, 2026-10-18).
+  'outerwear-and-jackets': ['men jacket', 'men coat', 'men bomber jacket', 'men puffer jacket', 'men windbreaker'],
+  bottoms: ['men pants', 'men cargo pants', 'men jeans', 'men trousers', 'men joggers'],
+  't-shirts': ['men t-shirt', 'men oversized t-shirt', 'men polo shirt', 'men graphic tee'],
+  'mens-sleep-and-lounge': ['men loungewear set', 'men home wear', 'men lounge set'],
+  shorts: ['men lounge shorts', 'men sleep shorts', 'men casual shorts', 'men home shorts'],
+  briefs: ['men briefs', 'men underwear briefs'],
+  robes: ['men bathrobe', 'men robe', 'men kimono robe'],
+  'man-pajama-sets': ['men pajama set', 'men pajamas', 'men sleepwear set'],
+  boxers: ['men boxers', 'men boxer briefs', 'men boxer shorts'],
+  'long-johns': ['men long johns', 'men thermal underwear set', 'men thermal base layer'],
 };
 const MEN_FITS: Record<string, RegExp> = {
   'wedding-suits': /\bsuits?\b/i,
@@ -44,11 +60,35 @@ const MEN_FITS: Record<string, RegExp> = {
   'ties-and-bow-ties': /\b(neck ?ties?|bow ?ties?|ties?|pocket squares?|cravats?)\b/i,
   'dress-shoes': /\b(oxfords?|loafers?|brogues?|derby|dress shoes|leather shoes|formal shoes)\b/i,
   'belts-and-suspenders': /\b(belts?|suspenders?|braces)\b/i,
+  'hats-and-caps': /\b(hats?|caps?|fedoras?|beanies?|berets?)\b/i,
+  loafers: /\bloafers?\b/i,
+  sneakers: /\b(sneakers?|trainers?)\b/i,
+  briefcases: /\b(briefcases?|business bags?|laptop bags?|handbags?)\b/i,
+  'messenger-bags-and-backpacks': /\b(messenger|backpacks?|crossbody|shoulder bags?|sling bags?)\b/i,
+  'outerwear-and-jackets': /\b(jackets?|coats?|bombers?|parkas?|windbreakers?|puffers?|overcoats?|trench)\b/i,
+  bottoms: /\b(pants|trousers|jeans|joggers|chinos|sweatpants)\b/i,
+  't-shirts': /\b(t-?shirts?|tees?|polo)\b/i,
+  'mens-sleep-and-lounge': /\b(lounge(wear)?|home ?wear|homewear|sleepwear|nightwear)\b/i,
+  shorts: /\bshorts\b/i,
+  briefs: /\bbriefs?\b/i,
+  robes: /\b(robes?|bathrobes?|night ?gowns?)\b/i,
+  'man-pajama-sets': /\b(pajamas?|pyjamas?|sleepwear)\b/i,
+  boxers: /\bboxers?\b/i,
+  'long-johns': /\b(long johns|thermal|base ?layer)\b/i,
 };
 // Accessories that only borrow a word (tie clips belong with cufflinks; shoe care is not shoes).
 const NOT_ACCESSORY = /\b(tie ?(clip|bar|pin)s?|cufflinks?|shoe ?(polish|brush|horn|tree|lace)s?|insoles?|belt ?buckles? only|seat ?belt|sneakers?|sandals?|slippers?|boots?)\b/i;
 // Casual pieces that only borrow the word "suit".
 const NOT_TAILORING = /\b(tracksuit|sweatsuit|swimsuit|jogging|sports? suit|pajama|hoodie|sweat|shorts? suit|t-?shirt)\b/i;
+// Women's bags and shoes (run without MEN or JEWELRY, with only= these slugs): explicit searches, like the men's list.
+const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
+  'clutches-and-evening-bags': { search: ['women evening clutch', 'wedding clutch bag', 'rhinestone evening bag', 'women party clutch'], fit: /\b(clutch(es)?|evening bags?|party bags?)\b/i },
+  handbags: { search: ['women leather handbag', 'women shoulder bag', 'women crossbody bag'], fit: /\b(handbags?|shoulder bags?|crossbody|top handle)\b/i },
+  totes: { search: ['women tote bag', 'women leather tote'], fit: /\btotes?\b/i },
+  heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
+  'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
+  boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },
+};
 // JEWELRY=1 fills Jewelry & Watches for both shops: titles must name the piece, and men's pieces must not say women.
 const JEWELRY = process.env.JEWELRY === '1';
 const JEWELRY_SEARCH: Record<string, string[]> = {
@@ -104,7 +144,9 @@ async function main() {
   // A product only counts once its photo passed the check (unchecked new imports count too, so re-runs don't over-import).
   const shown = (group: string, sub: string) => catalog.products.filter((product) => product.storeCollection === group && product.storeSubcategory === sub && manifest[product.id] !== null).length;
 
-  const slots = (JEWELRY ? jewelryStoreCollectionGroups : MEN ? menStoreCollectionGroups : storeCollectionGroups).flatMap((group) => group.subcategories.map((sub) => ({ group, sub })))
+  // MEN=1 with only= may also name women's bags and shoes, so one run can fill both lists.
+  const lists = JEWELRY ? jewelryStoreCollectionGroups : MEN ? [...menStoreCollectionGroups, ...(ONLY.length ? storeCollectionGroups.filter((group) => group.subcategories.some((sub) => WOMEN_OBJECTS[sub.slug])) : [])] : storeCollectionGroups;
+  const slots = lists.flatMap((group) => group.subcategories.map((sub) => ({ group, sub })))
     .filter(({ sub }) => !ONLY.length || ONLY.includes(sub.slug))
     .sort((a, b) => rank(a.group.slug, a.sub.slug) - rank(b.group.slug, b.sub.slug));
 
@@ -116,7 +158,7 @@ async function main() {
     let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
-    const words = JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, ...PLUS_SEARCH] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
+    const words = WOMEN_OBJECTS[sub.slug] && !menStoreCollectionGroups.includes(group) ? WOMEN_OBJECTS[sub.slug].search : JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, ...PLUS_SEARCH] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
       for (let page = 1; page <= (PLUS ? 10 : 5) && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
@@ -132,13 +174,20 @@ async function main() {
             if (NOT_JEWELRY.test(item.name) || !JEWELRY_FITS[sub.slug]?.test(item.name)) continue;
             if (MEN_PIECES.includes(sub.slug) && (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name))) continue;
             if (sub.slug.startsWith('womens') && MEN_TITLE.test(item.name) && !WOMEN_TITLE.test(item.name)) continue;
-          } else if (MEN) {
-            if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || NOT_TAILORING.test(item.name) || NOT_ACCESSORY.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
+          } else if (MEN && menStoreCollectionGroups.includes(group)) {
+            if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
+            if (group.slug === 'mens-formal' && NOT_TAILORING.test(item.name)) continue;
+            if (group.slug === 'mens-accessories' && sub.slug !== 'sneakers' && NOT_ACCESSORY.test(item.name)) continue;
+            // Lounge shorts are not swim trunks; casual tees are not sets.
+            if (sub.slug === 'shorts' && /\b(swim|board|beach)\b/i.test(item.name)) continue;
             // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.
             if (sub.slug === 'wedding-suits' && (MEN_FITS['tuxedos-and-dinner-jackets'].test(item.name) || /\blinen\b/i.test(item.name))) continue;
           }
           let target = { collection: group.slug, subcategory: sub.slug };
-          if (!JEWELRY && !MEN) {
+          if (WOMEN_OBJECTS[sub.slug] && !menStoreCollectionGroups.includes(group)) {
+            // Bags and shoes: the title must name the piece, and not be made for men or children.
+            if (!WOMEN_OBJECTS[sub.slug].fit.test(item.name) || (MEN_TITLE.test(item.name) && !WOMEN_TITLE.test(item.name)) || /\b(kids?|child|children|baby)\b/i.test(item.name)) continue;
+          } else if (!JEWELRY && !MEN) {
             const fit = suggestStoreCollection(item.name, item.category);
             if (fit?.collection === group.slug && fit.subcategory === sub.slug) { /* fits the slot */ }
             // Plus-size dresses rarely sort into the exact slot searched; keep any dress, filed where its title says.

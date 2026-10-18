@@ -6,10 +6,12 @@ import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { formatMoney } from '../../lib/format';
 import { productPath } from '../../lib/storefront';
 import { WomenCard as ProductCard } from '../women/WomenCard';
-import { formalMen } from './menFormal';
+import { formalMen, menClothes } from './menFormal';
 import { MenCollections } from './MenCollections';
 import { MenCircles } from './MenCircles';
 import { MenTrending } from './MenTrending';
+import { ShoePoster } from './ShoePoster';
+import { MenWatchPoster } from './MenWatchPoster';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 
@@ -28,6 +30,7 @@ const codes = [
 export function MenHome() {
   const { products, loading } = useCatalogProducts();
   const men = formalMen(products);
+  const clothes = menClothes(products);
   const women = products.filter((product) => product.department === 'women');
   const looks = men.filter((product) => product.images[0]?.url).slice(0, 4);
   const [active, setActive] = useState(0);
@@ -68,17 +71,26 @@ export function MenHome() {
 
     <MenCircles products={men} />
     <MenCollections products={men} />
-    <MenTrending products={men} />
+    <MenTrending products={clothes} />
+    <section className="w-watch-feature">
+      <div className="w-sec-head"><h2>New: <b>shoes</b></h2><p className="w-sec-head__note">Patent, polished, made for the entrance.</p></div>
+      <ShoePoster />
+    </section>
 
     <section className="w-codes">
       <div className="w-sec-head"><h2 className="m-h2-block">Dress code, <b>decoded</b></h2><p className="w-sec-head__note">What each invitation really means, and what to wear.</p></div>
       <div className="w-codes__grid">{codes.map(([title, tip], index) => <div key={title} className="w-code"><span className="w-code__no">{String(index + 1).padStart(2, '0')}</span><strong>{title}</strong><p>{tip}</p></div>)}</div>
     </section>
 
+    <section className="w-watch-feature">
+      <div className="w-sec-head"><h2>New: <b>watches</b></h2><p className="w-sec-head__note">Rose gold, Roman numerals, built to be noticed.</p></div>
+      <MenWatchPoster />
+    </section>
+
     <section className="w-new">
       <div className="w-new__head"><h2>New <b>in</b></h2><Link to="/men/shop" className="w-new__all">See all <ArrowRight size={16} /></Link></div>
       {men.length === 0 && !loading && <p className="m-empty">The first men's looks are being added. Check back soon.</p>}
-      <div className="w-new__rail">{men.slice(0, 12).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
+      <div className="w-new__rail">{clothes.slice(0, 12).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
     </section>
 
     <div className="m-split-wrap"><ShopSplit womenImage={women.find((product) => product.images[0]?.url)?.images[0].url} womenCount={women.length} menCount={men.length} /></div>

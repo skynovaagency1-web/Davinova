@@ -62,8 +62,7 @@ export function MenLayout() {
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}><Outlet /></motion.div></main>
     <footer className="w-footer m-footer">
-      <HangingWatch to="/men/bag" />
-      <div className="w-footer__big" aria-hidden="true">DAVINOVA</div>
+      <div className="w-footer__big"><span aria-hidden="true">DAVINOV</span><span className="w-footer__hook"><HangingWatch to="/men/bag" /></span><span aria-hidden="true">A</span></div>
       <Logo tone="metal" sub="HOMME" />
       <div className="w-footer__row">
         <p>Formalwear for the moments you'll keep.</p>

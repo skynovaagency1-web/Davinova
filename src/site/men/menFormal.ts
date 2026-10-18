@@ -1,5 +1,5 @@
 import type { Product } from '../../types/product';
-import { MEN_ACCESSORIES, MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
+import { MEN_ACCESSORIES, MEN_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 
 /** The men's three occasions, each backed by one sub-category of the men's formal list. */
 export const MEN_OCCASIONS = [
@@ -18,13 +18,31 @@ export const MEN_CATEGORIES = [
   { sub: 'ties-and-bow-ties', short: 'Ties' },
   { sub: 'dress-shoes', short: 'Shoes' },
   { sub: 'belts-and-suspenders', short: 'Belts' },
+  { sub: 'hats-and-caps', short: 'Hats' },
+  { sub: 'loafers', short: 'Loafers' },
+  { sub: 'sneakers', short: 'Sneakers' },
+  { sub: 'briefcases', short: 'Briefcases' },
+  { sub: 'messenger-bags-and-backpacks', short: 'Bags' },
+  { sub: 'outerwear-and-jackets', short: 'Outerwear' },
+  { sub: 'bottoms', short: 'Bottoms' },
+  { sub: 't-shirts', short: 'T-Shirts' },
+  { sub: 'mens-sleep-and-lounge', short: 'Lounge' },
+  { sub: 'shorts', short: 'Shorts' },
+  { sub: 'briefs', short: 'Briefs' },
+  { sub: 'robes', short: 'Robes' },
+  { sub: 'man-pajama-sets', short: 'Pajamas' },
+  { sub: 'boxers', short: 'Boxers' },
+  { sub: 'long-johns', short: 'Long Johns' },
 ] as const;
 
 export const menCategoryPath = (sub: string) => `/men/shop?cat=${sub}`;
 
 export const menOccasionPath = (key: string) => `/men/shop?occasion=${key}`;
 
-/** Only the formalwear and accessories chosen for the men's shop; stray casual imports never show here. */
+/** Only products filed in the men's own lists; stray imports never show here. */
 export function formalMen(products: Product[]) {
-  return products.filter((product) => product.department === 'men' && (product.storeCollection === MEN_FORMAL || product.storeCollection === MEN_ACCESSORIES));
+  return products.filter((product) => product.department === 'men' && MEN_COLLECTIONS.includes(product.storeCollection ?? ''));
 }
+
+/** Clothes only, for the rails (Trending now, New in): no ties, shoes, belts or hats. */
+export const menClothes = (products: Product[]) => formalMen(products).filter((product) => product.storeCollection !== MEN_ACCESSORIES);
