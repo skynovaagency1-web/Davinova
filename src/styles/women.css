@@ -514,3 +514,21 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 @keyframes beauty-sweep { 0%, 15% { background-position: 120% 0; } 70%, 100% { background-position: -40% 0; } }
 @keyframes beauty-like { 0%, 30% { opacity: 0; transform: translate(-50%, -50%) scale(.6); } 38% { opacity: 1; transform: translate(-50%, -50%) scale(1.35); } 46%, 85% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } }
 .w-watches .beauty-poster { aspect-ratio: 560 / 752; }
+
+/* floating clothes (model erased; cut-outs named *.float.webp): a lit studio box, the garment drifts above its own shadow */
+.w-card--float .w-card__img { isolation: isolate; background: radial-gradient(120% 80% at 50% 18%, #fff8ec 0%, #f1dfc2 46%, #c9a275 100%); border: 1px solid var(--amber-line, rgba(255, 255, 255, .75)); box-shadow: 0 20px 40px rgba(20, 20, 24, .16), inset 0 1px 0 rgba(255, 255, 255, .8); }
+.w-card--float .w-card__img::after { content: ""; position: absolute; z-index: -1; left: 50%; bottom: 6%; width: 52%; height: 5%; border-radius: 50%; background: radial-gradient(closest-side, rgba(20, 20, 24, .42), transparent); transform: translateX(-50%); animation: w-float-shadow 6.5s ease-in-out infinite; }
+.w-card--float .w-card__cutout { inset: 7% 10% 14%; width: 80%; height: 79%; object-fit: contain; filter: drop-shadow(0 14px 16px rgba(10, 10, 14, .22)); animation: w-float 6.5s ease-in-out infinite; }
+.w-card--float:hover .w-card__cutout { filter: drop-shadow(0 18px 18px rgba(10, 10, 14, .3)); }
+@keyframes w-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-4%) rotate(1deg); } }
+@keyframes w-float-shadow { 0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); } 50% { opacity: .6; transform: translateX(-50%) scale(.82); } }
+@media (prefers-reduced-motion: reduce) { .w-card--float .w-card__cutout, .w-card--float .w-card__img::after { animation: none; } }
+
+/* On model | Floating switch above the shop grids */
+.look-switch { display: flex; width: max-content; max-width: 100%; margin: 26px auto 6px; padding: 5px; gap: 4px; border-radius: 999px; background: rgba(255, 245, 230, .14); border: 1px solid var(--amber-line, rgba(255, 255, 255, .6)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.look-switch button { padding: 10px 22px; border: 0; border-radius: 999px; background: none; color: inherit; font: 600 13px/1 inherit; letter-spacing: .02em; cursor: pointer; transition: background .3s, color .3s; }
+.look-switch button i { margin-left: 6px; font-style: normal; opacity: .6; }
+.look-switch button.active { background: linear-gradient(110deg, #f6d796, #e9b25a 60%, #c9832a); color: #2a1206; }
+.m-shell .look-switch { background: rgba(255, 255, 255, .34); color: #1d1d1f; }
+.m-shell .look-switch button { font-family: var(--m-mono); font-size: 12px; }
+.m-shell .look-switch button.active { background: linear-gradient(135deg, #3d3d40, #121214); color: #f2f2f2; }

@@ -2,6 +2,10 @@ name: Product cutouts
 
 on:
   workflow_dispatch:
+    inputs:
+      limit:
+        description: Products to check in this run
+        default: '300'
   push:
     branches: [feature/3d-fashion-storefront]
     paths: [scripts/cutouts.py, scripts/models/**, .github/workflows/cutouts.yml]
@@ -14,7 +18,7 @@ concurrency: cutouts
 jobs:
   cutouts:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,6 +26,8 @@ jobs:
           python-version: '3.11'
       - run: pip install "rembg[cpu]==2.0.85" pillow opencv-python-headless
       - run: python scripts/cutouts.py
+        env:
+          LIMIT: ${{ github.event.inputs.limit || '300' }}
       - name: Commit cutouts
         run: |
           git config user.name "davinova-bot"

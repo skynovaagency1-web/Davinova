@@ -5,15 +5,12 @@ import { ArrowUpRight } from 'lucide-react';
 import type { Product } from '../../types/product';
 import { formatMoney } from '../../lib/format';
 import { productPath } from '../../lib/storefront';
-import { useCutouts } from '../../lib/useCutouts';
-import { MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
-
-/** Clothing whose cut-out has the model erased: it floats in a lit studio box instead of standing on glass. */
-const floats = (product: Product) => product.storeCollection === MEN_FORMAL;
+import { isFloating, useCutouts } from '../../lib/useCutouts';
 
 /**
  * Women's product card. When the dress has a cut-out photo, the glass card is only the lower part and
- * the dress stands up out of it (3D pop-out); otherwise the photo sits inside the card.
+ * the dress stands up out of it (3D pop-out); clothes with the model erased float in a lit studio box;
+ * otherwise the photo sits inside the card.
  */
 export function WomenCard({ product, index = 0 }: { product: Product; index?: number }) {
   const [broken, setBroken] = useState(false);
@@ -22,7 +19,7 @@ export function WomenCard({ product, index = 0 }: { product: Product; index?: nu
   const image = product.images[0]?.url;
   const second = product.images[1]?.url;
   const href = productPath(product);
-  const kind = cutout ? (floats(product) ? ' w-card--float' : ' w-card--pop') : '';
+  const kind = cutout ? (isFloating(cutout) ? ' w-card--float' : ' w-card--pop') : '';
   return <motion.article className={`w-card${kind}`} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}>
     <Link to={href} className="w-card__img" aria-label={product.title}>
       {cutout

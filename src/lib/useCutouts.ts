@@ -18,3 +18,6 @@ export function useCutouts(): (id: string) => string | undefined {
   useEffect(() => { let alive = true; loadCutouts().then((data) => { if (alive) setMap(data); }); return () => { alive = false; }; }, []);
   return (id) => map[id] ?? undefined;
 }
+
+/** Clothes cut out with the model erased (no photo worked on the model): shown floating, apart from model photos. */
+export const isFloating = (cutout: string | undefined) => Boolean(cutout?.endsWith('.float.webp'));
