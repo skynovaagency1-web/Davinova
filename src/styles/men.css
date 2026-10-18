@@ -221,3 +221,12 @@ html:has(.m-shell), body:has(.m-shell) { background: #c9c9c6; }
 .hang-watch__hand--sec { animation-timing-function: steps(60); }
 @keyframes watch-turn { to { transform: rotate(360deg); } }
 .m-shell .w-sec-head h2.m-h2-block { display: block; }
+
+/* floating clothes (model erased): a lit studio box, the garment drifts above its own shadow */
+.w-card--float .w-card__img { isolation: isolate; background: radial-gradient(120% 80% at 50% 18%, #fbfbf8 0%, #e3e2dc 46%, #b9b8b1 100%); border: 1px solid var(--amber-line, rgba(255, 255, 255, .75)); box-shadow: 0 20px 40px rgba(20, 20, 24, .16), inset 0 1px 0 rgba(255, 255, 255, .8); }
+.w-card--float .w-card__img::after { content: ""; position: absolute; z-index: -1; left: 50%; bottom: 6%; width: 52%; height: 5%; border-radius: 50%; background: radial-gradient(closest-side, rgba(20, 20, 24, .42), transparent); transform: translateX(-50%); animation: w-float-shadow 6.5s ease-in-out infinite; }
+.w-card--float .w-card__cutout { inset: 7% 10% 14%; width: 80%; height: 79%; object-fit: contain; filter: drop-shadow(0 14px 16px rgba(10, 10, 14, .22)); animation: w-float 6.5s ease-in-out infinite; }
+.w-card--float:hover .w-card__cutout { filter: drop-shadow(0 18px 18px rgba(10, 10, 14, .3)); }
+@keyframes w-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-4%) rotate(1deg); } }
+@keyframes w-float-shadow { 0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); } 50% { opacity: .6; transform: translateX(-50%) scale(.82); } }
+@media (prefers-reduced-motion: reduce) { .w-card--float .w-card__cutout, .w-card--float .w-card__img::after { animation: none; } }
