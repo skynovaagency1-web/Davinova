@@ -4406,6 +4406,21 @@
   "url": null,
   "v": 2
  },
+ "cj-1772509496120713216": {
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)",
+   "5: no face (headless or cropped)",
+   "6: cut off at the bottom",
+   "7: head cut off by the frame"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-1772810344583401472": {
   "photo": null,
   "rejected": [
@@ -6671,6 +6686,18 @@
   "url": null,
   "v": 2
  },
+ "cj-2094998619326570498": {
+  "photo": null,
+  "rejected": [
+   "0: no face (headless or cropped)",
+   "1: no face (headless or cropped)",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2095015933086326785": {
   "photo": null,
   "rejected": [
@@ -7276,6 +7303,12 @@
   "url": null,
   "v": 2
  },
+ "cj-2098308676810235906": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/66225450-5326-480d-8db0-87a74636ddc0.jpg",
+  "v": 2
+ },
  "cj-2098317323086913537": {
   "photo": null,
   "rejected": [
@@ -7398,6 +7431,12 @@
    "1: collage or several figures"
   ],
   "url": "https://cf.cjdropshipping.com/a8c956f9-9e80-41f6-8cc2-48540e7100d1.jpeg",
+  "v": 2
+ },
+ "cj-2100125782113890306": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/06d9c144-b958-4e00-8118-1552b139ce4e.jpg",
   "v": 2
  },
  "cj-2100147603591446530": {
@@ -8680,6 +8719,12 @@
    "7: no face (headless or cropped)"
   ],
   "url": null,
+  "v": 2
+ },
+ "cj-2406300826291622200": {
+  "photo": 0,
+  "rejected": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/34e1d64f-d1d4-40b0-bf29-62566204893e.jpg",
   "v": 2
  },
  "cj-2406300843291613200": {
@@ -10042,6 +10087,18 @@
   "url": "https://cf.cjdropshipping.com/quick/product/c8beecbd-865c-4b53-8128-ee784245f76d.jpg",
   "v": 2
  },
+ "cj-2411300839501605300": {
+  "photo": null,
+  "rejected": [
+   "0: head cut off by the frame",
+   "1: no face (headless or cropped)",
+   "2: head cut off by the frame",
+   "3: no face (headless or cropped)",
+   "4: cut off at the bottom"
+  ],
+  "url": null,
+  "v": 2
+ },
  "cj-2412010233071622700": {
   "photo": null,
   "rejected": [
@@ -10323,6 +10380,21 @@
    "5: no face (headless or cropped)",
    "6: no face (headless or cropped)",
    "7: no face (headless or cropped)"
+  ],
+  "url": null,
+  "v": 2
+ },
+ "cj-2412260252421612200": {
+  "photo": null,
+  "rejected": [
+   "0: head cut off by the frame",
+   "1: head cut off by the frame",
+   "2: no face (headless or cropped)",
+   "3: no face (headless or cropped)",
+   "4: head cut off by the frame",
+   "5: head cut off by the frame",
+   "6: head cut off by the frame",
+   "7: head cut off by the frame"
   ],
   "url": null,
   "v": 2
