@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { Logo } from './Logo';
 
 /** A big two-door banner so visitors see straight away that there is a women's shop and a men's shop. */
-export function ShopSplit({ womenImage, womenCount, menCount }: { womenImage?: string; womenCount: number; menCount: number }) {
+export function ShopSplit({ womenImages = [], menImages = [], womenCount, menCount }: { womenImages?: string[]; menImages?: string[]; womenCount: number; menCount: number }) {
+  // A different look on each door every visit.
+  const [seed] = useState(() => Math.random());
+  const pick = (images: string[]) => images.length ? images[Math.floor(seed * images.length)] : undefined;
+  const womenImage = pick(womenImages);
+  const menImage = pick(menImages);
   return <section className="split" aria-label="Our two shops">
     <Link to="/shop" className="split__door split__door--women">
       {womenImage && <img src={womenImage} alt="" loading="lazy" />}
@@ -13,6 +19,7 @@ export function ShopSplit({ womenImage, womenCount, menCount }: { womenImage?: s
       <span className="split__go">Shop women <ArrowUpRight size={18} /></span>
     </Link>
     <Link to="/men" className="split__door split__door--men">
+      {menImage && <img src={menImage} alt="" loading="lazy" />}
       <span className="split__mark"><Logo tone="metal" sub="HOMME" /></span>
       <span className="split__kicker">Davinova Homme</span>
       <strong>Men</strong>
