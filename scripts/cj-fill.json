@@ -1,1 +1,1 @@
-{ "target": "8", "max_imports": "200", "only": "blazers-and-waistcoats,dress-shirts,ties-and-bow-ties,dress-shoes,belts-and-suspenders", "men": "1", "run": 10 }
+{ "target": "10", "max_imports": "250", "only": "lady-dresses,evening-dresses,cocktail-dresses,wedding-dresses,bridesmaid-dresses", "plus": "1", "run": 11 }
