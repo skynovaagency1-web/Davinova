@@ -6,6 +6,10 @@ import type { Product } from '../../types/product';
 import { formatMoney } from '../../lib/format';
 import { productPath } from '../../lib/storefront';
 import { useCutouts } from '../../lib/useCutouts';
+import { MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
+
+/** Clothing whose cut-out has the model erased: it floats in a lit studio box instead of standing on glass. */
+const floats = (product: Product) => product.storeCollection === MEN_FORMAL;
 
 /**
  * Women's product card. When the dress has a cut-out photo, the glass card is only the lower part and
@@ -18,10 +22,11 @@ export function WomenCard({ product, index = 0 }: { product: Product; index?: nu
   const image = product.images[0]?.url;
   const second = product.images[1]?.url;
   const href = productPath(product);
-  return <motion.article className={`w-card${cutout ? ' w-card--pop' : ''}`} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}>
+  const kind = cutout ? (floats(product) ? ' w-card--float' : ' w-card--pop') : '';
+  return <motion.article className={`w-card${kind}`} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}>
     <Link to={href} className="w-card__img" aria-label={product.title}>
       {cutout
-        ? <img className="w-card__cutout" src={cutout} alt={product.images[0]?.alt || product.title} loading="lazy" />
+        ? <img className="w-card__cutout" style={{ animationDelay: `${-(index % 5) * 1.3}s` }} src={cutout} alt={product.images[0]?.alt || product.title} loading="lazy" />
         : image && !broken ? <img src={image} alt={product.images[0].alt || product.title} loading="lazy" onError={() => setBroken(true)} /> : <span className="w-card__missing">Photo coming soon</span>}
       {!cutout && second && !broken && <img className="w-card__alt" src={second} alt="" aria-hidden="true" loading="lazy" />}
       {product.browseOnly && <span className="w-card__badge">Coming soon</span>}
