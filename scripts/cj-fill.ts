@@ -118,7 +118,7 @@ async function main() {
     let added = 0;
     const words = JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, ...PLUS_SEARCH] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
-      for (let page = 1; page <= 5 && need > 0 && imported < MAX_IMPORTS; page++) {
+      for (let page = 1; page <= (PLUS ? 10 : 5) && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
         let result: Search;
         try { result = await admin<Search>(`/api/admin/cj-catalog?q=${encodeURIComponent(keyword)}&page=${page}&size=10`); }
@@ -136,13 +136,19 @@ async function main() {
             if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || NOT_TAILORING.test(item.name) || NOT_ACCESSORY.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
             // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.
             if (sub.slug === 'wedding-suits' && (MEN_FITS['tuxedos-and-dinner-jackets'].test(item.name) || /\blinen\b/i.test(item.name))) continue;
-          } else {
+          }
+          let target = { collection: group.slug, subcategory: sub.slug };
+          if (!JEWELRY && !MEN) {
             const fit = suggestStoreCollection(item.name, item.category);
-            if (fit?.collection !== group.slug || fit.subcategory !== sub.slug) continue;
+            if (fit?.collection === group.slug && fit.subcategory === sub.slug) { /* fits the slot */ }
+            // Plus-size dresses rarely sort into the exact slot searched; keep any dress, filed where its title says.
+            else if (PLUS && fit?.subcategory && DRESS_FIRST.some((key) => key === fit.collection || key === `${fit.collection}:${fit.subcategory}`)) target = { collection: fit.collection, subcategory: fit.subcategory };
+            else if (PLUS && /\b(dress|gown)\b/i.test(item.name)) target = { collection: 'tops-and-sets', subcategory: 'lady-dresses' };
+            else continue;
           }
           await sleep(1200);
           try {
-            await admin('/api/admin/cj-import', { method: 'POST', body: JSON.stringify({ productId: item.id, storeCollection: group.slug, storeSubcategory: sub.slug }) });
+            await admin('/api/admin/cj-import', { method: 'POST', body: JSON.stringify({ productId: item.id, storeCollection: target.collection, storeSubcategory: target.subcategory }) });
             known.add(item.id); imported++; added++; need--;
             console.log(`+ ${sub.label}: ${item.name}`);
           } catch (error) { console.log(`  skip ${item.id}: ${(error as Error).message}`); }
