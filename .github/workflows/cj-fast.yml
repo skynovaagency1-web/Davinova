@@ -1,0 +1,42 @@
+name: Fast shipping quotes
+
+on:
+  # Editing scripts/cj-fast.json on this branch starts a run (manual runs need this file on the default branch).
+  push:
+    branches: [feature/3d-fashion-storefront]
+    paths: [scripts/cj-fast.json]
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Only check this many products (0 = all)
+        default: '0'
+
+permissions:
+  contents: write
+
+concurrency: cj-fast
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - id: request
+        run: echo "json=$(jq -c . scripts/cj-fast.json)" >> "$GITHUB_OUTPUT"
+      - name: Quote fast shipping for every product
+        run: node --experimental-strip-types scripts/cj-fast.ts
+        env:
+          ADMIN_PASSWORD: ${{ secrets.DAVINOVA_ADMIN_PASSWORD }}
+          LIMIT: ${{ inputs.limit || fromJSON(steps.request.outputs.json).limit }}
+      - name: Commit report
+        run: |
+          git config user.name "davinova-bot"
+          git config user.email "davinova-bot@users.noreply.github.com"
+          git add reports
+          git diff --cached --quiet && exit 0
+          git commit -m "CJ fast shipping report"
+          git pull --rebase origin ${{ github.ref_name }} && git push origin HEAD:${{ github.ref_name }}
