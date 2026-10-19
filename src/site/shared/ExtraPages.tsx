@@ -67,7 +67,7 @@ export function GiftCardPage({ dept }: { dept: Dept }) {
           <li>Use it in one order or across several; the balance carries over.</li>
         </ul>
         <button type="button" className="gift__buy" disabled><Gift size={18} /> Gift cards open with checkout</button>
-        <p className="help__note">Checkout is opening soon. Questions? Write to <a href="mailto:hello@davinova.com">hello@davinova.com</a>.</p>
+        <p className="help__note">Checkout is opening soon. Questions? Write to <a href="mailto:contact@davinova.com">contact@davinova.com</a>.</p>
         <h2>Not sure? Gift ideas</h2>
         <div className="gift__ideas">{ideas.map(([label, to]) => <Link key={label} to={to}>{label} →</Link>)}</div>
       </div>

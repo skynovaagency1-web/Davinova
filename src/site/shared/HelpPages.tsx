@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import type { Dept } from './jewelry';
 import { TrackOrder } from './TrackOrder';
 
-const SUPPORT_EMAIL = 'hello@davinova.com';
+const SUPPORT_EMAIL = 'contact@davinova.com';
 
 type Page = { slug: string; label: string; title: string; intro: string; body: (dept: Dept) => ReactNode };
 
