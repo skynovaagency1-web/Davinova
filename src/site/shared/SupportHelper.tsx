@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Send, X } from 'lucide-react';
 import type { Dept } from './jewelry';
 
-const SUPPORT_EMAIL = 'hello@davinova.com';
+const SUPPORT_EMAIL = 'contact@davinova.com';
 const HIDE_KEY = 'davinova-helper-hidden';
 const SEEN_KEY = 'davinova-helper-greeted';
 
