@@ -1,8 +1,9 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { WomenLayout } from './site/women/WomenLayout';
 import { MenLayout } from './site/men/MenLayout';
 import { ApprovalPage } from './pages/ApprovalPage';
+import { useAccount } from './store/account';
 const WomenHome = lazy(() => import('./site/women/WomenHome').then((m) => ({ default: m.WomenHome })));
 const WomenShop = lazy(() => import('./site/women/WomenShop').then((m) => ({ default: m.WomenShop })));
 const WatchesPage = lazy(() => import('./site/women/WatchesPage').then((m) => ({ default: m.WatchesPage })));
@@ -18,6 +19,7 @@ const GroupPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => 
 const BeautyPage = lazy(() => import('./site/women/BeautyPage').then((m) => ({ default: m.BeautyPage })));
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
 const WishlistPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.WishlistPage })));
+const AccountPage = lazy(() => import('./site/shared/AccountPage').then((m) => ({ default: m.AccountPage })));
 const GiftCardPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.GiftCardPage })));
 const ReferralPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.ReferralPage })));
 const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
@@ -33,6 +35,7 @@ function PageLoader() { return <div className="page-loader" role="status">Loadin
 const menHost = typeof window !== 'undefined' && window.location.hostname.startsWith('men.');
 
 export default function App() {
+  useEffect(() => { void useAccount.getState().load(); }, []);
   return <BrowserRouter><Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
@@ -55,6 +58,7 @@ export default function App() {
         <Route path="jewelry" element={<JewelryPage dept="men" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="men" />} />
         <Route path="wishlist" element={<WishlistPage dept="men" />} />
+        <Route path="account" element={<AccountPage dept="men" />} />
         <Route path="gift-cards" element={<GiftCardPage dept="men" />} />
         <Route path="refer" element={<ReferralPage dept="men" />} />
         <Route path="*" element={<NotFoundPage />} />
@@ -73,6 +77,7 @@ export default function App() {
         <Route path="jewelry" element={<JewelryPage dept="women" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
         <Route path="wishlist" element={<WishlistPage dept="women" />} />
+        <Route path="account" element={<AccountPage dept="women" />} />
         <Route path="gift-cards" element={<GiftCardPage dept="women" />} />
         <Route path="refer" element={<ReferralPage dept="women" />} />
         <Route path="product/:slug" element={<ProductView variant="women" />} />

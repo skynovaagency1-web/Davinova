@@ -1,4 +1,5 @@
 import { queryCJVariantStock } from '../../server/cj';
+import { currentCustomer } from '../../server/accounts';
 import type { CJEnv, CJVariantStockRow } from '../../server/cj';
 
 type Env = CJEnv & {
@@ -224,6 +225,7 @@ async function createStripeSession(
   orderId: string,
   orderNumber: string,
   products: Array<{ product: CheckoutProduct; quantity: number }>,
+  customerEmail = '',
 ): Promise<StripeCheckoutSession> {
   const currency = products[0].product.currency.toLowerCase();
   const form = new URLSearchParams();
@@ -231,6 +233,8 @@ async function createStripeSession(
   form.set('mode', 'payment');
   form.set('locale', 'auto');
   form.set('client_reference_id', orderId);
+  // Signed-in customers get their account email filled in, so the order lands in their account.
+  if (customerEmail) form.set('customer_email', customerEmail);
   form.set('success_url', `${site}/order-confirmation?session_id={CHECKOUT_SESSION_ID}`);
   form.set('cancel_url', `${site}/cart?checkout=cancelled`);
   form.set('phone_number_collection[enabled]', 'true');
@@ -389,6 +393,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         stripe.secret, returnSite, settings.countries,
         settings.shippingFeeCents, settings.shippingLabel, settings.autoTax,
         orderId, orderNumber, prepared,
+        (await currentCustomer(request, env.DB).catch(() => null))?.email ?? '',
       );
     } catch (error) {
       await env.DB.prepare(
