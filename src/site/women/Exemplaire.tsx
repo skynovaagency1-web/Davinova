@@ -53,10 +53,10 @@ export function Exemplaire({ products }: { products: Product[] }) {
     if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
   };
 
-  return <section className="w-exem" aria-roledescription="carousel" aria-label="L'Exemplaire: choose a look"
+  return <section className="w-exem" aria-roledescription="carousel" aria-label="Fashion show: choose a look"
     onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
     <div className="w-sec-head">
-      <h2>L'<b>Exemplaire</b></h2>
+      <h2>Fashion <b>show</b></h2>
       <p className="w-sec-head__note">Turn the ring. The look that stops in front of you is the one you wear.</p>
     </div>
 
