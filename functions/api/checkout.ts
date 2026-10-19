@@ -188,6 +188,8 @@ async function loadApprovedProduct(env: Env, item: CartLineInput): Promise<Check
     FROM products p
     JOIN product_variants v ON v.product_id=p.id
     WHERE p.id=? AND v.size=? COLLATE NOCASE
+    -- Older, switched-off variants can share a label with the one on sale; always pick the one on sale.
+    ORDER BY v.active DESC, COALESCE(v.available_stock, 0) DESC
     LIMIT 1
   `).bind(item.productId, item.size).first<CheckoutProduct>();
 
