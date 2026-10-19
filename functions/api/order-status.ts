@@ -27,11 +27,12 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
 
   try {
     const order = await env.DB.prepare(
-      "SELECT status, payment_status FROM orders WHERE payment_provider='stripe' AND payment_reference=? LIMIT 1",
-    ).bind(sessionId).first<{ status: string; payment_status: string }>();
+      "SELECT order_number, status, payment_status FROM orders WHERE payment_provider='stripe' AND payment_reference=? LIMIT 1",
+    ).bind(sessionId).first<{ order_number: string; status: string; payment_status: string }>();
 
     if (!order) return reply({ state: 'pending' });
-    if (order.payment_status === 'paid') return reply({ state: 'paid' });
+    // The order number lets the customer track the order later; the Checkout Session ID is already private to them.
+    if (order.payment_status === 'paid') return reply({ state: 'paid', orderNumber: order.order_number });
     if (order.status === 'cancelled') return reply({ state: 'failed' });
     return reply({ state: 'pending' });
   } catch (error) {

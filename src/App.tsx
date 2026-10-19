@@ -24,6 +24,7 @@ const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ de
 const HelpPage = lazy(() => import('./site/shared/HelpPages').then((m) => ({ default: m.HelpPage })));
 const MenCategoriesPage = lazy(() => import('./site/men/MenCategoriesPage').then((m) => ({ default: m.MenCategoriesPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
+const OrdersAdminPage = lazy(() => import('./pages/OrdersAdminPage').then((m) => ({ default: m.OrdersAdminPage })));
 const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
 
 function PageLoader() { return <div className="page-loader" role="status">Loading…</div>; }
@@ -35,6 +36,7 @@ export default function App() {
   return <BrowserRouter><Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
+      <Route path="/admin/orders" element={<OrdersAdminPage />} />
       <Route path="/men" element={<MenLayout />}>
         <Route index element={<MenHome />} />
         <Route path="shop" element={<MenShop />} />
@@ -42,6 +44,7 @@ export default function App() {
         <Route path="bag" element={<BagView variant="men" />} />
         <Route path="about" element={<AboutPage dept="men" />} />
         <Route path="categories" element={<MenCategoriesPage />} />
+        <Route path="track" element={<HelpPage dept="men" slug="track" />} />
         <Route path="shipping" element={<HelpPage dept="men" slug="shipping" />} />
         <Route path="returns" element={<HelpPage dept="men" slug="returns" />} />
         <Route path="size-guide" element={<HelpPage dept="men" slug="size-guide" />} />
@@ -77,6 +80,7 @@ export default function App() {
         <Route path="cart" element={<BagView variant="women" />} />
         <Route path="order-confirmation" element={<OrderConfirmationPage />} />
         <Route path="about" element={<AboutPage dept="women" />} />
+        <Route path="track" element={<HelpPage dept="women" slug="track" />} />
         <Route path="shipping" element={<HelpPage dept="women" slug="shipping" />} />
         <Route path="returns" element={<HelpPage dept="women" slug="returns" />} />
         <Route path="size-guide" element={<HelpPage dept="women" slug="size-guide" />} />

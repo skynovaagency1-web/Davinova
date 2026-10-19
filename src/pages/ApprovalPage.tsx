@@ -49,5 +49,6 @@ export function ApprovalPage() {
       <button className="button button--dark" type="button" disabled={!preview.readyToApprove||submitting} onClick={approve}>{submitting?<><LoaderCircle size={16} className="viewer-spinner"/> Processing…</>:preview.dryRun?'Run safe dry-run':'Approve supplier purchase'}</button>
     </>}
     {done && <div className="approval-complete" role="status"><CheckCircle2 size={24}/><p>{done}</p></div>}
+    <p><a href="/admin/orders">Back to all orders</a></p>
   </section>;
 }

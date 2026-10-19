@@ -246,11 +246,11 @@ export class FakeD1 {
       const [id] = args as [string];
       return this.orders.get(id) ?? null;
     }
-    if (sql.startsWith('SELECT status, payment_status FROM orders')) {
+    if (sql.startsWith('SELECT order_number, status, payment_status FROM orders')) {
       const [paymentReference] = args as [string];
       for (const order of this.orders.values()) {
         if (order.payment_provider === 'stripe' && order.payment_reference === paymentReference) {
-          return { status: order.status, payment_status: order.payment_status };
+          return { order_number: order.order_number, status: order.status, payment_status: order.payment_status };
         }
       }
       return null;

@@ -27,7 +27,7 @@ describe('GET /api/order-status', () => {
     db.seedOrder(order({ status: 'pending_approval', payment_status: 'paid' }));
     const response = await onRequestGet({ request: request(VALID_SESSION), env: { DB: db as unknown as D1Database } });
     expect(response.status).toBe(200);
-    await expect(response.json()).resolves.toEqual({ state: 'paid' });
+    await expect(response.json()).resolves.toEqual({ state: 'paid', orderNumber: 'DAV-1001' });
   });
 
   it('reports pending while the order is still awaiting payment', async () => {
@@ -86,11 +86,11 @@ describe('GET /api/order-status', () => {
     await expect(response.json()).resolves.toEqual({ state: 'pending' });
   });
 
-  it('never returns raw order fields such as email or totals', async () => {
+  it('never returns raw order fields such as email or totals, only the order number', async () => {
     const db = new FakeD1();
     db.seedOrder(order({ status: 'pending_approval', payment_status: 'paid' }));
     const response = await onRequestGet({ request: request(VALID_SESSION), env: { DB: db as unknown as D1Database } });
     const body = await response.json() as Record<string, unknown>;
-    expect(Object.keys(body)).toEqual(['state']);
+    expect(Object.keys(body)).toEqual(['state', 'orderNumber']);
   });
 });

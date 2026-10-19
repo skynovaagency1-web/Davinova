@@ -74,7 +74,7 @@ export function MenLayout() {
       <Logo tone="metal" sub="HOMME" />
       <div className="w-footer__row">
         <p>Formalwear for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
+        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/track">Track order</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import type { Dept } from './jewelry';
+import { TrackOrder } from './TrackOrder';
 
 const SUPPORT_EMAIL = 'hello@davinova.com';
 
@@ -43,6 +44,13 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
 const Mail = () => <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>;
 
 const HELP_PAGES: Page[] = [
+  {
+    slug: 'track', label: 'Track order', title: 'Track your order', intro: 'Enter your order number and the email you used at checkout.',
+    body: () => <>
+      <TrackOrder />
+      <p className="help__note">Your order number starts with DV- and is shown after you pay. Can't find it? Email <Mail />.</p>
+    </>,
+  },
   {
     slug: 'shipping', label: 'Shipping', title: 'Shipping', intro: 'Every order ships with tracking, from our partner warehouses straight to your door.',
     body: () => <>

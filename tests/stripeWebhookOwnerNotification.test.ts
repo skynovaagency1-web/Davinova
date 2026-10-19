@@ -112,7 +112,7 @@ describe('Stripe webhook owner-approval notification', () => {
     expect(notifications).toHaveLength(1);
   });
 
-  it('allows a retry to send the notification after the first attempt fails to deliver', async () => {
+  it('keeps the paid order and answers Stripe with 200 when the owner email fails', async () => {
     const db = new FakeD1();
     seedPaidOrder(db);
     const env = baseEnv(db);
@@ -122,14 +122,9 @@ describe('Stripe webhook owner-approval notification', () => {
 
     const firstRequest = await buildRequest('evt_completed_2', 'checkout.session.completed', env.STRIPE_WEBHOOK_SECRET);
     const firstResponse = await onRequestPost({ request: firstRequest, env });
-    expect(firstResponse.status).toBe(503);
-    expect(db.orderEvents.some((row) => row.event_type === 'stripe_owner_approval_notified')).toBe(false);
-
-    fetchMock.mockImplementation(async () => new Response('{}', { status: 200 }));
-    const retryRequest = await buildRequest('evt_completed_2_retry', 'checkout.session.completed', env.STRIPE_WEBHOOK_SECRET);
-    const retryResponse = await onRequestPost({ request: retryRequest, env });
-    expect(retryResponse.status).toBe(200);
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    // A failed heads-up email must not make Stripe retry: the order waits in /admin/orders.
+    expect(firstResponse.status).toBe(200);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(db.orderEvents.filter((row) => row.event_type === 'stripe_owner_approval_notified')).toHaveLength(1);
   });
 });
