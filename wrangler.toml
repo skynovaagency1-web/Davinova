@@ -18,6 +18,13 @@ STORE_NAME = "Davinova"
 CURRENCY = "USD"
 DRY_RUN = "true"
 PAYPAL_ENV = "sandbox"
+SITE_URL = "https://davinova.com"
+# Stripe: keep "test" until a full test order has gone through. Secrets (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET) live in the Cloudflare dashboard.
+STRIPE_MODE = "test"
+# Prices already include shipping (2.5x of CJ cost + US shipping), so checkout shows free delivery.
+STRIPE_SHIPPING_FEE_CENTS = "0"
+STRIPE_SHIPPING_LABEL = "Free tracked delivery"
+STRIPE_SHIPPING_COUNTRIES = "US"
 
 # Cloudflare Pages does not run Worker Cron Triggers. Scheduled tracking will be deployed
 # as a separate Worker when the supplier tracking integration is ready.

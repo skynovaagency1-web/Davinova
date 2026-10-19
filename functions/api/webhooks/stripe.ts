@@ -264,7 +264,32 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       'checkout.session.completed',
       'checkout.session.async_payment_succeeded',
       'checkout.session.async_payment_failed',
+      'checkout.session.expired',
     ]);
+    if (event.type === 'charge.refunded') {
+      // Refunds are made in the Stripe Dashboard; mirror them on the order so it isn't fulfilled or counted as paid.
+      const charge = event.data?.object as unknown as { id?: string; metadata?: Record<string, string>; amount?: number; amount_refunded?: number; refunded?: boolean } | undefined;
+      const orderId = String(charge?.metadata?.order_id || '');
+      const claim = await claimEvent(env, event.id);
+      if (claim.state === 'duplicate') return reply({ received: true, duplicate: true });
+      if (claim.state === 'busy') return reply({ error: 'Webhook event is already being processed; retry shortly.' }, 503);
+      activeClaimToken = claim.token;
+      if (orderId) {
+        const full = charge?.refunded === true;
+        await env.DB.batch([
+          env.DB.prepare(full
+            ? "UPDATE orders SET status='refunded', payment_status='refunded', updated_at=datetime('now') WHERE id=? AND payment_status IN ('paid','partially_refunded')"
+            : "UPDATE orders SET payment_status='partially_refunded', updated_at=datetime('now') WHERE id=? AND payment_status='paid'").bind(orderId),
+          env.DB.prepare(
+            "INSERT INTO order_events (id, order_id, event_type, to_status, message, metadata_json) VALUES (?, ?, 'stripe_refund', ?, ?, ?)",
+          ).bind(crypto.randomUUID(), orderId, full ? 'refunded' : null, full ? 'Payment fully refunded in Stripe.' : 'Payment partly refunded in Stripe.',
+            JSON.stringify({ chargeId: charge?.id, amountRefunded: charge?.amount_refunded, amount: charge?.amount })),
+        ]);
+      }
+      await recordEvent(env, event, undefined, activeClaimToken);
+      activeClaimToken = null;
+      return reply({ received: true, refunded: Boolean(orderId) });
+    }
     if (!supported.has(event.type)) {
       const claim = await claimEvent(env, event.id);
       if (claim.state === 'duplicate') return reply({ received: true, duplicate: true });
@@ -298,7 +323,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     if (claim.state === 'busy') return reply({ error: 'Webhook event is already being processed; retry shortly.' }, 503);
     activeClaimToken = claim.token;
 
-    if (event.type === 'checkout.session.async_payment_failed') {
+    if (event.type === 'checkout.session.async_payment_failed' || event.type === 'checkout.session.expired') {
       await env.DB.prepare(
         "UPDATE orders SET status='cancelled', payment_status='unpaid', updated_at=datetime('now') WHERE id=? AND status='pending_payment' AND payment_reference=?",
       ).bind(order.id, session.id).run();
