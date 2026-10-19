@@ -384,3 +384,21 @@
 .helper__panel input::placeholder { color: var(--h-soft); }
 .helper__panel form button { border: 0; border-radius: 50%; width: 40px; height: 40px; background: var(--h-accent); color: var(--h-accent-ink); cursor: pointer; display: grid; place-items: center; }
 @media (max-width: 560px) { .helper__launch .helper__avatar { width: 50px; height: 50px; } .helper__greet, .helper__panel { bottom: 82px; } }
+
+/* ---------- Track order ---------- */
+.track__form { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; align-items: end; margin-bottom: 14px; }
+.track__form label { display: grid; gap: 6px; min-width: 0; }
+.track__form span { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.track__form input { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(127, 127, 127, .45); background: rgba(255, 255, 255, .1); color: inherit; font: inherit; }
+.track__form button { padding: 12px 20px; border: 0; border-radius: 999px; font-weight: 700; cursor: pointer; background: currentColor; }
+.track__form button:disabled { opacity: .6; cursor: wait; }
+.jw--women .track__form button { background: linear-gradient(110deg, #ecdcc8, #b89a7e 60%, #8e735b); color: #2a1d16; }
+.jw--men .track__form button { background: #1b1b1b; color: #eee; border-radius: 4px; }
+.jw--men .track__form input { background: rgba(255, 255, 255, .7); border-radius: 4px; }
+.track__error { color: #ffb4a2; font-weight: 600; }
+.jw--men .track__error { color: #a1301b; }
+.track__result { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(127, 127, 127, .3); }
+.track__steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; list-style: none; padding: 0 !important; margin: 14px 0 !important; counter-reset: step; }
+.track__steps li { position: relative; padding-top: 12px; border-top: 3px solid rgba(127, 127, 127, .3); font-size: 12px; line-height: 1.3; opacity: .65; }
+.track__steps li.done { border-top-color: currentColor; opacity: 1; font-weight: 700; }
+.jw--women .track__steps li.done { border-top-color: #cdb69e; }

@@ -11,6 +11,7 @@ export default function OrderConfirmationPage() {
   const sessionId = searchParams.get('session_id') || '';
   const returnedFromStripe = /^cs_(test|live)_[A-Za-z0-9]+$/.test(sessionId);
   const [paymentState, setPaymentState] = useState<PaymentState>('checking');
+  const [orderNumber, setOrderNumber] = useState('');
 
   useEffect(() => {
     if (!returnedFromStripe) {
@@ -29,12 +30,13 @@ export default function OrderConfirmationPage() {
           cache: 'no-store',
           headers: { Accept: 'application/json' },
         });
-        const result = await response.json() as { state?: string };
+        const result = await response.json() as { state?: string; orderNumber?: string };
         if (cancelled) return;
 
         if (response.ok && result.state === 'paid') {
           // Do not clear the customer's bag until the server reports a paid order.
           clear();
+          setOrderNumber(result.orderNumber || '');
           setPaymentState('paid');
           return;
         }
@@ -69,7 +71,7 @@ export default function OrderConfirmationPage() {
         : 'Checking your payment…';
 
   const message = paymentState === 'paid'
-    ? 'Payment has been confirmed by Davinova. Your order is recorded and awaiting the fulfilment review.'
+    ? 'Your payment is confirmed and we are preparing your order. We email your tracking number as soon as it ships.'
     : paymentState === 'failed'
       ? 'Stripe reports that the payment did not complete. Your bag has been kept so you can try again.'
       : paymentState === 'unverified'
@@ -83,9 +85,7 @@ export default function OrderConfirmationPage() {
       <h1 style={{ margin: 0 }}>{heading}</h1>
     </div>
     <p>{message}</p>
-    <p>
-      Supplier fulfilment is not confirmed here. Every paid order is reviewed before the owner approves any CJ supplier purchase.
-    </p>
+    {orderNumber && <p>Your order number is <strong>{orderNumber}</strong>. Keep it to <Link to="/track">track your order</Link> with the email you used.</p>}
     <Link className="button button--dark" to={paymentState === 'paid' ? '/shop' : '/cart'}>
       {paymentState === 'paid' ? 'Return to the collection' : 'Return to your bag'} <ArrowRight size={16} />
     </Link>

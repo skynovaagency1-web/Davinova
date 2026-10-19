@@ -428,17 +428,16 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
           order.id,
         ).run();
       } catch (error) {
+        // The email is only a heads-up: the order already waits in /admin/orders, so a missing or failed
+        // email must not make Stripe retry the payment event for days.
         await env.DB.prepare(
           "UPDATE approvals SET used_at=datetime('now') WHERE order_id=? AND used_at IS NULL",
         ).bind(order.id).run();
-        // Release the notification claim too, so a retried delivery can send the approval email again.
+        const reason = error instanceof Error ? error.message.slice(0, 200) : 'Unknown email failure';
+        console.error('Owner approval notification failed:', reason);
         await env.DB.prepare(
-          "DELETE FROM order_events WHERE order_id=? AND event_type='stripe_owner_approval_notified'",
-        ).bind(order.id).run();
-        console.error('Owner approval notification failed:', error instanceof Error ? error.message : 'Unknown email failure');
-        await releaseEventClaim(env, event.id!, activeClaimToken!);
-        activeClaimToken = null;
-        return reply({ error: 'Payment is recorded; order approval notification needs retry.' }, 503);
+          "UPDATE order_events SET message='Owner email not sent; approve from /admin/orders.', metadata_json=? WHERE order_id=? AND event_type='stripe_owner_approval_notified'",
+        ).bind(JSON.stringify({ reason }), order.id).run();
       }
     }
 

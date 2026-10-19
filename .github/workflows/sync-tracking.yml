@@ -1,0 +1,21 @@
+name: Sync tracking
+
+on:
+  # Pages has no cron, so this asks the live site to check CJ for new tracking numbers every hour.
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+concurrency: sync-tracking
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check CJ orders for tracking and email customers
+        env:
+          ADMIN_PASSWORD: ${{ secrets.DAVINOVA_ADMIN_PASSWORD }}
+        run: |
+          curl -sS --fail-with-body -X POST https://davinova.com/api/admin/sync-tracking \
+            -H "x-admin-password: $ADMIN_PASSWORD" -H 'Content-Type: application/json' -d '{}'
