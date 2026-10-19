@@ -4,7 +4,7 @@ const ADDRESS_FIELDS = ['line1', 'line2', 'city', 'state', 'postalCode', 'countr
 const SIZE_FIELDS = ['dress', 'top', 'bottom', 'shoe', 'ring', 'suit', 'shirt'] as const;
 
 function clean(value: unknown, max = 120): string {
-  return typeof value === 'string' ? value.replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, max) : '';
+  return typeof value === 'string' ? [...value].filter((char) => char >= ' ' && char !== '<' && char !== '>').join('').trim().slice(0, max) : '';
 }
 function pick(source: unknown, fields: readonly string[]): Record<string, string> {
   const input = source && typeof source === 'object' ? source as Record<string, unknown> : {};
