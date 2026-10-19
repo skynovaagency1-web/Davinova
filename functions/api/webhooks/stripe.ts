@@ -1,5 +1,6 @@
 import { createApprovalToken } from '../../../server/auth';
 import type { CJEnv } from '../../../server/cj';
+import { sendTransactionalEmail } from '../../../server/email';
 
 type Env = CJEnv & {
   STRIPE_SECRET_KEY?: string;
@@ -169,6 +170,23 @@ async function sendOwnerApprovalEmail(env: Env, order: StoreOrder, approvalToken
     body: JSON.stringify({ from: env.EMAIL_FROM, to: [env.OWNER_EMAIL], subject, text, html }),
   });
   if (!response.ok) throw new Error('Resend could not deliver the order approval notification.');
+}
+
+async function sendCustomerConfirmation(env: Env, orderNumber: string, email: string, totalCents: number, currency: string): Promise<void> {
+  if (!email) return;
+  const site = (env.SITE_URL || 'https://davinova.com').replace(/\/$/, '');
+  const total = new Intl.NumberFormat('en-US', { style: 'currency', currency: currency || 'USD' }).format(totalCents / 100);
+  await sendTransactionalEmail({
+    to: email,
+    subject: 'Your Davinova order ' + orderNumber,
+    html: '<div style="font-family:Arial,sans-serif;color:#2E2019;max-width:560px;margin:auto;line-height:1.6">' +
+      '<p style="letter-spacing:.16em;text-transform:uppercase;font-size:11px">DAVINOVA</p>' +
+      '<h1 style="font-family:Georgia,serif;font-weight:normal">Thank you for your order.</h1>' +
+      '<p>Your order number is <strong>' + htmlEscape(orderNumber) + '</strong> (' + htmlEscape(total) + ').</p>' +
+      '<p>We prepare every order within 1–3 business days and email your tracking number as soon as it ships.</p>' +
+      '<p><a href="' + htmlEscape(site) + '/track" style="display:inline-block;background:#3C2A21;color:#FBF1E2;text-decoration:none;padding:13px 18px">Track your order</a></p>' +
+      '<p style="font-size:12px;color:#8E735B">Questions? Just reply to this email.</p></div>',
+  }, env.RESEND_API_KEY, env.EMAIL_FROM);
 }
 
 type EventClaim =
@@ -438,6 +456,12 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         await env.DB.prepare(
           "UPDATE order_events SET message='Owner email not sent; approve from /admin/orders.', metadata_json=? WHERE order_id=? AND event_type='stripe_owner_approval_notified'",
         ).bind(JSON.stringify({ reason }), order.id).run();
+      }
+      // Same once-per-order slot: tell the customer their order number. Best effort, never blocks the payment event.
+      try {
+        await sendCustomerConfirmation(env, order.order_number, email, order.total_cents, order.currency);
+      } catch (error) {
+        console.error('Customer confirmation email failed:', error instanceof Error ? error.message : 'Unknown email failure');
       }
     }
 
