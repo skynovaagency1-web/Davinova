@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { SupportHelper } from '../shared/SupportHelper';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Heart, Home, Menu, ShoppingBag, X } from 'lucide-react';
@@ -77,5 +78,6 @@ export function MenLayout() {
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
+    <SupportHelper dept="men" />
   </div>;
 }

@@ -51,7 +51,7 @@ const HELP_PAGES: Page[] = [
       <h2>Tracking</h2>
       <p>As soon as your order leaves the warehouse we email you a tracking number. Tracking can take a day or two to show its first update.</p>
       <h2>Cost</h2>
-      <p>The shipping cost for your address is shown at checkout before you pay. There are no hidden fees from us.</p>
+      <p>Shipping is free on every order. There are no hidden fees from us.</p>
       <h2>Customs and duties</h2>
       <p>Some countries charge import duties or taxes on arrival. These are set by your country, not by Davinova, and are paid to the carrier if they apply.</p>
       <h2>Planning for an event?</h2>
@@ -96,7 +96,7 @@ const HELP_PAGES: Page[] = [
     slug: 'faq', label: 'FAQ', title: 'Questions, answered', intro: 'The things people ask us most.',
     body: (dept) => <>
       <h2>When can I order?</h2>
-      <p>We are checking fit, stock and delivery for every style before checkout opens. Items marked "Coming soon" will open for orders once that check is done.</p>
+      <p>Most styles are ready to order, with prices, sizes and stock checked with our suppliers. Items marked "Coming soon" open once we have confirmed them.</p>
       <h2>Will it arrive in time for my event?</h2>
       <p>Delivery usually takes 7–15 business days after a 1–3 day preparation time. Order at least three weeks ahead to be safe. See <Link to={`${base(dept)}/shipping`}>Shipping</Link>.</p>
       <h2>How do I choose my size?</h2>

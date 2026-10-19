@@ -8,6 +8,7 @@ import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
 import { HangingBag } from '../shared/HangingBag';
+import { SupportHelper } from '../shared/SupportHelper';
 import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { isCurvyLook } from '../../lib/curvyLooks';
@@ -87,5 +88,6 @@ export function WomenLayout() {
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
+    <SupportHelper dept="women" />
   </div>;
 }
