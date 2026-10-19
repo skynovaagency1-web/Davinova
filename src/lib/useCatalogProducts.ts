@@ -70,7 +70,7 @@ function toProduct(row: CatalogueRow): Product | null {
     sleeve: row.sleeve ?? '',
     neckline: row.neckline ?? '',
     tags: Array.isArray(row.tags) ? row.tags : [],
-    sizes: Array.isArray(row.sizes) ? row.sizes.filter((size): size is Product['sizes'][number] => ['XS', 'S', 'M', 'L', 'XL', 'XXL', '1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X'].includes(size)) : [],
+    sizes: Array.isArray(row.sizes) ? row.sizes.filter((size): size is string => typeof size === 'string' && size.length > 0 && size.length <= 40) : [],
     images: row.images.filter((image) => image && typeof image.url === 'string' && image.url.startsWith('https://')),
     featured: row.featured === true,
     browseOnly: row.browseOnly !== false,
