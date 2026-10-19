@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-19T00:38:18.169Z",
+ "checkedAt": "2026-10-19T00:43:15.629Z",
  "results": [
   {
    "id": "2411280822331627000",
@@ -27768,7 +27768,11 @@
    "minCostUsd": 9.63,
    "maxCostUsd": 9.63,
    "totalStock": 389784,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.51,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1425702994451763200",
@@ -27869,7 +27873,11 @@
    "minCostUsd": 12.77,
    "maxCostUsd": 14.97,
    "totalStock": 198112,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.68,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "2411070827301604100",
@@ -27976,8 +27984,115 @@
   },
   {
    "id": "1729044473616805888",
-   "ok": false,
-   "error": "CJ /product/query?pid=1729044473616805888 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 97af40fe4a6c4c1285b3a5d3283c792c)",
+   "ok": true,
+   "name": "American Retro Brown Leather Jacket For Men",
+   "saleStatus": "3",
+   "minCostUsd": 37.65,
+   "maxCostUsd": 37.65,
+   "totalStock": 206928,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.75,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1729044473717469184",
+     "options": "Grey-M",
+     "costUsd": 37.65,
+     "stock": 14914
+    },
+    {
+     "id": "1729044473818132480",
+     "options": "Grey-L",
+     "costUsd": 37.65,
+     "stock": 13488
+    },
+    {
+     "id": "1729044473906212864",
+     "options": "Grey-XL",
+     "costUsd": 37.65,
+     "stock": 12031
+    },
+    {
+     "id": "1729044473998487552",
+     "options": "Grey-2XL",
+     "costUsd": 37.65,
+     "stock": 10255
+    },
+    {
+     "id": "1729044474153676800",
+     "options": "Dark brown-M",
+     "costUsd": 37.65,
+     "stock": 11807
+    },
+    {
+     "id": "1729044474262728704",
+     "options": "Dark brown-L",
+     "costUsd": 37.65,
+     "stock": 13559
+    },
+    {
+     "id": "1729044474350809088",
+     "options": "Dark brown-XL",
+     "costUsd": 37.65,
+     "stock": 14775
+    },
+    {
+     "id": "1729044474434695168",
+     "options": "Dark brown-2XL",
+     "costUsd": 37.65,
+     "stock": 13697
+    },
+    {
+     "id": "1729044474636021760",
+     "options": "Black-M",
+     "costUsd": 37.65,
+     "stock": 10516
+    },
+    {
+     "id": "1729044474745073664",
+     "options": "Black-L",
+     "costUsd": 37.65,
+     "stock": 14650
+    },
+    {
+     "id": "1729044474849931264",
+     "options": "Black-XL",
+     "costUsd": 37.65,
+     "stock": 14048
+    },
+    {
+     "id": "1729044475009314816",
+     "options": "Black-2XL",
+     "costUsd": 37.65,
+     "stock": 14279
+    },
+    {
+     "id": "1729044475101589504",
+     "options": "Apricot-M",
+     "costUsd": 37.65,
+     "stock": 13891
+    },
+    {
+     "id": "1729044475189669888",
+     "options": "Apricot-L",
+     "costUsd": 37.65,
+     "stock": 11488
+    },
+    {
+     "id": "1729044475281944576",
+     "options": "Apricot-XL",
+     "costUsd": 37.65,
+     "stock": 12178
+    },
+    {
+     "id": "1729044475479076864",
+     "options": "Apricot-2XL",
+     "costUsd": 37.65,
+     "stock": 11352
+    }
+   ],
    "siteId": "cj-1729044473616805888",
    "title": "American Retro Brown Leather Jacket For Men",
    "department": "men",
@@ -28054,446 +28169,450 @@
    "saleStatus": "3",
    "minCostUsd": 5.8,
    "maxCostUsd": 6.97,
-   "totalStock": null,
-   "shipping": null,
+   "totalStock": 1103399,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.15,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "000819D1-40E5-499F-BFA1-2FC7AB878A20",
      "options": "Khaki-S",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13694
     },
     {
      "id": "01250FFF-30AB-4568-BA96-89BE6682D569",
      "options": "Blue-XXL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12031
     },
     {
      "id": "06D52A2A-4620-4996-9274-94DF476DA1E7",
      "options": "Red-XXL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12073
     },
     {
      "id": "07748DF2-5DFB-4187-9C64-8E946BAE2E74",
      "options": "Black-4XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "0894F06B-7E21-4FFE-A5DA-C884B1981353",
      "options": "Dark Blue-3XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13013
     },
     {
      "id": "0AADAAEF-C3E2-4DCC-88A4-4DDB3D37B3D9",
      "options": "Black-5XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "0B66CD1F-A711-4CA1-AF1C-9A69C64634B3",
      "options": "ArmyGreen-S",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11993
     },
     {
      "id": "0F7A87C7-E70A-4103-9AD1-702B7454EF22",
      "options": "Black-L",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13121
     },
     {
      "id": "1418762441801732096",
      "options": "Orange-S",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 27970
     },
     {
      "id": "1418762441814315008",
      "options": "Orange-M",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 32929
     },
     {
      "id": "1418762441839480832",
      "options": "Orange-L",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 32588
     },
     {
      "id": "1418762441852063744",
      "options": "Orange-XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 32050
     },
     {
      "id": "1418762441864646656",
      "options": "Orange-XXL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 26578
     },
     {
      "id": "1418762441873035264",
      "options": "Orange-3XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 29167
     },
     {
      "id": "1418762441881423872",
      "options": "Orange-4XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 29536
     },
     {
      "id": "1418762441889812480",
      "options": "Orange-5XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 35611
     },
     {
      "id": "19A6865C-BB42-42AA-AF99-41FAE5661B16",
      "options": "Dark Blue-5XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "2018F6DE-459F-4654-91CF-C09BAA5F343B",
      "options": "Black-XXL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 14427
     },
     {
      "id": "2407240153541602000",
      "options": "Navy blue  white logo-S",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 14346
     },
     {
      "id": "2407240153541602200",
      "options": "Navy blue  white logo-M",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 14549
     },
     {
      "id": "2407240153541602300",
      "options": "Navy blue  white logo-L",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 14548
     },
     {
      "id": "2407240153541602500",
      "options": "Navy blue  white logo-XL",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 11661
     },
     {
      "id": "2407240153541602600",
      "options": "Navy blue  white logo-XXL",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 10126
     },
     {
      "id": "2407240153541602800",
      "options": "Navy blue  white logo-3XL",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 12616
     },
     {
      "id": "2407240153541602900",
      "options": "Navy blue  white logo-4XL",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 12254
     },
     {
      "id": "2407240153541603100",
      "options": "Navy blue  white logo-5XL",
      "costUsd": 6.97,
-     "stock": null
+     "stock": 13922
     },
     {
      "id": "2410180821031623800",
      "options": "Text in black-M",
      "costUsd": 6.3,
-     "stock": null
+     "stock": 13009
     },
     {
      "id": "25507D54-CEBF-4F11-A086-F893CBBAFA7C",
      "options": "Black-3XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13824
     },
     {
      "id": "2601050812011623200",
      "options": "Dark gray-S",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 5355
     },
     {
      "id": "2601050812011623600",
      "options": "Dark gray-M",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 6952
     },
     {
      "id": "2601050812011623800",
      "options": "Dark gray-L",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 8016
     },
     {
      "id": "2601050812011624000",
      "options": "Dark gray-XL",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 9191
     },
     {
      "id": "2601050812011624100",
      "options": "Dark gray-2XL",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 6622
     },
     {
      "id": "2601050812011624300",
      "options": "Dark gray-3XL",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 7674
     },
     {
      "id": "2601050812011624500",
      "options": "Dark gray-4XL",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 8191
     },
     {
      "id": "2601050812011624900",
      "options": "Dark gray-5XL",
      "costUsd": 5.8,
-     "stock": null
+     "stock": 5796
     },
     {
      "id": "26153CBA-DFF6-490F-8432-C4AFB0572ACD",
      "options": "Dark Blue-L",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13574
     },
     {
      "id": "3A0B7255-C7D2-4A49-9B6C-E0DB6813A171",
      "options": "Dark Blue-4XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "3F996EF4-392E-4E63-B8A1-C20BD8A13CD1",
      "options": "Blue-5XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "46CA70C3-2FA9-4E2E-BC25-64663C12BF08",
      "options": "ArmyGreen-M",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 14162
     },
     {
      "id": "4DFFFDD8-F258-4305-9B26-FD7AAC7C53A9",
      "options": "Dark Blue-XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 10745
     },
     {
      "id": "4F740507-0EEE-4A63-84E4-FE5E1426D587",
      "options": "Blue-XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 10923
     },
     {
      "id": "5061FAD2-C50F-4AC1-9655-0E2D9A752D9A",
      "options": "Blue-L",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 10572
     },
     {
      "id": "538911F4-253D-4CAB-8A92-C735E171AB07",
      "options": "Black-S",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11920
     },
     {
      "id": "552F5307-F58B-4C66-9F66-7CB6BC233457",
      "options": "Dark Blue-M",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12245
     },
     {
      "id": "59968C89-B62A-4F16-88B1-61BB606FAB15",
      "options": "ArmyGreen-XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12678
     },
     {
      "id": "599D44F0-64B4-4365-9F50-F2D8CB8B5862",
      "options": "ArmyGreen-3XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12167
     },
     {
      "id": "6886A89A-6794-444E-A27B-382FB9DC1376",
      "options": "Red-L",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12371
     },
     {
      "id": "6BFCC4F3-3E5E-4C8D-838D-EDAE246FC070",
      "options": "Black-M",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 10954
     },
     {
      "id": "701F8F4C-BFEF-4216-A97B-FB5A5C303557",
      "options": "Red-XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11949
     },
     {
      "id": "704A07F6-539C-4066-8F6A-4C030BA2DAB4",
      "options": "Red-3XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12116
     },
     {
      "id": "739EA63D-D35C-4146-B2E0-DB01256C05C1",
      "options": "Red-M",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13364
     },
     {
      "id": "787E5269-CF9A-47FF-B1A0-9886B9D521FA",
      "options": "Khaki-3XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 10067
     },
     {
      "id": "83D83BC7-7C70-4E8B-9F4E-2C729C21869F",
      "options": "Khaki-5XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "86FD9201-25C3-42DC-A4E2-5872AAB79630",
      "options": "ArmyGreen-XXL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 10051
     },
     {
      "id": "8E93ECA4-D3DD-4CE0-80A2-59BC3BAD82D4",
      "options": "Khaki-XXL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12913
     },
     {
      "id": "91F75E4A-34C3-4325-95C8-F23A63E8360C",
      "options": "Dark Blue-S",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11199
     },
     {
      "id": "95C1678F-019D-438F-B7FA-5A08AB2CEF2E",
      "options": "Blue-4XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "9FE2403F-7E8D-46E0-A723-46DC08C2439B",
      "options": "Dark Blue-XXL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13100
     },
     {
      "id": "A124D16E-9AB8-4C62-81E4-0161E2293DE7",
      "options": "ArmyGreen-L",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 10803
     },
     {
      "id": "A9C8C1EE-4CBA-42EB-8258-568CA722BB2E",
      "options": "Khaki-M",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11973
     },
     {
      "id": "AA00C251-79E2-49E5-98BF-A5F62E47CF26",
      "options": "Khaki-XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11622
     },
     {
      "id": "AE765D67-9F89-4582-AE56-68AA5A774D3A",
      "options": "Red-5XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "B2DB549C-99D5-43DA-95CF-8C29ED8AC3EA",
      "options": "Red-4XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "B66D2D5C-878C-48CC-98C4-A6B67CD00619",
      "options": "Khaki-4XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "CC2491E8-EDC4-4A31-AA3A-29AE9B802661",
      "options": "ArmyGreen-4XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "CC4FB8E4-2F55-4E25-B5F3-4E000529CDAF",
      "options": "Blue-3XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13010
     },
     {
      "id": "D5E68A97-01A6-4C1F-9145-7AB94F7B6777",
      "options": "Blue-S",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11356
     },
     {
      "id": "D7BF5E85-4839-4C15-AFD8-414225D625E2",
      "options": "Black-XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 14948
     },
     {
      "id": "DD82D514-01B7-44E6-9D1A-FA6A54A9FD4F",
      "options": "Blue-M",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 11460
     },
     {
      "id": "DEE0E8C0-7C85-423D-8D30-AE9C109CD546",
      "options": "Khaki-L",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 12633
     },
     {
      "id": "EC09F41D-7DDA-4937-9062-683C6C83E31F",
      "options": "ArmyGreen-5XL",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 20000
     },
     {
      "id": "EFA643C5-E6CC-43C6-B515-97436C792A48",
      "options": "Red-S",
      "costUsd": 6.81,
-     "stock": null
+     "stock": 13091
     }
    ],
    "siteId": "cj-BA24F5B8-62AC-4720-A0A9-BB1CFB3448B1",
@@ -28504,8 +28623,109 @@
   },
   {
    "id": "2411110358151627900",
-   "ok": false,
-   "error": "CJ /product/query?pid=2411110358151627900 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 431024676e6f42d1a21240d9cc212af3)",
+   "ok": true,
+   "name": "Casual Corduroy Short Jacket For Men",
+   "saleStatus": "3",
+   "minCostUsd": 62.69,
+   "maxCostUsd": 62.69,
+   "totalStock": 191557,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.05,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2411110358151628100",
+     "options": "Coffee-M",
+     "costUsd": 62.69,
+     "stock": 10404
+    },
+    {
+     "id": "2411110358151628300",
+     "options": "Coffee-L",
+     "costUsd": 62.69,
+     "stock": 13761
+    },
+    {
+     "id": "2411110358151628500",
+     "options": "Coffee-XL",
+     "costUsd": 62.69,
+     "stock": 14860
+    },
+    {
+     "id": "2411110358151628600",
+     "options": "Coffee-2XL",
+     "costUsd": 62.69,
+     "stock": 13652
+    },
+    {
+     "id": "2411110358151628800",
+     "options": "Coffee-3XL",
+     "costUsd": 62.69,
+     "stock": 11801
+    },
+    {
+     "id": "2411110358151629000",
+     "options": "Wine Red-M",
+     "costUsd": 62.69,
+     "stock": 10255
+    },
+    {
+     "id": "2411110358151629100",
+     "options": "Wine Red-L",
+     "costUsd": 62.69,
+     "stock": 13979
+    },
+    {
+     "id": "2411110358151629300",
+     "options": "Wine Red-XL",
+     "costUsd": 62.69,
+     "stock": 14431
+    },
+    {
+     "id": "2411110358151629500",
+     "options": "Wine Red-2XL",
+     "costUsd": 62.69,
+     "stock": 12933
+    },
+    {
+     "id": "2411110358151629700",
+     "options": "Wine Red-3XL",
+     "costUsd": 62.69,
+     "stock": 10010
+    },
+    {
+     "id": "2411110358151629800",
+     "options": "Off white-M",
+     "costUsd": 62.69,
+     "stock": 14269
+    },
+    {
+     "id": "2411110358161620000",
+     "options": "Off white-L",
+     "costUsd": 62.69,
+     "stock": 14065
+    },
+    {
+     "id": "2411110358161620200",
+     "options": "Off white-XL",
+     "costUsd": 62.69,
+     "stock": 11514
+    },
+    {
+     "id": "2411110358161620300",
+     "options": "Off white-2XL",
+     "costUsd": 62.69,
+     "stock": 10648
+    },
+    {
+     "id": "2411110358161620500",
+     "options": "Off white-3XL",
+     "costUsd": 62.69,
+     "stock": 14975
+    }
+   ],
    "siteId": "cj-2411110358151627900",
    "title": "Casual Corduroy Short Jacket For Men",
    "department": "men",
@@ -28519,7 +28739,7 @@
    "saleStatus": "3",
    "minCostUsd": 9.95,
    "maxCostUsd": 10.28,
-   "totalStock": null,
+   "totalStock": 661822,
    "shipping": {
     "name": "LuWei Ordinary US",
     "priceUsd": 11.17,
@@ -28530,529 +28750,529 @@
      "id": "2506270546381618500",
      "options": "XDKD23-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8755
     },
     {
      "id": "2506270546381618800",
      "options": "XDKD23-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8152
     },
     {
      "id": "2506270546381619000",
      "options": "XDKD23-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6684
     },
     {
      "id": "2506270546381619200",
      "options": "XDKD23-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6135
     },
     {
      "id": "2506270546381619400",
      "options": "XDKD23-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9936
     },
     {
      "id": "2506270546381619600",
      "options": "XDKD23-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5943
     },
     {
      "id": "2506270546381619800",
      "options": "1Style-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8941
     },
     {
      "id": "2506270546381619900",
      "options": "1Style-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5138
     },
     {
      "id": "2506270546381619901",
      "options": "1Style-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8684
     },
     {
      "id": "2506270546391610400",
      "options": "1Style-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8931
     },
     {
      "id": "2506270546391610600",
      "options": "1Style-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7900
     },
     {
      "id": "2506270546391610800",
      "options": "1Style-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6120
     },
     {
      "id": "2506270546391611000",
      "options": "2Style-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5912
     },
     {
      "id": "2506270546391611200",
      "options": "2Style-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7778
     },
     {
      "id": "2506270546391611400",
      "options": "2Style-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9916
     },
     {
      "id": "2506270546391611600",
      "options": "2Style-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8282
     },
     {
      "id": "2506270546391611700",
      "options": "2Style-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6494
     },
     {
      "id": "2506270546391611900",
      "options": "2Style-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9187
     },
     {
      "id": "2506270546391612100",
      "options": "XDKD28-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7987
     },
     {
      "id": "2506270546391612300",
      "options": "XDKD28-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8060
     },
     {
      "id": "2506270546391612500",
      "options": "XDKD28-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7564
     },
     {
      "id": "2506270546391612700",
      "options": "XDKD28-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5482
     },
     {
      "id": "2506270546391612800",
      "options": "XDKD28-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7435
     },
     {
      "id": "2506270546391613000",
      "options": "XDKD28-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5384
     },
     {
      "id": "2506270546391613200",
      "options": "4Style-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6999
     },
     {
      "id": "2506270546391613400",
      "options": "4Style-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9466
     },
     {
      "id": "2506270546391613600",
      "options": "4Style-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6587
     },
     {
      "id": "2506270546391613800",
      "options": "4Style-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5601
     },
     {
      "id": "2506270546391614000",
      "options": "4Style-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7379
     },
     {
      "id": "2506270546391614200",
      "options": "4Style-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9536
     },
     {
      "id": "2506270546391614400",
      "options": "XDKD31-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9339
     },
     {
      "id": "2506270546391614600",
      "options": "XDKD31-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6370
     },
     {
      "id": "2506270546391614700",
      "options": "XDKD31-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9524
     },
     {
      "id": "2506270546391615000",
      "options": "XDKD31-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8239
     },
     {
      "id": "2506270546391615100",
      "options": "XDKD31-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7430
     },
     {
      "id": "2506270546391615300",
      "options": "XDKD31-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5331
     },
     {
      "id": "2506270546391615500",
      "options": "XDKD32-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9970
     },
     {
      "id": "2506270546391615700",
      "options": "XDKD32-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9175
     },
     {
      "id": "2506270546391615900",
      "options": "XDKD32-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9110
     },
     {
      "id": "2506270546391616100",
      "options": "XDKD32-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5408
     },
     {
      "id": "2506270546391616300",
      "options": "XDKD32-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6850
     },
     {
      "id": "2506270546391616500",
      "options": "XDKD32-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8323
     },
     {
      "id": "2506270546391616700",
      "options": "XDKD33-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6555
     },
     {
      "id": "2506270546391616900",
      "options": "XDKD33-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8477
     },
     {
      "id": "2506270546391617100",
      "options": "XDKD33-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7983
     },
     {
      "id": "2506270546391617300",
      "options": "XDKD33-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8585
     },
     {
      "id": "2506270546391617500",
      "options": "XDKD33-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9553
     },
     {
      "id": "2506270546391617700",
      "options": "XDKD33-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8345
     },
     {
      "id": "2506270546391617800",
      "options": "XDKD47-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9472
     },
     {
      "id": "2506270546391618000",
      "options": "XDKD47-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8460
     },
     {
      "id": "2506270546391618200",
      "options": "XDKD47-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9621
     },
     {
      "id": "2506270546391618400",
      "options": "XDKD47-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5327
     },
     {
      "id": "2506270546391618600",
      "options": "XDKD47-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5282
     },
     {
      "id": "2506270546391619200",
      "options": "XDKD47-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9248
     },
     {
      "id": "2506270546391619400",
      "options": "XDKD45-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7498
     },
     {
      "id": "2506270546391619600",
      "options": "XDKD45-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9907
     },
     {
      "id": "2506270546391619800",
      "options": "XDKD45-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5549
     },
     {
      "id": "2506270546401610000",
      "options": "XDKD45-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6498
     },
     {
      "id": "2506270546401610200",
      "options": "XDKD45-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5728
     },
     {
      "id": "2506270546401610400",
      "options": "XDKD45-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7151
     },
     {
      "id": "2506270546401610600",
      "options": "Black Buttons-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6893
     },
     {
      "id": "2506270546401610800",
      "options": "Black Buttons-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5580
     },
     {
      "id": "2506270546401610900",
      "options": "Black Buttons-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5497
     },
     {
      "id": "2506270546401611100",
      "options": "Black Buttons-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8554
     },
     {
      "id": "2506270546401611300",
      "options": "Black Buttons-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9943
     },
     {
      "id": "2506270546401611500",
      "options": "Black Buttons-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5385
     },
     {
      "id": "2506270546401611700",
      "options": "10Style-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6424
     },
     {
      "id": "2506270546401612000",
      "options": "10Style-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6458
     },
     {
      "id": "2506270546401612200",
      "options": "10Style-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7277
     },
     {
      "id": "2506270546401612500",
      "options": "10Style-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6600
     },
     {
      "id": "2506270546401612700",
      "options": "10Style-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8835
     },
     {
      "id": "2506270546401612900",
      "options": "10Style-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7238
     },
     {
      "id": "2506270546401613100",
      "options": "XDKD46 Black Buttons-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7434
     },
     {
      "id": "2506270546401613300",
      "options": "XDKD46 Black Buttons-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5312
     },
     {
      "id": "2506270546401613500",
      "options": "XDKD46 Black Buttons-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6295
     },
     {
      "id": "2506270546401613800",
      "options": "XDKD46 Black Buttons-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8947
     },
     {
      "id": "2506270546401613900",
      "options": "XDKD46 Black Buttons-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5246
     },
     {
      "id": "2506270546401614200",
      "options": "XDKD46 Black Buttons-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7289
     },
     {
      "id": "2506270546401614600",
      "options": "XDKD48 Black Buttons-S",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7666
     },
     {
      "id": "2506270546401614800",
      "options": "XDKD48 Black Buttons-M",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 6311
     },
     {
      "id": "2506270546401615000",
      "options": "XDKD48 Black Buttons-L",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 5869
     },
     {
      "id": "2506270546401615200",
      "options": "XDKD48 Black Buttons-XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 8114
     },
     {
      "id": "2506270546401615500",
      "options": "XDKD48 Black Buttons-XXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7755
     },
     {
      "id": "2506270546401615700",
      "options": "XDKD48 Black Buttons-XXXL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7390
     },
     {
      "id": "2511220642141603800",
      "options": "Black Buttons-4XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 9199
     },
     {
      "id": "2607011303471626900",
      "options": "Sky Blue-XXL",
      "costUsd": 9.95,
-     "stock": null
+     "stock": 6409
     },
     {
      "id": "2607030505291636900",
      "options": "XDKD32-4XL",
      "costUsd": 10.28,
-     "stock": null
+     "stock": 7323
     },
     {
      "id": "2607040607501627400",
      "options": "Sky Blue-L",
      "costUsd": 9.95,
-     "stock": null
+     "stock": 9903
     }
    ],
    "siteId": "cj-2506270546381618200",
@@ -29063,8 +29283,145 @@
   },
   {
    "id": "1458694098226647040",
-   "ok": false,
-   "error": "CJ /product/query?pid=1458694098226647040 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 13d9853a42554c1db37fea48c8a4c173)",
+   "ok": true,
+   "name": "Men Fashion Casual Padded Down Jacket",
+   "saleStatus": "3",
+   "minCostUsd": 10.95,
+   "maxCostUsd": 10.95,
+   "totalStock": 949404,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 17.53,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1458694098260201472",
+     "options": "Khaki-M",
+     "costUsd": 10.95,
+     "stock": 50845
+    },
+    {
+     "id": "1458694098264395776",
+     "options": "Khaki-L",
+     "costUsd": 10.95,
+     "stock": 42827
+    },
+    {
+     "id": "1458694098268590080",
+     "options": "Khaki-XL",
+     "costUsd": 10.95,
+     "stock": 45635
+    },
+    {
+     "id": "1458694098268590081",
+     "options": "Khaki-2XL",
+     "costUsd": 10.95,
+     "stock": 42906
+    },
+    {
+     "id": "1458694098268590082",
+     "options": "Khaki-3XL",
+     "costUsd": 10.95,
+     "stock": 41929
+    },
+    {
+     "id": "1458694098272784384",
+     "options": "Khaki-4XL",
+     "costUsd": 10.95,
+     "stock": 45599
+    },
+    {
+     "id": "1458694098272784385",
+     "options": "Khaki-5XL",
+     "costUsd": 10.95,
+     "stock": 44339
+    },
+    {
+     "id": "1458694098276978688",
+     "options": "Blue-M",
+     "costUsd": 10.95,
+     "stock": 46592
+    },
+    {
+     "id": "1458694098276978689",
+     "options": "Blue-L",
+     "costUsd": 10.95,
+     "stock": 46956
+    },
+    {
+     "id": "1458694098276978690",
+     "options": "Blue-XL",
+     "costUsd": 10.95,
+     "stock": 45095
+    },
+    {
+     "id": "1458694098281172992",
+     "options": "Blue-2XL",
+     "costUsd": 10.95,
+     "stock": 45755
+    },
+    {
+     "id": "1458694098281172993",
+     "options": "Blue-3XL",
+     "costUsd": 10.95,
+     "stock": 44354
+    },
+    {
+     "id": "1458694098285367296",
+     "options": "Blue-4XL",
+     "costUsd": 10.95,
+     "stock": 45458
+    },
+    {
+     "id": "1458694098285367297",
+     "options": "Blue-5XL",
+     "costUsd": 10.95,
+     "stock": 45912
+    },
+    {
+     "id": "1458694098285367298",
+     "options": "Black-M",
+     "costUsd": 10.95,
+     "stock": 42604
+    },
+    {
+     "id": "1458694098289561600",
+     "options": "Black-L",
+     "costUsd": 10.95,
+     "stock": 41384
+    },
+    {
+     "id": "1458694098289561601",
+     "options": "Black-XL",
+     "costUsd": 10.95,
+     "stock": 42518
+    },
+    {
+     "id": "1458694098289561602",
+     "options": "Black-2XL",
+     "costUsd": 10.95,
+     "stock": 45197
+    },
+    {
+     "id": "1458694098293755904",
+     "options": "Black-3XL",
+     "costUsd": 10.95,
+     "stock": 48704
+    },
+    {
+     "id": "1458694098293755905",
+     "options": "Black-4XL",
+     "costUsd": 10.95,
+     "stock": 45358
+    },
+    {
+     "id": "1458694098297950208",
+     "options": "Black-5XL",
+     "costUsd": 10.95,
+     "stock": 49437
+    }
+   ],
    "siteId": "cj-1458694098226647040",
    "title": "Men Fashion Casual Padded Down Jacket",
    "department": "men",
@@ -29073,8 +29430,163 @@
   },
   {
    "id": "1780051635138465792",
-   "ok": false,
-   "error": "CJ /product/query?pid=1780051635138465792 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 3806e658ffb34b0b80b08c0d270a6943)",
+   "ok": true,
+   "name": "Fall Jacket Trousers Men Leisure Set",
+   "saleStatus": "3",
+   "minCostUsd": 12.13,
+   "maxCostUsd": 18.24,
+   "totalStock": 300985,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 17.94,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1780051635272683520",
+     "options": "Black Suit-2XL",
+     "costUsd": 18.24,
+     "stock": 10635
+    },
+    {
+     "id": "1780051635348180992",
+     "options": "Black Suit-3XL",
+     "costUsd": 18.24,
+     "stock": 13857
+    },
+    {
+     "id": "1780051635406901248",
+     "options": "Black Suit-4XL",
+     "costUsd": 18.24,
+     "stock": 10633
+    },
+    {
+     "id": "1780051635461427200",
+     "options": "Black Suit-L",
+     "costUsd": 18.24,
+     "stock": 14678
+    },
+    {
+     "id": "1780051635515953152",
+     "options": "Black Suit-M",
+     "costUsd": 18.24,
+     "stock": 11007
+    },
+    {
+     "id": "1780051635570479104",
+     "options": "Black Suit-XL",
+     "costUsd": 18.24,
+     "stock": 13509
+    },
+    {
+     "id": "1780051635629199360",
+     "options": "Black Tops-2XL",
+     "costUsd": 12.13,
+     "stock": 10127
+    },
+    {
+     "id": "1780051635687919616",
+     "options": "Black Tops-3XL",
+     "costUsd": 12.13,
+     "stock": 10932
+    },
+    {
+     "id": "1780051635742445568",
+     "options": "Black Tops-4XL",
+     "costUsd": 12.13,
+     "stock": 12197
+    },
+    {
+     "id": "1780051635796971520",
+     "options": "Black Tops-L",
+     "costUsd": 12.13,
+     "stock": 14390
+    },
+    {
+     "id": "1780051635851497472",
+     "options": "Black Tops-M",
+     "costUsd": 12.13,
+     "stock": 11341
+    },
+    {
+     "id": "1780051635906023424",
+     "options": "Black Tops-XL",
+     "costUsd": 12.13,
+     "stock": 10529
+    },
+    {
+     "id": "1780051635960549376",
+     "options": "White Tops-2XL",
+     "costUsd": 12.94,
+     "stock": 13060
+    },
+    {
+     "id": "1780051636069601280",
+     "options": "White Tops-3XL",
+     "costUsd": 12.94,
+     "stock": 14586
+    },
+    {
+     "id": "1780051636145098752",
+     "options": "White Tops-4XL",
+     "costUsd": 12.94,
+     "stock": 13770
+    },
+    {
+     "id": "1780051636203819008",
+     "options": "White Tops-L",
+     "costUsd": 12.94,
+     "stock": 13360
+    },
+    {
+     "id": "1780051636275122176",
+     "options": "White Tops-M",
+     "costUsd": 12.94,
+     "stock": 11813
+    },
+    {
+     "id": "1780051636333842432",
+     "options": "White Tops-XL",
+     "costUsd": 12.94,
+     "stock": 11356
+    },
+    {
+     "id": "1780051636455477248",
+     "options": "White Suit-2XL",
+     "costUsd": 18.24,
+     "stock": 11972
+    },
+    {
+     "id": "1780051636510003200",
+     "options": "White Suit-3XL",
+     "costUsd": 18.24,
+     "stock": 10636
+    },
+    {
+     "id": "1780051636564529152",
+     "options": "White Suit-4XL",
+     "costUsd": 18.24,
+     "stock": 14629
+    },
+    {
+     "id": "1780051636619055104",
+     "options": "White Suit-L",
+     "costUsd": 18.24,
+     "stock": 14434
+    },
+    {
+     "id": "1780051636673581056",
+     "options": "White Suit-M",
+     "costUsd": 18.24,
+     "stock": 13266
+    },
+    {
+     "id": "1780051636736495616",
+     "options": "White Suit-XL",
+     "costUsd": 18.24,
+     "stock": 14268
+    }
+   ],
    "siteId": "cj-1780051635138465792",
    "title": "Fall Jacket Trousers Men Leisure Set",
    "department": "men",
@@ -29089,7 +29601,11 @@
    "minCostUsd": 16.58,
    "maxCostUsd": 16.58,
    "totalStock": 132658,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.05,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1756677793863176192",
@@ -29160,8 +29676,271 @@
   },
   {
    "id": "2411150315081612900",
-   "ok": false,
-   "error": "CJ /product/query?pid=2411150315081612900 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 9c72232a0c18427e84dc04a0ab04a5e0)",
+   "ok": true,
+   "name": "Baseball Uniform Business Casual Jacket Men",
+   "saleStatus": "3",
+   "minCostUsd": 7.25,
+   "maxCostUsd": 9.12,
+   "totalStock": 478044,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.75,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2411150315081613200",
+     "options": "Navy Blue-M",
+     "costUsd": 9.12,
+     "stock": 10044
+    },
+    {
+     "id": "2411150315081613500",
+     "options": "Navy Blue-L",
+     "costUsd": 9.12,
+     "stock": 14705
+    },
+    {
+     "id": "2411150315081613900",
+     "options": "Navy Blue-XL",
+     "costUsd": 9.12,
+     "stock": 10022
+    },
+    {
+     "id": "2411150315081614100",
+     "options": "Navy Blue-XXL",
+     "costUsd": 9.12,
+     "stock": 12940
+    },
+    {
+     "id": "2411150315081614300",
+     "options": "Navy Blue-XXXL",
+     "costUsd": 9.12,
+     "stock": 10666
+    },
+    {
+     "id": "2411150315081614500",
+     "options": "Navy Blue-4XL",
+     "costUsd": 9.12,
+     "stock": 11996
+    },
+    {
+     "id": "2411150315081614700",
+     "options": "Navy Blue-5XL",
+     "costUsd": 9.12,
+     "stock": 11964
+    },
+    {
+     "id": "2411150315081614900",
+     "options": "Beige-M",
+     "costUsd": 9.12,
+     "stock": 13486
+    },
+    {
+     "id": "2411150315081615100",
+     "options": "Beige-L",
+     "costUsd": 9.12,
+     "stock": 13586
+    },
+    {
+     "id": "2411150315081615300",
+     "options": "Beige-XL",
+     "costUsd": 9.12,
+     "stock": 11382
+    },
+    {
+     "id": "2411150315081615600",
+     "options": "Beige-XXL",
+     "costUsd": 9.12,
+     "stock": 10163
+    },
+    {
+     "id": "2411150315081615900",
+     "options": "Beige-XXXL",
+     "costUsd": 9.12,
+     "stock": 14266
+    },
+    {
+     "id": "2411150315081616200",
+     "options": "Beige-4XL",
+     "costUsd": 9.12,
+     "stock": 13572
+    },
+    {
+     "id": "2411150315081616400",
+     "options": "Beige-5XL",
+     "costUsd": 9.12,
+     "stock": 12672
+    },
+    {
+     "id": "2411150315081616700",
+     "options": "Khaki-M",
+     "costUsd": 9.12,
+     "stock": 13863
+    },
+    {
+     "id": "2411150315081617100",
+     "options": "Khaki-L",
+     "costUsd": 9.12,
+     "stock": 10701
+    },
+    {
+     "id": "2411150315081617400",
+     "options": "Khaki-XL",
+     "costUsd": 9.12,
+     "stock": 10509
+    },
+    {
+     "id": "2411150315081618100",
+     "options": "Khaki-XXL",
+     "costUsd": 9.12,
+     "stock": 10293
+    },
+    {
+     "id": "2411150315081618500",
+     "options": "Khaki-XXXL",
+     "costUsd": 9.12,
+     "stock": 10339
+    },
+    {
+     "id": "2411150315081618900",
+     "options": "Khaki-4XL",
+     "costUsd": 9.12,
+     "stock": 11782
+    },
+    {
+     "id": "2411150315081619100",
+     "options": "Khaki-5XL",
+     "costUsd": 9.12,
+     "stock": 13297
+    },
+    {
+     "id": "2411150315081619600",
+     "options": "Red-M",
+     "costUsd": 9.12,
+     "stock": 14268
+    },
+    {
+     "id": "2411150315091610000",
+     "options": "Red-L",
+     "costUsd": 9.12,
+     "stock": 10232
+    },
+    {
+     "id": "2411150315091610500",
+     "options": "Red-XL",
+     "costUsd": 9.12,
+     "stock": 13322
+    },
+    {
+     "id": "2411150315091610700",
+     "options": "Red-XXL",
+     "costUsd": 9.12,
+     "stock": 14730
+    },
+    {
+     "id": "2411150315091610900",
+     "options": "Red-XXXL",
+     "costUsd": 9.12,
+     "stock": 13601
+    },
+    {
+     "id": "2411150315091611100",
+     "options": "Red-4XL",
+     "costUsd": 9.12,
+     "stock": 14748
+    },
+    {
+     "id": "2411150315091611300",
+     "options": "Red-5XL",
+     "costUsd": 9.12,
+     "stock": 14061
+    },
+    {
+     "id": "2411150315091611600",
+     "options": "Black-M",
+     "costUsd": 9.12,
+     "stock": 14657
+    },
+    {
+     "id": "2411150315091611900",
+     "options": "Black-L",
+     "costUsd": 9.12,
+     "stock": 11501
+    },
+    {
+     "id": "2411150315091612400",
+     "options": "Black-XL",
+     "costUsd": 9.12,
+     "stock": 12712
+    },
+    {
+     "id": "2411150315091612600",
+     "options": "Black-XXL",
+     "costUsd": 9.12,
+     "stock": 11027
+    },
+    {
+     "id": "2411150315091612800",
+     "options": "Black-XXXL",
+     "costUsd": 9.12,
+     "stock": 12619
+    },
+    {
+     "id": "2411150315091612900",
+     "options": "Black-4XL",
+     "costUsd": 9.12,
+     "stock": 10645
+    },
+    {
+     "id": "2411150315091613300",
+     "options": "Black-5XL",
+     "costUsd": 9.12,
+     "stock": 10336
+    },
+    {
+     "id": "2508270217261619400",
+     "options": "Dark Blue-4XL",
+     "costUsd": 7.25,
+     "stock": 5696
+    },
+    {
+     "id": "2508270217261619600",
+     "options": "Dark Blue-5XL",
+     "costUsd": 7.25,
+     "stock": 8324
+    },
+    {
+     "id": "2508270217261619800",
+     "options": "Dark Blue-L",
+     "costUsd": 7.25,
+     "stock": 6813
+    },
+    {
+     "id": "2508270217271610000",
+     "options": "Dark Blue-M",
+     "costUsd": 7.25,
+     "stock": 5631
+    },
+    {
+     "id": "2508270217271610100",
+     "options": "Dark Blue-XL",
+     "costUsd": 7.25,
+     "stock": 8711
+    },
+    {
+     "id": "2508270217271610300",
+     "options": "Dark Blue-XXL",
+     "costUsd": 7.25,
+     "stock": 6669
+    },
+    {
+     "id": "2508270217271610500",
+     "options": "Dark Blue-XXXL",
+     "costUsd": 7.25,
+     "stock": 5493
+    }
+   ],
    "siteId": "cj-2411150315081612900",
    "title": "Baseball Uniform Business Casual Jacket Men",
    "department": "men",
@@ -29175,50 +29954,54 @@
    "saleStatus": "3",
    "minCostUsd": 21.37,
    "maxCostUsd": 21.37,
-   "totalStock": null,
-   "shipping": null,
+   "totalStock": 91478,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 16.02,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1716422208421109760",
      "options": "Plaid-M",
      "costUsd": 21.37,
-     "stock": null
+     "stock": 12584
     },
     {
      "id": "1716422208484024320",
      "options": "Plaid-L",
      "costUsd": 21.37,
-     "stock": null
+     "stock": 11100
     },
     {
      "id": "1716422208546938880",
      "options": "Plaid-XL",
      "costUsd": 21.37,
-     "stock": null
+     "stock": 14738
     },
     {
      "id": "1716422208609853440",
      "options": "Plaid-2XL",
      "costUsd": 21.37,
-     "stock": null
+     "stock": 12968
     },
     {
      "id": "1716422208672768000",
      "options": "Plaid-XXXL",
      "costUsd": 21.37,
-     "stock": null
+     "stock": 12361
     },
     {
      "id": "1716422208735682560",
      "options": "Plaid-XXXXL",
      "costUsd": 21.37,
-     "stock": null
+     "stock": 14832
     },
     {
      "id": "1716422208798597120",
      "options": "Plaid-XXXXXL",
      "costUsd": 21.37,
-     "stock": null
+     "stock": 12895
     }
    ],
    "siteId": "cj-1716422208341417984",
@@ -29235,7 +30018,11 @@
    "minCostUsd": 6.3,
    "maxCostUsd": 7.83,
    "totalStock": 460188,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 9.7,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1686798A-0AE6-43D5-A5B2-D316B531C26B",
@@ -29468,8 +30255,235 @@
   },
   {
    "id": "2411070331141623200",
-   "ok": false,
-   "error": "CJ /product/query?pid=2411070331141623200 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request e5f23b9959884b57a5a00d50a156f04f)",
+   "ok": true,
+   "name": "Retro Casual Jacket For Men",
+   "saleStatus": "3",
+   "minCostUsd": 4.86,
+   "maxCostUsd": 4.86,
+   "totalStock": 456266,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 9.34,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2411070331141623400",
+     "options": "Black-S",
+     "costUsd": 4.86,
+     "stock": 10184
+    },
+    {
+     "id": "2411070331141623600",
+     "options": "Black-M",
+     "costUsd": 4.86,
+     "stock": 13033
+    },
+    {
+     "id": "2411070331141623800",
+     "options": "Black-L",
+     "costUsd": 4.86,
+     "stock": 10115
+    },
+    {
+     "id": "2411070331141624000",
+     "options": "Black-XL",
+     "costUsd": 4.86,
+     "stock": 13472
+    },
+    {
+     "id": "2411070331141624200",
+     "options": "Black-XXL",
+     "costUsd": 4.86,
+     "stock": 11657
+    },
+    {
+     "id": "2411070331141624300",
+     "options": "Black-XXXL",
+     "costUsd": 4.86,
+     "stock": 13406
+    },
+    {
+     "id": "2411070331141624500",
+     "options": "White-S",
+     "costUsd": 4.86,
+     "stock": 11691
+    },
+    {
+     "id": "2411070331141624700",
+     "options": "White-M",
+     "costUsd": 4.86,
+     "stock": 10473
+    },
+    {
+     "id": "2411070331141625000",
+     "options": "White-L",
+     "costUsd": 4.86,
+     "stock": 13559
+    },
+    {
+     "id": "2411070331141625200",
+     "options": "White-XL",
+     "costUsd": 4.86,
+     "stock": 12841
+    },
+    {
+     "id": "2411070331141625400",
+     "options": "White-XXL",
+     "costUsd": 4.86,
+     "stock": 13153
+    },
+    {
+     "id": "2411070331141625600",
+     "options": "White-XXXL",
+     "costUsd": 4.86,
+     "stock": 11166
+    },
+    {
+     "id": "2411070331141625800",
+     "options": "Army Green-S",
+     "costUsd": 4.86,
+     "stock": 14195
+    },
+    {
+     "id": "2411070331141626000",
+     "options": "Army Green-M",
+     "costUsd": 4.86,
+     "stock": 13475
+    },
+    {
+     "id": "2411070331141626200",
+     "options": "Army Green-L",
+     "costUsd": 4.86,
+     "stock": 14974
+    },
+    {
+     "id": "2411070331141626400",
+     "options": "Army Green-XL",
+     "costUsd": 4.86,
+     "stock": 11128
+    },
+    {
+     "id": "2411070331141626600",
+     "options": "Army Green-XXL",
+     "costUsd": 4.86,
+     "stock": 12569
+    },
+    {
+     "id": "2411070331141626800",
+     "options": "Army Green-XXXL",
+     "costUsd": 4.86,
+     "stock": 11543
+    },
+    {
+     "id": "2411070331141627000",
+     "options": "Navy Blue-S",
+     "costUsd": 4.86,
+     "stock": 11745
+    },
+    {
+     "id": "2411070331141627200",
+     "options": "Navy Blue-M",
+     "costUsd": 4.86,
+     "stock": 14996
+    },
+    {
+     "id": "2411070331141627400",
+     "options": "Navy Blue-L",
+     "costUsd": 4.86,
+     "stock": 10807
+    },
+    {
+     "id": "2411070331141627500",
+     "options": "Navy Blue-XL",
+     "costUsd": 4.86,
+     "stock": 11639
+    },
+    {
+     "id": "2411070331141627700",
+     "options": "Navy Blue-XXL",
+     "costUsd": 4.86,
+     "stock": 13967
+    },
+    {
+     "id": "2411070331141627900",
+     "options": "Navy Blue-XXXL",
+     "costUsd": 4.86,
+     "stock": 13995
+    },
+    {
+     "id": "2411070331141628100",
+     "options": "Red-S",
+     "costUsd": 4.86,
+     "stock": 13013
+    },
+    {
+     "id": "2411070331141628300",
+     "options": "Red-M",
+     "costUsd": 4.86,
+     "stock": 12982
+    },
+    {
+     "id": "2411070331141628500",
+     "options": "Red-L",
+     "costUsd": 4.86,
+     "stock": 14019
+    },
+    {
+     "id": "2411070331141628600",
+     "options": "Red-XL",
+     "costUsd": 4.86,
+     "stock": 14025
+    },
+    {
+     "id": "2411070331141628800",
+     "options": "Red-XXL",
+     "costUsd": 4.86,
+     "stock": 10381
+    },
+    {
+     "id": "2411070331141629000",
+     "options": "Red-XXXL",
+     "costUsd": 4.86,
+     "stock": 11770
+    },
+    {
+     "id": "2411070331141629300",
+     "options": "Green-S",
+     "costUsd": 4.86,
+     "stock": 11502
+    },
+    {
+     "id": "2411070331141629500",
+     "options": "Green-M",
+     "costUsd": 4.86,
+     "stock": 11985
+    },
+    {
+     "id": "2411070331141629600",
+     "options": "Green-L",
+     "costUsd": 4.86,
+     "stock": 14837
+    },
+    {
+     "id": "2411070331141629800",
+     "options": "Green-XL",
+     "costUsd": 4.86,
+     "stock": 13359
+    },
+    {
+     "id": "2411070331151620000",
+     "options": "Green-XXL",
+     "costUsd": 4.86,
+     "stock": 14158
+    },
+    {
+     "id": "2411070331151620200",
+     "options": "Green-XXXL",
+     "costUsd": 4.86,
+     "stock": 14452
+    }
+   ],
    "siteId": "cj-2411070331141623200",
    "title": "Retro Casual Jacket For Men",
    "department": "men",
@@ -29478,8 +30492,123 @@
   },
   {
    "id": "1783053630657007616",
-   "ok": false,
-   "error": "CJ /product/query?pid=1783053630657007616 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 4eb4e4a727c340da8c4cff295f3f4d7b)",
+   "ok": true,
+   "name": "Thin Baggy Casual Jacket Men",
+   "saleStatus": "3",
+   "minCostUsd": 11.28,
+   "maxCostUsd": 11.28,
+   "totalStock": 227152,
+   "shipping": null,
+   "variants": [
+    {
+     "id": "1783053630770253824",
+     "options": "606 Thin Black-M",
+     "costUsd": 11.28,
+     "stock": 13817
+    },
+    {
+     "id": "1783053630837362688",
+     "options": "606 Thin Black-L",
+     "costUsd": 11.28,
+     "stock": 12734
+    },
+    {
+     "id": "1783053630917054464",
+     "options": "606 Thin Black-XL",
+     "costUsd": 11.28,
+     "stock": 12488
+    },
+    {
+     "id": "1783053630992551936",
+     "options": "606 Thin Black-2XL",
+     "costUsd": 11.28,
+     "stock": 14692
+    },
+    {
+     "id": "1783053631055466496",
+     "options": "606 Thin Black-3XL",
+     "costUsd": 11.28,
+     "stock": 11331
+    },
+    {
+     "id": "1783053631126769664",
+     "options": "606 Thin Black-4XL",
+     "costUsd": 11.28,
+     "stock": 13429
+    },
+    {
+     "id": "1783053631202267136",
+     "options": "606 Thin Dark Blue-M",
+     "costUsd": 11.28,
+     "stock": 10954
+    },
+    {
+     "id": "1783053631269376000",
+     "options": "606 Thin Dark Blue-L",
+     "costUsd": 11.28,
+     "stock": 14268
+    },
+    {
+     "id": "1783053631340679168",
+     "options": "606 Thin Dark Blue-XL",
+     "costUsd": 11.28,
+     "stock": 10406
+    },
+    {
+     "id": "1783053631411982336",
+     "options": "606 Thin Dark Blue-2XL",
+     "costUsd": 11.28,
+     "stock": 10620
+    },
+    {
+     "id": "1783053631495868416",
+     "options": "606 Thin Dark Blue-3XL",
+     "costUsd": 11.28,
+     "stock": 14883
+    },
+    {
+     "id": "1783053631567171584",
+     "options": "606 Thin Dark Blue-4XL",
+     "costUsd": 11.28,
+     "stock": 11660
+    },
+    {
+     "id": "1783053631634280448",
+     "options": "606 Thin Army Green-M",
+     "costUsd": 11.28,
+     "stock": 13733
+    },
+    {
+     "id": "1783053631697195008",
+     "options": "606 Thin Army Green-L",
+     "costUsd": 11.28,
+     "stock": 13514
+    },
+    {
+     "id": "1783053631760109568",
+     "options": "606 Thin Army Green-XL",
+     "costUsd": 11.28,
+     "stock": 11421
+    },
+    {
+     "id": "1783053631818829824",
+     "options": "606 Thin Army Green-2XL",
+     "costUsd": 11.28,
+     "stock": 14365
+    },
+    {
+     "id": "1783053631890132992",
+     "options": "606 Thin Army Green-3XL",
+     "costUsd": 11.28,
+     "stock": 10663
+    },
+    {
+     "id": "1783053631957241856",
+     "options": "606 Thin Army Green-4XL",
+     "costUsd": 11.28,
+     "stock": 12174
+    }
+   ],
    "siteId": "cj-1783053630657007616",
    "title": "Thin Baggy Casual Jacket Men",
    "department": "men",
@@ -29488,8 +30617,199 @@
   },
   {
    "id": "F60A9FF0-DDC8-4962-AAA2-CF8F17A09AD3",
-   "ok": false,
-   "error": "CJ /product/query?pid=F60A9FF0-DDC8-4962-AAA2-CF8F17A09AD3 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request ee451cd990af4cdcb576865b5f2a8741)",
+   "ok": true,
+   "name": "Men Hip Hop Sports Jacket Bomber Jacket",
+   "saleStatus": "3",
+   "minCostUsd": 5.8,
+   "maxCostUsd": 5.97,
+   "totalStock": 1004909,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 11.48,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0A2A8A05-DA32-4E14-AD13-91FC6A52C4BF",
+     "options": "Camel-XXL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "1D53F79E-F97D-45D9-8B60-554FB6FBA85A",
+     "options": "Blue-XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "2508040243221603400",
+     "options": "Light Gray-L",
+     "costUsd": 5.8,
+     "stock": 9900
+    },
+    {
+     "id": "2509010525221617800",
+     "options": "Light Gray-XL",
+     "costUsd": 5.8,
+     "stock": 5258
+    },
+    {
+     "id": "2604240820541626500",
+     "options": "Light Gray-S",
+     "costUsd": 5.97,
+     "stock": 9014
+    },
+    {
+     "id": "2604240820541627000",
+     "options": "Light Gray-M",
+     "costUsd": 5.97,
+     "stock": 6038
+    },
+    {
+     "id": "2604240820541627512",
+     "options": "Light Gray-XXL",
+     "costUsd": 5.97,
+     "stock": 5496
+    },
+    {
+     "id": "2604240820541628000",
+     "options": "Light Gray-3XL",
+     "costUsd": 5.97,
+     "stock": 9203
+    },
+    {
+     "id": "4BA8FB25-23BD-4316-954D-600696AC281A",
+     "options": "Black-3XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "4BFFE1E4-5E5E-47B9-91B4-52B560E5C5D4",
+     "options": "Black-XXL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "4F61AF55-D4EB-4B20-BFA7-324A08AB4778",
+     "options": "Camel-L",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "54E8A976-3387-4E13-8B63-57AB61740D8C",
+     "options": "Camel-S",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "59BAF0B8-5C99-47DC-A66A-942B04D540D5",
+     "options": "Dark grey-3XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "60AA5BBE-C1E6-49A4-9E00-05C8BBF55FD4",
+     "options": "Blue-S",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "7D6F41FA-B218-42EF-9089-55CB22A7EF33",
+     "options": "Camel-3XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "7E3B0DD2-CFB1-47E6-8955-7394D9A9398C",
+     "options": "Dark grey-M",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "8713C3CE-2994-47D5-8BE5-B93E4B64A34C",
+     "options": "Dark grey-XXL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "A09B8200-09E3-48C0-BB50-0410E92217A7",
+     "options": "Dark grey-XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "A434FC13-6020-4D03-8D79-CD86989A9D74",
+     "options": "Blue-XXL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "A4CB1403-713E-4FE4-B52D-05851039247C",
+     "options": "Black-S",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "AFDC59C1-EC1B-480C-A23D-49658DD7CFAD",
+     "options": "Blue-L",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "B95BD9EE-9412-40E8-B6FC-6B8D26AC12AF",
+     "options": "Blue-3XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "BFBB0F00-6435-494F-96C9-4D3846CA5309",
+     "options": "Black-L",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "C06195F8-B231-439A-9D5E-F44AF8BCF4C5",
+     "options": "Camel-M",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "C388FE37-AC1B-4329-A108-A4A3ADECDC5E",
+     "options": "Dark grey-S",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "C515A03B-77F7-40B6-900F-B623EAC25FBE",
+     "options": "Camel-XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "CC35661C-50FD-45A0-8819-8F8FDA10887F",
+     "options": "Dark grey-L",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "DC1848DB-E6B0-4BE9-8FD7-B4164987092B",
+     "options": "Blue-M",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "DCA566B7-B95B-4262-98D3-C089629CDC66",
+     "options": "Black-M",
+     "costUsd": 5.8,
+     "stock": 40000
+    },
+    {
+     "id": "E4BE7ABA-990A-4CA7-B3EA-027EBCE881E3",
+     "options": "Black-XL",
+     "costUsd": 5.8,
+     "stock": 40000
+    }
+   ],
    "siteId": "cj-F60A9FF0-DDC8-4962-AAA2-CF8F17A09AD3",
    "title": "Men Hip Hop Sports Jacket Bomber Jacket",
    "department": "men",
@@ -29504,7 +30824,11 @@
    "minCostUsd": 2.07,
    "maxCostUsd": 2.7,
    "totalStock": 130236,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 6.51,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1405390951865782272",
@@ -29539,8 +30863,49 @@
   },
   {
    "id": "1621796939010420736",
-   "ok": false,
-   "error": "CJ /product/query?pid=1621796939010420736 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 6e280704cc044c3a89cfa4f525ce9f11)",
+   "ok": true,
+   "name": "Mountaineering Fishing Sunscreen Travel Breathable Large Eave Visor Hat For Men",
+   "saleStatus": "3",
+   "minCostUsd": 1.15,
+   "maxCostUsd": 1.15,
+   "totalStock": 61555,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 10.11,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1621796939081723904",
+     "options": "Khaki-One size",
+     "costUsd": 1.15,
+     "stock": 10760
+    },
+    {
+     "id": "1621796939081723905",
+     "options": "Black-One size",
+     "costUsd": 1.15,
+     "stock": 10459
+    },
+    {
+     "id": "1621796939085918208",
+     "options": "Grey-One size",
+     "costUsd": 1.15,
+     "stock": 12229
+    },
+    {
+     "id": "1621796939085918209",
+     "options": "Army green-One size",
+     "costUsd": 1.15,
+     "stock": 14979
+    },
+    {
+     "id": "1621796939090112512",
+     "options": "Dark gray-One size",
+     "costUsd": 1.15,
+     "stock": 13128
+    }
+   ],
    "siteId": "cj-1621796939010420736",
    "title": "Mountaineering Fishing Sunscreen Travel Breathable Large Eave Visor Hat For Men",
    "department": "men",
@@ -29549,8 +30914,37 @@
   },
   {
    "id": "1374280717453889536",
-   "ok": false,
-   "error": "CJ /product/query?pid=1374280717453889536 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 6fbb071f81e2451391c9226b6366952e)",
+   "ok": true,
+   "name": "Middle-aged And Elderly Hat Men Spring And Autumn",
+   "saleStatus": "3",
+   "minCostUsd": 1.45,
+   "maxCostUsd": 1.45,
+   "totalStock": 120000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 7.32,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1374280719702036480",
+     "options": "Black",
+     "costUsd": 1.45,
+     "stock": 40000
+    },
+    {
+     "id": "1374280719748173824",
+     "options": "Grey",
+     "costUsd": 1.45,
+     "stock": 40000
+    },
+    {
+     "id": "1374280719790116864",
+     "options": "Dark Blue",
+     "costUsd": 1.45,
+     "stock": 40000
+    }
+   ],
    "siteId": "cj-1374280717453889536",
    "title": "Middle-aged And Elderly Hat Men Spring And Autumn",
    "department": "men",
@@ -29559,8 +30953,55 @@
   },
   {
    "id": "2412190744171605600",
-   "ok": false,
-   "error": "CJ /product/query?pid=2412190744171605600 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request f7bc5c0d79a3438e8e126d252e0b6095)",
+   "ok": true,
+   "name": "Outdoor Folding Climbing Hat Men",
+   "saleStatus": "3",
+   "minCostUsd": 1.65,
+   "maxCostUsd": 1.65,
+   "totalStock": 43925,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 5.79,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2412190744171605900",
+     "options": "Navy Blue-Free Size",
+     "costUsd": 1.65,
+     "stock": 7564
+    },
+    {
+     "id": "2412190744171606100",
+     "options": "Black-Free Size",
+     "costUsd": 1.65,
+     "stock": 8000
+    },
+    {
+     "id": "2412190744171606400",
+     "options": "Army Green-Free Size",
+     "costUsd": 1.65,
+     "stock": 6925
+    },
+    {
+     "id": "2412190744171606600",
+     "options": "Light Khaki-Free Size",
+     "costUsd": 1.65,
+     "stock": 7348
+    },
+    {
+     "id": "2412190744171606800",
+     "options": "Dark Gray-Free Size",
+     "costUsd": 1.65,
+     "stock": 6812
+    },
+    {
+     "id": "2412190744171607000",
+     "options": "Deep Khaki-Free Size",
+     "costUsd": 1.65,
+     "stock": 7276
+    }
+   ],
    "siteId": "cj-2412190744171605600",
    "title": "Outdoor Folding Climbing Hat Men",
    "department": "men",
@@ -29575,7 +31016,11 @@
    "minCostUsd": 2.02,
    "maxCostUsd": 2.02,
    "totalStock": 65381,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 5.85,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1752521165450518528",
@@ -29616,8 +31061,133 @@
   },
   {
    "id": "1478625274550685696",
-   "ok": false,
-   "error": "CJ /product/query?pid=1478625274550685696 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request ab22df853b9049579e15a1c12de1f009)",
+   "ok": true,
+   "name": "Men's All-match Knitted Wool Hat Without Eaves To Keep Warm",
+   "saleStatus": "3",
+   "minCostUsd": 8.33,
+   "maxCostUsd": 8.33,
+   "totalStock": 707360,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 6.84,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1478625274663931904",
+     "options": "Black-Regular one size",
+     "costUsd": 8.33,
+     "stock": 40845
+    },
+    {
+     "id": "1478625274668126208",
+     "options": "Turmeric-Regular one size",
+     "costUsd": 8.33,
+     "stock": 34674
+    },
+    {
+     "id": "1478625274668126209",
+     "options": "Beige-Regular one size",
+     "costUsd": 8.33,
+     "stock": 39684
+    },
+    {
+     "id": "1478625274672320512",
+     "options": "Wine Red-Regular one size",
+     "costUsd": 8.33,
+     "stock": 37462
+    },
+    {
+     "id": "1478625274710069248",
+     "options": "Grey-Regular one size",
+     "costUsd": 8.33,
+     "stock": 32914
+    },
+    {
+     "id": "1478625274710069249",
+     "options": "Caramel-Regular one size",
+     "costUsd": 8.33,
+     "stock": 36585
+    },
+    {
+     "id": "1478625274714263552",
+     "options": "Dark green-Regular one size",
+     "costUsd": 8.33,
+     "stock": 36917
+    },
+    {
+     "id": "1478625274714263553",
+     "options": "Navy Blue-Regular one size",
+     "costUsd": 8.33,
+     "stock": 38505
+    },
+    {
+     "id": "1478625274718457856",
+     "options": "Orange-Regular one size",
+     "costUsd": 8.33,
+     "stock": 38609
+    },
+    {
+     "id": "1478625274718457857",
+     "options": "Royal-Regular one size",
+     "costUsd": 8.33,
+     "stock": 35354
+    },
+    {
+     "id": "1478625274718457858",
+     "options": "Black hole-Regular one size",
+     "costUsd": 8.33,
+     "stock": 45878
+    },
+    {
+     "id": "1478625274722652160",
+     "options": "Hole grey-Regular one size",
+     "costUsd": 8.33,
+     "stock": 34740
+    },
+    {
+     "id": "1478625274722652161",
+     "options": "Hole orange-Regular one size",
+     "costUsd": 8.33,
+     "stock": 32947
+    },
+    {
+     "id": "1478625274722652162",
+     "options": "Broken Sapphire Blue-Regular one size",
+     "costUsd": 8.33,
+     "stock": 39551
+    },
+    {
+     "id": "1478625274726846464",
+     "options": "Hole beige-Regular one size",
+     "costUsd": 8.33,
+     "stock": 34997
+    },
+    {
+     "id": "1478625274726846465",
+     "options": "Hole Caramel-Regular one size",
+     "costUsd": 8.33,
+     "stock": 31719
+    },
+    {
+     "id": "1478625274726846466",
+     "options": "Hole dark green-Regular one size",
+     "costUsd": 8.33,
+     "stock": 42237
+    },
+    {
+     "id": "1478625274731040768",
+     "options": "Hole in dark blue-Regular one size",
+     "costUsd": 8.33,
+     "stock": 33555
+    },
+    {
+     "id": "1478625274731040769",
+     "options": "Broken wine red-Regular one size",
+     "costUsd": 8.33,
+     "stock": 40187
+    }
+   ],
    "siteId": "cj-1478625274550685696",
    "title": "Men's All-match Knitted Wool Hat Without Eaves To Keep Warm",
    "department": "men",
@@ -29626,8 +31196,55 @@
   },
   {
    "id": "2406220608411601800",
-   "ok": false,
-   "error": "CJ /product/query?pid=2406220608411601800 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request bbc0114b4e364ecf867ed5c577051b6f)",
+   "ok": true,
+   "name": "Summer Men's Outdoor Protection UV Protection Sun Hat",
+   "saleStatus": "3",
+   "minCostUsd": 2.44,
+   "maxCostUsd": 2.44,
+   "totalStock": 70957,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 6.03,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2406220608411602000",
+     "options": "Navy Blue-M",
+     "costUsd": 2.44,
+     "stock": 13288
+    },
+    {
+     "id": "2406220608411602100",
+     "options": "Black-M",
+     "costUsd": 2.44,
+     "stock": 10094
+    },
+    {
+     "id": "2406220608411602300",
+     "options": "Khaki-M",
+     "costUsd": 2.44,
+     "stock": 10708
+    },
+    {
+     "id": "2406220608411602400",
+     "options": "Dark Gray-M",
+     "costUsd": 2.44,
+     "stock": 11326
+    },
+    {
+     "id": "2406220608411602600",
+     "options": "Light Gray-M",
+     "costUsd": 2.44,
+     "stock": 12783
+    },
+    {
+     "id": "2406220608411602700",
+     "options": "Army Green-M",
+     "costUsd": 2.44,
+     "stock": 12758
+    }
+   ],
    "siteId": "cj-2406220608411601800",
    "title": "Summer Men's Outdoor Protection UV Protection Sun Hat",
    "department": "men",
@@ -29789,8 +31406,49 @@
   },
   {
    "id": "1570747264077934592",
-   "ok": false,
-   "error": "CJ /product/query?pid=1570747264077934592 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 2fd016ef59334c3c809b52e8277fb61b)",
+   "ok": true,
+   "name": "Men's New Winter Simple Wool Pullover Hat",
+   "saleStatus": "3",
+   "minCostUsd": 3.46,
+   "maxCostUsd": 3.46,
+   "totalStock": 64926,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 5.74,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1570747264103100416",
+     "options": "Grey",
+     "costUsd": 3.46,
+     "stock": 11479
+    },
+    {
+     "id": "1570747264103100417",
+     "options": "Black",
+     "costUsd": 3.46,
+     "stock": 10754
+    },
+    {
+     "id": "1570747264107294720",
+     "options": "Khaki",
+     "costUsd": 3.46,
+     "stock": 14973
+    },
+    {
+     "id": "1570747264107294721",
+     "options": "Wine Red",
+     "costUsd": 3.46,
+     "stock": 14000
+    },
+    {
+     "id": "1570747264107294722",
+     "options": "Royal blue",
+     "costUsd": 3.46,
+     "stock": 13720
+    }
+   ],
    "siteId": "cj-1570747264077934592",
    "title": "Men's New Winter Simple Wool Pullover Hat",
    "department": "men",
@@ -57361,7 +59019,7 @@
    "saleStatus": "3",
    "minCostUsd": 10.31,
    "maxCostUsd": 10.31,
-   "totalStock": null,
+   "totalStock": 52907,
    "shipping": {
     "name": "LuWei Ordinary US",
     "priceUsd": 12.39,
@@ -57372,25 +59030,25 @@
      "id": "1795744927616339968",
      "options": "Black-M",
      "costUsd": 10.31,
-     "stock": null
+     "stock": 12223
     },
     {
      "id": "1795744927704420352",
      "options": "Black-L",
      "costUsd": 10.31,
-     "stock": null
+     "stock": 14353
     },
     {
      "id": "1795744927805083648",
      "options": "Black-XL",
      "costUsd": 10.31,
-     "stock": null
+     "stock": 13499
     },
     {
      "id": "1795744927876386816",
      "options": "Black-2XL",
      "costUsd": 10.31,
-     "stock": null
+     "stock": 12832
     }
    ],
    "siteId": "cj-1795744927423401984",
@@ -62468,7 +64126,11 @@
    "minCostUsd": 17.19,
    "maxCostUsd": 26.04,
    "totalStock": 36620,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 22.87,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "2501200506341615000",
@@ -62566,8 +64228,91 @@
   },
   {
    "id": "1780586875615457280",
-   "ok": false,
-   "error": "CJ /product/query?pid=1780586875615457280 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request b0004f412a5b4f21bdcc7b9702c0eab9)",
+   "ok": true,
+   "name": "Fur Coat Winter Loose Plus Size Jacket For Women",
+   "saleStatus": "3",
+   "minCostUsd": 40.88,
+   "maxCostUsd": 40.88,
+   "totalStock": 154852,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.61,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1780586875695149056",
+     "options": "Khaki-L",
+     "costUsd": 40.88,
+     "stock": 12493
+    },
+    {
+     "id": "1780586875762257920",
+     "options": "Khaki-M",
+     "costUsd": 40.88,
+     "stock": 12455
+    },
+    {
+     "id": "1780586875829366784",
+     "options": "Khaki-XL",
+     "costUsd": 40.88,
+     "stock": 14226
+    },
+    {
+     "id": "1780586875892281344",
+     "options": "Khaki-2XL",
+     "costUsd": 40.88,
+     "stock": 12289
+    },
+    {
+     "id": "1780586875959390208",
+     "options": "Khaki-3XL",
+     "costUsd": 40.88,
+     "stock": 12852
+    },
+    {
+     "id": "1780586876022304768",
+     "options": "Khaki-4XL",
+     "costUsd": 40.88,
+     "stock": 10877
+    },
+    {
+     "id": "1780586876089413632",
+     "options": "Black Plaid-L",
+     "costUsd": 40.88,
+     "stock": 13526
+    },
+    {
+     "id": "1780586876152328192",
+     "options": "Black Plaid-M",
+     "costUsd": 40.88,
+     "stock": 12222
+    },
+    {
+     "id": "1780586876248797184",
+     "options": "Black Plaid-XL",
+     "costUsd": 40.88,
+     "stock": 14528
+    },
+    {
+     "id": "1780586876311711744",
+     "options": "Black Plaid-2XL",
+     "costUsd": 40.88,
+     "stock": 12564
+    },
+    {
+     "id": "1780586876391403520",
+     "options": "Black Plaid-3XL",
+     "costUsd": 40.88,
+     "stock": 13582
+    },
+    {
+     "id": "1780586876458512384",
+     "options": "Black Plaid-4XL",
+     "costUsd": 40.88,
+     "stock": 13238
+    }
+   ],
    "siteId": "cj-1780586875615457280",
    "title": "Fur Coat Winter Loose Plus Size Jacket For Women",
    "department": "women",
@@ -62576,8 +64321,199 @@
   },
   {
    "id": "1961001274072395778",
-   "ok": false,
-   "error": "CJ /product/query?pid=1961001274072395778 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 120532d82c2448b99a2e8fbfef03d7b1)",
+   "ok": true,
+   "name": "Men's Winter Jacket Lined Sherpa Jacket Warm Trucker Coat Multi Pocket",
+   "saleStatus": "3",
+   "minCostUsd": 12.67,
+   "maxCostUsd": 12.67,
+   "totalStock": 380153,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 21.05,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1961001274147893250",
+     "options": "KAQI-S",
+     "costUsd": 12.67,
+     "stock": 11465
+    },
+    {
+     "id": "1961001274147893251",
+     "options": "KAQI-M",
+     "costUsd": 12.67,
+     "stock": 12780
+    },
+    {
+     "id": "1961001274147893252",
+     "options": "KAQI-L",
+     "costUsd": 12.67,
+     "stock": 14505
+    },
+    {
+     "id": "1961001274147893253",
+     "options": "KAQI-XL",
+     "costUsd": 12.67,
+     "stock": 11063
+    },
+    {
+     "id": "1961001274147893254",
+     "options": "KAQI-XXL",
+     "costUsd": 12.67,
+     "stock": 10353
+    },
+    {
+     "id": "1961001274147893255",
+     "options": "KAQI-3XL",
+     "costUsd": 12.67,
+     "stock": 11040
+    },
+    {
+     "id": "1961001274147893256",
+     "options": "Grey-S",
+     "costUsd": 12.67,
+     "stock": 14246
+    },
+    {
+     "id": "1961001274147893257",
+     "options": "Grey-M",
+     "costUsd": 12.67,
+     "stock": 12279
+    },
+    {
+     "id": "1961001274147893258",
+     "options": "Grey-L",
+     "costUsd": 12.67,
+     "stock": 11733
+    },
+    {
+     "id": "1961001274147893259",
+     "options": "Grey-XL",
+     "costUsd": 12.67,
+     "stock": 14943
+    },
+    {
+     "id": "1961001274147893260",
+     "options": "Grey-XXL",
+     "costUsd": 12.67,
+     "stock": 13771
+    },
+    {
+     "id": "1961001274147893261",
+     "options": "Grey-3XL",
+     "costUsd": 12.67,
+     "stock": 12112
+    },
+    {
+     "id": "1961001274147893262",
+     "options": "Black-S",
+     "costUsd": 12.67,
+     "stock": 11688
+    },
+    {
+     "id": "1961001274147893263",
+     "options": "Black-M",
+     "costUsd": 12.67,
+     "stock": 14611
+    },
+    {
+     "id": "1961001274147893264",
+     "options": "Black-L",
+     "costUsd": 12.67,
+     "stock": 12417
+    },
+    {
+     "id": "1961001274147893265",
+     "options": "Black-XL",
+     "costUsd": 12.67,
+     "stock": 12804
+    },
+    {
+     "id": "1961001274147893266",
+     "options": "Black-XXL",
+     "costUsd": 12.67,
+     "stock": 10786
+    },
+    {
+     "id": "1961001274147893267",
+     "options": "Black-3XL",
+     "costUsd": 12.67,
+     "stock": 12991
+    },
+    {
+     "id": "1961001274147893268",
+     "options": "Blue-S",
+     "costUsd": 12.67,
+     "stock": 13037
+    },
+    {
+     "id": "1961001274147893269",
+     "options": "Blue-M",
+     "costUsd": 12.67,
+     "stock": 13435
+    },
+    {
+     "id": "1961001274147893270",
+     "options": "Blue-L",
+     "costUsd": 12.67,
+     "stock": 12821
+    },
+    {
+     "id": "1961001274147893271",
+     "options": "Blue-XL",
+     "costUsd": 12.67,
+     "stock": 14467
+    },
+    {
+     "id": "1961001274147893272",
+     "options": "Blue-XXL",
+     "costUsd": 12.67,
+     "stock": 14774
+    },
+    {
+     "id": "1961001274147893273",
+     "options": "Blue-3XL",
+     "costUsd": 12.67,
+     "stock": 13884
+    },
+    {
+     "id": "1961001274147893274",
+     "options": "Green-S",
+     "costUsd": 12.67,
+     "stock": 14347
+    },
+    {
+     "id": "1961001274147893275",
+     "options": "Green-M",
+     "costUsd": 12.67,
+     "stock": 10830
+    },
+    {
+     "id": "1961001274147893276",
+     "options": "Green-L",
+     "costUsd": 12.67,
+     "stock": 11197
+    },
+    {
+     "id": "1961001274147893277",
+     "options": "Green-XL",
+     "costUsd": 12.67,
+     "stock": 14063
+    },
+    {
+     "id": "1961001274147893278",
+     "options": "Green-XXL",
+     "costUsd": 12.67,
+     "stock": 11587
+    },
+    {
+     "id": "1961001274147893279",
+     "options": "Green-3XL",
+     "costUsd": 12.67,
+     "stock": 10124
+    }
+   ],
    "siteId": "cj-1961001274072395778",
    "title": "Men's Winter Jacket Lined Sherpa Jacket Warm Trucker Coat Multi Pocket",
    "department": "men",
@@ -62702,128 +64638,132 @@
    "saleStatus": "3",
    "minCostUsd": 14.48,
    "maxCostUsd": 14.48,
-   "totalStock": null,
-   "shipping": null,
+   "totalStock": 245136,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 12.69,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1845654165042122752",
      "options": "Slate gray-S",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 10072
     },
     {
      "id": "1845654165042122753",
      "options": "Slate gray-M",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 12421
     },
     {
      "id": "1845654165042122754",
      "options": "Slate gray-L",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 14197
     },
     {
      "id": "1845654165042122755",
      "options": "Slate gray-XL",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 13739
     },
     {
      "id": "1845654165042122756",
      "options": "Camel-S",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 11319
     },
     {
      "id": "1845654165042122757",
      "options": "Camel-M",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 12330
     },
     {
      "id": "1845654165042122758",
      "options": "Camel-L",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 11421
     },
     {
      "id": "1845654165042122759",
      "options": "Camel-XL",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 14018
     },
     {
      "id": "1845654165042122760",
      "options": "Green-S",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 14355
     },
     {
      "id": "1845654165042122761",
      "options": "Green-M",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 12310
     },
     {
      "id": "1845654165042122762",
      "options": "Green-L",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 10675
     },
     {
      "id": "1845654165042122763",
      "options": "Green-XL",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 11852
     },
     {
      "id": "1845654165042122764",
      "options": "Apricot-S",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 10087
     },
     {
      "id": "1845654165042122765",
      "options": "Apricot-M",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 10226
     },
     {
      "id": "1845654165042122766",
      "options": "Apricot-L",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 12442
     },
     {
      "id": "1845654165042122767",
      "options": "Apricot-XL",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 14375
     },
     {
      "id": "1845654165042122768",
      "options": "Black-S",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 12024
     },
     {
      "id": "1845654165042122769",
      "options": "Black-M",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 14303
     },
     {
      "id": "1845654165042122770",
      "options": "Black-L",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 11195
     },
     {
      "id": "1845654165042122771",
      "options": "Black-XL",
      "costUsd": 14.48,
-     "stock": null
+     "stock": 11775
     }
    ],
    "siteId": "cj-1845654163267932160",
@@ -63533,8 +65473,187 @@
   },
   {
    "id": "2412010233071622700",
-   "ok": false,
-   "error": "CJ /product/query?pid=2412010233071622700 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request fdc478f6afa34f3a921481357be6d9e3)",
+   "ok": true,
+   "name": "Stand Collar In Brown Brushed Woolen Men's Slim Winter Warm Padded Jacket",
+   "saleStatus": "3",
+   "minCostUsd": 10.07,
+   "maxCostUsd": 14.18,
+   "totalStock": 316158,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 10.87,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2412010233071623000",
+     "options": "Apricot-M",
+     "costUsd": 10.07,
+     "stock": 11296
+    },
+    {
+     "id": "2412010233071623100",
+     "options": "Apricot-L",
+     "costUsd": 11.61,
+     "stock": 11818
+    },
+    {
+     "id": "2412010233071623300",
+     "options": "Apricot-XL",
+     "costUsd": 11.61,
+     "stock": 10640
+    },
+    {
+     "id": "2412010233071623500",
+     "options": "Apricot-2XL ",
+     "costUsd": 11.61,
+     "stock": 11832
+    },
+    {
+     "id": "2412010233071623600",
+     "options": "Apricot-3XL",
+     "costUsd": 11.61,
+     "stock": 10707
+    },
+    {
+     "id": "2412010233071623800",
+     "options": "Apricot-4XL",
+     "costUsd": 11.61,
+     "stock": 12770
+    },
+    {
+     "id": "2412010233071624000",
+     "options": "Black-M",
+     "costUsd": 11.61,
+     "stock": 13419
+    },
+    {
+     "id": "2412010233071624200",
+     "options": "Black-L",
+     "costUsd": 11.61,
+     "stock": 14886
+    },
+    {
+     "id": "2412010233071624400",
+     "options": "Black-XL",
+     "costUsd": 11.61,
+     "stock": 10379
+    },
+    {
+     "id": "2412010233071624500",
+     "options": "Black-2XL ",
+     "costUsd": 11.61,
+     "stock": 10398
+    },
+    {
+     "id": "2412010233071624700",
+     "options": "Black-3XL",
+     "costUsd": 11.61,
+     "stock": 10247
+    },
+    {
+     "id": "2412010233071624900",
+     "options": "Black-4XL",
+     "costUsd": 11.61,
+     "stock": 12407
+    },
+    {
+     "id": "2412010233071625100",
+     "options": "Coffee Color-M",
+     "costUsd": 11.61,
+     "stock": 14119
+    },
+    {
+     "id": "2412010233071625200",
+     "options": "Coffee Color-L",
+     "costUsd": 11.61,
+     "stock": 10652
+    },
+    {
+     "id": "2412010233071625400",
+     "options": "Coffee Color-XL",
+     "costUsd": 11.61,
+     "stock": 13655
+    },
+    {
+     "id": "2412010233071625600",
+     "options": "Coffee Color-2XL ",
+     "costUsd": 11.61,
+     "stock": 10151
+    },
+    {
+     "id": "2412010233071625800",
+     "options": "Coffee Color-3XL",
+     "costUsd": 11.61,
+     "stock": 10004
+    },
+    {
+     "id": "2412010233071625900",
+     "options": "Coffee Color-4XL",
+     "costUsd": 11.61,
+     "stock": 13310
+    },
+    {
+     "id": "2412010233071626100",
+     "options": "Brown-M",
+     "costUsd": 11.61,
+     "stock": 13328
+    },
+    {
+     "id": "2412010233071626300",
+     "options": "Brown-L",
+     "costUsd": 11.61,
+     "stock": 13808
+    },
+    {
+     "id": "2412010233071626500",
+     "options": "Brown-XL",
+     "costUsd": 11.61,
+     "stock": 10711
+    },
+    {
+     "id": "2412010233071626600",
+     "options": "Brown-2XL ",
+     "costUsd": 11.61,
+     "stock": 12301
+    },
+    {
+     "id": "2412010233071626900",
+     "options": "Brown-3XL",
+     "costUsd": 11.61,
+     "stock": 11485
+    },
+    {
+     "id": "2412010233071627100",
+     "options": "Brown-4XL",
+     "costUsd": 11.61,
+     "stock": 12829
+    },
+    {
+     "id": "2511170139521609800",
+     "options": "Apricot-S",
+     "costUsd": 12.71,
+     "stock": 8066
+    },
+    {
+     "id": "2511170139521609900",
+     "options": "Black-S",
+     "costUsd": 14.18,
+     "stock": 5078
+    },
+    {
+     "id": "2511170139531600300",
+     "options": "Brown-S",
+     "costUsd": 14.18,
+     "stock": 9278
+    },
+    {
+     "id": "2511170139531600600",
+     "options": "Coffee Color-S",
+     "costUsd": 14.18,
+     "stock": 6584
+    }
+   ],
    "siteId": "cj-2412010233071622700",
    "title": "Stand Collar In Brown Brushed Woolen Men's Slim Winter Warm Padded Jacket",
    "department": "men",
@@ -82942,7 +85061,11 @@
    "minCostUsd": 3.26,
    "maxCostUsd": 4.3,
    "totalStock": 799200,
-   "shipping": null,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 7.82,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "012E8B98-858E-46E5-B660-0F5BA99F0695",
@@ -84032,104 +86155,108 @@
    "saleStatus": "3",
    "minCostUsd": 43.01,
    "maxCostUsd": 43.01,
-   "totalStock": null,
-   "shipping": null,
+   "totalStock": 194021,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 11.11,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1559419927126355968",
      "options": "Black-S",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 10245
     },
     {
      "id": "1559419927130550272",
      "options": "Black-M",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 14436
     },
     {
      "id": "1559419927130550273",
      "options": "Black-L",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 10211
     },
     {
      "id": "1559419927130550274",
      "options": "Black-XL",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 12312
     },
     {
      "id": "1559419927134744576",
      "options": "Gold-S",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 13433
     },
     {
      "id": "1559419927134744577",
      "options": "Gold-M",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 12444
     },
     {
      "id": "1559419927134744578",
      "options": "Gold-L",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 11956
     },
     {
      "id": "1559419927138938880",
      "options": "Gold-XL",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 10255
     },
     {
      "id": "1559419927138938881",
      "options": "Figure1-S",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 13892
     },
     {
      "id": "1559419927138938882",
      "options": "Figure1-M",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 11123
     },
     {
      "id": "1559419927143133184",
      "options": "Figure1-L",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 14402
     },
     {
      "id": "1559419927143133185",
      "options": "Figure1-XL",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 10483
     },
     {
      "id": "1559419927143133186",
      "options": "Figure2-S",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 13890
     },
     {
      "id": "1559419927147327488",
      "options": "Figure2-M",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 10319
     },
     {
      "id": "1559419927147327489",
      "options": "Figure2-L",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 11423
     },
     {
      "id": "1559419927147327490",
      "options": "Figure2-XL",
      "costUsd": 43.01,
-     "stock": null
+     "stock": 13197
     }
    ],
    "siteId": "cj-1559419927092801536",
@@ -84140,8 +86267,91 @@
   },
   {
    "id": "5B183750-7F33-4286-8EBD-EA603EA22F92",
-   "ok": false,
-   "error": "CJ /product/query?pid=5B183750-7F33-4286-8EBD-EA603EA22F92 failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 1e668fc1e1764b139c2372899acd5032)",
+   "ok": true,
+   "name": "Halter sexy dress female",
+   "saleStatus": "3",
+   "minCostUsd": 2.78,
+   "maxCostUsd": 15.64,
+   "totalStock": 144535,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 7.23,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "18C4E381-4E35-4AF6-BB06-6BC3CDD428E5",
+     "options": "black-XL",
+     "costUsd": 15.64,
+     "stock": 12688
+    },
+    {
+     "id": "2818F38F-1952-4548-9C89-47FA9BBF1640",
+     "options": "chambourcin-M",
+     "costUsd": 15.64,
+     "stock": 11059
+    },
+    {
+     "id": "3D033A33-5916-4843-A470-1550FE6164B8",
+     "options": "Chambourcin-S",
+     "costUsd": 15.64,
+     "stock": 10136
+    },
+    {
+     "id": "518162F7-2831-4871-96D0-2551C5D8F47E",
+     "options": "white-L",
+     "costUsd": 2.78,
+     "stock": 14767
+    },
+    {
+     "id": "7758F8A7-EBA8-41D3-B3DF-5B7D545A6F0B",
+     "options": "white-M",
+     "costUsd": 2.78,
+     "stock": 10433
+    },
+    {
+     "id": "825BB992-5309-4145-9483-B522DF5410BB",
+     "options": "black-M",
+     "costUsd": 2.78,
+     "stock": 11811
+    },
+    {
+     "id": "96822E05-7F38-4347-B5DF-3A0FDEC00F72",
+     "options": "white-S",
+     "costUsd": 2.78,
+     "stock": 10998
+    },
+    {
+     "id": "CC3BC01D-C491-42F3-B56F-046ECB4C6656",
+     "options": "black-S",
+     "costUsd": 2.78,
+     "stock": 13023
+    },
+    {
+     "id": "D3F596B4-5BE3-4D96-95E9-7D2CFAE4E9BE",
+     "options": "black-L",
+     "costUsd": 2.78,
+     "stock": 13451
+    },
+    {
+     "id": "D93EFC3C-A7C9-4325-A1D4-D241118012EF",
+     "options": "chambourcin-L",
+     "costUsd": 15.64,
+     "stock": 12170
+    },
+    {
+     "id": "DC0CD7E2-EED9-4664-A734-D32C1F55C584",
+     "options": "chambourcin-XL",
+     "costUsd": 15.64,
+     "stock": 10963
+    },
+    {
+     "id": "E7DB5010-E7AD-44F5-937D-A60635CE213E",
+     "options": "white-XL",
+     "costUsd": 15.64,
+     "stock": 13036
+    }
+   ],
    "siteId": "cj-5B183750-7F33-4286-8EBD-EA603EA22F92",
    "title": "Halter sexy dress female",
    "department": "women",
@@ -84521,56 +86731,60 @@
    "saleStatus": "3",
    "minCostUsd": 4.26,
    "maxCostUsd": 4.26,
-   "totalStock": null,
-   "shipping": null,
+   "totalStock": 357244,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 6.84,
+    "days": "5-11"
+   },
    "variants": [
     {
      "id": "1526434566871986176",
      "options": "Black Top-XXS",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 39314
     },
     {
      "id": "1526434566876180480",
      "options": "Black Top-XS",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 45957
     },
     {
      "id": "1526434566876180481",
      "options": "Black Top-S",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 47650
     },
     {
      "id": "1526434566876180482",
      "options": "Black Top-M",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 50551
     },
     {
      "id": "1526434566880374784",
      "options": "Black Top-L",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 45374
     },
     {
      "id": "1526434566880374785",
      "options": "Black Top-XL",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 38188
     },
     {
      "id": "1526434566880374786",
      "options": "Black Top-XXL",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 44725
     },
     {
      "id": "1526434566884569088",
      "options": "Black Top-XXXL",
      "costUsd": 4.26,
-     "stock": null
+     "stock": 45485
     }
    ],
    "siteId": "cj-1526434566813265920",
