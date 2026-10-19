@@ -55,6 +55,11 @@ async function clearFailures(db: D1Database, ip: string): Promise<void> {
 // production; this password + per-IP lockout is a stop-gap, not a replacement for it.
 export async function onRequest(context: Context): Promise<Response> {
   const url = new URL(context.request.url);
+  // davinova.com is the main address (sitemap, Stripe webhook), so www visitors are sent there with their path kept.
+  if (url.hostname === 'www.davinova.com') {
+    url.hostname = 'davinova.com';
+    return Response.redirect(url.toString(), 301);
+  }
   if (!url.pathname.startsWith('/api/admin/')) return context.next();
   // This exact endpoint verifies a high-entropy, expiring, one-use approval token itself.
   if (url.pathname === '/api/admin/cj-approve' && ['GET', 'POST'].includes(context.request.method)) return context.next();
