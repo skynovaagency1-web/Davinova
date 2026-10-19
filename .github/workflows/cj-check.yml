@@ -32,6 +32,7 @@ jobs:
         env:
           ADMIN_PASSWORD: ${{ secrets.DAVINOVA_ADMIN_PASSWORD }}
           LIMIT: ${{ inputs.limit || fromJSON(steps.request.outputs.json).limit }}
+          RETRY: ${{ fromJSON(steps.request.outputs.json).retry || '' }}
       - name: Commit report
         run: |
           git config user.name "davinova-bot"

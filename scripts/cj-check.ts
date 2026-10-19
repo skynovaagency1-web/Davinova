@@ -9,6 +9,8 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 const SITE = process.env.SITE ?? 'https://feature-3d-fashion-storefron.davinova.pages.dev';
 const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
 const LIMIT = Number(process.env.LIMIT || 0);
+// RETRY=1 rechecks only the rows of the last report that failed or came back without stock or shipping.
+const RETRY = process.env.RETRY === '1';
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type Row = { id: string; ok: boolean; error?: string; name?: string; saleStatus?: string; minCostUsd?: number | null; maxCostUsd?: number | null;
@@ -31,6 +33,11 @@ async function main() {
   const catalog = await (await fetch(SITE + '/api/catalog?all=1')).json() as { products: { id: string; title: string; cjProductId?: string; department?: string; storeCollection?: string; storeSubcategory?: string }[] };
   const manifest = JSON.parse(readFileSync('public/cutouts/manifest.json', 'utf8')) as Record<string, string | null>;
   let shown = catalog.products.filter((product) => product.cjProductId && typeof manifest[product.id] === 'string');
+  const previous = RETRY ? (JSON.parse(readFileSync('reports/cj-check.json', 'utf8')) as { results: (Row & { siteId: string })[] }).results : [];
+  if (RETRY) {
+    const redo = new Set(previous.filter((row) => !row.ok || row.totalStock == null || !row.shipping).map((row) => row.siteId));
+    shown = shown.filter((product) => redo.has(product.id));
+  }
   if (LIMIT) shown = shown.slice(0, LIMIT);
   console.log(`Checking ${shown.length} products shown on the site`);
 
@@ -38,10 +45,16 @@ async function main() {
   for (let index = 0; index < shown.length; index += 5) {
     const batch = shown.slice(index, index + 5);
     const rows = await check(batch.map((product) => product.cjProductId!));
+    await sleep(1500);
     rows.forEach((row, i) => results.push({ ...row, siteId: batch[i].id, title: batch[i].title, department: batch[i].department, collection: batch[i].storeCollection, sub: batch[i].storeSubcategory }));
     console.log(`${Math.min(index + 5, shown.length)}/${shown.length}`);
   }
 
+  if (RETRY) {
+    const fresh = new Map(results.map((row) => [row.siteId, row]));
+    const merged = previous.map((row) => fresh.get(row.siteId) ?? row) as typeof results;
+    results.length = 0; results.push(...merged);
+  }
   mkdirSync('reports', { recursive: true });
   writeFileSync('reports/cj-check.json', JSON.stringify({ checkedAt: new Date().toISOString(), results }, null, 1));
   const header = ['site_id', 'title', 'department', 'collection', 'sub', 'ok', 'error', 'cj_status', 'min_cost_usd', 'max_cost_usd', 'total_stock', 'variants', 'variants_in_stock', 'options', 'ship_usd', 'ship_days', 'ship_method', 'landed_usd'];

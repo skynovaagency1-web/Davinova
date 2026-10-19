@@ -53,7 +53,7 @@ export function BagView({ variant }: { variant: 'women' | 'men' }) {
             <Link to={productPath(item.product)} className="bag__img"><img src={item.product.images[0]?.url} alt="" /></Link>
             <div className="bag__info">
               <Link to={productPath(item.product)}><strong>{item.product.title}</strong></Link>
-              <span>{item.product.color ? `${item.product.color} · ` : ''}Size {item.size}</span>
+              <span>{item.size.includes(' / ') ? `${item.size.split(' / ')[0]} · Size ${item.size.split(' / ')[1]}` : `${item.product.color ? `${item.product.color} · ` : ''}Size ${item.size}`}</span>
               <div className="bag__qty">
                 <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity(item.productId, item.size, item.quantity - 1)}><Minus size={13} /></button>
                 <span>{item.quantity}</span>

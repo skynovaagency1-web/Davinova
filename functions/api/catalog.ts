@@ -47,7 +47,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   const [productsResult, imagesResult, variantsResult] = await env.DB.batch([
     env.DB.prepare(base + filter + ' ORDER BY featured DESC,created_at DESC').bind(...binds),
     env.DB.prepare(`SELECT product_id,url,alt FROM product_images WHERE product_id IN (${ids}) ORDER BY product_id,is_primary DESC,position`).bind(...binds),
-    env.DB.prepare(`SELECT product_id,size FROM product_variants WHERE active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 AND product_id IN (${ids}) ORDER BY product_id,size`).bind(...binds),
+    env.DB.prepare(`SELECT product_id,size FROM product_variants WHERE active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 AND product_id IN (${ids}) ORDER BY product_id,rowid`).bind(...binds),
   ]);
   const results = (productsResult.results ?? []) as DbProduct[];
   const imagesByProduct = groupByProduct((imagesResult.results ?? []) as (DbImage & { product_id: string })[]);
@@ -60,9 +60,9 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url, alt }));
     const variantRows = sizesByProduct.get(row.id) ?? [];
     const verified = row.supplier_verified === 1;
-    const allowedSizes = new Set(['XS', 'S', 'M', 'L', 'XL', 'XXL', '1XL', '2XL', '3XL', '4XL', '5XL', '6XL', '1X', '2X', '3X', '4X', '5X', '6X']);
+    // Each active variant's label is unique per product ("M", "38", "Black / M") and is what checkout matches on.
     const sizes = verified && row.price_cents > 0 && row.cost_cents > 0
-      ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => allowedSizes.has(size)))]
+      ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => size && size.length <= 40))]
       : [];
     const purchasable = verified && row.has_sellable_variant === 1 && row.price_cents > 0 && row.cost_cents > 0 && sizes.length > 0;
     const productTags = safeJsonArray(row.tags_json);

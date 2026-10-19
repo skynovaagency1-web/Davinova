@@ -52,6 +52,19 @@ export function ProductView({ variant }: { variant: Variant }) {
   return <ProductBody key={product.id} product={product} products={products} variant={variant} shopPath={shopPath} />;
 }
 
+const sizeOrder = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '1XL', '2XL', 'XXXL', '3XL', '4XL', '5XL', '6XL'];
+
+/** Letter sizes in wearing order, then numeric sizes low to high, then anything else as CJ listed it. */
+function sortSizes<T extends { size: string }>(items: T[]): T[] {
+  const rank = (size: string) => {
+    const letter = sizeOrder.indexOf(size.toUpperCase());
+    if (letter >= 0) return letter;
+    const number = parseFloat(size.replace(/[^0-9.]/g, ''));
+    return Number.isFinite(number) ? 100 + number : 10000;
+  };
+  return items.map((item, index) => ({ item, index })).sort((a, b) => rank(a.item.size) - rank(b.item.size) || a.index - b.index).map(({ item }) => item);
+}
+
 function ProductBody({ product, products, variant, shopPath }: { product: Product; products: Product[]; variant: Variant; shopPath: string }) {
   const [index, setIndex] = useState(0);
   const [broken, setBroken] = useState(false);
@@ -72,10 +85,20 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const uses = variant === 'men' ? ['for the wedding', 'for the dinner', 'for the gala'] : lookup(usesByCollection, product) ?? usesByCollection['weddings-and-events'];
   const specs = ([['Colour', product.color], ['Length', product.length], ['Neckline', product.neckline], ['Sleeve', product.sleeve]] as [string, string | undefined][])
     .filter((entry): entry is [string, string] => Boolean(entry[1]));
-  const bigNumber = product.sizes.length > 1 ? { value: product.sizes.length, label: 'sizes to choose from' }
+  const colourCount = new Set(product.sizes.filter((label) => label.includes(' / ')).map((label) => label.split(' / ')[0])).size;
+  const bigNumber = colourCount > 1 ? { value: colourCount, label: 'colours to choose from' }
+    : product.sizes.length > 1 ? { value: product.sizes.length, label: 'sizes to choose from' }
     : photos.length > 1 ? { value: photos.length, label: 'angles to explore' } : null;
   const related = products.filter((item) => item.id !== product.id && item.department === product.department && (product.storeCollection ? item.storeCollection === product.storeCollection : item.shelf === product.shelf) && item.images[0]?.url).slice(0, 8);
   const price = canBuy || isWoo ? formatMoney(product.priceCents, product.currency) : 'Coming soon';
+  // CJ labels look like "M", "38" or "Black / M"; split colour from size so each gets its own row of buttons.
+  const options = product.sizes.map((label) => {
+    const cut = label.indexOf(' / ');
+    return cut < 0 ? { label, colour: '', size: label } : { label, colour: label.slice(0, cut), size: label.slice(cut + 3) };
+  });
+  const colours = [...new Set(options.map((option) => option.colour).filter(Boolean))];
+  const [colour, setColour] = useState('');
+  const sizeChoices = sortSizes(options.filter((option) => !colours.length || option.colour === colour));
 
   function addToBag() {
     if (!size) { setSizeHint(true); return; }
@@ -111,8 +134,14 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
         {product.description && <p className="pv-buy__desc">{product.description}</p>}
         {specs.length > 0 && <dl className="pv-buy__specs">{specs.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}
         {!isWoo && canBuy && <div className="pv-buy__sizes">
-          <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}</span>
-          <div role="group" aria-label="Sizes">{product.sizes.map((item) => <button key={item} type="button" className={size === item ? 'active' : ''} aria-pressed={size === item} onClick={() => { setSize(item); setAdded(false); setSizeHint(false); }}>{item}</button>)}</div>
+          {colours.length > 0 && <>
+            <span>Choose your colour {sizeHint && !colour && <em>· pick one first</em>}</span>
+            <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setSize(''); setAdded(false); setSizeHint(false); }}>{item}</button>)}</div>
+          </>}
+          {(!colours.length || colour) && <>
+            <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}</span>
+            <div role="group" aria-label="Sizes">{sizeChoices.map((item) => <button key={item.label} type="button" className={size === item.label ? 'active' : ''} aria-pressed={size === item.label} onClick={() => { setSize(item.label); setAdded(false); setSizeHint(false); }}>{item.size}</button>)}</div>
+          </>}
         </div>}
         <div className="pv-buy__row">{isWoo
           ? (canBuy && product.woocommercePermalink

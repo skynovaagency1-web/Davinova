@@ -4,7 +4,8 @@ export type CollectionCategory = 'wedding-guest' | 'cocktail-party' | 'maxi-holi
 export type DressSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | '1XL' | '2XL' | '3XL' | '4XL' | '5XL' | '6XL' | '1X' | '2X' | '3X' | '4X' | '5X' | '6X';
 /** Men's formalwear uses its own letter-size scheme, distinct from DressSize (e.g. 'XXL' is not the same label as '2XL'). */
 export type MensSize = 'S' | 'M' | 'L' | 'XL' | 'XXL';
-export type ProductSize = DressSize | MensSize;
+/** A dress size, or a CJ option label such as "36", "One size" or "Black / M" (colour / size). */
+export type ProductSize = DressSize | MensSize | (string & {});
 export type Department = 'women' | 'men';
 
 export interface Product {
