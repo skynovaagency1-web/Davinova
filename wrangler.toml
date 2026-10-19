@@ -24,7 +24,8 @@ STRIPE_MODE = "test"
 # Prices already include shipping (2.5x of CJ cost + US shipping), so checkout shows free delivery.
 STRIPE_SHIPPING_FEE_CENTS = "0"
 STRIPE_SHIPPING_LABEL = "Free tracked delivery"
-STRIPE_SHIPPING_COUNTRIES = "US"
+# US plus all of Europe (CJ shipping to Europe costs about the same as to the US, checked 2026-10-19).
+STRIPE_SHIPPING_COUNTRIES = "US,AT,BE,BG,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IE,IT,LV,LT,LU,MT,NL,PL,PT,RO,SK,SI,ES,SE,GB,CH,NO,IS,LI,MC,AD,SM"
 
 # Cloudflare Pages does not run Worker Cron Triggers. Scheduled tracking will be deployed
 # as a separate Worker when the supplier tracking integration is ready.
