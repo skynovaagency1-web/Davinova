@@ -226,8 +226,14 @@ export async function createCJOrder(
   if (!sandbox && (env.CJ_LIVE_ORDERS_ENABLED ?? 'false').trim().toLowerCase() !== 'true') {
     throw new Error('Live supplier purchases are disabled. Enable CJ_LIVE_ORDERS_ENABLED only after sandbox and end-to-end tests.');
   }
-  if (!env.CJ_LOGISTIC_NAME?.trim()) throw new Error('CJ_LOGISTIC_NAME must be confirmed from a CJ quote before ordering.');
-  const payload = buildCJCreateOrderPayload(input, env.CJ_LOGISTIC_NAME, sandbox, env.CJ_FROM_COUNTRY_CODE || 'CN');
+  // Free express delivery: CJ_LOGISTIC_NAME can pin one line, otherwise pick the fast line quoted for these exact items and country.
+  let logisticName = env.CJ_LOGISTIC_NAME?.trim() || '';
+  if (!logisticName) {
+    const quotes = await calculateCJOrderFreight(env, input.products, input.shipping.countryCode, env.CJ_FROM_COUNTRY_CODE || 'CN');
+    logisticName = pickFastLine(quotes)?.name ?? '';
+    if (!logisticName) throw new Error('CJ quoted no usable shipping line for ' + input.shipping.countryCode.toUpperCase() + '; choose one in CJ before ordering.');
+  }
+  const payload = buildCJCreateOrderPayload(input, logisticName, sandbox, env.CJ_FROM_COUNTRY_CODE || 'CN');
 
   // Every provider ID is persisted by onProgress before proceeding; partial failures require manual reconciliation.
   const created = await request<CreateOrderData>(env, '/shopping/order/createOrderV3', { method: 'POST', body: JSON.stringify(payload) });
@@ -529,6 +535,35 @@ export async function calculateCJFreight(env: CJEnv, variantId: string, endCount
     .map((row) => ({ name: row.logisticName ?? '', priceUsd: numericValue(row.logisticPrice) ?? Infinity, days: row.logisticAging ?? '' }))
     .filter((row) => Number.isFinite(row.priceUsd))
     .sort((a, b) => a.priceUsd - b.priceUsd);
+}
+
+/** Shipping quotes for a whole order (all lines together), cheapest first. */
+export async function calculateCJOrderFreight(env: CJEnv, lines: { cjVariantId: string; quantity: number }[], endCountryCode: string, startCountryCode = 'CN'): Promise<CJFreightOption[]> {
+  const data = await request<{ logisticName?: string; logisticPrice?: number | string; logisticAging?: string }[]>(env, '/logistic/freightCalculate', {
+    method: 'POST',
+    body: JSON.stringify({ startCountryCode, endCountryCode: endCountryCode.toUpperCase(), products: lines.map((line) => ({ quantity: line.quantity, vid: line.cjVariantId })) }),
+  });
+  return (Array.isArray(data) ? data : [])
+    .map((row) => ({ name: row.logisticName ?? '', priceUsd: numericValue(row.logisticPrice) ?? Infinity, days: row.logisticAging ?? '' }))
+    .filter((row) => Number.isFinite(row.priceUsd))
+    .sort((a, b) => a.priceUsd - b.priceUsd);
+}
+
+// Lines we never use for clothing: special cargo, sea freight, remote-area surcharges and pricey couriers.
+const SKIP_LINE = /electric|liquid|over ?length|oversize|sea|remote|dhl|fedex|ups|tnt|ems/i;
+
+/** Longest promised transit in days ("4-7" gives 7), or Infinity when CJ gives none. */
+export function maxTransitDays(days: string): number {
+  const numbers = (days.match(/\d+/g) ?? []).map(Number);
+  return numbers.length ? Math.max(...numbers) : Infinity;
+}
+
+/** Cheapest everyday line that arrives within maxDays; if none does, the fastest everyday line. */
+export function pickFastLine(options: CJFreightOption[], maxDays = 7): CJFreightOption | null {
+  const usable = options.filter((option) => option.name && !SKIP_LINE.test(option.name));
+  const fast = usable.filter((option) => maxTransitDays(option.days) <= maxDays).sort((a, b) => a.priceUsd - b.priceUsd);
+  if (fast[0]) return fast[0];
+  return [...usable].sort((a, b) => maxTransitDays(a.days) - maxTransitDays(b.days) || a.priceUsd - b.priceUsd)[0] ?? null;
 }
 
 /** Total stock per variant (CJ warehouse + factory), keyed by variant ID. */

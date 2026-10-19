@@ -52,18 +52,18 @@ const HELP_PAGES: Page[] = [
     </>,
   },
   {
-    slug: 'shipping', label: 'Shipping', title: 'Shipping', intro: 'Every order ships with tracking, from our partner warehouses straight to your door.',
+    slug: 'shipping', label: 'Shipping', title: 'Shipping', intro: 'Free express delivery on every order, tracked from our partner warehouses to your door.',
     body: () => <>
       <h2>How long it takes</h2>
-      <p>We prepare and hand your order to the carrier within 1–3 business days. Delivery then usually takes 7–15 business days, depending on where you live and the shipping method shown at checkout.</p>
+      <p>We prepare and hand your order to the carrier within 1–3 business days. Every order then travels by express line, which usually takes 4–7 business days. Most orders arrive 6–10 business days after you pay.</p>
       <h2>Tracking</h2>
       <p>As soon as your order leaves the warehouse we email you a tracking number. Tracking can take a day or two to show its first update.</p>
       <h2>Cost</h2>
-      <p>Shipping is free on every order. There are no hidden fees from us.</p>
+      <p>Express shipping is free on every order. There are no hidden fees from us.</p>
       <h2>Customs and duties</h2>
       <p>Some countries charge import duties or taxes on arrival. These are set by your country, not by Davinova, and are paid to the carrier if they apply.</p>
       <h2>Planning for an event?</h2>
-      <p>Order at least three weeks before the day so there is time for delivery and, if needed, an exchange.</p>
+      <p>Order at least two weeks before the day so there is time for delivery. Allow three weeks if you may want an exchange.</p>
     </>,
   },
   {
@@ -106,7 +106,7 @@ const HELP_PAGES: Page[] = [
       <h2>When can I order?</h2>
       <p>Most styles are ready to order, with prices, sizes and stock checked with our suppliers. Items marked "Coming soon" open once we have confirmed them.</p>
       <h2>Will it arrive in time for my event?</h2>
-      <p>Delivery usually takes 7–15 business days after a 1–3 day preparation time. Order at least three weeks ahead to be safe. See <Link to={`${base(dept)}/shipping`}>Shipping</Link>.</p>
+      <p>Most orders arrive 6–10 business days after you pay, with free express delivery. Order at least two weeks ahead, or three if you may want an exchange. See <Link to={`${base(dept)}/shipping`}>Shipping</Link>.</p>
       <h2>How do I choose my size?</h2>
       <p>Use our <Link to={`${base(dept)}/size-guide`}>Size guide</Link>. If you're between sizes, take the larger one.</p>
       <h2>Can I return or exchange?</h2>
