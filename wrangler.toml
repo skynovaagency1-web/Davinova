@@ -19,6 +19,9 @@ CURRENCY = "USD"
 DRY_RUN = "true"
 PAYPAL_ENV = "sandbox"
 SITE_URL = "https://davinova.com"
+# Order emails go out through Resend (secret RESEND_API_KEY) from the verified mail.davinova.com subdomain; replies reach the contact@ inbox.
+EMAIL_FROM = "Davinova <orders@mail.davinova.com>"
+OWNER_EMAIL = "davinova.fashion@gmail.com"
 # Stripe: keep "test" until a full test order has gone through. Secrets (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET) live in the Cloudflare dashboard.
 STRIPE_MODE = "test"
 # Prices already include shipping (2.5x of CJ cost + US shipping), so checkout shows free delivery.
