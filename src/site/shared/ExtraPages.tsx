@@ -26,7 +26,7 @@ export function WishlistPage({ dept }: { dept: Dept }) {
       <p>{saved.length ? `${saved.length} saved ${saved.length === 1 ? 'piece' : 'pieces'}. Tap the heart on any product to add or remove it.` : 'Tap the heart on any product to save it here for later.'}</p>
     </header>
     {loading && !saved.length && <p className="extra__note">Loading your saved pieces…</p>}
-    {!loading && !saved.length && <div className="jw__empty"><Heart size={28} /><span>Nothing saved yet. Your wishlist stays on this device, no account needed.</span><Link to={`${base(dept)}/shop`}>Start browsing →</Link></div>}
+    {!loading && !saved.length && <div className="jw__empty"><Heart size={28} /><span>Nothing saved yet. Sign in to your account to keep your wishlist on every device.</span><Link to={`${base(dept)}/shop`}>Start browsing →</Link></div>}
     {mine.length > 0 && <div className={grid}>{mine.map((product, index) => <WomenCard key={product.id} product={product} index={index} />)}</div>}
     {other.length > 0 && <>
       <h2 className="extra__sub">From the {dept === 'men' ? "women's" : "men's"} shop</h2>

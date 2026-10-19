@@ -337,7 +337,8 @@
 .pv-buy__row { display: flex; gap: 10px; }
 .pv-buy__row .pv-buy__cta { flex: 1; width: auto; }
 .pv--men .pv-wish { border-radius: 4px; }
-.w-wishlink, .m-wishlink { position: relative; }
+.w-wishlink, .m-wishlink, .w-acctlink, .m-acctlink { position: relative; }
+.w-acctlink b, .m-acctlink b { position: absolute; top: 1px; right: 0; width: 8px; height: 8px; border-radius: 50%; background: #6f9a6a; box-shadow: 0 0 0 2px rgba(0, 0, 0, .25); }
 .w-wishlink i, .m-wishlink i { position: absolute; top: -2px; right: -4px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 999px; background: #b4473b; color: #fff; font: 700 10px/17px 'Archivo', sans-serif; font-style: normal; text-align: center; }
 
 /* Nova, the shop helper (shared/SupportHelper.tsx). Women: Bronze Eclipse. Men: charcoal and sage. */
@@ -402,3 +403,25 @@
 .track__steps li { position: relative; padding-top: 12px; border-top: 3px solid rgba(127, 127, 127, .3); font-size: 12px; line-height: 1.3; opacity: .65; }
 .track__steps li.done { border-top-color: currentColor; opacity: 1; font-weight: 700; }
 .jw--women .track__steps li.done { border-top-color: #cdb69e; }
+
+/* ---------- My account ---------- */
+.acct__grid { display: grid; gap: 18px; max-width: 860px; }
+.acct__card { display: grid; gap: 12px; padding: 20px; border-radius: 22px; border: 1px solid rgba(127, 127, 127, .35); background: rgba(255, 255, 255, .06); backdrop-filter: blur(10px); min-width: 0; }
+.acct__signin { max-width: 640px; }
+.acct__card h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 20px; }
+.acct__note { margin: 0; font-size: 14px; opacity: .8; }
+.acct__note a { text-decoration: underline; }
+.acct__fields { margin: 0; }
+.acct__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.acct__btn { display: inline-flex; align-items: center; gap: 8px; justify-self: start; padding: 11px 20px; border: 0; border-radius: 999px; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; }
+.acct__btn--ghost { background: none !important; border: 1px solid currentColor; color: inherit !important; }
+.acct__link { border: 0; background: none; padding: 0; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
+.acct__order { display: grid; gap: 6px; padding: 14px 0; border-top: 1px solid rgba(127, 127, 127, .3); }
+.acct__order header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; }
+.acct__order header span { font-size: 13px; opacity: .75; }
+.acct__order ul { margin: 0; padding-left: 18px; font-size: 14px; }
+.acct__order p { margin: 0; }
+.jw--women .acct__card { border-color: rgba(255, 240, 215, .3); }
+.jw--women .acct__btn { background: linear-gradient(110deg, #ecdcc8, #b89a7e 60%, #8e735b); color: #2a1d16; }
+.jw--men .acct__card { border-radius: 6px; background: rgba(0, 0, 0, .18); border-color: rgba(255, 255, 255, .25); }
+.jw--men .acct__btn { background: #1b1b1b; color: #eee; border-radius: 4px; }

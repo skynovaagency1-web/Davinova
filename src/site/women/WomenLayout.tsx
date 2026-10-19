@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Heart, Home, Menu, Search, ShoppingBag, X } from 'lucide-react';
+import { Heart, Home, Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { WomenMegaNav } from './WomenMegaNav';
 import { Logo } from '../shared/Logo';
@@ -14,6 +14,7 @@ import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { isCurvyLook } from '../../lib/curvyLooks';
 import type { Product } from '../../types/product';
 import { useWishlist } from '../../store/wishlist';
+import { useAccount } from '../../store/account';
 
 const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing');
 
@@ -42,6 +43,7 @@ export function WomenLayout() {
   const [open, setOpen] = useState(false);
   const { products } = useCatalogProducts();
   const wished = useWishlist((state) => state.ids.length);
+  const signedIn = useAccount((state) => Boolean(state.account));
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
 
   useEffect(() => {
@@ -60,6 +62,7 @@ export function WomenLayout() {
         <Link to="/" className="w-icon w-home" aria-label="Home"><Home size={18} /></Link>
         <Link to="/shop" className="w-icon" aria-label="Browse the shop"><Search size={18} /></Link>
         <Link to="/wishlist" className="w-icon w-home w-wishlink" aria-label={`Wishlist, ${wished} saved`}><Heart size={18} />{wished > 0 && <i>{wished}</i>}</Link>
+        <Link to="/account" className="w-icon w-home w-acctlink" aria-label={signedIn ? 'My account' : 'Sign in'}><UserRound size={18} />{signedIn && <b aria-hidden="true" />}</Link>
         <Link to="/men" className="w-switch">Men ↗</Link>
         <Link to="/bag" className="w-bag" aria-label={`Bag, ${count} items`}><ShoppingBag size={16} /><span>{count} {count === 1 ? 'item' : 'items'}</span></Link>
       </div>
@@ -72,6 +75,7 @@ export function WomenLayout() {
           {section.subs.length > 0 && <div className="drawer-sub">{section.subs.map((sub) => <Link key={sub.to} to={sub.to}>{sub.label}</Link>)}</div>}
         </motion.div>)}
         <Link to="/wishlist" className="drawer-about">Wishlist</Link>
+        <Link to="/account" className="drawer-about">My account</Link>
         <Link to="/gift-cards" className="drawer-about">Gift cards</Link>
         <Link to="/refer" className="drawer-about">Refer a friend</Link>
         <Link to="/about" className="drawer-about">About the founder</Link>
@@ -84,7 +88,7 @@ export function WomenLayout() {
       <Logo tone="brand" />
       <div className="w-footer__row">
         <p>Dresses for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></nav>
+        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></nav>
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
