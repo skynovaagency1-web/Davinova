@@ -136,17 +136,7 @@ export function SupportHelper({ dept }: { dept: Dept }) {
   </div>, document.body);
 }
 
-/** A small drawn portrait of Nova, coloured by the shop through CSS. */
+/** Nova's portrait (made by the owner in ChatGPT), shown in a circle. */
 function Avatar() {
-  return <svg className="helper__avatar" viewBox="0 0 64 64" aria-hidden="true">
-    <circle cx="32" cy="32" r="32" className="helper__avatar-bg" />
-    <path className="helper__avatar-hair" d="M13 52c-3-8-2-20 2-28 3-8 10-13 17-13s14 5 17 13c4 8 5 20 2 28-3-2-6-3-9-3V30H22v19c-3 0-6 1-9 3Z" />
-    <path className="helper__avatar-body" d="M8 64c2-9 9-14 18-15h12c9 1 16 6 18 15Z" />
-    <path className="helper__avatar-skin" d="M27 44h10v7c-2 2-8 2-10 0Z" />
-    <ellipse cx="32" cy="32" rx="11" ry="13.5" className="helper__avatar-skin" />
-    <path className="helper__avatar-hair" d="M20 30c1-9 6-14 13-14 6 0 11 4 12 12-5-1-10-4-13-8-2 5-7 9-12 10Z" />
-    <circle cx="20.8" cy="36" r="1.6" className="helper__avatar-earring" /><circle cx="43.2" cy="36" r="1.6" className="helper__avatar-earring" />
-    <path d="M25.5 31.5c1.2-1 2.8-1 4 0M34.5 31.5c1.2-1 2.8-1 4 0" className="helper__avatar-smile" />
-    <path d="M28.5 39.5c2.2 1.6 4.8 1.6 7 0-1 2.4-6 2.4-7 0Z" className="helper__avatar-lips" />
-  </svg>;
+  return <img className="helper__avatar" src="/images/nova.webp" alt="" width={128} height={128} />;
 }
