@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Send, X } from 'lucide-react';
 import type { Dept } from './jewelry';
 
@@ -77,12 +77,15 @@ export function SupportHelper({ dept }: { dept: Dept }) {
   const [draft, setDraft] = useState('');
   const [messages, setMessages] = useState<Message[]>([{ from: 'nova', text: `Hi, I'm Nova from Davinova. How can I help you today?`, choices: MAIN }]);
   const end = useRef<HTMLDivElement>(null);
+  // The greeting would sit on top of the colour, size and Add to bag buttons, so product pages and the bag never show it.
+  const buying = /\/(product\/|bag|cart)/.test(useLocation().pathname);
 
   useEffect(() => {
+    if (buying) { setGreeting(false); return; }
     if (hidden || read(SEEN_KEY)) return;
     const timer = window.setTimeout(() => { setGreeting(true); write('session', SEEN_KEY); }, 7000);
     return () => window.clearTimeout(timer);
-  }, [hidden]);
+  }, [hidden, buying]);
   useEffect(() => { end.current?.scrollIntoView({ block: 'end' }); }, [messages, open]);
 
   function closeGreeting() {
