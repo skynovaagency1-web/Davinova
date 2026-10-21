@@ -5,7 +5,7 @@ import type { CJEnv, CJOrderInput, CJOrderLine, CJShippingAddress } from '../../
 type Env = CJEnv;
 interface StoreOrder {
   id: string; order_number: string; email: string; payment_status: string; status: string;
-  total_cents: number; currency: string; shipping_address_json: string;
+  total_cents: number; currency: string; shipping_address_json: string; payment_reference: string | null;
 }
 interface StoreOrderLine {
   order_item_id: string; product_title: string; size: string; color: string; quantity: number;
@@ -41,7 +41,7 @@ function shippingAddress(order: StoreOrder): CJShippingAddress {
   };
 }
 async function getOrder(env: Env,id: string): Promise<StoreOrder | null> {
-  return env.DB.prepare('SELECT id,order_number,email,payment_status,status,total_cents,currency,shipping_address_json FROM orders WHERE id=?')
+  return env.DB.prepare('SELECT id,order_number,email,payment_status,status,total_cents,currency,shipping_address_json,payment_reference FROM orders WHERE id=?')
     .bind(id).first<StoreOrder>();
 }
 async function getLines(env: Env,id: string): Promise<StoreOrderLine[]> {
@@ -107,6 +107,10 @@ export async function onRequestPost({request,env}:{request:Request;env:Env}):Pro
   const lines=await getLines(env,order.id);
   const problem=mappingProblem(lines);
   if(problem) return json({error:problem},409);
+  // Orders paid with Stripe test cards must never buy real stock once CJ ordering is live.
+  if(!isCJDryRun(env) && String(order.payment_reference || '').startsWith('cs_test_')) {
+    return json({error:'This is a test-mode order (paid with a test card). No CJ purchase was made.'},409);
+  }
   const current=await env.DB.prepare("SELECT id,status,supplier_order_id FROM supplier_orders WHERE order_id=? AND supplier='cj'")
     .bind(order.id).first<SupplierOrder>();
   if(current && current.status!=='dry_run') return json({error:'A CJ order record already exists. Check CJ and the supplier audit before any further action.'},409);
