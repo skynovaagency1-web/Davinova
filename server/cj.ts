@@ -549,8 +549,9 @@ export async function calculateCJOrderFreight(env: CJEnv, lines: { cjVariantId: 
     .sort((a, b) => a.priceUsd - b.priceUsd);
 }
 
-// Lines we never use for clothing: special cargo, sea freight, remote-area surcharges and pricey couriers.
-const SKIP_LINE = /electric|liquid|over ?length|oversize|sea|remote|dhl|fedex|ups|tnt|ems/i;
+// Lines we never use for clothing: special cargo, sea freight, remote-area surcharges, pricey couriers,
+// and DDU postal lines where the customer could be billed import duties.
+const SKIP_LINE = /electric|liquid|over ?length|oversize|sea|remote|dhl|fedex|ups|tnt|ems|eub|postal/i;
 
 /** Longest promised transit in days ("4-7" gives 7), or Infinity when CJ gives none. */
 export function maxTransitDays(days: string): number {
