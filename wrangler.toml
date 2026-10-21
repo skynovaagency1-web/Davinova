@@ -16,19 +16,23 @@ migrations_dir = "migrations"
 [vars]
 STORE_NAME = "Davinova"
 CURRENCY = "USD"
-DRY_RUN = "true"
+DRY_RUN = "false"
+# Real CJ orders (still placed only after the owner taps Approve).
+CJ_SANDBOX = "false"
+CJ_LIVE_ORDERS_ENABLED = "true"
 PAYPAL_ENV = "sandbox"
 SITE_URL = "https://davinova.com"
 # Order emails go out through Resend (secret RESEND_API_KEY) from the verified mail.davinova.com subdomain; replies reach the contact@ inbox.
 EMAIL_FROM = "Davinova <orders@mail.davinova.com>"
 OWNER_EMAIL = "davinova.fashion@gmail.com"
-# Stripe: keep "test" until a full test order has gone through. Secrets (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET) live in the Cloudflare dashboard.
-STRIPE_MODE = "test"
+# Stripe live since 2026-10-21 (owner OK). Secrets (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET) live in the Cloudflare dashboard.
+STRIPE_MODE = "live"
 # Prices already include shipping (2.5x of CJ cost + US shipping), so checkout shows free delivery.
 STRIPE_SHIPPING_FEE_CENTS = "0"
 STRIPE_SHIPPING_LABEL = "Free express delivery (6–10 business days)"
-# US plus all of Europe (CJ shipping to Europe costs about the same as to the US, checked 2026-10-19).
-STRIPE_SHIPPING_COUNTRIES = "US,AT,BE,BG,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IE,IT,LV,LT,LU,MT,NL,PL,PT,RO,SK,SI,ES,SE,GB,CH,NO,IS,LI,MC,AD,SM"
+# US only until the EU IOSS number arrives. Europe list to restore then:
+# "US,AT,BE,BG,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IE,IT,LV,LT,LU,MT,NL,PL,PT,RO,SK,SI,ES,SE,GB,CH,NO,IS,LI,MC,AD,SM"
+STRIPE_SHIPPING_COUNTRIES = "US"
 
 # Cloudflare Pages does not run Worker Cron Triggers. Scheduled tracking will be deployed
 # as a separate Worker when the supplier tracking integration is ready.
