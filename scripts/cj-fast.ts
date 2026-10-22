@@ -2,7 +2,8 @@
  * Fast-line shipping check for every product in reports/cj-check.json (cheapest variant, US + Europe).
  * Read-only: writes reports/cj-fast.json and changes nothing in the database.
  *
- * Env: SITE, ADMIN_PASSWORD (GitHub secret DAVINOVA_ADMIN_PASSWORD), LIMIT (optional), COUNTRIES (optional, default US,FR,DE,GB).
+ * Env: SITE, ADMIN_PASSWORD (GitHub secret DAVINOVA_ADMIN_PASSWORD), LIMIT (optional), COUNTRIES (optional, default US,FR,DE,GB),
+ * OUT (optional report path, default reports/cj-fast.json).
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
@@ -10,6 +11,7 @@ const SITE = process.env.SITE ?? 'https://davinova.com';
 const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
 const LIMIT = Number(process.env.LIMIT || 0);
 const COUNTRIES = (process.env.COUNTRIES || 'US,FR,DE,GB').split(',').map((code) => code.trim().toUpperCase()).filter(Boolean);
+const OUT = process.env.OUT || 'reports/cj-fast.json';
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type Report = { results: { siteId: string; ok: boolean; variants?: { id: string; costUsd: number | null }[] }[] };
@@ -43,7 +45,7 @@ async function main() {
     await sleep(1000);
   }
   mkdirSync('reports', { recursive: true });
-  writeFileSync('reports/cj-fast.json', JSON.stringify({ checkedAt: new Date().toISOString(), countries: COUNTRIES, results }, null, 1));
+  writeFileSync(OUT, JSON.stringify({ checkedAt: new Date().toISOString(), countries: COUNTRIES, results }, null, 1));
   console.log('Done');
 }
 

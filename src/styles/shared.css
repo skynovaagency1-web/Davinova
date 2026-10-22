@@ -425,3 +425,17 @@
 .jw--women .acct__btn { background: linear-gradient(110deg, #ecdcc8, #b89a7e 60%, #8e735b); color: #2a1d16; }
 .jw--men .acct__card { border-radius: 6px; background: rgba(0, 0, 0, .18); border-color: rgba(255, 255, 255, .25); }
 .jw--men .acct__btn { background: #1b1b1b; color: #eee; border-radius: 4px; }
+
+/* Footer newsletter sign-up (both shops) */
+.news { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin: 18px 0 22px; padding: 18px 20px; border-radius: 22px; border: 1px solid rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .06); }
+.news__text { display: grid; gap: 4px; min-width: 0; flex: 1 1 260px; }
+.news__text strong { font-size: 17px; }
+.news__text span { font-size: 13px; opacity: .75; }
+.news__form { display: flex; gap: 8px; flex: 1 1 300px; max-width: 440px; min-width: 0; }
+.news__form input { flex: 1; min-width: 0; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .1); color: inherit; font: inherit; }
+.news__form input::placeholder { color: inherit; opacity: .6; }
+.news__form button { padding: 12px 20px; border: 0; border-radius: 999px; background: #CDB69E; color: #2E2019; font-weight: 700; cursor: pointer; }
+.m-shell .news__form button { background: #e8ebe6; color: #141414; }
+.news__form button:disabled { opacity: .6; cursor: wait; }
+.news__done { margin: 0; font-weight: 600; }
+.news__error { flex-basis: 100%; margin: 0; font-size: 13px; color: #f3b3a3; }
