@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { SupportHelper } from '../shared/SupportHelper';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -76,6 +77,7 @@ export function MenLayout() {
     <footer className="w-footer m-footer">
       <div className="w-footer__big"><span aria-hidden="true">DAVINOV</span><span className="w-footer__hook"><HangingWatch to="/men/bag" /></span><span aria-hidden="true">A</span></div>
       <Logo tone="metal" sub="HOMME" />
+      <NewsletterSignup dept="men" />
       <div className="w-footer__row">
         <p>Formalwear for the moments you'll keep.</p>
         <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/account">My account</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/track">Track order</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>

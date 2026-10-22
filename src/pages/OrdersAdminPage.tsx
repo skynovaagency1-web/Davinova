@@ -51,6 +51,17 @@ export function OrdersAdminPage() {
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not open the review.'); setBusy(''); }
   }
 
+  async function exportSubscribers() {
+    setError('');
+    const response = await fetch('/api/admin/newsletter', { headers: { 'x-admin-password': password }, cache: 'no-store' });
+    if (!response.ok) { setError('Could not download subscribers.'); return; }
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(await response.blob());
+    link.download = 'davinova-subscribers.csv';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+
   function signIn(event: FormEvent) { event.preventDefault(); void load(); }
   const waiting = orders?.filter((order) => order.status === 'pending_approval').length ?? 0;
 
@@ -68,6 +79,7 @@ export function OrdersAdminPage() {
       </form>}
       {error && <p role="alert" style={{ color: '#a1301b', margin: 0 }}>{error}</p>}
       {orders && <button type="button" onClick={() => void load()} style={{ ...button, justifySelf: 'start', background: '#efe5dc', color: '#292522' }}>Refresh</button>}
+      {orders && <button type="button" onClick={() => void exportSubscribers()} style={{ ...button, justifySelf: 'start', background: '#efe5dc', color: '#292522' }}>Download newsletter subscribers (CSV)</button>}
       {orders?.map((order) => {
         const cost = order.items.reduce((sum, item) => sum + item.unit_cost_cents * item.quantity, 0);
         return <article key={order.id} style={{ ...card, display: 'grid', gap: 8, borderColor: order.status === 'pending_approval' ? '#8e735b' : '#e4d8cf' }}>

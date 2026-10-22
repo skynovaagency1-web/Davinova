@@ -24,6 +24,8 @@ PAYPAL_ENV = "sandbox"
 SITE_URL = "https://davinova.com"
 # Order emails go out through Resend (secret RESEND_API_KEY) from the verified mail.davinova.com subdomain; replies reach the contact@ inbox.
 EMAIL_FROM = "Davinova <orders@mail.davinova.com>"
+# Marketing mail (newsletter) is sent from the verified davinova.com root domain.
+NEWS_FROM = "Davinova <news@davinova.com>"
 OWNER_EMAIL = "davinova.fashion@gmail.com"
 # Stripe live since 2026-10-21 (owner OK). Secrets (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET) live in the Cloudflare dashboard.
 STRIPE_MODE = "live"
