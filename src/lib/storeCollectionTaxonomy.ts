@@ -235,6 +235,12 @@ export const menStoreCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Hats & Caps', 'baseball cap', 'fedora', 'beanie', 'bucket hat'),
       subcategory('Briefcases', 'briefcase', 'laptop bag', 'business bag'),
       subcategory('Messenger Bags & Backpacks', 'messenger bag', 'backpack', 'crossbody bag'),
+      // Named like CJ's Men's Luggage & Bags categories (user, 2026-10-23).
+      subcategory('Waist Bags', 'waist bag', 'belt bag', 'fanny pack', 'chest bag'),
+      subcategory('Men’s Backpacks', 'backpack', 'laptop backpack', 'travel backpack'),
+      subcategory('Luggage & Travel Bags', 'luggage', 'suitcase', 'travel bag', 'duffel bag', 'weekender'),
+      subcategory('Crossbody Bags', 'crossbody bag', 'sling bag', 'shoulder bag'),
+      subcategory('Man Wallets', 'wallet', 'card holder', 'money clip'),
     ],
   },
   // Named like CJ's own Men's Clothing categories (user, 2026-10-18).
