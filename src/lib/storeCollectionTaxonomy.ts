@@ -42,7 +42,8 @@ export const BEAUTY_NAILS = 'nail-art-and-tools';
 export const BEAUTY_HEALTH = 'food-and-health';
 export const BEAUTY_HAIR = 'hair-and-accessories';
 export const BEAUTY_SKIN = 'skin-care';
-export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS, BEAUTY_HEALTH, BEAUTY_HAIR, BEAUTY_SKIN];
+export const BEAUTY_WEAVES = 'hair-weaves';
+export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS, BEAUTY_HEALTH, BEAUTY_HAIR, BEAUTY_SKIN, BEAUTY_WEAVES];
 export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories', ...BEAUTY_COLLECTIONS];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
   {
@@ -114,6 +115,17 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Essential Oil', 'essential oil', 'aromatherapy oil'),
       subcategory('Body Care', 'body scrub', 'body lotion', 'body butter'),
       subcategory('Facial Care', 'face serum', 'face cream', 'facial cleanser'),
+    ],
+  },
+  {
+    slug: BEAUTY_WEAVES,
+    label: 'Hair Weaves',
+    subcategories: [
+      subcategory('Pre-Colored One Pack', 'colored hair bundle', 'ombre bundle', 'one pack'),
+      subcategory('Hair Weaving', 'hair weave', 'weft', 'bundles'),
+      subcategory('Hair Styling', 'braiding hair', 'crochet hair', 'ponytail'),
+      subcategory('Salon Bundle Hair', 'bundles with closure', 'bundles with frontal', 'virgin hair bundles'),
+      subcategory('Pre-Colored Hair Weave', 'ombre hair weave', 'highlight bundles', '613 blonde bundles'),
     ],
   },
   {

@@ -130,6 +130,12 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'essential-oil': { search: ['essential oil set', 'lavender essential oil', 'aromatherapy essential oil'], fit: /\b(essential oils?|aromatherapy oils?)\b/i },
   'body-care': { search: ['body scrub', 'body butter', 'body lotion women', 'shower gel'], fit: /^(?!.*\b(whitening|bleach\w*|slimming|fat burn\w*)\b).*\b(body (scrub|butter|lotion|oil|wash|mist)|shower gel)\b/i },
   'facial-care': { search: ['face serum', 'face moisturizer cream', 'facial cleanser', 'eye cream'], fit: /^(?!.*\b(whitening|bleach\w*|acne|spf|sunscreen|freckle|melasma)\b).*\b(face|facial|eye) (serum|cream|moisturi[sz]er|cleanser|toner|essence)\b|\bserum\b/i },
+  // Hair Weaves: bundles and wefts, never wigs (those sit under Human Hair).
+  'pre-colored-one-pack': { search: ['ombre hair bundle one pack', 'colored human hair bundle', '613 blonde one bundle'], fit: /^(?!.*\bwigs?\b).*\b(ombre|colou?red|blonde|613|burgundy|highlight\w*|1b)\b.*\b(bundles?|weaves?|wefts?)\b/i },
+  'hair-weaving': { search: ['hair weave bundles', 'human hair weft', 'body wave bundles', 'straight hair bundles'], fit: /^(?!.*\bwigs?\b).*\b(bundles?|weaves?|wefts?)\b/i },
+  'hair-styling': { search: ['braiding hair', 'crochet braids hair', 'ponytail extension', 'drawstring ponytail'], fit: /^(?!.*\bwigs?\b).*\b(braiding hair|braids?|crochet|ponytails?|buns?|chignon)\b/i },
+  'salon-bundle-hair': { search: ['bundles with closure', 'bundles with frontal', 'virgin hair bundles', 'brazilian hair bundles'], fit: /^(?!.*\bwigs?\b).*\b(bundles?)\b.*\b(closure|frontal|virgin|brazilian|peruvian|remy)\b|\b(virgin|brazilian|peruvian|remy)\b.*\bbundles?\b/i },
+  'pre-colored-hair-weave': { search: ['ombre hair weave', 'highlight hair bundles', 'colored body wave bundles'], fit: /^(?!.*\bwigs?\b).*\b(ombre|colou?red|blonde|613|burgundy|highlight\w*|piano)\b.*\b(weaves?|bundles?|wefts?)\b/i },
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },
