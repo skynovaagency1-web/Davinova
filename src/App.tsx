@@ -16,6 +16,7 @@ const CategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then((m
 const FitsPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.FitsPage })));
 const FitCategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.FitCategoriesPage })));
 const GroupPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.GroupPage })));
+const CustomPage = lazy(() => import('./site/women/CustomPage').then((m) => ({ default: m.CustomPage })));
 const BeautyPage = lazy(() => import('./site/women/BeautyPage').then((m) => ({ default: m.BeautyPage })));
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
 const WishlistPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.WishlistPage })));
@@ -74,6 +75,7 @@ export default function App() {
         <Route path="couple" element={<GroupPage slug="couple-parent-child-clothing" />} />
         <Route path="watches" element={<WatchesPage />} />
         <Route path="beauty" element={<BeautyPage />} />
+        <Route path="custom" element={<CustomPage />} />
         <Route path="jewelry" element={<JewelryPage dept="women" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
         <Route path="wishlist" element={<WishlistPage dept="women" />} />

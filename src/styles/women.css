@@ -582,3 +582,13 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
   .w-exem__card { --w: 74px; top: 64%; border-radius: 12px; }
   .w-exem__nav { width: 38px; height: 38px; }
 }
+
+/* Custom (print on demand): a wall of the party designs beside the copy. */
+.w-custom__wall { min-width: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.w-custom__piece { min-width: 0; margin: 0; display: grid; justify-items: center; gap: 8px; padding: 16px 10px; border-radius: 22px; background: rgba(251, 241, 226, .55); border: 1px solid var(--amber-line); color: #3c2a21; text-align: center; }
+.w-custom__piece svg { width: 64%; max-width: 110px; fill: #fbf1e2; stroke: #8e735b; stroke-width: 2; stroke-linejoin: round; }
+.w-custom__piece figcaption { display: grid; gap: 2px; }
+.w-custom__piece b { font: 400 italic clamp(15px, 1.6vw, 20px)/1.1 var(--nova-display); color: #5a4536; }
+.w-custom__piece span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+@media (max-width: 760px) { .w-custom .w-watches__hero { grid-template-columns: minmax(0, 1fr); } .w-custom__wall { gap: 8px; } .w-custom__piece { padding: 12px 6px; } .w-custom__piece b { font-size: 14px; } .w-custom__piece span { font-size: 9px; letter-spacing: .08em; } }
+.w-custom__piece .w-custom__print { fill: #5a4536; stroke: none; font-family: var(--nova-display); font-style: italic; }

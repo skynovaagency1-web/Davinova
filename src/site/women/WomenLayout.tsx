@@ -31,7 +31,7 @@ function drawerSections(products: Product[]) {
     return { label, to, subs: (group?.subcategories ?? []).filter((sub) => has(slug, sub.slug)).map((sub) => ({ to: categoryPath(slug, sub.slug), label: sub.label })) };
   };
   const accessories = groupSection('accessories', 'Accessories', '/accessories');
-  accessories.subs.unshift({ to: '/jewelry', label: 'Jewelry & Watches' }, { to: '/beauty', label: 'Beauty' });
+  accessories.subs.unshift({ to: '/jewelry', label: 'Jewelry & Watches' }, { to: '/beauty', label: 'Beauty' }, { to: '/custom', label: 'Custom' });
   const slim = fitSection('standard', 'Slim', '/slim');
   // Couple & Parent-Child sits under Slim; its own types are listed on its page.
   slim.subs.push({ to: '/couple', label: 'Couple & Parent-Child Clothing' });
