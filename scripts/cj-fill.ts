@@ -112,6 +112,13 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'fashion-backpacks': { search: ['women fashion backpack', 'women mini backpack', 'women leather backpack'], fit: /\bbackpacks?\b/i },
   'shoulder-bags': { search: ['women shoulder bag', 'women leather handbag', 'women top handle bag', 'women underarm bag'], fit: /\b(shoulder bags?|handbags?|top handle|underarm bags?|hobo)\b/i },
   clutches: { search: ['women evening clutch', 'wedding clutch bag', 'women envelope clutch', 'women party clutch'], fit: /\bclutch(es)?\b/i },
+  // Health, Beauty & Hair: Nail Art & Tools (user, 2026-10-23).
+  'nail-glitters': { search: ['nail glitter powder', 'chrome nail powder', 'holographic nail glitter', 'nail sequins flakes'], fit: /\bnails?\b.*\b(glitter|powder|chrome|sequins?|flakes?)\b|\b(glitter|chrome|holographic)\b.*\bnails?\b/i },
+  'stickers-and-decals': { search: ['nail stickers', 'nail art decals', 'nail wraps', '3d nail stickers'], fit: /\bnails?\b.*\b(stickers?|decals?|wraps?|transfer)\b|\b(stickers?|decals?)\b.*\bnails?\b/i },
+  'nail-decorations': { search: ['nail rhinestones', 'nail charms', 'nail pearls decoration', '3d nail art decoration'], fit: /\bnails?\b.*\b(rhinestones?|charms?|pearls?|gems?|crystals?|decorations?|studs?)\b|\b(rhinestones?|charms?|decorations?)\b.*\bnails?\b/i },
+  'nail-gel': { search: ['gel nail polish', 'uv gel polish', 'builder gel nails', 'gel polish set'], fit: /\bgel\b.*\b(polish|nails?|varnish)\b|\bnails?\b.*\bgel\b|\bpoly ?gel\b/i },
+  'nail-dryers': { search: ['uv led nail lamp', 'nail dryer', 'gel nail lamp', 'portable nail lamp'], fit: /\bnails?\b.*\b(lamps?|dryers?|lights?)\b|\b(uv|led)\b.*\b(lamps?|dryers?)\b/i },
+  'nail-art-kits': { search: ['nail art kit', 'gel nail kit', 'manicure tool set', 'nail art brush set'], fit: /\bnails?\b.*\b(kits?|sets?)\b|\bmanicure\b.*\b(kits?|sets?|tools?)\b/i },
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },

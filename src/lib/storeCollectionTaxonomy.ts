@@ -37,7 +37,10 @@ function subcategory(label: string, ...matchTerms: string[]): StoreSubcategoryOp
 export const WOMEN_BAGS = 'womens-bags';
 export const WOMEN_SHOES = 'womens-shoes';
 /** Pieces shown floating on their own (never on a model): bags, shoes and men's accessories. */
-export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories'];
+export const BEAUTY_NAILS = 'nail-art-and-tools';
+/** Shown on the Health, Beauty & Hair page, not in the clothing menus. */
+export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS];
+export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories', ...BEAUTY_COLLECTIONS];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
   {
     slug: WOMEN_BAGS,
@@ -66,6 +69,19 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Woman Slippers', 'slippers', 'slides', 'house shoes'),
       subcategory('Woman Sandals', 'sandals', 'heeled sandals', 'wedge sandals'),
       subcategory('Flats', 'flats', 'ballet flats', 'mules'),
+    ],
+  },
+  {
+    // Named like CJ's Health, Beauty & Hair categories (user, 2026-10-23).
+    slug: BEAUTY_NAILS,
+    label: 'Nail Art & Tools',
+    subcategories: [
+      subcategory('Nail Glitters', 'nail glitter', 'glitter powder', 'chrome powder'),
+      subcategory('Stickers & Decals', 'nail stickers', 'nail decals', 'nail wraps'),
+      subcategory('Nail Decorations', 'nail rhinestones', 'nail charms', 'nail pearls'),
+      subcategory('Nail Gel', 'gel polish', 'uv gel', 'builder gel'),
+      subcategory('Nail Dryers', 'nail lamp', 'uv led lamp', 'nail dryer'),
+      subcategory('Nail Art Kits', 'nail art kit', 'gel nail kit', 'manicure set'),
     ],
   },
   {

@@ -592,3 +592,9 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-custom__piece span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
 @media (max-width: 760px) { .w-custom .w-watches__hero { grid-template-columns: minmax(0, 1fr); } .w-custom__wall { gap: 8px; } .w-custom__piece { padding: 12px 6px; } .w-custom__piece b { font-size: 14px; } .w-custom__piece span { font-size: 9px; letter-spacing: .08em; } }
 .w-custom__piece .w-custom__print { fill: #5a4536; stroke: none; font-family: var(--nova-display); font-style: italic; }
+
+/* Health, Beauty & Hair: sub-category chips above each beauty grid. */
+.w-beauty__group { display: grid; gap: 18px; }
+.w-beauty__subs { display: flex; flex-wrap: wrap; gap: 8px; }
+.w-beauty__subs button { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--amber-line); background: var(--amber-glass); color: inherit; font: inherit; font-size: 13px; cursor: pointer; }
+.w-beauty__subs button.active { background: #cdb69e; color: #2e2019; border-color: #cdb69e; }
