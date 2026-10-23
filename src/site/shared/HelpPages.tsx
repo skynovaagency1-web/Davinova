@@ -60,6 +60,7 @@ const HELP_PAGES: Page[] = [
       <p>As soon as your order leaves the warehouse we email you a tracking number. Tracking can take a day or two to show its first update.</p>
       <h2>Cost</h2>
       <p>Express shipping is free on every order. There are no hidden fees from us.</p>
+      <p>We currently ship to the United States, Canada, New Zealand and the United Arab Emirates. More countries are coming soon.</p>
       <h2>Customs and duties</h2>
       <p>Some countries charge import duties or taxes on arrival. These are set by your country, not by Davinova, and are paid to the carrier if they apply.</p>
       <h2>Planning for an event?</h2>

@@ -11,13 +11,14 @@ import { CloudSky } from '../shared/Cloud';
 import { HangingBag } from '../shared/HangingBag';
 import { SupportHelper } from '../shared/SupportHelper';
 import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
+import { BEAUTY_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { isCurvyLook } from '../../lib/curvyLooks';
 import type { Product } from '../../types/product';
 import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
 
-const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing');
+const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing' && !BEAUTY_COLLECTIONS.includes(group.slug));
 
 /** Phone menu: four titles, each with its stocked types as sub-titles. */
 function drawerSections(products: Product[]) {
@@ -31,7 +32,7 @@ function drawerSections(products: Product[]) {
     return { label, to, subs: (group?.subcategories ?? []).filter((sub) => has(slug, sub.slug)).map((sub) => ({ to: categoryPath(slug, sub.slug), label: sub.label })) };
   };
   const accessories = groupSection('accessories', 'Accessories', '/accessories');
-  accessories.subs.unshift({ to: '/jewelry', label: 'Jewelry & Watches' }, { to: '/beauty', label: 'Beauty' });
+  accessories.subs.unshift({ to: '/jewelry', label: 'Jewelry & Watches' }, { to: '/beauty', label: 'Health, Beauty & Hair' }, { to: '/custom', label: 'Custom' });
   const slim = fitSection('standard', 'Slim', '/slim');
   // Couple & Parent-Child sits under Slim; its own types are listed on its page.
   slim.subs.push({ to: '/couple', label: 'Couple & Parent-Child Clothing' });

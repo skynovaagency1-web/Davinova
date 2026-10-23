@@ -83,6 +83,10 @@ function toProduct(row: CatalogueRow): Product | null {
 
 // Shared by every page in the session, so moving between the shop, a product and the bag
 // reuses one catalogue download instead of fetching all products again on each page.
+/** Flip to true when Europe/UK/Australia shipping opens. */
+const SHOW_NON_US_PLUGS = false;
+const NON_US_PLUG = /\b(eu|european|uk|british|au|australian) (plug|standard)\b/i;
+
 let cjCatalogueRequest: Promise<Product[]> | null = null;
 
 function loadCjCatalogue(): Promise<Product[]> {
@@ -98,7 +102,9 @@ function loadCjCatalogue(): Promise<Product[]> {
           // Pyjamas, kids' clothes, pet costumes and the like are not part of the store.
           .filter((item) => item.shelf !== 'hidden')
           // Only products whose photo passed the photo check (whole model, nothing cut off) are shown.
-          .filter((item) => typeof cutouts[item.id] === 'string');
+          .filter((item) => typeof cutouts[item.id] === 'string')
+          // Tools with a European, UK or Australian plug wait until we ship there (owner, 2026-10-23).
+          .filter((item) => SHOW_NON_US_PLUGS || !NON_US_PLUG.test(item.title));
       })
       .catch((cause: unknown) => {
         cjCatalogueRequest = null; // allow a retry on the next page visit

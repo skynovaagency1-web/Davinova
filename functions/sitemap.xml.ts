@@ -1,8 +1,8 @@
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 import { assignmentFromStoreTags } from '../src/lib/storeCollectionTaxonomy';
 import { jewelryMenu, jewelryPath } from '../src/site/shared/jewelry';
+import { langUrl } from '../server/lang';
 
-const SITE = 'https://davinova.com';
 const PAGES = [
   '/', '/shop', '/categories', '/fits', '/slim', '/plus-size', '/accessories', '/couple', '/watches', '/jewelry',
   '/gift-cards', '/refer', '/about', '/shipping', '/returns', '/size-guide', '/faq', '/contact', '/privacy', '/terms',
@@ -35,8 +35,17 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     }
   }
 
-  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
-    + [...urls].map((path) => `  <url><loc>${SITE}${path.replace(/&/g, '&amp;')}</loc></url>`).join('\n')
+  // Each page in English, French and Spanish, each entry listing all three (hreflang) so search engines pair them.
+  const esc = (value: string) => value.replace(/&/g, '&amp;');
+  const entry = (lang: string, path: string) => {
+    const [pathname, query] = path.split('?');
+    const search = query ? `?${query}` : '';
+    const alternates = ['en', 'fr', 'es'].map((code) => `<xhtml:link rel="alternate" hreflang="${code}" href="${esc(langUrl(code, pathname, search))}"/>`).join('')
+      + `<xhtml:link rel="alternate" hreflang="x-default" href="${esc(langUrl('en', pathname, search))}"/>`;
+    return `  <url><loc>${esc(langUrl(lang, pathname, search))}</loc>${alternates}</url>`;
+  };
+  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`
+    + [...urls].flatMap((path) => ['en', 'fr', 'es'].map((lang) => entry(lang, path))).join('\n')
     + '\n</urlset>\n';
   const response = new Response(body, { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'public, max-age=3600' } });
   if (cache) await cache.put(request.url, response.clone());
