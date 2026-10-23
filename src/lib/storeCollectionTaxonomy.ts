@@ -44,7 +44,8 @@ export const BEAUTY_HAIR = 'hair-and-accessories';
 export const BEAUTY_SKIN = 'skin-care';
 export const BEAUTY_WEAVES = 'hair-weaves';
 export const BEAUTY_MAKEUP = 'makeup';
-export const BEAUTY_COLLECTIONS = [BEAUTY_MAKEUP, BEAUTY_SKIN, BEAUTY_NAILS, BEAUTY_HAIR, BEAUTY_WEAVES, BEAUTY_HEALTH];
+export const BEAUTY_TOOLS = 'beauty-tools';
+export const BEAUTY_COLLECTIONS = [BEAUTY_MAKEUP, BEAUTY_SKIN, BEAUTY_NAILS, BEAUTY_HAIR, BEAUTY_WEAVES, BEAUTY_TOOLS, BEAUTY_HEALTH];
 export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories', ...BEAUTY_COLLECTIONS];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
   {
@@ -139,6 +140,18 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Makeup Brushes', 'makeup brush set', 'foundation brush', 'blending sponge'),
       subcategory('Lipstick', 'lipstick', 'matte lipstick', 'lip gloss'),
       subcategory('False Eyelashes', 'false eyelashes', 'mink lashes', 'lash extensions'),
+    ],
+  },
+  {
+    slug: BEAUTY_TOOLS,
+    label: 'Beauty Tools',
+    subcategories: [
+      subcategory('Mirrors', 'makeup mirror', 'led vanity mirror', 'compact mirror'),
+      subcategory('Straightening Irons', 'hair straightener', 'flat iron'),
+      subcategory('Electric Face Cleanser', 'facial cleansing brush', 'electric face brush'),
+      subcategory('Face Skin Care Tools', 'jade roller', 'gua sha', 'microcurrent face device'),
+      subcategory('Curling Iron', 'curling iron', 'curling wand', 'hair curler'),
+      subcategory('Facial Steamer', 'facial steamer', 'face steamer', 'nano mist sprayer'),
     ],
   },
   {

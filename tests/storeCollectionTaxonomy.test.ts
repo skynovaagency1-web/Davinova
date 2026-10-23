@@ -18,6 +18,7 @@ describe('Davinova store collection taxonomy', () => {
       'Skin Care',
       'Hair Weaves',
       'Makeup',
+      'Beauty Tools',
       'Accessories',
       'Couple & Parent-Child Clothing',
       'Women’s Jackets',
@@ -29,7 +30,7 @@ describe('Davinova store collection taxonomy', () => {
       'Outerwear & Jackets',
       'Weddings & Events',
     ]);
-    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(118);
+    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(124);
   });
 
   it('sorts denim jackets into the denim collection and correct subcategory', () => {

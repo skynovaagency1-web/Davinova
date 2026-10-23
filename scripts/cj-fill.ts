@@ -143,6 +143,13 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'makeup-brushes': { search: ['makeup brush set', 'foundation brush', 'eyeshadow brush set', 'makeup sponge'], fit: /\b(make ?up|cosmetic|foundation|eyeshadow|blush|powder)\b.*\b(brush(es)?|sponges?|blenders?)\b/i },
   lipstick: { search: ['matte lipstick', 'lipstick set', 'lip gloss', 'liquid lipstick'], fit: /\b(lipsticks?|lip ?gloss|lip ?tint|lip ?liner|lip ?glaze)\b/i },
   'false-eyelashes': { search: ['false eyelashes', 'mink lashes', 'magnetic eyelashes', 'cluster lashes'], fit: /\b(false|fake|mink|magnetic|cluster|strip)?\s*(eye ?lash(es)?|lashes)\b/i },
+  // Beauty Tools: plugged-in tools must not be EU/UK/AU plug only (orders go to the US first).
+  mirrors: { search: ['led makeup mirror', 'vanity mirror with lights', 'compact makeup mirror', 'tri-fold makeup mirror'], fit: /\b(make ?up|vanity|cosmetic|compact|pocket|led)\b.*\bmirrors?\b|\bmirrors?\b.*\b(make ?up|vanity)\b/i },
+  'straightening-irons': { search: ['hair straightener', 'flat iron hair', 'ceramic hair straightener', 'cordless hair straightener'], fit: /^(?!.*\b(eu|uk|au) plug\b).*\b(hair straighten\w*|straightening iron|flat irons?|straightener)\b/i },
+  'electric-face-cleanser': { search: ['electric facial cleansing brush', 'silicone face cleansing brush', 'pore cleaner vacuum'], fit: /^(?!.*\b(eu|uk|au) plug\b).*\b(cleansing (brush|device|instrument)|face (cleanser|brush)|facial (cleanser|brush)|pore (cleaner|vacuum))\b/i },
+  'face-skin-care-tools': { search: ['jade roller gua sha', 'ice roller face', 'microcurrent face lifting device', 'facial massager roller'], fit: /\b(jade|ice|face|facial|derma)\s*rollers?\b|\bgua sha\b|\b(face|facial) (lifting|massage) (device|instrument|tool)\b/i },
+  'curling-iron': { search: ['curling iron', 'curling wand', 'automatic hair curler', 'cordless hair curler'], fit: /^(?!.*\b(eu|uk|au) plug\b).*\b(curling (irons?|wands?)|hair curlers?|curler)\b/i },
+  'facial-steamer': { search: ['facial steamer', 'nano face steamer', 'nano mist sprayer face'], fit: /^(?!.*\b(eu|uk|au) plug\b).*\b(facial|face|nano)\b.*\b(steamers?|mist sprayers?|sprayers?|humidifiers?)\b/i },
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },
