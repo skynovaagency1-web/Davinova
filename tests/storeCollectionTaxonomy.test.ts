@@ -14,6 +14,7 @@ describe('Davinova store collection taxonomy', () => {
       'Shoes',
       'Nail Art & Tools',
       'Food & Health',
+      'Hair & Accessories',
       'Accessories',
       'Couple & Parent-Child Clothing',
       'Women’s Jackets',
@@ -25,7 +26,7 @@ describe('Davinova store collection taxonomy', () => {
       'Outerwear & Jackets',
       'Weddings & Events',
     ]);
-    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(99);
+    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(101);
   });
 
   it('sorts denim jackets into the denim collection and correct subcategory', () => {
