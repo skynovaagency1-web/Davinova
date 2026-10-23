@@ -76,9 +76,14 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const cutout = useCutouts()(product.id);
   useEffect(() => { window.scrollTo({ top: 0 }); }, []);
 
+  const [colour, setColour] = useState('');
+  // After a colour is picked the big photo shows that colour, until a thumbnail is clicked.
+  const [showColour, setShowColour] = useState(false);
+  const colourPhoto = showColour && colour ? product.colourImages?.[colour] : undefined;
   const photos = product.images;
   // The first view uses the cut-out (if one exists) so the dress stands out of the poster.
-  const photo = index === 0 && cutout ? { url: cutout, alt: photos[0]?.alt ?? product.title } : photos[index] ?? photos[0];
+  const photo = colourPhoto ? { url: colourPhoto, alt: `${product.title} in ${colour}` }
+    : index === 0 && cutout ? { url: cutout, alt: photos[0]?.alt ?? product.title } : photos[index] ?? photos[0];
   const isWoo = isWooCommerceProduct(product);
   const canBuy = isWoo ? isProductPurchasable(product) : !product.browseOnly && product.supplierVerified && product.sizes.length > 0;
   const word = variant === 'men' ? 'Formal' : lookup(wordByCollection, product) ?? 'Occasion';
@@ -97,7 +102,6 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
     return cut < 0 ? { label, colour: '', size: label } : { label, colour: label.slice(0, cut), size: label.slice(cut + 3) };
   });
   const colours = [...new Set(options.map((option) => option.colour).filter(Boolean))];
-  const [colour, setColour] = useState('');
   const sizeChoices = sortSizes(options.filter((option) => !colours.length || option.colour === colour));
 
   function addToBag() {
@@ -114,7 +118,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           <div><strong>{word}</strong><span>{variant === 'men' ? 'Davinova Homme' : isCurvyLook(product) ? 'The curve edit' : 'The occasion edit'}</span></div>
           <ul>{uses.map((use) => <li key={use}><ChevronRight size={14} />{use}</li>)}</ul>
         </div>
-        <div className={`pv-stage__product${index === 0 && cutout ? ' pv-stage__product--pop' : ''}`}>
+        <div className={`pv-stage__product${!colourPhoto && index === 0 && cutout ? ' pv-stage__product--pop' : ''}`}>
           {photo?.url && !broken
             // Floating loop adapted from "Product Bounce Card" (ruixen.ui, 21st.dev), slowed down for clothing.
             ? <motion.img key={photo.url} src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} />
@@ -123,7 +127,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
         {specs.slice(0, 2).map(([label, value], i) => <span key={label} className={`pv-callout pv-callout--${i + 1}`}><b>{value}</b>{label}<svg viewBox="0 0 120 40" aria-hidden="true"><path d={i ? 'M4 6 C30 2 34 30 60 22 S100 30 116 36' : 'M4 30 C24 40 40 8 64 18 S98 4 116 10'} /></svg></span>)}
         {bigNumber && <span className="pv-stage__number"><b>{bigNumber.value}</b>{bigNumber.label}</span>}
         {photos.length > 1 && <div className="pv-stage__thumbs" aria-label="Product photos">
-          {photos.slice(0, 6).map((image, i) => <button key={image.url + i} type="button" className={i === index ? 'active' : ''} onClick={() => { setIndex(i); setBroken(false); }} aria-label={`Photo ${i + 1}`} aria-pressed={i === index}><img src={image.url} alt="" loading="lazy" /><span>{String(i + 1).padStart(2, '0')}</span></button>)}
+          {photos.slice(0, 6).map((image, i) => <button key={image.url + i} type="button" className={!colourPhoto && i === index ? 'active' : ''} onClick={() => { setIndex(i); setShowColour(false); setBroken(false); }} aria-label={`Photo ${i + 1}`} aria-pressed={i === index}><img src={image.url} alt="" loading="lazy" /><span>{String(i + 1).padStart(2, '0')}</span></button>)}
         </div>}
       </div>
 
@@ -136,7 +140,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
         {!isWoo && canBuy && <div className="pv-buy__sizes">
           {colours.length > 0 && <>
             <span>Choose your colour {sizeHint && !colour && <em>· pick one first</em>}</span>
-            <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setSize(''); setAdded(false); setSizeHint(false); }}>{item}</button>)}</div>
+            <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }}>{item}</button>)}</div>
           </>}
           {(!colours.length || colour) && <>
             <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}</span>

@@ -47,11 +47,11 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   const [productsResult, imagesResult, variantsResult] = await env.DB.batch([
     env.DB.prepare(base + filter + ' ORDER BY featured DESC,created_at DESC').bind(...binds),
     env.DB.prepare(`SELECT product_id,url,alt FROM product_images WHERE product_id IN (${ids}) ORDER BY product_id,is_primary DESC,position`).bind(...binds),
-    env.DB.prepare(`SELECT product_id,size FROM product_variants WHERE active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 AND product_id IN (${ids}) ORDER BY product_id,rowid`).bind(...binds),
+    env.DB.prepare(`SELECT product_id,size,image_url FROM product_variants WHERE active=1 AND cj_variant_id IS NOT NULL AND available_stock > 0 AND product_id IN (${ids}) ORDER BY product_id,rowid`).bind(...binds),
   ]);
   const results = (productsResult.results ?? []) as DbProduct[];
   const imagesByProduct = groupByProduct((imagesResult.results ?? []) as (DbImage & { product_id: string })[]);
-  const sizesByProduct = groupByProduct((variantsResult.results ?? []) as { product_id: string; size: string }[]);
+  const sizesByProduct = groupByProduct((variantsResult.results ?? []) as { product_id: string; size: string; image_url: string | null }[]);
 
   const products = [];
   for (const row of results) {
@@ -64,6 +64,12 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const sizes = verified && row.price_cents > 0 && row.cost_cents > 0
       ? [...new Set((variantRows ?? []).map((variant) => variant.size).filter((size) => size && size.length <= 40))]
       : [];
+    // The supplier's photo for each colour, so the product page can switch the big photo when a colour is picked.
+    const colourImages: Record<string, string> = {};
+    for (const variant of sizes.length ? variantRows : []) {
+      const cut = variant.size.indexOf(' / ');
+      if (cut > 0 && variant.image_url && /^https:\/\//.test(variant.image_url)) colourImages[variant.size.slice(0, cut)] ??= variant.image_url;
+    }
     const purchasable = verified && row.has_sellable_variant === 1 && row.price_cents > 0 && row.cost_cents > 0 && sizes.length > 0;
     const productTags = safeJsonArray(row.tags_json);
     const storeAssignment = assignmentFromStoreTags(productTags);
@@ -82,6 +88,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       neckline: row.neckline === 'Not verified' ? '' : row.neckline,
       tags: publicProductTags(productTags),
       sizes,
+      colourImages: Object.keys(colourImages).length ? colourImages : undefined,
       supplier: 'cj', supplierVerified: verified,
       sourceSupplier: row.catalog_source, sourceSupplierProductId: row.catalog_source_product_id ?? undefined,
       cjProductId: row.cj_product_id ?? undefined,

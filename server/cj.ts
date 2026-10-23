@@ -397,6 +397,7 @@ interface CJProductVariantDetail {
   variantNameEn?: string;
   variantSku?: string;
   variantKey?: string;
+  variantImage?: string;
   variantSellPrice?: number | string;
   inventories?: CJProductInventoryDetail[];
 }
@@ -434,6 +435,7 @@ export async function getCJProductDetail(env: CJEnv, productId: string) {
       name: variant.variantNameEn ?? '',
       sku: variant.variantSku ?? '',
       options: variant.variantKey ?? '',
+      imageUrl: variant.variantImage ?? '',
       sellPriceUsd: numericValue(variant.variantSellPrice),
       inventory: (variant.inventories ?? []).map((stock) => ({
         countryCode: stock.countryCode ?? '',
