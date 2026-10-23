@@ -52,9 +52,14 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
     slug: WOMEN_SHOES,
     label: 'Shoes',
     subcategories: [
-      subcategory('Heels', 'high heels', 'pumps', 'stiletto', 'heeled sandals'),
-      subcategory('Flats & Sandals', 'flats', 'sandals', 'ballet flats', 'mules'),
-      subcategory('Boots', 'ankle boots', 'knee high boots', 'boots'),
+      // Named like CJ's Women's Shoes categories (user, 2026-10-23).
+      subcategory('Woman Boots', 'ankle boots', 'knee high boots', 'boots'),
+      subcategory('Vulcanize Shoes', 'canvas shoes', 'sneakers', 'platform sneakers'),
+      subcategory('Women’s Insoles', 'insoles', 'arch support'),
+      subcategory('Pumps', 'high heels', 'pumps', 'stiletto'),
+      subcategory('Woman Slippers', 'slippers', 'slides', 'house shoes'),
+      subcategory('Woman Sandals', 'sandals', 'heeled sandals', 'wedge sandals'),
+      subcategory('Flats', 'flats', 'ballet flats', 'mules'),
     ],
   },
   {

@@ -98,6 +98,14 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },
+  // Women's Shoes, named like CJ's categories (user, 2026-10-23).
+  'woman-boots': { search: ['women ankle boots', 'women knee high boots', 'women heeled boots', 'women chelsea boots'], fit: /\bboots?\b/i },
+  'vulcanize-shoes': { search: ['women canvas shoes', 'women vulcanized sneakers', 'women platform sneakers', 'women casual sneakers'], fit: /\b(sneakers?|canvas shoes|vulcani[sz]ed?|trainers?)\b/i },
+  'womens-insoles': { search: ['women insoles', 'high heel insoles', 'arch support insoles women', 'gel insoles women'], fit: /\binsoles?\b/i },
+  pumps: { search: ['women high heels', 'women stiletto pumps', 'women pointed toe pumps', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
+  'woman-slippers': { search: ['women slippers', 'women house slippers', 'women fluffy slippers', 'women slides'], fit: /\b(slippers?|slides?)\b/i },
+  'woman-sandals': { search: ['women sandals', 'women heeled sandals', 'women flat sandals', 'women wedge sandals'], fit: /\bsandals?\b/i },
+  flats: { search: ['women ballet flats', 'women flat shoes', 'women mules', 'women pointed flats'], fit: /\b(flats?|ballet|mules?)\b/i },
 };
 // JEWELRY=1 fills Jewelry & Watches for both shops: titles must name the piece, and men's pieces must not say women.
 const JEWELRY = process.env.JEWELRY === '1';
