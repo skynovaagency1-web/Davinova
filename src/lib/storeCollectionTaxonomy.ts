@@ -238,9 +238,14 @@ export const menStoreCollectionGroups: StoreCollectionGroup[] = [
     slug: MEN_ACCESSORIES,
     label: 'Men’s Accessories',
     subcategories: [
-      subcategory('Dress Shoes', 'oxford shoes', 'loafers', 'derby shoes', 'brogues'),
-      subcategory('Loafers', 'loafers', 'penny loafers', 'slip-on shoes'),
-      subcategory('Sneakers', 'sneakers', 'trainers', 'casual shoes'),
+      // Named like CJ's Men's Shoes categories (user, 2026-10-23).
+      subcategory('Formal Shoes', 'oxford shoes', 'derby shoes', 'brogues', 'dress shoes'),
+      subcategory('Casual Shoes', 'loafers', 'boat shoes', 'slip-on shoes', 'casual shoes'),
+      subcategory('Vulcanize Shoe', 'sneakers', 'canvas shoes', 'trainers'),
+      subcategory('Man Boots', 'chelsea boots', 'ankle boots', 'work boots'),
+      subcategory('Man Sandals', 'sandals', 'beach sandals'),
+      subcategory('Man Slippers', 'slippers', 'slides', 'house shoes'),
+      subcategory('Men’s Insoles', 'insoles', 'arch support'),
       subcategory('Ties & Bow Ties', 'necktie', 'bow tie', 'pocket square'),
       subcategory('Belts & Suspenders', 'leather belt', 'suspenders', 'braces'),
       subcategory('Hats & Caps', 'baseball cap', 'fedora', 'beanie', 'bucket hat'),

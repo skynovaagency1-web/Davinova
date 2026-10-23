@@ -32,10 +32,14 @@ const MEN_SEARCH: Record<string, string[]> = {
   'blazers-and-waistcoats': ['men blazer', 'men sport coat', 'men waistcoat', 'men suit vest'],
   'dress-shirts': ['men dress shirt', 'men formal shirt', 'men tuxedo shirt', 'men slim fit shirt'],
   'ties-and-bow-ties': ['men necktie', 'men bow tie', 'men tie set pocket square', 'men silk tie'],
-  'dress-shoes': ['men oxford shoes', 'men leather dress shoes', 'men derby shoes', 'men brogues'],
+  'formal-shoes': ['men oxford shoes', 'men leather dress shoes', 'men derby shoes', 'men brogues'],
+  'casual-shoes': ['men loafers', 'men penny loafers', 'men boat shoes', 'men casual leather shoes'],
+  'vulcanize-shoe': ['men canvas shoes', 'men vulcanized sneakers', 'men white sneakers', 'men casual sneakers'],
+  'man-boots': ['men chelsea boots', 'men ankle boots', 'men leather boots', 'men work boots'],
+  'man-sandals': ['men sandals', 'men leather sandals', 'men beach sandals'],
+  'man-slippers': ['men slippers', 'men house slippers', 'men slides'],
+  'mens-insoles': ['men insoles', 'arch support insoles', 'height increase insoles', 'gel insoles'],
   'belts-and-suspenders': ['men leather belt', 'men suspenders', 'men dress belt'],
-  loafers: ['men loafers', 'men penny loafers', 'men leather loafers'],
-  sneakers: ['men leather sneakers', 'men white sneakers', 'men casual sneakers'],
   briefcases: ['men leather briefcase', 'men business bag', 'men laptop bag'],
   'messenger-bags-and-backpacks': ['men messenger bag', 'men leather backpack', 'men crossbody bag'],
   'waist-bags': ['men waist bag', 'men belt bag', 'men chest bag', 'men fanny pack'],
@@ -63,11 +67,15 @@ const MEN_FITS: Record<string, RegExp> = {
   'blazers-and-waistcoats': /\b(blazers?|sport coats?|suit jackets?|waistcoats?|suit vests?|vests?)\b/i,
   'dress-shirts': /\b(dress|formal|tuxedo|business|office) shirts?\b|\bshirts?\b.*\b(formal|business|wedding)\b/i,
   'ties-and-bow-ties': /\b(neck ?ties?|bow ?ties?|ties?|pocket squares?|cravats?)\b/i,
-  'dress-shoes': /\b(oxfords?|loafers?|brogues?|derby|dress shoes|leather shoes|formal shoes)\b/i,
+  'formal-shoes': /\b(oxfords?|brogues?|derby|dress shoes|formal shoes|business shoes)\b/i,
+  'casual-shoes': /\b(loafers?|boat shoes|moccasins?|casual (leather )?shoes|slip-?on)\b/i,
+  'vulcanize-shoe': /\b(sneakers?|canvas shoes|vulcani[sz]ed?|trainers?)\b/i,
+  'man-boots': /\bboots?\b/i,
+  'man-sandals': /\bsandals?\b/i,
+  'man-slippers': /\b(slippers?|slides?)\b/i,
+  'mens-insoles': /\binsoles?\b/i,
   'belts-and-suspenders': /\b(belts?|suspenders?|braces)\b/i,
   'hats-and-caps': /\b(hats?|caps?|fedoras?|beanies?|berets?)\b/i,
-  loafers: /\bloafers?\b/i,
-  sneakers: /\b(sneakers?|trainers?)\b/i,
   briefcases: /\b(briefcases?|business bags?|laptop bags?|handbags?)\b/i,
   'messenger-bags-and-backpacks': /\b(messenger|backpacks?|crossbody|shoulder bags?|sling bags?)\b/i,
   'waist-bags': /\b(waist|belt|chest|fanny) (bags?|packs?)\b/i,
@@ -86,6 +94,7 @@ const MEN_FITS: Record<string, RegExp> = {
   boxers: /\bboxers?\b/i,
   'long-johns': /\b(long johns|thermal|base ?layer)\b/i,
 };
+const MEN_SHOES = ['formal-shoes', 'casual-shoes', 'vulcanize-shoe', 'man-boots', 'man-sandals', 'man-slippers', 'mens-insoles'];
 // Accessories that only borrow a word (tie clips belong with cufflinks; shoe care is not shoes).
 const NOT_ACCESSORY = /\b(tie ?(clip|bar|pin)s?|cufflinks?|shoe ?(polish|brush|horn|tree|lace)s?|insoles?|belt ?buckles? only|seat ?belt|sneakers?|sandals?|slippers?|boots?)\b/i;
 // Casual pieces that only borrow the word "suit".
@@ -203,7 +212,7 @@ async function main() {
           } else if (MEN && menStoreCollectionGroups.includes(group)) {
             if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
             if (group.slug === 'mens-formal' && NOT_TAILORING.test(item.name)) continue;
-            if (group.slug === 'mens-accessories' && sub.slug !== 'sneakers' && NOT_ACCESSORY.test(item.name)) continue;
+            if (group.slug === 'mens-accessories' && !MEN_SHOES.includes(sub.slug) && NOT_ACCESSORY.test(item.name)) continue;
             // Lounge shorts are not swim trunks; casual tees are not sets.
             if (sub.slug === 'shorts' && /\b(swim|board|beach)\b/i.test(item.name)) continue;
             // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.
