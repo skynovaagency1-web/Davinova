@@ -123,6 +123,13 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'health-care-products': { search: ['neck massager', 'facial roller gua sha', 'posture corrector', 'eye massager', 'scalp massager'], fit: /^(?!.*\b(capsules?|tablets?|supplements?|vitamins?|pills?|tea|medicine|medical|drops|cream|ointment|plasters?|patch(es)?)\b).*\b(massagers?|gua sha|face rollers?|facial rollers?|posture correctors?|acupressure|heating pads?)\b/i },
   'headband-and-hair-band-and-hairpin': { search: ['women headband', 'pearl hair clip', 'satin scrunchie', 'rhinestone hairpin', 'padded headband'], fit: /\b(headbands?|hair ?bands?|hair ?pins?|hair ?clips?|barrettes?|scrunchies?|claw clips?|hair ?ties?)\b/i },
   'human-hair': { search: ['human hair wig', 'lace front wig human hair', 'human hair bundles', 'clip in human hair extensions'], fit: /\bhuman hair\b/i },
+  // Skin Care: nothing sold as medicine (no SPF sunscreen, acne or whitening treatments).
+  razor: { search: ['women facial razor', 'eyebrow razor', 'women electric shaver', 'dermaplaning tool'], fit: /^(?!.*\b(men|beard)\b).*\b(razors?|shavers?|epilators?|dermaplan\w*)\b/i },
+  'face-masks': { search: ['sheet face mask', 'clay face mask', 'sleeping face mask', 'collagen face mask'], fit: /\b(sheet|clay|mud|sleeping|collagen|hydrating|facial|face) masks?\b/i },
+  'sun-care': { search: ['after sun gel', 'aloe vera soothing gel', 'after sun lotion'], fit: /^(?!.*\b(spf|sunscreen|sunblock)\b).*\b(after ?sun|aloe vera)\b/i },
+  'essential-oil': { search: ['essential oil set', 'lavender essential oil', 'aromatherapy essential oil'], fit: /\b(essential oils?|aromatherapy oils?)\b/i },
+  'body-care': { search: ['body scrub', 'body butter', 'body lotion women', 'shower gel'], fit: /^(?!.*\b(whitening|bleach\w*|slimming|fat burn\w*)\b).*\b(body (scrub|butter|lotion|oil|wash|mist)|shower gel)\b/i },
+  'facial-care': { search: ['face serum', 'face moisturizer cream', 'facial cleanser', 'eye cream'], fit: /^(?!.*\b(whitening|bleach\w*|acne|spf|sunscreen|freckle|melasma)\b).*\b(face|facial|eye) (serum|cream|moisturi[sz]er|cleanser|toner|essence)\b|\bserum\b/i },
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },

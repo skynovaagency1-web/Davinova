@@ -41,7 +41,8 @@ export const BEAUTY_NAILS = 'nail-art-and-tools';
 /** Shown on the Health, Beauty & Hair page, not in the clothing menus. */
 export const BEAUTY_HEALTH = 'food-and-health';
 export const BEAUTY_HAIR = 'hair-and-accessories';
-export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS, BEAUTY_HEALTH, BEAUTY_HAIR];
+export const BEAUTY_SKIN = 'skin-care';
+export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS, BEAUTY_HEALTH, BEAUTY_HAIR, BEAUTY_SKIN];
 export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories', ...BEAUTY_COLLECTIONS];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
   {
@@ -100,6 +101,19 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
     subcategories: [
       subcategory('Headband & Hair Band & Hairpin', 'headband', 'hair band', 'hairpin', 'hair clip', 'scrunchie'),
       subcategory('Human Hair', 'human hair wig', 'lace front wig', 'hair bundles', 'clip in extensions'),
+    ],
+  },
+  {
+    slug: BEAUTY_SKIN,
+    label: 'Skin Care',
+    subcategories: [
+      subcategory('Razor', 'razor', 'facial razor', 'eyebrow razor', 'epilator'),
+      subcategory('Face Masks', 'sheet mask', 'clay mask', 'sleeping mask'),
+      // Sunscreen counts as a drug in the US, so only after-sun care is imported.
+      subcategory('Sun Care', 'after sun gel', 'aloe vera gel'),
+      subcategory('Essential Oil', 'essential oil', 'aromatherapy oil'),
+      subcategory('Body Care', 'body scrub', 'body lotion', 'body butter'),
+      subcategory('Facial Care', 'face serum', 'face cream', 'facial cleanser'),
     ],
   },
   {
