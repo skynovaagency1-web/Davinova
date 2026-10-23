@@ -43,9 +43,15 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
     slug: WOMEN_BAGS,
     label: 'Bags',
     subcategories: [
-      subcategory('Clutches & Evening Bags', 'clutch', 'evening bag', 'wedding clutch', 'party bag'),
-      subcategory('Handbags', 'handbag', 'shoulder bag', 'crossbody bag'),
+      // Named like CJ's Women's Luggage & Bags categories (user, 2026-10-23).
+      subcategory('Woman Wallets', 'wallet', 'card holder', 'coin purse'),
+      subcategory('Women’s Crossbody Bags', 'crossbody bag', 'sling bag'),
+      subcategory('Bag Accessories', 'bag strap', 'bag charm', 'bag organizer'),
+      subcategory('Evening Bags', 'evening bag', 'party bag', 'wedding bag'),
+      subcategory('Fashion Backpacks', 'backpack', 'mini backpack'),
+      subcategory('Shoulder Bags', 'shoulder bag', 'handbag', 'top handle bag'),
       subcategory('Totes', 'tote bag', 'tote'),
+      subcategory('Clutches', 'clutch', 'wedding clutch', 'envelope clutch'),
     ],
   },
   {
