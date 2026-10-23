@@ -12,6 +12,13 @@ import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
 import { WishButton } from './WishButton';
 
+/** Campaign photos the owner picked for certain product types: hoodies get one, jackets and vests another. */
+function productBanner(title: string) {
+  if (/\bhood(ie|y|ed)\b/i.test(title)) return { src: '/images/banner-hoodie.webp', alt: 'White hoodie with a signature print, shown front and back' };
+  if (/\b(jacket|vest|puffer|parka|gilet)\b/i.test(title) && !/\b(suit|tuxedo|waistcoat|blazer)\b/i.test(title)) return { src: '/images/banner-jacket.webp', alt: 'Olive-brown puffer jacket on a model' };
+  return null;
+}
+
 type Variant = 'women' | 'men';
 
 // Keyed by the product's sub-category, then its category, then the shelf (watches, jewelry).
@@ -94,6 +101,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const bigNumber = colourCount > 1 ? { value: colourCount, label: 'colours to choose from' }
     : product.sizes.length > 1 ? { value: product.sizes.length, label: 'sizes to choose from' }
     : photos.length > 1 ? { value: photos.length, label: 'angles to explore' } : null;
+  const banner = productBanner(product.title);
   const related = products.filter((item) => item.id !== product.id && item.department === product.department && (product.storeCollection ? item.storeCollection === product.storeCollection : item.shelf === product.shelf) && item.images[0]?.url).slice(0, 8);
   const price = canBuy || isWoo ? formatMoney(product.priceCents, product.currency) : 'Coming soon';
   // CJ labels look like "M", "38" or "Black / M"; split colour from size so each gets its own row of buttons.
@@ -161,6 +169,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
       </aside>
     </div>
 
+    {banner && <figure className="pv-banner"><img src={banner.src} alt={banner.alt} loading="lazy" /></figure>}
     {related.length > 0 && <div className="pv-related">
       <h2>Complete the <b>look</b></h2>
       <div className="pv-related__rail">{related.map((item) => <Link key={item.id} to={productPath(item)} className="pv-related__item"><span><img src={item.images[0].url} alt="" loading="lazy" /></span><strong>{item.title}</strong></Link>)}</div>

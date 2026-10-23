@@ -3,6 +3,14 @@ import type { Dictionary } from '../lib/i18n';
 
 const dictionary: Dictionary = {
   text: {
+    "Join the list at the bottom of the page to hear first. In the meantime, find the suit to wear on the day.": "Inscrivez-vous en bas de la page pour être prévenu en premier. En attendant, trouvez le costume à porter le jour J.",
+    "Shop suits →": "Voir les costumes →",
+    "Printed when you order": "Imprimé à la commande",
+    "Made to order, less waste": "Fait sur commande, moins de gaspillage",
+    "Blank tees, your print. Made when you order.": "Des t-shirts vierges, votre impression. Faits à la commande.",
+    "Design yours": "Créez le vôtre",
+    "Your design.": "Votre design.",
+    "Printed for you.": "Imprimé pour vous.",
     "Bridal Jewelry Sets": "Parures de mariée",
     "Matching necklace, earrings and bracelet for the day": "Collier, boucles d’oreilles et bracelet assortis pour le grand jour",
     "Wedding Hair Jewelry": "Bijoux de cheveux de mariage",

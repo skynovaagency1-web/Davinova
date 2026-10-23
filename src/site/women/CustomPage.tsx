@@ -30,8 +30,14 @@ function Garment({ item, word }: { item: string; word: string }) {
   return <svg viewBox="0 0 120 120" aria-hidden="true" data-no-translate><path d="M42 12h36l30 20-12 18-12-8v70H36V42l-12 8-12-18z" /><Print word={word} y={64} /></svg>;
 }
 
+/** The two looping photos (owner's pick): clothes pouring from a box, and thread spun into a shirt. */
+const loops = [
+  { src: '/images/pod-loop-falling.webp', alt: 'Colourful shirts falling out of an open box onto a pile', caption: 'Printed when you order', motion: 'fall' },
+  { src: '/images/pod-loop-recycle.webp', alt: 'A bottle turning into thread, and the thread into a black polo shirt', caption: 'Made to order, less waste', motion: 'flow' },
+] as const;
+
 /** Custom: Davinova's own print-on-demand designs for the wedding party. */
-export function CustomPage() {
+export function CustomPage({ dept }: { dept: 'women' | 'men' }) {
   const { products, loading } = useCatalogProducts();
   const custom = products.filter((product) => product.storeCollection === CUSTOM_COLLECTION);
 
@@ -51,13 +57,20 @@ export function CustomPage() {
       </div>
     </div>
 
+    <div className="pod-loop">
+      {loops.map((loop) => <figure key={loop.src} className={`pod-loop__frame pod-loop__frame--${loop.motion}`}>
+        <img src={loop.src} alt={loop.alt} loading="lazy" />
+        <figcaption>{loop.caption}</figcaption>
+      </figure>)}
+    </div>
+
     <div className="w-sec-head"><h2>All <b>custom</b></h2><p className="w-sec-head__note">{loading ? 'Loading…' : `${custom.length} pieces`}</p></div>
     {custom.length > 0
       ? <div className="w-grid">{custom.map((product, index) => <WomenCard key={product.id} product={product} index={index} />)}</div>
       : !loading && <div className="w-watches__empty">
         <strong>The first designs are being printed.</strong>
-        <span>Join the list at the bottom of the page to hear first. In the meantime, find the dress to wear on the day.</span>
-        <Link to="/shop">Shop dresses →</Link>
+        <span>{dept === 'men' ? 'Join the list at the bottom of the page to hear first. In the meantime, find the suit to wear on the day.' : 'Join the list at the bottom of the page to hear first. In the meantime, find the dress to wear on the day.'}</span>
+        <Link to={dept === 'men' ? '/men/shop' : '/shop'}>{dept === 'men' ? 'Shop suits →' : 'Shop dresses →'}</Link>
       </div>}
   </section>;
 }

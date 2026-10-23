@@ -49,6 +49,7 @@ export default function App() {
         <Route path="bag" element={<BagView variant="men" />} />
         <Route path="about" element={<AboutPage dept="men" />} />
         <Route path="categories" element={<MenCategoriesPage />} />
+        <Route path="custom" element={<CustomPage dept="men" />} />
         <Route path="track" element={<HelpPage dept="men" slug="track" />} />
         <Route path="shipping" element={<HelpPage dept="men" slug="shipping" />} />
         <Route path="returns" element={<HelpPage dept="men" slug="returns" />} />
@@ -76,7 +77,7 @@ export default function App() {
         <Route path="couple" element={<GroupPage slug="couple-parent-child-clothing" />} />
         <Route path="watches" element={<WatchesPage />} />
         <Route path="beauty" element={<BeautyPage />} />
-        <Route path="custom" element={<CustomPage />} />
+        <Route path="custom" element={<CustomPage dept="women" />} />
         <Route path="jewelry" element={<JewelryPage dept="women" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
         <Route path="wishlist" element={<WishlistPage dept="women" />} />
