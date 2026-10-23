@@ -1,0 +1,29 @@
+name: Save variant photos
+
+on:
+  # Editing scripts/variant-images.json on this branch starts a run (manual runs need this file on the default branch).
+  push:
+    branches: [feature/3d-fashion-storefront]
+    paths: [scripts/variant-images.json]
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Only update this many products (0 = all)
+        default: '0'
+
+concurrency: variant-images
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Save CJ variant photos
+        run: node --experimental-strip-types scripts/variant-images.ts
+        env:
+          ADMIN_PASSWORD: ${{ secrets.DAVINOVA_ADMIN_PASSWORD }}
+          LIMIT: ${{ inputs.limit || '0' }}

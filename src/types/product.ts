@@ -37,6 +37,8 @@ export interface Product {
   neckline: string;
   tags: string[];
   sizes: ProductSize[];
+  /** Supplier photo per colour (the part before " / " in a size label). */
+  colourImages?: Record<string, string>;
   images: { url: string; alt: string }[];
   model3d?: { url: string; credit?: string; scale?: number; rotationY?: number };
   featured?: boolean;
