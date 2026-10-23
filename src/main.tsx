@@ -6,6 +6,7 @@ import './styles/index.css';
 import './styles/women.css';
 import './styles/men.css';
 import './styles/shared.css';
+import './styles/line-font.css';
 
 // The dictionary loads first so French and Spanish pages never flash English.
 void translateDocument().finally(() => {
