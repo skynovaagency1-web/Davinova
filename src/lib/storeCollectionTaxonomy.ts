@@ -37,24 +37,121 @@ function subcategory(label: string, ...matchTerms: string[]): StoreSubcategoryOp
 export const WOMEN_BAGS = 'womens-bags';
 export const WOMEN_SHOES = 'womens-shoes';
 /** Pieces shown floating on their own (never on a model): bags, shoes and men's accessories. */
-export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories'];
+export const BEAUTY_NAILS = 'nail-art-and-tools';
+/** Shown on the Health, Beauty & Hair page, not in the clothing menus. */
+export const BEAUTY_HEALTH = 'food-and-health';
+export const BEAUTY_HAIR = 'hair-and-accessories';
+export const BEAUTY_SKIN = 'skin-care';
+export const BEAUTY_WEAVES = 'hair-weaves';
+export const BEAUTY_MAKEUP = 'makeup';
+export const BEAUTY_TOOLS = 'beauty-tools';
+export const BEAUTY_COLLECTIONS = [BEAUTY_MAKEUP, BEAUTY_SKIN, BEAUTY_NAILS, BEAUTY_HAIR, BEAUTY_WEAVES, BEAUTY_TOOLS, BEAUTY_HEALTH];
+export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories', ...BEAUTY_COLLECTIONS];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
   {
     slug: WOMEN_BAGS,
     label: 'Bags',
     subcategories: [
-      subcategory('Clutches & Evening Bags', 'clutch', 'evening bag', 'wedding clutch', 'party bag'),
-      subcategory('Handbags', 'handbag', 'shoulder bag', 'crossbody bag'),
+      // Named like CJ's Women's Luggage & Bags categories (user, 2026-10-23).
+      subcategory('Woman Wallets', 'wallet', 'card holder', 'coin purse'),
+      subcategory('Women’s Crossbody Bags', 'crossbody bag', 'sling bag'),
+      subcategory('Bag Accessories', 'bag strap', 'bag charm', 'bag organizer'),
+      subcategory('Evening Bags', 'evening bag', 'party bag', 'wedding bag'),
+      subcategory('Fashion Backpacks', 'backpack', 'mini backpack'),
+      subcategory('Shoulder Bags', 'shoulder bag', 'handbag', 'top handle bag'),
       subcategory('Totes', 'tote bag', 'tote'),
+      subcategory('Clutches', 'clutch', 'wedding clutch', 'envelope clutch'),
     ],
   },
   {
     slug: WOMEN_SHOES,
     label: 'Shoes',
     subcategories: [
-      subcategory('Heels', 'high heels', 'pumps', 'stiletto', 'heeled sandals'),
-      subcategory('Flats & Sandals', 'flats', 'sandals', 'ballet flats', 'mules'),
-      subcategory('Boots', 'ankle boots', 'knee high boots', 'boots'),
+      // Named like CJ's Women's Shoes categories (user, 2026-10-23).
+      subcategory('Woman Boots', 'ankle boots', 'knee high boots', 'boots'),
+      subcategory('Vulcanize Shoes', 'canvas shoes', 'sneakers', 'platform sneakers'),
+      subcategory('Women’s Insoles', 'insoles', 'arch support'),
+      subcategory('Pumps', 'high heels', 'pumps', 'stiletto'),
+      subcategory('Woman Slippers', 'slippers', 'slides', 'house shoes'),
+      subcategory('Woman Sandals', 'sandals', 'heeled sandals', 'wedge sandals'),
+      subcategory('Flats', 'flats', 'ballet flats', 'mules'),
+    ],
+  },
+  {
+    // Named like CJ's Health, Beauty & Hair categories (user, 2026-10-23).
+    slug: BEAUTY_NAILS,
+    label: 'Nail Art & Tools',
+    subcategories: [
+      subcategory('Nail Glitters', 'nail glitter', 'glitter powder', 'chrome powder'),
+      subcategory('Stickers & Decals', 'nail stickers', 'nail decals', 'nail wraps'),
+      subcategory('Nail Decorations', 'nail rhinestones', 'nail charms', 'nail pearls'),
+      subcategory('Nail Gel', 'gel polish', 'uv gel', 'builder gel'),
+      subcategory('Nail Dryers', 'nail lamp', 'uv led lamp', 'nail dryer'),
+      subcategory('Nail Art Kits', 'nail art kit', 'gel nail kit', 'manicure set'),
+    ],
+  },
+  {
+    slug: BEAUTY_HEALTH,
+    label: 'Food & Health',
+    subcategories: [
+      // Wellness tools only: nothing to eat, drink or take as medicine.
+      subcategory('Health Care Products', 'massager', 'posture corrector', 'facial roller', 'gua sha'),
+    ],
+  },
+  {
+    slug: BEAUTY_HAIR,
+    label: 'Hair & Accessories',
+    subcategories: [
+      subcategory('Headband & Hair Band & Hairpin', 'headband', 'hair band', 'hairpin', 'hair clip', 'scrunchie'),
+      subcategory('Human Hair', 'human hair wig', 'lace front wig', 'hair bundles', 'clip in extensions'),
+    ],
+  },
+  {
+    slug: BEAUTY_SKIN,
+    label: 'Skin Care',
+    subcategories: [
+      subcategory('Razor', 'razor', 'facial razor', 'eyebrow razor', 'epilator'),
+      subcategory('Face Masks', 'sheet mask', 'clay mask', 'sleeping mask'),
+      // Sunscreen counts as a drug in the US, so only after-sun care is imported.
+      subcategory('Sun Care', 'after sun gel', 'aloe vera gel'),
+      subcategory('Essential Oil', 'essential oil', 'aromatherapy oil'),
+      subcategory('Body Care', 'body scrub', 'body lotion', 'body butter'),
+      subcategory('Facial Care', 'face serum', 'face cream', 'facial cleanser'),
+    ],
+  },
+  {
+    slug: BEAUTY_WEAVES,
+    label: 'Hair Weaves',
+    subcategories: [
+      subcategory('Pre-Colored One Pack', 'colored hair bundle', 'ombre bundle', 'one pack'),
+      subcategory('Hair Weaving', 'hair weave', 'weft', 'bundles'),
+      subcategory('Hair Styling', 'braiding hair', 'crochet hair', 'ponytail'),
+      subcategory('Salon Bundle Hair', 'bundles with closure', 'bundles with frontal', 'virgin hair bundles'),
+      subcategory('Pre-Colored Hair Weave', 'ombre hair weave', 'highlight bundles', '613 blonde bundles'),
+    ],
+  },
+  {
+    slug: BEAUTY_MAKEUP,
+    label: 'Makeup',
+    subcategories: [
+      subcategory('Eyebrow Pencil', 'eyebrow pencil', 'brow pencil', 'brow pen'),
+      subcategory('Makeup Set', 'makeup set', 'makeup kit', 'cosmetic gift set'),
+      subcategory('Eyeshadow', 'eyeshadow palette', 'eye shadow'),
+      subcategory('Makeup Brushes', 'makeup brush set', 'foundation brush', 'blending sponge'),
+      subcategory('Lipstick', 'lipstick', 'matte lipstick', 'lip gloss'),
+      subcategory('False Eyelashes', 'false eyelashes', 'mink lashes', 'lash extensions'),
+    ],
+  },
+  {
+    slug: BEAUTY_TOOLS,
+    label: 'Beauty Tools',
+    subcategories: [
+      subcategory('Mirrors', 'makeup mirror', 'led vanity mirror', 'compact mirror'),
+      subcategory('Straightening Irons', 'hair straightener', 'flat iron'),
+      subcategory('Electric Face Cleanser', 'facial cleansing brush', 'electric face brush'),
+      subcategory('Face Skin Care Tools', 'jade roller', 'gua sha', 'microcurrent face device'),
+      subcategory('Curling Iron', 'curling iron', 'curling wand', 'hair curler'),
+      subcategory('Facial Steamer', 'facial steamer', 'face steamer', 'nano mist sprayer'),
     ],
   },
   {
@@ -227,14 +324,25 @@ export const menStoreCollectionGroups: StoreCollectionGroup[] = [
     slug: MEN_ACCESSORIES,
     label: 'Men’s Accessories',
     subcategories: [
-      subcategory('Dress Shoes', 'oxford shoes', 'loafers', 'derby shoes', 'brogues'),
-      subcategory('Loafers', 'loafers', 'penny loafers', 'slip-on shoes'),
-      subcategory('Sneakers', 'sneakers', 'trainers', 'casual shoes'),
+      // Named like CJ's Men's Shoes categories (user, 2026-10-23).
+      subcategory('Formal Shoes', 'oxford shoes', 'derby shoes', 'brogues', 'dress shoes'),
+      subcategory('Casual Shoes', 'loafers', 'boat shoes', 'slip-on shoes', 'casual shoes'),
+      subcategory('Vulcanize Shoe', 'sneakers', 'canvas shoes', 'trainers'),
+      subcategory('Man Boots', 'chelsea boots', 'ankle boots', 'work boots'),
+      subcategory('Man Sandals', 'sandals', 'beach sandals'),
+      subcategory('Man Slippers', 'slippers', 'slides', 'house shoes'),
+      subcategory('Men’s Insoles', 'insoles', 'arch support'),
       subcategory('Ties & Bow Ties', 'necktie', 'bow tie', 'pocket square'),
       subcategory('Belts & Suspenders', 'leather belt', 'suspenders', 'braces'),
       subcategory('Hats & Caps', 'baseball cap', 'fedora', 'beanie', 'bucket hat'),
       subcategory('Briefcases', 'briefcase', 'laptop bag', 'business bag'),
       subcategory('Messenger Bags & Backpacks', 'messenger bag', 'backpack', 'crossbody bag'),
+      // Named like CJ's Men's Luggage & Bags categories (user, 2026-10-23).
+      subcategory('Waist Bags', 'waist bag', 'belt bag', 'fanny pack', 'chest bag'),
+      subcategory('Men’s Backpacks', 'backpack', 'laptop backpack', 'travel backpack'),
+      subcategory('Luggage & Travel Bags', 'luggage', 'suitcase', 'travel bag', 'duffel bag', 'weekender'),
+      subcategory('Crossbody Bags', 'crossbody bag', 'sling bag', 'shoulder bag'),
+      subcategory('Man Wallets', 'wallet', 'card holder', 'money clip'),
     ],
   },
   // Named like CJ's own Men's Clothing categories (user, 2026-10-18).

@@ -32,12 +32,21 @@ const MEN_SEARCH: Record<string, string[]> = {
   'blazers-and-waistcoats': ['men blazer', 'men sport coat', 'men waistcoat', 'men suit vest'],
   'dress-shirts': ['men dress shirt', 'men formal shirt', 'men tuxedo shirt', 'men slim fit shirt'],
   'ties-and-bow-ties': ['men necktie', 'men bow tie', 'men tie set pocket square', 'men silk tie'],
-  'dress-shoes': ['men oxford shoes', 'men leather dress shoes', 'men derby shoes', 'men brogues'],
+  'formal-shoes': ['men oxford shoes', 'men leather dress shoes', 'men derby shoes', 'men brogues'],
+  'casual-shoes': ['men loafers', 'men penny loafers', 'men boat shoes', 'men casual leather shoes'],
+  'vulcanize-shoe': ['men canvas shoes', 'men vulcanized sneakers', 'men white sneakers', 'men casual sneakers'],
+  'man-boots': ['men chelsea boots', 'men ankle boots', 'men leather boots', 'men work boots'],
+  'man-sandals': ['men sandals', 'men leather sandals', 'men beach sandals'],
+  'man-slippers': ['men slippers', 'men house slippers', 'men slides'],
+  'mens-insoles': ['men insoles', 'arch support insoles', 'height increase insoles', 'gel insoles'],
   'belts-and-suspenders': ['men leather belt', 'men suspenders', 'men dress belt'],
-  loafers: ['men loafers', 'men penny loafers', 'men leather loafers'],
-  sneakers: ['men leather sneakers', 'men white sneakers', 'men casual sneakers'],
   briefcases: ['men leather briefcase', 'men business bag', 'men laptop bag'],
   'messenger-bags-and-backpacks': ['men messenger bag', 'men leather backpack', 'men crossbody bag'],
+  'waist-bags': ['men waist bag', 'men belt bag', 'men chest bag', 'men fanny pack'],
+  'mens-backpacks': ['men backpack', 'men laptop backpack', 'men leather backpack', 'men travel backpack'],
+  'luggage-and-travel-bags': ['men travel bag', 'men duffel bag', 'men weekender bag', 'luggage suitcase men'],
+  'crossbody-bags': ['men crossbody bag', 'men sling bag', 'men shoulder bag'],
+  'man-wallets': ['men wallet', 'men leather wallet', 'men card holder', 'men slim wallet'],
   'hats-and-caps': ['men baseball cap', 'men fedora hat', 'men beanie', 'men bucket hat'],
   // Named after CJ's Men's Clothing categories (user, 2026-10-18).
   'outerwear-and-jackets': ['men jacket', 'men coat', 'men bomber jacket', 'men puffer jacket', 'men windbreaker'],
@@ -58,13 +67,22 @@ const MEN_FITS: Record<string, RegExp> = {
   'blazers-and-waistcoats': /\b(blazers?|sport coats?|suit jackets?|waistcoats?|suit vests?|vests?)\b/i,
   'dress-shirts': /\b(dress|formal|tuxedo|business|office) shirts?\b|\bshirts?\b.*\b(formal|business|wedding)\b/i,
   'ties-and-bow-ties': /\b(neck ?ties?|bow ?ties?|ties?|pocket squares?|cravats?)\b/i,
-  'dress-shoes': /\b(oxfords?|loafers?|brogues?|derby|dress shoes|leather shoes|formal shoes)\b/i,
+  'formal-shoes': /\b(oxfords?|brogues?|derby|dress shoes|formal shoes|business shoes)\b/i,
+  'casual-shoes': /\b(loafers?|boat shoes|moccasins?|casual (leather )?shoes|slip-?on)\b/i,
+  'vulcanize-shoe': /\b(sneakers?|canvas shoes|vulcani[sz]ed?|trainers?)\b/i,
+  'man-boots': /\bboots?\b/i,
+  'man-sandals': /\bsandals?\b/i,
+  'man-slippers': /\b(slippers?|slides?)\b/i,
+  'mens-insoles': /\binsoles?\b/i,
   'belts-and-suspenders': /\b(belts?|suspenders?|braces)\b/i,
   'hats-and-caps': /\b(hats?|caps?|fedoras?|beanies?|berets?)\b/i,
-  loafers: /\bloafers?\b/i,
-  sneakers: /\b(sneakers?|trainers?)\b/i,
   briefcases: /\b(briefcases?|business bags?|laptop bags?|handbags?)\b/i,
   'messenger-bags-and-backpacks': /\b(messenger|backpacks?|crossbody|shoulder bags?|sling bags?)\b/i,
+  'waist-bags': /\b(waist|belt|chest|fanny) (bags?|packs?)\b/i,
+  'mens-backpacks': /\bbackpacks?\b/i,
+  'luggage-and-travel-bags': /\b(luggage|suitcases?|travel bags?|duffel|duffle|weekender|trolley)\b/i,
+  'crossbody-bags': /\b(crossbody|cross-body|sling bags?|shoulder bags?)\b/i,
+  'man-wallets': /\b(wallets?|card (holder|case)s?|money clips?|purses?)\b/i,
   'outerwear-and-jackets': /\b(jackets?|coats?|bombers?|parkas?|windbreakers?|puffers?|overcoats?|trench)\b/i,
   bottoms: /\b(pants|trousers|jeans|joggers|chinos|sweatpants)\b/i,
   't-shirts': /\b(t-?shirts?|tees?|polo)\b/i,
@@ -76,6 +94,7 @@ const MEN_FITS: Record<string, RegExp> = {
   boxers: /\bboxers?\b/i,
   'long-johns': /\b(long johns|thermal|base ?layer)\b/i,
 };
+const MEN_SHOES = ['formal-shoes', 'casual-shoes', 'vulcanize-shoe', 'man-boots', 'man-sandals', 'man-slippers', 'mens-insoles'];
 // Accessories that only borrow a word (tie clips belong with cufflinks; shoe care is not shoes).
 const NOT_ACCESSORY = /\b(tie ?(clip|bar|pin)s?|cufflinks?|shoe ?(polish|brush|horn|tree|lace)s?|insoles?|belt ?buckles? only|seat ?belt|sneakers?|sandals?|slippers?|boots?)\b/i;
 // Casual pieces that only borrow the word "suit".
@@ -85,9 +104,63 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'clutches-and-evening-bags': { search: ['women evening clutch', 'wedding clutch bag', 'rhinestone evening bag', 'women party clutch'], fit: /\b(clutch(es)?|evening bags?|party bags?)\b/i },
   handbags: { search: ['women leather handbag', 'women shoulder bag', 'women crossbody bag'], fit: /\b(handbags?|shoulder bags?|crossbody|top handle)\b/i },
   totes: { search: ['women tote bag', 'women leather tote'], fit: /\btotes?\b/i },
+  // Women's Luggage & Bags, named like CJ's categories (user, 2026-10-23).
+  'woman-wallets': { search: ['women wallet', 'women long wallet', 'women card holder', 'women coin purse'], fit: /\b(wallets?|card (holder|case)s?|coin purses?|purses?)\b/i },
+  'womens-crossbody-bags': { search: ['women crossbody bag', 'women sling bag', 'women small crossbody bag'], fit: /\b(crossbody|cross-body|sling bags?)\b/i },
+  'bag-accessories': { search: ['bag strap replacement', 'bag charm pendant', 'purse organizer insert', 'bag chain strap'], fit: /\b(bag (straps?|charms?|chains?|organi[sz]ers?)|straps? for bags?|purse (organi[sz]ers?|inserts?|charms?))\b/i },
+  'evening-bags': { search: ['women evening bag', 'rhinestone evening bag', 'women party bag', 'pearl evening bag'], fit: /\b(evening bags?|party bags?|dinner bags?|banquet bags?)\b/i },
+  'fashion-backpacks': { search: ['women fashion backpack', 'women mini backpack', 'women leather backpack'], fit: /\bbackpacks?\b/i },
+  'shoulder-bags': { search: ['women shoulder bag', 'women leather handbag', 'women top handle bag', 'women underarm bag'], fit: /\b(shoulder bags?|handbags?|top handle|underarm bags?|hobo)\b/i },
+  clutches: { search: ['women evening clutch', 'wedding clutch bag', 'women envelope clutch', 'women party clutch'], fit: /\bclutch(es)?\b/i },
+  // Health, Beauty & Hair: Nail Art & Tools (user, 2026-10-23).
+  'nail-glitters': { search: ['nail glitter powder', 'chrome nail powder', 'holographic nail glitter', 'nail sequins flakes'], fit: /\bnails?\b.*\b(glitter|powder|chrome|sequins?|flakes?)\b|\b(glitter|chrome|holographic)\b.*\bnails?\b/i },
+  'stickers-and-decals': { search: ['nail stickers', 'nail art decals', 'nail wraps', '3d nail stickers'], fit: /\bnails?\b.*\b(stickers?|decals?|wraps?|transfer)\b|\b(stickers?|decals?)\b.*\bnails?\b/i },
+  'nail-decorations': { search: ['nail rhinestones', 'nail charms', 'nail pearls decoration', '3d nail art decoration'], fit: /\bnails?\b.*\b(rhinestones?|charms?|pearls?|gems?|crystals?|decorations?|studs?)\b|\b(rhinestones?|charms?|decorations?)\b.*\bnails?\b/i },
+  'nail-gel': { search: ['gel nail polish', 'uv gel polish', 'builder gel nails', 'gel polish set'], fit: /\bgel\b.*\b(polish|nails?|varnish)\b|\bnails?\b.*\bgel\b|\bpoly ?gel\b/i },
+  'nail-dryers': { search: ['uv led nail lamp', 'nail dryer', 'gel nail lamp', 'portable nail lamp'], fit: /\bnails?\b.*\b(lamps?|dryers?|lights?)\b|\b(uv|led)\b.*\b(lamps?|dryers?)\b/i },
+  'nail-art-kits': { search: ['nail art kit', 'gel nail kit', 'manicure tool set', 'nail art brush set'], fit: /\bnails?\b.*\b(kits?|sets?)\b|\bmanicure\b.*\b(kits?|sets?|tools?)\b/i },
+  // Food & Health: wellness tools only, never anything ingested or sold as medicine.
+  'health-care-products': { search: ['neck massager', 'facial roller gua sha', 'posture corrector', 'eye massager', 'scalp massager'], fit: /^(?!.*\b(capsules?|tablets?|supplements?|vitamins?|pills?|tea|medicine|medical|drops|cream|ointment|plasters?|patch(es)?)\b).*\b(massagers?|gua sha|face rollers?|facial rollers?|posture correctors?|acupressure|heating pads?)\b/i },
+  'headband-and-hair-band-and-hairpin': { search: ['women headband', 'pearl hair clip', 'satin scrunchie', 'rhinestone hairpin', 'padded headband'], fit: /\b(headbands?|hair ?bands?|hair ?pins?|hair ?clips?|barrettes?|scrunchies?|claw clips?|hair ?ties?)\b/i },
+  'human-hair': { search: ['human hair wig', 'lace front wig human hair', 'human hair bundles', 'clip in human hair extensions'], fit: /\bhuman hair\b/i },
+  // Skin Care: nothing sold as medicine (no SPF sunscreen, acne or whitening treatments).
+  razor: { search: ['women facial razor', 'eyebrow razor', 'women electric shaver', 'dermaplaning tool'], fit: /^(?!.*\b(men|beard)\b).*\b(razors?|shavers?|epilators?|dermaplan\w*)\b/i },
+  'face-masks': { search: ['sheet face mask', 'clay face mask', 'sleeping face mask', 'collagen face mask'], fit: /\b(sheet|clay|mud|sleeping|collagen|hydrating|facial|face) masks?\b/i },
+  'sun-care': { search: ['after sun gel', 'aloe vera soothing gel', 'after sun lotion'], fit: /^(?!.*\b(spf|sunscreen|sunblock)\b).*\b(after ?sun|aloe vera)\b/i },
+  'essential-oil': { search: ['essential oil set', 'lavender essential oil', 'aromatherapy essential oil'], fit: /\b(essential oils?|aromatherapy oils?)\b/i },
+  'body-care': { search: ['body scrub', 'body butter', 'body lotion women', 'shower gel'], fit: /^(?!.*\b(whitening|bleach\w*|slimming|fat burn\w*)\b).*\b(body (scrub|butter|lotion|oil|wash|mist)|shower gel)\b/i },
+  'facial-care': { search: ['face serum', 'face moisturizer cream', 'facial cleanser', 'eye cream'], fit: /^(?!.*\b(whitening|bleach\w*|acne|spf|sunscreen|freckle|melasma)\b).*\b(face|facial|eye) (serum|cream|moisturi[sz]er|cleanser|toner|essence)\b|\bserum\b/i },
+  // Hair Weaves: bundles and wefts, never wigs (those sit under Human Hair).
+  'pre-colored-one-pack': { search: ['ombre hair bundle one pack', 'colored human hair bundle', '613 blonde one bundle'], fit: /^(?!.*\bwigs?\b).*\b(ombre|colou?red|blonde|613|burgundy|highlight\w*|1b)\b.*\b(bundles?|weaves?|wefts?)\b/i },
+  'hair-weaving': { search: ['hair weave bundles', 'human hair weft', 'body wave bundles', 'straight hair bundles'], fit: /^(?!.*\bwigs?\b).*\b(bundles?|weaves?|wefts?)\b/i },
+  'hair-styling': { search: ['braiding hair', 'crochet braids hair', 'ponytail extension', 'drawstring ponytail'], fit: /^(?!.*\bwigs?\b).*\b(braiding hair|braids?|crochet|ponytails?|buns?|chignon)\b/i },
+  'salon-bundle-hair': { search: ['bundles with closure', 'bundles with frontal', 'virgin hair bundles', 'brazilian hair bundles'], fit: /^(?!.*\bwigs?\b).*\b(bundles?)\b.*\b(closure|frontal|virgin|brazilian|peruvian|remy)\b|\b(virgin|brazilian|peruvian|remy)\b.*\bbundles?\b/i },
+  'pre-colored-hair-weave': { search: ['ombre hair weave', 'highlight hair bundles', 'colored body wave bundles'], fit: /^(?!.*\bwigs?\b).*\b(ombre|colou?red|blonde|613|burgundy|highlight\w*|piano)\b.*\b(weaves?|bundles?|wefts?)\b/i },
+  // Makeup.
+  'eyebrow-pencil': { search: ['eyebrow pencil', 'waterproof brow pencil', 'microblading eyebrow pen'], fit: /\b(eye ?brow|brow)\b.*\b(pencils?|pens?|gels?|pomade)\b/i },
+  'makeup-set': { search: ['makeup set', 'makeup kit women', 'cosmetics gift set'], fit: /\b(make ?up|cosmetics?)\b.*\b(sets?|kits?)\b/i },
+  eyeshadow: { search: ['eyeshadow palette', 'glitter eyeshadow', 'matte eyeshadow palette'], fit: /\beye ?shadows?\b/i },
+  'makeup-brushes': { search: ['makeup brush set', 'foundation brush', 'eyeshadow brush set', 'makeup sponge'], fit: /\b(make ?up|cosmetic|foundation|eyeshadow|blush|powder)\b.*\b(brush(es)?|sponges?|blenders?)\b/i },
+  lipstick: { search: ['matte lipstick', 'lipstick set', 'lip gloss', 'liquid lipstick'], fit: /\b(lipsticks?|lip ?gloss|lip ?tint|lip ?liner|lip ?glaze)\b/i },
+  'false-eyelashes': { search: ['false eyelashes', 'mink lashes', 'magnetic eyelashes', 'cluster lashes'], fit: /\b(false|fake|mink|magnetic|cluster|strip)?\s*(eye ?lash(es)?|lashes)\b/i },
+  // Beauty Tools: EU/UK/AU-plug tools are imported but hidden on the site until those countries open (useCatalogProducts).
+  mirrors: { search: ['led makeup mirror', 'vanity mirror with lights', 'compact makeup mirror', 'tri-fold makeup mirror'], fit: /\b(make ?up|vanity|cosmetic|compact|pocket|led)\b.*\bmirrors?\b|\bmirrors?\b.*\b(make ?up|vanity)\b/i },
+  'straightening-irons': { search: ['hair straightener', 'flat iron hair', 'ceramic hair straightener', 'cordless hair straightener'], fit: /\b(hair straighten\w*|straightening iron|flat irons?|straightener)\b/i },
+  'electric-face-cleanser': { search: ['electric facial cleansing brush', 'silicone face cleansing brush', 'pore cleaner vacuum'], fit: /\b(cleansing (brush|device|instrument)|face (cleanser|brush)|facial (cleanser|brush)|pore (cleaner|vacuum))\b/i },
+  'face-skin-care-tools': { search: ['jade roller gua sha', 'ice roller face', 'microcurrent face lifting device', 'facial massager roller'], fit: /\b(jade|ice|face|facial|derma)\s*rollers?\b|\bgua sha\b|\b(face|facial) (lifting|massage) (device|instrument|tool)\b/i },
+  'curling-iron': { search: ['curling iron', 'curling wand', 'automatic hair curler', 'cordless hair curler'], fit: /\b(curling (irons?|wands?)|hair curlers?|curler)\b/i },
+  'facial-steamer': { search: ['facial steamer', 'nano face steamer', 'nano mist sprayer face'], fit: /\b(facial|face|nano)\b.*\b(steamers?|mist sprayers?|sprayers?|humidifiers?)\b/i },
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },
+  // Women's Shoes, named like CJ's categories (user, 2026-10-23).
+  'woman-boots': { search: ['women ankle boots', 'women knee high boots', 'women heeled boots', 'women chelsea boots'], fit: /\bboots?\b/i },
+  'vulcanize-shoes': { search: ['women canvas shoes', 'women vulcanized sneakers', 'women platform sneakers', 'women casual sneakers'], fit: /\b(sneakers?|canvas shoes|vulcani[sz]ed?|trainers?)\b/i },
+  'womens-insoles': { search: ['women insoles', 'high heel insoles', 'arch support insoles women', 'gel insoles women'], fit: /\binsoles?\b/i },
+  pumps: { search: ['women high heels', 'women stiletto pumps', 'women pointed toe pumps', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
+  'woman-slippers': { search: ['women slippers', 'women house slippers', 'women fluffy slippers', 'women slides'], fit: /\b(slippers?|slides?)\b/i },
+  'woman-sandals': { search: ['women sandals', 'women heeled sandals', 'women flat sandals', 'women wedge sandals'], fit: /\bsandals?\b/i },
+  flats: { search: ['women ballet flats', 'women flat shoes', 'women mules', 'women pointed flats'], fit: /\b(flats?|ballet|mules?)\b/i },
 };
 // JEWELRY=1 fills Jewelry & Watches for both shops: titles must name the piece, and men's pieces must not say women.
 const JEWELRY = process.env.JEWELRY === '1';
@@ -177,7 +250,7 @@ async function main() {
           } else if (MEN && menStoreCollectionGroups.includes(group)) {
             if (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name) || !MEN_FITS[sub.slug]?.test(item.name)) continue;
             if (group.slug === 'mens-formal' && NOT_TAILORING.test(item.name)) continue;
-            if (group.slug === 'mens-accessories' && sub.slug !== 'sneakers' && NOT_ACCESSORY.test(item.name)) continue;
+            if (group.slug === 'mens-accessories' && !MEN_SHOES.includes(sub.slug) && NOT_ACCESSORY.test(item.name)) continue;
             // Lounge shorts are not swim trunks; casual tees are not sets.
             if (sub.slug === 'shorts' && /\b(swim|board|beach)\b/i.test(item.name)) continue;
             // A tuxedo or linen suit belongs in its own sub-category, not under wedding suits.

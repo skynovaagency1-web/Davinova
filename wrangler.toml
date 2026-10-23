@@ -32,9 +32,10 @@ STRIPE_MODE = "live"
 # Prices already include shipping (2.5x of CJ cost + US shipping), so checkout shows free delivery.
 STRIPE_SHIPPING_FEE_CENTS = "0"
 STRIPE_SHIPPING_LABEL = "Free express delivery (6–10 business days)"
-# US only until the EU IOSS number arrives. Europe list to restore then:
+# US, Canada, New Zealand and UAE (CJ shipping there costs no more than to the US; checked 2026-10-23).
+# Australia left out: its fast line cuts the margin to ~38%. Europe waits for the IOSS number; list to restore then:
 # "US,AT,BE,BG,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IE,IT,LV,LT,LU,MT,NL,PL,PT,RO,SK,SI,ES,SE,GB,CH,NO,IS,LI,MC,AD,SM"
-STRIPE_SHIPPING_COUNTRIES = "US"
+STRIPE_SHIPPING_COUNTRIES = "US,CA,NZ,AE"
 
 # Cloudflare Pages does not run Worker Cron Triggers. Scheduled tracking will be deployed
 # as a separate Worker when the supplier tracking integration is ready.

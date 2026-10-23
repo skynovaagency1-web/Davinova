@@ -4,6 +4,7 @@ import type { Product } from '../../types/product';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { useCutouts } from '../../lib/useCutouts';
 import { CATEGORY_GROUPS, categoryPath, titleParts } from '../../lib/categories';
+import { BEAUTY_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 import { isCurvyLook } from '../../lib/curvyLooks';
 
 export type Card = { key: string; label: string; line: string; to: string; items: Product[] };
@@ -33,6 +34,7 @@ export function CategoriesPage() {
   const { products, loading } = useCatalogProducts();
   const all = women(products);
   const groups = CATEGORY_GROUPS
+    .filter((group) => !BEAUTY_COLLECTIONS.includes(group.slug))
     .map((group) => ({ group, items: all.filter((product) => product.storeCollection === group.slug) }))
     .sort((a, b) => b.items.length - a.items.length);
 
@@ -78,7 +80,7 @@ export function FitsPage() {
 }
 
 /** The phone menu's four sections: two fits over the clothing categories, then accessories and couple sets. */
-const CLOTHING_GROUPS = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing');
+const CLOTHING_GROUPS = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing' && !BEAUTY_COLLECTIONS.includes(group.slug));
 const FIT_SECTIONS = [
   { fit: 'standard', label: 'Slim', to: '/slim', line: 'Sizes XS to XL, every category cut slim.' },
   { fit: 'curvy', label: 'Plus size', to: '/plus-size', line: 'Sizes 1X and up, every category cut for curves.' },

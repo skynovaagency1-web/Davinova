@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
+import { BASENAME } from './lib/i18n';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { WomenLayout } from './site/women/WomenLayout';
 import { MenLayout } from './site/men/MenLayout';
@@ -16,6 +17,7 @@ const CategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then((m
 const FitsPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.FitsPage })));
 const FitCategoriesPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.FitCategoriesPage })));
 const GroupPage = lazy(() => import('./site/women/WomenIndexPages').then((m) => ({ default: m.GroupPage })));
+const CustomPage = lazy(() => import('./site/women/CustomPage').then((m) => ({ default: m.CustomPage })));
 const BeautyPage = lazy(() => import('./site/women/BeautyPage').then((m) => ({ default: m.BeautyPage })));
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
 const WishlistPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.WishlistPage })));
@@ -36,7 +38,7 @@ const menHost = typeof window !== 'undefined' && window.location.hostname.starts
 
 export default function App() {
   useEffect(() => { void useAccount.getState().load(); }, []);
-  return <BrowserRouter><Suspense fallback={<PageLoader />}>
+  return <BrowserRouter basename={BASENAME}><Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
       <Route path="/admin/orders" element={<OrdersAdminPage />} />
@@ -47,6 +49,7 @@ export default function App() {
         <Route path="bag" element={<BagView variant="men" />} />
         <Route path="about" element={<AboutPage dept="men" />} />
         <Route path="categories" element={<MenCategoriesPage />} />
+        <Route path="custom" element={<CustomPage dept="men" />} />
         <Route path="track" element={<HelpPage dept="men" slug="track" />} />
         <Route path="shipping" element={<HelpPage dept="men" slug="shipping" />} />
         <Route path="returns" element={<HelpPage dept="men" slug="returns" />} />
@@ -74,6 +77,7 @@ export default function App() {
         <Route path="couple" element={<GroupPage slug="couple-parent-child-clothing" />} />
         <Route path="watches" element={<WatchesPage />} />
         <Route path="beauty" element={<BeautyPage />} />
+        <Route path="custom" element={<CustomPage dept="women" />} />
         <Route path="jewelry" element={<JewelryPage dept="women" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
         <Route path="wishlist" element={<WishlistPage dept="women" />} />

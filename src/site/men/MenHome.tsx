@@ -11,6 +11,7 @@ import { MenCircles } from './MenCircles';
 import { MenTrending } from './MenTrending';
 import { ShoePoster } from './ShoePoster';
 import { MenWatchPoster } from './MenWatchPoster';
+import { CustomPoster } from './CustomPoster';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 import { jewelryPath, jewelryTypeOf } from '../shared/jewelry';
@@ -77,6 +78,10 @@ export function MenHome() {
     <MenCircles products={men} />
     <MenCollections products={men} />
     <MenTrending products={clothes} />
+    <section className="w-watch-feature">
+      <div className="w-sec-head"><h2>New: <b>custom</b></h2><p className="w-sec-head__note">Blank tees, your print. Made when you order.</p></div>
+      <CustomPoster />
+    </section>
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>shoes</b></h2><p className="w-sec-head__note">Patent, polished, made for the entrance.</p></div>
       <ShoePoster />

@@ -1,3 +1,4 @@
+import { localiseHtml } from '../server/lang';
 interface Env { ADMIN_PASSWORD?: string; DB?: D1Database }
 interface Context { request: Request; next: () => Promise<Response>; env: Env }
 
@@ -59,6 +60,11 @@ export async function onRequest(context: Context): Promise<Response> {
   if (url.hostname === 'www.davinova.com') {
     url.hostname = 'davinova.com';
     return Response.redirect(url.toString(), 301);
+  }
+  // Pages get their language and hreflang links; files and the API pass straight through.
+  if (!url.pathname.startsWith('/api/')) {
+    const response = await context.next();
+    return (response.headers.get('Content-Type') ?? '').includes('text/html') ? localiseHtml(response, url) : response;
   }
   if (!url.pathname.startsWith('/api/admin/')) return context.next();
   // This exact endpoint verifies a high-entropy, expiring, one-use approval token itself.
