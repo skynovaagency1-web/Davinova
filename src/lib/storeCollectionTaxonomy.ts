@@ -39,7 +39,8 @@ export const WOMEN_SHOES = 'womens-shoes';
 /** Pieces shown floating on their own (never on a model): bags, shoes and men's accessories. */
 export const BEAUTY_NAILS = 'nail-art-and-tools';
 /** Shown on the Health, Beauty & Hair page, not in the clothing menus. */
-export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS];
+export const BEAUTY_HEALTH = 'food-and-health';
+export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS, BEAUTY_HEALTH];
 export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories', ...BEAUTY_COLLECTIONS];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
   {
@@ -82,6 +83,14 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Nail Gel', 'gel polish', 'uv gel', 'builder gel'),
       subcategory('Nail Dryers', 'nail lamp', 'uv led lamp', 'nail dryer'),
       subcategory('Nail Art Kits', 'nail art kit', 'gel nail kit', 'manicure set'),
+    ],
+  },
+  {
+    slug: BEAUTY_HEALTH,
+    label: 'Food & Health',
+    subcategories: [
+      // Wellness tools only: nothing to eat, drink or take as medicine.
+      subcategory('Health Care Products', 'massager', 'posture corrector', 'facial roller', 'gua sha'),
     ],
   },
   {

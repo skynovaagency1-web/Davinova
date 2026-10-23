@@ -119,6 +119,8 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'nail-gel': { search: ['gel nail polish', 'uv gel polish', 'builder gel nails', 'gel polish set'], fit: /\bgel\b.*\b(polish|nails?|varnish)\b|\bnails?\b.*\bgel\b|\bpoly ?gel\b/i },
   'nail-dryers': { search: ['uv led nail lamp', 'nail dryer', 'gel nail lamp', 'portable nail lamp'], fit: /\bnails?\b.*\b(lamps?|dryers?|lights?)\b|\b(uv|led)\b.*\b(lamps?|dryers?)\b/i },
   'nail-art-kits': { search: ['nail art kit', 'gel nail kit', 'manicure tool set', 'nail art brush set'], fit: /\bnails?\b.*\b(kits?|sets?)\b|\bmanicure\b.*\b(kits?|sets?|tools?)\b/i },
+  // Food & Health: wellness tools only, never anything ingested or sold as medicine.
+  'health-care-products': { search: ['neck massager', 'facial roller gua sha', 'posture corrector', 'eye massager', 'scalp massager'], fit: /^(?!.*\b(capsules?|tablets?|supplements?|vitamins?|pills?|tea|medicine|medical|drops|cream|ointment|plasters?|patch(es)?)\b).*\b(massagers?|gua sha|face rollers?|facial rollers?|posture correctors?|acupressure|heating pads?)\b/i },
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },
