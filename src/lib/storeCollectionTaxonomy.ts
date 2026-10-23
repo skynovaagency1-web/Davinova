@@ -43,7 +43,8 @@ export const BEAUTY_HEALTH = 'food-and-health';
 export const BEAUTY_HAIR = 'hair-and-accessories';
 export const BEAUTY_SKIN = 'skin-care';
 export const BEAUTY_WEAVES = 'hair-weaves';
-export const BEAUTY_COLLECTIONS = [BEAUTY_NAILS, BEAUTY_HEALTH, BEAUTY_HAIR, BEAUTY_SKIN, BEAUTY_WEAVES];
+export const BEAUTY_MAKEUP = 'makeup';
+export const BEAUTY_COLLECTIONS = [BEAUTY_MAKEUP, BEAUTY_SKIN, BEAUTY_NAILS, BEAUTY_HAIR, BEAUTY_WEAVES, BEAUTY_HEALTH];
 export const FLOATING_COLLECTIONS = [WOMEN_BAGS, WOMEN_SHOES, 'mens-accessories', ...BEAUTY_COLLECTIONS];
 export const storeCollectionGroups: StoreCollectionGroup[] = [
   {
@@ -126,6 +127,18 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Hair Styling', 'braiding hair', 'crochet hair', 'ponytail'),
       subcategory('Salon Bundle Hair', 'bundles with closure', 'bundles with frontal', 'virgin hair bundles'),
       subcategory('Pre-Colored Hair Weave', 'ombre hair weave', 'highlight bundles', '613 blonde bundles'),
+    ],
+  },
+  {
+    slug: BEAUTY_MAKEUP,
+    label: 'Makeup',
+    subcategories: [
+      subcategory('Eyebrow Pencil', 'eyebrow pencil', 'brow pencil', 'brow pen'),
+      subcategory('Makeup Set', 'makeup set', 'makeup kit', 'cosmetic gift set'),
+      subcategory('Eyeshadow', 'eyeshadow palette', 'eye shadow'),
+      subcategory('Makeup Brushes', 'makeup brush set', 'foundation brush', 'blending sponge'),
+      subcategory('Lipstick', 'lipstick', 'matte lipstick', 'lip gloss'),
+      subcategory('False Eyelashes', 'false eyelashes', 'mink lashes', 'lash extensions'),
     ],
   },
   {

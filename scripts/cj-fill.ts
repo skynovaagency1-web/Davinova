@@ -136,6 +136,13 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'hair-styling': { search: ['braiding hair', 'crochet braids hair', 'ponytail extension', 'drawstring ponytail'], fit: /^(?!.*\bwigs?\b).*\b(braiding hair|braids?|crochet|ponytails?|buns?|chignon)\b/i },
   'salon-bundle-hair': { search: ['bundles with closure', 'bundles with frontal', 'virgin hair bundles', 'brazilian hair bundles'], fit: /^(?!.*\bwigs?\b).*\b(bundles?)\b.*\b(closure|frontal|virgin|brazilian|peruvian|remy)\b|\b(virgin|brazilian|peruvian|remy)\b.*\bbundles?\b/i },
   'pre-colored-hair-weave': { search: ['ombre hair weave', 'highlight hair bundles', 'colored body wave bundles'], fit: /^(?!.*\bwigs?\b).*\b(ombre|colou?red|blonde|613|burgundy|highlight\w*|piano)\b.*\b(weaves?|bundles?|wefts?)\b/i },
+  // Makeup.
+  'eyebrow-pencil': { search: ['eyebrow pencil', 'waterproof brow pencil', 'microblading eyebrow pen'], fit: /\b(eye ?brow|brow)\b.*\b(pencils?|pens?|gels?|pomade)\b/i },
+  'makeup-set': { search: ['makeup set', 'makeup kit women', 'cosmetics gift set'], fit: /\b(make ?up|cosmetics?)\b.*\b(sets?|kits?)\b/i },
+  eyeshadow: { search: ['eyeshadow palette', 'glitter eyeshadow', 'matte eyeshadow palette'], fit: /\beye ?shadows?\b/i },
+  'makeup-brushes': { search: ['makeup brush set', 'foundation brush', 'eyeshadow brush set', 'makeup sponge'], fit: /\b(make ?up|cosmetic|foundation|eyeshadow|blush|powder)\b.*\b(brush(es)?|sponges?|blenders?)\b/i },
+  lipstick: { search: ['matte lipstick', 'lipstick set', 'lip gloss', 'liquid lipstick'], fit: /\b(lipsticks?|lip ?gloss|lip ?tint|lip ?liner|lip ?glaze)\b/i },
+  'false-eyelashes': { search: ['false eyelashes', 'mink lashes', 'magnetic eyelashes', 'cluster lashes'], fit: /\b(false|fake|mink|magnetic|cluster|strip)?\s*(eye ?lash(es)?|lashes)\b/i },
   heels: { search: ['women high heels', 'women stiletto pumps', 'women heeled sandals', 'wedding heels women'], fit: /\b(heels?|pumps?|stilettos?)\b/i },
   'flats-and-sandals': { search: ['women ballet flats', 'women flat sandals', 'women mules'], fit: /\b(flats?|sandals?|mules?|slingbacks?)\b/i },
   boots: { search: ['women ankle boots', 'women knee high boots', 'women heeled boots'], fit: /\bboots?\b/i },
