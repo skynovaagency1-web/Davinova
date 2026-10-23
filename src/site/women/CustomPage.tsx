@@ -25,9 +25,9 @@ function Print({ word, y }: { word: string; y: number }) {
 }
 
 function Garment({ item, word }: { item: string; word: string }) {
-  if (item === 'Tote bag') return <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M44 34c0-12 7-20 16-20s16 8 16 20" fill="none" stroke="currentColor" strokeWidth="3" /><rect x="24" y="34" width="72" height="76" rx="4" /><Print word={word} y={76} /></svg>;
-  if (item === 'Satin robe') return <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M42 10h36l28 26-12 12-8-8v72H34V40l-8 8-12-12z" /><path d="M42 10l18 34 18-34" fill="none" stroke="currentColor" strokeWidth="2" /><Print word={word} y={80} /></svg>;
-  return <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M42 12h36l30 20-12 18-12-8v70H36V42l-12 8-12-18z" /><Print word={word} y={64} /></svg>;
+  if (item === 'Tote bag') return <svg viewBox="0 0 120 120" aria-hidden="true" data-no-translate><path d="M44 34c0-12 7-20 16-20s16 8 16 20" fill="none" stroke="currentColor" strokeWidth="3" /><rect x="24" y="34" width="72" height="76" rx="4" /><Print word={word} y={76} /></svg>;
+  if (item === 'Satin robe') return <svg viewBox="0 0 120 120" aria-hidden="true" data-no-translate><path d="M42 10h36l28 26-12 12-8-8v72H34V40l-8 8-12-12z" /><path d="M42 10l18 34 18-34" fill="none" stroke="currentColor" strokeWidth="2" /><Print word={word} y={80} /></svg>;
+  return <svg viewBox="0 0 120 120" aria-hidden="true" data-no-translate><path d="M42 12h36l30 20-12 18-12-8v70H36V42l-12 8-12-18z" /><Print word={word} y={64} /></svg>;
 }
 
 /** Custom: Davinova's own print-on-demand designs for the wedding party. */

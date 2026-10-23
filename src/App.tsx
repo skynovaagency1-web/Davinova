@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
+import { BASENAME } from './lib/i18n';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { WomenLayout } from './site/women/WomenLayout';
 import { MenLayout } from './site/men/MenLayout';
@@ -37,7 +38,7 @@ const menHost = typeof window !== 'undefined' && window.location.hostname.starts
 
 export default function App() {
   useEffect(() => { void useAccount.getState().load(); }, []);
-  return <BrowserRouter><Suspense fallback={<PageLoader />}>
+  return <BrowserRouter basename={BASENAME}><Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
       <Route path="/admin/orders" element={<OrdersAdminPage />} />

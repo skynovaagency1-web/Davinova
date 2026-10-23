@@ -439,3 +439,12 @@
 .news__form button:disabled { opacity: .6; cursor: wait; }
 .news__done { margin: 0; font-weight: 600; }
 .news__error { flex-basis: 100%; margin: 0; font-size: 13px; color: #f3b3a3; }
+
+/* EN · FR · ES at the end of the shop bar: a glass capsule with a glowing, shimmering pick. */
+.lang { justify-self: end; position: relative; display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .18); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 0 22px var(--lang-glow, rgba(205, 182, 158, .18)); }
+.lang a { position: relative; padding: 5px 9px; border-radius: 999px; color: inherit; opacity: .62; text-decoration: none; letter-spacing: .16em; transition: opacity .3s, color .3s, background .4s, box-shadow .4s; }
+.lang a:hover { opacity: 1; text-shadow: 0 0 10px var(--lang-glow-strong, rgba(240, 220, 196, .8)); }
+.lang a.active { opacity: 1; color: #fff; background: linear-gradient(110deg, rgba(255, 255, 255, .12), var(--lang-pick, rgba(205, 182, 158, .7)) 55%, rgba(255, 255, 255, .28)); background-size: 220% 100%; box-shadow: 0 0 14px var(--lang-glow-strong, rgba(205, 182, 158, .55)), inset 0 1px 0 rgba(255, 255, 255, .35); animation: lang-shimmer 4.5s ease-in-out infinite; }
+.dept--men .lang { --lang-pick: rgba(165, 170, 163, .75); --lang-glow: rgba(191, 191, 190, .16); --lang-glow-strong: rgba(214, 219, 211, .55); }
+@keyframes lang-shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@media (max-width: 760px) { .dept { grid-template-columns: 1fr auto; justify-items: stretch; } .dept__tabs { justify-self: start; } .lang a { padding: 5px 7px; letter-spacing: .08em; } }

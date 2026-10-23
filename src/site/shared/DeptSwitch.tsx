@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { LangSwitch } from './LangSwitch';
 
 /** The bar above both headers: two shops, always one tap apart. */
 export function DeptSwitch({ active }: { active: 'women' | 'men' }) {
@@ -8,6 +9,6 @@ export function DeptSwitch({ active }: { active: 'women' | 'men' }) {
       <Link to="/" className={active === 'women' ? 'active' : ''} aria-current={active === 'women' ? 'page' : undefined}>Women</Link>
       <Link to="/men" className={active === 'men' ? 'active' : ''} aria-current={active === 'men' ? 'page' : undefined}>Men</Link>
     </div>
-    <span className="dept__note dept__note--end">Occasion wear for both</span>
+    <LangSwitch />
   </nav>;
 }
