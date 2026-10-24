@@ -203,7 +203,6 @@ def main() -> int:
     fallback_session = None
     # Objects get the sharper BiRefNet model, so caps, pumps and clear plastic parts stay attached.
     object_session = new_session('birefnet-general-lite')
-    portrait_session = None
 
     if not os.path.exists('public/images/hero-model.webp'):
         try:
@@ -232,7 +231,6 @@ def main() -> int:
         done += 1
         # Clothing photos already checked under the previous rules failed on the model; only the floating cut is new.
         if hair:
-            portrait_session = portrait_session or new_session('birefnet-portrait')
             for index, photo in enumerate(images[:MAX_TRIES]):
                 try:
                     image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
@@ -240,7 +238,7 @@ def main() -> int:
                     if len(faces) != 1:
                         reasons.append(f'hair {index}: ' + ('no face' if not faces else 'several people'))
                         continue
-                    cutout = remove(image, session=portrait_session)
+                    cutout = remove(image, session=object_session)  # a third model ran the runner out of memory
                     problem = hair_problem(image, cutout, faces)
                     if problem:
                         reasons.append(f'hair {index}: {problem}')

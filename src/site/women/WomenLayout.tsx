@@ -86,7 +86,7 @@ export function WomenLayout() {
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}><Outlet /></motion.div></main>
     <footer className="w-footer">
-      <div className="w-footer__big"><span aria-hidden="true">DAVINOV</span><span className="w-footer__hook"><HangingBag /></span><span aria-hidden="true">A</span></div>
+      <div className="w-footer__art"><img src="/images/footer-davinova.webp" alt="Davinova" width="1672" height="941" loading="lazy" /><HangingBag /></div>
       <Logo tone="brand" />
       <NewsletterSignup dept="women" />
       <div className="w-footer__row">

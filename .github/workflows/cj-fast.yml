@@ -34,6 +34,7 @@ jobs:
           LIMIT: ${{ inputs.limit || fromJSON(steps.request.outputs.json).limit }}
           COUNTRIES: ${{ fromJSON(steps.request.outputs.json).countries }}
           OUT: ${{ fromJSON(steps.request.outputs.json).out }}
+          INPUT: ${{ fromJSON(steps.request.outputs.json).input || '' }}
       - name: Commit report
         run: |
           git config user.name "davinova-bot"
