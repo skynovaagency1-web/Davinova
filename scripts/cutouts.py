@@ -36,7 +36,9 @@ OBJECT_PRODUCT = re.compile(r'\bwrist ?watch|\bwatch(es)?\b|jewel|necklace|earri
 GROUP_PRODUCT = 'couple-parent-child-clothing'
 JEWELRY_COLLECTION = 'jewelry-and-watches'
 # Ties, shoes, belts, hats and bags are shown on their own, like jewelry.
-OBJECT_COLLECTIONS = {JEWELRY_COLLECTION, 'mens-accessories', 'womens-bags', 'womens-shoes'}
+# Beauty products (bottles, jars, tools, hair) are objects too: never cut them with the clothing model.
+BEAUTY_COLLECTIONS = {'nail-art-and-tools', 'food-and-health', 'hair-and-accessories', 'skin-care', 'hair-weaves', 'makeup', 'beauty-tools'}
+OBJECT_COLLECTIONS = {JEWELRY_COLLECTION, 'mens-accessories', 'womens-bags', 'womens-shoes', *BEAUTY_COLLECTIONS}
 
 
 def is_ghostly(image):
@@ -164,6 +166,8 @@ def main() -> int:
     session = new_session(os.environ.get('REMBG_MODEL', 'isnet-general-use'))
     detector = cv2.FaceDetectorYN.create(FACE_MODEL, '', (320, 320), 0.6)
     cloth_session = None
+    # Objects get the sharper BiRefNet model, so caps, pumps and clear plastic parts stay attached.
+    object_session = new_session('birefnet-general-lite')
 
     if not os.path.exists('public/images/hero-model.webp'):
         try:
@@ -179,7 +183,9 @@ def main() -> int:
             continue
         kind, reasons, chosen, floating = kind_of(product), [], None, False
         old = report.get(pid, {})
-        if old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person')):
+        # An object cut with the clothing model (beauty before 2026-10-24) lost parts of itself: cut it again.
+        recut = kind == 'object' and old.get('floating')
+        if not recut and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
             continue
         if done >= LIMIT:
             continue
@@ -199,7 +205,7 @@ def main() -> int:
                 if kind == 'person' and len(faces) != 1:
                     reasons.append(f'{index}: ' + ('no face (headless or cropped)' if not faces else 'several people'))
                     continue
-                cutout = remove(image, session=session)
+                cutout = remove(image, session=object_session if kind == 'object' else session)
                 problem = photo_problem(image, cutout, faces, kind)
                 if problem:
                     reasons.append(f'{index}: {problem}')
