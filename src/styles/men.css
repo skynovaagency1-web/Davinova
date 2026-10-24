@@ -320,5 +320,8 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
   .mh__colors { display: none; }
   .mh__sizes { position: absolute; right: 10px; left: auto; top: 120px; flex-direction: column; gap: 5px; padding: 6px; }
   .mh__sizes button { width: 34px; height: 34px; font-size: 17px; }
-  .mh__info { width: auto; margin: -40px 12px 0; transform: none; padding: 18px; }
+  .mh__info { top: auto; right: auto; width: auto; margin: -70px 12px 0; transform: none; padding: 18px; }
+  .mh__model { bottom: auto; }
+  /* The suit photo stops at the thighs: fade its lower edge so it doesn't end in a hard line. */
+  .mh__model img { -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent); mask-image: linear-gradient(180deg, #000 78%, transparent); }
 }
