@@ -28,6 +28,7 @@ jobs:
       - run: python scripts/cutouts.py
         env:
           LIMIT: ${{ github.event.inputs.limit || '300' }}
+          PYTHONUNBUFFERED: '1'
       - name: Commit cutouts
         run: |
           git config user.name "davinova-bot"
