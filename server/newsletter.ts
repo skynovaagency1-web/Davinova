@@ -1,10 +1,11 @@
 import { sendTransactionalEmail } from './email';
 
 /** Newsletter sign-ups. Subscribers live in D1; marketing mail goes out from NEWS_FROM (news@davinova.com). */
+// The old newsletter_subscribers table from 0001 has other columns, so sign-ups live in newsletter_list (fixed 2026-10-24).
 
 export interface NewsletterEnv { DB?: D1Database; RESEND_API_KEY?: string; NEWS_FROM?: string; SITE_URL?: string }
 
-const TABLE = `CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+const TABLE = `CREATE TABLE IF NOT EXISTS newsletter_list (
   email TEXT PRIMARY KEY, dept TEXT NOT NULL DEFAULT 'women', token TEXT NOT NULL UNIQUE,
   status TEXT NOT NULL DEFAULT 'subscribed', created_at TEXT NOT NULL DEFAULT (datetime('now')), unsubscribed_at TEXT)`;
 
@@ -19,21 +20,21 @@ function newToken(): string {
 /** Adds (or re-adds) a subscriber. Returns their unsubscribe token and whether they are new. */
 export async function subscribe(db: D1Database, email: string, dept: 'women' | 'men'): Promise<{ token: string; isNew: boolean }> {
   await ensureNewsletterTable(db);
-  const existing = await db.prepare('SELECT token,status FROM newsletter_subscribers WHERE email=?').bind(email).first<{ token: string; status: string }>();
+  const existing = await db.prepare('SELECT token,status FROM newsletter_list WHERE email=?').bind(email).first<{ token: string; status: string }>();
   if (existing?.status === 'subscribed') return { token: existing.token, isNew: false };
   if (existing) {
-    await db.prepare("UPDATE newsletter_subscribers SET status='subscribed', dept=?, unsubscribed_at=NULL WHERE email=?").bind(dept, email).run();
+    await db.prepare("UPDATE newsletter_list SET status='subscribed', dept=?, unsubscribed_at=NULL WHERE email=?").bind(dept, email).run();
     return { token: existing.token, isNew: true };
   }
   const token = newToken();
-  await db.prepare('INSERT INTO newsletter_subscribers (email, dept, token) VALUES (?,?,?)').bind(email, dept, token).run();
+  await db.prepare('INSERT INTO newsletter_list (email, dept, token) VALUES (?,?,?)').bind(email, dept, token).run();
   return { token, isNew: true };
 }
 
 export async function unsubscribe(db: D1Database, token: string): Promise<boolean> {
   if (!/^[a-f0-9]{48}$/.test(token)) return false;
   await ensureNewsletterTable(db);
-  const result = await db.prepare("UPDATE newsletter_subscribers SET status='unsubscribed', unsubscribed_at=datetime('now') WHERE token=?").bind(token).run();
+  const result = await db.prepare("UPDATE newsletter_list SET status='unsubscribed', unsubscribed_at=datetime('now') WHERE token=?").bind(token).run();
   return (result.meta?.changes ?? 0) > 0;
 }
 
