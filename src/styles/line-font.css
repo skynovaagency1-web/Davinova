@@ -1,4 +1,4 @@
-/* Davinova Line: the logo's monoline letters as a font (built by scripts/build-line-font.py), used for every heading. */
+/* Davinova Line: the logo's monoline letters as a font (built by scripts/build-line-font.py), used for every heading (the footer wordmark keeps its own font, owner 2026-10-24). */
 @font-face { font-family: 'Davinova Line'; src: url('/fonts/davinova-line-light.woff2') format('woff2'); font-weight: 100 350; font-display: swap; }
 @font-face { font-family: 'Davinova Line'; src: url('/fonts/davinova-line-regular.woff2') format('woff2'); font-weight: 351 550; font-display: swap; }
 @font-face { font-family: 'Davinova Line'; src: url('/fonts/davinova-line-bold.woff2') format('woff2'); font-weight: 551 1000; font-display: swap; }
@@ -6,7 +6,7 @@
 
 :is(.w-shell, .m-shell, .pv, .bag) :is(h1, h2),
 :is(.w-shell, .m-shell, .pv, .bag) :is(h1, h2) :is(b, i, em, span, strong),
-.nova-hero__title, .nova-hero__title :is(b, i), .w-footer__big {
+.nova-hero__title, .nova-hero__title :is(b, i) {
   font-family: var(--line-font) !important; font-stretch: normal !important; font-style: normal !important;
   letter-spacing: .05em !important;
 }
