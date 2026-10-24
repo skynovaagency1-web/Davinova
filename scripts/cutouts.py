@@ -296,7 +296,8 @@ def main() -> int:
         if chosen is None and not repick and kind == 'object' and product.get('storeCollection') in BEAUTY_COLLECTIONS:
             # Owner (2026-10-24): fix broken beauty cut-outs, never hide them. Try every photo with the second
             # remover too, then keep the cleanest cut even if it touches the frame (bottles are often shot edge to edge).
-            fallback_session = fallback_session or new_session('isnet-general-use')
+            # Reuse the main remover when it is already this model: a second copy ran the runner out of memory.
+            fallback_session = fallback_session or (session if os.environ.get('REMBG_MODEL', 'isnet-general-use') == 'isnet-general-use' else new_session('isnet-general-use'))
             best = None
             for index, photo in enumerate(images[:MAX_TRIES]):
                 if photo['url'] in skip:
