@@ -40,9 +40,10 @@ export function WomenMegaNav() {
     </Item>
     <Item label="Categories" to="/categories" active={active} setActive={setActive}>
       <div className="w-mega__cols w-mega__cols--cats">
-        {CATEGORY_GROUPS.map((group) => <div key={group.slug} className="w-mega__links">
+        {/* Only types that have pieces; a group with none is left out. */}
+        {CATEGORY_GROUPS.filter((group) => count(group.slug)).map((group) => <div key={group.slug} className="w-mega__links">
           <Link to={categoryPath(group.slug)} className="w-mega__group">{group.label}</Link>
-          {group.subcategories.map((sub) => <Link key={sub.slug} to={categoryPath(group.slug, sub.slug)} className={count(group.slug, sub.slug) ? undefined : 'is-empty'}>{sub.label}</Link>)}
+          {group.subcategories.filter((sub) => count(group.slug, sub.slug)).map((sub) => <Link key={sub.slug} to={categoryPath(group.slug, sub.slug)}>{sub.label}</Link>)}
         </div>)}
       </div>
     </Item>

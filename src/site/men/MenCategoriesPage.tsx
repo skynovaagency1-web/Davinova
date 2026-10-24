@@ -12,6 +12,7 @@ export function MenCategoriesPage() {
   const order = [MEN_FORMAL, MEN_EVERYDAY, MEN_LOUNGE, MEN_ACCESSORIES];
   const groups = menStoreCollectionGroups
     .map((group) => ({ group, items: men.filter((product) => product.storeCollection === group.slug) }))
+    .filter(({ items }) => items.length)
     .sort((a, b) => order.indexOf(a.group.slug) - order.indexOf(b.group.slug));
 
   return <section className="jw jw--men idx">
@@ -28,7 +29,7 @@ export function MenCategoriesPage() {
           <nav className="jw__groups idx__subs" aria-label={group.label}>
             {group.subcategories.map((sub) => {
               const count = items.filter((product) => product.storeSubcategory === sub.slug).length;
-              return <Link key={sub.slug} to={menCategoryPath(sub.slug)} className={count ? '' : 'is-empty'}>{sub.label}{count ? ` · ${count}` : ''}</Link>;
+              return count ? <Link key={sub.slug} to={menCategoryPath(sub.slug)}>{sub.label} · {count}</Link> : null;
             })}
           </nav>
         </div>;
