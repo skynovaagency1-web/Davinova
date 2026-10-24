@@ -1,5 +1,5 @@
 -- Newsletter subscribers (marketing email from news@davinova.com). The API also creates this table if it is missing.
-CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+CREATE TABLE IF NOT EXISTS newsletter_list (
   email TEXT PRIMARY KEY,
   dept TEXT NOT NULL DEFAULT 'women',
   token TEXT NOT NULL UNIQUE,
