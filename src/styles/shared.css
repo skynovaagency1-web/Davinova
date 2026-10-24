@@ -504,7 +504,7 @@
 @property --mood-a { syntax: '<color>'; inherits: true; initial-value: transparent; }
 @property --mood-b { syntax: '<color>'; inherits: true; initial-value: transparent; }
 .w-shell > .mood-layer, .m-shell > .mood-layer { position: fixed !important; inset: 0; z-index: 0 !important; pointer-events: none; }
-.mood-layer { opacity: calc(var(--mood-on, 0) * .62); mix-blend-mode: color; transition: opacity 1.6s ease, --mood-a 2.4s ease, --mood-b 2.4s ease;
+.mood-layer { opacity: calc(var(--mood-on, 0) * .85); mix-blend-mode: soft-light; transition: opacity 1.6s ease, --mood-a 2.4s ease, --mood-b 2.4s ease;
   background: radial-gradient(70% 55% at 12% 8%, var(--mood-b), transparent 70%), radial-gradient(80% 65% at 90% 95%, var(--mood-a), transparent 72%), linear-gradient(160deg, var(--mood-a), var(--mood-b)); }
 .mood-layer::after { content: ''; position: absolute; inset: 0; mix-blend-mode: soft-light; opacity: .5; background: radial-gradient(60% 50% at 80% 10%, var(--mood-b), transparent 70%); }
 .mood-bar { position: relative; padding: 18px 12px 10px; border-radius: 18px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .35); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); box-shadow: 0 16px 40px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .25); }
@@ -523,3 +523,9 @@
 .mood-bar--dept button.is-on { box-shadow: inset 0 0 0 2px #fff; border-radius: 99px; }
 .w-shell > .mood-bar--float, .m-shell > .mood-bar--float { display: none; }
 @media (max-width: 760px) { .dept__start { display: none; } .w-shell > .mood-bar--float, .m-shell > .mood-bar--float { display: block; } }
+
+/* Soft endings (owner, 2026-10-24): big pictures and stages fade out at the bottom instead of stopping on a hard line. */
+.poster-pop > img, .beauty-poster > video, .pod-pop > img { -webkit-mask-image: linear-gradient(180deg, #000 84%, transparent); mask-image: linear-gradient(180deg, #000 84%, transparent); }
+.w-exem__stage, .w-footer__art > img { -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
+.mh { -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent); mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent); }
+@media (max-width: 760px) { .mh { padding-bottom: 96px; } }
