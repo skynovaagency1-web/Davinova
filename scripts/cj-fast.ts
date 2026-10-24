@@ -12,6 +12,7 @@ const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
 const LIMIT = Number(process.env.LIMIT || 0);
 const COUNTRIES = (process.env.COUNTRIES || 'US,FR,DE,GB').split(',').map((code) => code.trim().toUpperCase()).filter(Boolean);
 const OUT = process.env.OUT || 'reports/cj-fast.json';
+const INPUT = process.env.INPUT || 'reports/cj-check.json';
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type Report = { results: { siteId: string; ok: boolean; variants?: { id: string; costUsd: number | null }[] }[] };
@@ -29,7 +30,7 @@ async function ask(vids: string[]): Promise<Answer[]> {
 
 async function main() {
   if (!PASSWORD) throw new Error('Add the DAVINOVA_ADMIN_PASSWORD secret to the GitHub repository first.');
-  const report = JSON.parse(readFileSync('reports/cj-check.json', 'utf8')) as Report;
+  const report = JSON.parse(readFileSync(INPUT, 'utf8')) as Report;
   let rows = report.results.flatMap((row) => {
     const cheapest = (row.variants ?? []).filter((variant) => variant.costUsd != null).sort((a, b) => a.costUsd! - b.costUsd!)[0];
     return row.ok && cheapest ? [{ siteId: row.siteId, vid: cheapest.id }] : [];
