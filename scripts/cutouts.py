@@ -15,6 +15,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.request
 
 import cv2
@@ -30,7 +31,9 @@ MAX_HEIGHT = 900
 GATE_VERSION = 3  # bump to re-check every product after changing the rules
 FLOAT_FROM = 2  # results from before floating clothes existed: passes stay, failed clothing gets a floating try
 FLOAT_TRIES = 3
-LIMIT = int(os.environ.get('LIMIT', '300'))  # products checked per run, so one run fits in the job's time limit
+LIMIT = int(os.environ.get('LIMIT', '300'))  # products checked per run
+# Stop in time to commit: the job is killed at 180 minutes and everything unsaved is lost.
+TIME_BUDGET = int(os.environ.get('TIME_BUDGET_MIN', '140')) * 60
 MAX_TRIES = 8
 OBJECT_PRODUCT = re.compile(r'\bwrist ?watch|\bwatch(es)?\b|jewel|necklace|earring|bracelet|bangle|pendant|\brings?\b|tiara|crown|hairpin|hair clip|hair comb|headpiece|brooch|anklet', re.I)
 GROUP_PRODUCT = 'couple-parent-child-clothing'
@@ -162,7 +165,10 @@ def main() -> int:
     report = json.load(open(report_path)) if os.path.exists(report_path) else {}
     # Photos the owner's reviewer turned down by eye (back views, props, crowds) stay hidden whatever the check says.
     rejects = set(json.load(open(os.path.join(OUT, 'rejects.json')))) if os.path.exists(os.path.join(OUT, 'rejects.json')) else set()
+    started = time.time()
     products = json.loads(fetch(CATALOG_URL))['products']
+    # Beauty first: the owner is waiting on those re-cuts.
+    products.sort(key=lambda product: product.get('storeCollection') not in BEAUTY_COLLECTIONS)
     session = new_session(os.environ.get('REMBG_MODEL', 'isnet-general-use'))
     detector = cv2.FaceDetectorYN.create(FACE_MODEL, '', (320, 320), 0.6)
     cloth_session = None
@@ -188,7 +194,8 @@ def main() -> int:
         recut = kind == 'object' and (old.get('floating') or (product.get('storeCollection') in BEAUTY_COLLECTIONS and old.get('photo') is None and old.get('fix') != 1))
         if not recut and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
             continue
-        if done >= LIMIT:
+        if done >= LIMIT or time.time() - started > TIME_BUDGET:
+            done = max(done, LIMIT)
             continue
         done += 1
         # Clothing photos already checked under the previous rules failed on the model; only the floating cut is new.
