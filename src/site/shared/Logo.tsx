@@ -30,7 +30,9 @@ const GLYPHS = (() => {
 function Gradient({ id, tone }: { id: string; tone: Tone }) {
   const [a, b, c, d] = stops[tone];
   return <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stopColor={a} /><stop offset=".4" stopColor={b} /><stop offset=".75" stopColor={c} /><stop offset="1" stopColor={d} />
+    {/* --logo-1..4 follow the shop's colour mood when one is set (see Mood.tsx). */}
+    <stop offset="0" stopColor={a} style={{ stopColor: `var(--logo-1, ${a})` }} /><stop offset=".4" stopColor={b} style={{ stopColor: `var(--logo-2, ${b})` }} />
+    <stop offset=".75" stopColor={c} style={{ stopColor: `var(--logo-3, ${c})` }} /><stop offset="1" stopColor={d} style={{ stopColor: `var(--logo-4, ${d})` }} />
     <animateTransform attributeName="gradientTransform" type="rotate" values="0 .5 .5;360 .5 .5" dur="9s" repeatCount="indefinite" />
   </linearGradient>;
 }
@@ -42,7 +44,7 @@ function Shimmer({ id, tone }: { id: string; tone: Tone }) {
   const [a, b] = sweep[tone];
   return <linearGradient id={id} gradientUnits="userSpaceOnUse" x1="-120" y1="0" x2="0" y2="0" spreadMethod="pad">
     <stop offset="0" stopColor="currentColor" /><stop offset=".35" stopColor="currentColor" />
-    <stop offset=".5" stopColor={a} /><stop offset=".6" stopColor={b} />
+    <stop offset=".5" stopColor={a} style={{ stopColor: `var(--logo-2, ${a})` }} /><stop offset=".6" stopColor={b} style={{ stopColor: `var(--logo-3, ${b})` }} />
     <stop offset=".75" stopColor="currentColor" /><stop offset="1" stopColor="currentColor" />
     <animateTransform attributeName="gradientTransform" type="translate" values="-40 0;440 0;440 0" keyTimes="0;.55;1" dur="4.5s" repeatCount="indefinite" />
   </linearGradient>;

@@ -529,3 +529,5 @@
 .w-exem__stage, .w-footer__art > img { -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
 .mh { -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent); mask-image: linear-gradient(180deg, #000 calc(100% - 110px), transparent); }
 @media (max-width: 760px) { .mh { padding-bottom: 96px; } }
+/* Header logo letters take a light version of the current colour mood. */
+.w-shell .w-header .logo, .m-shell .m-header .logo { color: var(--logo-ink, currentColor); transition: color 2s ease; }

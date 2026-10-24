@@ -65,6 +65,12 @@ export function MoodLayer({ dept }: { dept: Dept }) {
     root.setProperty('--mood-a', mood.a);
     root.setProperty('--mood-b', mood.b);
     root.setProperty('--mood-on', '1');
+    // The logo's ring, star and shimmer take the same shade, lifted towards white so it stays readable on dark headers.
+    root.setProperty('--logo-1', 'color-mix(in srgb, var(--mood-a) 75%, #fff)');
+    root.setProperty('--logo-2', 'color-mix(in srgb, var(--mood-b) 55%, #fff)');
+    root.setProperty('--logo-3', 'color-mix(in srgb, var(--mood-a) 40%, #fff)');
+    root.setProperty('--logo-4', 'var(--mood-b)');
+    root.setProperty('--logo-ink', 'color-mix(in srgb, var(--mood-b) 32%, #fff)');
   }, [mood]);
   return <div className={`mood-layer mood-layer--${dept}`} style={style} aria-hidden="true" />;
 }
