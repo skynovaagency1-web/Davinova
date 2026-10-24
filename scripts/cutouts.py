@@ -152,6 +152,32 @@ def finish(cutout: Image.Image) -> Image.Image:
     return cutout
 
 
+HAIR_PRODUCT = re.compile(r'\bwigs?\b|human hair', re.I)
+
+
+def is_hair(product) -> bool:
+    """Wigs and human hair: the owner wants them shown on the model, face and all (2026-10-24)."""
+    return product.get('storeSubcategory') == 'human-hair' or (product.get('storeCollection') in BEAUTY_COLLECTIONS and bool(HAIR_PRODUCT.search(product.get('title', ''))))
+
+
+def hair_problem(image: Image.Image, cutout: Image.Image, faces):
+    """A wig photo works when one model's whole head shows; a head-and-shoulders crop is fine."""
+    if len(faces) != 1:
+        return 'no face' if not faces else 'several people'
+    width, height = image.size
+    x, y, w, h = faces[0]
+    if y < 0.03 * height or x < 1 or x + w > width - 1:
+        return 'head cut off by the frame'
+    if w < 0.08 * width:
+        return 'face too small'
+    alpha = np.array(cutout.getchannel('A'))
+    if people(alpha) > 1:
+        return 'collage or several figures'
+    if is_ghostly(cutout):
+        return 'faded cutout'
+    return None
+
+
 def kind_of(product) -> str:
     if product.get('storeCollection') in OBJECT_COLLECTIONS or OBJECT_PRODUCT.search(product.get('title', '')):
         return 'object'
@@ -177,6 +203,7 @@ def main() -> int:
     fallback_session = None
     # Objects get the sharper BiRefNet model, so caps, pumps and clear plastic parts stay attached.
     object_session = new_session('birefnet-general-lite')
+    portrait_session = None
 
     if not os.path.exists('public/images/hero-model.webp'):
         try:
@@ -196,14 +223,39 @@ def main() -> int:
         recut = kind == 'object' and (old.get('floating') or (product.get('storeCollection') in BEAUTY_COLLECTIONS and old.get('photo') is None and old.get('fix') != 1))
         pick = picks.get(pid)
         repick = pick is not None and old.get('pick') != pick and pick < len(images)
-        if not recut and not repick and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
+        hair = is_hair(product) and pid not in picks and old.get('hair') != 1
+        if not recut and not repick and not hair and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
             continue
         if done >= LIMIT or time.time() - started > TIME_BUDGET:
             done = max(done, LIMIT)
             continue
         done += 1
         # Clothing photos already checked under the previous rules failed on the model; only the floating cut is new.
-        model_photos = [] if repick or (kind == 'person' and old.get('v') == FLOAT_FROM) else images[:MAX_TRIES]
+        if hair:
+            portrait_session = portrait_session or new_session('birefnet-portrait')
+            for index, photo in enumerate(images[:MAX_TRIES]):
+                try:
+                    image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                    faces = find_faces(detector, image)
+                    if len(faces) != 1:
+                        reasons.append(f'hair {index}: ' + ('no face' if not faces else 'several people'))
+                        continue
+                    cutout = remove(image, session=portrait_session)
+                    problem = hair_problem(image, cutout, faces)
+                    if problem:
+                        reasons.append(f'hair {index}: {problem}')
+                        continue
+                    chosen = index
+                    finish(cutout).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
+                    break
+                except Exception as error:
+                    reasons.append(f'hair {index}: failed {error}')
+            if chosen is None:
+                # No photo shows the model's face: keep the cut-out the product already has.
+                report[pid] = {**old, 'hair': 1}
+                print(pid, 'hair: no face photo', reasons)
+                continue
+        model_photos = [] if hair or repick or (kind == 'person' and old.get('v') == FLOAT_FROM) else images[:MAX_TRIES]
         # Photos the owner's reviewer turned down by eye are never picked again ('skip' in the report).
         skip = set(old.get('skip', []))
         for index, photo in enumerate(model_photos):
@@ -227,7 +279,7 @@ def main() -> int:
                 break
             except Exception as error:
                 reasons.append(f'{index}: failed {error}')
-        if repick:
+        if repick and not hair:
             try:
                 image = Image.open(io.BytesIO(fetch(images[pick]['url']))).convert('RGB')
                 finish(remove(image, session=object_session if kind == 'object' else session)).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
@@ -289,7 +341,7 @@ def main() -> int:
         else:
             manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
             passed += 1
-        report[pid] = {'fix': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons, **({'pick': pick} if repick and chosen is not None else {})}
+        report[pid] = {'fix': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons, **({'pick': pick} if repick and chosen is not None else {}), **({'hair': 1} if hair else {})}
         print(pid, 'floating' if floating else 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)
