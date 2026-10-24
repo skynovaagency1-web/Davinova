@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { SupportHelper } from '../shared/SupportHelper';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -8,7 +8,6 @@ import { useCart } from '../../store/cart';
 import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
-import { HangingWatch } from '../shared/HangingWatch';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 import { MEN_CATEGORIES, menCategoryPath } from './menFormal';
 import { useWishlist } from '../../store/wishlist';
@@ -75,7 +74,12 @@ export function MenLayout() {
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}><Outlet /></motion.div></main>
     <footer className="w-footer m-footer">
-      <div className="w-footer__big"><span aria-hidden="true">DAVINOV</span><span className="w-footer__hook"><HangingWatch to="/men/bag" /></span><span aria-hidden="true">A</span></div>
+      <div className="w-footer__art w-footer__art--men" style={{ '--art': 'url(/images/footer-davinova-men.webp)' } as CSSProperties}>
+        <img src="/images/footer-davinova-men.webp" alt="Davinova Homme" width="1672" height="941" loading="lazy" />
+        <span className="w-footer__sweep" aria-hidden="true" />
+        {/* the watch on the last A is in the picture; it opens the bag like the women's hanging bag */}
+        <Link to="/men/bag" className="w-footer__watch" aria-label="Open your bag"><span>Your bag</span></Link>
+      </div>
       <Logo tone="metal" sub="HOMME" />
       <NewsletterSignup dept="men" />
       <div className="w-footer__row">
