@@ -36,6 +36,7 @@ export function CategoriesPage() {
   const groups = CATEGORY_GROUPS
     .filter((group) => !BEAUTY_COLLECTIONS.includes(group.slug))
     .map((group) => ({ group, items: all.filter((product) => product.storeCollection === group.slug) }))
+    .filter(({ items }) => items.length)
     .sort((a, b) => b.items.length - a.items.length);
 
   return <section className="jw jw--women idx">
@@ -50,7 +51,7 @@ export function CategoriesPage() {
         <nav className="jw__groups idx__subs" aria-label={group.label}>
           {group.subcategories.map((sub) => {
             const count = items.filter((product) => product.storeSubcategory === sub.slug).length;
-            return <Link key={sub.slug} to={categoryPath(group.slug, sub.slug)} className={count ? '' : 'is-empty'}>{sub.label}{count ? ` · ${count}` : ''}</Link>;
+            return count ? <Link key={sub.slug} to={categoryPath(group.slug, sub.slug)}>{sub.label} · {count}</Link> : null;
           })}
         </nav>
       </div>)}
