@@ -71,7 +71,7 @@ export function WomenShop() {
       </div>
       {group && <div className="w-filters__row" role="group" aria-label="Type">
         <button type="button" className={!sub ? 'active' : ''} onClick={() => set('sub', '', '')}>All {group.label}</button>
-        {group.subcategories.map((item) => <button key={item.slug} type="button" className={sub === item.slug ? 'active' : ''} onClick={() => set('sub', item.slug, '')}>{item.label}</button>)}
+        {group.subcategories.filter((item) => women.some((product) => product.storeCollection === group.slug && product.storeSubcategory === item.slug)).map((item) => <button key={item.slug} type="button" className={sub === item.slug ? 'active' : ''} onClick={() => set('sub', item.slug, '')}>{item.label}</button>)}
       </div>}
       <div className="w-filters__row" role="group" aria-label="Style">
         <button type="button" className={!style ? 'active' : ''} onClick={() => set('style', '', '')}>Any style</button>
