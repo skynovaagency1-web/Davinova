@@ -295,9 +295,7 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
 .mh__thumbs button:has(img) { width: 62px; height: 62px; border-radius: 14px; overflow: hidden; border: 1px solid transparent; transition: border-color .3s, transform .3s; }
 .mh__thumbs button.is-active { border-color: #fff; transform: scale(1.06); box-shadow: 0 0 0 3px rgba(255, 255, 255, .18); }
 .mh__thumbs img { width: 100%; height: 100%; object-fit: cover; background: #e8e8e6; }
-.mh__colors { left: clamp(18px, 5vw, 70px); top: calc(30% + 290px); width: 240px; padding: 22px 16px 16px; border-radius: 18px; }
-.mh__colors div { display: grid; grid-template-columns: repeat(4, 1fr); height: 14px; border-radius: 99px; overflow: hidden; }
-.mh__pointer { position: absolute; top: 8px; left: calc(16px + (240px - 32px) / 8 * (var(--c) * 2 + 1)); width: 0; height: 0; border: 6px solid transparent; border-top: 8px solid #fff; transform: translateX(-50%); transition: left .6s cubic-bezier(.22, 1, .36, 1); }
+.mh > .mh__colors { position: absolute; left: clamp(18px, 5vw, 70px); top: calc(30% + 290px); width: 240px; }
 .mh__sizes { left: clamp(18px, 5vw, 70px); top: calc(30% + 380px); display: flex; gap: 8px; padding: 10px 14px; border-radius: 18px; }
 .mh__sizes button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .08); color: #fff; font: 300 22px/1 var(--m-display); cursor: pointer; transition: background .25s, color .25s; }
 .mh__sizes button.is-on { background: #fff; color: #1c1d1b; }
@@ -325,3 +323,5 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
   /* The suit photo stops at the thighs: fade its lower edge so it doesn't end in a hard line. */
   .mh__model img { -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent); mask-image: linear-gradient(180deg, #000 78%, transparent); }
 }
+/* The colour mood tints the hero's own charcoal backdrop too. */
+.mh::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: calc(var(--mood-on, 0) * .6); mix-blend-mode: color; transition: opacity 1.6s ease, --mood-a 2.4s ease, --mood-b 2.4s ease; background: radial-gradient(70% 60% at 50% 30%, var(--mood-b), transparent 75%), linear-gradient(160deg, var(--mood-a), var(--mood-b)); }

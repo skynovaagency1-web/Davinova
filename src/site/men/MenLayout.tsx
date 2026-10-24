@@ -8,6 +8,7 @@ import { useCart } from '../../store/cart';
 import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
+import { MoodBar, MoodLayer } from '../shared/Mood';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 import { MEN_CATEGORIES, menCategoryPath } from './menFormal';
 import { useWishlist } from '../../store/wishlist';
@@ -36,6 +37,7 @@ export function MenLayout() {
 
   return <div className="m-shell">
     <CloudSky />
+    <MoodLayer dept="men" />
     <DeptSwitch active="men" />
     <header className="m-header">
       <button type="button" className="m-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
@@ -88,6 +90,7 @@ export function MenLayout() {
       </div>
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
+    <MoodBar dept="men" className="mood-bar--float" />
     <SupportHelper dept="men" />
   </div>;
 }
