@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -86,7 +86,11 @@ export function WomenLayout() {
     </AnimatePresence>
     <main><motion.div key={pathname} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}><Outlet /></motion.div></main>
     <footer className="w-footer">
-      <div className="w-footer__art"><img src="/images/footer-davinova.webp" alt="Davinova" width="1672" height="941" loading="lazy" /><HangingBag /></div>
+      <div className="w-footer__art" style={{ '--art': 'url(/images/footer-davinova.webp)' } as CSSProperties}>
+        <img src="/images/footer-davinova.webp" alt="Davinova" width="1672" height="941" loading="lazy" />
+        <span className="w-footer__sweep" aria-hidden="true" />
+        <HangingBag />
+      </div>
       <Logo tone="brand" />
       <NewsletterSignup dept="women" />
       <div className="w-footer__row">
