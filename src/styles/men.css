@@ -324,4 +324,4 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
   .mh__model img { -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent); mask-image: linear-gradient(180deg, #000 78%, transparent); }
 }
 /* The colour mood tints the hero's own charcoal backdrop too. */
-.mh::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: calc(var(--mood-on, 0) * .6); mix-blend-mode: color; transition: opacity 1.6s ease, --mood-a 2.4s ease, --mood-b 2.4s ease; background: radial-gradient(70% 60% at 50% 30%, var(--mood-b), transparent 75%), linear-gradient(160deg, var(--mood-a), var(--mood-b)); }
+.mh::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: calc(var(--mood-on, 0) * .8); mix-blend-mode: soft-light; transition: opacity 1.6s ease, --mood-a 2.4s ease, --mood-b 2.4s ease; background: radial-gradient(70% 60% at 50% 30%, var(--mood-b), transparent 75%), linear-gradient(160deg, var(--mood-a), var(--mood-b)); }
