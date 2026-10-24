@@ -18,6 +18,7 @@ import { jewelryPath, jewelryTypeOf } from '../shared/jewelry';
 
 // The founder's suit photo (background removed). Until it exists the hero shows the latest looks.
 const MEN_CUTOUT = '/images/men-suit.webp';
+const HERO_SUBS = new Set(['wedding-suits', 'tuxedos-and-dinner-jackets', 'linen-and-summer-suits', 'blazers-and-waistcoats']);
 const codes = [
   ['BLACK TIE', 'Tuxedo or dinner jacket, bow tie, black oxfords. Nothing patterned.'],
   ['COCKTAIL', 'Dark suit, crisp shirt; a tie is optional but sharpens it.'],
@@ -32,7 +33,8 @@ export function MenHome() {
   const clothes = menClothes(products);
   const women = products.filter((product) => product.department === 'women');
   const watches = products.filter((product) => jewelryTypeOf(product) === 'mens-watches' && product.images[0]?.url);
-  const looks = clothes.filter((product) => product.images[0]?.url).slice(0, 6);
+  // Owner: the hero look card shows tailoring only, never underwear or loungewear.
+  const looks = clothes.filter((product) => HERO_SUBS.has(product.storeSubcategory ?? '') && product.images[0]?.url).slice(0, 6);
   const [active, setActive] = useState(0);
   const [hasCutout, setHasCutout] = useState(true);
   const look = looks[active % Math.max(looks.length, 1)];
