@@ -30,13 +30,15 @@ export default function OrderConfirmationPage() {
           cache: 'no-store',
           headers: { Accept: 'application/json' },
         });
-        const result = await response.json() as { state?: string; orderNumber?: string };
+        const result = await response.json() as { state?: string; orderNumber?: string; value?: number; currency?: string };
         if (cancelled) return;
 
         if (response.ok && result.state === 'paid') {
           // Do not clear the customer's bag until the server reports a paid order.
           clear();
           setOrderNumber(result.orderNumber || '');
+          // Google Tag Manager picks this up as a GA4 purchase, once per order (a refresh must not count twice).
+          trackPurchase(result.orderNumber, result.value, result.currency);
           setPaymentState('paid');
           return;
         }
@@ -90,4 +92,18 @@ export default function OrderConfirmationPage() {
       {paymentState === 'paid' ? 'Return to the collection' : 'Return to your bag'} <ArrowRight size={16} />
     </Link>
   </section>;
+}
+
+function trackPurchase(orderNumber?: string, value?: number, currency?: string) {
+  if (!orderNumber) return;
+  try {
+    const key = 'dv-tracked-' + orderNumber;
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, '1');
+  } catch {
+    // Storage may be blocked; still count the purchase once for this page view.
+  }
+  const w = window as unknown as { dataLayer?: unknown[] };
+  (w.dataLayer = w.dataLayer || []).push({ ecommerce: null });
+  w.dataLayer.push({ event: 'purchase', ecommerce: { transaction_id: orderNumber, value: value ?? 0, currency: currency || 'USD' } });
 }
