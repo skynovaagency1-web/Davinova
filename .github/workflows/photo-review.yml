@@ -1,0 +1,29 @@
+name: Photo review sheets
+
+# Builds one contact sheet per product for the product ids in scripts/review-photos.json (all of its photos, numbered)
+# and pushes them to the review-sheets branch, so photos can be picked by eye from hosts the build
+# container cannot reach. Nothing on the site changes.
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/3d-fashion-storefront]
+    paths: [scripts/review-photos.json, scripts/review_sheets.py]
+
+permissions:
+  contents: write
+
+jobs:
+  sheets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python scripts/review_sheets.py
+      - name: Push sheets
+        run: |
+          cd review
+          git init -q -b review-sheets
+          git config user.name "davinova-bot"
+          git config user.email "davinova-bot@users.noreply.github.com"
+          git add . && git commit -qm "Photo review sheets"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" review-sheets
