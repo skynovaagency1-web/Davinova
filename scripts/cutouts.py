@@ -59,6 +59,15 @@ def fetch(url: str) -> bytes:
         return response.read()
 
 
+def open_photo(url: str) -> Image.Image:
+    """A supplier photo, shrunk to at most 2000px: some are huge and ran the runner out of memory."""
+    image = Image.open(io.BytesIO(fetch(url)))
+    image.draft('RGB', (2000, 2000))
+    image = image.convert('RGB')
+    image.thumbnail((2000, 2000), Image.LANCZOS)
+    return image
+
+
 def find_faces(detector, image: Image.Image):
     """Faces as (x, y, w, h) in image pixels. The photo is padded so a face touching the edge is still found."""
     scale = min(1.0, 1024 / max(image.size))
@@ -206,7 +215,7 @@ def main() -> int:
 
     if not os.path.exists('public/images/hero-model.webp'):
         try:
-            finish(remove(Image.open(io.BytesIO(fetch(HERO_URL))).convert('RGB'), session=new_session('birefnet-portrait'))).save('public/images/hero-model.webp', 'WEBP', quality=88, method=6)
+            finish(remove(open_photo(HERO_URL), session=new_session('birefnet-portrait'))).save('public/images/hero-model.webp', 'WEBP', quality=88, method=6)
         except Exception as error:  # keep going: the site falls back to the framed photo
             print('hero failed', error)
 
@@ -233,7 +242,7 @@ def main() -> int:
         if hair:
             for index, photo in enumerate(images[:MAX_TRIES]):
                 try:
-                    image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                    image = open_photo(photo['url'])
                     faces = find_faces(detector, image)
                     if len(faces) != 1:
                         reasons.append(f'hair {index}: ' + ('no face' if not faces else 'several people'))
@@ -261,7 +270,7 @@ def main() -> int:
                 reasons.append(f'{index}: turned down by eye')
                 continue
             try:
-                image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                image = open_photo(photo['url'])
                 faces = [] if kind == 'object' else find_faces(detector, image)
                 # Skip the slow background removal when the faces alone already rule the photo out.
                 if kind == 'person' and len(faces) != 1:
@@ -279,7 +288,7 @@ def main() -> int:
                 reasons.append(f'{index}: failed {error}')
         if repick and not hair:
             try:
-                image = Image.open(io.BytesIO(fetch(images[pick]['url']))).convert('RGB')
+                image = open_photo(images[pick]['url'])
                 finish(remove(image, session=object_session if kind == 'object' else session)).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
                 chosen = pick
             except Exception as error:
@@ -293,7 +302,7 @@ def main() -> int:
                 if photo['url'] in skip:
                     continue
                 try:
-                    image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                    image = open_photo(photo['url'])
                     for sess in (object_session, fallback_session):
                         cutout = remove(image, session=sess)
                         problem = photo_problem(image, cutout, [], kind)
@@ -318,7 +327,7 @@ def main() -> int:
                 if photo['url'] in skip:
                     continue
                 try:
-                    image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                    image = open_photo(photo['url'])
                     garment, problem = ghost(image, remove(image, session=session), cloth_session)
                     problem = problem or photo_problem(image, garment, [], 'object')
                     if problem:
