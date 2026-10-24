@@ -70,12 +70,15 @@ function write(store: 'local' | 'session', key: string) {
 /** Nova, the shop helper: a greeting with quick choices and answers from our help pages. No AI service, so it costs nothing to run. */
 export function SupportHelper({ dept }: { dept: Dept }) {
   const base = dept === 'men' ? '/men' : '';
+  // Nova helps in the women's shop, Davi in the men's (owner 2026-10-24).
+  const name = dept === 'men' ? 'Davi' : 'Nova';
+  const avatar = dept === 'men' ? '/images/davi.webp' : '/images/nova.webp';
   const [open, setOpen] = useState(false);
   const [greeting, setGreeting] = useState(false);
   const [hidden, setHidden] = useState(() => read(HIDE_KEY) === '1');
   const [never, setNever] = useState(false);
   const [draft, setDraft] = useState('');
-  const [messages, setMessages] = useState<Message[]>([{ from: 'nova', text: `Hi, I'm Nova from Davinova. How can I help you today?`, choices: MAIN }]);
+  const [messages, setMessages] = useState<Message[]>([{ from: 'nova', text: `Hi, I'm ${name} from Davinova. How can I help you today?`, choices: MAIN }]);
   const end = useRef<HTMLDivElement>(null);
   // The greeting would sit on top of the colour, size and Add to bag buttons, so product pages and the bag never show it.
   const buying = /\/(product\/|bag|cart)/.test(useLocation().pathname);
@@ -113,7 +116,7 @@ export function SupportHelper({ dept }: { dept: Dept }) {
   return createPortal(<div className={`helper helper--${dept}`}>
     {greeting && !open && <div className="helper__greet" role="dialog" aria-label="Davinova helper">
       <button type="button" className="helper__close" onClick={closeGreeting} aria-label="Close"><X size={16} /></button>
-      <p>Hi, I'm <b>Nova</b>. Welcome to Davinova! Looking for the perfect outfit, or need help with an order?</p>
+      <p>Hi, I'm <b>{name}</b>. Welcome to Davinova! Looking for the perfect outfit, or need help with an order?</p>
       <div className="helper__choices">
         <button type="button" className="primary" onClick={() => choose('track')}>Where is my order?</button>
         <button type="button" onClick={() => choose('size')}>Help with my size</button>
@@ -123,8 +126,8 @@ export function SupportHelper({ dept }: { dept: Dept }) {
       <label className="helper__never"><input type="checkbox" checked={never} onChange={(event) => setNever(event.target.checked)} /> Don't show this again</label>
     </div>}
 
-    {open && <section className="helper__panel" aria-label="Chat with Nova">
-      <header><Avatar /><div><strong>Nova</strong><span>Davinova help · replies instantly</span></div><button type="button" onClick={() => setOpen(false)} aria-label="Close chat"><X size={18} /></button></header>
+    {open && <section className="helper__panel" aria-label={`Chat with ${name}`}>
+      <header><Avatar src={avatar} /><div><strong>{name}</strong><span>Davinova help · replies instantly</span></div><button type="button" onClick={() => setOpen(false)} aria-label="Close chat"><X size={18} /></button></header>
       <div className="helper__log">
         {messages.map((message, index) => <div key={index} className={`helper__msg helper__msg--${message.from}`}>{message.text}</div>)}
         {last.choices && <div className="helper__choices helper__choices--chat">{last.choices.map((topic) => <button key={topic} type="button" onClick={() => choose(topic)}>{LABELS[topic]}</button>)}</div>}
@@ -134,12 +137,12 @@ export function SupportHelper({ dept }: { dept: Dept }) {
     </section>}
 
     <button type="button" className="helper__launch" onClick={() => { setOpen(!open); setGreeting(false); }} aria-label={open ? 'Close help' : 'Open help'} aria-expanded={open}>
-      <Avatar /><span>Nova</span>
+      <Avatar src={avatar} /><span>{name}</span>
     </button>
   </div>, document.body);
 }
 
-/** Nova's portrait (made by the owner in ChatGPT), shown in a circle. */
-function Avatar() {
-  return <img className="helper__avatar" src="/images/nova.webp" alt="" width={128} height={128} />;
+/** The helper's portrait (Nova and Davi, made by the owner in ChatGPT), shown in a circle. */
+function Avatar({ src }: { src: string }) {
+  return <img className="helper__avatar" src={src} alt="" width={128} height={128} />;
 }

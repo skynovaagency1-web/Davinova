@@ -277,3 +277,48 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
   .m-hero::after { height: 30%; background: linear-gradient(180deg, transparent, rgba(18, 19, 17, .8)); }
 }
 @media (max-width: 760px) and (max-height: 720px) { .m-hero__copy p { display: none; } }
+
+/* ---------- Men's hero, glass "product UI" (owner 2026-10-24, reference: hoodie poster) ---------- */
+.mh { --glass: rgba(242, 243, 240, .14); --glass-line: rgba(242, 243, 240, .38); position: relative; isolation: isolate; overflow: hidden; height: calc(100svh - 114px); min-height: 560px; max-height: 940px; color: #f2f3f0;
+  background: radial-gradient(70% 60% at 55% 20%, #c4c8c2 0%, #8e928b 30%, #555953 62%, #2b2d2a 100%); }
+.mh::before { content: ''; position: absolute; inset: auto 0 0; height: 45%; z-index: 0; background: radial-gradient(120% 90% at 50% 100%, rgba(79, 122, 106, .45), transparent 70%); pointer-events: none; }
+.mh > * { position: absolute; z-index: 3; }
+.mh__glass, .mh__icons, .mh__thumbs, .mh__colors, .mh__sizes, .mh__info { background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); box-shadow: 0 20px 50px rgba(0, 0, 0, .18), inset 0 1px 0 rgba(255, 255, 255, .25); }
+.mh__title { z-index: 1; left: clamp(18px, 5vw, 70px); top: clamp(14px, 4vh, 40px); font: 200 clamp(84px, min(14vw, 22vh), 230px)/.9 var(--m-display); letter-spacing: -.02em; text-transform: uppercase; color: #fbfbf9; text-shadow: 0 10px 40px rgba(0, 0, 0, .2); pointer-events: none; user-select: none; }
+.mh__icons { right: clamp(18px, 5vw, 70px); top: clamp(18px, 4vh, 40px); display: flex; gap: 6px; padding: 6px; border-radius: 16px; }
+.mh__icons a { display: grid; place-items: center; width: 44px; height: 40px; border-radius: 11px; color: #f2f3f0; transition: background .25s; }
+.mh__icons a:first-child, .mh__icons a:hover { background: rgba(255, 255, 255, .22); }
+.mh__model { z-index: 2; left: 50%; bottom: 0; height: 92%; aspect-ratio: 1056 / 1378; transform: translateX(-46%); }
+.mh__model img { width: 100%; height: 100%; object-fit: contain; object-position: bottom; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .35)); animation: m-breathe 7s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+.mh__thumbs { left: clamp(18px, 5vw, 70px); top: 30%; display: grid; justify-items: center; gap: 10px; padding: 10px 8px; border-radius: 18px; }
+.mh__thumbs button { display: grid; place-items: center; padding: 0; border: 0; background: none; color: #f2f3f0; cursor: pointer; }
+.mh__thumbs button:has(img) { width: 62px; height: 62px; border-radius: 14px; overflow: hidden; border: 1px solid transparent; transition: border-color .3s, transform .3s; }
+.mh__thumbs button.is-active { border-color: #fff; transform: scale(1.06); box-shadow: 0 0 0 3px rgba(255, 255, 255, .18); }
+.mh__thumbs img { width: 100%; height: 100%; object-fit: cover; background: #e8e8e6; }
+.mh__colors { left: clamp(18px, 5vw, 70px); top: calc(30% + 290px); width: 240px; padding: 22px 16px 16px; border-radius: 18px; }
+.mh__colors div { display: grid; grid-template-columns: repeat(4, 1fr); height: 14px; border-radius: 99px; overflow: hidden; }
+.mh__pointer { position: absolute; top: 8px; left: calc(16px + (240px - 32px) / 8 * (var(--c) * 2 + 1)); width: 0; height: 0; border: 6px solid transparent; border-top: 8px solid #fff; transform: translateX(-50%); transition: left .6s cubic-bezier(.22, 1, .36, 1); }
+.mh__sizes { left: clamp(18px, 5vw, 70px); top: calc(30% + 380px); display: flex; gap: 8px; padding: 10px 14px; border-radius: 18px; }
+.mh__sizes button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .08); color: #fff; font: 300 22px/1 var(--m-display); cursor: pointer; transition: background .25s, color .25s; }
+.mh__sizes button.is-on { background: #fff; color: #1c1d1b; }
+.mh__info { right: clamp(18px, 5vw, 70px); top: 50%; width: min(330px, 28vw); display: grid; gap: 14px; padding: 22px; border-radius: 22px; transform: translateY(-40%); }
+.mh__info h1 { margin: 0; font: 400 clamp(22px, 2.2vw, 30px)/1.15 var(--m-display); }
+.mh__info p { margin: 0; font-size: 14px; line-height: 1.55; color: rgba(242, 243, 240, .9); }
+.mh__look { display: grid; gap: 3px; font-size: 13px; line-height: 1.35; color: #fff; }
+.mh__look span { font: 500 10px var(--m-mono); letter-spacing: .2em; text-transform: uppercase; color: #dfe3dc; }
+.mh__cta { justify-self: center; display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 18px; background: #151515; color: #f2f3f0; font: 400 20px var(--m-display); transition: transform .25s, background .25s; }
+.mh__cta:hover { background: #000; transform: translateY(-2px); }
+@media (max-width: 1100px) and (min-width: 761px) { .mh__info { width: 280px; } .mh__colors, .mh__sizes { display: none; } }
+@media (max-width: 760px) {
+  .mh { height: auto; min-height: 0; max-height: none; padding-bottom: 16px; display: grid; }
+  .mh > * { position: relative; }
+  .mh__title { position: absolute; left: 16px; top: 14px; font-size: clamp(52px, 16vw, 96px); }
+  .mh__icons { display: none; }
+  .mh__model { position: relative; left: auto; transform: none; height: min(118vw, 560px); margin: 70px auto 0; }
+  .mh__thumbs { position: absolute; left: 10px; top: 120px; gap: 6px; padding: 6px; }
+  .mh__thumbs button:has(img) { width: 46px; height: 46px; border-radius: 10px; }
+  .mh__colors { display: none; }
+  .mh__sizes { position: absolute; right: 10px; left: auto; top: 120px; flex-direction: column; gap: 5px; padding: 6px; }
+  .mh__sizes button { width: 34px; height: 34px; font-size: 17px; }
+  .mh__info { width: auto; margin: -40px 12px 0; transform: none; padding: 18px; }
+}
