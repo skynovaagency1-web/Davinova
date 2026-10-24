@@ -432,6 +432,10 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-footer__hook .hang-bag { top: .02em; left: calc(var(--a-mid) - var(--bag-w) / 2); font-size: var(--foot-word); }
 .w-footer__row { min-height: calc(var(--bag-w) * 1.91 * .44 + 10px); align-items: end; }
 @media (max-width: 760px) { .w-footer { --bag-w: 70px; } }
+/* Owner's editorial footer (2026-10-24): model woven through DAVINOVA; the bag hangs from the top of the last A (87.9%, 30.7% of the picture). */
+.w-footer__art { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+.w-footer__art img { display: block; width: 100%; height: auto; filter: drop-shadow(0 30px 40px rgba(10, 4, 0, .45)); }
+.w-footer__art .hang-bag { top: 30.2%; left: calc(87.9% - var(--bag-w) / 2); --bag-w: clamp(44px, 6.4vw, 92px); width: var(--bag-w); }
 
 /* ---------- Watch campaign + Watches page ---------- */
 .watch-poster { position: relative; display: block; overflow: hidden; border-radius: 32px; border: 1px solid var(--amber-line); box-shadow: 0 40px 80px rgba(20, 8, 0, .35); isolation: isolate; }
