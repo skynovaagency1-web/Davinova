@@ -37,7 +37,7 @@ export default function OrderConfirmationPage() {
           // Do not clear the customer's bag until the server reports a paid order.
           clear();
           setOrderNumber(result.orderNumber || '');
-          // Google Tag Manager picks this up as a GA4 purchase, once per order (a refresh must not count twice).
+          // Google Analytics records this as a purchase, once per order (a refresh must not count twice).
           trackPurchase(result.orderNumber, result.value, result.currency);
           setPaymentState('paid');
           return;
@@ -103,7 +103,7 @@ function trackPurchase(orderNumber?: string, value?: number, currency?: string) 
   } catch {
     // Storage may be blocked; still count the purchase once for this page view.
   }
-  const w = window as unknown as { dataLayer?: unknown[] };
-  (w.dataLayer = w.dataLayer || []).push({ ecommerce: null });
-  w.dataLayer.push({ event: 'purchase', ecommerce: { transaction_id: orderNumber, value: value ?? 0, currency: currency || 'USD' } });
+  // Sent straight to Google Analytics (gtag in index.html), so no Tag Manager tag is needed for purchases.
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  w.gtag?.('event', 'purchase', { transaction_id: orderNumber, value: value ?? 0, currency: currency || 'USD' });
 }
