@@ -166,6 +166,7 @@ def main() -> int:
     session = new_session(os.environ.get('REMBG_MODEL', 'isnet-general-use'))
     detector = cv2.FaceDetectorYN.create(FACE_MODEL, '', (320, 320), 0.6)
     cloth_session = None
+    fallback_session = None
     # Objects get the sharper BiRefNet model, so caps, pumps and clear plastic parts stay attached.
     object_session = new_session('birefnet-general-lite')
 
@@ -184,7 +185,7 @@ def main() -> int:
         kind, reasons, chosen, floating = kind_of(product), [], None, False
         old = report.get(pid, {})
         # An object cut with the clothing model (beauty before 2026-10-24) lost parts of itself: cut it again.
-        recut = kind == 'object' and old.get('floating')
+        recut = kind == 'object' and (old.get('floating') or (product.get('storeCollection') in BEAUTY_COLLECTIONS and old.get('photo') is None and old.get('fix') != 1))
         if not recut and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
             continue
         if done >= LIMIT:
@@ -215,6 +216,33 @@ def main() -> int:
                 break
             except Exception as error:
                 reasons.append(f'{index}: failed {error}')
+        if chosen is None and kind == 'object' and product.get('storeCollection') in BEAUTY_COLLECTIONS:
+            # Owner (2026-10-24): fix broken beauty cut-outs, never hide them. Try every photo with the second
+            # remover too, then keep the cleanest cut even if it touches the frame (bottles are often shot edge to edge).
+            fallback_session = fallback_session or new_session('isnet-general-use')
+            best = None
+            for index, photo in enumerate(images[:MAX_TRIES]):
+                if photo['url'] in skip:
+                    continue
+                try:
+                    image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                    for sess in (object_session, fallback_session):
+                        cutout = remove(image, session=sess)
+                        problem = photo_problem(image, cutout, [], kind)
+                        if problem is None:
+                            best = (0, index, cutout)
+                            break
+                        if problem in ('cut off at the edge', 'cut off at the bottom', 'product too small'):
+                            area = int((np.array(cutout.getchannel('A')) > 128).sum())
+                            if best is None or (best[0] and area > best[0]):
+                                best = (area, index, cutout)
+                    if best and best[0] == 0:
+                        break
+                except Exception as error:
+                    reasons.append(f'{index}: failed {error}')
+            if best:
+                chosen = best[1]
+                finish(best[2]).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
         if chosen is None and kind == 'person':
             # No photo works on the model: show the clothes floating on their own instead.
             cloth_session = cloth_session or new_session('u2net_cloth_seg')
@@ -243,7 +271,7 @@ def main() -> int:
         else:
             manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
             passed += 1
-        report[pid] = {'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
+        report[pid] = {'fix': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
         print(pid, 'floating' if floating else 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)
