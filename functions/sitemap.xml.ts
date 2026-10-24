@@ -5,8 +5,8 @@ import { langUrl } from '../server/lang';
 
 const PAGES = [
   '/', '/shop', '/categories', '/fits', '/slim', '/plus-size', '/accessories', '/couple', '/watches', '/jewelry',
-  '/gift-cards', '/refer', '/about', '/shipping', '/returns', '/size-guide', '/faq', '/contact', '/privacy', '/terms',
-  '/men', '/men/shop', '/men/categories', '/men/jewelry', '/men/gift-cards', '/men/refer', '/men/about',
+  '/beauty', '/custom', '/gift-cards', '/refer', '/about', '/shipping', '/returns', '/size-guide', '/faq', '/contact', '/privacy', '/terms',
+  '/men', '/men/shop', '/men/categories', '/men/custom', '/men/jewelry', '/men/gift-cards', '/men/refer', '/men/about',
   '/men/shipping', '/men/returns', '/men/size-guide', '/men/faq', '/men/contact',
 ];
 
@@ -18,7 +18,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
 
   const shown = await shownIds(env, request);
   const { results } = await env.DB.prepare(`SELECT id,slug,department,tags_json FROM products
-    WHERE active=1 AND supplier='cj' AND cj_product_id IS NOT NULL AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')`)
+    WHERE active=1 AND supplier='cj' AND cj_product_id IS NOT NULL`)
     .all<{ id: string; slug: string; department: string; tags_json: string }>();
   const urls = new Set(PAGES);
   for (const dept of ['women', 'men'] as const) for (const group of jewelryMenu(dept)) for (const type of group.items) urls.add(jewelryPath(dept, type));
@@ -33,6 +33,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       urls.add(`/shop?category=${place.collection}`);
       if (place.subcategory) urls.add(`/shop?category=${place.collection}&sub=${place.subcategory}`);
     }
+    if (men && place?.subcategory) urls.add(`/men/shop?cat=${place.subcategory}`);
   }
 
   // Each page in English, French and Spanish, each entry listing all three (hreflang) so search engines pair them.
