@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronUp, Home, Search, ShoppingBag } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { productPath } from '../../lib/storefront';
 import { WomenCard as ProductCard } from '../women/WomenCard';
-import { formalMen, menClothes, menDoorImages } from './menFormal';
+import { formalMen, menCategoryPath, menClothes, menDoorImages } from './menFormal';
 import { MenCollections } from './MenCollections';
 import { MenCircles } from './MenCircles';
 import { MenTrending } from './MenTrending';
@@ -18,6 +17,8 @@ import { jewelryPath, jewelryTypeOf } from '../shared/jewelry';
 
 // The founder's suit photo (background removed). Until it exists the hero shows the latest looks.
 const MEN_CUTOUT = '/images/men-suit.webp';
+const MEN_BAG_SUBS = new Set(['briefcases', 'messenger-bags-and-backpacks', 'mens-backpacks', 'crossbody-bags', 'waist-bags', 'luggage-and-travel-bags']);
+const HERO_COLOURS = ['#111111', '#6f736d', '#4f7a6a', '#6b4a33'];
 const HERO_SUBS = new Set(['wedding-suits', 'tuxedos-and-dinner-jackets', 'linen-and-summer-suits', 'blazers-and-waistcoats']);
 const codes = [
   ['BLACK TIE', 'Tuxedo or dinner jacket, bow tie, black oxfords. Nothing patterned.'],
@@ -32,11 +33,14 @@ export function MenHome() {
   const men = formalMen(products);
   const clothes = menClothes(products);
   const women = products.filter((product) => product.department === 'women');
+  // Owner 2026-10-24: a bags row under Print on demand.
+  const bags = men.filter((product) => MEN_BAG_SUBS.has(product.storeSubcategory ?? '') && product.images[0]?.url);
   const watches = products.filter((product) => jewelryTypeOf(product) === 'mens-watches' && product.images[0]?.url);
   // Owner: the hero look card shows tailoring only, never underwear or loungewear.
   const looks = clothes.filter((product) => HERO_SUBS.has(product.storeSubcategory ?? '') && product.images[0]?.url).slice(0, 6);
   const [active, setActive] = useState(0);
   const [hasCutout, setHasCutout] = useState(true);
+  const [heroSize, setHeroSize] = useState('M');
   const look = looks[active % Math.max(looks.length, 1)];
 
   // The look card turns over every few seconds.
@@ -47,43 +51,62 @@ export function MenHome() {
   }, [looks.length]);
 
   return <>
-    <section className="m-hero">
-      <span className="m-hero__word" aria-hidden="true">HOMME</span>
-      <div className="m-hero__copy">
-        <span className="m-hero__kicker">Davinova Homme · Special edition</span>
-        <h1>Dressed for <em>the occasion</em></h1>
-        <p>Suits, tuxedos and evening wear chosen for weddings, black-tie dinners and holidays.</p>
-        <div className="m-hero__ctas">
-          <Link className="m-hero__btn m-hero__btn--main" to="/men/shop">Shop formal <ArrowRight size={16} /></Link>
-          <Link className="m-hero__btn m-hero__btn--ghost" to="/men/categories">Categories</Link>
-        </div>
-        <ul className="m-hero__facts">
-          <li><b>{men.length || '—'}</b>Looks</li>
-          <li><b>S–3XL</b>Sizes</li>
-          <li><b>30 days</b>Returns</li>
-        </ul>
-      </div>
+    {/* Owner 2026-10-24: glass "product UI" hero (thin giant word, look picker, colours, sizes, info card) around the suit model. */}
+    <section className="mh">
+      <span className="mh__title" aria-hidden="true">Homme</span>
+      <nav className="mh__icons" aria-label="Quick links">
+        <Link to="/men" aria-label="Men's home"><Home size={20} /></Link>
+        <Link to="/men/shop" aria-label="Search the men's shop"><Search size={20} /></Link>
+        <Link to="/men/bag" aria-label="Your bag"><ShoppingBag size={20} /></Link>
+      </nav>
 
-      <div className="m-hero__model">
+      <div className="mh__model">
         {hasCutout
-          ? <img className="m-hero__cutout" src={MEN_CUTOUT} alt="Davinova Homme model in a black suit" onError={() => setHasCutout(false)} />
-          : look ? <img className="m-hero__photo" src={look.images[0].url} alt={look.title} />
-          : <div className="m-hero__placeholder">{loading ? 'LOADING…' : 'NEW LOOKS / SOON'}</div>}
+          ? <img src={MEN_CUTOUT} alt="Davinova Homme model in a black suit" onError={() => setHasCutout(false)} />
+          : look ? <img src={look.images[0].url} alt={look.title} /> : null}
       </div>
 
-      {look && <Link className="m-hero__look" to={productPath(look)}>
-        <AnimatePresence mode="wait"><motion.img key={look.id} src={look.images[0].url} alt="" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} /></AnimatePresence>
-        <div><span>Look {String(active + 1).padStart(2, '0')}</span><strong>{look.title}</strong></div>
-      </Link>}
+      {looks.length > 0 && <div className="mh__thumbs">
+        <button type="button" aria-label="Previous look" onClick={() => setActive((index) => (index - 1 + looks.length) % looks.length)}><ChevronUp size={18} /></button>
+        {[-1, 0, 1].map((step) => {
+          const index = (active + step + looks.length) % looks.length;
+          const item = looks[index];
+          return <button key={step} type="button" className={step === 0 ? 'is-active' : ''} aria-label={step === 0 ? `${item.title} (shown)` : `Show ${item.title}`} onClick={() => setActive(index)}>
+            <img src={item.images[0].url} alt="" loading="lazy" />
+          </button>;
+        })}
+        <button type="button" aria-label="Next look" onClick={() => setActive((index) => (index + 1) % looks.length)}><ChevronDown size={18} /></button>
+      </div>}
+
+      <div className="mh__colors" aria-hidden="true" style={{ '--c': active % HERO_COLOURS.length } as CSSProperties}>
+        <i className="mh__pointer" />
+        <div>{HERO_COLOURS.map((colour) => <span key={colour} style={{ background: colour }} />)}</div>
+      </div>
+
+      <div className="mh__sizes" role="group" aria-label="Sizes">
+        {['S', 'M', 'L', 'XL'].map((size) => <button key={size} type="button" className={size === heroSize ? 'is-on' : ''} aria-pressed={size === heroSize} onClick={() => setHeroSize(size)}>{size.toLowerCase()}</button>)}
+      </div>
+
+      <div className="mh__info">
+        <h1>Dressed for the occasion</h1>
+        <p>Suits, tuxedos and evening wear chosen for weddings, black-tie dinners and holidays. Sizes S to 3XL, 30-day returns.</p>
+        {look && <Link to={productPath(look)} className="mh__look"><span>Look {String(active + 1).padStart(2, '0')}</span>{look.title}</Link>}
+        <Link className="mh__cta" to="/men/shop">Shop formal <ArrowRight size={16} /></Link>
+      </div>
     </section>
 
     <MenCircles products={men} />
     <MenCollections products={men} />
     <MenTrending products={clothes} />
     <section className="w-watch-feature">
-      <div className="w-sec-head"><h2>New: <b>custom</b></h2><p className="w-sec-head__note">Blank tees, your print. Made when you order.</p></div>
+      <div className="w-sec-head"><h2>Print on <b>demand</b></h2><p className="w-sec-head__note">Blank tees, your print. Made when you order.</p></div>
       <CustomPoster />
     </section>
+
+    {bags.length > 0 && <section className="w-new">
+      <div className="w-new__head"><h2>The bag <b>edit</b></h2><Link to={menCategoryPath('briefcases')} className="w-new__all">See all <ArrowRight size={16} /></Link></div>
+      <div className="w-new__rail">{bags.slice(0, 12).map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
+    </section>}
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>shoes</b></h2><p className="w-sec-head__note">Patent, polished, made for the entrance.</p></div>
       <ShoePoster />
