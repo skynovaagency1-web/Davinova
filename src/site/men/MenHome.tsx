@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, ChevronUp, Home, Search, ShoppingBag } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
@@ -13,12 +13,12 @@ import { MenWatchPoster } from './MenWatchPoster';
 import { CustomPoster } from './CustomPoster';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
+import { MoodBar } from '../shared/Mood';
 import { jewelryPath, jewelryTypeOf } from '../shared/jewelry';
 
 // The founder's suit photo (background removed). Until it exists the hero shows the latest looks.
 const MEN_CUTOUT = '/images/men-suit.webp';
 const MEN_BAG_SUBS = new Set(['briefcases', 'messenger-bags-and-backpacks', 'mens-backpacks', 'crossbody-bags', 'waist-bags', 'luggage-and-travel-bags']);
-const HERO_COLOURS = ['#111111', '#6f736d', '#4f7a6a', '#6b4a33'];
 const HERO_SUBS = new Set(['wedding-suits', 'tuxedos-and-dinner-jackets', 'linen-and-summer-suits', 'blazers-and-waistcoats']);
 const codes = [
   ['BLACK TIE', 'Tuxedo or dinner jacket, bow tie, black oxfords. Nothing patterned.'],
@@ -78,10 +78,7 @@ export function MenHome() {
         <button type="button" aria-label="Next look" onClick={() => setActive((index) => (index + 1) % looks.length)}><ChevronDown size={18} /></button>
       </div>}
 
-      <div className="mh__colors" aria-hidden="true" style={{ '--c': active % HERO_COLOURS.length } as CSSProperties}>
-        <i className="mh__pointer" />
-        <div>{HERO_COLOURS.map((colour) => <span key={colour} style={{ background: colour }} />)}</div>
-      </div>
+      <MoodBar dept="men" className="mh__colors" />
 
       <div className="mh__sizes" role="group" aria-label="Sizes">
         {['S', 'M', 'L', 'XL'].map((size) => <button key={size} type="button" className={size === heroSize ? 'is-on' : ''} aria-pressed={size === heroSize} onClick={() => setHeroSize(size)}>{size.toLowerCase()}</button>)}

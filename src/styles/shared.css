@@ -499,3 +499,27 @@
   .pv2__name strong { font-size: clamp(52px, 16vw, 80px); }
   .pv2 .pv-buy { max-width: none; }
 }
+
+/* Colour moods: a tint over the whole shop that changes every 30 seconds, or when the shopper picks one. */
+@property --mood-a { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --mood-b { syntax: '<color>'; inherits: true; initial-value: transparent; }
+.w-shell > .mood-layer, .m-shell > .mood-layer { position: fixed !important; inset: 0; z-index: 0 !important; pointer-events: none; }
+.mood-layer { opacity: calc(var(--mood-on, 0) * .62); mix-blend-mode: color; transition: opacity 1.6s ease, --mood-a 2.4s ease, --mood-b 2.4s ease;
+  background: radial-gradient(70% 55% at 12% 8%, var(--mood-b), transparent 70%), radial-gradient(80% 65% at 90% 95%, var(--mood-a), transparent 72%), linear-gradient(160deg, var(--mood-a), var(--mood-b)); }
+.mood-layer::after { content: ''; position: absolute; inset: 0; mix-blend-mode: soft-light; opacity: .5; background: radial-gradient(60% 50% at 80% 10%, var(--mood-b), transparent 70%); }
+.mood-bar { position: relative; padding: 18px 12px 10px; border-radius: 18px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .35); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); box-shadow: 0 16px 40px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .25); }
+.mood-bar > div { display: grid; grid-template-columns: repeat(var(--n), 1fr); height: 14px; border-radius: 99px; overflow: hidden; }
+.mood-bar button { padding: 0; border: 0; cursor: pointer; transition: filter .25s; }
+.mood-bar button:hover, .mood-bar button.is-on { filter: brightness(1.18) saturate(1.1); }
+.mood-bar__pointer { position: absolute; top: 5px; left: calc(12px + (100% - 24px) * (var(--i) + .5) / var(--n)); width: 0; height: 0; border: 6px solid transparent; border-top: 8px solid #fff; transform: translateX(-50%); transition: left .6s cubic-bezier(.22, 1, .36, 1); filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .4)); }
+.w-shell > .mood-bar--float, .m-shell > .mood-bar--float { position: fixed !important; z-index: 60 !important; left: max(14px, env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: 168px; padding: 15px 10px 8px; }
+.mood-bar--float > div { height: 11px; }
+.mood-bar--float .mood-bar__pointer { top: 3px; border-width: 5px; border-top-width: 7px; left: calc(10px + (100% - 20px) * (var(--i) + .5) / var(--n)); }
+@media (max-width: 760px) { .w-shell > .mood-bar--float, .m-shell > .mood-bar--float { width: 132px; left: 10px; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); } }
+.dept__start { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.mood-bar--dept { flex: none; width: 132px; padding: 5px 7px; border-radius: 99px; box-shadow: none; }
+.mood-bar--dept > div { height: 10px; }
+.mood-bar--dept .mood-bar__pointer { display: none; }
+.mood-bar--dept button.is-on { box-shadow: inset 0 0 0 2px #fff; border-radius: 99px; }
+.w-shell > .mood-bar--float, .m-shell > .mood-bar--float { display: none; }
+@media (max-width: 760px) { .dept__start { display: none; } .w-shell > .mood-bar--float, .m-shell > .mood-bar--float { display: block; } }
