@@ -1,1 +1,1 @@
-{"run":2,"countries":"CA,AU,NZ,AE","out":"reports/cj-fast-world.json"}
+{"run":3,"countries":"US,FR,DE,GB","input":"reports/cj-check-new.json","out":"reports/cj-fast-new.json"}
