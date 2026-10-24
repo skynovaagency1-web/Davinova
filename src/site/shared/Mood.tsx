@@ -4,31 +4,28 @@ import { create } from 'zustand';
 type Dept = 'women' | 'men';
 interface Mood { name: string; a: string; b: string }
 
-/** Colour moods from the owner's swatch boards: Men = 10 shades of black and grey, Women = cream to espresso. */
+/** Colour moods Claude picked for a hyper-premium feel (owner, 2026-10-24): deep jewel and metal tones, each a two-stop gradient. */
 const MOODS: Record<Dept, Mood[]> = {
   women: [
-    { name: 'Cream', a: '#f3ead8', b: '#dcc8a8' },
-    { name: 'Beige', a: '#dcc8a8', b: '#9b7253' },
-    { name: 'Mocha', a: '#9b7253', b: '#5a3a2a' },
-    { name: 'Cocoa', a: '#5a3a2a', b: '#2e1f17' },
-    { name: 'Espresso', a: '#2e1f17', b: '#5a3a2a' },
+    { name: 'Espresso', a: '#2e1f17', b: '#7a5a43' },
+    { name: 'Champagne gold', a: '#b8924f', b: '#f3e3c3' },
+    { name: 'Rose gold', a: '#a8616c', b: '#f0c4bc' },
+    { name: 'Bordeaux', a: '#4a0f1c', b: '#9c3a4e' },
+    { name: 'Emerald', a: '#0b3d2e', b: '#3f8f72' },
+    { name: 'Pearl', a: '#cfc5b6', b: '#fffaf2' },
   ],
   men: [
-    { name: 'Jet black', a: '#0b0b0b', b: '#232323' },
-    { name: 'Charcoal grey', a: '#232323', b: '#3a3b3d' },
-    { name: 'Graphite grey', a: '#3a3b3d', b: '#5f6063' },
-    { name: 'Steel grey', a: '#5f6063', b: '#77787a' },
-    { name: 'Smoky grey', a: '#77787a', b: '#8e8f91' },
-    { name: 'Ash grey', a: '#8e8f91', b: '#a9aaac' },
-    { name: 'Silver grey', a: '#a9aaac', b: '#c4c5c6' },
-    { name: 'Pearl grey', a: '#c4c5c6', b: '#d6d6d6' },
-    { name: 'Dove grey', a: '#d6d6d6', b: '#eeeeec' },
-    { name: 'Platinum grey', a: '#eeeeec', b: '#d6d6d6' },
+    { name: 'Onyx', a: '#0b0b0c', b: '#2a2a2e' },
+    { name: 'Gunmetal', a: '#2b2f35', b: '#6b727c' },
+    { name: 'Midnight navy', a: '#0c1a33', b: '#355a8f' },
+    { name: 'Racing green', a: '#0f2a20', b: '#3d6b56' },
+    { name: 'Cognac', a: '#4a2a16', b: '#a8693a' },
+    { name: 'Platinum', a: '#8f9296', b: '#e4e6e8' },
   ],
 };
 
-/** Each shop opens on the shade closest to its own look: espresso for Women, charcoal for Men. */
-const START: Record<Dept, number> = { women: 4, men: 1 };
+/** Each shop opens on the shade closest to its own look. */
+const START: Record<Dept, number> = { women: 0, men: 0 };
 
 const AUTO_MS = 30_000; // the colours move on by themselves every 30 seconds
 const HOLD_MS = 60_000; // a colour the shopper picks stays for a minute first
@@ -72,7 +69,11 @@ export function MoodLayer({ dept }: { dept: Dept }) {
     root.setProperty('--logo-4', 'var(--mood-b)');
     root.setProperty('--logo-ink', 'color-mix(in srgb, var(--mood-b) 32%, #fff)');
   }, [mood]);
-  return <div className={`mood-layer mood-layer--${dept}`} style={style} aria-hidden="true" />;
+  // Two layers: one gives the hue, the other the light and depth of the shade.
+  return <>
+    <div className={`mood-layer mood-layer--${dept}`} style={style} aria-hidden="true" />
+    <div className={`mood-layer mood-layer--light mood-layer--${dept}`} style={style} aria-hidden="true" />
+  </>;
 }
 
 /** The colour bar: one gradient swatch per mood, with a pointer over the current one. */
