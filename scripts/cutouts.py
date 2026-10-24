@@ -15,6 +15,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.request
 
 import cv2
@@ -30,13 +31,17 @@ MAX_HEIGHT = 900
 GATE_VERSION = 3  # bump to re-check every product after changing the rules
 FLOAT_FROM = 2  # results from before floating clothes existed: passes stay, failed clothing gets a floating try
 FLOAT_TRIES = 3
-LIMIT = int(os.environ.get('LIMIT', '300'))  # products checked per run, so one run fits in the job's time limit
+LIMIT = int(os.environ.get('LIMIT', '300'))  # products checked per run
+# Stop in time to commit: the job is killed at 180 minutes and everything unsaved is lost.
+TIME_BUDGET = int(os.environ.get('TIME_BUDGET_MIN', '140')) * 60
 MAX_TRIES = 8
 OBJECT_PRODUCT = re.compile(r'\bwrist ?watch|\bwatch(es)?\b|jewel|necklace|earring|bracelet|bangle|pendant|\brings?\b|tiara|crown|hairpin|hair clip|hair comb|headpiece|brooch|anklet', re.I)
 GROUP_PRODUCT = 'couple-parent-child-clothing'
 JEWELRY_COLLECTION = 'jewelry-and-watches'
 # Ties, shoes, belts, hats and bags are shown on their own, like jewelry.
-OBJECT_COLLECTIONS = {JEWELRY_COLLECTION, 'mens-accessories', 'womens-bags', 'womens-shoes'}
+# Beauty products (bottles, jars, tools, hair) are objects too: never cut them with the clothing model.
+BEAUTY_COLLECTIONS = {'nail-art-and-tools', 'food-and-health', 'hair-and-accessories', 'skin-care', 'hair-weaves', 'makeup', 'beauty-tools'}
+OBJECT_COLLECTIONS = {JEWELRY_COLLECTION, 'mens-accessories', 'womens-bags', 'womens-shoes', *BEAUTY_COLLECTIONS}
 
 
 def is_ghostly(image):
@@ -160,10 +165,16 @@ def main() -> int:
     report = json.load(open(report_path)) if os.path.exists(report_path) else {}
     # Photos the owner's reviewer turned down by eye (back views, props, crowds) stay hidden whatever the check says.
     rejects = set(json.load(open(os.path.join(OUT, 'rejects.json')))) if os.path.exists(os.path.join(OUT, 'rejects.json')) else set()
+    started = time.time()
     products = json.loads(fetch(CATALOG_URL))['products']
+    # Beauty first: the owner is waiting on those re-cuts.
+    products.sort(key=lambda product: product.get('storeCollection') not in BEAUTY_COLLECTIONS)
     session = new_session(os.environ.get('REMBG_MODEL', 'isnet-general-use'))
     detector = cv2.FaceDetectorYN.create(FACE_MODEL, '', (320, 320), 0.6)
     cloth_session = None
+    fallback_session = None
+    # Objects get the sharper BiRefNet model, so caps, pumps and clear plastic parts stay attached.
+    object_session = new_session('birefnet-general-lite')
 
     if not os.path.exists('public/images/hero-model.webp'):
         try:
@@ -179,9 +190,12 @@ def main() -> int:
             continue
         kind, reasons, chosen, floating = kind_of(product), [], None, False
         old = report.get(pid, {})
-        if old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person')):
+        # An object cut with the clothing model (beauty before 2026-10-24) lost parts of itself: cut it again.
+        recut = kind == 'object' and (old.get('floating') or (product.get('storeCollection') in BEAUTY_COLLECTIONS and old.get('photo') is None and old.get('fix') != 1))
+        if not recut and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
             continue
-        if done >= LIMIT:
+        if done >= LIMIT or time.time() - started > TIME_BUDGET:
+            done = max(done, LIMIT)
             continue
         done += 1
         # Clothing photos already checked under the previous rules failed on the model; only the floating cut is new.
@@ -199,7 +213,7 @@ def main() -> int:
                 if kind == 'person' and len(faces) != 1:
                     reasons.append(f'{index}: ' + ('no face (headless or cropped)' if not faces else 'several people'))
                     continue
-                cutout = remove(image, session=session)
+                cutout = remove(image, session=object_session if kind == 'object' else session)
                 problem = photo_problem(image, cutout, faces, kind)
                 if problem:
                     reasons.append(f'{index}: {problem}')
@@ -209,6 +223,33 @@ def main() -> int:
                 break
             except Exception as error:
                 reasons.append(f'{index}: failed {error}')
+        if chosen is None and kind == 'object' and product.get('storeCollection') in BEAUTY_COLLECTIONS:
+            # Owner (2026-10-24): fix broken beauty cut-outs, never hide them. Try every photo with the second
+            # remover too, then keep the cleanest cut even if it touches the frame (bottles are often shot edge to edge).
+            fallback_session = fallback_session or new_session('isnet-general-use')
+            best = None
+            for index, photo in enumerate(images[:MAX_TRIES]):
+                if photo['url'] in skip:
+                    continue
+                try:
+                    image = Image.open(io.BytesIO(fetch(photo['url']))).convert('RGB')
+                    for sess in (object_session, fallback_session):
+                        cutout = remove(image, session=sess)
+                        problem = photo_problem(image, cutout, [], kind)
+                        if problem is None:
+                            best = (0, index, cutout)
+                            break
+                        if problem in ('cut off at the edge', 'cut off at the bottom', 'product too small'):
+                            area = int((np.array(cutout.getchannel('A')) > 128).sum())
+                            if best is None or (best[0] and area > best[0]):
+                                best = (area, index, cutout)
+                    if best and best[0] == 0:
+                        break
+                except Exception as error:
+                    reasons.append(f'{index}: failed {error}')
+            if best:
+                chosen = best[1]
+                finish(best[2]).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
         if chosen is None and kind == 'person':
             # No photo works on the model: show the clothes floating on their own instead.
             cloth_session = cloth_session or new_session('u2net_cloth_seg')
@@ -237,7 +278,7 @@ def main() -> int:
         else:
             manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
             passed += 1
-        report[pid] = {'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
+        report[pid] = {'fix': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
         print(pid, 'floating' if floating else 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)
