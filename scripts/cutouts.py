@@ -165,6 +165,8 @@ def main() -> int:
     report = json.load(open(report_path)) if os.path.exists(report_path) else {}
     # Photos the owner's reviewer turned down by eye (back views, props, crowds) stay hidden whatever the check says.
     rejects = set(json.load(open(os.path.join(OUT, 'rejects.json')))) if os.path.exists(os.path.join(OUT, 'rejects.json')) else set()
+    # Photos picked by eye for products whose automatic pick was a text-heavy ad ({id: photo number}).
+    picks = json.load(open(os.path.join(OUT, 'picks.json'))) if os.path.exists(os.path.join(OUT, 'picks.json')) else {}
     started = time.time()
     products = json.loads(fetch(CATALOG_URL))['products']
     # Beauty first: the owner is waiting on those re-cuts.
@@ -192,14 +194,16 @@ def main() -> int:
         old = report.get(pid, {})
         # An object cut with the clothing model (beauty before 2026-10-24) lost parts of itself: cut it again.
         recut = kind == 'object' and (old.get('floating') or (product.get('storeCollection') in BEAUTY_COLLECTIONS and old.get('photo') is None and old.get('fix') != 1))
-        if not recut and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
+        pick = picks.get(pid)
+        repick = pick is not None and old.get('pick') != pick and pick < len(images)
+        if not recut and not repick and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
             continue
         if done >= LIMIT or time.time() - started > TIME_BUDGET:
             done = max(done, LIMIT)
             continue
         done += 1
         # Clothing photos already checked under the previous rules failed on the model; only the floating cut is new.
-        model_photos = [] if kind == 'person' and old.get('v') == FLOAT_FROM else images[:MAX_TRIES]
+        model_photos = [] if repick or (kind == 'person' and old.get('v') == FLOAT_FROM) else images[:MAX_TRIES]
         # Photos the owner's reviewer turned down by eye are never picked again ('skip' in the report).
         skip = set(old.get('skip', []))
         for index, photo in enumerate(model_photos):
@@ -223,7 +227,14 @@ def main() -> int:
                 break
             except Exception as error:
                 reasons.append(f'{index}: failed {error}')
-        if chosen is None and kind == 'object' and product.get('storeCollection') in BEAUTY_COLLECTIONS:
+        if repick:
+            try:
+                image = Image.open(io.BytesIO(fetch(images[pick]['url']))).convert('RGB')
+                finish(remove(image, session=object_session if kind == 'object' else session)).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
+                chosen = pick
+            except Exception as error:
+                reasons.append(f'{pick}: failed {error}')
+        if chosen is None and not repick and kind == 'object' and product.get('storeCollection') in BEAUTY_COLLECTIONS:
             # Owner (2026-10-24): fix broken beauty cut-outs, never hide them. Try every photo with the second
             # remover too, then keep the cleanest cut even if it touches the frame (bottles are often shot edge to edge).
             fallback_session = fallback_session or new_session('isnet-general-use')
@@ -250,7 +261,7 @@ def main() -> int:
             if best:
                 chosen = best[1]
                 finish(best[2]).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
-        if chosen is None and kind == 'person':
+        if chosen is None and not repick and kind == 'person':
             # No photo works on the model: show the clothes floating on their own instead.
             cloth_session = cloth_session or new_session('u2net_cloth_seg')
             for index, photo in enumerate(images[:FLOAT_TRIES]):
@@ -278,7 +289,7 @@ def main() -> int:
         else:
             manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
             passed += 1
-        report[pid] = {'fix': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons}
+        report[pid] = {'fix': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons, **({'pick': pick} if repick and chosen is not None else {})}
         print(pid, 'floating' if floating else 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)
