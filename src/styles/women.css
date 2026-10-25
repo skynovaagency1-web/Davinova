@@ -644,3 +644,6 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-footer__watch:hover span, .w-footer__watch:focus-visible span { opacity: 1; }
 .w-footer__watch::after { content: ''; position: absolute; inset: 20%; border-radius: 50%; box-shadow: 0 0 26px 6px rgba(235, 240, 232, .35); opacity: 0; animation: watch-glint 4.5s ease-in-out infinite; }
 @keyframes watch-glint { 0%, 60%, 100% { opacity: 0; } 75% { opacity: 1; } }
+.w-footer__social { display: flex; justify-content: center; gap: 14px; margin-top: 18px; }
+.w-footer__social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: inherit; border: 1px solid currentColor; opacity: .8; transition: opacity .2s, transform .2s; }
+.w-footer__social a:hover { opacity: 1; transform: translateY(-2px); }
