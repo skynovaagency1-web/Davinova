@@ -29,6 +29,7 @@ const HelpPage = lazy(() => import('./site/shared/HelpPages').then((m) => ({ def
 const MenCategoriesPage = lazy(() => import('./site/men/MenCategoriesPage').then((m) => ({ default: m.MenCategoriesPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
 const OrdersAdminPage = lazy(() => import('./pages/OrdersAdminPage').then((m) => ({ default: m.OrdersAdminPage })));
+const WinnersAdminPage = lazy(() => import('./pages/WinnersAdminPage').then((m) => ({ default: m.WinnersAdminPage })));
 const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
 
 function PageLoader() { return <div className="page-loader" role="status">Loading…</div>; }
@@ -42,6 +43,7 @@ export default function App() {
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
       <Route path="/admin/orders" element={<OrdersAdminPage />} />
+      <Route path="/admin/winners" element={<WinnersAdminPage />} />
       <Route path="/men" element={<MenLayout />}>
         <Route index element={<MenHome />} />
         <Route path="shop" element={<MenShop />} />
