@@ -35,7 +35,7 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
     }
     const page = Number(url.searchParams.get('page') ?? '1');
     const size = Number(url.searchParams.get('size') ?? '10');
-    const result = await searchCJProducts(env, keyword, page, size);
+    const result = await searchCJProducts(env, keyword, page, size, Number(url.searchParams.get('min') ?? '0') || 0);
     return json({ ok: true, mode: 'read_only', ...result });
   } catch (error) {
     const message = error instanceof Error ? error.message.slice(0, 320) : 'CJ catalogue request failed.';

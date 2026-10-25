@@ -302,6 +302,7 @@ export interface CJCatalogSearchProduct {
   sku: string;
   imageUrl: string;
   sellPriceUsd: number | null;
+  minPriceUsd: number | null;
   discountPriceUsd: number | null;
   listedCount: number | null;
   inventoryTotal: number | null;
@@ -352,6 +353,7 @@ export async function searchCJProducts(
   keyword: string,
   page = 1,
   size = 10,
+  minPrice = 0,
 ): Promise<{ page: number; pageSize: number; totalRecords: number; items: CJCatalogSearchProduct[] }> {
   const cleanKeyword = keyword.trim();
   if (cleanKeyword.length < 2 || cleanKeyword.length > 100) {
@@ -365,6 +367,7 @@ export async function searchCJProducts(
     size: String(safeSize),
     features: 'enable_category',
   });
+  if (minPrice > 0) params.set('startSellPrice', String(minPrice));
   const data = await request<CJListV2Response>(env, '/product/listV2?' + params.toString());
   const products = (data.content ?? []).flatMap((block) => block.productList ?? []);
   const items = products.map((product) => ({
@@ -373,6 +376,8 @@ export async function searchCJProducts(
     sku: product.spu ?? product.sku ?? '',
     imageUrl: product.bigImage ?? '',
     sellPriceUsd: numericValue(product.sellPrice),
+    // sellPrice is a range like "3.20 -- 5.80" for products with several variants; keep the cheapest.
+    minPriceUsd: numericValue(String(product.sellPrice ?? '').split('--')[0].trim()),
     discountPriceUsd: numericValue(product.nowPrice ?? product.discountPrice),
     listedCount: numericValue(product.listedNum),
     inventoryTotal: numericValue(product.warehouseInventoryNum),
