@@ -11,6 +11,8 @@ import { CloudSky } from '../shared/Cloud';
 import { MoodBar, MoodLayer } from '../shared/Mood';
 import { HangingBag } from '../shared/HangingBag';
 import { SupportHelper } from '../shared/SupportHelper';
+import { PromoBar } from '../shared/PromoBar';
+import { WelcomePopup } from '../shared/WelcomePopup';
 import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
 import { BEAUTY_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
@@ -57,6 +59,7 @@ export function WomenLayout() {
   return <div className="w-shell">
     <CloudSky />
     <MoodLayer dept="women" />
+    <PromoBar dept="women" />
     <DeptSwitch active="women" />
     <header className="w-header">
       <button type="button" className="w-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
@@ -103,5 +106,6 @@ export function WomenLayout() {
     </footer>
     <MoodBar dept="women" className="mood-bar--float" />
     <SupportHelper dept="women" />
+    <WelcomePopup dept="women" />
   </div>;
 }

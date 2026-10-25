@@ -5,7 +5,7 @@ type DbProduct = {
   id: string; slug: string; title: string; description: string;
   price_cents: number; compare_at_cents: number | null; cost_cents: number; currency: string;
   occasion: string; collection_category: string; department: string; color: string; length: string | null;
-  sleeve: string; neckline: string; tags_json: string; featured: number;
+  sleeve: string; neckline: string; tags_json: string; featured: number; is_new: number; stock_total: number;
   supplier: string; catalog_source: string; catalog_source_product_id: string | null;
   cj_product_id: string | null; supplier_verified: number; has_sellable_variant: number;
 };
@@ -37,6 +37,8 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,cost_cents,currency,occasion,
     collection_category,department,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
     catalog_source_product_id,cj_product_id,supplier_verified,
+    CASE WHEN created_at >= datetime('now','-4 days') THEN 1 ELSE 0 END AS is_new,
+    (SELECT COALESCE(SUM(v.available_stock),0) FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) AS stock_total,
     CASE WHEN EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) THEN 1 ELSE 0 END AS has_sellable_variant
     FROM products
     WHERE active=1 AND supplier='cj' AND catalog_source='cj' AND cj_product_id IS NOT NULL AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')`;
@@ -95,6 +97,9 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       images: imageRows,
       featured: row.featured === 1,
       browseOnly: !purchasable,
+      isNew: row.is_new === 1 || undefined,
+      // Real CJ stock across the shown sizes; only flagged when genuinely short.
+      lowStock: purchasable && row.stock_total > 0 && row.stock_total <= 25 ? row.stock_total : undefined,
     });
   }
 

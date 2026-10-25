@@ -1,6 +1,8 @@
 import { useEffect, useState, type CSSProperties } from 'react';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { SupportHelper } from '../shared/SupportHelper';
+import { PromoBar } from '../shared/PromoBar';
+import { WelcomePopup } from '../shared/WelcomePopup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Heart, Home, Menu, ShoppingBag, UserRound, X } from 'lucide-react';
@@ -38,6 +40,7 @@ export function MenLayout() {
   return <div className="m-shell">
     <CloudSky />
     <MoodLayer dept="men" />
+    <PromoBar dept="men" />
     <DeptSwitch active="men" />
     <header className="m-header">
       <button type="button" className="m-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
@@ -92,5 +95,6 @@ export function MenLayout() {
     </footer>
     <MoodBar dept="men" className="mood-bar--float" />
     <SupportHelper dept="men" />
+    <WelcomePopup dept="men" />
   </div>;
 }
