@@ -3,6 +3,7 @@
  * description per product and category, a share picture, and schema.org data (product price and stock, the
  * shop itself) so Google can show rich results without running the app first.
  */
+import { brand } from '../src/config/brand';
 import { menStoreCollectionGroups, storeCollectionGroups } from '../src/lib/storeCollectionTaxonomy';
 
 export interface PageSeo { title: string; description: string; image: string; type: 'website' | 'product'; jsonLd: object[] }
@@ -39,7 +40,7 @@ const plain = (html: string) => html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' 
 
 function organisation(): object[] {
   return [
-    { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE, logo: `${SITE}/favicon.svg`, email: 'contact@davinova.com' },
+    { '@context': 'https://schema.org', '@type': 'Organization', name: BRAND, url: SITE, logo: `${SITE}/favicon.svg`, email: 'contact@davinova.com', sameAs: Object.values(brand.socialLinks).filter(Boolean) },
     { '@context': 'https://schema.org', '@type': 'WebSite', name: BRAND, url: SITE, inLanguage: ['en', 'fr', 'es'] },
   ];
 }

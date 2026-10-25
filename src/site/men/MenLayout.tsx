@@ -1,4 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react';
+import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { SupportHelper } from '../shared/SupportHelper';
 import { PromoBar } from '../shared/PromoBar';
@@ -91,6 +92,7 @@ export function MenLayout() {
         <p>Formalwear for the moments you'll keep.</p>
         <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/account">My account</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/track">Track order</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
       </div>
+      <SocialLinks />
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="men" className="mood-bar--float" />
