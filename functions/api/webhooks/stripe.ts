@@ -189,6 +189,34 @@ async function sendCustomerConfirmation(env: Env, orderNumber: string, email: st
   }, env.RESEND_API_KEY, env.EMAIL_FROM);
 }
 
+/**
+ * Abandoned checkout: Stripe expires an unpaid session after 24 hours. If the shopper typed their email and has
+ * not ordered since, send one gentle reminder with the pieces they chose.
+ */
+async function sendCartReminder(env: Env, orderId: string, email: string): Promise<void> {
+  if (!email || !env.DB) return;
+  const paidSince = await env.DB.prepare("SELECT 1 FROM orders WHERE email=? COLLATE NOCASE AND payment_status='paid' AND created_at >= datetime('now','-3 days') LIMIT 1").bind(email).first();
+  const remindedRecently = await env.DB.prepare("SELECT 1 FROM order_events e WHERE e.event_type='cart_reminder_sent' AND lower(json_extract(e.metadata_json,'$.email'))=lower(?) AND e.created_at >= datetime('now','-7 days') LIMIT 1").bind(email).first();
+  if (paidSince || remindedRecently) return;
+  const items = await env.DB.prepare("SELECT oi.product_title, p.slug, p.department FROM order_items oi LEFT JOIN products p ON p.id=oi.product_id WHERE oi.order_id=? AND oi.unit_price_cents > 0 LIMIT 5").bind(orderId).all<{ product_title: string; slug: string | null; department: string | null }>();
+  const lines = items.results ?? [];
+  if (!lines.length) return;
+  const site = (env.SITE_URL || 'https://davinova.com').replace(/\/$/, '');
+  await sendTransactionalEmail({
+    to: email,
+    subject: 'Still thinking it over?',
+    html: '<div style="font-family:Arial,sans-serif;color:#2E2019;max-width:560px;margin:auto;line-height:1.6">' +
+      '<p style="letter-spacing:.16em;text-transform:uppercase;font-size:11px">DAVINOVA</p>' +
+      '<h1 style="font-family:Georgia,serif;font-weight:normal">Your pieces are still waiting.</h1>' +
+      '<p>You left these in your bag:</p><ul>' +
+      lines.map((line) => '<li>' + (line.slug ? '<a style="color:#3C2A21" href="' + htmlEscape(site + (line.department === 'men' ? '/men/product/' : '/product/') + line.slug) + '">' + htmlEscape(line.product_title) + '</a>' : htmlEscape(line.product_title)) + '</li>').join('') +
+      '</ul><p>Buy 2 pieces and save 10%, or 3 and save 15%. Orders over $150 come with free pearl earrings.</p>' +
+      '<p><a href="' + htmlEscape(site) + '/cart" style="display:inline-block;background:#3C2A21;color:#FBF1E2;text-decoration:none;padding:13px 18px">Return to your bag</a></p>' +
+      '<p style="font-size:12px;color:#8E735B">This is the only reminder we will send for this bag. Questions? Just reply.</p></div>',
+  }, env.RESEND_API_KEY, env.EMAIL_FROM);
+  await env.DB.prepare("INSERT INTO order_events (id, order_id, event_type, message, metadata_json) VALUES (?, ?, 'cart_reminder_sent', 'Abandoned checkout reminder emailed.', ?)").bind(crypto.randomUUID(), orderId, JSON.stringify({ email })).run();
+}
+
 type EventClaim =
   | { state: 'claimed'; token: string }
   | { state: 'duplicate' }
@@ -346,6 +374,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         "UPDATE orders SET status='cancelled', payment_status='unpaid', updated_at=datetime('now') WHERE id=? AND status='pending_payment' AND payment_reference=?",
       ).bind(order.id, session.id).run();
       await recordEvent(env, event, session, activeClaimToken!);
+      if (event.type === 'checkout.session.expired') {
+        await sendCartReminder(env, order.id, String(session.customer_details?.email || '').trim()).catch((error) => console.error('Cart reminder failed:', error instanceof Error ? error.message : error));
+      }
 
       activeClaimToken = null;
       return reply({ received: true, paymentFailed: true });
