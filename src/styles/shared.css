@@ -563,3 +563,35 @@
 .bag__upsell-img { display: block; aspect-ratio: 1; border-radius: calc(var(--radius) - 8px); background: var(--stage); overflow: hidden; }
 .bag__upsell-img img { width: 100%; height: 100%; object-fit: contain; }
 @media (max-width: 760px) { .bag__upsell-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Card badges: glass chips, colour by meaning. */
+.w-card__badge--low { background: rgba(160, 34, 28, .82) !important; color: #fff !important; }
+.w-card__badge--gift { background: linear-gradient(135deg, rgba(205, 182, 158, .92), rgba(142, 115, 91, .92)) !important; color: #2e2019 !important; }
+.w-card__badge--new { background: rgba(255, 255, 255, .78) !important; color: #2e2019 !important; border: 1px solid rgba(255,255,255,.9); }
+.w-card__badge--best { background: rgba(46, 32, 25, .82) !important; color: #fbf1e2 !important; }
+
+/* Announcement bar: thin frosted strip, message fades up on change. */
+.promo-bar { position: relative; z-index: 51; height: 30px; display: grid; place-items: center; overflow: hidden; font: 600 11px/1 var(--nova-display); letter-spacing: .14em; text-transform: uppercase; background: linear-gradient(90deg, rgba(46, 32, 25, .92), rgba(90, 69, 54, .92), rgba(46, 32, 25, .92)); color: #fbf1e2; }
+.promo-bar--men { background: linear-gradient(90deg, rgba(24, 24, 26, .94), rgba(73, 73, 73, .94), rgba(24, 24, 26, .94)); color: #e7ebe4; }
+.promo-bar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%); transform: translateX(-100%); animation: promoSweep 5.5s ease-in-out infinite; pointer-events: none; }
+.promo-bar__msg { padding: 0 16px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; animation: promoIn .5s ease both; }
+@keyframes promoIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes promoSweep { 0%, 40% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+/* Welcome popup: glass card over a soft dimmed page. */
+.welcome { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 16px; background: rgba(30, 20, 14, .35); animation: promoIn .35s ease both; }
+.welcome__card { position: relative; width: min(420px, 100%); display: grid; gap: 14px; padding: 34px 28px 26px; border-radius: 28px; text-align: center; color: #2e2019; background: linear-gradient(160deg, rgba(255, 250, 243, .94), rgba(236, 222, 205, .9)); border: 1px solid rgba(255, 255, 255, .9); box-shadow: 0 30px 80px rgba(46, 32, 25, .35), inset 0 1px 0 #fff; }
+.welcome--men .welcome__card { color: #1b1b1b; background: linear-gradient(160deg, rgba(240, 241, 238, .95), rgba(200, 204, 198, .92)); }
+.welcome__close { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgba(255,255,255,.7); color: inherit; }
+.welcome__kicker { font: 700 11px var(--nova-display); letter-spacing: .2em; text-transform: uppercase; opacity: .7; }
+.welcome h2 { margin: 0; font: 300 clamp(30px, 6vw, 40px)/1.05 var(--nova-display); letter-spacing: -.02em; text-wrap: balance; }
+.welcome h2 b { font-weight: 900; color: #8e735b; }
+.welcome--men h2 b { color: #5f6b5a; }
+.welcome p { margin: 0; font-size: 14px; opacity: .8; }
+.welcome form { display: grid; gap: 10px; }
+.welcome input { padding: 14px 16px; border-radius: 999px; border: 1px solid rgba(46, 32, 25, .18); background: rgba(255,255,255,.8); font: 500 14px var(--nova-display); color: inherit; }
+.welcome__cta { padding: 14px 20px; border: 0; border-radius: 999px; background: linear-gradient(135deg, #5a4536, #2e2019); color: #fbf1e2; font: 700 14px var(--nova-display); }
+.welcome--men .welcome__cta { background: linear-gradient(135deg, #3d3d40, #121214); color: #f2f2f2; }
+.welcome__code { justify-self: center; display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 14px; border: 1px dashed currentColor; background: rgba(255,255,255,.6); color: inherit; font: 800 20px var(--nova-display); letter-spacing: .14em; }
+.welcome__skip { border: 0; background: transparent; color: inherit; opacity: .6; font-size: 12px; text-decoration: underline; }
+.welcome__error { color: #b3261e !important; opacity: 1 !important; }
