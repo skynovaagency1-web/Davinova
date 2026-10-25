@@ -275,6 +275,15 @@
   "url": "https://cf.cjdropshipping.com/2055/3567068428707.png",
   "v": 2
  },
+ "cj-0899F616-4489-4787-BABC-67A08E572FC9": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200913/2913211191277.jpg",
+  "v": 3
+ },
  "cj-090CEF84-CF09-4076-BB7B-810787DF6D73": {
   "floating": false,
   "photo": null,
@@ -1065,6 +1074,15 @@
   "url": null,
   "v": 3
  },
+ "cj-1360428949011828736": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1613186317296.jpg",
+  "v": 3
+ },
  "cj-1360462810445910016": {
   "fix": 1,
   "floating": false,
@@ -1101,6 +1119,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1613292174558.jpg",
+  "v": 3
+ },
+ "cj-1361561648183250944": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1613456474943.jpg",
   "v": 3
  },
  "cj-1361906500125200384": {
@@ -1252,6 +1279,15 @@
   "url": "https://cf.cjdropshipping.com/1614578044719.jpg",
   "v": 3
  },
+ "cj-1366294629993025536": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1614584546889.jpg",
+  "v": 3
+ },
  "cj-1366298447975682048": {
   "floating": true,
   "photo": 1,
@@ -1329,6 +1365,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1614860536362.jpg",
+  "v": 3
+ },
+ "cj-1367473794503020544": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1614865656672.jpg",
   "v": 3
  },
  "cj-1367719686753619968": {
@@ -1552,6 +1597,15 @@
   ],
   "url": null,
   "v": 2
+ },
+ "cj-1372469096578420736": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1616056913779.png",
+  "v": 3
  },
  "cj-1372471090345021440": {
   "fix": 1,
@@ -1832,6 +1886,21 @@
   "url": "https://cf.cjdropshipping.com/1617255226605.jpg",
   "v": 3
  },
+ "cj-1377497352151109632": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures",
+   "3: collage or several figures",
+   "4: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
+  "v": 3
+ },
  "cj-1377523521093242880": {
   "photo": 0,
   "rejected": [],
@@ -1962,19 +2031,15 @@
   "v": 3
  },
  "cj-1379298390273298432": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "photo": 1,
   "rejected": [
-   "0: head cut off by the frame",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: half-body shot",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "floating 0: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1617683880789.jpg",
+  "v": 3
  },
  "cj-1379699419552813056": {
   "photo": 0,
@@ -2256,6 +2321,19 @@
   "url": "https://cf.cjdropshipping.com/1618392901364.jpg",
   "v": 3
  },
+ "cj-1382522875604504576": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1618453754945.jpg",
+  "v": 3
+ },
  "cj-1382546390286209024": {
   "floating": false,
   "photo": 1,
@@ -2352,6 +2430,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1618555583820.jpg",
+  "v": 3
+ },
+ "cj-1383017206790623232": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1618571503178.jpg",
   "v": 3
  },
  "cj-1383331690872705024": {
@@ -2463,6 +2550,15 @@
   "url": "https://cf.cjdropshipping.com/1618921786528.jpg",
   "v": 3
  },
+ "cj-1384503140199567360": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1618925947121.jpg",
+  "v": 3
+ },
  "cj-1384768470180302848": {
   "fix": 1,
   "floating": false,
@@ -2502,6 +2598,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1619073336867.jpg",
+  "v": 3
+ },
+ "cj-1385161884877066240": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1619082627241.jpg",
   "v": 3
  },
  "cj-1385230152862142464": {
@@ -2616,6 +2721,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1619414643974.jpg",
+  "v": 3
+ },
+ "cj-1386556770704560128": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1619415793329.png",
   "v": 3
  },
  "cj-1386568391531302912": {
@@ -2910,6 +3024,17 @@
   "url": "https://cf.cjdropshipping.com/1620289177293.jpg",
   "v": 3
  },
+ "cj-1390260104166772736": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1620298723624.jpg",
+  "v": 3
+ },
  "cj-1390572322016071680": {
   "fix": 1,
   "floating": false,
@@ -2952,6 +3077,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1620627371128.jpg",
+  "v": 3
+ },
+ "cj-1391642051321401344": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1620626550823.png",
   "v": 3
  },
  "cj-1391645965982765056": {
@@ -3279,16 +3413,16 @@
   "v": 3
  },
  "cj-1394207174368038912": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "photo": 2,
   "rejected": [
-   "0: several people",
-   "1: several people",
-   "2: faded cutout",
-   "3: cut off at the bottom",
-   "4: several people"
+   "floating 0: clothes cut off at the edge",
+   "floating 1: clothes cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1621239707123.jpg",
+  "v": 3
  },
  "cj-1394211270911201280": {
   "photo": 0,
@@ -3517,6 +3651,17 @@
   "url": "https://cf.cjdropshipping.com/1622464197389.jpg",
   "v": 3
  },
+ "cj-1399575997552136192": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1622519797571.jpg",
+  "v": 3
+ },
  "cj-1399616650835267584": {
   "floating": false,
   "photo": 0,
@@ -3638,12 +3783,30 @@
   "url": null,
   "v": 3
  },
+ "cj-1401364227796635648": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1622946174040.jpg",
+  "v": 3
+ },
  "cj-1401468540485242880": {
   "floating": false,
   "photo": 0,
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1622971022669.jpg",
+  "v": 3
+ },
+ "cj-1401862789047390208": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1623064948908.jpg",
   "v": 3
  },
  "cj-1402099563023699968": {
@@ -3679,6 +3842,17 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1623142220557.jpg",
+  "v": 3
+ },
+ "cj-1402221869414879232": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1623150509439.jpg",
   "v": 3
  },
  "cj-1402522685287829504": {
@@ -3799,6 +3973,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1623721575037.jpg",
+  "v": 3
+ },
+ "cj-1404620425702543360": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1623722195203.jpg",
   "v": 3
  },
  "cj-1404650040861003776": {
@@ -4062,6 +4245,21 @@
   "url": "https://cf.cjdropshipping.com/b8f68c18-a700-4e50-b646-4129616d350d.jpg",
   "v": 3
  },
+ "cj-1407519825164636160": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: collage or several figures",
+   "2: cut off at the bottom",
+   "3: collage or several figures",
+   "4: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
+  "v": 3
+ },
  "cj-1407650318187106304": {
   "floating": false,
   "photo": 0,
@@ -4103,6 +4301,15 @@
   ],
   "url": "https://cf.cjdropshipping.com/9c6b149c-2a37-49c5-a2ee-a29d3997c2f2.jpg",
   "v": 2
+ },
+ "cj-1409332587121479680": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/ca6af53a-9a68-4d75-a68c-532568fe7da0.jpg",
+  "v": 3
  },
  "cj-1409348175868858368": {
   "floating": false,
@@ -4162,6 +4369,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/5744c100-2cc3-4ddf-9566-041f6661b08a.jpg",
+  "v": 3
+ },
+ "cj-1411162933496516608": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/92f1f48a-8d9e-42a9-a94e-51a4dac1fec0.jpg",
   "v": 3
  },
  "cj-1411609929151811584": {
@@ -4263,6 +4479,21 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/d90a0464-5474-4784-ad45-bfa6dc27e865.jpg",
+  "v": 3
+ },
+ "cj-1413710194474618880": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures",
+   "3: collage or several figures",
+   "4: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
   "v": 3
  },
  "cj-1413739103937236992": {
@@ -4384,6 +4615,15 @@
   "url": "https://cf.cjdropshipping.com/9094c802-8d11-4c46-9309-9ba91cb75d80.jpg",
   "v": 3
  },
+ "cj-1415539720041140224": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/88958a7a-3462-4ad1-9015-0ae1d35d6219.jpg",
+  "v": 3
+ },
  "cj-1416270105268064256": {
   "floating": false,
   "photo": 3,
@@ -4444,6 +4684,26 @@
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/da165549-210d-47cd-90f6-8c03db780857.jpg",
   "v": 2
+ },
+ "cj-1416691485616771072": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/bd691326-5201-499a-a958-4efd39d80c91.png",
+  "v": 3
+ },
+ "cj-1416965709774327808": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/d563ac8a-c069-4773-8b4e-0971c6eb2102.jpg",
+  "v": 3
  },
  "cj-1417717392036990976": {
   "fix": 1,
@@ -4548,6 +4808,20 @@
   "url": "https://cf.cjdropshipping.com/53f7266f-5222-431f-814c-39cc22830a99.jpg",
   "v": 2
  },
+ "cj-1420255936827756544": {
+  "fix": 1,
+  "floating": false,
+  "photo": 4,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures",
+   "3: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/73fe8052-d057-44f0-8018-f782c91e240d.jpg",
+  "v": 3
+ },
  "cj-1421291590357487616": {
   "fix": 1,
   "floating": false,
@@ -4586,6 +4860,15 @@
   "url": null,
   "v": 3
  },
+ "cj-1421734782781493248": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/3ee2bd82-c9b7-4865-b2b3-e7f3453843e2.jpg",
+  "v": 3
+ },
  "cj-1422117123056078848": {
   "fix": 1,
   "floating": false,
@@ -4593,6 +4876,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/87373ef8-bbb6-41db-8626-60450659e0a9.jpg",
+  "v": 3
+ },
+ "cj-1422123896429219840": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/00d8302c-b4e5-41e2-ae79-9715cc5a4899.jpg",
   "v": 3
  },
  "cj-1422513896153026560": {
@@ -4713,6 +5005,15 @@
   "url": null,
   "v": 3
  },
+ "cj-1424556866339475456": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/ebbe8dbf-4849-4699-bfc8-e83b0bcc8fdf.jpg",
+  "v": 3
+ },
  "cj-1424995215508377600": {
   "floating": false,
   "photo": 0,
@@ -4789,6 +5090,17 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/b0192b4f-dd1a-4d8f-b68e-6131d6069266.jpg",
+  "v": 3
+ },
+ "cj-1426826613118603264": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/c24a0011-c5ed-4883-b835-3becfa8f1641.jpg",
   "v": 3
  },
  "cj-1427144391264440320": {
@@ -4908,6 +5220,28 @@
   "url": "https://cf.cjdropshipping.com/2e8c3aa5-30ad-4af6-ae14-e696a2c882d9.jpg",
   "v": 3
  },
+ "cj-1429655312847212544": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: cut off at the edge",
+   "1: cut off at the edge",
+   "2: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/75ada8c1-0173-431c-b47d-319aa4cb4451.jpg",
+  "v": 3
+ },
+ "cj-1429978962079125504": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/d04e0ffe-4a4d-46e0-9396-4f52226dbc22.jpg",
+  "v": 3
+ },
  "cj-1430426952333922304": {
   "fix": 1,
   "floating": false,
@@ -4927,6 +5261,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/a2c60399-8799-4863-beb8-6191a11f7a4c.jpg",
+  "v": 3
+ },
+ "cj-1431428454728994816": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/e403b665-681d-4d77-bc6d-dec1f5d6afaf.jpg",
   "v": 3
  },
  "cj-1432515067273940992": {
@@ -5277,6 +5620,21 @@
   "url": "https://cf.cjdropshipping.com/a8655161-bd97-49d7-887a-7e92f740a518.jpg",
   "v": 3
  },
+ "cj-1439475123827642368": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures",
+   "3: collage or several figures",
+   "4: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
+  "v": 3
+ },
  "cj-1439521837456429056": {
   "fix": 1,
   "floating": false,
@@ -5419,6 +5777,17 @@
   "url": "https://cf.cjdropshipping.com/ca013e04-2d9f-478f-90f1-572aa0f1651d.jpg",
   "v": 3
  },
+ "cj-1442718834896277504": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/148b3c14-b351-4b5a-8af0-edd337b24fe5.jpg",
+  "v": 3
+ },
  "cj-1442768937564639232": {
   "floating": false,
   "photo": 0,
@@ -5452,6 +5821,18 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/abe19609-e59d-444c-b16f-d6c3435b2c33.jpg",
+  "v": 3
+ },
+ "cj-1443425033245560832": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/b33912bb-2b4d-4dc8-83f7-8cd0c1501321.jpg",
   "v": 3
  },
  "cj-1443752641808175104": {
@@ -5629,6 +6010,18 @@
   "url": "https://cf.cjdropshipping.com/39c6b474-70a2-4969-b23e-8266fdc4406e.jpg",
   "v": 3
  },
+ "cj-1450667545186144256": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/cb50a053-026a-4b79-ada7-ca2cc7d9ffc1.png",
+  "v": 3
+ },
  "cj-1450726828019945472": {
   "floating": false,
   "photo": 1,
@@ -5751,6 +6144,17 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-1451871962233180160": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/47a48a5e-220b-46e3-a921-7d427bf85d6d.jpg",
   "v": 3
  },
  "cj-1451888708360998912": {
@@ -6060,6 +6464,15 @@
   "url": "https://cf.cjdropshipping.com/6bbdcdfe-7ac4-4a48-81c3-004d46d0b9a1.jpg",
   "v": 2
  },
+ "cj-1458315532662083584": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/dac0ea3e-a241-4b06-a13e-8d9b98239d99.jpg",
+  "v": 3
+ },
  "cj-1458636284502347776": {
   "floating": true,
   "photo": 0,
@@ -6224,6 +6637,15 @@
   "url": "https://cf.cjdropshipping.com/752672f5-f3fc-4a3d-adc0-c7ea1d34c8ed.jpg",
   "v": 2
  },
+ "cj-1462600871014699008": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/7773bbee-8a85-47ca-88fd-2767290fd5e5.jpg",
+  "v": 3
+ },
  "cj-1462959208419954688": {
   "fix": 1,
   "floating": false,
@@ -6233,6 +6655,15 @@
   "url": "https://cf.cjdropshipping.com/b88f63d5-2e58-476f-8107-e62fd45e7a71.jpg",
   "v": 3
  },
+ "cj-1462977600283611136": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2d0086e3-4514-400b-bb23-de90f2ad9242.jpg",
+  "v": 3
+ },
  "cj-1463022697662517248": {
   "photo": 1,
   "rejected": [
@@ -6240,6 +6671,19 @@
   ],
   "url": "https://cf.cjdropshipping.com/4600bd73-4cfd-4ec9-a864-205892337fcf.jpg",
   "v": 2
+ },
+ "cj-1463443960637820928": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/6253a25e-f4d1-42d8-8017-a5c3d6df7004.jpg",
+  "v": 3
  },
  "cj-1463778127867154432": {
   "fix": 1,
@@ -6461,6 +6905,17 @@
   "url": "https://cf.cjdropshipping.com/1e1e3845-f4f6-4a8a-b534-0135d1fffeb5.jpg",
   "v": 3
  },
+ "cj-14766E85-1790-4D84-BC1C-2A496092F003": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20190929/954193165476.jpg",
+  "v": 3
+ },
  "cj-1477473802085601280": {
   "fix": 1,
   "floating": true,
@@ -6594,6 +7049,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/8bf4faa8-98fa-4637-b835-b15d4c2c968e.jpg",
+  "v": 3
+ },
+ "cj-1483838572850188288": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/51a99f00-7aeb-4bfa-b027-763daac3cff9.jpg",
   "v": 3
  },
  "cj-1484344579078623232": {
@@ -6757,16 +7221,16 @@
   "v": 3
  },
  "cj-1497834361209360384": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "photo": 2,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: head cut off by the frame",
-   "2: no face (headless or cropped)",
-   "3: head cut off by the frame",
-   "4: head cut off by the frame"
+   "floating 0: clothes covered by a hand or bag",
+   "floating 1: clothes covered by a hand or bag"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/d33291e5-2994-4313-8b41-289163b87493.jpg",
+  "v": 3
  },
  "cj-1498207838869262336": {
   "photo": 0,
@@ -6857,6 +7321,15 @@
   "url": null,
   "v": 2
  },
+ "cj-1505922482988134400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/a9a2231c-7a15-4bfb-a2cf-0b400b1f6bd2.jpg",
+  "v": 3
+ },
  "cj-1507170023184543744": {
   "floating": false,
   "photo": 0,
@@ -6893,6 +7366,44 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/bbbf38cc-aae7-44b1-997b-8928a830be9e.jpg",
+  "v": 3
+ },
+ "cj-1510882354049593344": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/f73647ba-531a-49d6-a887-0953532be11a.jpg",
+  "v": 3
+ },
+ "cj-1510903565659942912": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/619a2ba7-2b7a-4391-b792-eb78609d6b0e.jpg",
+  "v": 3
+ },
+ "cj-1511162781737955328": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/df869597-42fa-441b-9bb5-c88f1dd3d521.jpg",
+  "v": 3
+ },
+ "cj-1512727023033266176": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/07feb4df-3c6d-49a7-905a-fb1c0f7f84b4.jpg",
   "v": 3
  },
  "cj-1513049904200036352": {
@@ -6943,6 +7454,15 @@
   "url": "https://cf.cjdropshipping.com/b43684e6-363f-4d7b-9e4f-1b7b08d721a6.jpg",
   "v": 3
  },
+ "cj-1515263536216420352": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/8bc2be3c-505f-4a49-9604-95fcf5cfe013.jpg",
+  "v": 3
+ },
  "cj-1516654569181425664": {
   "fix": 1,
   "floating": false,
@@ -6956,6 +7476,24 @@
   "url": "https://cf.cjdropshipping.com/786f3c2f-7173-48b4-a1b1-604e3a1cfbb6.png",
   "v": 3
  },
+ "cj-1517423803612278784": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/d394a97a-8cfb-40e6-9ad6-f0b7462797a0.jpg",
+  "v": 3
+ },
+ "cj-1517779327352582144": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2d986da5-97ea-44aa-9edf-34299e38db48.jpg",
+  "v": 3
+ },
  "cj-1518792535987204096": {
   "floating": false,
   "photo": 0,
@@ -6964,11 +7502,61 @@
   "url": "https://cf.cjdropshipping.com/3ce2bfae-909e-4dd8-81a3-17077527e1e9.jpg",
   "v": 3
  },
+ "cj-1518846341571686400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/e7238da7-2029-4d0c-86ed-12956a175565.jpg",
+  "v": 3
+ },
+ "cj-1519318258590167040": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/ddeb5eff-7ccf-497f-a222-59d254ed046a.jpg",
+  "v": 3
+ },
+ "cj-1520298950446821376": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/88f7732e-b7c0-4f48-b432-8b99ff544223.jpg",
+  "v": 3
+ },
+ "cj-1521002367993524224": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/531a8644-b541-4511-8903-d22d3b962274.jpg",
+  "v": 3
+ },
  "cj-1521005302685118464": {
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/92d0375f-f350-4205-b052-8efc3ab939bb.jpg",
   "v": 2
+ },
+ "cj-1521663905817440256": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/fbc57c05-7adc-4100-9b7a-f4f7c940d57c.jpg",
+  "v": 3
  },
  "cj-1522173587329921024": {
   "fix": 1,
@@ -7009,6 +7597,15 @@
   ],
   "url": "https://cf.cjdropshipping.com/c3505373-265f-49c3-b4d6-922f5790f807.jpg",
   "v": 2
+ },
+ "cj-1523906787639046144": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/199d18b4-43d3-48a8-9d7f-9b9e2c5b2736.jpg",
+  "v": 3
  },
  "cj-1524563155207335936": {
   "photo": 1,
@@ -7341,6 +7938,24 @@
   "url": "https://cf.cjdropshipping.com/quick/product/6b450a13-214e-4381-9363-6db7869c4573.jpg",
   "v": 3
  },
+ "cj-1539529838904750080": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/cd1aff17-9615-4bd3-9c4b-ac39a64edaea.jpg",
+  "v": 3
+ },
+ "cj-1539875207417180160": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/4bf2741c-2431-40bd-aab2-ad09156928c1.jpg",
+  "v": 3
+ },
  "cj-1540173125281918976": {
   "fix": 1,
   "floating": false,
@@ -7374,6 +7989,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/95a36296-5418-40aa-aadd-f8854384294f.jpg",
+  "v": 3
+ },
+ "cj-1541357362521583616": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/a24c7716-00a8-4087-96cf-43601d9a4edc.jpg",
   "v": 3
  },
  "cj-1541695918540599296": {
@@ -7459,28 +8083,33 @@
   "v": 3
  },
  "cj-1544885605929332736": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/b41dc943-c998-4038-9245-982519c9ec0e.jpg",
+  "v": 3
+ },
+ "cj-1544906698182373376": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
   "rejected": [
-   "0: several people",
-   "1: head cut off by the frame",
-   "2: cut off at the bottom",
-   "3: cut off at the bottom",
-   "4: head cut off by the frame"
+   "0: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/d8b52e8c-b6ba-4459-81e5-8ed931a0c884.jpg",
+  "v": 3
  },
  "cj-1544926051707662336": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/adbb8a56-df56-44ff-93a1-56cab7d191ea.jpg",
+  "v": 3
  },
  "cj-1545396661592272896": {
   "fix": 1,
@@ -7581,6 +8210,15 @@
   "url": "https://cf.cjdropshipping.com/ab844ad4-1901-4f39-9697-404add3ac1d0.jpg",
   "v": 3
  },
+ "cj-1549941227871809536": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/7f790da7-7bb5-436d-a569-555073c6fa3e.jpg",
+  "v": 3
+ },
  "cj-1551538158817521664": {
   "fix": 1,
   "floating": false,
@@ -7658,6 +8296,15 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-1556921384394305536": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/f07f0a02-80a7-4086-96f5-f2788f04a3cc.jpg",
   "v": 3
  },
  "cj-1558429278759563264": {
@@ -7787,6 +8434,15 @@
   "url": "https://cf.cjdropshipping.com/511d2ef4-7dde-4c67-84b2-41c7d83d89b8.jpg",
   "v": 2
  },
+ "cj-1562405862327726080": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/109188bf-57f2-4b14-9330-378405fa8fd6.jpg",
+  "v": 3
+ },
  "cj-1562635271677038592": {
   "floating": false,
   "photo": 2,
@@ -7796,6 +8452,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/c00ff6e9-57ad-4720-9e22-a5371e3db541.jpg",
+  "v": 3
+ },
+ "cj-1563055316370206720": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/f32180bf-8337-414b-b145-2e4ac053b824.jpg",
   "v": 3
  },
  "cj-1564190637237882880": {
@@ -7851,6 +8516,15 @@
   "url": null,
   "v": 2
  },
+ "cj-1565976151254904832": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/d9548128-2d5f-4773-8e54-f11725190604.jpg",
+  "v": 3
+ },
  "cj-1567091569671950336": {
   "floating": false,
   "photo": 0,
@@ -7867,6 +8541,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/ba8ff953-be4f-4837-be22-b616e7c8029f.jpg",
+  "v": 3
+ },
+ "cj-1567825946340765696": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/c4a901fd-8f61-44e3-a656-eeaacff9ed14.jpg",
   "v": 3
  },
  "cj-1568025876615409664": {
@@ -7913,6 +8596,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/2a8a1ff7-69e7-41ab-8861-dfe2ff17a204.jpg",
+  "v": 3
+ },
+ "cj-1568838754138337280": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/1418a461-b42c-4b9c-bb6d-66d47c938cce.jpg",
   "v": 3
  },
  "cj-1570617220252839936": {
@@ -8136,6 +8828,17 @@
   "url": null,
   "v": 3
  },
+ "cj-1578662963085586432": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/0e06880c-9c55-49dd-8231-d8f18b585f77.jpg",
+  "v": 3
+ },
  "cj-1579019089027280896": {
   "fix": 1,
   "floating": false,
@@ -8167,6 +8870,17 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/6f690943-ca76-4e6f-9873-5f17e9fa8eda.jpg",
+  "v": 3
+ },
+ "cj-1579590909233213440": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/822d644d-6093-43b0-a4d9-ca2512fabf42.jpg",
   "v": 3
  },
  "cj-1579731517029494784": {
@@ -8519,6 +9233,22 @@
   "url": "https://cf.cjdropshipping.com/e8e136a7-0784-417c-b407-13160a35ca57.jpg",
   "v": 2
  },
+ "cj-1597162159891558400": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures",
+   "3: collage or several figures",
+   "4: collage or several figures",
+   "5: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
+  "v": 3
+ },
  "cj-1598243953906823168": {
   "fix": 1,
   "floating": true,
@@ -8539,6 +9269,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/8ae58685-1f42-44ef-a1a6-8ff4a1ca9292.jpg",
+  "v": 3
+ },
+ "cj-1598987389660712960": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/c6c01a2c-e995-45f4-92ba-76bd0589e71f.jpg",
   "v": 3
  },
  "cj-1599730293974511616": {
@@ -8580,6 +9319,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/143466f9-8f50-4cc6-8949-0c2494259506.jpg",
+  "v": 3
+ },
+ "cj-1600319549143003136": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/44a8d53a-5f0a-4aba-94b0-7e75ebc45dfa.jpg",
   "v": 3
  },
  "cj-1600764611882659840": {
@@ -8689,6 +9437,18 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/71586c12-80dc-48b8-aceb-9eb00a825ecc.jpg",
+  "v": 3
+ },
+ "cj-1604777597819432960": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the edge",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/91c2f773-2d4f-4100-ade4-1365f9a8343c.jpg",
   "v": 3
  },
  "cj-1605039847717220352": {
@@ -8942,6 +9702,15 @@
   "url": "https://cf.cjdropshipping.com/04190d67-61c2-4f09-a054-1697a1cd8dc7.jpg",
   "v": 3
  },
+ "cj-1615233496589545472": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/9091b133-7ebe-4335-aa36-d6276bf93248.jpg",
+  "v": 3
+ },
  "cj-1615634727028281344": {
   "photo": 0,
   "rejected": [],
@@ -8981,6 +9750,15 @@
   "url": "https://cf.cjdropshipping.com/6ca12728-9d1f-46d7-89af-658aad810bdf.jpg",
   "v": 3
  },
+ "cj-1618800822513577984": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/31d2457a-e6e5-42ad-abc4-f29b029875d3.jpg",
+  "v": 3
+ },
  "cj-1619525655895486464": {
   "floating": false,
   "photo": 1,
@@ -8998,6 +9776,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/caefada5-aaf8-4431-aac8-5c13923d67f5.jpg",
+  "v": 3
+ },
+ "cj-1619967345630392320": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2c101e9d-2706-4434-9dde-3358c7786212.jpg",
   "v": 3
  },
  "cj-1620355272315252736": {
@@ -9027,6 +9814,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/4b95c9f7-c951-49c8-8611-2c0129089eef.jpg",
+  "v": 3
+ },
+ "cj-1621368242386251776": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/f7018dd1-45e6-49c1-b896-8b26c55c1a69.jpg",
   "v": 3
  },
  "cj-1621701615562534912": {
@@ -9076,6 +9872,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/b3da5332-8a27-4e50-a9bd-6b66a15e5efd.jpg",
+  "v": 3
+ },
+ "cj-1624285597189812224": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/f030a77a-18b7-49bf-bb2c-233ded5b6450.jpg",
   "v": 3
  },
  "cj-1624663611517972480": {
@@ -9211,6 +10016,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/1bac96a6-35b9-4973-8093-a60ca513a6af.jpg",
+  "v": 3
+ },
+ "cj-1629091921635323904": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/0e53e25e-806b-4c33-a217-12a01966bfa7.jpg",
   "v": 3
  },
  "cj-1629691482875637760": {
@@ -9416,6 +10230,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/a99882e5-12c1-494a-8e6b-f51c7d93cc79.jpg",
+  "v": 3
+ },
+ "cj-1638381056657207296": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/5c40b65f-35b5-4617-af66-cf0690869c6e.jpg",
   "v": 3
  },
  "cj-1638454666797264896": {
@@ -9677,6 +10500,17 @@
   "url": "https://cf.cjdropshipping.com/07d974e5-d80b-4d25-affb-314d153f369f.jpg",
   "v": 3
  },
+ "cj-1649354137701720064": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/4385a423-613f-431a-a64c-fe8b7cc3c4ac.jpg",
+  "v": 3
+ },
  "cj-1650115502708109312": {
   "photo": 1,
   "rejected": [
@@ -9769,6 +10603,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/a3f7352c-dc9c-48e2-a019-12b7c594eced.jpg",
+  "v": 3
+ },
+ "cj-1654740888024788992": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/3ce810f6-c8a7-428f-a51b-2f87dd26853d.jpg",
   "v": 3
  },
  "cj-1654768924719853568": {
@@ -9865,6 +10708,17 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-1658338395686449152": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/d52a3e39-a1d2-4f9a-a5de-70b6c0714ccf.jpg",
   "v": 3
  },
  "cj-1658807647237316608": {
@@ -10145,6 +10999,15 @@
   "url": "https://cf.cjdropshipping.com/f7cdf5c1-c74e-4a23-bfbb-e558748bda86.png",
   "v": 3
  },
+ "cj-1667431364871852032": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/718c57f3-4ad2-4645-85bb-d9ca9861c63f.jpg",
+  "v": 3
+ },
  "cj-1668162556910899200": {
   "fix": 1,
   "floating": false,
@@ -10173,6 +11036,17 @@
    "floating 2: product too small"
   ],
   "url": null,
+  "v": 3
+ },
+ "cj-1668808856958406656": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/3182e702-a222-49b9-b4bb-83bafe1a6273.jpg",
   "v": 3
  },
  "cj-1669230429037142016": {
@@ -10557,6 +11431,17 @@
   "url": "https://cf.cjdropshipping.com/quick/product/c808c224-8f77-4131-8e67-8122f20d121b.jpg",
   "v": 3
  },
+ "cj-1682571155464527872": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/6afa164e-832b-4d05-9a0e-f3e91a24c92c.jpg",
+  "v": 3
+ },
  "cj-1683721276218683392": {
   "fix": 1,
   "floating": false,
@@ -10766,6 +11651,15 @@
   "url": "https://cf.cjdropshipping.com/c8ed821c-83d1-45f4-9879-0d0c137bfd76.jpg",
   "v": 3
  },
+ "cj-1695325244518576128": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/efa9abae-14bb-42a3-96c3-bb8dbef47460.jpg",
+  "v": 3
+ },
  "cj-1695353384489984000": {
   "fix": 1,
   "floating": false,
@@ -10853,6 +11747,15 @@
   "url": null,
   "v": 3
  },
+ "cj-1699263185058017280": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/04d0a5df-3b90-4466-8182-e5f375eaee91.jpg",
+  "v": 3
+ },
  "cj-1699719412372213760": {
   "fix": 1,
   "floating": false,
@@ -10915,6 +11818,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/fb1ed924-544b-40c7-8e07-7d5094a8d6eb.jpg",
+  "v": 3
+ },
+ "cj-1700766250118418432": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/02e20269-3598-488e-80d3-702400076939.jpg",
   "v": 3
  },
  "cj-1701123195492904960": {
@@ -11108,6 +12020,15 @@
   "url": "https://cf.cjdropshipping.com/2b843673-ae96-4fb5-8e2c-2921fc326ad2.jpg",
   "v": 3
  },
+ "cj-1709742826625441792": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/dc5f8d7c-2d87-4ff7-b9d8-1cdfe7f008c0.jpg",
+  "v": 3
+ },
  "cj-1709770624346247168": {
   "fix": 1,
   "floating": false,
@@ -11253,6 +12174,18 @@
   "url": "https://cf.cjdropshipping.com/quick/product/992a7142-9348-439e-846a-917ad21fa9db.jpg",
   "v": 3
  },
+ "cj-1715245344780460032": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the edge",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/ad264574-799f-4612-8405-e5d16bb7e443.jpg",
+  "v": 3
+ },
  "cj-1715247338299596800": {
   "floating": false,
   "photo": 0,
@@ -11289,6 +12222,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/16979328/1715919918169460736.jpg",
+  "v": 3
+ },
+ "cj-1715935899910942720": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/86c0197a-84c2-44c5-8543-35b4b0e7ee1d.jpg",
   "v": 3
  },
  "cj-1715985666602962944": {
@@ -11499,6 +12441,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2023/11/04/02/99afdae4-49ff-4943-9f99-4bc9ea232064.jpg",
   "v": 3
  },
+ "cj-1721364713369505792": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/bae8cc70-f1e8-4438-a155-1d31f18948a4.jpg",
+  "v": 3
+ },
  "cj-1721447600076890112": {
   "fix": 1,
   "floating": false,
@@ -11680,6 +12631,24 @@
   "rejected": [],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2023/11/29/06/11dca6d3-43db-4d3a-8f6a-8eef08ce76ee.jpg",
+  "v": 3
+ },
+ "cj-1725026605438869504": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2023/11/16/05/0d44ee94-e08b-40bc-a658-5f7831cf3344.jpg",
+  "v": 3
+ },
+ "cj-1725349716357025792": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2023/11/17/03/3f834e5f-c2d7-4143-8bca-c8ab40a5e9de.jpg",
   "v": 3
  },
  "cj-1726496352718303232": {
@@ -12508,6 +13477,17 @@
   "url": "https://cf.cjdropshipping.com/6762cb60-8682-42dd-a918-29626b327d64.jpg",
   "v": 3
  },
+ "cj-1746009118076313600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/4e6386cc-1c8d-41c0-ad1a-393ba5188aeb.jpg",
+  "v": 3
+ },
  "cj-1746366895135141888": {
   "photo": 1,
   "rejected": [
@@ -12581,6 +13561,15 @@
   ],
   "url": "https://cf.cjdropshipping.com/quick/product/90d93569-a2d3-4762-a3d4-583fd632fdd6.jpg",
   "v": 2
+ },
+ "cj-1747612247326732288": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/01/18/03/258688e4-db25-4526-b98c-f0c13be04f4c.jpg",
+  "v": 3
  },
  "cj-1747629833116864512": {
   "fix": 1,
@@ -12752,6 +13741,17 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/11/11/02/8a7090e6-9a1e-4289-85ad-4f97e2dc6bd1.jpg",
   "v": 3
  },
+ "cj-1751210836137349120": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/17063136/2401271149350323300.jpg",
+  "v": 3
+ },
  "cj-1751494277517025280": {
   "fix": 1,
   "floating": false,
@@ -12915,6 +13915,15 @@
    "https://oss-cf.cjdropshipping.com/product/2024/02/07/08/4214b226-6a42-4307-a027-4e40862e0887.jpg"
   ],
   "url": "https://oss-cf.cjdropshipping.com/product/2024/02/07/08/975131d6-1c3f-4fd7-a70f-e0d38ca26206.jpg",
+  "v": 3
+ },
+ "cj-1755208059669975040": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/3952658e-c46d-40f5-8051-d99a7c4befea.jpg",
   "v": 3
  },
  "cj-1755823247674839040": {
@@ -13663,6 +14672,18 @@
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/18c7b3d3-4a92-42a1-822c-e55f1c549eb7.jpg",
   "v": "garment-1"
+ },
+ "cj-1769275290611621888": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/93330c8a-5818-4448-9dff-e6e8ff6cc882.jpg",
+  "v": 3
  },
  "cj-1769904297875091456": {
   "photo": 1,
@@ -14523,6 +15544,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/3f00cbbc-80d0-43be-b96f-05f1ac0cc306.jpg",
   "v": 3
  },
+ "cj-1783306571146076160": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/9af6af8d-66ea-4b52-85e5-cfb242672623.jpg",
+  "v": 3
+ },
  "cj-1783332584836042752": {
   "fix": 1,
   "floating": false,
@@ -14748,6 +15778,17 @@
   ],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2024/05/07/02/67e99097-50fc-4e24-ae0e-8e5224e593bb_trans.jpeg",
+  "v": 3
+ },
+ "cj-1787726289885995008": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/0962e14e-cb9f-4f9a-8a94-9be3d8097199.jpg",
   "v": 3
  },
  "cj-1787766821165207552": {
@@ -15404,6 +16445,19 @@
   "url": "https://cf.cjdropshipping.com/quick/product/11a63d34-d447-4a45-8c45-0661f263f0b5.jpg",
   "v": 2
  },
+ "cj-1796020838941077504": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/75a98442-a7ec-49c7-8e0f-8983438535a1.jpg",
+  "v": 3
+ },
  "cj-1796021476676608000": {
   "photo": 0,
   "rejected": [],
@@ -15966,6 +17020,18 @@
   ],
   "url": "https://cf.cjdropshipping.com/quick/product/dc16f02d-9a90-4355-86d6-fec4770f03bd.jpg",
   "v": 2
+ },
+ "cj-1797805565540835328": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/17378f52-bd1d-4b6a-a0a1-7f1e3177a09a.jpg",
+  "v": 3
  },
  "cj-1797816076059815936": {
   "photo": null,
@@ -17323,6 +18389,15 @@
   "url": "https://cf.cjdropshipping.com/39501a04-df39-43c2-99c1-881aa19f9fd4.jpg",
   "v": 3
  },
+ "cj-1860533799449677824": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/32d5ebd4-9a42-4a66-945b-51acec1f943f.jpg",
+  "v": 3
+ },
  "cj-1860937290592702464": {
   "fix": 1,
   "floating": false,
@@ -17812,6 +18887,15 @@
   "url": "https://cf.cjdropshipping.com/80311b7c-220f-4fcb-902a-afbf15026c5e.png",
   "v": 3
  },
+ "cj-1942459773195931649": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/46aa706a-1ef4-4255-bb39-94777ad5ca95.png",
+  "v": 3
+ },
  "cj-1946118046806220802": {
   "fix": 1,
   "floating": false,
@@ -17923,6 +19007,15 @@
   ],
   "url": "https://cf.cjdropshipping.com/140ba5a5-1263-4af9-95bf-7437e2a818a7.jpg",
   "v": 2
+ },
+ "cj-1971870132442128385": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/88d05835-12a8-45b8-b6f9-3f9be35b6dbc.png",
+  "v": 3
  },
  "cj-1974399665984659457": {
   "photo": 0,
@@ -18189,6 +19282,71 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/a9b54a98-384a-4590-a543-6aeb9b301195.jpg",
+  "v": 3
+ },
+ "cj-1998325887656882178": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/41fdb7ed-7aaa-4c32-b314-bd6e737ef859.jpeg",
+  "v": 3
+ },
+ "cj-1999025166118408193": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/7ad6f503-614f-4ae1-a11f-58fc59fa5f07.jpeg",
+  "v": 3
+ },
+ "cj-1999030878785622018": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/7f8abe02-5027-4d9b-bf93-ae911617c981.jpeg",
+  "v": 3
+ },
+ "cj-1999046332776620033": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/ac0b05dd-157e-4d46-b005-3193a2aa43e8.jpeg",
+  "v": 3
+ },
+ "cj-1999047704910024706": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/fceb5f26-c67c-427b-b29b-40f04dde95a5.jpeg",
+  "v": 3
+ },
+ "cj-1999051761984380930": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/a7b0f9cf-0270-44e4-af4c-4983206c97aa.jpeg",
+  "v": 3
+ },
+ "cj-1999059104718753793": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/0b9bc9c9-9ffd-47d9-81c0-b88be0a5bce5.jpeg",
   "v": 3
  },
  "cj-1A9BFFC1-0DEC-4F71-A923-303DB3220184": {
@@ -18819,6 +19977,15 @@
   "url": "https://cf.cjdropshipping.com/498138fa-fd1f-44d9-bd71-1f7d48d777ba.jpg",
   "v": 2
  },
+ "cj-2044614012003307521": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/6bf3312f-40df-4cdd-bc79-d3f717527792.jpg",
+  "v": 3
+ },
  "cj-2045065052201259009": {
   "fix": 1,
   "floating": false,
@@ -18826,6 +19993,19 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/17763840/6345f086-02b3-4f2a-a883-797b7dbe489c.jpg",
+  "v": 3
+ },
+ "cj-2051649882569412610": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/e1e71d81-d884-4677-a38d-fa7284688b2f.jpg",
   "v": 3
  },
  "cj-2055158381192830978": {
@@ -18861,6 +20041,20 @@
   ],
   "url": null,
   "v": 2
+ },
+ "cj-2059549358976069634": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: cut off at the bottom",
+   "3: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
+  "v": 3
  },
  "cj-2060564195006144513": {
   "fix": 1,
@@ -19187,6 +20381,17 @@
   "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/cff854da-67c2-4e0f-b17e-4374b9693583.jpg",
   "v": 3
  },
+ "cj-2085977781318889474": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/e0064bff-e466-44e8-a025-4c0f2ecfbb43.jpg",
+  "v": 3
+ },
  "cj-2086355607972917250": {
   "floating": true,
   "photo": 0,
@@ -19506,6 +20711,17 @@
   "url": null,
   "v": 3
  },
+ "cj-2089179664451403778": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/f47c9193-a65a-4c88-bdf1-1fcc64087721.JPG",
+  "v": 3
+ },
  "cj-2089296573603807233": {
   "fix": 1,
   "floating": true,
@@ -19694,6 +20910,15 @@
   ],
   "skip": [],
   "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/71e3df9b-1251-4d38-9927-14a1ce4446cd.jpg",
+  "v": 3
+ },
+ "cj-2093369688349126658": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/5e377ecd-8a23-44f0-aa80-8ae799a51fa0.jpg",
   "v": 3
  },
  "cj-2093500535260831746": {
@@ -20558,6 +21783,15 @@
   "url": "https://cf.cjdropshipping.com/2765e655-ae19-47e6-8aba-3d825cb9386a.jpg",
   "v": 3
  },
+ "cj-2096994366632001537": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://xffbbhangzhou.oss-cn-hangzhou.aliyuncs.com/product/3GEA8AXZN69F0R5VEV9W43D9CM.jpg",
+  "v": 3
+ },
  "cj-2097164133573353474": {
   "photo": 4,
   "rejected": [
@@ -21074,6 +22308,26 @@
   "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/9a908ac9-ab2d-4622-a47a-c9c2e35220b7.jpg",
   "v": 2
  },
+ "cj-2104222525115002882": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/9943919e-059b-4782-9c09-80fd127db0bb.jpg",
+  "v": 3
+ },
+ "cj-2104225032318939137": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/5b7d6f6e-babf-4221-b4c8-b941c3f3da95.jpg",
+  "v": 3
+ },
  "cj-2105856393723559937": {
   "fix": 1,
   "floating": false,
@@ -21152,6 +22406,15 @@
   "url": null,
   "v": 3
  },
+ "cj-2109910035572912130": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/b10f8b6a-7ae5-4723-b5cb-91f3f2540ded.jpg",
+  "v": 3
+ },
  "cj-2110638676376092674": {
   "fix": 1,
   "floating": false,
@@ -21166,6 +22429,15 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-2110652650546122753": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/fe5bf021-0cae-4000-b066-6c54928a07ae.jpg",
   "v": 3
  },
  "cj-2112076511486857217": {
@@ -21183,6 +22455,17 @@
   ],
   "skip": [],
   "url": "https://cj-product-center.oss-accelerate.aliyuncs.com/supplier/1688/65129529-511d-449e-b5ce-302aad2fd447.jpg",
+  "v": 3
+ },
+ "cj-2112453541142564865": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/bf64550c-1178-4934-9aed-a3fac05a149e.jpg",
   "v": 3
  },
  "cj-2113058590338117634": {
@@ -22790,19 +24073,13 @@
   "v": 3
  },
  "cj-2406150733501601000": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/43e7aa31-7ce3-4db4-a845-05c7095c9c76.jpg",
+  "v": 3
  },
  "cj-2406150745031609400": {
   "fix": 1,
@@ -23586,6 +24863,15 @@
   "url": "https://cf.cjdropshipping.com/17255808/1831938208536203264.jpg",
   "v": 3
  },
+ "cj-2406210539571615200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/06/21/07/34833012-3258-49d9-a1e6-215b4dbe17ca.jpg",
+  "v": 3
+ },
  "cj-2406210635161626100": {
   "floating": false,
   "photo": 1,
@@ -23750,6 +25036,18 @@
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/b07b757b-c3b9-436c-ba0a-29738155747f.jpg",
+  "v": 3
+ },
+ "cj-2406230544321615700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/ba91e3c6-7ab0-4eca-95fb-d3087de3f02d.jpg",
   "v": 3
  },
  "cj-2406230723161619600": {
@@ -24617,19 +25915,13 @@
   "v": 3
  },
  "cj-2406290532431610200": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/ea19df55-fbf3-4c62-867a-a86d609e6ac1.jpg",
+  "v": 3
  },
  "cj-2406290637071622300": {
   "fix": 1,
@@ -24951,6 +26243,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/cb24557a-cd20-43f8-aa44-f875fd94a615.jpg",
   "v": 3
  },
+ "cj-2407070206011623100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/aab669b6-bbed-42ff-9b5d-c18bdf29e611.jpg",
+  "v": 3
+ },
  "cj-2407071347011627300": {
   "floating": false,
   "photo": 0,
@@ -25128,6 +26429,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/99c3d2f4-d67c-45e3-bc12-8d1d656c8846.jpg",
   "v": 3
  },
+ "cj-2407170838521600800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/07/18/02/478ea275-88fd-48fa-ae95-0a362f54c6cc_fine.jpeg",
+  "v": 3
+ },
  "cj-2407171314351629800": {
   "fix": 1,
   "floating": false,
@@ -25250,6 +26560,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/3e182f26-b5d0-4764-9f21-a34dda95eda7.jpg",
+  "v": 3
+ },
+ "cj-2407220955121601200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/268dfff2-0a81-428f-8f9e-c7c6f8bdc6e5.jpg",
   "v": 3
  },
  "cj-2407230529241628200": {
@@ -25557,6 +26876,24 @@
   "url": "https://cf.cjdropshipping.com/17305056/1852519194147688448.jpg",
   "v": 3
  },
+ "cj-2408120658061621400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/08/12/06/7191994c-c9e5-4561-8f5a-34b22750fc29.jpg",
+  "v": 3
+ },
+ "cj-2408120851331610900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/08/12/08/e3783f1c-886b-402c-96cf-1d79ea9ef48b.jpg",
+  "v": 3
+ },
  "cj-2408140915461620400": {
   "floating": false,
   "photo": 3,
@@ -25614,6 +26951,18 @@
   "rejected": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2024/08/19/01/890f6990-81a3-4c2d-8e29-cb83c8e42d45.jpg",
   "v": 2
+ },
+ "cj-2408190238351608300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/08/19/02/510cbf05-b24f-4acc-83b0-63d61aa9c8c1.jpg",
+  "v": 3
  },
  "cj-2408190508421629400": {
   "fix": 1,
@@ -25868,6 +27217,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2024/09/19/06/ce891ef0-340d-4316-b7bb-6a8c3cddd1af.jpg",
   "v": 3
  },
+ "cj-2409130944031604100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/61b602af-5715-4617-bd73-b3a26a22b290.jpg",
+  "v": 3
+ },
  "cj-2409160218151624000": {
   "fix": 1,
   "floating": false,
@@ -26055,6 +27413,17 @@
   "url": "https://cf.cjdropshipping.com/17441568/1909811866839027712.jpg",
   "v": 3
  },
+ "cj-2409240824371614800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/a8137fe1-64ed-4835-ad12-be0d14bd680f.jpg",
+  "v": 3
+ },
  "cj-2409270638591620800": {
   "photo": 1,
   "rejected": [
@@ -26103,6 +27472,15 @@
   ],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2024/09/29/09/75921031-e78e-4e36-ae52-2a57f9f8d7f6_trans.jpeg",
+  "v": 3
+ },
+ "cj-2409300226031627900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/fc42d534-d7d1-47f0-85ec-3e5719861fd6.jpg",
   "v": 3
  },
  "cj-2409300543341623000": {
@@ -26171,17 +27549,13 @@
   "v": 3
  },
  "cj-2410010916161603100": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: head cut off by the frame",
-   "2: head cut off by the frame",
-   "3: no face (headless or cropped)",
-   "4: head cut off by the frame",
-   "5: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/e5e4e8bb-a62c-4a78-a321-845baaaca0d0.jpg",
+  "v": 3
  },
  "cj-2410010929251627800": {
   "photo": 1,
@@ -26753,16 +28127,22 @@
   "v": 3
  },
  "cj-2410310548451615400": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/7ecf710f-e633-429d-af90-4ef06c49f2f3.jpg",
+  "v": 3
+ },
+ "cj-2411010303401617500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/11/01/03/f4139846-fa83-420f-999c-683c7b70ae00_trans.jpeg",
+  "v": 3
  },
  "cj-2411010521541610800": {
   "photo": 0,
@@ -27448,13 +28828,15 @@
   "v": 3
  },
  "cj-2411130602581626900": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)"
+   "floating 0: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/11/13/06/337b175d-b449-47db-893e-a737de792cd1.jpg",
+  "v": 3
  },
  "cj-2411130610321627000": {
   "floating": false,
@@ -27590,6 +28972,15 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-2411152252071614000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/b3bfdf89-f532-4e72-8e9d-b690e2cbbe62.jpg",
   "v": 3
  },
  "cj-2411160448011612400": {
@@ -27809,19 +29200,17 @@
   "v": 2
  },
  "cj-2411210709581626900": {
+  "fix": 1,
+  "floating": false,
   "photo": null,
   "rejected": [
-   "0: several people",
-   "1: several people",
-   "2: several people",
-   "3: several people",
-   "4: several people",
-   "5: several people",
-   "6: several people",
-   "7: no face (headless or cropped)"
+   "floating 0: no clothes found",
+   "floating 1: product too small",
+   "floating 2: product too small"
   ],
+  "skip": [],
   "url": null,
-  "v": 2
+  "v": 3
  },
  "cj-2411210815431610200": {
   "fix": 1,
@@ -28861,6 +30250,17 @@
   "url": "https://cf.cjdropshipping.com/quick/product/c2dfbb4e-1cdd-4a75-b048-c689b3313dd3.jpg",
   "v": 3
  },
+ "cj-2412300327321628300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/14b517fa-89dc-4d19-a0fe-79c7e05721cb.jpg",
+  "v": 3
+ },
  "cj-2412300336131623100": {
   "fix": 1,
   "floating": false,
@@ -28926,6 +30326,15 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-2496A524-FAF2-4E9C-985F-EAC66EDE019F": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2058/2929926761215.jpg",
   "v": 3
  },
  "cj-24BBD23F-7A27-405A-8E88-D76F8F904E07": {
@@ -29630,19 +31039,15 @@
   "v": 3
  },
  "cj-2501210715451624700": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: cut off at the bottom",
-   "4: cut off at the bottom",
-   "5: cut off at the bottom",
-   "6: no face (headless or cropped)",
-   "7: cut off at the bottom"
+   "floating 0: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/01/21/07/313f388f-a0ca-45d1-987d-3495f767378e_trans.jpeg",
+  "v": 3
  },
  "cj-2501210746041615200": {
   "floating": true,
@@ -30297,6 +31702,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/b46585e6-701c-4483-9259-3b808dfbfaed.jpg",
   "v": 2
  },
+ "cj-2502140122211622200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/c9d2e7a5-ad5a-4d43-b6db-e09695b35eef.jpg",
+  "v": 3
+ },
  "cj-2502140236171616600": {
   "fix": 1,
   "floating": true,
@@ -30867,6 +32281,21 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/03/03/08/7197b126-3ee3-48bc-a133-b0a1b49457dc.jpeg",
   "v": 3
  },
+ "cj-2503031510081616000": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures",
+   "3: collage or several figures",
+   "4: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
+  "v": 3
+ },
  "cj-2503040403581629800": {
   "photo": 0,
   "rejected": [],
@@ -30912,16 +32341,13 @@
   "v": 3
  },
  "cj-2503070308491600600": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: collage or several figures",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/52a6c6a9-200d-4f24-aa5e-bc23ac825423.jpg",
+  "v": 3
  },
  "cj-2503070904111617100": {
   "fix": 1,
@@ -31213,6 +32639,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/03/17/08/2483b64a-4329-4a8e-802f-6edb122a6142_fine.jpeg",
   "v": 3
  },
+ "cj-2503180146391614700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/3485fe7e-37ab-446d-85d2-ee01fb8583d7.jpg",
+  "v": 3
+ },
  "cj-2503180334101601800": {
   "fix": 1,
   "floating": false,
@@ -31223,16 +32658,13 @@
   "v": 3
  },
  "cj-2503180733401605100": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: cut off at the bottom",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/51bea33a-6a66-460a-83ef-44f8793fe799.jpg",
+  "v": 3
  },
  "cj-2503190327561613000": {
   "floating": true,
@@ -32052,6 +33484,15 @@
   "url": null,
   "v": 3
  },
+ "cj-2504151313491618100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/61170e6c-5c1f-484a-938d-407eeaab5904.jpg",
+  "v": 3
+ },
  "cj-2504160153151617900": {
   "photo": 0,
   "rejected": [],
@@ -32139,6 +33580,17 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/2227bd95-9d33-4a81-a025-cb8d9313c68d.jpg",
+  "v": 3
+ },
+ "cj-2504170710191615600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/50f5626e-58cd-4212-8838-d007b8805972.jpg",
   "v": 3
  },
  "cj-2504180118081610100": {
@@ -32536,18 +33988,22 @@
   "v": 2
  },
  "cj-2504281809081602900": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: head cut off by the frame",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: head cut off by the frame",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/98c9b5b6-418c-42a4-bad2-b4452a4f30b0.jpg",
+  "v": 3
+ },
+ "cj-2504290156301606100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/04/29/01/95282a52-c880-48ee-b1e1-5c4f2acf27a2.jpg",
+  "v": 3
  },
  "cj-2504290329551610000": {
   "floating": true,
@@ -32959,19 +34415,13 @@
   "v": 2
  },
  "cj-2505131522311623600": {
-  "photo": null,
-  "rejected": [
-   "0: several people",
-   "1: head cut off by the frame",
-   "2: head cut off by the frame",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: several people",
-   "6: several people",
-   "7: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/b53ea574-2992-43e5-9859-f6199aea67e6.jpg",
+  "v": 3
  },
  "cj-2505140317441624300": {
   "floating": true,
@@ -33256,16 +34706,13 @@
   "v": 3
  },
  "cj-2505200550181620500": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/9e6cb7a6-9ea2-4a1b-ad58-b69054ed7324.jpg",
+  "v": 3
  },
  "cj-2505200955431614500": {
   "fix": 1,
@@ -33297,6 +34744,15 @@
   ],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/05/21/02/8ccb604a-c5fe-45c6-80eb-97f2e5f18081.jpg",
+  "v": 3
+ },
+ "cj-2505210459091623300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/48601227-ca57-450b-b434-2a1830a2e5c0.jpg",
   "v": 3
  },
  "cj-2505210742241615700": {
@@ -33365,6 +34821,17 @@
   "url": "https://cf.cjdropshipping.com/quick/product/29cf663f-2da2-44d5-9cf7-c46c5923e8f8.jpg",
   "v": 2
  },
+ "cj-2505221027411628400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/f9a79f07-06da-42da-8042-fec4ff4f0593.jpg",
+  "v": 3
+ },
  "cj-2505221207531607300": {
   "floating": true,
   "photo": 0,
@@ -33397,6 +34864,19 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/bab52a1d-06a8-4c8b-b71f-a39f9e223034.jpg",
+  "v": 3
+ },
+ "cj-2505231119081620000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/05/23/11/48af6a88-9213-4d9a-b2eb-6dcca5136172_fine.jpeg",
   "v": 3
  },
  "cj-2505240529561623600": {
@@ -33873,6 +35353,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/3987e3eb-6eaf-481c-8f5c-1006cb45c408.jpg",
   "v": 3
  },
+ "cj-2506040947371610500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/f5f37dfd-3612-4876-ab9d-994423e6a62b.jpg",
+  "v": 3
+ },
  "cj-2506050527571610000": {
   "floating": true,
   "photo": 1,
@@ -34262,6 +35751,17 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/06/22/02/bb761a57-182d-4541-9cd4-023f58e56188.jpg",
   "v": 3
  },
+ "cj-2506230611231614200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/d4744cce-0571-4f66-93fc-b50eb859bbd7.jpg",
+  "v": 3
+ },
  "cj-2506230706011611500": {
   "floating": true,
   "photo": 0,
@@ -34611,6 +36111,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/6702cf22-05e3-497f-98f5-ac49ab615a60.jpg",
   "v": 3
  },
+ "cj-2507011033581611400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/d2cdf1f0-8414-451e-848d-112fd3a8cbae.jpg",
+  "v": 3
+ },
  "cj-2507011212121610000": {
   "photo": 0,
   "rejected": [],
@@ -34878,6 +36387,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/07/14/02/af208031-8101-4114-9dd6-3448bbc2fadb.jpg",
+  "v": 3
+ },
+ "cj-2507140752581623300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/2c88f832-eddb-453a-a5c4-2abf1984ae9c.jpg",
   "v": 3
  },
  "cj-2507150306491622700": {
@@ -35247,6 +36765,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/814a4189-7542-41d7-98f3-b855ee307f4e.jpg",
   "v": 3
  },
+ "cj-2508030324351627800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/00b11b20-6a47-414c-80a1-391594972f06.jpg",
+  "v": 3
+ },
  "cj-2508030741221625500": {
   "fix": 1,
   "floating": false,
@@ -35288,17 +36815,23 @@
   "url": null,
   "v": 3
  },
+ "cj-2508081348171603300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/08/08/13/8595d592-c043-4025-b7fd-67dc24da9d58_trans.jpeg",
+  "v": 3
+ },
  "cj-2508100348201628100": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": true,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/34ddc384-c8cf-48d5-8288-9445e388bffb.jpg",
+  "v": 3
  },
  "cj-2508101237041610200": {
   "photo": 0,
@@ -35725,6 +37258,17 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/08/29/01/a6d74c3e-2500-4045-b38e-b1dd50792c5e.jpg",
   "v": 3
  },
+ "cj-2508270945331604500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/7d4529d1-1d2e-4428-b785-80f150d3e371.jpg",
+  "v": 3
+ },
  "cj-2508270949251616100": {
   "floating": false,
   "photo": 4,
@@ -35984,6 +37528,18 @@
   "url": "https://cf.cjdropshipping.com/quick/product/48e0202f-57a4-4c30-b2f6-2df849da1f0a.jpg",
   "v": 2
  },
+ "cj-2509060911411619900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/c07bdbef-018a-4486-bbfa-a4bc7b093ab3.jpg",
+  "v": 3
+ },
  "cj-2509080758151605400": {
   "floating": false,
   "photo": 1,
@@ -36010,6 +37566,18 @@
   "rejected": [],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/09/10/03/0add3cc8-3cda-4b74-aaa2-7f7997490595_fine.jpeg",
+  "v": 3
+ },
+ "cj-2509110631541625300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/09/11/06/006e9672-c9db-4f4a-9aed-bfab2e8f9b93_trans.jpeg",
   "v": 3
  },
  "cj-2509110744221602300": {
@@ -36048,6 +37616,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/09/16/10/d20238e0-02b1-45aa-8e23-66a2c8b3d4a4.jpg",
   "v": 2
  },
+ "cj-2509191044261628500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/5e72f80a-8642-4d47-ab3d-aed8bb6b8a2f.jpg",
+  "v": 3
+ },
  "cj-2509200815161616000": {
   "floating": true,
   "photo": 2,
@@ -36067,6 +37644,15 @@
    "floating 2: clothes covered by a hand or bag"
   ],
   "url": null,
+  "v": 3
+ },
+ "cj-2509230158561600000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/09/23/01/4b49a198-baa3-4e56-b8c2-2333c08ac601_fine.jpeg",
   "v": 3
  },
  "cj-2509230333571626900": {
@@ -36235,6 +37821,22 @@
   "url": "https://cf.cjdropshipping.com/quick/product/fb2f9fec-fff8-49e0-ae55-cf69ce80467c.jpg",
   "v": 3
  },
+ "cj-2510131119211645800": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures",
+   "2: collage or several figures",
+   "3: collage or several figures",
+   "4: collage or several figures",
+   "5: collage or several figures"
+  ],
+  "skip": [],
+  "url": null,
+  "v": 3
+ },
  "cj-2510150639251636000": {
   "fix": 1,
   "floating": true,
@@ -36295,6 +37897,18 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/11/24/09/c7bbe4d1-5ef4-4efa-8703-37071832d449.jpg",
   "v": 3
  },
+ "cj-2510210705131652400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/00efef35-30e4-4473-95fb-2e7086f91910.jpg",
+  "v": 3
+ },
  "cj-2510230654501637300": {
   "fix": 1,
   "floating": true,
@@ -36339,6 +37953,18 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-2511051118371600400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/11/05/11/66f36e15-9fbf-4c9f-a9db-93860649a88d_trans.jpeg",
   "v": 3
  },
  "cj-2511060653421623900": {
@@ -36451,6 +38077,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2026/09/08/11/1f2de80d-8bb7-4430-a603-4bb9f7ef989f.jpg",
   "v": 3
  },
+ "cj-2511220311521637700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/11/22/03/ade641e9-d510-4dc6-942c-51c788edeab5_trans.jpeg",
+  "v": 3
+ },
  "cj-2511250838061630600": {
   "fix": 1,
   "floating": false,
@@ -36494,6 +38129,17 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2026/08/25/12/a5383015-3aab-4330-a206-fd6e84da6cd5.jpg",
   "v": 3
  },
+ "cj-2511280922091607100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/69e7528f-87a2-4d12-a3bf-c66534141fe9.jpg",
+  "v": 3
+ },
  "cj-2512041043131624000": {
   "fix": 1,
   "floating": true,
@@ -36523,6 +38169,17 @@
   ],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/12/05/06/6708a724-5dd8-4fd9-81f3-654855c13a8a.jpg",
+  "v": 3
+ },
+ "cj-2512080349141620100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/7c8ce290-55a9-4b09-9813-de46c3c8fab4.jpg",
   "v": 3
  },
  "cj-2512090719201620800": {
@@ -36592,6 +38249,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/820c91f6-fdad-4713-a516-107033a0b8f1.jpg",
   "v": 3
  },
+ "cj-2512150131561629400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/19764165-3fc6-47d8-b446-02946913fef0.jpg",
+  "v": 3
+ },
  "cj-2512190645121612700": {
   "fix": 1,
   "floating": true,
@@ -36619,6 +38285,17 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/d97a8eb0-288d-4b84-828e-b0ae2e3963d6.jpg",
+  "v": 3
+ },
+ "cj-2512201110091633300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/e8186199-d7fd-4ccc-b00b-73998cc0ddf3.jpg",
   "v": 3
  },
  "cj-2512210857301607700": {
@@ -36737,6 +38414,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/10/12/02/606684d9-1b90-4059-858e-69555a0789e3.jpg",
   "v": 3
  },
+ "cj-254B55A8-548A-4001-92B1-23FD3864D7B0": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/16022592/1318523051184.jpg",
+  "v": 3
+ },
  "cj-258CC304-DFD9-47B6-9EEF-4A5106C6EC4D": {
   "floating": true,
   "photo": 0,
@@ -36758,6 +38444,18 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/15131808/2928124771_1826014064.400x400.jpg",
+  "v": 3
+ },
+ "cj-2601060909141605500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/c632a102-3594-4075-bac1-029abed5b1ac.jpg",
   "v": 3
  },
  "cj-2601071058201605100": {
@@ -36858,6 +38556,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/2f5c2931-3e67-4a88-bce5-0d0f358d860f.jpg",
   "v": 3
  },
+ "cj-2601160614591613300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/57ab6de9-6fd1-4f01-9d3a-aa194defeb80.jpg",
+  "v": 3
+ },
  "cj-2601170804161614800": {
   "fix": 1,
   "floating": true,
@@ -36874,6 +38581,24 @@
   ],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2026/03/03/07/39401e71-66ce-4ccb-b181-2445d2953848.jpg",
+  "v": 3
+ },
+ "cj-2601200124431614900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/9325134b-9f95-4808-aca4-d783ea15262b.jpg",
+  "v": 3
+ },
+ "cj-2601201231211610700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/01/20/12/49cfadfa-7879-4d73-939c-a9394a9cc1f4.jpeg",
   "v": 3
  },
  "cj-2601220411071611600": {
@@ -36917,6 +38642,18 @@
   "url": "https://cf.cjdropshipping.com/quick/product/42327372-1c1b-469c-8b3d-e17f63fb777a.jpg",
   "v": 3
  },
+ "cj-2601240950521614800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the edge",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/36a31a9e-3660-421c-875d-ca1ce33a6f61.jpg",
+  "v": 3
+ },
  "cj-2601280139221633700": {
   "floating": false,
   "photo": 2,
@@ -36944,6 +38681,35 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-2601290419411635600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/01/29/05/02c07969-0993-4c5c-9e03-55fd8b35dd73.jpg",
+  "v": 3
+ },
+ "cj-2602030321391625400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/273b7cee-5568-484b-b38e-032da985feeb.jpg",
+  "v": 3
+ },
+ "cj-2602030324251621200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/73d560e1-cd0f-4f40-b932-2063bc60850b.jpg",
   "v": 3
  },
  "cj-2602040828281616800": {
@@ -36978,6 +38744,24 @@
   "url": null,
   "v": 3
  },
+ "cj-2602100541591614300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/632edec7-d4b9-4cb9-93c9-6d8e27b597f4.jpg",
+  "v": 3
+ },
+ "cj-2602150752081603500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/a903dd7f-29de-4767-bed2-576b78d943ce.jpg",
+  "v": 3
+ },
  "cj-2602230801181623300": {
   "fix": 1,
   "floating": false,
@@ -36993,6 +38777,33 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-2602250739201604300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/8ddc5b72-1481-4dd6-9dfc-68787145957d.jpg",
+  "v": 3
+ },
+ "cj-2602260714101622700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/8b9b236b-a5ad-4c60-8e6b-b27657feb248.jpg",
+  "v": 3
+ },
+ "cj-2602260840421620100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/15201ae3-9674-4d6d-bf3d-092fb567f2df.jpg",
   "v": 3
  },
  "cj-2603020135481630400": {
@@ -37074,6 +38885,17 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/538a87d5-694b-4436-a6ad-f0d46d1c66c2.jpg",
+  "v": 3
+ },
+ "cj-2603050726081617000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/03/05/07/31fcbad7-a389-4c25-b48f-635d327d2d5b.jpg",
   "v": 3
  },
  "cj-2603060729161618600": {
@@ -37159,6 +38981,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/f33e6b4f-9675-4712-b5ad-f7f2ba992f9f.jpg",
+  "v": 3
+ },
+ "cj-2603230755231625400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/7a992a46-647c-4a87-b93c-bbcd32569536.jpg",
   "v": 3
  },
  "cj-2603231053451615500": {
@@ -37268,6 +39099,18 @@
   "url": "https://cf.cjdropshipping.com/quick/product/e61d69ed-bbd6-4d33-8e2a-2e2cef16cc6e.jpg",
   "v": 3
  },
+ "cj-2604160747541609300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/953e09e5-e4ee-401c-8e5a-734d2e843c44.jpg",
+  "v": 3
+ },
  "cj-2604230505121606400": {
   "floating": false,
   "photo": 0,
@@ -37284,6 +39127,22 @@
   "url": "https://cf.cjdropshipping.com/quick/product/19341cc7-f0a1-4dec-a360-64b9fc276d1f.jpg",
   "v": 3
  },
+ "cj-2604230842221620800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 6,
+  "rejected": [
+   "0: collage or several figures",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom",
+   "3: cut off at the bottom",
+   "4: cut off at the bottom",
+   "5: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/536841ec-3623-4ce7-8757-84ba507c4d38.jpg",
+  "v": 3
+ },
  "cj-2604250312421608300": {
   "fix": 1,
   "floating": true,
@@ -37297,6 +39156,15 @@
   ],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2026/04/25/03/75cb7498-1ca4-4fb1-8485-5ad09f3fb3ed.jpg",
+  "v": 3
+ },
+ "cj-2604260615141627200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/505ab059-9be8-4088-a396-7b1b14826bfb.jpg",
   "v": 3
  },
  "cj-2604270257041608500": {
@@ -37348,6 +39216,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2026/04/30/07/9f1ebf28-0111-4e60-8bfe-6b33170777d2_trans.jpeg",
   "v": 3
  },
+ "cj-2605020212251602400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/df5d96ae-f73a-4447-b32e-50320d53d90b.jpg",
+  "v": 3
+ },
  "cj-2605030133141633100": {
   "fix": 1,
   "floating": false,
@@ -37355,6 +39232,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/0df81fe2-b89b-490b-89aa-3abb24623f50.jpg",
+  "v": 3
+ },
+ "cj-2605080709061601700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/96716d09-afd1-435c-b120-a985b51e6e86.jpg",
   "v": 3
  },
  "cj-2605082352511631500": {
@@ -37383,6 +39269,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2026/05/09/07/46baf710-afee-4b13-8eef-6dbc94144837_trans.jpeg",
   "v": 3
  },
+ "cj-2605100614451632900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/7d5a968b-cc58-454a-bb1f-f07314ea4a67.jpg",
+  "v": 3
+ },
  "cj-2605121240411613600": {
   "fix": 1,
   "floating": false,
@@ -37390,6 +39285,17 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/0a20688b-405a-459d-a449-67e748d98125.jpg",
+  "v": 3
+ },
+ "cj-2605140548581629600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/a2177629-29c4-4615-8a6d-98d1c6aac85e.jpg",
   "v": 3
  },
  "cj-2605150901471635200": {
@@ -37405,6 +39311,24 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/b8be3f5c-9fe0-40c8-b357-12aaf1e6b9f7.jpg",
+  "v": 3
+ },
+ "cj-2605151208451600600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/beda6618-eda4-49e8-a132-c432fd731f87.jpg",
+  "v": 3
+ },
+ "cj-2605160827201630000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/05dc8b52-807b-42c1-9599-a4bcb8b8e2c7.jpg",
   "v": 3
  },
  "cj-2605180345421631400": {
@@ -37488,6 +39412,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/f6c15504-91aa-4ea1-8dfc-f5e1102f24bc.jpg",
   "v": 3
  },
+ "cj-2606110335331609800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/c5d5cec8-9dcc-426b-8257-7a652a790a7a.jpg",
+  "v": 3
+ },
  "cj-2606110811521604700": {
   "fix": 1,
   "floating": false,
@@ -37525,6 +39458,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/6f6b4ed2-8a93-4893-8197-117aefb85446.jpg",
+  "v": 3
+ },
+ "cj-2606210320041606700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/164e4ff6-e82f-454d-975d-6971154b89be.jpg",
   "v": 3
  },
  "cj-2606220251351639700": {
@@ -37605,6 +39547,15 @@
   "url": "https://cf.cjdropshipping.com/quick/product/f68498f9-8878-4a0e-9021-8325b927dc66.jpg",
   "v": 3
  },
+ "cj-2607030706531620900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/86c4f135-eae9-4020-9695-7f0ed2381465.jpg",
+  "v": 3
+ },
  "cj-2607060235361627500": {
   "fix": 1,
   "floating": true,
@@ -37612,6 +39563,24 @@
   "rejected": [],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2026/08/04/06/84bfb374-7b78-4d30-8b59-0ac7a25d185c.jpg",
+  "v": 3
+ },
+ "cj-2607070853511612201": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/1b27bb20-e9b1-4cef-ac8d-7984e183cfe1.jpg",
+  "v": 3
+ },
+ "cj-2607071349091617600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/177c731b-9232-4cba-a30e-d1df32ff2829.jpg",
   "v": 3
  },
  "cj-2607090753061616700": {
@@ -37659,6 +39628,18 @@
   "url": "https://cf.cjdropshipping.com/quick/product/a89e8967-56e7-49a9-948f-75a467a7e6da.jpg",
   "v": 2
  },
+ "cj-2607220700531637000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/302f7d50-2bff-4024-a977-bab77836d4c8.jpg",
+  "v": 3
+ },
  "cj-2607240304541627900": {
   "fix": 1,
   "floating": false,
@@ -37666,6 +39647,26 @@
   "rejected": [],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2026/07/24/03/661bccd2-f836-406c-ba20-ced9f94395f3_trans.jpeg",
+  "v": 3
+ },
+ "cj-2607240511241608800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/6499f70c-8dbc-4f1f-9251-d184f9232cbb.jpg",
+  "v": 3
+ },
+ "cj-2607251139391621400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/9ab73729-7533-4e5e-a04a-c381c193f7ed.jpg",
   "v": 3
  },
  "cj-2607270514541616900": {
@@ -37682,6 +39683,46 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/141c234a-30cc-4627-9aca-2edf1cf1b5d9.jpg",
+  "v": 3
+ },
+ "cj-2607280517511615800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/07/28/05/c3935de8-d2c0-40af-ab61-515f56daf278_fine.jpeg",
+  "v": 3
+ },
+ "cj-2607281206411633800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/bae7cb3c-0948-43c0-9203-3fd0b8832425.jpg",
+  "v": 3
+ },
+ "cj-2607281222011619100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/78cffc9a-e6c7-404b-b2b0-646fa233443e.jpg",
+  "v": 3
+ },
+ "cj-2607281736371625600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/07/28/17/c4da8b61-88f6-489c-ac8d-0b25f3db6142_water.jpeg",
   "v": 3
  },
  "cj-2607310510441625400": {
@@ -37728,6 +39769,17 @@
   ],
   "skip": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2026/07/31/06/afc4c653-d2d7-4d85-8a78-cd8b09a938e6.jpg",
+  "v": 3
+ },
+ "cj-2608050719121639700": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/07e18ec5-68e7-4734-9b70-9d01b85aa976.jpg",
   "v": 3
  },
  "cj-2608051349431626600": {
@@ -37885,6 +39937,18 @@
   "url": null,
   "v": 3
  },
+ "cj-2608250536491613200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/08/25/05/b53251ab-d460-4da4-b2a2-67f6527c902e_trans.jpeg",
+  "v": 3
+ },
  "cj-2608270559081604600": {
   "fix": 1,
   "floating": false,
@@ -37952,6 +40016,28 @@
   "url": null,
   "v": 3
  },
+ "cj-2609080559021600500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the edge"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/46a4f610-da16-4bd6-b9fd-9e9b304f37f4.jpg",
+  "v": 3
+ },
+ "cj-2609090750591634100": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/bd04bc9e-72fc-45d5-8899-78846e815c36.jpg",
+  "v": 3
+ },
  "cj-2609130306361619200": {
   "fix": 1,
   "floating": true,
@@ -37969,6 +40055,28 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/17a5ae7a-05f2-4368-a862-621991dfc8bd.jpg",
+  "v": 3
+ },
+ "cj-2609160332261616900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: cut off at the bottom",
+   "2: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/8327c0b0-3aeb-4998-abd0-46650221b78d.jpg",
+  "v": 3
+ },
+ "cj-2609160849171633000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/57364b23-40b7-4590-afdf-0a53186a0387.jpg",
   "v": 3
  },
  "cj-2609171113401626700": {
@@ -38031,6 +40139,19 @@
   "url": "https://cf.cjdropshipping.com/quick/product/1fe53db6-7702-498d-b350-3da32a84e639.jpg",
   "v": 3
  },
+ "cj-2609250337271633200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 3,
+  "rejected": [
+   "0: cut off at the bottom",
+   "1: collage or several figures",
+   "2: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/f6e64231-d450-419f-b060-aca93ed2a1f6.jpg",
+  "v": 3
+ },
  "cj-2609260422511610400": {
   "fix": 1,
   "floating": false,
@@ -38065,6 +40186,33 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2026/10/16/01/45b2fe06-f5f8-4e0d-9696-adbe26062a67.jpg",
   "v": 3
  },
+ "cj-2610010216531630200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/df509b3a-b74f-4880-861e-505361a9a039.jpg",
+  "v": 3
+ },
+ "cj-2610010620321639600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/01/06/e2532855-daaa-493f-b346-917f1892a6cc.jpg",
+  "v": 3
+ },
+ "cj-2610050108211606900": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/dbe13277-2b43-4924-b142-8fcc2277b8f4.jpg",
+  "v": 3
+ },
  "cj-2610050219301637500": {
   "fix": 1,
   "floating": true,
@@ -38081,6 +40229,82 @@
   "url": "https://cf.cjdropshipping.com/quick/product/afebeee5-494e-490a-945d-d97408047448.jpg",
   "v": 3
  },
+ "cj-2610050549301632400": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/974e9ff1-553a-4440-b560-7f0a999b875d.jpg",
+  "v": 3
+ },
+ "cj-2610051351461605800": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/05/13/71d79962-18e7-45f8-a753-aabf8a1a34ca_water.jpeg",
+  "v": 3
+ },
+ "cj-2610060321051628200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/06/03/54c9928d-4531-44a4-b494-650e32dfda14.jpg",
+  "v": 3
+ },
+ "cj-2610070855311635500": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/07/08/ef7650ed-c521-4fad-892a-8340806ff3a8.jpg",
+  "v": 3
+ },
+ "cj-2610090234451600200": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/09/03/0536d847-df45-411f-9ac3-ca27edc8c1bd_water.jpeg",
+  "v": 3
+ },
+ "cj-2610110813221628300": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/quick/product/59884516-468f-4db0-be4b-b83aad1d451c.jpg",
+  "v": 3
+ },
+ "cj-2610120314521604000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/12/03/8747e641-7bc1-49f5-9722-8039e8614463.jpg",
+  "v": 3
+ },
+ "cj-2610121000081623600": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/13/02/a54c56ea-0a4b-46ca-9b0a-836152f6223f_fine.jpeg",
+  "v": 3
+ },
  "cj-2610140227451636500": {
   "fix": 1,
   "floating": false,
@@ -38091,6 +40315,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/quick/product/42687062-18e0-448c-941b-a455d3a36d7e.jpg",
+  "v": 3
+ },
+ "cj-2610190959201605000": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2026/10/19/09/b210379c-01d3-4ffa-9e12-382a066434b0.jpg",
   "v": 3
  },
  "cj-2610220940321603400": {
@@ -38257,6 +40490,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/20200523/189082098312861.png",
+  "v": 3
+ },
+ "cj-2EB4A2A9-94EF-4A4F-897F-F4CEF7213614": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2053/1788839545078.jpg",
   "v": 3
  },
  "cj-2EE87186-E17E-41BF-917B-F82E20161B8A": {
@@ -38637,6 +40879,15 @@
   "url": "https://cf.cjdropshipping.com/15318432/4166446687416.jpg",
   "v": 3
  },
+ "cj-45B10A63-E032-4E6A-AECC-CC061B3B8058": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200822/1253463441100.jpg",
+  "v": 3
+ },
  "cj-45FC1731-0E42-4593-AC13-9FD23CEE6CE5": {
   "floating": true,
   "photo": 0,
@@ -38757,6 +41008,15 @@
   "url": null,
   "v": 3
  },
+ "cj-4BBD8F0C-E9C8-4703-84E6-B9912DEF89F2": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/15234048/620851924508.jpg",
+  "v": 3
+ },
  "cj-4BC89C3D-136C-4791-81FD-D0FBD475E1E4": {
   "fix": 1,
   "floating": true,
@@ -38773,6 +41033,17 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/20210118/1532832500093.jpg",
+  "v": 3
+ },
+ "cj-4C5B4E62-66C5-4976-904D-0EAB76EE7D67": {
+  "fix": 1,
+  "floating": false,
+  "photo": null,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": null,
   "v": 3
  },
  "cj-4C76B335-4D3B-400D-BE01-953FC0D00B85": {
@@ -38990,6 +41261,15 @@
   "url": null,
   "v": 3
  },
+ "cj-550A2BFE-C905-47A2-AA3C-49430012A70F": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20210125/534455365878.jpg",
+  "v": 3
+ },
  "cj-5643A949-5CA1-4913-9E36-BB4FB81043E5": {
   "photo": 1,
   "rejected": [
@@ -39189,6 +41469,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/2051/9196464370183.png",
+  "v": 3
+ },
+ "cj-6129959E-D949-4A7E-85D8-DC4B7180FF04": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/203105/2821793265359.png",
   "v": 3
  },
  "cj-614E8A68-9BB4-4E0C-B06C-54A6A0F25F7D": {
@@ -39480,6 +41769,15 @@
   "url": "https://cf.cjdropshipping.com/20190929/1283115235752.png",
   "v": 3
  },
+ "cj-7122DA68-BC84-4F70-92A8-BCED4D0F5929": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20210122/761939125368.jpg",
+  "v": 3
+ },
  "cj-71A12481-4BBD-473A-BE9F-F52BAC1DBD2D": {
   "fix": 1,
   "floating": false,
@@ -39524,6 +41822,15 @@
   ],
   "skip": [],
   "url": null,
+  "v": 3
+ },
+ "cj-75E3E0BA-2DA7-49D3-9262-C44D73C331F2": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2058/1122650127596.jpg",
   "v": 3
  },
  "cj-75EAE141-358C-4B81-95C0-8E267C713738": {
@@ -39601,6 +41908,17 @@
   "url": "https://cf.cjdropshipping.com/15694272/2436092900931.jpg",
   "v": 3
  },
+ "cj-7AEE0631-4253-470A-A11E-038777C16E80": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2061/1329300006258.jpg",
+  "v": 3
+ },
  "cj-7BCE6BB2-14F7-47C0-B1E1-79C50A253A3A": {
   "photo": 1,
   "rejected": [
@@ -39608,6 +41926,15 @@
   ],
   "url": "https://cf.cjdropshipping.com/15517152/470559524720.jpg",
   "v": 2
+ },
+ "cj-7BCF2557-E781-4D85-A9D6-91BE913AD7CF": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/203102/761414650307.jpg",
+  "v": 3
  },
  "cj-7BE41EA8-27F0-4D73-9633-521EFF1AF891": {
   "floating": false,
@@ -39846,6 +42173,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2025/03/08/06/126854c2-b954-472b-ac33-0a52a364c86f.jpg",
   "v": 2
  },
+ "cj-83110447-75EF-421F-91F5-6637449ACEE3": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200716/2276450700521.jpg",
+  "v": 3
+ },
  "cj-831FD1B1-0FBE-47DF-AD11-FCEF7CD73CD5": {
   "fix": 1,
   "floating": false,
@@ -39942,6 +42278,15 @@
   "url": "https://cf.cjdropshipping.com/20180903/28769710689.png",
   "v": 3
  },
+ "cj-892713D7-438E-4027-A9DA-0D6517FBF407": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/203204/528287335468.jpg",
+  "v": 3
+ },
  "cj-8963601A-54EC-4249-A1AF-4752D05DF1C3": {
   "photo": 0,
   "rejected": [],
@@ -39991,6 +42336,18 @@
   ],
   "url": "https://cf.cjdropshipping.com/20200507/218880020722.jpg",
   "v": 2
+ },
+ "cj-8C776895-045A-4F38-AA6B-0B809B09C844": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200620/1031725935453.jpg",
+  "v": 3
  },
  "cj-8CF15C1B-951F-41CA-89D9-BA800297D4ED": {
   "fix": 1,
@@ -40360,6 +42717,18 @@
   "url": "https://cf.cjdropshipping.com/20200407/29624690881416.jpg",
   "v": 3
  },
+ "cj-ACDA3B4A-B40B-4821-A5AE-6700AE4AE161": {
+  "fix": 1,
+  "floating": false,
+  "photo": 2,
+  "rejected": [
+   "0: collage or several figures",
+   "1: collage or several figures"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20210105/312178496697.jpg",
+  "v": 3
+ },
  "cj-AD203C44-8E98-4CD9-A57A-4821AFD0E4BD": {
   "fix": 1,
   "floating": true,
@@ -40526,6 +42895,15 @@
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/15144768/4368867068_113251234.jpg",
   "v": 2
+ },
+ "cj-B60092D0-181D-4667-84D2-A03CC259E10C": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200806/3037544942097.jpg",
+  "v": 3
  },
  "cj-B72B3BC8-064A-4F40-A53E-0B2D07F17994": {
   "photo": 1,
@@ -40757,6 +43135,15 @@
   "url": "https://oss-cf.cjdropshipping.com/product/2024/01/25/10/0ed3caa8-f244-4ce2-bd64-7ad70bf0424c.jpg",
   "v": 3
  },
+ "cj-C1911B3F-65E3-48C9-95AA-D46657A35415": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/15928416/220510398615.jpg",
+  "v": 3
+ },
  "cj-C1FCF473-F2EC-46A3-AED2-34BAE0070E51": {
   "floating": false,
   "photo": 0,
@@ -40980,6 +43367,15 @@
   "url": "https://cf.cjdropshipping.com/15129216/6303076082_423060586.jpg",
   "v": 3
  },
+ "cj-CA4ABFFB-BE8F-47C7-BA9B-C8EBC23D72B8": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20210113/2680996006357.jpg",
+  "v": 3
+ },
  "cj-CA6BE484-6E0C-4239-B20C-43B61DBFA3CB": {
   "fix": 1,
   "floating": false,
@@ -41027,6 +43423,15 @@
   ],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/15543072/1243239148553.jpg",
+  "v": 3
+ },
+ "cj-CCD594DB-6005-4297-81D4-D01DA7A0279E": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200413/3979225008779.png",
   "v": 3
  },
  "cj-CCFA09F7-6E32-41E0-8BC2-36CA53FB5416": {
@@ -41419,6 +43824,15 @@
   "url": "https://cf.cjdropshipping.com/15320160/2388102210000.png",
   "v": 3
  },
+ "cj-E68390DA-36E2-4156-9CB8-D4355B1FC5D5": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200609/8819404255493.jpg",
+  "v": 3
+ },
  "cj-E6B45B57-9C4C-411F-99CF-D0C70AF6C14C": {
   "fix": 1,
   "floating": false,
@@ -41475,6 +43889,26 @@
   "url": null,
   "v": 3
  },
+ "cj-E8CE8E1A-7BCB-486A-872B-A87A67B10FDB": {
+  "fix": 1,
+  "floating": false,
+  "photo": 1,
+  "rejected": [
+   "0: cut off at the bottom"
+  ],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/20200915/1253577507121.jpg",
+  "v": 3
+ },
+ "cj-E980AA14-17B6-4510-86B7-4104FF1B6FD3": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/15765120/840350455372.jpg",
+  "v": 3
+ },
  "cj-E98BD910-C1BD-48C3-9D94-7A1766E1735B": {
   "fix": 1,
   "floating": false,
@@ -41500,6 +43934,15 @@
   "rejected": [],
   "skip": [],
   "url": "https://cf.cjdropshipping.com/20200315/1479073997771.jpg",
+  "v": 3
+ },
+ "cj-EA9EA9C9-BE61-4E83-BAC9-D7F3901ED233": {
+  "fix": 1,
+  "floating": false,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/15736608/1954255509100.jpg",
   "v": 3
  },
  "cj-EB9318A3-53C6-425B-BB1A-18922655191F": {
