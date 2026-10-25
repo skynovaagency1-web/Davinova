@@ -1,4 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react';
+import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -102,6 +103,7 @@ export function WomenLayout() {
         <p>Dresses for the moments you'll keep.</p>
         <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></nav>
       </div>
+      <SocialLinks />
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="women" className="mood-bar--float" />
