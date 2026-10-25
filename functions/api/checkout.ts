@@ -1,6 +1,8 @@
 import { queryCJVariantStock } from '../../server/cj';
 import { currentCustomer } from '../../server/accounts';
 import type { CJEnv, CJVariantStockRow } from '../../server/cj';
+import { loadDiscountCode } from '../../server/offers';
+import { FREE_GIFT, computeOffer, type Offer } from '../../src/lib/offers';
 
 type Env = CJEnv & {
   STRIPE_SECRET_KEY?: string;
@@ -226,6 +228,7 @@ async function createStripeSession(
   orderNumber: string,
   products: Array<{ product: CheckoutProduct; quantity: number }>,
   customerEmail = '',
+  couponId = '',
 ): Promise<StripeCheckoutSession> {
   const currency = products[0].product.currency.toLowerCase();
   const form = new URLSearchParams();
@@ -248,6 +251,7 @@ async function createStripeSession(
   form.set('shipping_options[0][shipping_rate_data][display_name]', shippingLabel);
 
   if (autoTax) form.set('automatic_tax[enabled]', 'true');
+  if (couponId) form.set('discounts[0][coupon]', couponId);
 
   form.set('metadata[order_id]', orderId);
   form.set('metadata[order_number]', orderNumber);
@@ -285,6 +289,25 @@ async function createStripeSession(
     throw new Error('Stripe returned an unexpected Checkout URL.');
   }
   return data;
+}
+
+/** A one-time Stripe coupon carrying the bundle or code saving computed on the server. */
+async function createCoupon(secret: string, orderId: string, offer: Offer, currency: string): Promise<string> {
+  const form = new URLSearchParams({
+    amount_off: String(offer.discountCents),
+    currency: currency.toLowerCase(),
+    duration: 'once',
+    max_redemptions: '1',
+    name: offer.label.slice(0, 40),
+  });
+  const response = await fetch('https://api.stripe.com/v1/coupons', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${secret}`, 'Content-Type': 'application/x-www-form-urlencoded', 'Idempotency-Key': `davinova-coupon-${orderId}` },
+    body: form.toString(),
+  });
+  const data = await response.json() as { id?: string };
+  if (!response.ok || !data.id) throw new Error('Stripe could not create the discount.');
+  return data.id;
 }
 
 /**
@@ -354,9 +377,18 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       return reply({ error: 'The bag total is invalid.' }, 409);
     }
 
+    const code = await loadDiscountCode(env.DB, (body as Record<string, unknown>).code).catch(() => null);
+    const offer = computeOffer(subtotalCents, prepared.reduce((sum, line) => sum + line.quantity, 0), code);
+    // The free gift ships with the order at no charge; if it is unavailable the order simply goes without it.
+    let gift: CheckoutProduct | null = null;
+    if (offer.giftEligible) {
+      gift = await loadApprovedProduct(env, { productId: FREE_GIFT.productId, size: FREE_GIFT.size, quantity: 1 }).catch(() => null);
+      if (gift && gift.currency.toUpperCase() !== currency) gift = null;
+    }
+
     const orderId = crypto.randomUUID();
     const orderNumber = `DV-${crypto.randomUUID().replaceAll('-', '').slice(0, 12).toUpperCase()}`;
-    const provisionalTotal = subtotalCents + settings.shippingFeeCents;
+    const provisionalTotal = subtotalCents + settings.shippingFeeCents - offer.discountCents;
     const placeholderEmail = `pending+${orderId}@checkout.invalid`;
 
     const statements = [
@@ -365,9 +397,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
           (id, order_number, email, status, payment_provider, payment_status,
            subtotal_cents, shipping_cents, discount_cents, total_cents, currency,
            shipping_address_json, shipping_method)
-        VALUES (?, ?, ?, 'pending_payment', 'stripe', 'unpaid', ?, ?, 0, ?, ?, '{}', 'standard')
-      `).bind(orderId, orderNumber, placeholderEmail, subtotalCents, settings.shippingFeeCents, provisionalTotal, currency),
-      ...prepared.map(({ product, quantity }) => env.DB.prepare(`
+        VALUES (?, ?, ?, 'pending_payment', 'stripe', 'unpaid', ?, ?, ?, ?, ?, '{}', 'standard')
+      `).bind(orderId, orderNumber, placeholderEmail, subtotalCents, settings.shippingFeeCents, offer.discountCents, provisionalTotal, currency),
+      ...[...prepared, ...(gift ? [{ product: gift, quantity: 1, free: true }] : [])].map(({ product, quantity, ...rest }) => env.DB.prepare(`
         INSERT INTO order_items
           (id, order_id, product_id, variant_id, cj_product_id, cj_variant_id,
            product_title, sku, size, color, quantity, unit_price_cents,
@@ -377,23 +409,25 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         crypto.randomUUID(), orderId, product.product_id, product.variant_id,
         product.cj_product_id, product.cj_variant_id, product.product_title,
         product.cj_sku || product.sku || null, product.size, product.color,
-        quantity, product.price_cents, product.cost_cents,
+        quantity, 'free' in rest ? 0 : product.price_cents, product.cost_cents,
         `https://www.cjdropshipping.com/product/${product.cj_product_id}.html`,
       )),
       env.DB.prepare(
         "INSERT INTO order_events (id, order_id, event_type, to_status, message, metadata_json) VALUES (?, ?, 'stripe_checkout_created', 'pending_payment', 'Stripe Checkout session requested.', ?)",
-      ).bind(crypto.randomUUID(), orderId, JSON.stringify({ itemCount: prepared.length })),
+      ).bind(crypto.randomUUID(), orderId, JSON.stringify({ itemCount: prepared.length, offer: offer.source, offerLabel: offer.label, discountCents: offer.discountCents, code: offer.source === 'code' ? code?.code : undefined, freeGift: Boolean(gift) })),
     ];
 
     await env.DB.batch(statements);
 
     let session: StripeCheckoutSession;
     try {
+      const couponId = offer.discountCents > 0 ? await createCoupon(stripe.secret, orderId, offer, currency) : '';
       session = await createStripeSession(
         stripe.secret, returnSite, settings.countries,
         settings.shippingFeeCents, settings.shippingLabel, settings.autoTax,
         orderId, orderNumber, prepared,
         (await currentCustomer(request, env.DB).catch(() => null))?.email ?? '',
+        couponId,
       );
     } catch (error) {
       await env.DB.prepare(
@@ -416,6 +450,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       !Number.isSafeInteger(actualTotal) ||
       actualSubtotal !== subtotalCents ||
       actualShipping !== settings.shippingFeeCents ||
+      actualDiscount !== offer.discountCents ||
       actualTotal !== actualSubtotal + actualShipping + actualTax - actualDiscount
     ) {
       // Expire a session that does not match our order snapshot before exposing it.
@@ -443,6 +478,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       session.id!, actualSubtotal, actualShipping, actualDiscount,
       actualTotal, actualCurrency, orderId,
     ).run();
+
+    if (offer.source === 'code' && code) {
+      await env.DB.prepare('UPDATE discount_codes SET uses_count=uses_count+1 WHERE code=?').bind(code.code).run();
+    }
 
     return reply({ url: session.url, sessionId: session.id, orderNumber: orderNumber });
   } catch (error) {

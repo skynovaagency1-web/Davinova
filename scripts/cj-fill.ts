@@ -195,7 +195,24 @@ const ONLY = (process.env.ONLY ?? '').split(',').map((value) => value.trim()).fi
 const DRESS_FIRST = ['weddings-and-events', 'tops-and-sets:lady-dresses', 'womens-sweaters:womens-sweater-dresses', 'womens-denim:womens-denim-dresses', 'womens-sweatshirts-hoodies:womens-sweatshirt-dresses'];
 const NOT_FOR_STORE = /\b(kids?|child|children|toddler|baby|boys?|pet|dog|cat|pajamas?|pyjamas?|lingerie|costume|cosplay|halloween)\b/i;
 
-type Search = { items: { id: string; name: string; category: string }[] };
+type Search = { items: { id: string; name: string; category: string; minPriceUsd: number | null; listedCount: number | null }[] };
+
+// Quality floor (owner, 2026-10-25): very cheap CJ items are poor quality, so skip anything whose cheapest variant costs less.
+const BAG_OR_SHOE = /bag|backpack|briefcase|wallet|luggage|shoe|boot|sandal|slipper|flats|pumps|loafer|sneaker/;
+// Quality score: other shops keep selling it (CJ listed count), or the title names a good material; cheap materials are out.
+const GOOD_MATERIAL = /\b(stainless|titanium|sapphire|925|sterling|genuine leather|cowhide|real leather|silk|satin|linen|cotton|wool|cashmere|velvet|chiffon|sequin|lace|mechanical|automatic|quartz|tungsten|moissanite|gold plated|18k)\b/i;
+const CHEAP_MATERIAL = /\b(plastic|acrylic|non-?woven|disposable|cheap|wholesale|dropshipping)\b/i;
+function qualityScore(item: { name: string; listedCount: number | null }) {
+  if (CHEAP_MATERIAL.test(item.name)) return 0;
+  return (item.listedCount ?? 0) >= 20 ? 2 : GOOD_MATERIAL.test(item.name) ? 1 : (item.listedCount ?? 0) >= 5 ? 1 : 0;
+}
+function qualityFloor(group: string, sub: string) {
+  if (/watches$/.test(sub)) return 8;
+  if (group === 'jewelry-and-watches') return 4;
+  if (/dress(?!-shirt|-shoe)|suits|tuxedo/.test(sub)) return 10;
+  if (group === 'womens-bags' || group === 'womens-shoes' || BAG_OR_SHOE.test(sub)) return 8;
+  return 4;
+}
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function admin<T>(path: string, init: RequestInit = {}): Promise<T> {
@@ -231,16 +248,18 @@ async function main() {
     let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
+    const floor = qualityFloor(group.slug, sub.slug);
     const words = WOMEN_OBJECTS[sub.slug] && !menStoreCollectionGroups.includes(group) ? WOMEN_OBJECTS[sub.slug].search : JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, ...PLUS_SEARCH] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
       for (let page = 1; page <= (PLUS ? 10 : 5) && need > 0 && imported < MAX_IMPORTS; page++) {
         await sleep(1200);
         let result: Search;
-        try { result = await admin<Search>(`/api/admin/cj-catalog?q=${encodeURIComponent(keyword)}&page=${page}&size=10`); }
+        try { result = await admin<Search>(`/api/admin/cj-catalog?q=${encodeURIComponent(keyword)}&page=${page}&size=10&min=${floor}`); }
         catch (error) { console.log(`search "${keyword}" failed: ${(error as Error).message}`); break; }
         if (!result.items.length) break;
         for (const item of result.items) {
           if (need <= 0 || imported >= MAX_IMPORTS || known.has(item.id)) continue;
+          if (!((item.minPriceUsd ?? 0) >= floor) || !qualityScore(item)) continue;
           if (PLUS && !PLUS_TITLE.test(item.name)) continue;
           if (NOT_FOR_STORE.test(item.name) && sub.slug !== 'flower-girl-dresses' && group.slug !== 'couple-parent-child-clothing') continue;
           if (JEWELRY) {
