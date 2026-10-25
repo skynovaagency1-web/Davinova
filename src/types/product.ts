@@ -43,6 +43,10 @@ export interface Product {
   model3d?: { url: string; credit?: string; scale?: number; rotationY?: number };
   featured?: boolean;
   browseOnly?: boolean;
+  /** Added to the shop in the last 4 days. */
+  isNew?: boolean;
+  /** Units left across the shown sizes, set only when 25 or fewer. */
+  lowStock?: number;
   currency?: string;
   woocommerceProductId?: number;
   woocommercePermalink?: string;

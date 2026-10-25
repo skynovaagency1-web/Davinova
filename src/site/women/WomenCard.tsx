@@ -7,6 +7,7 @@ import { formatMoney } from '../../lib/format';
 import { productPath } from '../../lib/storefront';
 import { isFloating, useCutouts } from '../../lib/useCutouts';
 import { WishButton } from '../shared/WishButton';
+import { productBadge } from '../../lib/badges';
 
 /**
  * Women's product card. When the dress has a cut-out photo, the glass card is only the lower part and
@@ -20,6 +21,7 @@ export function WomenCard({ product, index = 0 }: { product: Product; index?: nu
   const image = product.images[0]?.url;
   const second = product.images[1]?.url;
   const href = productPath(product);
+  const badge = productBadge(product);
   const kind = cutout ? (isFloating(cutout, product.storeCollection) ? ' w-card--float' : ' w-card--pop') : '';
   return <motion.article className={`w-card${kind}`} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}>
     <Link to={href} className="w-card__img" aria-label={product.title}>
@@ -27,7 +29,7 @@ export function WomenCard({ product, index = 0 }: { product: Product; index?: nu
         ? <img className="w-card__cutout" style={{ animationDelay: `${-(index % 5) * 1.3}s` }} src={cutout} alt={product.images[0]?.alt || product.title} loading="lazy" />
         : image && !broken ? <img src={image} alt={product.images[0].alt || product.title} loading="lazy" onError={() => setBroken(true)} /> : <span className="w-card__missing">Photo coming soon</span>}
       {!cutout && second && !broken && <img className="w-card__alt" src={second} alt="" aria-hidden="true" loading="lazy" />}
-      {product.browseOnly && <span className="w-card__badge">Coming soon</span>}
+      {badge && <span className={`w-card__badge w-card__badge--${badge.kind}`}>{badge.label}</span>}
       <span className="w-card__arrow"><ArrowUpRight size={16} /></span>
       <WishButton productId={product.id} title={product.title} />
     </Link>
