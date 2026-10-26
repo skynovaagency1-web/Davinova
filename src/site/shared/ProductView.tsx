@@ -168,11 +168,11 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           {!isWoo && canBuy && <div className="pv-buy__sizes">
             {colours.length > 0 && <>
               <span>Choose your colour {sizeHint && !colour && <em>· pick one first</em>}</span>
-              <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }}>{item}</button>)}</div>
+              <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }}>{product.colourImages?.[item] && <img src={product.colourImages[item]} alt="" loading="lazy" />}{item}</button>)}</div>
             </>}
             {(!colours.length || colour) && <>
               <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}<Link className="pv-buy__guide" to={`${prefix}/size-guide`}>Size guide</Link></span>
-              <div role="group" aria-label="Sizes">{sizeChoices.map((item) => <button key={item.label} type="button" className={size === item.label ? 'active' : ''} aria-pressed={size === item.label} onClick={() => { setSize(item.label); setAdded(false); setSizeHint(false); }}>{item.size}</button>)}</div>
+              <div role="group" aria-label="Sizes">{sizeChoices.map((item) => <button key={item.label} type="button" className={size === item.label ? 'active' : ''} aria-pressed={size === item.label} onClick={() => { setSize(item.label); setShowColour(true); setAdded(false); setSizeHint(false); }}>{item.size}</button>)}</div>
             </>}
           </div>}
           {isWoo
