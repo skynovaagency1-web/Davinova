@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FLOATING_COLLECTIONS } from './storeCollectionTaxonomy';
 
 // public/cutouts/manifest.json maps product id → background-free photo, made by the "Product cutouts" GitHub Action.
@@ -17,7 +17,7 @@ export function loadCutouts() {
 export function useCutouts(): (id: string) => string | undefined {
   const [map, setMap] = useState(cache);
   useEffect(() => { let alive = true; loadCutouts().then((data) => { if (alive) setMap(data); }); return () => { alive = false; }; }, []);
-  return (id) => map[id] ?? undefined;
+  return useCallback((id: string) => map[id] ?? undefined, [map]);
 }
 
 /**
@@ -26,3 +26,7 @@ export function useCutouts(): (id: string) => string | undefined {
  */
 export const isFloating = (cutout: string | undefined, storeCollection?: string) =>
   Boolean(cutout && (cutout.endsWith('.float.webp') || FLOATING_COLLECTIONS.includes(storeCollection ?? '')));
+
+/** A whole look on a model: the photo passed the full-body check (not floating, not a headless .model.webp cut). */
+export const isFullLook = (cutout: string | undefined, storeCollection?: string) =>
+  Boolean(cutout && !cutout.endsWith('.model.webp') && !isFloating(cutout, storeCollection));

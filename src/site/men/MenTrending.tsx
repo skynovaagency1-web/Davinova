@@ -5,24 +5,27 @@ import type { Product } from '../../types/product';
 import { MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
 import { WomenCard as ProductCard } from '../women/WomenCard';
 import { MEN_OCCASIONS, menOccasionPath } from './menFormal';
+import { isFullLook, useCutouts } from '../../lib/useCutouts';
 
 const inOccasion = (product: Product, occasion: (typeof MEN_OCCASIONS)[number]) =>
   product.storeSubcategory === occasion.sub || (product.storeCollection === MEN_FORMAL && product.collectionCategory === occasion.key);
 
-/** "Trending now" for men: wedding, black tie and holiday looks mixed in one ranked rail, with a tab for each. */
+/** "Trending now" for men: wedding, black tie and holiday looks mixed in one ranked rail, with a tab for each. Whole looks on a model come first. */
 export function MenTrending({ products }: { products: Product[] }) {
   const [tab, setTab] = useState('all');
+  const cutoutFor = useCutouts();
   const list = useMemo(() => {
-    const rank = (items: Product[]) => [...items].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length);
+    const full = (product: Product) => Number(isFullLook(cutoutFor(product.id), product.storeCollection));
+    const rank = (items: Product[]) => [...items].sort((a, b) => full(b) - full(a) || Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length);
     const groups = MEN_OCCASIONS.map((occasion) => rank(products.filter((product) => inOccasion(product, occasion))));
     if (tab !== 'all') return groups[MEN_OCCASIONS.findIndex((occasion) => occasion.key === tab)].slice(0, 12);
-    // All: wedding, black tie and holiday taken in turn, so the three are mixed.
+    // All: wedding, black tie and holiday taken in turn, so the three are mixed; whole looks stay ahead of the rest.
     const mixed: Product[] = [];
-    for (let round = 0; mixed.length < 12 && groups.some((group) => group.length > round); round += 1) {
-      for (const group of groups) if (group[round] && mixed.length < 12) mixed.push(group[round]);
+    for (let round = 0; groups.some((group) => group.length > round); round += 1) {
+      for (const group of groups) if (group[round]) mixed.push(group[round]);
     }
-    return mixed;
-  }, [products, tab]);
+    return mixed.sort((a, b) => full(b) - full(a)).slice(0, 12);
+  }, [products, tab, cutoutFor]);
   if (products.length === 0) return null;
   return <section className="w-trend">
     <div className="w-sec-head">

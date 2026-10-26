@@ -7,8 +7,8 @@ cutout) and public/cutouts/report.json (which photo was used, or why each one fa
 
 The photo check rejects: cut-off heads or faces, headless or half-body shots, cut-off hems, collages and
 colour grids, extra people (except couple and parent-child sets), and faded cutouts. Jewelry and watches
-skip the face rules but must still be one whole, uncropped object. Clothing with no good model photo is shown
-as a floating garment instead (public/cutouts/<id>.float.webp): a clothing model erases the head, skin and props.
+skip the face rules but must still be one whole, uncropped object. Clothing with no good model photo keeps
+its model with only the background removed (owner, 2026-10-26); flat or hanger shots are saved as <id>.float.webp.
 """
 import io
 import json
@@ -127,29 +127,14 @@ def photo_problem(image: Image.Image, cutout: Image.Image, faces, kind: str):
     return None
 
 
-def ghost(image: Image.Image, cutout: Image.Image, session):
-    """Keep only the clothes: erase the model's head, skin, hair, bags and shoes. Returns (garment, problem)."""
-    clothes = np.array(remove(image, session=session, cc='attire', only_mask=True))
-    mask = (np.minimum(clothes, np.array(cutout.getchannel('A'))) > 128).astype(np.uint8)
-    size = max(3, int(0.012 * max(mask.shape))) | 1
-    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((size, size), np.uint8))
-    count, labels, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
-    if count < 2:
-        return None, 'no clothes found'
-    areas = stats[1:, cv2.CC_STAT_AREA]
-    mask = np.isin(labels, [i + 1 for i, area in enumerate(areas) if area > 0.4 * areas.max()]).astype(np.uint8)
-    # A hand or bag held over the clothes leaves a hole; a garment with a big hole isn't shown.
-    filled = mask.copy()
-    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cv2.drawContours(filled, contours, -1, 1, cv2.FILLED)
-    if (filled.sum() - mask.sum()) > 0.03 * filled.sum():
-        return None, 'clothes covered by a hand or bag'
-    rows, cols = np.where(mask)
-    if rows.min() <= 1 or cols.min() <= 1 or cols.max() >= mask.shape[1] - 2:
-        return None, 'clothes cut off at the edge'
-    garment = cutout.copy()
-    garment.putalpha(Image.fromarray(cv2.GaussianBlur(mask * 255, (0, 0), 1.2)))
-    return garment, None
+def keep_model(image: Image.Image, session, cloth_session):
+    """Remove only the background. Returns (cutout, on_model): on_model when skin, hair or a face shows beside the clothes."""
+    cutout = remove(image, session=session)
+    alpha = np.array(cutout.getchannel('A'))
+    clothes = np.array(remove(image, session=cloth_session, cc='attire', only_mask=True))
+    whole = (alpha > 128).sum()
+    worn = (np.minimum(clothes, alpha) > 128).sum()
+    return cutout, bool(whole and worn < 0.85 * whole)
 
 
 def finish(cutout: Image.Image) -> Image.Image:
@@ -225,13 +210,35 @@ def main() -> int:
         if pid in rejects:
             manifest[pid] = None
             continue
-        kind, reasons, chosen, floating = kind_of(product), [], None, False
+        kind, reasons, chosen, floating, partial = kind_of(product), [], None, False, False
         old = report.get(pid, {})
         # An object cut with the clothing model (beauty before 2026-10-24) lost parts of itself: cut it again.
         recut = kind == 'object' and (old.get('floating') or (product.get('storeCollection') in BEAUTY_COLLECTIONS and old.get('photo') is None and old.get('fix') != 1))
         pick = picks.get(pid)
         repick = pick is not None and old.get('pick') != pick and pick < len(images)
         hair = is_hair(product) and pid not in picks and old.get('hair') != 1
+        # Owner (2026-10-26): erasing the model left holes and missing parts. Keep the model, remove only the background.
+        if old.get('floating') and kind == 'person' and not old.get('kept') and not repick:
+            if done >= LIMIT or time.time() - started > TIME_BUDGET:
+                continue
+            done += 1
+            cloth_session = cloth_session or new_session('u2net_cloth_seg')
+            try:
+                image = open_photo(images[old['photo']]['url'])
+                cutout, on_model = keep_model(image, session, cloth_session)
+                for name in (f'{pid}.webp', f'{pid}.float.webp', f'{pid}.model.webp'):
+                    if os.path.exists(os.path.join(OUT, name)):
+                        os.remove(os.path.join(OUT, name))
+                # .model.webp: a model photo that didn't pass the full-look check (headless or cropped).
+                name = f'{pid}.model.webp' if on_model else f'{pid}.float.webp'
+                finish(cutout).save(os.path.join(OUT, name), 'WEBP', quality=86, method=6)
+                manifest[pid] = f'/cutouts/{name}'
+                report[pid] = {**old, 'floating': not on_model, 'kept': 1}
+                passed += 1
+                print(pid, 'kept model' if on_model else 'recut flat', old['photo'])
+            except Exception as error:
+                print(pid, 'keep model failed', error)
+            continue
         if not recut and not repick and not hair and (old.get('v') == GATE_VERSION or (old.get('v') == FLOAT_FROM and (old.get('photo') is not None or kind != 'person'))):
             continue
         if done >= LIMIT or time.time() - started > TIME_BUDGET:
@@ -329,27 +336,29 @@ def main() -> int:
                     continue
                 try:
                     image = open_photo(photo['url'])
-                    garment, problem = ghost(image, remove(image, session=session), cloth_session)
-                    problem = problem or photo_problem(image, garment, [], 'object')
+                    # Owner (2026-10-26): keep the model; erasing it left holes and missing parts.
+                    garment, on_model = keep_model(image, session, cloth_session)
+                    problem = photo_problem(image, garment, [], 'object')
                     if problem:
                         reasons.append(f'floating {index}: {problem}')
                         continue
-                    chosen, floating = index, True
-                    finish(garment).save(os.path.join(OUT, f'{pid}.float.webp'), 'WEBP', quality=86, method=6)
+                    chosen, floating, partial = index, not on_model, on_model
+                    finish(garment).save(os.path.join(OUT, f'{pid}.float.webp' if floating else f'{pid}.model.webp'), 'WEBP', quality=86, method=6)
                     break
                 except Exception as error:
                     reasons.append(f'floating {index}: failed {error}')
-        for name in (f'{pid}.webp', f'{pid}.float.webp'):
-            kept = chosen is not None and name == (f'{pid}.float.webp' if floating else f'{pid}.webp')
+        final = f'{pid}.float.webp' if floating else f'{pid}.model.webp' if partial else f'{pid}.webp'
+        for name in (f'{pid}.webp', f'{pid}.float.webp', f'{pid}.model.webp'):
+            kept = chosen is not None and name == final
             if not kept and os.path.exists(os.path.join(OUT, name)):
                 os.remove(os.path.join(OUT, name))
         if chosen is None:
             manifest[pid] = None
             rejected += 1
         else:
-            manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
+            manifest[pid] = f'/cutouts/{final}'
             passed += 1
-        report[pid] = {'fix': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons, **({'pick': pick} if repick and chosen is not None else {}), **({'hair': 1} if hair else {})}
+        report[pid] = {'fix': 1, 'kept': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons, **({'pick': pick} if repick and chosen is not None else {}), **({'hair': 1} if hair else {})}
         print(pid, 'floating' if floating else 'photo', chosen, reasons)
 
     json.dump(manifest, open(manifest_path, 'w'), indent=0, sort_keys=True)

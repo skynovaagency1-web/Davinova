@@ -11,7 +11,7 @@ for pid, cut in manifest.items():
     if pid in rejects:
         manifest[pid] = None
     elif cut and not os.path.exists('public' + cut):
-        # The other look (.webp or .float.webp) is the one on disk now.
-        other = cut.replace('.float.webp', '.webp') if cut.endswith('.float.webp') else cut[:-len('.webp')] + '.float.webp'
-        manifest[pid] = other if os.path.exists('public' + other) else None
+        # Another look (.webp, .float.webp or .model.webp) is the one on disk now.
+        base = cut.removesuffix('.float.webp').removesuffix('.model.webp').removesuffix('.webp')
+        manifest[pid] = next((base + ext for ext in ('.webp', '.model.webp', '.float.webp') if os.path.exists('public' + base + ext)), None)
 open(path, 'w').write('{\n' + ',\n'.join(f'{json.dumps(k)}: {json.dumps(manifest[k])}' for k in sorted(manifest)) + '\n}\n')

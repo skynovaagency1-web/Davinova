@@ -2,7 +2,7 @@ import { FLOATING_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
-import { isFloating, useCutouts } from '../../lib/useCutouts';
+import { isFullLook, useCutouts } from '../../lib/useCutouts';
 import { NovaHero } from './NovaHero';
 import { CollectionCards } from './CollectionCards';
 import { ReachFeature } from './ReachFeature';
@@ -27,7 +27,7 @@ export function WomenHome() {
   const withImages = women.filter((product) => product.images[0]?.url);
   // Home rails show whole looks on a model only; headless floating garments stay on their collection pages (owner's rule).
   const cutoutFor = useCutouts();
-  const onModel = women.filter((product) => !isFloating(cutoutFor(product.id), product.storeCollection));
+  const onModel = women.filter((product) => isFullLook(cutoutFor(product.id), product.storeCollection));
   const onModelWithImages = onModel.filter((product) => product.images[0]?.url);
 
   return <>
@@ -35,7 +35,7 @@ export function WomenHome() {
     <ShopSplit womenImages={withImages.slice(0, 24).map((product) => product.images[0].url)} menImages={menDoorImages(products)} womenCount={women.length} menCount={men.length} />
     <CategoryCircles products={onModel} />
     <CollectionCards products={onModel} />
-    <TrendingRail products={onModel} />
+    <TrendingRail products={women} />
     <Exemplaire products={onModel} />
     <ReachFeature product={withImages[4] ?? withImages[0]} />
     <section className="w-watch-feature">
