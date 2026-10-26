@@ -4,15 +4,18 @@ import { Flame } from 'lucide-react';
 import type { Product } from '../../types/product';
 import { WomenCard } from './WomenCard';
 import { categoryPath, stockedGroups } from '../../lib/categories';
+import { isFullLook, useCutouts } from '../../lib/useCutouts';
 
-/** "Trending now": a ranked rail with occasion tabs. Featured looks lead, then the rest of the collection. */
+/** "Trending now": a ranked rail with occasion tabs. Whole looks on a model lead (owner's rule), then featured, then the rest. */
 export function TrendingRail({ products }: { products: Product[] }) {
   const [tab, setTab] = useState<string>('all');
+  const cutoutFor = useCutouts();
   const tabs = useMemo(() => [['all', 'All'] as const, ...stockedGroups(products).slice(0, 4).map(({ group }) => [group.slug, group.label] as const)], [products]);
   const list = useMemo(() => products
     .filter((product) => product.images[0]?.url && (tab === 'all' || product.storeCollection === tab))
-    .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length)
-    .slice(0, 10), [products, tab]);
+    .sort((a, b) => Number(isFullLook(cutoutFor(b.id), b.storeCollection)) - Number(isFullLook(cutoutFor(a.id), a.storeCollection))
+      || Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length)
+    .slice(0, 10), [products, tab, cutoutFor]);
   if (products.length === 0) return null;
 
   return <section className="w-trend">
