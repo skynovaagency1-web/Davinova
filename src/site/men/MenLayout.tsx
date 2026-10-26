@@ -1,4 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react';
+import { SearchButton } from '../shared/SearchOverlay';
 import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { SupportHelper } from '../shared/SupportHelper';
@@ -57,6 +58,7 @@ export function MenLayout() {
       </nav>
       <div className="m-header__right">
         <Link to="/men" className="m-home" aria-label="Home"><Home size={16} /></Link>
+        <SearchButton department="men" className="m-home" />
         <Link to="/men/wishlist" className="m-home m-wishlink" aria-label={`Wishlist, ${wished} saved`}><Heart size={16} />{wished > 0 && <i>{wished}</i>}</Link>
         <Link to="/men/account" className="m-home m-acctlink" aria-label={signedIn ? 'My account' : 'Sign in'}><UserRound size={16} />{signedIn && <b aria-hidden="true" />}</Link>
         <Link to="/" className="m-switch">Women ↗</Link>
