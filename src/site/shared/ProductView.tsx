@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Check, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Lock, RotateCcw, ShoppingBag, Truck } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { formatMoney } from '../../lib/format';
 import { isProductPurchasable, isWooCommerceProduct } from '../../lib/woocommerce';
 import { productPath } from '../../lib/storefront';
 import { isCurvyLook } from '../../lib/curvyLooks';
 import { useCart } from '../../store/cart';
+import { useRecent } from '../../store/recent';
+import { deliveryWindow, formatWindow } from '../../lib/delivery';
 import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
 import { WishButton } from './WishButton';
@@ -81,7 +83,13 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const add = useCart((state) => state.add);
   const still = false;
   const cutout = useCutouts()(product.id);
-  useEffect(() => { window.scrollTo({ top: 0 }); }, []);
+  const recentIds = useRecent((state) => state.ids);
+  const seen = useRecent((state) => state.seen);
+  // Read the list as it was before this visit, then record this product.
+  const [recentBefore] = useState(recentIds);
+  useEffect(() => { window.scrollTo({ top: 0 }); seen(product.id); }, [product.id, seen]);
+  const prefix = variant === 'men' ? '/men' : '';
+  const arrival = formatWindow(deliveryWindow());
 
   const [colour, setColour] = useState('');
   // After a colour is picked the big photo shows that colour, until a thumbnail is clicked.
@@ -99,6 +107,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
     .filter((entry): entry is [string, string] => Boolean(entry[1]));
   const banner = productBanner(product.title);
   const related = products.filter((item) => item.id !== product.id && item.department === product.department && (product.storeCollection ? item.storeCollection === product.storeCollection : item.shelf === product.shelf) && item.images[0]?.url).slice(0, 8);
+  const recent = recentBefore.filter((id) => id !== product.id).map((id) => products.find((item) => item.id === id)).filter((item): item is Product => Boolean(item?.images[0]?.url)).slice(0, 8);
   const price = canBuy || isWoo ? formatMoney(product.priceCents, product.currency) : 'Coming soon';
   // CJ labels look like "M", "38" or "Black / M"; split colour from size so each gets its own row of buttons.
   const options = product.sizes.map((label) => {
@@ -162,7 +171,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
               <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }}>{item}</button>)}</div>
             </>}
             {(!colours.length || colour) && <>
-              <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}</span>
+              <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}<Link className="pv-buy__guide" to={`${prefix}/size-guide`}>Size guide</Link></span>
               <div role="group" aria-label="Sizes">{sizeChoices.map((item) => <button key={item.label} type="button" className={size === item.label ? 'active' : ''} aria-pressed={size === item.label} onClick={() => { setSize(item.label); setAdded(false); setSizeHint(false); }}>{item.size}</button>)}</div>
             </>}
           </div>}
@@ -174,19 +183,34 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
               ? <button type="button" className="pv-buy__cta" onClick={addToBag}>{added ? <>Added to bag <Check size={18} /></> : <>Add to bag <ShoppingBag size={18} /></>}</button>
               : <button type="button" className="pv-buy__cta" disabled>Coming soon</button>}
           {added && <Link className="pv-buy__bag" to={variant === 'men' ? '/men/bag' : '/bag'}>View bag & checkout <ArrowRight size={14} /></Link>}
+          {canBuy && <p className="pv-buy__eta"><Truck size={15} aria-hidden="true" /> Order today, arrives <b>{arrival}</b></p>}
+          {canBuy && <ul className="pv-buy__trust">
+            <li><Truck size={14} aria-hidden="true" />Free shipping</li>
+            <li><RotateCcw size={14} aria-hidden="true" />30-day returns</li>
+            <li><Lock size={14} aria-hidden="true" />Secure checkout</li>
+          </ul>}
           <p className="pv-buy__note">{canBuy ? 'Sizes, stock and price are rechecked at secure checkout.' : 'We’re still confirming sizes, stock and delivery for this piece.'}</p>
           {product.description && <details><summary>About this piece</summary><p>{product.description}</p></details>}
-          <details><summary>Delivery & returns</summary><p>Delivery options and our return policy are shown before you pay. See <Link to="/shipping">shipping</Link> and <Link to="/returns">returns</Link>.</p></details>
+          <details><summary>Delivery & returns</summary><p>Delivery options and our return policy are shown before you pay. See <Link to={`${prefix}/shipping`}>shipping</Link> and <Link to={`${prefix}/returns`}>returns</Link>.</p></details>
         </div>
 
         <div className="pv2__name"><strong>{word}</strong><h1>{product.title}</h1></div>
       </div>
     </div>
 
+    {canBuy && !isWoo && <div className="pv-sticky">
+      <img src={product.images[0]?.url} alt="" />
+      <div><strong>{product.title}</strong><span>{price}</span></div>
+      <button type="button" onClick={() => { if (size) addToBag(); else { setSizeHint(true); document.querySelector('.pv-buy__sizes')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); } }}>{added ? 'Added' : size ? 'Add to bag' : 'Choose size'}</button>
+    </div>}
     {banner && <figure className="pv-banner"><img src={banner.src} alt={banner.alt} loading="lazy" /></figure>}
     {related.length > 0 && <div className="pv-related">
       <h2>Complete the <b>look</b></h2>
       <div className="pv-related__rail">{related.map((item) => <Link key={item.id} to={productPath(item)} className="pv-related__item"><span><img src={item.images[0].url} alt="" loading="lazy" /></span><strong>{item.title}</strong></Link>)}</div>
+    </div>}
+    {recent.length > 0 && <div className="pv-related pv-recent">
+      <h2>Recently <b>viewed</b></h2>
+      <div className="pv-related__rail">{recent.map((item) => <Link key={item.id} to={productPath(item)} className="pv-related__item"><span><img src={item.images[0].url} alt="" loading="lazy" /></span><strong>{item.title}</strong></Link>)}</div>
     </div>}
   </section>;
 }

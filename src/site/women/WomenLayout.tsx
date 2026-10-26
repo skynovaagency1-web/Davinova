@@ -1,9 +1,10 @@
 import { useEffect, useState, type CSSProperties } from 'react';
+import { SearchButton } from '../shared/SearchOverlay';
 import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Heart, Home, Menu, Search, ShoppingBag, UserRound, X } from 'lucide-react';
+import { Heart, Home, Menu, ShoppingBag, UserRound, X } from 'lucide-react';
 import { useCart } from '../../store/cart';
 import { WomenMegaNav } from './WomenMegaNav';
 import { Logo } from '../shared/Logo';
@@ -68,7 +69,7 @@ export function WomenLayout() {
       <Link to="/" className="w-wordmark" aria-label="Davinova home"><Logo /></Link>
       <div className="w-header__right">
         <Link to="/" className="w-icon w-home" aria-label="Home"><Home size={18} /></Link>
-        <Link to="/shop" className="w-icon" aria-label="Browse the shop"><Search size={18} /></Link>
+        <SearchButton department="women" className="w-icon w-home" />
         <Link to="/wishlist" className="w-icon w-home w-wishlink" aria-label={`Wishlist, ${wished} saved`}><Heart size={18} />{wished > 0 && <i>{wished}</i>}</Link>
         <Link to="/account" className="w-icon w-home w-acctlink" aria-label={signedIn ? 'My account' : 'Sign in'}><UserRound size={18} />{signedIn && <b aria-hidden="true" />}</Link>
         <Link to="/men" className="w-switch">Men ↗</Link>
