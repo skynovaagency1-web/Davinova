@@ -877,6 +877,7 @@
  "cj-1292E7B0-8A79-4DDD-AC89-6E0561523275": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -1062,7 +1063,8 @@
  },
  "cj-1358228017108881408": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -1178,7 +1180,8 @@
  },
  "cj-1359390204670119936": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes covered by a hand or bag",
@@ -1330,6 +1333,7 @@
  "cj-1364102996962709504": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: collage or several figures",
@@ -1917,7 +1921,8 @@
  },
  "cj-1372833774362038272": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -1989,7 +1994,8 @@
  },
  "cj-1373908970883911680": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -1998,7 +2004,8 @@
  },
  "cj-1374251529560788992": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -2063,7 +2070,8 @@
  },
  "cj-1374898775520317440": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -2495,7 +2503,8 @@
  },
  "cj-1380751419296059392": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -2550,6 +2559,7 @@
  "cj-1381481879127068672": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -2611,7 +2621,8 @@
  },
  "cj-1381840537379803136": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -2630,6 +2641,7 @@
  "cj-1381896173211750400": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -2699,6 +2711,7 @@
  "cj-1382171229682798592": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes covered by a hand or bag",
@@ -2736,7 +2749,8 @@
  },
  "cj-1382266950448713728": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -2803,7 +2817,8 @@
  },
  "cj-1382870642919084032": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -3418,7 +3433,8 @@
  },
  "cj-1388306488891674624": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -3456,7 +3472,8 @@
  },
  "cj-1389401429181075456": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -3493,6 +3510,7 @@
  "cj-1389861492572164096": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -3528,7 +3546,8 @@
  },
  "cj-1390220380060389376": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -3772,7 +3791,8 @@
  },
  "cj-1392719718007312384": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -3879,7 +3899,8 @@
  },
  "cj-1393154908814970880": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -3938,7 +3959,8 @@
  },
  "cj-1393564114730749952": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -3969,6 +3991,7 @@
  "cj-1394135808264507392": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -3979,7 +4002,8 @@
  },
  "cj-1394177005708251136": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -4150,6 +4174,7 @@
  "cj-1397079428802154496": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -4338,6 +4363,7 @@
  "cj-13DF62E9-4131-4921-987B-709413459708": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -4582,7 +4608,8 @@
  },
  "cj-1403189530990874624": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -4917,7 +4944,8 @@
  },
  "cj-1406865392269398016": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -5115,7 +5143,8 @@
  },
  "cj-1410790203655852032": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -5146,6 +5175,7 @@
  "cj-1411609929151811584": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -5219,7 +5249,8 @@
  },
  "cj-1413013718249377792": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -5550,7 +5581,8 @@
  },
  "cj-1417717392036990976": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -5877,7 +5909,8 @@
  },
  "cj-1423532433088843776": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -5900,6 +5933,7 @@
  "cj-1424277110599585792": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -5985,6 +6019,7 @@
  "cj-1426012486863294464": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6060,6 +6095,7 @@
  "cj-1427597860312059904": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6157,7 +6193,8 @@
  },
  "cj-1428967907030863872": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6249,7 +6286,8 @@
  },
  "cj-1432515067273940992": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -6479,6 +6517,7 @@
  "cj-1435820582041161728": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6496,7 +6535,8 @@
  },
  "cj-1436261317274112000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6592,7 +6632,8 @@
  },
  "cj-1437962440129253376": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6716,7 +6757,8 @@
  },
  "cj-1440484632205332480": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: product too small",
@@ -6737,7 +6779,8 @@
  },
  "cj-1441214927472824320": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6747,6 +6790,7 @@
  "cj-1441241802828025856": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6862,7 +6906,8 @@
  },
  "cj-1443059888401027072": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -6912,7 +6957,8 @@
  },
  "cj-1444132140966088704": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -7017,6 +7063,7 @@
  "cj-14474622-9E06-42A8-A2D2-44C1A3F28724": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -7027,7 +7074,8 @@
  },
  "cj-1448135542540734464": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -7131,6 +7179,7 @@
  "cj-1451081265544564736": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -7151,6 +7200,7 @@
  "cj-1451781418307948544": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: product too small",
@@ -7162,7 +7212,8 @@
  },
  "cj-1451810006512046080": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -7175,6 +7226,7 @@
  "cj-1451811703674245120": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -7186,6 +7238,7 @@
  "cj-1451842753762824192": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -7236,7 +7289,8 @@
  },
  "cj-1451888708360998912": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -7339,7 +7393,8 @@
  },
  "cj-1454623662098485248": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -7440,7 +7495,8 @@
  },
  "cj-1455837698970488832": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -7513,7 +7569,8 @@
  },
  "cj-1456808790031732736": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -7554,6 +7611,7 @@
  "cj-1457157680639643648": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -7646,7 +7704,8 @@
  },
  "cj-1460512657873440768": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: faded cutout"
@@ -7960,7 +8019,8 @@
  },
  "cj-1470623280636497920": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -8072,7 +8132,8 @@
  },
  "cj-1478577151711252480": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -8118,7 +8179,8 @@
  },
  "cj-1480842928686501888": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -8128,6 +8190,7 @@
  "cj-1481173876296781824": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -8176,7 +8239,8 @@
  },
  "cj-1483353905764110336": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -8263,7 +8327,8 @@
  },
  "cj-1491693014203109376": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -9041,7 +9106,8 @@
  },
  "cj-1530112921429356544": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -9499,7 +9565,8 @@
  },
  "cj-1545696602155921408": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -9568,7 +9635,8 @@
  },
  "cj-1547487648091222016": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -9628,6 +9696,7 @@
  "cj-1552957007135780864": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -9810,7 +9879,8 @@
  },
  "cj-1560550965563109376": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -10669,7 +10739,8 @@
  },
  "cj-1594637725398355968": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -10815,7 +10886,8 @@
  },
  "cj-1598243953906823168": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes covered by a hand or bag",
@@ -10908,7 +10980,8 @@
  },
  "cj-1600115952618844160": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -11043,7 +11116,8 @@
  },
  "cj-1604709751609372672": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -11764,7 +11838,8 @@
  },
  "cj-1626498160287821824": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -11885,7 +11960,8 @@
  },
  "cj-1630487662643654656": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -11933,7 +12009,8 @@
  },
  "cj-1633000045672935424": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: product too small",
@@ -11970,7 +12047,8 @@
  },
  "cj-1634836996998836224": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -12219,7 +12297,8 @@
  },
  "cj-1640250867154694144": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -12414,7 +12493,8 @@
  },
  "cj-1645058697661517824": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -12482,7 +12562,8 @@
  },
  "cj-1648519689963843584": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes cut off at the edge",
@@ -13486,7 +13567,8 @@
  },
  "cj-1677238062503436288": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -14071,7 +14153,8 @@
  },
  "cj-1700103678939635712": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -14169,7 +14252,8 @@
  },
  "cj-1702237779423404032": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -14298,7 +14382,8 @@
  },
  "cj-1707960135605702656": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -14427,7 +14512,8 @@
  },
  "cj-1712317553118289920": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -14594,7 +14680,8 @@
  },
  "cj-1716630284822650880": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -14895,7 +14982,8 @@
  },
  "cj-1722463398438375424": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -15045,7 +15133,8 @@
  },
  "cj-1726496352718303232": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -15222,7 +15311,8 @@
  },
  "cj-1732222258162585600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: faded cutout"
@@ -15415,7 +15505,8 @@
  },
  "cj-1734497455187701760": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes covered by a hand or bag",
@@ -15586,7 +15677,8 @@
  },
  "cj-1738130139428429824": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -15638,6 +15730,7 @@
  "cj-1739480494913359872": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -15820,7 +15913,8 @@
  },
  "cj-1742902188596678656": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -16126,7 +16220,8 @@
  },
  "cj-1747629833116864512": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -16135,7 +16230,8 @@
  },
  "cj-1747642246750949376": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -16627,7 +16723,8 @@
  },
  "cj-1757999928284028928": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -16891,6 +16988,7 @@
  "cj-1761965797032857600": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -17184,7 +17282,8 @@
  },
  "cj-1765632873270349824": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -17462,7 +17561,8 @@
  },
  "cj-1770466488299180032": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: collage or several figures",
@@ -17554,7 +17654,8 @@
  },
  "cj-1772810344583401472": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -17780,6 +17881,7 @@
  "cj-1773164626671308800": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -17837,7 +17939,8 @@
  },
  "cj-1774028371245146112": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -18053,7 +18156,8 @@
  },
  "cj-1779063167310639104": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -18114,7 +18218,8 @@
  },
  "cj-1779756850070687744": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -18182,7 +18287,8 @@
  },
  "cj-1780770519168593920": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -18298,7 +18404,8 @@
  },
  "cj-1782072926905716736": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -18350,7 +18457,8 @@
  },
  "cj-1782969088852111360": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -18504,6 +18612,7 @@
  "cj-1785159180433756160": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -18689,7 +18798,8 @@
  },
  "cj-1789582843635576832": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -18700,7 +18810,8 @@
  },
  "cj-1789583725731262464": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -19672,6 +19783,7 @@
  "cj-1797094088789987328": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21024,7 +21136,8 @@
  },
  "cj-1838417726793469952": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21075,6 +21188,7 @@
  "cj-1844192333555191808": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21084,6 +21198,7 @@
  "cj-1844202271891410944": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21114,7 +21229,8 @@
  },
  "cj-1846381457485746176": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: product too small",
@@ -21126,7 +21242,8 @@
  },
  "cj-1846383336731070464": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -21227,7 +21344,8 @@
  },
  "cj-1850414988541186048": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21236,7 +21354,8 @@
  },
  "cj-1850419850775515136": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21279,7 +21398,8 @@
  },
  "cj-1850451622791892992": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21301,7 +21421,8 @@
  },
  "cj-1850454876640661504": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21310,7 +21431,8 @@
  },
  "cj-1850456303039565824": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: collage or several figures",
@@ -21535,7 +21657,8 @@
  },
  "cj-1871464783754596353": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -21791,6 +21914,7 @@
  "cj-1921095771973496833": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -21827,6 +21951,7 @@
  "cj-1923274556805111810": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -22179,7 +22304,8 @@
  },
  "cj-1976122580765663234": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -22406,7 +22532,8 @@
  },
  "cj-1990343647387377665": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -22415,7 +22542,8 @@
  },
  "cj-1990346741994795010": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -22481,7 +22609,8 @@
  },
  "cj-1990969196757573634": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -22508,7 +22637,8 @@
  },
  "cj-1991035880106614785": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -22517,7 +22647,8 @@
  },
  "cj-1991061620126638082": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -22838,7 +22969,8 @@
  },
  "cj-1EB60B75-F61B-4BBB-92D8-28C19BE71DB2": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -22865,7 +22997,8 @@
   "v": 3
  },
  "cj-2000748670327365634": {
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -24991,6 +25124,7 @@
  "cj-2093611354014015490": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -25068,7 +25202,8 @@
  },
  "cj-2094598933939941377": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: faded cutout",
@@ -25147,7 +25282,8 @@
  },
  "cj-2094981050785959937": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -25159,6 +25295,7 @@
  "cj-2094990265411801090": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25344,7 +25481,8 @@
  },
  "cj-2095346683658035202": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25418,7 +25556,8 @@
  },
  "cj-2095756668165849090": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: collage or several figures",
@@ -25456,7 +25595,8 @@
  },
  "cj-2096064801982689281": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -25475,7 +25615,8 @@
  },
  "cj-2096138481848725506": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25493,6 +25634,7 @@
  "cj-2096150939453771777": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25517,7 +25659,8 @@
  },
  "cj-2096155390342246402": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25633,7 +25776,8 @@
  },
  "cj-2096500324552179714": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25642,7 +25786,8 @@
  },
  "cj-2096502897170481153": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -25827,7 +25972,8 @@
  },
  "cj-2096847261486833665": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25836,7 +25982,8 @@
  },
  "cj-2096871035228827649": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25845,7 +25992,8 @@
  },
  "cj-2096885531838439425": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -25856,7 +26004,8 @@
  },
  "cj-2096886959370702850": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -25867,7 +26016,8 @@
  },
  "cj-2096889092045369345": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25896,7 +26046,8 @@
  },
  "cj-2097164993419202562": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25968,7 +26119,8 @@
  },
  "cj-2097532386978217986": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -26003,7 +26155,8 @@
  },
  "cj-2097599911296417793": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -26012,7 +26165,8 @@
  },
  "cj-2097603550677221377": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -26034,7 +26188,8 @@
  },
  "cj-2097638775237013505": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -26106,7 +26261,8 @@
  },
  "cj-2097883079410872322": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -26183,7 +26339,8 @@
  },
  "cj-2098317323086913537": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -26192,7 +26349,8 @@
  },
  "cj-2098334378731208705": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: no clothes found",
@@ -26204,7 +26362,8 @@
  },
  "cj-2098600407562952706": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -26348,7 +26507,8 @@
  },
  "cj-2100105591599296513": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -27146,7 +27306,8 @@
  },
  "cj-2406090702321627300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -27192,6 +27353,7 @@
  "cj-2406090719271627000": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -27396,6 +27558,7 @@
  "cj-2406100258001611700": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -27620,7 +27783,8 @@
  },
  "cj-2406110720541601600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -27715,6 +27879,7 @@
  },
  "cj-2406111331091624600": {
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -27730,7 +27895,8 @@
  },
  "cj-2406120155191602900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -27753,7 +27919,8 @@
  },
  "cj-2406120514411604600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -27990,7 +28157,8 @@
  },
  "cj-2406140140011614000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -28245,7 +28413,8 @@
  },
  "cj-2406150602001600200": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -28334,7 +28503,8 @@
  },
  "cj-2406150632011626200": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -28343,7 +28513,8 @@
  },
  "cj-2406150639011611000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -28353,6 +28524,7 @@
  "cj-2406150705391610900": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -28403,7 +28575,8 @@
  },
  "cj-2406150725361629500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -29510,7 +29683,8 @@
  },
  "cj-2406230807451621000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -29522,6 +29696,7 @@
  "cj-2406230811111602500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -29801,7 +29976,8 @@
  },
  "cj-2406250828511610000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -30327,6 +30503,7 @@
  },
  "cj-2406281409481614400": {
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/a14c0269-4d10-499a-8ec0-0d3cfa29d115.jpg",
@@ -30517,7 +30694,8 @@
  },
  "cj-2406301049441622800": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -30538,7 +30716,8 @@
  },
  "cj-2406301340181603700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -30610,7 +30789,8 @@
  },
  "cj-2407010718181613200": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -30619,7 +30799,8 @@
  },
  "cj-2407010739191606100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -30966,7 +31147,8 @@
  },
  "cj-2407140601431602300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -31161,7 +31343,8 @@
  },
  "cj-2407201214521600000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -31716,6 +31899,7 @@
  "cj-2408190632141619800": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -31887,7 +32071,8 @@
  },
  "cj-2409010140591605600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -32146,7 +32331,8 @@
  },
  "cj-2409190838221609500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -32353,7 +32539,8 @@
  },
  "cj-2410010756161608400": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -32762,7 +32949,8 @@
  },
  "cj-2410210723531612700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -32861,6 +33049,7 @@
  "cj-2410280840341616600": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: collage or several figures",
@@ -32889,6 +33078,7 @@
  "cj-2410290721111629900": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -32900,6 +33090,7 @@
  "cj-2410300619131607200": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33029,6 +33220,7 @@
  "cj-2411020133131601000": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes covered by a hand or bag",
@@ -33266,7 +33458,8 @@
  },
  "cj-2411050412311617600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33434,7 +33627,8 @@
  },
  "cj-2411070627291616500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33618,6 +33812,7 @@
  "cj-2411110158581617000": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33694,7 +33889,8 @@
  },
  "cj-2411130228381608100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33715,6 +33911,7 @@
  "cj-2411130251321619300": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -34064,6 +34261,7 @@
  "cj-2411190656051629100": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -34081,7 +34279,8 @@
  },
  "cj-2411200718151620300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -34641,7 +34840,8 @@
  },
  "cj-2412050330541610100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -34819,7 +35019,8 @@
  },
  "cj-2412130204331629600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -34839,7 +35040,8 @@
  },
  "cj-2412130600471604600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -34936,6 +35138,7 @@
  "cj-2412180259521623500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -34960,7 +35163,8 @@
  },
  "cj-2412180328421609400": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -35227,7 +35431,8 @@
  },
  "cj-2412280334291629300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: collage or several figures",
@@ -35428,6 +35633,7 @@
  "cj-2501010806101606900": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -35519,7 +35725,8 @@
  },
  "cj-2501050139041601900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -35528,7 +35735,8 @@
  },
  "cj-2501050147301620400": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -35575,7 +35783,8 @@
  },
  "cj-2501060221421604700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes cut off at the edge",
@@ -35621,6 +35830,7 @@
  "cj-2501070648181619500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -35769,7 +35979,8 @@
  },
  "cj-2501101128501623000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -35907,7 +36118,8 @@
  },
  "cj-2501150350221601300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -35949,6 +36161,7 @@
  "cj-2501151234581606200": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36077,7 +36290,8 @@
  },
  "cj-2501200238091606500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36098,6 +36312,7 @@
  "cj-2501200332111623500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36204,7 +36419,8 @@
  },
  "cj-2501220316511628400": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -36333,6 +36549,7 @@
  "cj-2501242307171618700": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -36504,7 +36721,8 @@
  },
  "cj-2502050234041617500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36663,7 +36881,8 @@
  },
  "cj-2502100550021629900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36702,7 +36921,8 @@
  },
  "cj-2502110257171626200": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36721,7 +36941,8 @@
  },
  "cj-2502111145081610700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36730,7 +36951,8 @@
  },
  "cj-2502111214401606700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36877,7 +37099,8 @@
  },
  "cj-2502140236171616600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36919,6 +37142,7 @@
  "cj-2502150935051605500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36937,6 +37161,7 @@
  "cj-2502170630471607400": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -36976,7 +37201,8 @@
  },
  "cj-2502170945421603100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -37007,7 +37233,8 @@
  },
  "cj-2502190250001616000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -37035,6 +37262,7 @@
  "cj-2502200153241621800": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -37094,6 +37322,7 @@
  "cj-2502201140081622800": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: product too small",
@@ -37514,6 +37743,7 @@
  "cj-2503060925001611300": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -37531,7 +37761,8 @@
  },
  "cj-2503070904111617100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -37543,6 +37774,7 @@
  "cj-2503071007031602800": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -37788,7 +38020,8 @@
  },
  "cj-2503150759561617400": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -37805,7 +38038,8 @@
  },
  "cj-2503160325111628600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -38045,7 +38279,8 @@
  },
  "cj-2503250915161623300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -38298,7 +38533,8 @@
  },
  "cj-2503290428101616000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -38307,7 +38543,8 @@
  },
  "cj-2503290506531629600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -38486,7 +38723,8 @@
  },
  "cj-2504090659321605500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -38524,7 +38762,8 @@
  },
  "cj-2504100843401605100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: product too small",
@@ -38547,7 +38786,8 @@
  },
  "cj-2504120135221608800": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -38799,7 +39039,8 @@
  },
  "cj-2504160653241609800": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -38935,7 +39176,8 @@
  },
  "cj-2504200603441620400": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39066,7 +39308,8 @@
  },
  "cj-2504220158071614900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39075,6 +39318,7 @@
  },
  "cj-2504220537401619500": {
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/b12570d6-86d3-4cae-8f48-62fcb6f97d34.jpg",
@@ -39172,7 +39416,8 @@
  },
  "cj-2504240503331600600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39401,6 +39646,7 @@
  "cj-2505020152571612000": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39802,7 +40048,8 @@
  },
  "cj-2505140650431603000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39941,7 +40188,8 @@
  },
  "cj-2505160345221624500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -40054,7 +40302,8 @@
  },
  "cj-2505200955431614500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes cut off at the edge",
@@ -40176,6 +40425,7 @@
  },
  "cj-2505221207531607300": {
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/05/23/03/7f06e17d-4125-41ef-8e01-3351f40a3a6e.jpg",
@@ -40249,7 +40499,8 @@
  },
  "cj-2505240531491622900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -40353,7 +40604,8 @@
  },
  "cj-2505250713471607000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -40461,7 +40713,8 @@
  },
  "cj-2505280711381621100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -40559,7 +40812,8 @@
  },
  "cj-2505310840451628200": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -40895,7 +41149,8 @@
  },
  "cj-2506110159081605000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -41031,7 +41286,8 @@
  },
  "cj-2506160738181615800": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -41074,6 +41330,7 @@
  "cj-2506181238591625400": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -41125,6 +41382,7 @@
  },
  "cj-2506210834421629200": {
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/68432e09-0873-4455-9b11-bd405361cbcb.jpg",
@@ -41197,6 +41455,7 @@
  "cj-2506240217551615500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -41249,7 +41508,8 @@
  },
  "cj-2506241335041627900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -41491,6 +41751,7 @@
  },
  "cj-2507010307051614100": {
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/940d5b6a-c547-42e0-b014-75c89e448004.jpg",
@@ -41816,7 +42077,8 @@
  },
  "cj-2507130641521626000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -41825,7 +42087,8 @@
  },
  "cj-2507140254021627200": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -41902,7 +42165,8 @@
  },
  "cj-2507170732361605300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -42173,6 +42437,7 @@
  "cj-2507290819521600900": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42226,6 +42491,7 @@
  "cj-2507310916521626000": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -42237,6 +42503,7 @@
  "cj-2508010512141620800": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42246,6 +42513,7 @@
  "cj-2508020325201629100": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -42504,6 +42772,7 @@
  "cj-2508140936271626100": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42704,7 +42973,8 @@
  },
  "cj-2508221237331612500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42746,6 +43016,7 @@
  "cj-2508250654031626600": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42779,7 +43050,8 @@
  },
  "cj-2508260823221615300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42816,7 +43088,8 @@
  },
  "cj-2508270324461608100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42825,7 +43098,8 @@
  },
  "cj-2508270327201620200": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -43110,7 +43384,8 @@
  },
  "cj-2509020303131609800": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -43622,7 +43897,8 @@
  },
  "cj-2510200508561611600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -43715,7 +43991,8 @@
  },
  "cj-2511060653421623900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -43844,7 +44121,8 @@
  },
  "cj-2511180952431623700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -44385,6 +44663,7 @@
  "cj-258D1555-A110-4979-A975-42D98BED1EE0": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -45147,7 +45426,8 @@
  },
  "cj-2603191128251638300": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -45996,7 +46276,8 @@
  },
  "cj-2607060235361627500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -47377,7 +47658,8 @@
  },
  "cj-2F0B8A89-D916-4460-AE37-381240AEDBC4": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -47447,6 +47729,7 @@
  "cj-30A683F4-2FC1-4D7E-B376-D410F3F710F8": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -47509,7 +47792,8 @@
  },
  "cj-334EEF08-7274-4EF4-9242-CD518E093E46": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -48005,6 +48289,7 @@
  "cj-4C87882F-E2AA-4DF0-80DC-03D57835F209": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -48013,7 +48298,8 @@
  },
  "cj-4CC29CBD-B5CD-4E9A-BEAE-BF61F3DCFFDC": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: collage or several figures"
@@ -48102,6 +48388,7 @@
  "cj-50141CCE-B9B3-4355-9505-5C07B4140316": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -48263,7 +48550,8 @@
  },
  "cj-57A55598-E793-4874-B02C-A2FA41C9A3D9": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -49177,7 +49465,8 @@
  },
  "cj-7FEAAE37-9EC7-440B-8F86-A044F1ACC1DD": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: no clothes found"
@@ -49942,7 +50231,8 @@
  },
  "cj-A5BDF5DC-E821-45E6-AE00-FCEDD1901EF4": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: product too small"
@@ -49973,7 +50263,8 @@
  },
  "cj-A87D61B8-F08D-496F-91ED-CEA5AC3F85F5": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: product too small",
@@ -50003,7 +50294,8 @@
  },
  "cj-A919647A-822C-43BE-82C7-AF0696C5D3DD": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -50077,6 +50369,7 @@
  "cj-AD203C44-8E98-4CD9-A57A-4821AFD0E4BD": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -50426,7 +50719,8 @@
  },
  "cj-BB3F2D46-EB14-4D45-94B1-CF00A82858CE": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -50502,7 +50796,8 @@
  },
  "cj-BF4B7BFA-9A5F-4059-8351-56380736EAE8": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -50717,6 +51012,7 @@
  },
  "cj-C7B2E4A2-D7E4-411B-84CF-13E43984C620": {
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/20200722/3135813902151.jpg",
@@ -50730,7 +51026,8 @@
  },
  "cj-C8A69B40-2B37-48E2-B6C2-1E04AB1E8424": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -50968,6 +51265,7 @@
  "cj-D45C6E11-BC20-458A-996B-B3642745B7A5": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -51127,7 +51425,8 @@
  },
  "cj-DA6DB86E-F538-41EB-B86B-8C79A46E32D9": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -51704,6 +52003,7 @@
  "cj-F2402047-1B73-480A-8FEB-9920DBD5F77F": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
