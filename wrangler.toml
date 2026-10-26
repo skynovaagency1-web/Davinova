@@ -8,11 +8,10 @@ database_name = "davinova-store-db"
 database_id = "ba3b32be-1597-4524-b38d-3cb740d6b663"
 migrations_dir = "migrations"
 
-# Customers' own designs (design maker): add once R2 is enabled and the bucket exists,
-# otherwise the deploy fails.
-# [[r2_buckets]]
-# binding = "CUSTOM_DESIGNS"
-# bucket_name = "davinova-custom-designs"
+# Customers' own designs from the design maker (print files + previews).
+[[r2_buckets]]
+binding = "CUSTOM_DESIGNS"
+bucket_name = "davinova-custom-designs"
 # Printify secrets (Cloudflare dashboard): PRINTIFY_API_TOKEN, optional PRINTIFY_SHOP_ID.
 
 # Uncomment after creating an R2 bucket and implementing upload handling.
