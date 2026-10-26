@@ -11,6 +11,7 @@ import { MenTrending } from './MenTrending';
 import { ShoePoster } from './ShoePoster';
 import { MenWatchPoster } from './MenWatchPoster';
 import { CustomPoster } from './CustomPoster';
+import { PosterSides } from '../shared/PosterSides';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 import { MoodBar } from '../shared/Mood';
@@ -35,6 +36,8 @@ export function MenHome() {
   const women = products.filter((product) => product.department === 'women');
   // Owner 2026-10-24: a bags row under Print on demand.
   const bags = men.filter((product) => MEN_BAG_SUBS.has(product.storeSubcategory ?? '') && product.images[0]?.url);
+  const shoes = men.filter((product) => ['formal-shoes', 'casual-shoes', 'vulcanize-shoe', 'man-boots'].includes(product.storeSubcategory ?? '') && product.images[0]?.url);
+  const tees = products.filter((product) => product.department === 'men' && product.storeSubcategory === 't-shirts' && product.images[0]?.url);
   const watches = products.filter((product) => jewelryTypeOf(product) === 'mens-watches' && product.images[0]?.url);
   // Owner: the hero look card shows tailoring only, never underwear or loungewear.
   const looks = clothes.filter((product) => HERO_SUBS.has(product.storeSubcategory ?? '') && product.images[0]?.url).slice(0, 6);
@@ -97,7 +100,7 @@ export function MenHome() {
     <MenTrending products={clothes} />
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>Print on <b>demand</b></h2><p className="w-sec-head__note">Blank tees, your print. Made when you order.</p></div>
-      <CustomPoster />
+      <PosterSides products={tees}><CustomPoster /></PosterSides>
     </section>
 
     {bags.length > 0 && <section className="w-new">
@@ -106,7 +109,7 @@ export function MenHome() {
     </section>}
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>shoes</b></h2><p className="w-sec-head__note">Patent, polished, made for the entrance.</p></div>
-      <ShoePoster />
+      <PosterSides products={shoes}><ShoePoster /></PosterSides>
     </section>
 
     <section className="w-codes">
@@ -116,7 +119,7 @@ export function MenHome() {
 
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>watches</b></h2><p className="w-sec-head__note">Rose gold, Roman numerals, built to be noticed.</p></div>
-      <MenWatchPoster />
+      <PosterSides products={[...watches].reverse()}><MenWatchPoster /></PosterSides>
     </section>
 
     <section className="w-new">
