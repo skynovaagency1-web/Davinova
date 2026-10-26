@@ -2,6 +2,8 @@ import { customProduct, MAX_CUSTOM_QUANTITY, ONE_SIZE } from '../../../src/lib/c
 import { customSetupProblem, designFileUrl, findVariant, resolveCatalog, type PrintifyEnv } from '../../../server/printify';
 import { currentCustomer } from '../../../server/accounts';
 import { checkoutSettings, resolveCheckoutReturnOrigin, stripeConfiguration } from '../checkout';
+import { loadDiscountCode } from '../../../server/offers';
+import { computeOffer } from '../../../src/lib/offers';
 
 type Env = PrintifyEnv & {
   STRIPE_SECRET_KEY?: string; STRIPE_MODE?: string; STRIPE_SHIPPING_COUNTRIES?: string; STRIPE_SHIPPING_FEE_CENTS?: string;
@@ -50,19 +52,39 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
   const subtotal = product.priceCents * quantity;
   const orderId = crypto.randomUUID();
   const orderNumber = `DV-${crypto.randomUUID().replaceAll('-', '').slice(0, 12).toUpperCase()}`;
-  const total = subtotal + settings.shippingFeeCents;
+  // Discount codes work here too; bundle offers don't (one design per checkout).
+  const code = await loadDiscountCode(env.DB, body.code).catch(() => null);
+  const offer = computeOffer(subtotal, 1, code);
+  const discount = offer.source === 'code' ? Math.min(offer.discountCents, subtotal - 50) : 0;
+  if (body.code && !discount) return reply({ error: offer.codeNote || 'This code is not valid.' }, 400);
+  const total = subtotal + settings.shippingFeeCents - discount;
 
   await env.DB.batch([
     env.DB.prepare(`INSERT INTO orders (id,order_number,email,status,payment_provider,payment_status,subtotal_cents,shipping_cents,discount_cents,total_cents,currency,shipping_address_json,shipping_method)
-      VALUES (?,?,?,'pending_payment','stripe','unpaid',?,?,0,?,'USD','{}','standard')`).bind(orderId, orderNumber, `pending+${orderId}@checkout.invalid`, subtotal, settings.shippingFeeCents, total),
+      VALUES (?,?,?,'pending_payment','stripe','unpaid',?,?,?,?,'USD','{}','standard')`).bind(orderId, orderNumber, `pending+${orderId}@checkout.invalid`, subtotal, settings.shippingFeeCents, discount, total),
     env.DB.prepare('INSERT INTO custom_order_items (id,order_id,design_id,product_key,product_title,color,size,quantity,unit_price_cents) VALUES (?,?,?,?,?,?,?,?,?)')
       .bind(crypto.randomUUID(), orderId, design.id, product.key, title, design.color, size, quantity, product.priceCents),
     env.DB.prepare("INSERT INTO order_events (id,order_id,event_type,to_status,message,metadata_json) VALUES (?,?,'stripe_checkout_created','pending_payment','Stripe Checkout session requested for a custom design.',?)")
-      .bind(crypto.randomUUID(), orderId, JSON.stringify({ designId: design.id, product: product.key })),
+      .bind(crypto.randomUUID(), orderId, JSON.stringify({ designId: design.id, product: product.key, code: discount ? code?.code : undefined, discountCents: discount })),
   ]);
+
+  let couponId = '';
+  if (discount) {
+    const coupon = await fetch('https://api.stripe.com/v1/coupons', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${stripe.secret}`, 'Content-Type': 'application/x-www-form-urlencoded', 'Idempotency-Key': `davinova-custom-coupon-${orderId}` },
+      body: new URLSearchParams({ amount_off: String(discount), currency: 'usd', duration: 'once', max_redemptions: '1', name: offer.label.slice(0, 40) }).toString(),
+    }).then((response) => response.json() as Promise<{ id?: string }>).catch(() => ({} as { id?: string }));
+    if (!coupon.id) {
+      await env.DB.prepare("UPDATE orders SET status='cancelled',updated_at=datetime('now') WHERE id=?").bind(orderId).run();
+      return reply({ error: 'The discount could not be applied. No payment was taken; please try again.' }, 502);
+    }
+    couponId = coupon.id;
+  }
 
   const form = new URLSearchParams();
   form.set('mode', 'payment');
+  if (couponId) form.set('discounts[0][coupon]', couponId);
   form.set('locale', 'auto');
   form.set('client_reference_id', orderId);
   const email = (await currentCustomer(request, env.DB).catch(() => null))?.email;
@@ -100,5 +122,6 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
   }
   await env.DB.prepare("UPDATE orders SET payment_reference=?,total_cents=?,updated_at=datetime('now') WHERE id=?")
     .bind(session.id, Number(session.amount_total ?? total), orderId).run();
+  if (discount && code) await env.DB.prepare('UPDATE discount_codes SET uses_count=uses_count+1 WHERE code=?').bind(code.code).run();
   return reply({ url: session.url, orderNumber });
 }

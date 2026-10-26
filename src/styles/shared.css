@@ -741,3 +741,5 @@ button.w-icon { border: 0; }
   .dm__pieces { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dm__fonts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+.dm__code { width: 100%; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--dm-line); background: rgba(255, 255, 255, .08); color: var(--dm-ink); font: 14px/1.2 'DM Sans', sans-serif; text-transform: uppercase; letter-spacing: .08em; }
+.dm__code::placeholder { color: var(--dm-soft); text-transform: none; letter-spacing: 0; }
