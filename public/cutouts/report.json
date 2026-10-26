@@ -1815,6 +1815,7 @@
  "cj-1371661505661112320": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -2379,7 +2380,8 @@
  },
  "cj-1379298390273298432": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes covered by a hand or bag"
@@ -3000,6 +3002,7 @@
  "cj-1384444773527588864": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes cut off at the edge",
@@ -3210,7 +3213,8 @@
  },
  "cj-1386553030912118784": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: clothes cut off at the edge"
@@ -4012,7 +4016,8 @@
  },
  "cj-1394207174368038912": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes cut off at the edge",
@@ -4539,6 +4544,7 @@
  "cj-1402544587247063040": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -5629,6 +5635,7 @@
  "cj-1419205273666588672": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -6409,7 +6416,8 @@
  },
  "cj-1434397564052049920": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -8479,7 +8487,8 @@
  },
  "cj-1497834361209360384": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 2,
   "rejected": [
    "floating 0: clothes covered by a hand or bag",
@@ -9527,7 +9536,8 @@
  },
  "cj-1544885605929332736": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -9548,6 +9558,7 @@
  "cj-1544926051707662336": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -12115,6 +12126,7 @@
  "cj-1637029127863676928": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -12388,6 +12400,7 @@
  "cj-1641774636239163392": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -21974,7 +21987,8 @@
  },
  "cj-1925494792175005697": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25193,7 +25207,8 @@
  },
  "cj-2094361340233277441": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25577,7 +25592,8 @@
  },
  "cj-2095781605305053185": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -25586,7 +25602,8 @@
  },
  "cj-2095783979997642754": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -27126,7 +27143,8 @@
  },
  "cj-2406081116381602900": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -28585,7 +28603,8 @@
  },
  "cj-2406150733501601000": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -30437,7 +30456,8 @@
  },
  "cj-2406280750541614700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -30556,6 +30576,7 @@
  "cj-2406290532431610200": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -30686,6 +30707,7 @@
  "cj-2406300843291613200": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -31024,7 +31046,8 @@
  },
  "cj-2407100256581614700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -32549,7 +32572,8 @@
  },
  "cj-2410010916161603100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -32624,6 +32648,7 @@
  "cj-2410040813151620000": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33164,7 +33189,8 @@
  },
  "cj-2410310548451615400": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33390,6 +33416,7 @@
  "cj-2411050212471609500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -33951,6 +33978,7 @@
  "cj-2411130602581626900": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -35123,6 +35151,7 @@
  "cj-2412160725401601500": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -36376,7 +36405,8 @@
  },
  "cj-2501210715451624700": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 1,
   "rejected": [
    "floating 0: cut off at the bottom"
@@ -37753,6 +37783,7 @@
  "cj-2503070308491600600": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -38087,7 +38118,8 @@
  },
  "cj-2503180733401605100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39531,6 +39563,7 @@
  "cj-2504281809081602900": {
   "fix": 1,
   "floating": true,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39801,7 +39834,8 @@
  },
  "cj-2505100143121614800": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -39997,7 +40031,8 @@
  },
  "cj-2505131522311623600": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -40293,7 +40328,8 @@
  },
  "cj-2505200550181620500": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -42636,7 +42672,8 @@
  },
  "cj-2508100348201628100": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
@@ -50243,7 +50280,8 @@
  },
  "cj-A78066F6-B2D8-4008-BF80-2240131587A6": {
   "fix": 1,
-  "floating": true,
+  "floating": false,
+  "kept": 1,
   "photo": 0,
   "rejected": [],
   "skip": [],
