@@ -210,7 +210,7 @@ def main() -> int:
         if pid in rejects:
             manifest[pid] = None
             continue
-        kind, reasons, chosen, floating = kind_of(product), [], None, False
+        kind, reasons, chosen, floating, partial = kind_of(product), [], None, False, False
         old = report.get(pid, {})
         # An object cut with the clothing model (beauty before 2026-10-24) lost parts of itself: cut it again.
         recut = kind == 'object' and (old.get('floating') or (product.get('storeCollection') in BEAUTY_COLLECTIONS and old.get('photo') is None and old.get('fix') != 1))
@@ -226,10 +226,11 @@ def main() -> int:
             try:
                 image = open_photo(images[old['photo']]['url'])
                 cutout, on_model = keep_model(image, session, cloth_session)
-                for name in (f'{pid}.webp', f'{pid}.float.webp'):
+                for name in (f'{pid}.webp', f'{pid}.float.webp', f'{pid}.model.webp'):
                     if os.path.exists(os.path.join(OUT, name)):
                         os.remove(os.path.join(OUT, name))
-                name = f'{pid}.webp' if on_model else f'{pid}.float.webp'
+                # .model.webp: a model photo that didn't pass the full-look check (headless or cropped).
+                name = f'{pid}.model.webp' if on_model else f'{pid}.float.webp'
                 finish(cutout).save(os.path.join(OUT, name), 'WEBP', quality=86, method=6)
                 manifest[pid] = f'/cutouts/{name}'
                 report[pid] = {**old, 'floating': not on_model, 'kept': 1}
@@ -341,20 +342,21 @@ def main() -> int:
                     if problem:
                         reasons.append(f'floating {index}: {problem}')
                         continue
-                    chosen, floating = index, not on_model
-                    finish(garment).save(os.path.join(OUT, f'{pid}.float.webp' if floating else f'{pid}.webp'), 'WEBP', quality=86, method=6)
+                    chosen, floating, partial = index, not on_model, on_model
+                    finish(garment).save(os.path.join(OUT, f'{pid}.float.webp' if floating else f'{pid}.model.webp'), 'WEBP', quality=86, method=6)
                     break
                 except Exception as error:
                     reasons.append(f'floating {index}: failed {error}')
-        for name in (f'{pid}.webp', f'{pid}.float.webp'):
-            kept = chosen is not None and name == (f'{pid}.float.webp' if floating else f'{pid}.webp')
+        final = f'{pid}.float.webp' if floating else f'{pid}.model.webp' if partial else f'{pid}.webp'
+        for name in (f'{pid}.webp', f'{pid}.float.webp', f'{pid}.model.webp'):
+            kept = chosen is not None and name == final
             if not kept and os.path.exists(os.path.join(OUT, name)):
                 os.remove(os.path.join(OUT, name))
         if chosen is None:
             manifest[pid] = None
             rejected += 1
         else:
-            manifest[pid] = f'/cutouts/{pid}.float.webp' if floating else f'/cutouts/{pid}.webp'
+            manifest[pid] = f'/cutouts/{final}'
             passed += 1
         report[pid] = {'fix': 1, 'kept': 1, 'v': GATE_VERSION, 'skip': sorted(skip), 'photo': chosen, 'floating': floating, 'url': images[chosen]['url'] if chosen is not None else None, 'rejected': reasons, **({'pick': pick} if repick and chosen is not None else {}), **({'hair': 1} if hair else {})}
         print(pid, 'floating' if floating else 'photo', chosen, reasons)
