@@ -595,3 +595,50 @@
 .welcome__code { justify-self: center; display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 14px; border: 1px dashed currentColor; background: rgba(255,255,255,.6); color: inherit; font: 800 20px var(--nova-display); letter-spacing: .14em; }
 .welcome__skip { border: 0; background: transparent; color: inherit; opacity: .6; font-size: 12px; text-decoration: underline; }
 .welcome__error { color: #b3261e !important; opacity: 1 !important; }
+
+/* Header search: glass panel with instant results. */
+button.w-icon, button.m-home { background: transparent; color: inherit; cursor: pointer; padding: 0; }
+button.w-icon { border: 0; }
+.search { position: fixed; inset: 0; z-index: 200; display: flex; justify-content: center; align-items: flex-start; padding: max(70px, env(safe-area-inset-top)) 16px 16px; background: rgba(20, 12, 8, .45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.search__panel { width: min(860px, 100%); max-height: calc(100dvh - 100px); display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 24px; color: #2e2019;
+  background: linear-gradient(135deg, rgba(251, 241, 226, .82), rgba(205, 182, 158, .55)); border: 1px solid rgba(255, 255, 255, .6);
+  box-shadow: 0 30px 80px rgba(46, 32, 25, .35), inset 0 1px 0 rgba(255, 255, 255, .8); backdrop-filter: blur(22px) saturate(1.3); -webkit-backdrop-filter: blur(22px) saturate(1.3); }
+.search--men .search__panel { color: #1e2421; border-radius: 10px; background: linear-gradient(135deg, rgba(236, 240, 236, .86), rgba(150, 168, 156, .5)); }
+.search__bar { display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 16px; border-radius: 999px; background: rgba(255, 255, 255, .7); border: 1px solid rgba(255, 255, 255, .9); box-shadow: 0 0 0 4px rgba(142, 115, 91, .12); }
+.search--men .search__bar { border-radius: 6px; box-shadow: 0 0 0 4px rgba(90, 110, 98, .14); }
+.search__bar input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 17px; padding: 10px 0; color: inherit; outline: none; }
+.search__bar button { display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 50%; background: rgba(46, 32, 25, .08); color: inherit; cursor: pointer; }
+.search__chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.search__chips span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; opacity: .6; margin-right: 4px; }
+.search__chips button { padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .8); background: rgba(255, 255, 255, .45); color: inherit; font: inherit; font-size: 14px; cursor: pointer; transition: transform .2s, background .2s; }
+.search__chips button:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .8); }
+.search__count { margin: 0; font-size: 13px; opacity: .7; }
+.search__results { list-style: none; margin: 0; padding: 0 2px 4px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+@media (max-width: 560px) { .search__results { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.search__results a { display: grid; gap: 6px; color: inherit; text-decoration: none; font-size: 13px; }
+.search__results a > span { display: block; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden; background: rgba(255, 255, 255, .5); border: 1px solid rgba(255, 255, 255, .7); }
+.search--men .search__results a > span { border-radius: 6px; }
+.search__results img { width: 100%; height: 100%; object-fit: contain; transition: transform .35s; }
+.search__results a:hover img { transform: scale(1.05); }
+.search__results strong { font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.search__results em { font-style: normal; font-weight: 700; }
+
+/* Product page: size guide link, delivery estimate, trust row, phone add-to-bag bar, recently viewed. */
+.pv-buy__guide { margin-left: 10px; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; opacity: .8; }
+.pv-buy__eta { display: flex; align-items: center; gap: 8px; margin: 14px 0 8px; font-size: 13px; padding: 10px 14px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 6%, transparent); border: 1px solid color-mix(in srgb, #fff 55%, transparent); }
+.pv-buy__trust { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 4px; padding: 0; }
+.pv-buy__trust li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; font-size: 12px; background: color-mix(in srgb, #fff 35%, transparent); border: 1px solid color-mix(in srgb, #fff 60%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.pv-sticky { display: none; }
+@media (max-width: 760px) {
+  .pv-sticky { position: fixed; z-index: 60; left: 10px; right: 10px; bottom: calc(88px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 10px; border-radius: 20px; color: var(--ink);
+    background: color-mix(in srgb, #fff 62%, transparent); border: 1px solid color-mix(in srgb, #fff 80%, transparent); box-shadow: 0 16px 40px rgba(0, 0, 0, .22); backdrop-filter: blur(18px) saturate(1.3); -webkit-backdrop-filter: blur(18px) saturate(1.3); animation: pv-sticky-in .5s cubic-bezier(.22, 1, .36, 1); }
+  .pv-sticky img { width: 42px; height: 52px; object-fit: cover; border-radius: 10px; flex: none; }
+  .pv-sticky div { flex: 1; min-width: 0; display: grid; font-size: 12px; }
+  .pv-sticky strong { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pv-sticky span { font-weight: 700; font-size: 14px; }
+  .pv-sticky button { flex: none; border: 0; border-radius: 14px; padding: 12px 16px; font: inherit; font-weight: 700; font-size: 13px; color: #fbf1e2; background: linear-gradient(135deg, #3c2a21, #8e735b); cursor: pointer; }
+  .m-shell .pv-sticky button { background: linear-gradient(135deg, #2a302c, #6f8576); color: #eef2ee; }
+  .pv { padding-bottom: 170px; }
+}
+@keyframes pv-sticky-in { from { transform: translateY(120%); opacity: 0; } to { transform: none; opacity: 1; } }
+.search__bar input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
