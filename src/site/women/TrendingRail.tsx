@@ -6,17 +6,17 @@ import { WomenCard } from './WomenCard';
 import { categoryPath, stockedGroups } from '../../lib/categories';
 import { isFullLook, useCutouts } from '../../lib/useCutouts';
 
-/** "Trending now": a ranked rail with occasion tabs. Whole looks on a model lead (owner's rule), then featured, then the rest. */
+/** "Trending now": a ranked rail with occasion tabs. Only whole looks on a real model (owner's rule), featured first. */
 export function TrendingRail({ products }: { products: Product[] }) {
   const [tab, setTab] = useState<string>('all');
   const cutoutFor = useCutouts();
-  const tabs = useMemo(() => [['all', 'All'] as const, ...stockedGroups(products).slice(0, 4).map(({ group }) => [group.slug, group.label] as const)], [products]);
-  const list = useMemo(() => products
-    .filter((product) => product.images[0]?.url && (tab === 'all' || product.storeCollection === tab))
-    .sort((a, b) => Number(isFullLook(cutoutFor(b.id), b.storeCollection)) - Number(isFullLook(cutoutFor(a.id), a.storeCollection))
-      || Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length)
-    .slice(0, 10), [products, tab, cutoutFor]);
-  if (products.length === 0) return null;
+  const looks = useMemo(() => products.filter((product) => product.images[0]?.url && isFullLook(cutoutFor(product.id), product.storeCollection)), [products, cutoutFor]);
+  const tabs = useMemo(() => [['all', 'All'] as const, ...stockedGroups(looks).slice(0, 4).map(({ group }) => [group.slug, group.label] as const)], [looks]);
+  const list = useMemo(() => looks
+    .filter((product) => tab === 'all' || product.storeCollection === tab)
+    .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length)
+    .slice(0, 10), [looks, tab]);
+  if (looks.length === 0) return null;
 
   return <section className="w-trend">
     <div className="w-sec-head">
