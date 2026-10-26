@@ -12,6 +12,7 @@ import { ShoePoster } from './ShoePoster';
 import { MenWatchPoster } from './MenWatchPoster';
 import { CustomPoster } from './CustomPoster';
 import { PosterSides } from '../shared/PosterSides';
+import { POSTER_PICKS } from '../../config/posterPicks';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
 import { MoodBar } from '../shared/Mood';
@@ -100,7 +101,7 @@ export function MenHome() {
     <MenTrending products={clothes} />
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>Print on <b>demand</b></h2><p className="w-sec-head__note">Blank tees, your print. Made when you order.</p></div>
-      <PosterSides products={tees}><CustomPoster /></PosterSides>
+      <PosterSides products={tees} picks={POSTER_PICKS.tees}><CustomPoster /></PosterSides>
     </section>
 
     {bags.length > 0 && <section className="w-new">
@@ -109,7 +110,7 @@ export function MenHome() {
     </section>}
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>shoes</b></h2><p className="w-sec-head__note">Patent, polished, made for the entrance.</p></div>
-      <PosterSides products={shoes}><ShoePoster /></PosterSides>
+      <PosterSides products={shoes} picks={POSTER_PICKS.menShoes}><ShoePoster /></PosterSides>
     </section>
 
     <section className="w-codes">
@@ -119,7 +120,7 @@ export function MenHome() {
 
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>watches</b></h2><p className="w-sec-head__note">Rose gold, Roman numerals, built to be noticed.</p></div>
-      <PosterSides products={[...watches].reverse()}><MenWatchPoster /></PosterSides>
+      <PosterSides products={[...watches].reverse()} picks={POSTER_PICKS.menWatches}><MenWatchPoster /></PosterSides>
     </section>
 
     <section className="w-new">
