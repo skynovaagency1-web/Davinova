@@ -34,6 +34,8 @@ export function WomenHome() {
   const shown = products.filter((product) => product.department !== 'men' && product.images[0]?.url);
   const inCollection = (...slugs: string[]) => shown.filter((product) => slugs.includes(product.storeCollection ?? ''));
   // True high heels only: no flats, boots, wedges, slippers or chunky/low heels beside the "Step into power" poster.
+  // Real handbags, totes and clutches only beside "The bag you reach for": no wallets, pouches, backpacks or small accessories.
+  const bags = inCollection(WOMEN_BAGS).filter((product) => /bag|tote|clutch|satchel|hobo|purse/i.test(product.title) && !/wallet|coin|card|pouch|backpack|cosmetic|makeup|keychain|key chain|phone|storage|organizer|strap only/i.test(product.title));
   const heels = inCollection(WOMEN_SHOES).filter((product) => /high.?heel|stiletto|pump/i.test(product.title) && !/flat|boot|slipper|wedge|chunky|low|sneaker|slide|mary jane/i.test(product.title));
   const onModelWithImages = onModel.filter((product) => product.images[0]?.url);
 
@@ -47,7 +49,7 @@ export function WomenHome() {
     <ReachFeature product={withImages[4] ?? withImages[0]} />
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>bags</b></h2><p className="w-sec-head__note">Clutches and handbags to finish every look.</p></div>
-      <PosterSides products={inCollection(WOMEN_BAGS)}><BagPoster /></PosterSides>
+      <PosterSides products={bags.length >= 2 ? bags : inCollection(WOMEN_BAGS)}><BagPoster /></PosterSides>
     </section>
     <DressCodeGuide />
     <CurvyEdit products={women} />
