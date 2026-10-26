@@ -9,8 +9,10 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function main() {
   if (!PASSWORD) throw new Error('Add the DAVINOVA_ADMIN_PASSWORD secret to the GitHub repository first.');
-  const catalog = await (await fetch(SITE + '/api/catalog?all=1')).json() as { products: { id: string; sizes: string[] }[] };
-  let ids = catalog.products.filter((product) => product.sizes.some((size) => size.includes(' / '))).map((product) => product.id);
+  const catalog = await (await fetch(SITE + '/api/catalog?all=1')).json() as { products: { id: string; sizes: string[]; colourImages?: Record<string, string> }[] };
+  // Only products with a colour still missing its photo, so reruns spend CJ calls on new items.
+  const colours = (sizes: string[]) => new Set(sizes.filter((size) => size.includes(' / ')).map((size) => size.slice(0, size.indexOf(' / '))));
+  let ids = catalog.products.filter((product) => [...colours(product.sizes)].some((colour) => !product.colourImages?.[colour])).map((product) => product.id);
   if (LIMIT) ids = ids.slice(0, LIMIT);
   console.log(`Saving variant photos for ${ids.length} products`);
   let updated = 0; let failed = 0;
