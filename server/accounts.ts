@@ -102,8 +102,11 @@ export async function accountView(db: D1Database, customer: Customer) {
   ).bind(customer.email).all<{ id: string; order_number: string; status: string; total_cents: number; currency: string; tracking_number: string | null; tracking_url: string | null; created_at: string }>();
   const rows = orders.results ?? [];
   const items = rows.length
-    ? (await db.prepare(`SELECT order_id,product_title AS title,size,color,quantity FROM order_items WHERE order_id IN (${rows.map(() => '?').join(',')}) ORDER BY id`)
-      .bind(...rows.map((row) => row.id)).all<{ order_id: string; title: string; size: string; color: string; quantity: number }>()).results ?? []
+    ? (await db.prepare(`SELECT order_id,product_title AS title,size,color,quantity FROM order_items WHERE order_id IN (${rows.map(() => '?').join(',')})
+      UNION ALL SELECT order_id,product_title,size,color,quantity FROM custom_order_items WHERE order_id IN (${rows.map(() => '?').join(',')})`)
+      .bind(...rows.map((row) => row.id), ...rows.map((row) => row.id)).all<{ order_id: string; title: string; size: string; color: string; quantity: number }>()
+      .catch(() => db.prepare(`SELECT order_id,product_title AS title,size,color,quantity FROM order_items WHERE order_id IN (${rows.map(() => '?').join(',')}) ORDER BY id`)
+        .bind(...rows.map((row) => row.id)).all<{ order_id: string; title: string; size: string; color: string; quantity: number }>())).results ?? []
     : [];
   return {
     email: customer.email,

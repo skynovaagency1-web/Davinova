@@ -50,8 +50,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     return reply({ error: 'We could not find an order with that number and email. Check both and try again.' }, 404);
   }
 
-  const items = await env.DB.prepare('SELECT product_title AS title,size,color,quantity FROM order_items WHERE order_id=? ORDER BY id')
-    .bind(order.id).all<{ title: string; size: string; color: string; quantity: number }>();
+  const items = await env.DB.prepare('SELECT product_title AS title,size,color,quantity FROM order_items WHERE order_id=? UNION ALL SELECT product_title,size,color,quantity FROM custom_order_items WHERE order_id=?')
+    .bind(order.id, order.id).all<{ title: string; size: string; color: string; quantity: number }>()
+    .catch(() => env.DB!.prepare('SELECT product_title AS title,size,color,quantity FROM order_items WHERE order_id=? ORDER BY id').bind(order.id).all<{ title: string; size: string; color: string; quantity: number }>());
   let country = '';
   try { country = String((JSON.parse(order.shipping_address_json) as { country?: unknown }).country || ''); } catch { /* no address yet */ }
   const step = STEPS[order.status] ?? STEPS.paid;

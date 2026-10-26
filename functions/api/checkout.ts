@@ -63,7 +63,7 @@ function reply(data: unknown, status = 200): Response {
   });
 }
 
-function stripeConfiguration(env: Env): { mode: 'test' | 'live'; secret: string } | Response {
+export function stripeConfiguration(env: Env): { mode: 'test' | 'live'; secret: string } | Response {
   const secret = env.STRIPE_SECRET_KEY || '';
   const mode = env.STRIPE_MODE;
   if (mode !== 'test' && mode !== 'live') {
@@ -83,7 +83,7 @@ function stripeConfiguration(env: Env): { mode: 'test' | 'live'; secret: string 
   return { mode, secret };
 }
 
-function checkoutSettings(env: Env): { site: string; countries: string[]; shippingFeeCents: number; shippingLabel: string; autoTax: boolean } | Response {
+export function checkoutSettings(env: Env): { site: string; countries: string[]; shippingFeeCents: number; shippingLabel: string; autoTax: boolean } | Response {
   let site: URL;
   try {
     site = new URL(env.SITE_URL || '');

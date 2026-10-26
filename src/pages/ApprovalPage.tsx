@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { CheckCircle2, LoaderCircle, ShieldCheck } from 'lucide-react';
 interface Preview {
   orderNumber:string; total:string; status:string;
-  items:{title:string;size:string;color:string;quantity:number}[];
-  readyToApprove:boolean;readinessMessage:string;dryRun:boolean;
+  items:{title:string;size:string;color:string;quantity:number;previewUrl?:string;printUrl?:string}[];
+  readyToApprove:boolean;readinessMessage:string;dryRun:boolean;supplier?:'printify';
 }
 interface ApiError {error?:string}
 export function ApprovalPage() {
@@ -43,9 +43,11 @@ export function ApprovalPage() {
     {!preview && !error && <p className="approval-loading"><LoaderCircle className="viewer-spinner" size={18}/> Loading order details…</p>}
     {preview && !done && <>
       <div className="approval-order"><div><span>Customer order</span><strong>{preview.orderNumber}</strong></div><div><span>Customer payment total</span><strong>{preview.total}</strong></div><div><span>Order status</span><strong>{preview.status.replaceAll('_',' ')}</strong></div></div>
-      <div className="approval-items"><h2>Items to review</h2>{preview.items.map((item,index)=><div className="approval-item" key={item.title+'-'+item.size+'-'+index}><div><strong>{item.title}</strong><span>{item.color} · Size {item.size} · Qty {item.quantity}</span></div></div>)}</div>
+      <div className="approval-items"><h2>Items to review</h2>{preview.items.map((item,index)=><div className="approval-item" key={item.title+'-'+item.size+'-'+index}>{item.previewUrl && <a href={item.printUrl} target="_blank" rel="noreferrer" title="Open the print file"><img src={item.previewUrl} alt="Customer design" width={96} height={96} style={{objectFit:'cover',borderRadius:12}}/></a>}<div><strong>{item.title}</strong><span>{item.color} · Size {item.size} · Qty {item.quantity}</span></div></div>)}</div>
       <p className={preview.readyToApprove?'approval-message':'approval-message approval-message--error'}>{preview.readinessMessage}</p>
-      <p className="approval-warning"><ShieldCheck size={16}/> Before live approval, check the exact CJ variant, stock, logistics choice and final supplier payable amount. A live order may spend funds from your CJ balance.</p>
+      {preview.supplier==='printify'
+        ? <p className="approval-warning"><ShieldCheck size={16}/> Customer design printed by Printify. Open the picture to check the print file. Approving places and pays the Printify order; it is held for you if Printify would cost more than the customer paid.</p>
+        : <p className="approval-warning"><ShieldCheck size={16}/> Before live approval, check the exact CJ variant, stock, logistics choice and final supplier payable amount. A live order may spend funds from your CJ balance.</p>}
       <button className="button button--dark" type="button" disabled={!preview.readyToApprove||submitting} onClick={approve}>{submitting?<><LoaderCircle size={16} className="viewer-spinner"/> Processing…</>:preview.dryRun?'Run safe dry-run':'Approve supplier purchase'}</button>
     </>}
     {done && <div className="approval-complete" role="status"><CheckCircle2 size={24}/><p>{done}</p></div>}

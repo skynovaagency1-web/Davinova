@@ -1,6 +1,7 @@
 import { getCJOrderDetails, isCJDryRun } from './cj';
 import type { CJEnv } from './cj';
 import { sendTransactionalEmail } from './email';
+import { syncPrintifyTracking, type PrintifyEnv } from './printify';
 interface Env extends CJEnv { RESEND_API_KEY?:string; EMAIL_FROM?:string }
 interface ScheduledEvent {cron:string;scheduledTime:number}
 interface TrackRow {
@@ -11,6 +12,7 @@ function escapeHtml(value:string):string {
   return value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 }
 export async function scheduled(_event:ScheduledEvent,env:Env,_ctx:ExecutionContext):Promise<void>{
+  await syncPrintifyTracking(env as unknown as PrintifyEnv).catch((error)=>console.error('Printify tracking sync failed:',error instanceof Error?error.message:error));
   if(isCJDryRun(env)) return;
   const rows=await env.DB.prepare("SELECT so.id AS supplier_order_row_id,so.order_id,o.order_number,o.email AS customer_email,so.cj_order_id,so.tracking_number,so.tracking_email_sent_at FROM supplier_orders so JOIN orders o ON o.id=so.order_id WHERE so.supplier='cj' AND so.status IN ('ordered','shipped') AND (so.next_retry_at IS NULL OR julianday(so.next_retry_at)<=julianday('now')) ORDER BY so.updated_at ASC LIMIT 20")
     .all<TrackRow>();

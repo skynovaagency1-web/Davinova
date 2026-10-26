@@ -10,17 +10,29 @@ function json(data: unknown, status = 200): Response {
 export async function onRequestGet({ env }: { env: Env }): Promise<Response> {
   const orders = await env.DB.prepare(
     `SELECT o.id,o.order_number,o.email,o.status,o.payment_status,o.total_cents,o.currency,o.shipping_address_json,o.tracking_number,o.tracking_url,o.created_at,
+      o.payment_reference,COALESCE(so.status,po.status) AS supplier_status,COALESCE(so.error_message,po.error_message) AS supplier_error
+     FROM orders o LEFT JOIN supplier_orders so ON so.order_id=o.id AND so.supplier='cj' LEFT JOIN printify_orders po ON po.order_id=o.id
+     WHERE o.status<>'pending_payment' OR o.created_at>datetime('now','-1 day')
+     ORDER BY o.created_at DESC LIMIT 100`,
+  ).all<Record<string, unknown> & { id: string; shipping_address_json: string }>()
+    .catch(() => env.DB.prepare(
+    `SELECT o.id,o.order_number,o.email,o.status,o.payment_status,o.total_cents,o.currency,o.shipping_address_json,o.tracking_number,o.tracking_url,o.created_at,
       o.payment_reference,so.status AS supplier_status,so.error_message AS supplier_error
      FROM orders o LEFT JOIN supplier_orders so ON so.order_id=o.id AND so.supplier='cj'
      WHERE o.status<>'pending_payment' OR o.created_at>datetime('now','-1 day')
      ORDER BY o.created_at DESC LIMIT 100`,
-  ).all<Record<string, unknown> & { id: string; shipping_address_json: string }>();
+  ).all<Record<string, unknown> & { id: string; shipping_address_json: string }>());
   const rows = orders.results ?? [];
   const items = rows.length
     ? await env.DB.prepare(
       `SELECT order_id,product_title AS title,size,color,quantity,unit_price_cents,unit_cost_cents FROM order_items
-       WHERE order_id IN (${rows.map(() => '?').join(',')}) ORDER BY id`,
-    ).bind(...rows.map((row) => row.id)).all<{ order_id: string }>()
+       WHERE order_id IN (${rows.map(() => '?').join(',')})
+       UNION ALL SELECT order_id,product_title,size,color,quantity,unit_price_cents,0 FROM custom_order_items
+       WHERE order_id IN (${rows.map(() => '?').join(',')})`,
+    ).bind(...rows.map((row) => row.id), ...rows.map((row) => row.id)).all<{ order_id: string }>()
+      // Before migration 0011 (custom designs) is applied there is no custom_order_items table.
+      .catch(() => env.DB.prepare(`SELECT order_id,product_title AS title,size,color,quantity,unit_price_cents,unit_cost_cents FROM order_items
+       WHERE order_id IN (${rows.map(() => '?').join(',')}) ORDER BY id`).bind(...rows.map((row) => row.id)).all<{ order_id: string }>())
     : { results: [] };
   const byOrder = new Map<string, unknown[]>();
   for (const item of items.results ?? []) byOrder.set(item.order_id, [...(byOrder.get(item.order_id) ?? []), item]);
