@@ -1,8 +1,10 @@
 import { consumeApprovalToken, getApprovalTokenOrderId } from '../../../server/auth';
 import { createCJOrder, isCJDryRun, queryCJVariantStock } from '../../../server/cj';
 import type { CJEnv, CJOrderInput, CJOrderLine, CJShippingAddress } from '../../../server/cj';
+import { customApprovalPreview, customLines, isPrintifyDryRun, placePrintifyOrder } from '../../../server/printify';
+import type { PrintifyEnv } from '../../../server/printify';
 
-type Env = CJEnv;
+type Env = CJEnv & PrintifyEnv;
 interface StoreOrder {
   id: string; order_number: string; email: string; payment_status: string; status: string;
   total_cents: number; currency: string; shipping_address_json: string; payment_reference: string | null;
@@ -86,9 +88,12 @@ export async function onRequestGet({request,env}:{request:Request;env:Env}):Prom
   if(!id) return json({error:'This approval link is invalid, expired or already used.'},401);
   const order=await getOrder(env,id);
   if(!order || order.payment_status!=='paid' || order.status!=='pending_approval') return json({error:'This order is not awaiting owner approval.'},409);
+  const total=new Intl.NumberFormat('en-US',{style:'currency',currency:order.currency || 'USD'}).format(order.total_cents/100);
+  // Design-your-own orders are printed by Printify instead of CJ.
+  const custom=await customLines(env.DB,id);
+  if(custom.length) return json({orderNumber:order.order_number,total,status:order.status,...await customApprovalPreview(env,order,custom),dryRun:isPrintifyDryRun(env)});
   const lines=await getLines(env,id);
   const problem=mappingProblem(lines);
-  const total=new Intl.NumberFormat('en-US',{style:'currency',currency:order.currency || 'USD'}).format(order.total_cents/100);
   return json({
     orderNumber:order.order_number,total:total,status:order.status,
     items:lines.map((line)=>({title:line.product_title,size:line.size,color:line.color,quantity:line.quantity})),
@@ -104,6 +109,15 @@ export async function onRequestPost({request,env}:{request:Request;env:Env}):Pro
   const token=maybeToken.token;
   const order=await getOrder(env,maybeToken.orderId);
   if(!order || order.payment_status!=='paid' || order.status!=='pending_approval') return json({error:'Only an order with a verified payment awaiting approval can proceed.'},409);
+  const custom=await customLines(env.DB,order.id);
+  if(custom.length) {
+    const review=await customApprovalPreview(env,order,custom);
+    if(!review.readyToApprove) return json({error:review.readinessMessage},409);
+    if(!isPrintifyDryRun(env) && String(order.payment_reference || '').startsWith('cs_test_')) return json({error:'This is a test-mode order (paid with a test card). Nothing was sent to Printify.'},409);
+    if(await consumeApprovalToken(token,env.DB)!==order.id) return json({error:'This approval link was already used or expired.'},401);
+    try { return json({ok:true,...await placePrintifyOrder(env,order,custom)}); }
+    catch(error) { return json({error:'Printify order failed: '+(error instanceof Error?error.message.slice(0,300):'unknown error')+'. The order is flagged; check Printify before any retry.'},502); }
+  }
   const lines=await getLines(env,order.id);
   const problem=mappingProblem(lines);
   if(problem) return json({error:problem},409);

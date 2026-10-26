@@ -48,6 +48,7 @@ export function CustomPage({ dept }: { dept: 'women' | 'men' }) {
         <h1>Made for <b>the party</b></h1>
         <p>Our own designs, printed on demand for the bride, her bridesmaids and the groom’s crew.</p>
         <ul>{promises.map(([title, line]) => <li key={title}><strong>{title}</strong><span>{line}</span></li>)}</ul>
+        <Link className="dm-cta-link" to={dept === 'men' ? '/men/custom/design' : '/custom/design'}>Design your own →<small>Tee, hoodie, tote or mug with your picture or words</small></Link>
       </div>
       <div className="w-custom__wall">
         {designs.map((design) => <figure key={design.word} className="w-custom__piece">
