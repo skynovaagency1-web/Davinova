@@ -13,6 +13,7 @@ export function JewelryPage({ dept }: { dept: Dept }) {
     const kind = jewelryTypeOf(product);
     return kind && allowed.includes(kind) && (!current || kind === current);
   });
+  const grid = (items: typeof products) => <div className={dept === 'men' ? 'm-grid m-grid--glass' : 'w-grid'}>{items.map((product, index) => <WomenCard key={product.id} product={product} index={index} />)}</div>;
   const info = current ? JEWELRY_TYPES[current] : { label: 'Jewelry & Watches', line: 'Wedding sets, rings and watches to finish the look' };
 
   return <section className={`jw jw--${dept}`}>
@@ -29,7 +30,17 @@ export function JewelryPage({ dept }: { dept: Dept }) {
       </div>)}
     </nav>
     {pieces.length > 0
-      ? <div className={dept === 'men' ? 'm-grid m-grid--glass' : 'w-grid'}>{pieces.map((product, index) => <WomenCard key={product.id} product={product} index={index} />)}</div>
+      ? (current ? grid(pieces) : <div className="jw__sections">{allowed.map((kind) => {
+        // "All" keeps each piece with its own category, in menu order (owner's ask, 2026-10-26).
+        const items = pieces.filter((product) => jewelryTypeOf(product) === kind);
+        return items.length > 0 && <section key={kind} className="jw__section">
+          <div className="jw__section-head">
+            <h2>{JEWELRY_TYPES[kind].label} <i>{items.length}</i></h2>
+            <Link to={jewelryPath(dept, kind)}>See all →</Link>
+          </div>
+          {grid(items)}
+        </section>;
+      })}</div>)
       : !loading && <div className="jw__empty">
         <strong>The first pieces are on their way.</strong>
         <span>We're choosing them now. In the meantime, find the look to wear them with.</span>

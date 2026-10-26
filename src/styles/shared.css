@@ -188,6 +188,12 @@
 .jw--women .jw__groups a.active { background: linear-gradient(110deg, #ecdcc8, #b89a7e 60%, #8e735b); color: #2a1d16; border-color: transparent; }
 .jw--men .jw__groups a { border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
 .jw--men .jw__groups a.active { background: #1b1b1b; color: #eee; }
+.jw__sections { display: grid; gap: clamp(36px, 5vw, 64px); }
+.jw__section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent); }
+.jw__section-head h2 { margin: 0; font: 800 clamp(22px, 2.6vw, 34px)/1.1 'Archivo', sans-serif; letter-spacing: -.02em; }
+.jw__section-head h2 i { font: 500 12px 'IBM Plex Mono', monospace; font-style: normal; opacity: .6; vertical-align: middle; margin-left: 6px; }
+.jw__section-head a { font-size: 13px; font-weight: 700; white-space: nowrap; opacity: .85; }
+.jw--men .jw__section-head h2 { font-family: 'IBM Plex Mono', monospace; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
 
 /* ---------- Help: shipping, returns, sizes, FAQ, contact, policies ---------- */
 .help__tabs { gap: 8px; }
