@@ -33,7 +33,8 @@ export function WomenHome() {
   // Pieces from each poster's own category, shown on both sides of it.
   const shown = products.filter((product) => product.department !== 'men' && product.images[0]?.url);
   const inCollection = (...slugs: string[]) => shown.filter((product) => slugs.includes(product.storeCollection ?? ''));
-  const heels = inCollection(WOMEN_SHOES).filter((product) => /heel|pump|stiletto|sandal/i.test(product.title));
+  // True high heels only: no flats, boots, wedges, slippers or chunky/low heels beside the "Step into power" poster.
+  const heels = inCollection(WOMEN_SHOES).filter((product) => /high.?heel|stiletto|pump/i.test(product.title) && !/flat|boot|slipper|wedge|chunky|low|sneaker|slide|mary jane/i.test(product.title));
   const onModelWithImages = onModel.filter((product) => product.images[0]?.url);
 
   return <>

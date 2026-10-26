@@ -8,8 +8,10 @@ import { useCutouts } from '../../lib/useCutouts';
 /** A home poster with two pieces from its category floating on each side, so the space beside it is never empty. */
 export function PosterSides({ products, children }: { products: Product[]; children: ReactNode }) {
   const cutoutFor = useCutouts();
-  // Pieces with a clean cut-out first, so the side cards look as finished as the poster.
-  const picks = [...products.filter((product) => cutoutFor(product.id)), ...products.filter((product) => !cutoutFor(product.id))].slice(0, 4);
+  // Only pieces customers can buy now (never "Coming soon"), clean cut-outs first, so the side cards look as finished as the poster.
+  const priced = products.filter((product) => product.supplierVerified && product.priceCents > 0);
+  const pool = priced.length >= 2 ? priced : products;
+  const picks = [...pool.filter((product) => cutoutFor(product.id)), ...pool.filter((product) => !cutoutFor(product.id))].slice(0, 4);
   if (picks.length < 2) return <>{children}</>;
   const card = (product: Product, index: number) => <Link key={product.id} to={productPath(product)} className="poster-side" style={{ animationDelay: `${index * -1.6}s` }}>
     <span className="poster-side__img"><img src={cutoutFor(product.id) ?? product.images[0]?.url} alt="" loading="lazy" /></span>
