@@ -69,7 +69,8 @@ export function stripeConfiguration(env: Env): { mode: 'test' | 'live'; secret: 
   if (mode !== 'test' && mode !== 'live') {
     return reply({ error: 'Stripe checkout is not configured. Set STRIPE_MODE to test or live.' }, 503);
   }
-  if (!secret || (mode === 'test' && !secret.startsWith('sk_test_')) || (mode === 'live' && !secret.startsWith('sk_live_'))) {
+  // Standard (sk_) or restricted (rk_) keys; a restricted key needs Checkout Sessions and Coupons write access.
+  if (!secret || (mode === 'test' && !/^[sr]k_test_/.test(secret)) || (mode === 'live' && !/^[sr]k_live_/.test(secret))) {
     return reply({ error: 'Stripe key does not match the configured payment mode.' }, 503);
   }
   // Live customer payments require deliberate enablement of the tested CJ order path.
