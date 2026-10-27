@@ -1,0 +1,171 @@
+{
+ "checkedAt": "2026-10-27T12:14:04.260Z",
+ "countries": [
+  "US"
+ ],
+ "results": [
+  {
+   "siteId": "cj-2610110652211604600",
+   "vid": "2610110652211605400",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 31.39,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 34.64,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2407050727541629500",
+   "vid": "2510240603541603400",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 25.76,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 28.3,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2101866882013458434",
+   "vid": "2101866882126704642",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 18,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 19.57,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1792836037266382848",
+   "vid": "1792836037350268928",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 30.93,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 34.13,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-FFA3066D-0E97-4593-98ED-A8EE797FF982",
+   "vid": "369F36CD-68DE-4CB4-801F-94991E7743B9",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.66,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.44,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-66020A8E-8CE8-4170-8254-F6B85F8714E6",
+   "vid": "0C461B85-D69A-428A-88A4-18FAC43F4923",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 7.4,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.24,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1415156884201148416",
+   "vid": "1415156885572685824",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 8.12,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.68,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2102137006589665281",
+   "vid": "2102137006870683649",
+   "countries": {
+    "US": {
+     "cheapest": null,
+     "fast": null
+    }
+   }
+  },
+  {
+   "siteId": "cj-2501020804421629300",
+   "vid": "2501020804421629500",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 6d6c5d437b1a4648bfd8ca45d51851cb)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-6476CAC2-6707-49B4-ADC9-6FC0204E5B75",
+   "vid": "2CD4E7F2-BF87-44B6-BD0E-E54DA5BAB5D0",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 7.58,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.44,
+      "days": "4-7"
+     }
+    }
+   }
+  }
+ ]
+}
