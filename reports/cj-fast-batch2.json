@@ -1,0 +1,594 @@
+{
+ "checkedAt": "2026-10-27T09:33:44.836Z",
+ "countries": [
+  "US"
+ ],
+ "results": [
+  {
+   "siteId": "cj-2606110733311631500",
+   "vid": "2606110733311632100",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.38,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.54,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2606060147511628300",
+   "vid": "2606060147511629000",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.11,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.84,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-EC1E22AF-A993-442E-85BE-F42E259C3C11",
+   "vid": "3A040E18-F27D-4B41-ABD9-8A215FC7B1DB",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.74,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.97,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-33D60846-90EA-4403-B55F-A8B35EF35256",
+   "vid": "36CAE45B-2321-45D3-89DC-9091D61AB9BC",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Sensitive",
+      "priceUsd": 17.32,
+      "days": "4-9"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 18.34,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1401355939382169600",
+   "vid": "1401355940820815872",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 7.4,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.24,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-5D1BE1A5-FD0B-496F-BC83-79D082AEC6C3",
+   "vid": "005166C5-E750-436E-9D1C-1D7485DDB088",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 8.49,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 9.08,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1376506676433260544",
+   "vid": "1376506678073233408",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 7.58,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.44,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-A6BF51D9-FB4C-4DD3-AD1F-5A5D9CCAF6B4",
+   "vid": "4BF756D7-726D-4B4B-9193-B2FCE03E4EA8",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 7,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.8,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-27F922B8-4B2A-4696-8CE9-B713C53DB6F4",
+   "vid": "02B927A8-EB88-4A40-9F79-D7DDD883E358",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 9.41,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 10.09,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-6A79C940-E0C7-4D6E-AEF2-E3CDE5895CD9",
+   "vid": "54003FFA-5D88-4EAB-B9D5-766F159C8F14",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.11,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.84,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1369828715160276992",
+   "vid": "1369828716733140992",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.94,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.74,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1376441888688705536",
+   "vid": "1376441890039271424",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.74,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.97,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-BF8932E6-3284-49B7-A99F-8372ED83408C",
+   "vid": "0BD4E39A-4A86-4A84-A6EB-C6B473E4C96D",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.66,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.44,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1377191920308195328",
+   "vid": "1377191921692315648",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.85,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.64,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1435438246543888384",
+   "vid": "1435438246615191552",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.79,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.58,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1381562981996957696",
+   "vid": "1381562983397855232",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.58,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 6.48,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1384050785503023104",
+   "vid": "1384050786824228864",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 7.94,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.48,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1422479866456051712",
+   "vid": "1422479869069103104",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.67,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.88,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-5AB93639-D4A7-4B20-A1FC-E8841FAC5B02",
+   "vid": "08820A83-CE6D-42B4-9D27-D9DDFB86F09E",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.38,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.54,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1397404405875216384",
+   "vid": "1397404407309668352",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.18,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.92,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1402844797085028352",
+   "vid": "1402844798523674624",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.94,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.74,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2511241001041600300",
+   "vid": "2511241001041600500",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 8.18,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.74,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-8C06D0BE-60FE-46C4-BEB6-9BDAE3D768A4",
+   "vid": "8CC45F9B-8248-4DCA-B916-3FB895E48AB0",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.19,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.33,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1389835707320766464",
+   "vid": "1389835708654555136",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 8.91,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 9.53,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1399270262893056000",
+   "vid": "1399270264587554816",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.39,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 7.14,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1394892122200608768",
+   "vid": "1394892124025131008",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.11,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.84,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2610090644361609400",
+   "vid": "2610090644371600400",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 24.84,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 27.28,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2102137006589665281",
+   "vid": "2102137006870683649",
+   "countries": {
+    "US": {
+     "cheapest": null,
+     "fast": null
+    }
+   }
+  },
+  {
+   "siteId": "cj-2511200159431601400",
+   "vid": "2511200159431602100",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 13.59,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 14.59,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2406120826411602800",
+   "vid": "2406120826411603000",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 18.76,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 20.43,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2603170856451635500",
+   "vid": "2603170856451636100",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.74,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.97,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2501020804421629300",
+   "vid": "2501020804421629500",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.28,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.44,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-6476CAC2-6707-49B4-ADC9-6FC0204E5B75",
+   "vid": "2CD4E7F2-BF87-44B6-BD0E-E54DA5BAB5D0",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 7.58,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 8.44,
+      "days": "4-7"
+     }
+    }
+   }
+  }
+ ]
+}
