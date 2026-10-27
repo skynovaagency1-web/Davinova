@@ -1,0 +1,43 @@
+name: Import picked CJ products
+
+# Imports the CJ products listed in scripts/cj-import-list.json (picked by eye), then checks their photos.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: cutouts
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Import from CJ
+        run: node --experimental-strip-types scripts/cj-import-list.ts
+        env:
+          ADMIN_PASSWORD: ${{ secrets.DAVINOVA_ADMIN_PASSWORD }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "rembg[cpu]==2.0.85" pillow opencv-python-headless
+      - name: Check photos of the new products
+        run: git pull --ff-only origin ${{ github.ref_name }} && sleep 30 && python scripts/cutouts.py
+        env:
+          LIMIT: '400'
+      - name: Commit cutouts
+        run: |
+          git config user.name "davinova-bot"
+          git config user.email "davinova-bot@users.noreply.github.com"
+          git add public/cutouts
+          git diff --cached --quiet && exit 0
+          git commit -m "Check photos of picked CJ imports"
+          git pull --rebase -X theirs origin ${{ github.ref_name }}
+          python scripts/cutouts_sync.py
+          git diff --quiet || git commit -am "Keep cutouts hidden or recut by hand"
+          git push origin HEAD:${{ github.ref_name }}
