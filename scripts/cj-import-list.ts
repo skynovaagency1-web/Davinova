@@ -5,7 +5,7 @@
  */
 import { readFileSync } from 'node:fs';
 
-const SITE = process.env.SITE ?? 'https://feature-3d-fashion-storefron.davinova.pages.dev';
+const SITE = process.env.SITE ?? 'https://davinova.com';
 const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
