@@ -5,11 +5,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci && npm run build
       - run: npm i --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
-      - run: node scripts/bg-test.cjs
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with: { name: bg-test, path: bg-*.png }
+      - run: (npx vite preview --port 4173 &) && sleep 5 && node scripts/bg-test.cjs http://localhost:4173/custom/design

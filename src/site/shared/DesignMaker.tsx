@@ -302,7 +302,8 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
       const cut = await removeBackground(image.img);
       setImage((layer) => layer && { ...layer, img: cut, original: layer.original ?? layer.img });
       setActive('image');
-    } catch {
+    } catch (reason) {
+      console.error('Background removal failed', reason instanceof Error ? reason.stack ?? reason.message : String(reason));
       setError('The background could not be removed on this device. Try again, or upload a PNG that already has a transparent background.');
     } finally { setCutting(false); }
   }
