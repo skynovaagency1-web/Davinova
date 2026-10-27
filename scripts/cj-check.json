@@ -1,1 +1,1 @@
-{ "limit": "0", "unpriced": "1", "ids_file": "reports/ids-mens.json", "out": "reports/cj-check-mens.json", "run": 16 }
+{ "limit": "0", "unpriced": "1", "ids_file": "reports/ids-jewelry.json", "out": "reports/cj-check-jewelry.json", "run": 17 }
