@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { isCurvyLook } from '../../lib/curvyLooks';
 import { usePaged } from '../shared/usePaged';
-import { isFloating, useCutouts } from '../../lib/useCutouts';
+import { isFloating, useCutouts, usePhotoTier } from '../../lib/useCutouts';
 import { WomenCard } from './WomenCard';
 import { STYLE_CATEGORIES, matchesStyle } from '../shared/styleCategories';
 import { CATEGORY_GROUPS, categoryGroup, inCategory, stockedGroups, titleParts } from '../../lib/categories';
@@ -27,14 +27,15 @@ export function WomenShop() {
 
   const women = useMemo(() => products.filter((product) => product.department === 'women' && product.shelf !== 'watches' && product.shelf !== 'jewelry'), [products]);
   const colours = useMemo(() => [...new Set(women.map((product) => product.color).filter(Boolean))].sort().slice(0, 14), [women]);
+  const tier = usePhotoTier();
   const filtered = useMemo(() => {
     const list = women.filter((product) =>
       (collection === 'all' || inCategory(product, collection, sub))
       && (fit === 'all' || (fit === 'curvy') === isCurvyLook(product))
       && (!colour || product.color === colour)
       && (!style || matchesStyle(product, style)));
-    return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : sort === 'name' ? a.title.localeCompare(b.title) : Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
-  }, [women, collection, sub, fit, colour, style, sort]);
+    return [...list].sort((a, b) => sort === 'price-low' ? a.priceCents - b.priceCents : sort === 'price-high' ? b.priceCents - a.priceCents : sort === 'name' ? a.title.localeCompare(b.title) : tier(a) - tier(b) || Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
+  }, [women, collection, sub, fit, colour, style, sort, tier]);
   // Photos on a model and floating clothes (model erased) are shown apart, never mixed in one grid.
   const cutoutFor = useCutouts();
   const floating = filtered.filter((product) => isFloating(cutoutFor(product.id), product.storeCollection));

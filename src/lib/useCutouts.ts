@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { FLOATING_COLLECTIONS } from './storeCollectionTaxonomy';
+import { TRENDING_LOOKS } from './trendingLooks';
 
 // public/cutouts/manifest.json maps product id → background-free photo, made by the "Product cutouts" GitHub Action.
 let request: Promise<Record<string, string | null>> | null = null;
@@ -30,3 +31,26 @@ export const isFloating = (cutout: string | undefined, storeCollection?: string)
 /** A whole look on a model: the photo passed the full-body check (not floating, not a headless .model.webp cut). */
 export const isFullLook = (cutout: string | undefined, storeCollection?: string) =>
   Boolean(cutout && !cutout.endsWith('.model.webp') && !isFloating(cutout, storeCollection));
+
+// public/cutouts/no-model.json: cut-outs with no real model in them (flat lays, vests on a form), found by a face check.
+let noModelRequest: Promise<Set<string>> | null = null;
+let noModelCache = new Set<string>();
+const loadNoModel = () => (noModelRequest ??= fetch('/cutouts/no-model.json')
+  .then((response) => (response.ok ? response.json() : []))
+  .catch(() => [])
+  .then((ids: string[]) => (noModelCache = new Set(ids))));
+
+/**
+ * Shop order by photo (owner, 2026-10-27): 0 = whole model checked by eye, 1 = part of a model,
+ * 2 = no model (floating, flat lay or object).
+ */
+export function usePhotoTier(): (product: { id: string; storeCollection?: string }) => number {
+  const cutoutFor = useCutouts();
+  const [noModel, setNoModel] = useState(noModelCache);
+  useEffect(() => { let alive = true; loadNoModel().then((ids) => { if (alive) setNoModel(ids); }); return () => { alive = false; }; }, []);
+  return useCallback((product) => {
+    if (TRENDING_LOOKS.has(product.id)) return 0;
+    const cutout = cutoutFor(product.id);
+    return isFloating(cutout, product.storeCollection) || noModel.has(product.id) ? 2 : 1;
+  }, [cutoutFor, noModel]);
+}
