@@ -62,6 +62,7 @@ export function WomenMegaNav() {
         </div>)}
       </div>
     </Item>
+    <Link to="/custom/design" className="w-mega__trigger">Design yours</Link>
     <Link to="/about" className="w-mega__trigger">About</Link>
   </nav>;
 }
