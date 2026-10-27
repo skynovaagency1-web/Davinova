@@ -11,7 +11,7 @@ on:
 permissions:
   contents: write
 
-concurrency: cutouts
+concurrency: picked-imports
 
 jobs:
   import:
