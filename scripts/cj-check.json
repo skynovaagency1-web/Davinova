@@ -1,1 +1,1 @@
-{ "limit": "0", "unpriced": "1", "out": "reports/cj-check-batch4.json", "run": 12 }
+{ "limit": "0", "unpriced": "1", "ids_file": "reports/ids-batch3.json", "out": "reports/cj-check-batch5.json", "run": 13 }

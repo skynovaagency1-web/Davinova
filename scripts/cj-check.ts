@@ -14,6 +14,8 @@ const RETRY = process.env.RETRY === '1';
 // UNPRICED=1 checks only products that still have no price (new imports); OUT picks the report path.
 const UNPRICED = process.env.UNPRICED === '1';
 const OUT = process.env.OUT || 'reports/cj-check.json';
+// Optional JSON list of site ids (cj-...) to check, so a new batch is priced without rechecking everything.
+const IDS_FILE = process.env.IDS_FILE || '';
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type Row = { id: string; ok: boolean; error?: string; name?: string; saleStatus?: string; minCostUsd?: number | null; maxCostUsd?: number | null;
@@ -42,6 +44,10 @@ async function main() {
     shown = shown.filter((product) => redo.has(product.id));
   }
   if (UNPRICED) shown = shown.filter((product) => !product.priceCents);
+  if (IDS_FILE) {
+    const wanted = new Set(JSON.parse(readFileSync(IDS_FILE, 'utf8')) as string[]);
+    shown = shown.filter((product) => wanted.has(product.id));
+  }
   if (LIMIT) shown = shown.slice(0, LIMIT);
   console.log(`Checking ${shown.length} products shown on the site`);
 
