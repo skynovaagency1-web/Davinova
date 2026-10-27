@@ -3,7 +3,7 @@ name: Fast shipping quotes
 on:
   # Editing scripts/cj-fast.json on this branch starts a run (manual runs need this file on the default branch).
   push:
-    branches: [feature/3d-fashion-storefront]
+    branches-ignore: [main]
     paths: [scripts/cj-fast.json]
   workflow_dispatch:
     inputs:

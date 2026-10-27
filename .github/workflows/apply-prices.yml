@@ -3,7 +3,7 @@ name: Apply approved prices
 on:
   # Editing scripts/price-apply.json on this branch starts a run.
   push:
-    branches: [feature/3d-fashion-storefront]
+    branches-ignore: [main]
     paths: [scripts/price-apply.json]
   workflow_dispatch:
 
