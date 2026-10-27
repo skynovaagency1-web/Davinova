@@ -188,9 +188,8 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 let remover: Promise<(input: string) => Promise<{ toCanvas: () => HTMLCanvasElement | OffscreenCanvas }[]>> | null = null;
 async function removeBackground(img: HTMLImageElement): Promise<HTMLImageElement> {
   remover ??= import('@huggingface/transformers').then(async ({ pipeline }) => {
-    const webgpu = typeof navigator !== 'undefined' && 'gpu' in navigator;
-    const run = await pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: webgpu ? 'webgpu' : 'wasm' })
-      .catch(() => pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: 'wasm' }));
+    // WASM works on every phone; WebGPU is often missing or broken, so it is not used.
+    const run = await pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: 'wasm' });
     return run as unknown as (input: string) => Promise<{ toCanvas: () => HTMLCanvasElement | OffscreenCanvas }[]>;
   });
   remover.catch(() => { remover = null; });
