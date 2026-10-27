@@ -10,6 +10,7 @@ import { ReachFeature } from './ReachFeature';
 import { WomenCard } from './WomenCard';
 import { CategoryCircles } from './CategoryCircles';
 import { TrendingRail } from './TrendingRail';
+import { DesignBanner } from '../shared/DesignBanner';
 import { DressCodeGuide } from './DressCodeGuide';
 import { CurvyEdit } from './CurvyEdit';
 import { ShopSplit } from '../shared/ShopSplit';
@@ -46,6 +47,7 @@ export function WomenHome() {
     <CategoryCircles products={onModel} />
     <CollectionCards products={onModel} />
     <TrendingRail products={women} />
+    <DesignBanner dept="women" />
     <Exemplaire products={onModel} />
     <ReachFeature product={withImages[4] ?? withImages[0]} />
     <section className="w-watch-feature">

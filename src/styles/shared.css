@@ -745,3 +745,13 @@ button.w-icon { border: 0; }
 }
 .dm__code { width: 100%; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--dm-line); background: rgba(255, 255, 255, .08); color: var(--dm-ink); font: 14px/1.2 'DM Sans', sans-serif; text-transform: uppercase; letter-spacing: .08em; }
 .dm__code::placeholder { color: var(--dm-soft); text-transform: none; letter-spacing: 0; }
+/* Home banner for the design maker: glass strip, Bronze Eclipse (women) or charcoal and sage (men). */
+.dm-banner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin: 48px auto; width: min(1240px, calc(100% - 32px)); padding: 28px 32px; border-radius: 28px; color: #fbf1e2; background: linear-gradient(120deg, rgba(60, 42, 33, .72), rgba(142, 115, 91, .42)); border: 1px solid rgba(251, 241, 226, .22); box-shadow: 0 24px 60px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .18); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); }
+.dm-banner__copy { display: grid; gap: 8px; max-width: 620px; }
+.dm-banner h2 { margin: 0; font-size: clamp(26px, 4vw, 42px); line-height: 1.05; font-weight: 300; }
+.dm-banner h2 b { font-weight: 700; }
+.dm-banner p { margin: 0; opacity: .82; line-height: 1.5; }
+.dm-banner .nova-chip { justify-self: start; }
+.dm-banner--men { color: #ececea; background: linear-gradient(120deg, rgba(73, 73, 73, .78), rgba(165, 170, 163, .35)); border-color: rgba(191, 191, 190, .3); }
+.dm-banner--men .dm-cta-link { color: #2b2b2b; background: linear-gradient(120deg, #ececea, #a5aaa3); }
+@media (max-width: 640px) { .dm-banner { padding: 22px 18px; } .dm-banner .dm-cta-link { width: 100%; } }

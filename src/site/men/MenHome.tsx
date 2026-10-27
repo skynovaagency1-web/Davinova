@@ -8,6 +8,7 @@ import { formalMen, menCategoryPath, menClothes, menDoorImages } from './menForm
 import { MenCollections } from './MenCollections';
 import { MenCircles } from './MenCircles';
 import { MenTrending } from './MenTrending';
+import { DesignBanner } from '../shared/DesignBanner';
 import { ShoePoster } from './ShoePoster';
 import { MenWatchPoster } from './MenWatchPoster';
 import { CustomPoster } from './CustomPoster';
@@ -99,6 +100,7 @@ export function MenHome() {
     <MenCircles products={men} />
     <MenCollections products={men} />
     <MenTrending products={clothes} />
+    <DesignBanner dept="men" />
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>Print on <b>demand</b></h2><p className="w-sec-head__note">Blank tees, your print. Made when you order.</p></div>
       <PosterSides products={tees} picks={POSTER_PICKS.tees}><CustomPoster /></PosterSides>

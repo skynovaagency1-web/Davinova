@@ -83,6 +83,7 @@ export function WomenLayout() {
           <Link to={section.to}>{section.label}</Link>
           {section.subs.length > 0 && <div className="drawer-sub">{section.subs.map((sub) => <Link key={sub.to} to={sub.to}>{sub.label}</Link>)}</div>}
         </motion.div>)}
+        <Link to="/custom/design" className="drawer-about">Design your own</Link>
         <Link to="/wishlist" className="drawer-about">Wishlist</Link>
         <Link to="/account" className="drawer-about">My account</Link>
         <Link to="/gift-cards" className="drawer-about">Gift cards</Link>

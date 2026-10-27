@@ -55,6 +55,7 @@ export function MenLayout() {
             {group.items.map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}
           </div>)}</div>
         </div>
+        <Link to="/men/custom/design" className={pathname.startsWith('/men/custom') ? 'active' : ''}><i>06</i>Design yours</Link>
       </nav>
       <div className="m-header__right">
         <Link to="/men" className="m-home" aria-label="Home"><Home size={16} /></Link>
@@ -71,6 +72,7 @@ export function MenLayout() {
         <div className="drawer-sub">{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}</div>
         <Link to={jewelryPath('men')}><i>05</i>Jewelry &amp; Watches</Link>
         <div className="drawer-sub">{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
+        <Link to="/men/custom/design"><i>06</i>Design your own</Link>
         <Link to="/men/categories"><i>↗</i>All categories</Link>
         <Link to="/men/wishlist"><i>♡</i>Wishlist</Link>
         <Link to="/men/account"><i>◎</i>My account</Link>
