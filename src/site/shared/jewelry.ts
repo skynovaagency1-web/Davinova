@@ -63,5 +63,5 @@ export function jewelryTypeOf(product: Pick<Product, 'title' | 'shelf' | 'depart
 
 /** Gold vermeil: real gold over 925 sterling silver, never solid gold. Product pages say so plainly. */
 export function isGoldVermeil(product: Pick<Product, 'title'>): boolean {
-  return /vermeil/i.test(product.title);
+  return /vermeil/i.test(product.title) || (/\bgold\b/i.test(product.title) && /\b925\b|sterling/i.test(product.title));
 }
