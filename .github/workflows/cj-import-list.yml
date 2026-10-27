@@ -31,7 +31,7 @@ jobs:
           python-version: '3.11'
       - run: pip install "rembg[cpu]==2.0.85" pillow opencv-python-headless
       - name: Check photos of the new products
-        run: git pull --ff-only origin ${{ github.ref_name }} && sleep 30 && python scripts/cutouts.py
+        run: git pull --ff-only origin ${{ github.ref_name }} && sleep 320 && python scripts/cutouts.py
         env:
           LIMIT: '400'
       - name: Commit cutouts
