@@ -24,6 +24,8 @@
 .pv-buy__cta:disabled { opacity: .45; cursor: not-allowed; }
 .pv-buy__bag { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 12px; font-size: 13px; font-weight: 600; }
 .pv-buy__note { font-size: 12px; color: var(--muted); margin: 14px 0; }
+.pv-buy__vermeil { font-size: 12.5px; line-height: 1.5; margin: 14px 0 0; padding: 10px 12px; border: 1px solid rgba(201, 162, 39, .45); border-radius: 12px; background: rgba(201, 162, 39, .08); }
+.pv-buy__vermeil b { display: block; margin-bottom: 2px; }
 .pv-buy details { border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); padding-top: 14px; font-size: 13px; }
 .pv-buy summary { cursor: pointer; font-weight: 600; }
 .pv-buy details p { color: var(--muted); line-height: 1.6; }

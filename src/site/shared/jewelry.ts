@@ -3,7 +3,8 @@ import { JEWELRY_COLLECTION } from '../../lib/storeCollectionTaxonomy';
 
 export type Dept = 'women' | 'men';
 export type JewelryType = 'bridal-sets' | 'wedding-hair' | 'engagement-rings' | 'fashion' | 'fine' | 'mens-watches' | 'womens-watches'
-  | 'mens-wedding-bands' | 'cufflinks' | 'mens-chains-bracelets';
+  | 'mens-wedding-bands' | 'cufflinks' | 'mens-chains-bracelets'
+  | 'silver-necklaces' | 'silver-bracelets' | 'mens-silver-chains' | 'mens-silver-bracelets';
 
 export const JEWELRY_TYPES: Record<JewelryType, { label: string; line: string }> = {
   'bridal-sets': { label: 'Bridal Jewelry Sets', line: 'Matching necklace, earrings and bracelet for the day' },
@@ -15,19 +16,24 @@ export const JEWELRY_TYPES: Record<JewelryType, { label: string; line: string }>
   'womens-watches': { label: "Women's Watches", line: 'The finishing touch for every look' },
   'mens-wedding-bands': { label: 'Wedding Bands', line: 'The ring he wears home' },
   cufflinks: { label: 'Cufflinks & Tie Clips', line: 'Small details for the suit' },
-  'mens-chains-bracelets': { label: 'Chains & Bracelets', line: 'Steel, silver and gold for every day' },
+  'mens-chains-bracelets': { label: 'Chains', line: 'Steel and gold chains for every day' },
+  // Real 925 sterling silver only; gold pieces here are gold vermeil (owner's ask, 2026-10-27).
+  'silver-necklaces': { label: 'Silver Necklaces', line: 'Real 925 sterling silver and gold vermeil' },
+  'silver-bracelets': { label: 'Silver Bracelets', line: 'Real 925 sterling silver and gold vermeil' },
+  'mens-silver-chains': { label: 'Silver Necklaces', line: 'Real 925 sterling silver chains and pendants' },
+  'mens-silver-bracelets': { label: 'Silver Bracelets', line: 'Real 925 sterling silver for the wrist' },
 };
 
 /** The Jewelry & Watches sub-menu. Each shop has its own pieces. */
 export function jewelryMenu(dept: Dept): { title: string; items: JewelryType[] }[] {
   if (dept === 'men') return [
     { title: 'Wedding', items: ['mens-wedding-bands', 'cufflinks'] },
-    { title: 'Jewelry', items: ['mens-chains-bracelets'] },
+    { title: 'Jewelry', items: ['mens-silver-chains', 'mens-silver-bracelets', 'mens-chains-bracelets'] },
     { title: 'Watches', items: ['mens-watches'] },
   ];
   return [
     { title: 'Wedding & Engagement', items: ['bridal-sets', 'wedding-hair', 'engagement-rings'] },
-    { title: 'Jewelry', items: ['fashion', 'fine'] },
+    { title: 'Jewelry', items: ['silver-necklaces', 'silver-bracelets', 'fine', 'fashion'] },
     { title: 'Watches', items: ['womens-watches'] },
   ];
 }
@@ -53,4 +59,9 @@ export function jewelryTypeOf(product: Pick<Product, 'title' | 'shelf' | 'depart
   if (/bridal|bride|wedding/.test(text)) return 'bridal-sets';
   if (/\b(14|18)k\b|925|sterling|solid gold|diamond|moissanite|pearl/.test(text)) return 'fine';
   return 'fashion';
+}
+
+/** Gold vermeil: real gold over 925 sterling silver, never solid gold. Product pages say so plainly. */
+export function isGoldVermeil(product: Pick<Product, 'title'>): boolean {
+  return /vermeil/i.test(product.title);
 }
