@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ImagePlus, LoaderCircle, Lock, Trash2, Type } from 'lucide-react';
+import { Eraser, ImagePlus, LoaderCircle, Lock, Trash2, Type, Undo2 } from 'lucide-react';
 import { CUSTOM_PRODUCTS, MAX_CUSTOM_QUANTITY, type CustomProduct, type CustomProductKey } from '../../lib/customDesign';
 import { formatMoney } from '../../lib/format';
 
@@ -33,13 +33,37 @@ const FONTS = [
   { id: 'script', label: 'Cormorant', family: "'Cormorant Garamond', serif", weight: 500, style: 'italic', upper: false },
   { id: 'bold', label: 'Archivo', family: "'Archivo', sans-serif", weight: 800, style: 'normal', upper: false },
   { id: 'mono', label: 'Plex Mono', family: "'IBM Plex Mono', monospace", weight: 500, style: 'normal', upper: false },
+  { id: 'vibes', label: 'Great Vibes', family: "'Great Vibes', cursive", weight: 400, style: 'normal', upper: false },
+  { id: 'dancing', label: 'Dancing', family: "'Dancing Script', cursive", weight: 700, style: 'normal', upper: false },
+  { id: 'pacifico', label: 'Pacifico', family: "'Pacifico', cursive", weight: 400, style: 'normal', upper: false },
+  { id: 'lobster', label: 'Lobster', family: "'Lobster', cursive", weight: 400, style: 'normal', upper: false },
+  { id: 'caveat', label: 'Handwritten', family: "'Caveat', cursive", weight: 700, style: 'normal', upper: false },
+  { id: 'marker', label: 'Marker', family: "'Permanent Marker', cursive", weight: 400, style: 'normal', upper: false },
+  { id: 'bebas', label: 'Bebas', family: "'Bebas Neue', sans-serif", weight: 400, style: 'normal', upper: true },
+  { id: 'anton', label: 'Anton', family: "'Anton', sans-serif", weight: 400, style: 'normal', upper: false },
+  { id: 'abril', label: 'Abril', family: "'Abril Fatface', serif", weight: 400, style: 'normal', upper: false },
+  { id: 'righteous', label: 'Retro', family: "'Righteous', sans-serif", weight: 400, style: 'normal', upper: false },
+  { id: 'bungee', label: 'Bungee', family: "'Bungee', sans-serif", weight: 400, style: 'normal', upper: true },
+  { id: 'monoton', label: 'Neon line', family: "'Monoton', sans-serif", weight: 400, style: 'normal', upper: true },
 ] as const;
 type FontId = typeof FONTS[number]['id'];
+// Extra display fonts load only on this page, so the rest of the shop stays fast.
+const EXTRA_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@700&family=Pacifico&family=Lobster&family=Caveat:wght@700&family=Permanent+Marker&family=Bebas+Neue&family=Anton&family=Abril+Fatface&family=Righteous&family=Bungee&family=Monoton&display=swap';
 
+/** Text effects, like other print-on-demand makers: each one is drawn the same way on screen and in the print file. */
+const EFFECTS = [
+  { id: 'plain', label: 'Plain' },
+  { id: 'outline', label: 'Outline' },
+  { id: 'shadow', label: 'Shadow' },
+  { id: 'glow', label: 'Glow' },
+  { id: 'deep', label: '3D' },
+  { id: 'hollow', label: 'Hollow' },
+] as const;
+type EffectId = typeof EFFECTS[number]['id'];
 const INKS = ['#2E2019', '#FBF1E2', '#8E735B', '#CDB69E', '#111111', '#FFFFFF', '#9C2F3A', '#C8A15A'];
 
-interface TextLayer { value: string; font: FontId; color: string; size: number; x: number; y: number }
-interface ImageLayer { img: HTMLImageElement; name: string; w: number; x: number; y: number }
+interface TextLayer { value: string; font: FontId; color: string; size: number; x: number; y: number; effect: EffectId; accent: string; curve: number; spacing: number; align: CanvasTextAlign }
+interface ImageLayer { img: HTMLImageElement; name: string; w: number; x: number; y: number; original?: HTMLImageElement }
 type Layer = 'image' | 'text';
 interface Status { ready: boolean; printAreas: Partial<Record<CustomProductKey, { width: number; height: number }>> }
 
@@ -64,16 +88,86 @@ function drawDesign(ctx: CanvasRenderingContext2D, width: number, height: number
     ctx.drawImage(image.img, image.x * width - w / 2, image.y * height - h / 2, w, h);
   }
   const value = text.value.trim();
-  if (value) {
-    const font = fontOf(text.font);
-    const px = text.size * width;
-    ctx.font = `${font.style} ${font.weight} ${px}px ${font.family}`;
-    ctx.fillStyle = text.color;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    const lines = (font.upper ? value.toUpperCase() : value).split('\n').slice(0, 3);
-    lines.forEach((line, index) => ctx.fillText(line, text.x * width, text.y * height + (index - (lines.length - 1) / 2) * px * 1.15));
+  if (value) drawText(ctx, width, height, value, text);
+}
+
+type Glyph = { ch: string; x: number; y: number; rot: number };
+
+/** Places each line, straight or bent along an arc (curve > 0 arches up, < 0 smiles down). */
+function layoutText(ctx: CanvasRenderingContext2D, lines: string[], cx: number, cy: number, px: number, text: TextLayer, boxWidth: number): Glyph[] {
+  const gap = text.spacing * px;
+  const glyphs: Glyph[] = [];
+  lines.forEach((line, index) => {
+    const y = cy + (index - (lines.length - 1) / 2) * px * 1.15;
+    const chars = [...line];
+    const widths = chars.map((ch) => ctx.measureText(ch).width + gap);
+    const total = widths.reduce((sum, w) => sum + w, 0) - gap;
+    if (!text.curve && !gap) {
+      // Whole line at once keeps the font's own kerning.
+      const x = text.align === 'left' ? cx - boxWidth * 0.45 : text.align === 'right' ? cx + boxWidth * 0.45 : cx;
+      glyphs.push({ ch: line, x, y, rot: 0 });
+      return;
+    }
+    if (!text.curve) {
+      let x = text.align === 'left' ? cx - boxWidth * 0.45 : text.align === 'right' ? cx + boxWidth * 0.45 - total : cx - total / 2;
+      chars.forEach((ch, i) => { glyphs.push({ ch, x: x + widths[i] / 2, y, rot: 0 }); x += widths[i]; });
+      return;
+    }
+    const sweep = Math.abs(text.curve) * Math.PI; // up to a half circle
+    const radius = total / sweep;
+    const up = text.curve > 0;
+    const centerY = up ? y + radius : y - radius;
+    let run = 0;
+    chars.forEach((ch, i) => {
+      const angle = (run + widths[i] / 2 - total / 2) / radius;
+      run += widths[i];
+      glyphs.push(up
+        ? { ch, x: cx + radius * Math.sin(angle), y: centerY - radius * Math.cos(angle), rot: angle }
+        : { ch, x: cx + radius * Math.sin(angle), y: centerY + radius * Math.cos(angle), rot: -angle });
+    });
+  });
+  return glyphs;
+}
+
+function drawText(ctx: CanvasRenderingContext2D, width: number, height: number, value: string, text: TextLayer) {
+  const font = fontOf(text.font);
+  const px = text.size * width;
+  ctx.save();
+  ctx.font = `${font.style} ${font.weight} ${px}px ${font.family}`;
+  ctx.textBaseline = 'middle';
+  ctx.lineJoin = 'round';
+  const lines = (font.upper ? value.toUpperCase() : value).split('\n').slice(0, 3);
+  const glyphs = layoutText(ctx, lines, text.x * width, text.y * height, px, text, width);
+  const straightLine = glyphs.length === lines.length && !text.curve && !text.spacing;
+  ctx.textAlign = straightLine ? text.align : 'center';
+  const each = (paint: (glyph: Glyph) => void) => glyphs.forEach((glyph) => {
+    ctx.save();
+    ctx.translate(glyph.x, glyph.y);
+    ctx.rotate(glyph.rot);
+    paint(glyph);
+    ctx.restore();
+  });
+  // Back layer first, so one letter's outline never covers the next letter.
+  if (text.effect === 'outline') {
+    ctx.strokeStyle = text.accent;
+    ctx.lineWidth = px * 0.16;
+    each((g) => ctx.strokeText(g.ch, 0, 0));
+  } else if (text.effect === 'deep') {
+    ctx.fillStyle = text.accent;
+    const steps = 7;
+    each((g) => { for (let i = steps; i > 0; i -= 1) ctx.fillText(g.ch, i * px * 0.012, i * px * 0.012); });
   }
+  if (text.effect === 'hollow') {
+    ctx.strokeStyle = text.color;
+    ctx.lineWidth = Math.max(1, px * 0.05);
+    each((g) => ctx.strokeText(g.ch, 0, 0));
+  } else {
+    ctx.fillStyle = text.color;
+    if (text.effect === 'shadow') { ctx.shadowColor = text.accent; ctx.shadowOffsetX = px * 0.06; ctx.shadowOffsetY = px * 0.06; ctx.shadowBlur = px * 0.06; }
+    if (text.effect === 'glow') { ctx.shadowColor = text.accent; ctx.shadowBlur = px * 0.4; each((g) => ctx.fillText(g.ch, 0, 0)); ctx.shadowBlur = px * 0.15; }
+    each((g) => ctx.fillText(g.ch, 0, 0));
+  }
+  ctx.restore();
 }
 
 function svgMarkup(product: CustomProduct, fill: string, dark: boolean): string {
@@ -90,6 +184,23 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => { const img = new Image(); img.onload = () => resolve(img); img.onerror = () => reject(new Error('This picture could not be opened. Try a JPG or PNG.')); img.src = src; });
 }
 
+/** Cuts the background off a picture right in the shopper's browser (free, nothing is uploaded). Model: ormbg, Apache-2.0, about 44 MB, cached after the first use. */
+let remover: Promise<(input: string) => Promise<{ toCanvas: () => HTMLCanvasElement | OffscreenCanvas }[]>> | null = null;
+async function removeBackground(img: HTMLImageElement): Promise<HTMLImageElement> {
+  remover ??= import('@huggingface/transformers').then(async ({ pipeline }) => {
+    const webgpu = typeof navigator !== 'undefined' && 'gpu' in navigator;
+    const run = await pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: webgpu ? 'webgpu' : 'wasm' })
+      .catch(() => pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: 'wasm' }));
+    return run as unknown as (input: string) => Promise<{ toCanvas: () => HTMLCanvasElement | OffscreenCanvas }[]>;
+  });
+  remover.catch(() => { remover = null; });
+  const run = await remover;
+  const [result] = await run(img.src);
+  const out = result.toCanvas();
+  const blob = out instanceof HTMLCanvasElement ? await toBlob(out, 'image/png') : await (out as OffscreenCanvas).convertToBlob({ type: 'image/png' });
+  return loadImage(URL.createObjectURL(blob));
+}
+
 function toBlob(canvas: HTMLCanvasElement, type: string, quality?: number): Promise<Blob> {
   return new Promise((resolve, reject) => canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error('Your design could not be saved on this device.')), type, quality));
 }
@@ -103,12 +214,13 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
   const [size, setSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
   const [image, setImage] = useState<ImageLayer | null>(null);
-  const [text, setText] = useState<TextLayer>({ value: '', font: 'serif', color: product.colors[0].ink, size: 0.12, x: 0.5, y: 0.5 });
+  const [text, setText] = useState<TextLayer>({ value: '', font: 'serif', color: product.colors[0].ink, size: 0.12, x: 0.5, y: 0.5, effect: 'plain', accent: '#C8A15A', curve: 0, spacing: 0, align: 'center' });
   const [active, setActive] = useState<Layer>('text');
   const [rights, setRights] = useState(false);
   const [code, setCode] = useState('');
   const [status, setStatus] = useState<Status | null>(null);
   const [busy, setBusy] = useState('');
+  const [cutting, setCutting] = useState(false);
   const [error, setError] = useState(params.get('checkout') === 'cancelled' ? 'Checkout was cancelled. Your design is still here if you want to try again.' : '');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -118,7 +230,17 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
   useEffect(() => {
     fetch('/api/custom/status', { headers: { Accept: 'application/json' } }).then((response) => response.json() as Promise<Status>).then(setStatus).catch(() => setStatus({ ready: false, printAreas: {} }));
     // Canvas text only uses a web font once it has loaded.
-    Promise.all(FONTS.map((font) => document.fonts?.load(`${font.style} ${font.weight} 40px ${font.family}`))).then(() => setFontsReady((n) => n + 1)).catch(() => undefined);
+    const loadAll = () => Promise.all(FONTS.map((font) => document.fonts?.load(`${font.style} ${font.weight} 40px ${font.family}`))).then(() => setFontsReady((n) => n + 1)).catch(() => undefined);
+    let link = document.querySelector<HTMLLinkElement>('link[data-dm-fonts]');
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = EXTRA_FONTS_URL;
+      link.dataset.dmFonts = '1';
+      document.head.appendChild(link);
+    }
+    link.addEventListener('load', () => void loadAll());
+    void loadAll();
   }, []);
 
   const area = status?.printAreas[productKey] ?? product.print;
@@ -172,13 +294,26 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'This picture could not be opened.'); }
   }
 
+  async function cutBackground() {
+    if (!image || cutting) return;
+    setError('');
+    setCutting(true);
+    try {
+      const cut = await removeBackground(image.img);
+      setImage((layer) => layer && { ...layer, img: cut, original: layer.original ?? layer.img });
+      setActive('image');
+    } catch {
+      setError('The background could not be removed on this device. Try again, or upload a PNG that already has a transparent background.');
+    } finally { setCutting(false); }
+  }
+
   // Drag whichever layer is under the finger (or the selected one) around the print area.
   function point(event: React.PointerEvent<HTMLCanvasElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
     return { x: (event.clientX - rect.left) / rect.width, y: (event.clientY - rect.top) / rect.height };
   }
   function hit(p: { x: number; y: number }): Layer | null {
-    if (text.value.trim() && Math.abs(p.x - text.x) < 0.45 && Math.abs(p.y - text.y) * (area.height / area.width) < text.size * 1.2) return 'text';
+    if (text.value.trim() && Math.abs(p.x - text.x) < 0.45 && Math.abs(p.y - text.y) * (area.height / area.width) < text.size * (1.2 + Math.abs(text.curve) * 2)) return 'text';
     if (image) {
       const h = image.w * (image.img.naturalHeight / image.img.naturalWidth) * (area.width / area.height);
       if (Math.abs(p.x - image.x) < image.w / 2 && Math.abs(p.y - image.y) < h / 2) return 'image';
@@ -302,9 +437,12 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
             ? <button type="button" className="dm__upload" onClick={() => fileRef.current?.click()}><ImagePlus size={18} /> Upload a picture</button>
             : <div className="dm__layer">
               <div className="dm__row"><span className="dm__file">{image.name}</span><button type="button" className="dm__icon" onClick={() => setImage(null)} aria-label="Remove picture"><Trash2 size={16} /></button></div>
+              {image.original
+                ? <button type="button" className="dm__upload dm__upload--soft" onClick={() => setImage({ ...image, img: image.original!, original: undefined })}><Undo2 size={16} /> Bring the background back</button>
+                : <button type="button" className="dm__upload dm__upload--soft" disabled={cutting} onClick={() => void cutBackground()}>{cutting ? <><LoaderCircle size={16} className="viewer-spinner" /> Removing background… (first time takes a moment)</> : <><Eraser size={16} /> Remove background</>}</button>}
               <label>Size <input type="range" min="0.1" max="1" step="0.01" value={image.w} onChange={(event) => { setActive('image'); setImage({ ...image, w: Number(event.target.value) }); }} /></label>
               {dpi < 150 && <p className="dm__warn">This picture is small for this size ({dpi} dpi), so it may print blurry. Make it smaller or use a larger picture.</p>}
-              <p className="dm__note">Tip: a PNG with a transparent background looks best.</p>
+              <p className="dm__note">Tip: tap Remove background for photos, so only you (or your pet, or your logo) gets printed.</p>
             </div>}
         </fieldset>
 
@@ -314,7 +452,12 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
             <label className="dm__text"><Type size={16} /><textarea rows={2} maxLength={60} placeholder="Your words (up to 3 lines)" value={text.value} onFocus={() => setActive('text')} onChange={(event) => setText({ ...text, value: event.target.value.split('\n').slice(0, 3).join('\n') })} /></label>
             <div className="dm__fonts">{FONTS.map((item) => <button key={item.id} type="button" className={item.id === text.font ? 'is-on' : ''} style={{ fontFamily: item.family, fontStyle: item.style, fontWeight: item.weight }} onClick={() => setText({ ...text, font: item.id })}>{item.upper ? 'AA' : 'Aa'}<small>{item.label}</small></button>)}</div>
             <div className="dm__swatches dm__swatches--ink">{INKS.map((ink) => <button key={ink} type="button" aria-label={'Text colour ' + ink} className={ink === text.color ? 'is-on' : ''} style={{ background: ink }} onClick={() => setText({ ...text, color: ink })} />)}</div>
+            <div className="dm__effects" role="group" aria-label="Text style">{EFFECTS.map((item) => <button key={item.id} type="button" className={`dm__fx dm__fx--${item.id}${item.id === text.effect ? ' is-on' : ''}`} onClick={() => setText({ ...text, effect: item.id, accent: text.accent === text.color ? (isDark(text.color) ? '#FBF1E2' : '#2E2019') : text.accent })}><span>Aa</span><small>{item.label}</small></button>)}</div>
+            {text.effect !== 'plain' && text.effect !== 'hollow' && <div className="dm__swatches dm__swatches--ink"><span className="dm__sublabel">{text.effect === 'outline' ? 'Outline' : text.effect === 'glow' ? 'Glow' : text.effect === 'deep' ? 'Depth' : 'Shadow'} colour</span>{INKS.map((ink) => <button key={ink} type="button" aria-label={'Effect colour ' + ink} className={ink === text.accent ? 'is-on' : ''} style={{ background: ink }} onClick={() => setText({ ...text, accent: ink })} />)}</div>}
             <label>Size <input type="range" min="0.04" max="0.3" step="0.005" value={text.size} onChange={(event) => { setActive('text'); setText({ ...text, size: Number(event.target.value) }); }} /></label>
+            <label>Curve <input type="range" min="-1" max="1" step="0.05" value={text.curve} onChange={(event) => { setActive('text'); setText({ ...text, curve: Math.abs(Number(event.target.value)) < 0.05 ? 0 : Number(event.target.value) }); }} /></label>
+            <label>Spacing <input type="range" min="0" max="0.6" step="0.02" value={text.spacing} onChange={(event) => { setActive('text'); setText({ ...text, spacing: Number(event.target.value) }); }} /></label>
+            {!text.curve && <div className="dm__sizes" role="group" aria-label="Line alignment">{(['left', 'center', 'right'] as const).map((item) => <button key={item} type="button" className={item === text.align ? 'is-on' : ''} onClick={() => setText({ ...text, align: item })}>{item[0].toUpperCase() + item.slice(1)}</button>)}</div>}
           </div>
         </fieldset>
 
