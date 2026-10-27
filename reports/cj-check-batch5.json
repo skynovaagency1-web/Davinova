@@ -1,10 +1,111 @@
 {
- "checkedAt": "2026-10-27T12:49:44.650Z",
+ "checkedAt": "2026-10-27T16:38:13.156Z",
  "results": [
   {
    "id": "2512110328191630200",
-   "ok": false,
-   "error": "CJ /product/query?pid=2512110328191630200 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c0b62e3b571f464e9d52953adb7d2735)",
+   "ok": true,
+   "name": "Britishstyle Wool Herringbone Blazer Men's Plussize Formal Wear Business And Fashion Suit",
+   "saleStatus": "3",
+   "minCostUsd": 33.67,
+   "maxCostUsd": 82.75,
+   "totalStock": 110941,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 35.64,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2512110328191630400",
+     "options": "Gray-L",
+     "costUsd": 82.75,
+     "stock": 5637
+    },
+    {
+     "id": "2512110328191630500",
+     "options": "Gray-XL",
+     "costUsd": 82.75,
+     "stock": 6873
+    },
+    {
+     "id": "2512110328191630700",
+     "options": "Gray-2XL",
+     "costUsd": 82.75,
+     "stock": 9698
+    },
+    {
+     "id": "2512110328191630900",
+     "options": "Gray-3XL",
+     "costUsd": 82.75,
+     "stock": 8668
+    },
+    {
+     "id": "2512110328191631000",
+     "options": "Gray-4XL",
+     "costUsd": 82.75,
+     "stock": 7667
+    },
+    {
+     "id": "2512110328191631200",
+     "options": "Gray-S",
+     "costUsd": 82.75,
+     "stock": 5518
+    },
+    {
+     "id": "2512110328191631700",
+     "options": "Gray-M",
+     "costUsd": 82.75,
+     "stock": 5465
+    },
+    {
+     "id": "2512110328191631800",
+     "options": "Coffee-L",
+     "costUsd": 82.75,
+     "stock": 8211
+    },
+    {
+     "id": "2512110328191632000",
+     "options": "Coffee-XL",
+     "costUsd": 82.75,
+     "stock": 7437
+    },
+    {
+     "id": "2512110328191632100",
+     "options": "Coffee-2XL",
+     "costUsd": 82.75,
+     "stock": 7159
+    },
+    {
+     "id": "2512110328191632300",
+     "options": "Coffee-3XL",
+     "costUsd": 82.75,
+     "stock": 6353
+    },
+    {
+     "id": "2512110328191632500",
+     "options": "Coffee-4XL",
+     "costUsd": 82.75,
+     "stock": 8819
+    },
+    {
+     "id": "2512110328191632600",
+     "options": "Coffee-S",
+     "costUsd": 82.75,
+     "stock": 6822
+    },
+    {
+     "id": "2512110328191632800",
+     "options": "Coffee-M",
+     "costUsd": 82.75,
+     "stock": 9015
+    },
+    {
+     "id": "2601100841561628400",
+     "options": "Gray-5XL",
+     "costUsd": 33.67,
+     "stock": 7599
+    }
+   ],
    "siteId": "cj-2512110328191630200",
    "title": "Britishstyle Wool Herringbone Blazer Men's Plussize Formal Wear Business And Fashion Suit",
    "department": "men",
@@ -103,8 +204,49 @@
   },
   {
    "id": "5762DF19-7832-4650-9B84-78DC878FB2FC",
-   "ok": false,
-   "error": "CJ /product/query?pid=5762DF19-7832-4650-9B84-78DC878FB2FC failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 7dab8723fd5a4fc784479e6267f90cf6)",
+   "ok": true,
+   "name": "Stainless steel business mesh strap men's watch",
+   "saleStatus": "3",
+   "minCostUsd": 9.03,
+   "maxCostUsd": 9.03,
+   "totalStock": null,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 5.74,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2FD00311-A4F9-4D20-9093-8B7A54C4C8A1",
+     "options": "Rose gold",
+     "costUsd": 9.03,
+     "stock": null
+    },
+    {
+     "id": "4F8CC077-0BD2-4803-BF41-A4594F4743BD",
+     "options": "White",
+     "costUsd": 9.03,
+     "stock": null
+    },
+    {
+     "id": "60D9C35F-308F-4B53-AFC3-A733449624EE",
+     "options": "Golden",
+     "costUsd": 9.03,
+     "stock": null
+    },
+    {
+     "id": "8B10862F-6FB9-4750-B6C9-B9DE2080ABE4",
+     "options": "White black",
+     "costUsd": 9.03,
+     "stock": null
+    },
+    {
+     "id": "F8C677E6-8EC1-492D-B929-532D0F8DC293",
+     "options": "Black",
+     "costUsd": 9.03,
+     "stock": null
+    }
+   ],
    "siteId": "cj-5762DF19-7832-4650-9B84-78DC878FB2FC",
    "title": "Stainless steel business mesh strap men's watch",
    "department": "men",
@@ -113,8 +255,49 @@
   },
   {
    "id": "1395674561487441920",
-   "ok": false,
-   "error": "CJ /product/query?pid=1395674561487441920 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 791915207808497ea08dc114fdbf89c2)",
+   "ok": true,
+   "name": "Alarm Clock Calendar Business Quartz Electronic Men's Watch",
+   "saleStatus": "3",
+   "minCostUsd": 19,
+   "maxCostUsd": 20.37,
+   "totalStock": 200000,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 7.07,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1395674563035140096",
+     "options": "Blue",
+     "costUsd": 20.37,
+     "stock": 40000
+    },
+    {
+     "id": "1395674563043528704",
+     "options": "Black",
+     "costUsd": 20.37,
+     "stock": 40000
+    },
+    {
+     "id": "1395674563068694528",
+     "options": "Gold",
+     "costUsd": 20.37,
+     "stock": 40000
+    },
+    {
+     "id": "1395674563093860352",
+     "options": "Sliver",
+     "costUsd": 19,
+     "stock": 40000
+    },
+    {
+     "id": "1395674563106443264",
+     "options": "Coffee",
+     "costUsd": 20.37,
+     "stock": 40000
+    }
+   ],
    "siteId": "cj-1395674561487441920",
    "title": "Alarm Clock Calendar Business Quartz Electronic Men's Watch",
    "department": "men",
@@ -456,8 +639,49 @@
   },
   {
    "id": "1356872896106074112",
-   "ok": false,
-   "error": "CJ /product/query?pid=1356872896106074112 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 1ab3666c0f3d43c9bd31438079444565)",
+   "ok": true,
+   "name": "Tourbillon Automatic Skeleton Mechanical Watch",
+   "saleStatus": "3",
+   "minCostUsd": 19.66,
+   "maxCostUsd": 19.66,
+   "totalStock": 150000,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 6.81,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1356872896122851328",
+     "options": "White",
+     "costUsd": 19.66,
+     "stock": 30000
+    },
+    {
+     "id": "1356872896122851329",
+     "options": "Silver",
+     "costUsd": 19.66,
+     "stock": 30000
+    },
+    {
+     "id": "1356872896122851330",
+     "options": "Gold",
+     "costUsd": 19.66,
+     "stock": 30000
+    },
+    {
+     "id": "1356872896122851331",
+     "options": "Black",
+     "costUsd": 19.66,
+     "stock": 30000
+    },
+    {
+     "id": "1356872896122851332",
+     "options": "Blue",
+     "costUsd": 19.66,
+     "stock": 30000
+    }
+   ],
    "siteId": "cj-1356872896106074112",
    "title": "Tourbillon Automatic Skeleton Mechanical Watch",
    "department": "men",
@@ -913,8 +1137,67 @@
   },
   {
    "id": "1477466927751368704",
-   "ok": false,
-   "error": "CJ /product/query?pid=1477466927751368704 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 3946797f362e418c9c98e969e0132c98)",
+   "ok": true,
+   "name": "Steel Belt Senior Men's Watch Simple Quartz Waterproof Men's Watch",
+   "saleStatus": "3",
+   "minCostUsd": 15.74,
+   "maxCostUsd": 15.74,
+   "totalStock": 352304,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 6.57,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1477466928099495936",
+     "options": "White shell black surface",
+     "costUsd": 15.74,
+     "stock": 47889
+    },
+    {
+     "id": "1477466928103690240",
+     "options": "Black shell black surface",
+     "costUsd": 15.74,
+     "stock": 42005
+    },
+    {
+     "id": "1477466928103690241",
+     "options": "Black shell gold ring",
+     "costUsd": 15.74,
+     "stock": 45824
+    },
+    {
+     "id": "1477466928107884544",
+     "options": "Black shell red needle",
+     "costUsd": 15.74,
+     "stock": 42524
+    },
+    {
+     "id": "1477466928107884545",
+     "options": "Black shell blue needle",
+     "costUsd": 15.74,
+     "stock": 43366
+    },
+    {
+     "id": "1477466928107884546",
+     "options": "Gold shell gold surface",
+     "costUsd": 15.74,
+     "stock": 46125
+    },
+    {
+     "id": "1477466928107884547",
+     "options": "Rose shell blue surface",
+     "costUsd": 15.74,
+     "stock": 41534
+    },
+    {
+     "id": "1477466928112078848",
+     "options": "Gold shell black surface",
+     "costUsd": 15.74,
+     "stock": 43037
+    }
+   ],
    "siteId": "cj-1477466927751368704",
    "title": "Steel Belt Senior Men's Watch Simple Quartz Waterproof Men's Watch",
    "department": "men",
@@ -1199,8 +1482,43 @@
   },
   {
    "id": "D9849B95-2C32-44AB-9B11-4A5B463BFCBE",
-   "ok": false,
-   "error": "CJ /product/query?pid=D9849B95-2C32-44AB-9B11-4A5B463BFCBE failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request da611aa27dd746fea3ddcda18f737f7a)",
+   "ok": true,
+   "name": "Steel belt movement quartz watch male",
+   "saleStatus": "3",
+   "minCostUsd": 12.12,
+   "maxCostUsd": 12.12,
+   "totalStock": 80000,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 7.94,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0185F2C9-C6CD-4528-A6A8-58BF043E6867",
+     "options": "Gold",
+     "costUsd": 12.12,
+     "stock": 20000
+    },
+    {
+     "id": "27F8C2E3-AE7F-4584-91D3-D17B34C3733D",
+     "options": "Gold black",
+     "costUsd": 12.12,
+     "stock": 20000
+    },
+    {
+     "id": "39904269-E727-4FB8-A4D4-E27A372D3EE9",
+     "options": "Gold blue",
+     "costUsd": 12.12,
+     "stock": 20000
+    },
+    {
+     "id": "EB51B6B9-B865-4519-8D71-91E211924FE1",
+     "options": "Gold white",
+     "costUsd": 12.12,
+     "stock": 20000
+    }
+   ],
    "siteId": "cj-D9849B95-2C32-44AB-9B11-4A5B463BFCBE",
    "title": "Steel belt movement quartz watch male",
    "department": "men",
@@ -1209,8 +1527,67 @@
   },
   {
    "id": "5F360288-38F0-4EB5-94BB-D4E572870A90",
-   "ok": false,
-   "error": "CJ /product/query?pid=5F360288-38F0-4EB5-94BB-D4E572870A90 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c28efc96292840b9afa41c2bd1f95e30)",
+   "ok": true,
+   "name": "Large dial steel band quartz watch",
+   "saleStatus": "3",
+   "minCostUsd": 10.43,
+   "maxCostUsd": 10.43,
+   "totalStock": null,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 7.94,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0AFEF608-CC8B-4452-AAB3-E0A717097E8E",
+     "options": "2Blue",
+     "costUsd": 10.43,
+     "stock": null
+    },
+    {
+     "id": "0B46CA95-6490-4D92-ACD8-CCD04C466E09",
+     "options": "2Gold",
+     "costUsd": 10.43,
+     "stock": null
+    },
+    {
+     "id": "46BEB74B-93A0-4CC4-B200-794FF103A4CE",
+     "options": "2Black",
+     "costUsd": 10.43,
+     "stock": null
+    },
+    {
+     "id": "4904F978-1044-4276-ADD0-DC88E97945A6",
+     "options": "1White",
+     "costUsd": 10.43,
+     "stock": null
+    },
+    {
+     "id": "5A523E23-D218-444F-BA08-2299E5BD90DA",
+     "options": "2White",
+     "costUsd": 10.43,
+     "stock": null
+    },
+    {
+     "id": "6B4D1126-D881-4D2C-B779-0E92730FFE2E",
+     "options": "1Gold",
+     "costUsd": 10.43,
+     "stock": null
+    },
+    {
+     "id": "71820754-BBC7-4F9A-8554-51164D5A91EE",
+     "options": "1Black",
+     "costUsd": 10.43,
+     "stock": null
+    },
+    {
+     "id": "FBA6D788-566A-4CC7-92B1-EAFB00EF6CD7",
+     "options": "1Blue",
+     "costUsd": 10.43,
+     "stock": null
+    }
+   ],
    "siteId": "cj-5F360288-38F0-4EB5-94BB-D4E572870A90",
    "title": "Large dial steel band quartz watch",
    "department": "men",
@@ -1219,8 +1596,31 @@
   },
   {
    "id": "1550397581057077248",
-   "ok": false,
-   "error": "CJ /product/query?pid=1550397581057077248 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 7cd0d409a80f47f1851801ba2af13e44)",
+   "ok": true,
+   "name": "Men's Multifunctional Steel Band Quartz Watch",
+   "saleStatus": "3",
+   "minCostUsd": 26.84,
+   "maxCostUsd": 26.84,
+   "totalStock": 95382,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 6.3,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1550397581153546240",
+     "options": "Black",
+     "costUsd": 26.84,
+     "stock": 45914
+    },
+    {
+     "id": "1550397581157740544",
+     "options": "Gold",
+     "costUsd": 26.84,
+     "stock": 49468
+    }
+   ],
    "siteId": "cj-1550397581057077248",
    "title": "Men's Multifunctional Steel Band Quartz Watch",
    "department": "men",
@@ -4178,8 +4578,271 @@
   },
   {
    "id": "1372041862252204032",
-   "ok": false,
-   "error": "CJ /product/query?pid=1372041862252204032 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request ba24e169cfba48e095aaadc78d531787)",
+   "ok": true,
+   "name": "Black High Heels Women Stiletto Professional Leather Shoes Pointed Toe",
+   "saleStatus": "3",
+   "minCostUsd": 11.33,
+   "maxCostUsd": 11.33,
+   "totalStock": 1680000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.91,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1372041863560826880",
+     "options": "Grey-34",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863598575616",
+     "options": "Grey-35",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863636324352",
+     "options": "Grey-36",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863669878784",
+     "options": "Grey-37",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863703433216",
+     "options": "Grey-38",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863741181952",
+     "options": "Grey-39",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863774736384",
+     "options": "Silver-34",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863812485120",
+     "options": "Silver-35",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863850233856",
+     "options": "Silver-36",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041863887982592",
+     "options": "Silver-37",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864013811712",
+     "options": "Silver-38",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864059949056",
+     "options": "Silver-39",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864097697792",
+     "options": "Black-34",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864135446528",
+     "options": "Black-35",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864169000960",
+     "options": "Black-36",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864206749696",
+     "options": "Black-37",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864244498432",
+     "options": "Black-38",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864278052864",
+     "options": "Black-39",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864315801600",
+     "options": "Green-34",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864349356032",
+     "options": "Green-35",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864387104768",
+     "options": "Green-36",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864420659200",
+     "options": "Green-37",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864458407936",
+     "options": "Green-38",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864491962368",
+     "options": "Green-39",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864529711104",
+     "options": "Red-34",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864563265536",
+     "options": "Red-35",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864601014272",
+     "options": "Red-36",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864634568704",
+     "options": "Red-37",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864672317440",
+     "options": "Red-38",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864714260480",
+     "options": "Red-39",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864756203520",
+     "options": "Beige-34",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864789757952",
+     "options": "Beige-35",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864852672512",
+     "options": "Beige-36",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864890421248",
+     "options": "Beige-37",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864923975680",
+     "options": "Beige-38",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864961724416",
+     "options": "Beige-39",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041864995278848",
+     "options": "Pink-34",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041865033027584",
+     "options": "Pink-35",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041865070776320",
+     "options": "Pink-36",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041865104330752",
+     "options": "Pink-37",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041865142079488",
+     "options": "Pink-38",
+     "costUsd": 11.33,
+     "stock": 40000
+    },
+    {
+     "id": "1372041865175633920",
+     "options": "Pink-39",
+     "costUsd": 11.33,
+     "stock": 40000
+    }
+   ],
    "siteId": "cj-1372041862252204032",
    "title": "Black High Heels Women Stiletto Professional Leather Shoes Pointed Toe",
    "department": "women",
@@ -4578,8 +5241,145 @@
   },
   {
    "id": "2511130732271634500",
-   "ok": false,
-   "error": "CJ /product/query?pid=2511130732271634500 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request b1e64df41ec34bb1b7d115063b1f22ff)",
+   "ok": true,
+   "name": "Pointed Toe Shallow Mouth Red Bottom High Heels Women",
+   "saleStatus": "3",
+   "minCostUsd": 11,
+   "maxCostUsd": 11,
+   "totalStock": 164465,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 15.41,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2511130732271634800",
+     "options": "Purple-34",
+     "costUsd": 11,
+     "stock": 8999
+    },
+    {
+     "id": "2511130732271634900",
+     "options": "Purple-35",
+     "costUsd": 11,
+     "stock": 7814
+    },
+    {
+     "id": "2511130732271635200",
+     "options": "Purple-36",
+     "costUsd": 11,
+     "stock": 9102
+    },
+    {
+     "id": "2511130732271635400",
+     "options": "Purple-37",
+     "costUsd": 11,
+     "stock": 8775
+    },
+    {
+     "id": "2511130732271635601",
+     "options": "Purple-38",
+     "costUsd": 11,
+     "stock": 5323
+    },
+    {
+     "id": "2511130732271635800",
+     "options": "Purple-39",
+     "costUsd": 11,
+     "stock": 8206
+    },
+    {
+     "id": "2511130732271635900",
+     "options": "Purple-40",
+     "costUsd": 11,
+     "stock": 6517
+    },
+    {
+     "id": "2511130732271636100",
+     "options": "Champagne-34",
+     "costUsd": 11,
+     "stock": 8070
+    },
+    {
+     "id": "2511130732271636300",
+     "options": "Champagne-35",
+     "costUsd": 11,
+     "stock": 8087
+    },
+    {
+     "id": "2511130732271636400",
+     "options": "Champagne-36",
+     "costUsd": 11,
+     "stock": 5487
+    },
+    {
+     "id": "2511130732271636600",
+     "options": "Champagne-37",
+     "costUsd": 11,
+     "stock": 7992
+    },
+    {
+     "id": "2511130732271636800",
+     "options": "Champagne-38",
+     "costUsd": 11,
+     "stock": 9292
+    },
+    {
+     "id": "2511130732271637000",
+     "options": "Champagne-39",
+     "costUsd": 11,
+     "stock": 6014
+    },
+    {
+     "id": "2511130732271637200",
+     "options": "Champagne-40",
+     "costUsd": 11,
+     "stock": 9693
+    },
+    {
+     "id": "2511130732271637300",
+     "options": "Black-34",
+     "costUsd": 11,
+     "stock": 6795
+    },
+    {
+     "id": "2511130732271637500",
+     "options": "Black-35",
+     "costUsd": 11,
+     "stock": 9047
+    },
+    {
+     "id": "2511130732271637700",
+     "options": "Black-36",
+     "costUsd": 11,
+     "stock": 8555
+    },
+    {
+     "id": "2511130732271637800",
+     "options": "Black-37",
+     "costUsd": 11,
+     "stock": 9460
+    },
+    {
+     "id": "2511130732271638100",
+     "options": "Black-38",
+     "costUsd": 11,
+     "stock": 5881
+    },
+    {
+     "id": "2511130732271638300",
+     "options": "Black-39",
+     "costUsd": 11,
+     "stock": 6094
+    },
+    {
+     "id": "2511130732271638500",
+     "options": "Black-40",
+     "costUsd": 11,
+     "stock": 9262
+    }
+   ],
    "siteId": "cj-2511130732271634500",
    "title": "Pointed Toe Shallow Mouth Red Bottom High Heels Women",
    "department": "women",
@@ -5341,8 +6141,103 @@
   },
   {
    "id": "97FBFE13-1AF6-4CF9-A497-A5877C4627CB",
-   "ok": false,
-   "error": "CJ /product/query?pid=97FBFE13-1AF6-4CF9-A497-A5877C4627CB failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request df172128e9784cc487c2789f7f0b6f3e)",
+   "ok": true,
+   "name": "Leather Martin boots mid-high military boots autumn",
+   "saleStatus": "3",
+   "minCostUsd": 13.66,
+   "maxCostUsd": 13.66,
+   "totalStock": 280000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 31.85,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "17490F78-1585-475E-AF85-15B8C0CECF5B",
+     "options": "Khaki-41",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "217EB3CD-19BB-459C-B8AF-F1F81CCF8FB2",
+     "options": "Black-43",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "24C70759-2077-4EAE-89E6-4D9198C894FE",
+     "options": "Black-39",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "3E4B914F-E4C3-43DC-B617-DDBE6AC9AF48",
+     "options": "Khaki-42",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "3E61FCE0-92BC-4A50-B4A6-5916D76D56B5",
+     "options": "Khaki-44",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "3F383090-DE37-4E01-BCF2-168F8DC27565",
+     "options": "Black-42",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "41FDEFA3-F1AF-443A-80E5-29556BA6D60A",
+     "options": "Khaki-43",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "487DED13-86E0-4955-B760-00C58B94EFD9",
+     "options": "Khaki-38",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "641FDC4C-C4CF-42F5-AC33-B753B9E544F1",
+     "options": "Black-38",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "77B5A745-4A13-4CF0-8491-4DC4F98A673C",
+     "options": "Khaki-39",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "9E8A87F8-1B32-4D1B-BD83-AC0136101810",
+     "options": "Black-41",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "AC5F4A56-FE16-4EDA-88A8-DF6F66608EF4",
+     "options": "Black-40",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "B7A30591-7B9C-4155-8C3E-07E1CCDA2B9E",
+     "options": "Black-44",
+     "costUsd": 13.66,
+     "stock": 20000
+    },
+    {
+     "id": "D1FEB0B6-1C7B-4EC4-9712-A81167081C4F",
+     "options": "Khaki-40",
+     "costUsd": 13.66,
+     "stock": 20000
+    }
+   ],
    "siteId": "cj-97FBFE13-1AF6-4CF9-A497-A5877C4627CB",
    "title": "Leather Martin boots mid-high military boots autumn",
    "department": "men",
@@ -5621,8 +6516,103 @@
   },
   {
    "id": "1366690387258904576",
-   "ok": false,
-   "error": "CJ /product/query?pid=1366690387258904576 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 554ab8923b0f4047a47260786fa1fd65)",
+   "ok": true,
+   "name": "British Set Foot Leather Boots Business Men's Boots",
+   "saleStatus": "3",
+   "minCostUsd": 19.78,
+   "maxCostUsd": 19.78,
+   "totalStock": 420000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.95,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1366690388596887552",
+     "options": "Brown-38",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690388663996416",
+     "options": "Brown-39",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690388731105280",
+     "options": "Brown-40",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690388810797056",
+     "options": "Brown-41",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690388890488832",
+     "options": "Brown-42",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690388957597696",
+     "options": "Brown-43",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389024706560",
+     "options": "Brown-44",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389133758464",
+     "options": "black-38",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389200867328",
+     "options": "black-39",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389276364800",
+     "options": "black-40",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389343473664",
+     "options": "black-41",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389414776832",
+     "options": "black-42",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389490274304",
+     "options": "black-43",
+     "costUsd": 19.78,
+     "stock": 30000
+    },
+    {
+     "id": "1366690389754515456",
+     "options": "black-44",
+     "costUsd": 19.78,
+     "stock": 30000
+    }
+   ],
    "siteId": "cj-1366690387258904576",
    "title": "British Set Foot Leather Boots Business Men's Boots",
    "department": "men",
@@ -5778,8 +6768,151 @@
   },
   {
    "id": "1395292522233860096",
-   "ok": false,
-   "error": "CJ /product/query?pid=1395292522233860096 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 1de4f40233584f6e8a6366965de064a7)",
+   "ok": true,
+   "name": "Martin Boots Men'S Leather British Short Boots Hand-Stitched Large Size Men'S Retro Leather Boots",
+   "saleStatus": "3",
+   "minCostUsd": 13.34,
+   "maxCostUsd": 13.34,
+   "totalStock": 880000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1395292523626369024",
+     "options": "Black-38",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523634757632",
+     "options": "Black-39",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523651534848",
+     "options": "Black-40",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523659923456",
+     "options": "Black-41",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523668312064",
+     "options": "Black-42",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523676700672",
+     "options": "Black-43",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523685089280",
+     "options": "Black-44",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523693477888",
+     "options": "Black-45",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523706060800",
+     "options": "Black-46",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523739615232",
+     "options": "Black-47",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523752198144",
+     "options": "Black-48",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523764781056",
+     "options": "Brown-38",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523777363968",
+     "options": "Brown-39",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523785752576",
+     "options": "Brown-40",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523798335488",
+     "options": "Brown-41",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523810918400",
+     "options": "Brown-42",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523844472832",
+     "options": "Brown-43",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523861250048",
+     "options": "Brown-44",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523873832960",
+     "options": "Brown-45",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523894804480",
+     "options": "Brown-46",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523903193088",
+     "options": "Brown-47",
+     "costUsd": 13.34,
+     "stock": 40000
+    },
+    {
+     "id": "1395292523919970304",
+     "options": "Brown-48",
+     "costUsd": 13.34,
+     "stock": 40000
+    }
+   ],
    "siteId": "cj-1395292522233860096",
    "title": "Martin Boots Men'S Leather British Short Boots Hand-Stitched Large Size Men'S Retro Leather Boots",
    "department": "men",
@@ -7414,8 +8547,55 @@
   },
   {
    "id": "EBDF9192-1117-4252-8D4F-1C5AFA5A98C1",
-   "ok": false,
-   "error": "CJ /product/query?pid=EBDF9192-1117-4252-8D4F-1C5AFA5A98C1 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 540ba63e61e14a9ab76e02320f19a973)",
+   "ok": true,
+   "name": "Women's leather  boots",
+   "saleStatus": "3",
+   "minCostUsd": 29.72,
+   "maxCostUsd": 29.72,
+   "totalStock": 68886,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 17.39,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "118C5E9B-63A5-41FA-B519-880C699356A4",
+     "options": "Black-35",
+     "costUsd": 29.72,
+     "stock": 12915
+    },
+    {
+     "id": "5AFE528E-ABFF-43D3-BCE3-866C7A737F5E",
+     "options": "Black-39",
+     "costUsd": 29.72,
+     "stock": 11037
+    },
+    {
+     "id": "70A07956-EC6F-49ED-B536-E89940FE323E",
+     "options": "Black-37",
+     "costUsd": 29.72,
+     "stock": 12880
+    },
+    {
+     "id": "B02F281A-ADBC-4B69-B09D-D811CA7BE0F7",
+     "options": "Black-38",
+     "costUsd": 29.72,
+     "stock": 10700
+    },
+    {
+     "id": "CA7B39C3-AFC0-4374-B01D-97FA47102A88",
+     "options": "Black-36",
+     "costUsd": 29.72,
+     "stock": 11049
+    },
+    {
+     "id": "DB3728CF-8410-4947-81DB-F617E4FDC244",
+     "options": "Black-34",
+     "costUsd": 29.72,
+     "stock": 10305
+    }
+   ],
    "siteId": "cj-EBDF9192-1117-4252-8D4F-1C5AFA5A98C1",
    "title": "Women's leather  boots",
    "department": "women",
@@ -8078,8 +9258,103 @@
   },
   {
    "id": "2505110155371611300",
-   "ok": false,
-   "error": "CJ /product/query?pid=2505110155371611300 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request f1c51cce86464ffa9cda6128e56fde53)",
+   "ok": true,
+   "name": "British Round Toe Men's Leather Shoes Men",
+   "saleStatus": "3",
+   "minCostUsd": 15.54,
+   "maxCostUsd": 15.54,
+   "totalStock": 93211,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 15.41,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2505110155371611600",
+     "options": "Black-38",
+     "costUsd": 15.54,
+     "stock": 8755
+    },
+    {
+     "id": "2505110155371611800",
+     "options": "Black-39",
+     "costUsd": 15.54,
+     "stock": 8038
+    },
+    {
+     "id": "2505110155371611900",
+     "options": "Black-40",
+     "costUsd": 15.54,
+     "stock": 5373
+    },
+    {
+     "id": "2505110155371612100",
+     "options": "Black-41",
+     "costUsd": 15.54,
+     "stock": 8078
+    },
+    {
+     "id": "2505110155371612300",
+     "options": "Black-42",
+     "costUsd": 15.54,
+     "stock": 6091
+    },
+    {
+     "id": "2505110155371612500",
+     "options": "Black-43",
+     "costUsd": 15.54,
+     "stock": 6033
+    },
+    {
+     "id": "2505110155371612700",
+     "options": "Black-44",
+     "costUsd": 15.54,
+     "stock": 6186
+    },
+    {
+     "id": "2505110155371612900",
+     "options": "Khaki-38",
+     "costUsd": 15.54,
+     "stock": 6820
+    },
+    {
+     "id": "2505110155371613100",
+     "options": "Khaki-39",
+     "costUsd": 15.54,
+     "stock": 7970
+    },
+    {
+     "id": "2505110155371613300",
+     "options": "Khaki-40",
+     "costUsd": 15.54,
+     "stock": 5106
+    },
+    {
+     "id": "2505110155371613500",
+     "options": "Khaki-41",
+     "costUsd": 15.54,
+     "stock": 5497
+    },
+    {
+     "id": "2505110155371613700",
+     "options": "Khaki-42",
+     "costUsd": 15.54,
+     "stock": 6678
+    },
+    {
+     "id": "2505110155371613900",
+     "options": "Khaki-43",
+     "costUsd": 15.54,
+     "stock": 7410
+    },
+    {
+     "id": "2505110155371614000",
+     "options": "Khaki-44",
+     "costUsd": 15.54,
+     "stock": 5176
+    }
+   ],
    "siteId": "cj-2505110155371611300",
    "title": "British Round Toe Men's Leather Shoes Men",
    "department": "men",
@@ -8469,8 +9744,115 @@
   },
   {
    "id": "2511290531301604700",
-   "ok": false,
-   "error": "CJ /product/query?pid=2511290531301604700 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 73bd2065458443e6908d095dd55a0ef3)",
+   "ok": true,
+   "name": "New Casual Shoes Fashionable Snakeskin Cuban Leather Shoes For Men",
+   "saleStatus": "3",
+   "minCostUsd": 12.39,
+   "maxCostUsd": 12.39,
+   "totalStock": 120360,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2511290531301604900",
+     "options": "Black-39",
+     "costUsd": 12.39,
+     "stock": 6603
+    },
+    {
+     "id": "2511290531301605100",
+     "options": "Black-40",
+     "costUsd": 12.39,
+     "stock": 8571
+    },
+    {
+     "id": "2511290531301605300",
+     "options": "Black-41",
+     "costUsd": 12.39,
+     "stock": 6050
+    },
+    {
+     "id": "2511290531301605400",
+     "options": "Black-42",
+     "costUsd": 12.39,
+     "stock": 5635
+    },
+    {
+     "id": "2511290531301605600",
+     "options": "Black-43",
+     "costUsd": 12.39,
+     "stock": 8170
+    },
+    {
+     "id": "2511290531301605800",
+     "options": "Black-44",
+     "costUsd": 12.39,
+     "stock": 5152
+    },
+    {
+     "id": "2511290531301605900",
+     "options": "Black-45",
+     "costUsd": 12.39,
+     "stock": 9789
+    },
+    {
+     "id": "2511290531301606100",
+     "options": "Black-46",
+     "costUsd": 12.39,
+     "stock": 8743
+    },
+    {
+     "id": "2511290531301606300",
+     "options": "Brown-39",
+     "costUsd": 12.39,
+     "stock": 7377
+    },
+    {
+     "id": "2511290531301606400",
+     "options": "Brown-40",
+     "costUsd": 12.39,
+     "stock": 6067
+    },
+    {
+     "id": "2511290531301606600",
+     "options": "Brown-41",
+     "costUsd": 12.39,
+     "stock": 9499
+    },
+    {
+     "id": "2511290531301606800",
+     "options": "Brown-42",
+     "costUsd": 12.39,
+     "stock": 7362
+    },
+    {
+     "id": "2511290531301607000",
+     "options": "Brown-43",
+     "costUsd": 12.39,
+     "stock": 7619
+    },
+    {
+     "id": "2511290531301607100",
+     "options": "Brown-44",
+     "costUsd": 12.39,
+     "stock": 6115
+    },
+    {
+     "id": "2511290531301607300",
+     "options": "Brown-45",
+     "costUsd": 12.39,
+     "stock": 9925
+    },
+    {
+     "id": "2511290531301607500",
+     "options": "Brown-46",
+     "costUsd": 12.39,
+     "stock": 7683
+    }
+   ],
    "siteId": "cj-2511290531301604700",
    "title": "New Casual Shoes Fashionable Snakeskin Cuban Leather Shoes For Men",
    "department": "men",
@@ -8788,8 +10170,235 @@
   },
   {
    "id": "2408090753141620800",
-   "ok": false,
-   "error": "CJ /product/query?pid=2408090753141620800 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 16f363b914fa4108a685ec1d1e345024)",
+   "ok": true,
+   "name": "Casual Fashion Brogue Fringed Leather Shoes Men",
+   "saleStatus": "3",
+   "minCostUsd": 13.09,
+   "maxCostUsd": 13.09,
+   "totalStock": 452615,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.37,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2408090753141621100",
+     "options": "Yellow-37",
+     "costUsd": 13.09,
+     "stock": 11708
+    },
+    {
+     "id": "2408090753141621400",
+     "options": "Yellow-38",
+     "costUsd": 13.09,
+     "stock": 14718
+    },
+    {
+     "id": "2408090753141621600",
+     "options": "Yellow-39",
+     "costUsd": 13.09,
+     "stock": 14068
+    },
+    {
+     "id": "2408090753141621900",
+     "options": "Yellow-40",
+     "costUsd": 13.09,
+     "stock": 11448
+    },
+    {
+     "id": "2408090753141622100",
+     "options": "Yellow-41",
+     "costUsd": 13.09,
+     "stock": 12354
+    },
+    {
+     "id": "2408090753141622300",
+     "options": "Yellow-42",
+     "costUsd": 13.09,
+     "stock": 11923
+    },
+    {
+     "id": "2408090753141622600",
+     "options": "Yellow-43",
+     "costUsd": 13.09,
+     "stock": 11555
+    },
+    {
+     "id": "2408090753141622800",
+     "options": "Yellow-44",
+     "costUsd": 13.09,
+     "stock": 13747
+    },
+    {
+     "id": "2408090753141623000",
+     "options": "Yellow-45",
+     "costUsd": 13.09,
+     "stock": 12389
+    },
+    {
+     "id": "2408090753141623100",
+     "options": "Yellow-46",
+     "costUsd": 13.09,
+     "stock": 14423
+    },
+    {
+     "id": "2408090753141623300",
+     "options": "Yellow-47",
+     "costUsd": 13.09,
+     "stock": 13691
+    },
+    {
+     "id": "2408090753141623500",
+     "options": "Yellow-48",
+     "costUsd": 13.09,
+     "stock": 13831
+    },
+    {
+     "id": "2408090753141623800",
+     "options": "Red-37",
+     "costUsd": 13.09,
+     "stock": 13909
+    },
+    {
+     "id": "2408090753141623900",
+     "options": "Red-38",
+     "costUsd": 13.09,
+     "stock": 10328
+    },
+    {
+     "id": "2408090753141624100",
+     "options": "Red-39",
+     "costUsd": 13.09,
+     "stock": 10907
+    },
+    {
+     "id": "2408090753141624300",
+     "options": "Red-40",
+     "costUsd": 13.09,
+     "stock": 10124
+    },
+    {
+     "id": "2408090753141624500",
+     "options": "Red-41",
+     "costUsd": 13.09,
+     "stock": 14384
+    },
+    {
+     "id": "2408090753141624600",
+     "options": "Red-42",
+     "costUsd": 13.09,
+     "stock": 13184
+    },
+    {
+     "id": "2408090753141624800",
+     "options": "Red-43",
+     "costUsd": 13.09,
+     "stock": 12180
+    },
+    {
+     "id": "2408090753141625000",
+     "options": "Red-44",
+     "costUsd": 13.09,
+     "stock": 11098
+    },
+    {
+     "id": "2408090753141625200",
+     "options": "Red-45",
+     "costUsd": 13.09,
+     "stock": 13267
+    },
+    {
+     "id": "2408090753141625400",
+     "options": "Red-46",
+     "costUsd": 13.09,
+     "stock": 12757
+    },
+    {
+     "id": "2408090753141625600",
+     "options": "Red-47",
+     "costUsd": 13.09,
+     "stock": 12128
+    },
+    {
+     "id": "2408090753141625800",
+     "options": "Red-48",
+     "costUsd": 13.09,
+     "stock": 11460
+    },
+    {
+     "id": "2408090753141626000",
+     "options": "Black-37",
+     "costUsd": 13.09,
+     "stock": 12196
+    },
+    {
+     "id": "2408090753141626200",
+     "options": "Black-38",
+     "costUsd": 13.09,
+     "stock": 14502
+    },
+    {
+     "id": "2408090753141626400",
+     "options": "Black-39",
+     "costUsd": 13.09,
+     "stock": 11759
+    },
+    {
+     "id": "2408090753141626500",
+     "options": "Black-40",
+     "costUsd": 13.09,
+     "stock": 14796
+    },
+    {
+     "id": "2408090753141626700",
+     "options": "Black-41",
+     "costUsd": 13.09,
+     "stock": 13151
+    },
+    {
+     "id": "2408090753141626900",
+     "options": "Black-42",
+     "costUsd": 13.09,
+     "stock": 10922
+    },
+    {
+     "id": "2408090753141627100",
+     "options": "Black-43",
+     "costUsd": 13.09,
+     "stock": 12487
+    },
+    {
+     "id": "2408090753141627300",
+     "options": "Black-44",
+     "costUsd": 13.09,
+     "stock": 11380
+    },
+    {
+     "id": "2408090753141627400",
+     "options": "Black-45",
+     "costUsd": 13.09,
+     "stock": 10240
+    },
+    {
+     "id": "2408090753141627600",
+     "options": "Black-46",
+     "costUsd": 13.09,
+     "stock": 10476
+    },
+    {
+     "id": "2408090753141627800",
+     "options": "Black-47",
+     "costUsd": 13.09,
+     "stock": 14645
+    },
+    {
+     "id": "2408090753141628000",
+     "options": "Black-48",
+     "costUsd": 13.09,
+     "stock": 14480
+    }
+   ],
    "siteId": "cj-2408090753141620800",
    "title": "Casual Fashion Brogue Fringed Leather Shoes Men",
    "department": "men",
@@ -8798,8 +10407,289 @@
   },
   {
    "id": "1415267221663518720",
-   "ok": false,
-   "error": "CJ /product/query?pid=1415267221663518720 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request ca67323911c2496ab84a7078c53b84f3)",
+   "ok": true,
+   "name": "Fall New Style Peas Shoes Men Casual Leather Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 13.21,
+   "maxCostUsd": 16.98,
+   "totalStock": 1365517,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.61,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1415495630800949248",
+     "options": "White-37",
+     "costUsd": 13.21,
+     "stock": 31167
+    },
+    {
+     "id": "1415495630805143552",
+     "options": "White-38",
+     "costUsd": 13.21,
+     "stock": 25830
+    },
+    {
+     "id": "1415495630813532160",
+     "options": "White-39",
+     "costUsd": 13.21,
+     "stock": 31054
+    },
+    {
+     "id": "1415495630821920768",
+     "options": "White-40",
+     "costUsd": 13.21,
+     "stock": 26800
+    },
+    {
+     "id": "1415495630830309376",
+     "options": "White-41",
+     "costUsd": 13.21,
+     "stock": 27696
+    },
+    {
+     "id": "1415495630834503680",
+     "options": "White-42",
+     "costUsd": 13.21,
+     "stock": 29264
+    },
+    {
+     "id": "1415495630842892288",
+     "options": "White-43",
+     "costUsd": 13.21,
+     "stock": 29152
+    },
+    {
+     "id": "1415495630851280896",
+     "options": "White-44",
+     "costUsd": 13.21,
+     "stock": 23343
+    },
+    {
+     "id": "1415495630855475200",
+     "options": "White-45",
+     "costUsd": 13.21,
+     "stock": 28426
+    },
+    {
+     "id": "1415495630863863808",
+     "options": "Yellow brown-37",
+     "costUsd": 13.21,
+     "stock": 32616
+    },
+    {
+     "id": "1415495630872252416",
+     "options": "Yellow brown-38",
+     "costUsd": 13.21,
+     "stock": 28449
+    },
+    {
+     "id": "1415495630876446720",
+     "options": "Yellow brown-39",
+     "costUsd": 13.21,
+     "stock": 30665
+    },
+    {
+     "id": "1415495630884835328",
+     "options": "Yellow brown-40",
+     "costUsd": 13.21,
+     "stock": 34755
+    },
+    {
+     "id": "1415495630893223936",
+     "options": "Yellow brown-41",
+     "costUsd": 13.21,
+     "stock": 32187
+    },
+    {
+     "id": "1415495630897418240",
+     "options": "Yellow brown-42",
+     "costUsd": 13.21,
+     "stock": 32907
+    },
+    {
+     "id": "1415495630905806848",
+     "options": "Yellow brown-43",
+     "costUsd": 13.21,
+     "stock": 30280
+    },
+    {
+     "id": "1415495630914195456",
+     "options": "Yellow brown-44",
+     "costUsd": 13.21,
+     "stock": 34262
+    },
+    {
+     "id": "1415495630918389760",
+     "options": "Yellow brown-45",
+     "costUsd": 13.21,
+     "stock": 24000
+    },
+    {
+     "id": "1415495630926778368",
+     "options": "Black-37",
+     "costUsd": 13.21,
+     "stock": 33083
+    },
+    {
+     "id": "1415495630935166976",
+     "options": "Black-38",
+     "costUsd": 13.21,
+     "stock": 28060
+    },
+    {
+     "id": "1415495630943555584",
+     "options": "Black-39",
+     "costUsd": 13.21,
+     "stock": 30293
+    },
+    {
+     "id": "1415495630947749888",
+     "options": "Black-40",
+     "costUsd": 16.98,
+     "stock": 29653
+    },
+    {
+     "id": "1415495630956138496",
+     "options": "Black-41",
+     "costUsd": 13.21,
+     "stock": 30281
+    },
+    {
+     "id": "1415495630964527104",
+     "options": "Black-42",
+     "costUsd": 13.21,
+     "stock": 29516
+    },
+    {
+     "id": "1415495630968721408",
+     "options": "Black-43",
+     "costUsd": 13.21,
+     "stock": 31172
+    },
+    {
+     "id": "1415495630977110016",
+     "options": "Black-44",
+     "costUsd": 13.21,
+     "stock": 26888
+    },
+    {
+     "id": "1415495630985498624",
+     "options": "Black-45",
+     "costUsd": 13.21,
+     "stock": 28675
+    },
+    {
+     "id": "1415495630989692928",
+     "options": "White A-37",
+     "costUsd": 13.21,
+     "stock": 34187
+    },
+    {
+     "id": "1415495630998081536",
+     "options": "White A-38",
+     "costUsd": 13.21,
+     "stock": 31586
+    },
+    {
+     "id": "1415495631006470144",
+     "options": "White A-39",
+     "costUsd": 13.21,
+     "stock": 31543
+    },
+    {
+     "id": "1415495631010664448",
+     "options": "White A-40",
+     "costUsd": 13.21,
+     "stock": 31478
+    },
+    {
+     "id": "1415495631019053056",
+     "options": "White A-41",
+     "costUsd": 13.21,
+     "stock": 29859
+    },
+    {
+     "id": "1415495631027441664",
+     "options": "White A-42",
+     "costUsd": 13.21,
+     "stock": 31955
+    },
+    {
+     "id": "1415495631031635968",
+     "options": "White A-43",
+     "costUsd": 13.21,
+     "stock": 35720
+    },
+    {
+     "id": "1415495631040024576",
+     "options": "White A-44",
+     "costUsd": 13.21,
+     "stock": 32495
+    },
+    {
+     "id": "1415495631048413184",
+     "options": "White A-45",
+     "costUsd": 13.21,
+     "stock": 32646
+    },
+    {
+     "id": "1415495631052607488",
+     "options": "Brown-37",
+     "costUsd": 13.21,
+     "stock": 26814
+    },
+    {
+     "id": "1415495631060996096",
+     "options": "Brown-38",
+     "costUsd": 13.21,
+     "stock": 33480
+    },
+    {
+     "id": "1415495631069384704",
+     "options": "Brown-39",
+     "costUsd": 13.21,
+     "stock": 33847
+    },
+    {
+     "id": "1415495631073579008",
+     "options": "Brown-40",
+     "costUsd": 13.21,
+     "stock": 30868
+    },
+    {
+     "id": "1415495631081967616",
+     "options": "Brown-41",
+     "costUsd": 13.21,
+     "stock": 35226
+    },
+    {
+     "id": "1415495631090356224",
+     "options": "Brown-42",
+     "costUsd": 13.21,
+     "stock": 26838
+    },
+    {
+     "id": "1415495631094550528",
+     "options": "Brown-43",
+     "costUsd": 13.21,
+     "stock": 27826
+    },
+    {
+     "id": "1415495631102939136",
+     "options": "Brown-44",
+     "costUsd": 13.21,
+     "stock": 26349
+    },
+    {
+     "id": "1415495631136493568",
+     "options": "Brown-45",
+     "costUsd": 13.21,
+     "stock": 32326
+    }
+   ],
    "siteId": "cj-1415267221663518720",
    "title": "Fall New Style Peas Shoes Men Casual Leather Shoes",
    "department": "men",
@@ -8808,8 +10698,115 @@
   },
   {
    "id": "2601060935231615900",
-   "ok": false,
-   "error": "CJ /product/query?pid=2601060935231615900 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 06dd9751e3154577a8fc653b0331076a)",
+   "ok": true,
+   "name": "Business Formal Wear Leather Shoes Men",
+   "saleStatus": "3",
+   "minCostUsd": 8.73,
+   "maxCostUsd": 8.73,
+   "totalStock": 124504,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 12.85,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2601060935231616100",
+     "options": "Black-38",
+     "costUsd": 8.73,
+     "stock": 6515
+    },
+    {
+     "id": "2601060935231616300",
+     "options": "Black-39",
+     "costUsd": 8.73,
+     "stock": 5974
+    },
+    {
+     "id": "2601060935231616400",
+     "options": "Black-40",
+     "costUsd": 8.73,
+     "stock": 6087
+    },
+    {
+     "id": "2601060935231616600",
+     "options": "Black-41",
+     "costUsd": 8.73,
+     "stock": 5471
+    },
+    {
+     "id": "2601060935231616800",
+     "options": "Black-42",
+     "costUsd": 8.73,
+     "stock": 7456
+    },
+    {
+     "id": "2601060935231616900",
+     "options": "Black-43",
+     "costUsd": 8.73,
+     "stock": 7796
+    },
+    {
+     "id": "2601060935231617100",
+     "options": "Black-44",
+     "costUsd": 8.73,
+     "stock": 9552
+    },
+    {
+     "id": "2601060935231617300",
+     "options": "Black-45",
+     "costUsd": 8.73,
+     "stock": 9120
+    },
+    {
+     "id": "2601060935231617400",
+     "options": "Brown-38",
+     "costUsd": 8.73,
+     "stock": 7156
+    },
+    {
+     "id": "2601060935231617600",
+     "options": "Brown-39",
+     "costUsd": 8.73,
+     "stock": 9611
+    },
+    {
+     "id": "2601060935231617800",
+     "options": "Brown-40",
+     "costUsd": 8.73,
+     "stock": 6842
+    },
+    {
+     "id": "2601060935231617900",
+     "options": "Brown-41",
+     "costUsd": 8.73,
+     "stock": 8065
+    },
+    {
+     "id": "2601060935231618100",
+     "options": "Brown-42",
+     "costUsd": 8.73,
+     "stock": 7597
+    },
+    {
+     "id": "2601060935231618300",
+     "options": "Brown-43",
+     "costUsd": 8.73,
+     "stock": 9358
+    },
+    {
+     "id": "2601060935231618500",
+     "options": "Brown-44",
+     "costUsd": 8.73,
+     "stock": 9101
+    },
+    {
+     "id": "2601060935231618700",
+     "options": "Brown-45",
+     "costUsd": 8.73,
+     "stock": 8803
+    }
+   ],
    "siteId": "cj-2601060935231615900",
    "title": "Business Formal Wear Leather Shoes Men",
    "department": "men",
@@ -8818,8 +10815,283 @@
   },
   {
    "id": "2603130304041608300",
-   "ok": false,
-   "error": "CJ /product/query?pid=2603130304041608300 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a0ff858f0456436fa229bf8c46e854a5)",
+   "ok": true,
+   "name": "Casual Formal Business Leather Shoes Men",
+   "saleStatus": "3",
+   "minCostUsd": 10.78,
+   "maxCostUsd": 10.78,
+   "totalStock": 327930,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2603130304041608800",
+     "options": "9673 Matt Black-38",
+     "costUsd": 10.78,
+     "stock": 9070
+    },
+    {
+     "id": "2603130304041609100",
+     "options": "9673 Matt Black-39",
+     "costUsd": 10.78,
+     "stock": 9224
+    },
+    {
+     "id": "2603130304041609500",
+     "options": "9673 Matt Black-40",
+     "costUsd": 10.78,
+     "stock": 8815
+    },
+    {
+     "id": "2603130304051600100",
+     "options": "9673 Matt Black-41",
+     "costUsd": 10.78,
+     "stock": 5749
+    },
+    {
+     "id": "2603130304051600500",
+     "options": "9673 Matt Black-42",
+     "costUsd": 10.78,
+     "stock": 8289
+    },
+    {
+     "id": "2603130304051600900",
+     "options": "9673 Matt Black-43",
+     "costUsd": 10.78,
+     "stock": 7788
+    },
+    {
+     "id": "2603130304051601300",
+     "options": "9673 Matt Black-44",
+     "costUsd": 10.78,
+     "stock": 5940
+    },
+    {
+     "id": "2603130304051601600",
+     "options": "9673 Matt Black-45",
+     "costUsd": 10.78,
+     "stock": 9565
+    },
+    {
+     "id": "2603130304051602000",
+     "options": "9673 Matt Black-46",
+     "costUsd": 10.78,
+     "stock": 5071
+    },
+    {
+     "id": "2603130304051602500",
+     "options": "9673 Matt Black-47",
+     "costUsd": 10.78,
+     "stock": 5844
+    },
+    {
+     "id": "2603130304051602900",
+     "options": "9673 Matt Black-48",
+     "costUsd": 10.78,
+     "stock": 7657
+    },
+    {
+     "id": "2603130304051603300",
+     "options": "1942 Black-38",
+     "costUsd": 10.78,
+     "stock": 6361
+    },
+    {
+     "id": "2603130304051603600",
+     "options": "1942 Black-39",
+     "costUsd": 10.78,
+     "stock": 9623
+    },
+    {
+     "id": "2603130304051604000",
+     "options": "1942 Black-40",
+     "costUsd": 10.78,
+     "stock": 8413
+    },
+    {
+     "id": "2603130304051604300",
+     "options": "1942 Black-41",
+     "costUsd": 10.78,
+     "stock": 6061
+    },
+    {
+     "id": "2603130304051604600",
+     "options": "1942 Black-42",
+     "costUsd": 10.78,
+     "stock": 8972
+    },
+    {
+     "id": "2603130304051605000",
+     "options": "1942 Black-43",
+     "costUsd": 10.78,
+     "stock": 9567
+    },
+    {
+     "id": "2603130304051605700",
+     "options": "1942 Black-44",
+     "costUsd": 10.78,
+     "stock": 5441
+    },
+    {
+     "id": "2603130304051606000",
+     "options": "1942 Black-45",
+     "costUsd": 10.78,
+     "stock": 8265
+    },
+    {
+     "id": "2603130304051606400",
+     "options": "1942 Black-46",
+     "costUsd": 10.78,
+     "stock": 8345
+    },
+    {
+     "id": "2603130304051606800",
+     "options": "1942 Black-47",
+     "costUsd": 10.78,
+     "stock": 6102
+    },
+    {
+     "id": "2603130304051607300",
+     "options": "1942 Black-48",
+     "costUsd": 10.78,
+     "stock": 8193
+    },
+    {
+     "id": "2603130304051607800",
+     "options": "1942 Brown-38",
+     "costUsd": 10.78,
+     "stock": 8817
+    },
+    {
+     "id": "2603130304051608300",
+     "options": "1942 Brown-39",
+     "costUsd": 10.78,
+     "stock": 7929
+    },
+    {
+     "id": "2603130304051608800",
+     "options": "1942 Brown-40",
+     "costUsd": 10.78,
+     "stock": 8414
+    },
+    {
+     "id": "2603130304051609200",
+     "options": "1942 Brown-41",
+     "costUsd": 10.78,
+     "stock": 6334
+    },
+    {
+     "id": "2603130304051609600",
+     "options": "1942 Brown-42",
+     "costUsd": 10.78,
+     "stock": 6869
+    },
+    {
+     "id": "2603130304061600000",
+     "options": "1942 Brown-43",
+     "costUsd": 10.78,
+     "stock": 8096
+    },
+    {
+     "id": "2603130304061600300",
+     "options": "1942 Brown-44",
+     "costUsd": 10.78,
+     "stock": 9440
+    },
+    {
+     "id": "2603130304061600700",
+     "options": "1942 Brown-45",
+     "costUsd": 10.78,
+     "stock": 6971
+    },
+    {
+     "id": "2603130304061601100",
+     "options": "1942 Brown-46",
+     "costUsd": 10.78,
+     "stock": 6348
+    },
+    {
+     "id": "2603130304061601600",
+     "options": "1942 Brown-47",
+     "costUsd": 10.78,
+     "stock": 5253
+    },
+    {
+     "id": "2603130304061602001",
+     "options": "1942 Brown-48",
+     "costUsd": 10.78,
+     "stock": 9568
+    },
+    {
+     "id": "2603130304061602400",
+     "options": "6008 Black-38",
+     "costUsd": 10.78,
+     "stock": 8579
+    },
+    {
+     "id": "2603130304061602700",
+     "options": "6008 Black-39",
+     "costUsd": 10.78,
+     "stock": 6652
+    },
+    {
+     "id": "2603130304061603100",
+     "options": "6008 Black-40",
+     "costUsd": 10.78,
+     "stock": 9877
+    },
+    {
+     "id": "2603130304061603400",
+     "options": "6008 Black-41",
+     "costUsd": 10.78,
+     "stock": 5159
+    },
+    {
+     "id": "2603130304061603800",
+     "options": "6008 Black-42",
+     "costUsd": 10.78,
+     "stock": 8002
+    },
+    {
+     "id": "2603130304061604200",
+     "options": "6008 Black-43",
+     "costUsd": 10.78,
+     "stock": 5408
+    },
+    {
+     "id": "2603130304061604900",
+     "options": "6008 Black-44",
+     "costUsd": 10.78,
+     "stock": 7650
+    },
+    {
+     "id": "2603130304061605300",
+     "options": "6008 Black-45",
+     "costUsd": 10.78,
+     "stock": 5278
+    },
+    {
+     "id": "2603130304061605700",
+     "options": "6008 Black-46",
+     "costUsd": 10.78,
+     "stock": 5203
+    },
+    {
+     "id": "2603130304061606101",
+     "options": "6008 Black-47",
+     "costUsd": 10.78,
+     "stock": 7251
+    },
+    {
+     "id": "2603130304061606500",
+     "options": "6008 Black-48",
+     "costUsd": 10.78,
+     "stock": 6477
+    }
+   ],
    "siteId": "cj-2603130304041608300",
    "title": "Casual Formal Business Leather Shoes Men",
    "department": "men",
@@ -8828,8 +11100,91 @@
   },
   {
    "id": "D5DAE71B-9DF4-4011-A643-BBBE7A8B6FBE",
-   "ok": false,
-   "error": "CJ /product/query?pid=D5DAE71B-9DF4-4011-A643-BBBE7A8B6FBE failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 555864317da04df2a4c7ad8611f5d167)",
+   "ok": true,
+   "name": "Retro Soft Sole Leather Square Toe Breathable Oxford Business Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 35.26,
+   "maxCostUsd": 35.26,
+   "totalStock": 240000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 15.73,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "05AC7B56-D06D-465C-AA64-3A21FC5765B7",
+     "options": "Black-43",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "092DAD2F-39F7-447F-9827-5AE740875F3E",
+     "options": "Black-38",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "0DAFAE8E-7D11-4CD1-9DD5-98825A8F2FF3",
+     "options": "Black-42",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "3DC1F97D-7C83-457A-B659-4304205A04D8",
+     "options": "Black-39",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "54CE3562-6B60-43C1-9CE5-928A987D12B7",
+     "options": "Brown-41",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "7885F22A-DE9E-4E31-A6F0-9472C295A708",
+     "options": "Brown-40",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "81EE7F1F-8C04-4755-87CA-AE95FA2E22A9",
+     "options": "Brown-38",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "D9E5FF71-0E0F-4D42-B016-3869103A625E",
+     "options": "Black-40",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "DEF03FB9-693A-4B7D-9F39-6DE5EC4A569F",
+     "options": "Brown-43",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "EAEA0C56-C895-40B6-8052-9A0D60477A1A",
+     "options": "Brown-42",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "EBCB3DEB-2B3F-4B5D-92F2-A2265CD1CBFB",
+     "options": "Brown-39",
+     "costUsd": 35.26,
+     "stock": 20000
+    },
+    {
+     "id": "FC56D559-6C59-4ADC-B855-7FB9BA4529AC",
+     "options": "Black-41",
+     "costUsd": 35.26,
+     "stock": 20000
+    }
+   ],
    "siteId": "cj-D5DAE71B-9DF4-4011-A643-BBBE7A8B6FBE",
    "title": "Retro Soft Sole Leather Square Toe Breathable Oxford Business Shoes",
    "department": "men",
@@ -8838,8 +11193,115 @@
   },
   {
    "id": "1439159903380967424",
-   "ok": false,
-   "error": "CJ /product/query?pid=1439159903380967424 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request bfc74708ddb9492bb70abf8600b1378a)",
+   "ok": true,
+   "name": "New Summer Business  Oxford Leather  Trend Snake Embossed Cowhide Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 26.23,
+   "maxCostUsd": 26.23,
+   "totalStock": 606850,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1439159903456464896",
+     "options": "Black-39",
+     "costUsd": 26.23,
+     "stock": 36078
+    },
+    {
+     "id": "1439159903464853504",
+     "options": "Black-40",
+     "costUsd": 26.23,
+     "stock": 36824
+    },
+    {
+     "id": "1439159903473242112",
+     "options": "Black-41",
+     "costUsd": 26.23,
+     "stock": 43368
+    },
+    {
+     "id": "1439159903481630720",
+     "options": "Black-42",
+     "costUsd": 26.23,
+     "stock": 42475
+    },
+    {
+     "id": "1439159903490019328",
+     "options": "Black-43",
+     "costUsd": 26.23,
+     "stock": 38918
+    },
+    {
+     "id": "1439159903498407936",
+     "options": "Black-44",
+     "costUsd": 26.23,
+     "stock": 42813
+    },
+    {
+     "id": "1439159903506796544",
+     "options": "Black-45",
+     "costUsd": 26.23,
+     "stock": 38602
+    },
+    {
+     "id": "1439159903515185152",
+     "options": "Black-46",
+     "costUsd": 26.23,
+     "stock": 39378
+    },
+    {
+     "id": "1439159903523573760",
+     "options": "Blue-39",
+     "costUsd": 26.23,
+     "stock": 36884
+    },
+    {
+     "id": "1439159903531962368",
+     "options": "Blue-40",
+     "costUsd": 26.23,
+     "stock": 33685
+    },
+    {
+     "id": "1439159903540350976",
+     "options": "Blue-41",
+     "costUsd": 26.23,
+     "stock": 40045
+    },
+    {
+     "id": "1439159903544545280",
+     "options": "Blue-42",
+     "costUsd": 26.23,
+     "stock": 36207
+    },
+    {
+     "id": "1439159903552933888",
+     "options": "Blue-43",
+     "costUsd": 26.23,
+     "stock": 36382
+    },
+    {
+     "id": "1439159903561322496",
+     "options": "Blue-44",
+     "costUsd": 26.23,
+     "stock": 37921
+    },
+    {
+     "id": "1439159903569711104",
+     "options": "Blue-45",
+     "costUsd": 26.23,
+     "stock": 34834
+    },
+    {
+     "id": "1439159903578099712",
+     "options": "Blue-46",
+     "costUsd": 26.23,
+     "stock": 32436
+    }
+   ],
    "siteId": "cj-1439159903380967424",
    "title": "New Summer Business  Oxford Leather  Trend Snake Embossed Cowhide Shoes",
    "department": "men",
@@ -8848,8 +11310,325 @@
   },
   {
    "id": "A5B76818-447F-41FA-85DA-40687CFB141C",
-   "ok": false,
-   "error": "CJ /product/query?pid=A5B76818-447F-41FA-85DA-40687CFB141C failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 3d01fe481e804957ba82504c316af1ff)",
+   "ok": true,
+   "name": "Plus Shoes Men Suede Leather Shoes Solid Color",
+   "saleStatus": "3",
+   "minCostUsd": 8.03,
+   "maxCostUsd": 8.73,
+   "totalStock": 925464,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 12.24,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "01E1E7DE-6B60-43B3-9745-A9747C249807",
+     "options": "Blue-40",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "0B89D85F-FE8A-48A5-A35B-01BAFA2F8E05",
+     "options": "Blue-48",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "0C27C949-F8C5-408F-B5BD-C44432CDF8BD",
+     "options": "Black-44",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "11D5712E-8D8F-448B-85E8-BE2A9BA80913",
+     "options": "Grey-46",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "17D6F855-ADB0-4CDE-97EF-11DFF55CF361",
+     "options": "Black-47",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "2511210926091612000",
+     "options": "Grey white-46",
+     "costUsd": 8.73,
+     "stock": 5967
+    },
+    {
+     "id": "2511210926091612600",
+     "options": "Grey white-45",
+     "costUsd": 8.73,
+     "stock": 7245
+    },
+    {
+     "id": "2511210926091612800",
+     "options": "Grey white-44",
+     "costUsd": 8.73,
+     "stock": 8523
+    },
+    {
+     "id": "2511210926091613000",
+     "options": "Grey white-43",
+     "costUsd": 8.73,
+     "stock": 5476
+    },
+    {
+     "id": "2511210926091613200",
+     "options": "Grey white-42",
+     "costUsd": 8.73,
+     "stock": 6586
+    },
+    {
+     "id": "2511210926091613400",
+     "options": "Grey white-41",
+     "costUsd": 8.73,
+     "stock": 5464
+    },
+    {
+     "id": "2511210926091613500",
+     "options": "Grey white-40",
+     "costUsd": 8.73,
+     "stock": 6203
+    },
+    {
+     "id": "28C3D602-3DCD-4A14-A9CF-9308EB037BBE",
+     "options": "Brown-45",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "3477412C-8A9C-414E-9462-AB50ACBCE2F7",
+     "options": "Grey-39",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "370CBC46-67C3-40C7-BE8F-F1BFB5660F3E",
+     "options": "Blue-42",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "3FE43345-D6D8-49C9-8BF3-5004D7799E3B",
+     "options": "Black-40",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "4310032A-751F-4B2E-947F-7269BC454B92",
+     "options": "Black-46",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "446A24AE-6EDA-40E8-A747-C3CD96488EBF",
+     "options": "Grey-48",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "465D04B7-8633-473B-8B8D-D069CA7D7B32",
+     "options": "Black-45",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "4E0095E8-445B-428C-A0DB-8C2B1F6CD1D5",
+     "options": "Blue-43",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "4F3A18E7-7A11-4FE2-A7B7-2A1CB421B618",
+     "options": "Blue-39",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "60F7CC42-107C-48B5-8A62-0419B76BD4D9",
+     "options": "Brown-43",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "69B8796F-5545-4C38-B3CD-712C4929F6C7",
+     "options": "Black-43",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "6DE79D50-8E59-4BB6-A40C-99DCA8E912F4",
+     "options": "Black-48",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "6EB18608-F717-4910-8005-7B9269E781AA",
+     "options": "Brown-38",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "75FE3EA7-4A46-4424-9456-2792503D75B4",
+     "options": "Blue-46",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "797CDA90-5503-43A1-9048-E06A322279CD",
+     "options": "Brown-46",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "81B59A14-10A4-45D5-A457-CA91F71A2AA2",
+     "options": "Blue-44",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "81B7408C-C532-4ED4-B266-0FE5420E283F",
+     "options": "Blue-41",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "81D18CAC-EFA6-4A19-93CA-EDCC3ECE5AC9",
+     "options": "Brown-42",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "83BDE00B-742A-434B-BF01-331AD0D08810",
+     "options": "Brown-48",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "873BB9F5-715E-4923-BB80-0B4942905CDE",
+     "options": "Grey-44",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "8C614682-108E-445A-8E57-00ECC0BFD80D",
+     "options": "Grey-40",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "8CF887AE-A6BF-465E-8B06-E79945622FA3",
+     "options": "Black-41",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "A6E277CA-231A-4DFB-951D-E0CCDEAA8C71",
+     "options": "Black-39",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "AFB8BBC8-DE15-4CA9-A87F-252D53242EBE",
+     "options": "Grey-41",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "B3737630-5FF3-4C00-989B-85DF185BB801",
+     "options": "Blue-45",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "B7C5782D-0418-4EB1-AF00-6B687B489FD0",
+     "options": "Blue-47",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "B8241D78-5121-48A5-88E6-06E77A54FB63",
+     "options": "Brown-39",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "B877634A-C414-41F3-83B2-975B54086DC2",
+     "options": "Brown-47",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "C5153BEC-5CC5-447E-BCBE-C2BDE3A64384",
+     "options": "Grey-42",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "D1ED50FA-0CD3-4997-AEFB-69C1B0039007",
+     "options": "Grey-47",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "D6517715-445F-4039-9E9B-59AAF9B42038",
+     "options": "Grey-45",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "DAED5962-D652-4CB0-AA46-2E6BA3816C58",
+     "options": "Brown-40",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "DC0E358D-F792-4DD9-B709-7E13BB381181",
+     "options": "Grey-38",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "E69BBB20-6E92-48A8-B81D-23993994FA7A",
+     "options": "Black-42",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "ED5196BD-F3E0-4BAB-8ABA-606CC978C561",
+     "options": "Blue-38",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "EDF4877E-710E-47BE-BB68-5531D39176AC",
+     "options": "Brown-44",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "F998CBFC-6E11-4F69-8BD0-017C8084E5DA",
+     "options": "Grey-43",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "FB32A9DC-BEA9-46D2-AD03-FC05541A10BA",
+     "options": "Black-38",
+     "costUsd": 8.03,
+     "stock": 20000
+    },
+    {
+     "id": "FFD475E9-80FE-4120-BB67-9223D98DE02A",
+     "options": "Brown-41",
+     "costUsd": 8.03,
+     "stock": 20000
+    }
+   ],
    "siteId": "cj-A5B76818-447F-41FA-85DA-40687CFB141C",
    "title": "Plus Shoes Men Suede Leather Shoes Solid Color",
    "department": "men",
@@ -8858,8 +11637,199 @@
   },
   {
    "id": "1356084424822886400",
-   "ok": false,
-   "error": "CJ /product/query?pid=1356084424822886400 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 1e5a9f77bc37415b9644fdd7d918b584)",
+   "ok": true,
+   "name": "Tassel Men's Shoes Peas Shoes British Leather Shoes Men",
+   "saleStatus": "3",
+   "minCostUsd": 10.44,
+   "maxCostUsd": 10.44,
+   "totalStock": 900000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.37,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1356084424860635136",
+     "options": "Red-38",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635137",
+     "options": "Red-39",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635138",
+     "options": "Red-40",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635139",
+     "options": "Red-41",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635140",
+     "options": "Red-42",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635141",
+     "options": "Red-43",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635142",
+     "options": "Red-44",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635143",
+     "options": "Red-45",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635144",
+     "options": "Red-46",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635145",
+     "options": "Red-47",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635146",
+     "options": "Blue-38",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635147",
+     "options": "Blue-39",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635148",
+     "options": "Blue-40",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635149",
+     "options": "Blue-41",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635150",
+     "options": "Blue-42",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635151",
+     "options": "Blue-43",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635152",
+     "options": "Blue-44",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635153",
+     "options": "Blue-45",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635154",
+     "options": "Blue-46",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635155",
+     "options": "Blue-47",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635156",
+     "options": "Black-38",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424860635157",
+     "options": "Black-39",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829440",
+     "options": "Black-40",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829441",
+     "options": "Black-41",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829442",
+     "options": "Black-42",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829443",
+     "options": "Black-43",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829444",
+     "options": "Black-44",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829445",
+     "options": "Black-45",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829446",
+     "options": "Black-46",
+     "costUsd": 10.44,
+     "stock": 30000
+    },
+    {
+     "id": "1356084424864829447",
+     "options": "Black-47",
+     "costUsd": 10.44,
+     "stock": 30000
+    }
+   ],
    "siteId": "cj-1356084424822886400",
    "title": "Tassel Men's Shoes Peas Shoes British Leather Shoes Men",
    "department": "men",
@@ -8868,8 +11838,157 @@
   },
   {
    "id": "2503011507331624200",
-   "ok": false,
-   "error": "CJ /product/query?pid=2503011507331624200 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 36d22080bcb74729ab7c440249bb4b48)",
+   "ok": true,
+   "name": "Fashion New Brogue Leather Shoes Men",
+   "saleStatus": "3",
+   "minCostUsd": 8.73,
+   "maxCostUsd": 12.57,
+   "totalStock": 182611,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2503011507331624400",
+     "options": "Black-38",
+     "costUsd": 8.73,
+     "stock": 7069
+    },
+    {
+     "id": "2503011507331624600",
+     "options": "Black-39",
+     "costUsd": 8.73,
+     "stock": 7558
+    },
+    {
+     "id": "2503011507331624800",
+     "options": "Black-40",
+     "costUsd": 8.73,
+     "stock": 6940
+    },
+    {
+     "id": "2503011507331624900",
+     "options": "Black-41",
+     "costUsd": 8.73,
+     "stock": 5492
+    },
+    {
+     "id": "2503011507331625100",
+     "options": "Black-42",
+     "costUsd": 8.73,
+     "stock": 9971
+    },
+    {
+     "id": "2503011507331625200",
+     "options": "Black-43",
+     "costUsd": 8.73,
+     "stock": 9194
+    },
+    {
+     "id": "2503011507331625400",
+     "options": "Black-44",
+     "costUsd": 8.73,
+     "stock": 7785
+    },
+    {
+     "id": "2503011507331625600",
+     "options": "Black-45",
+     "costUsd": 8.73,
+     "stock": 8974
+    },
+    {
+     "id": "2503011507331625700",
+     "options": "Black-46",
+     "costUsd": 8.73,
+     "stock": 6281
+    },
+    {
+     "id": "2503011507331625900",
+     "options": "Black-47",
+     "costUsd": 8.73,
+     "stock": 9459
+    },
+    {
+     "id": "2503011507331626100",
+     "options": "Brown-38",
+     "costUsd": 8.73,
+     "stock": 6987
+    },
+    {
+     "id": "2503011507331626300",
+     "options": "Brown-39",
+     "costUsd": 8.73,
+     "stock": 9135
+    },
+    {
+     "id": "2503011507331626400",
+     "options": "Brown-40",
+     "costUsd": 8.73,
+     "stock": 6808
+    },
+    {
+     "id": "2503011507331626600",
+     "options": "Brown-41",
+     "costUsd": 8.73,
+     "stock": 7974
+    },
+    {
+     "id": "2503011507331626700",
+     "options": "Brown-42",
+     "costUsd": 8.73,
+     "stock": 8963
+    },
+    {
+     "id": "2503011507331626900",
+     "options": "Brown-43",
+     "costUsd": 8.73,
+     "stock": 7158
+    },
+    {
+     "id": "2503011507331627000",
+     "options": "Brown-44",
+     "costUsd": 8.73,
+     "stock": 9282
+    },
+    {
+     "id": "2503011507331627200",
+     "options": "Brown-45",
+     "costUsd": 8.73,
+     "stock": 9820
+    },
+    {
+     "id": "2503011507331627300",
+     "options": "Brown-46",
+     "costUsd": 8.73,
+     "stock": 7999
+    },
+    {
+     "id": "2503011507331627500",
+     "options": "Brown-47",
+     "costUsd": 8.73,
+     "stock": 9611
+    },
+    {
+     "id": "2509260525491609600",
+     "options": "Black 2-43",
+     "costUsd": 12.57,
+     "stock": 7060
+    },
+    {
+     "id": "2509260525491609800",
+     "options": "Black 2-44",
+     "costUsd": 12.57,
+     "stock": 7783
+    },
+    {
+     "id": "2509260525501600000",
+     "options": "Black 2-45",
+     "costUsd": 12.57,
+     "stock": 5308
+    }
+   ],
    "siteId": "cj-2503011507331624200",
    "title": "Fashion New Brogue Leather Shoes Men",
    "department": "men",
@@ -8878,8 +11997,115 @@
   },
   {
    "id": "1445559203799371776",
-   "ok": false,
-   "error": "CJ /product/query?pid=1445559203799371776 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 84a448a19b28401dbacf23dffea810da)",
+   "ok": true,
+   "name": "Men Leather Lazy Breathable Casual Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 26.23,
+   "maxCostUsd": 26.23,
+   "totalStock": 599243,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 21.81,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1445559203862286336",
+     "options": "Black-39",
+     "costUsd": 26.23,
+     "stock": 36660
+    },
+    {
+     "id": "1445559203883257856",
+     "options": "Black-40",
+     "costUsd": 26.23,
+     "stock": 37054
+    },
+    {
+     "id": "1445559203904229376",
+     "options": "Black-41",
+     "costUsd": 26.23,
+     "stock": 36994
+    },
+    {
+     "id": "1445559203925200896",
+     "options": "Black-42",
+     "costUsd": 26.23,
+     "stock": 37023
+    },
+    {
+     "id": "1445559203941978112",
+     "options": "Black-43",
+     "costUsd": 26.23,
+     "stock": 31088
+    },
+    {
+     "id": "1445559203958755328",
+     "options": "Black-44",
+     "costUsd": 26.23,
+     "stock": 35146
+    },
+    {
+     "id": "1445559203971338240",
+     "options": "Black-45",
+     "costUsd": 26.23,
+     "stock": 37912
+    },
+    {
+     "id": "1445559203988115456",
+     "options": "Black-46",
+     "costUsd": 26.23,
+     "stock": 36723
+    },
+    {
+     "id": "1445559204004892672",
+     "options": "Brown-39",
+     "costUsd": 26.23,
+     "stock": 37843
+    },
+    {
+     "id": "1445559204021669888",
+     "options": "Brown-40",
+     "costUsd": 26.23,
+     "stock": 42682
+    },
+    {
+     "id": "1445559204034252800",
+     "options": "Brown-41",
+     "costUsd": 26.23,
+     "stock": 36258
+    },
+    {
+     "id": "1445559204051030016",
+     "options": "Brown-42",
+     "costUsd": 26.23,
+     "stock": 36216
+    },
+    {
+     "id": "1445559204067807232",
+     "options": "Brown-43",
+     "costUsd": 26.23,
+     "stock": 39236
+    },
+    {
+     "id": "1445559204088778752",
+     "options": "Brown-44",
+     "costUsd": 26.23,
+     "stock": 42171
+    },
+    {
+     "id": "1445559204105555968",
+     "options": "Brown-45",
+     "costUsd": 26.23,
+     "stock": 35999
+    },
+    {
+     "id": "1445559204122333184",
+     "options": "Brown-46",
+     "costUsd": 26.23,
+     "stock": 40238
+    }
+   ],
    "siteId": "cj-1445559203799371776",
    "title": "Men Leather Lazy Breathable Casual Shoes",
    "department": "men",
@@ -8888,8 +12114,151 @@
   },
   {
    "id": "1364017916672086016",
-   "ok": false,
-   "error": "CJ /product/query?pid=1364017916672086016 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 17493d19f27e40a0a52f42bf56508f7b)",
+   "ok": true,
+   "name": "Men's Large Size Casual Leather Shoes Men Hairstylist Leather Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 12.28,
+   "maxCostUsd": 12.28,
+   "totalStock": 660000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.2,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1364017918081372160",
+     "options": "White-38",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918102343680",
+     "options": "White-39",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918127509504",
+     "options": "White-40",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918152675328",
+     "options": "White-41",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918177841152",
+     "options": "White-42",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918207201280",
+     "options": "White-43",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918236561408",
+     "options": "White-44",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918265921536",
+     "options": "White-45",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918295281664",
+     "options": "White-46",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918328836096",
+     "options": "White-47",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918354001920",
+     "options": "White-48",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918387556352",
+     "options": "Black-38",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918416916480",
+     "options": "Black-39",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918450470912",
+     "options": "Black-40",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918479831040",
+     "options": "Black-41",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918513385472",
+     "options": "Black-42",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918542745600",
+     "options": "Black-43",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918572105728",
+     "options": "Black-44",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918643408896",
+     "options": "Black-45",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918756655104",
+     "options": "Black-46",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918806986752",
+     "options": "Black-47",
+     "costUsd": 12.28,
+     "stock": 30000
+    },
+    {
+     "id": "1364017918840541184",
+     "options": "Black-48",
+     "costUsd": 12.28,
+     "stock": 30000
+    }
+   ],
    "siteId": "cj-1364017916672086016",
    "title": "Men's Large Size Casual Leather Shoes Men Hairstylist Leather Shoes",
    "department": "men",
@@ -8898,8 +12267,139 @@
   },
   {
    "id": "1390908300337483776",
-   "ok": false,
-   "error": "CJ /product/query?pid=1390908300337483776 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c7028b177fe1482c8388b226e7fd3a7b)",
+   "ok": true,
+   "name": "Business Oxford Shoes Formal Dress High-End Casual Shoes Men's Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 36.5,
+   "maxCostUsd": 36.5,
+   "totalStock": 800000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 16.48,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1390908301776130048",
+     "options": "Black-39",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301784518656",
+     "options": "Black-40",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301792907264",
+     "options": "Black-41",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301801295872",
+     "options": "Black-42",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301809684480",
+     "options": "Black-43",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301818073088",
+     "options": "Black-44",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301826461696",
+     "options": "Black-45",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301834850304",
+     "options": "Black-46",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301843238912",
+     "options": "Black-47",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301851627520",
+     "options": "Black-48",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301860016128",
+     "options": "Brown-39",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301868404736",
+     "options": "Brown-40",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301872599040",
+     "options": "Brown-41",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301880987648",
+     "options": "Brown-42",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301889376256",
+     "options": "Brown-43",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301897764864",
+     "options": "Brown-44",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301906153472",
+     "options": "Brown-45",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301914542080",
+     "options": "Brown-46",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301922930688",
+     "options": "Brown-47",
+     "costUsd": 36.5,
+     "stock": 40000
+    },
+    {
+     "id": "1390908301960679424",
+     "options": "Brown-48",
+     "costUsd": 36.5,
+     "stock": 40000
+    }
+   ],
    "siteId": "cj-1390908300337483776",
    "title": "Business Oxford Shoes Formal Dress High-End Casual Shoes Men's Shoes",
    "department": "men",
@@ -8908,8 +12408,103 @@
   },
   {
    "id": "1427823518363553792",
-   "ok": false,
-   "error": "CJ /product/query?pid=1427823518363553792 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 557a0bfbc95346919c21da5f8e058d7f)",
+   "ok": true,
+   "name": "Formal Business Leather Shoes Men's Leather Black Pointed Toe Oxford",
+   "saleStatus": "3",
+   "minCostUsd": 49.08,
+   "maxCostUsd": 49.08,
+   "totalStock": 434672,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1427823520867553280",
+     "options": "Black-38",
+     "costUsd": 49.08,
+     "stock": 35244
+    },
+    {
+     "id": "1427823520888524800",
+     "options": "Black-39",
+     "costUsd": 49.08,
+     "stock": 31214
+    },
+    {
+     "id": "1427823520905302016",
+     "options": "Black-40",
+     "costUsd": 49.08,
+     "stock": 33205
+    },
+    {
+     "id": "1427823520917884928",
+     "options": "Black-41",
+     "costUsd": 49.08,
+     "stock": 28147
+    },
+    {
+     "id": "1427823520930467840",
+     "options": "Black-42",
+     "costUsd": 49.08,
+     "stock": 31398
+    },
+    {
+     "id": "1427823520938856448",
+     "options": "Black-43",
+     "costUsd": 49.08,
+     "stock": 29267
+    },
+    {
+     "id": "1427823520947245056",
+     "options": "Black-44",
+     "costUsd": 49.08,
+     "stock": 32066
+    },
+    {
+     "id": "1427823520959827968",
+     "options": "Coffee-38",
+     "costUsd": 49.08,
+     "stock": 32376
+    },
+    {
+     "id": "1427823520968216576",
+     "options": "Coffee-39",
+     "costUsd": 49.08,
+     "stock": 33278
+    },
+    {
+     "id": "1427823520976605184",
+     "options": "Coffee-40",
+     "costUsd": 49.08,
+     "stock": 27507
+    },
+    {
+     "id": "1427823520989188096",
+     "options": "Coffee-41",
+     "costUsd": 49.08,
+     "stock": 33350
+    },
+    {
+     "id": "1427823520997576704",
+     "options": "Coffee-42",
+     "costUsd": 49.08,
+     "stock": 28899
+    },
+    {
+     "id": "1427823521005965312",
+     "options": "Coffee-43",
+     "costUsd": 49.08,
+     "stock": 32064
+    },
+    {
+     "id": "1427823521014353920",
+     "options": "Coffee-44",
+     "costUsd": 49.08,
+     "stock": 26657
+    }
+   ],
    "siteId": "cj-1427823518363553792",
    "title": "Formal Business Leather Shoes Men's Leather Black Pointed Toe Oxford",
    "department": "men",
@@ -8918,8 +12513,283 @@
   },
   {
    "id": "56A9161D-10A0-4E6B-BAC3-44A70B93AA8F",
-   "ok": false,
-   "error": "CJ /product/query?pid=56A9161D-10A0-4E6B-BAC3-44A70B93AA8F failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 9b76a9a72522479b82a27b97895c6f77)",
+   "ok": true,
+   "name": "Casual pointed toe shoes men leather shoes men",
+   "saleStatus": "3",
+   "minCostUsd": 8.55,
+   "maxCostUsd": 8.55,
+   "totalStock": 880000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 19.83,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0CE968C0-1969-406A-9874-7F3D79B5BBA9",
+     "options": "Brown-Glossy-48",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "0EF91EFE-7414-4B9E-BEF5-30A3362DB229",
+     "options": "Black-Mesh-48",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "1590129B-D9EB-44F6-B592-93A80240F398",
+     "options": "Black-Glossy-48",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "1B84C0C7-44DA-4D76-B637-1ADA2F660430",
+     "options": "Black-Glossy-45",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "1BA07B35-5144-4D1E-A623-5DA0587BE7AE",
+     "options": "Black-Mesh-47",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "1DBD78D3-038C-4E78-B914-6AF4C05535D4",
+     "options": "Black-Mesh-41",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "1EE70B1E-0518-4AE9-BBD0-A0CEB66BD5A9",
+     "options": "Brown-Mesh-40",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "2AFE6710-C736-4E84-B6BD-CA353C108D53",
+     "options": "Brown-Mesh-45",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "2C9C32A1-BB96-4794-9F6A-FA0800DF7E4E",
+     "options": "Brown-Mesh-44",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "2CD7344B-CAC8-4A61-A4C7-B7FD82E8717C",
+     "options": "Black-Mesh-39",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "2F20E1B3-F134-4A09-8B0A-8F018F756CD1",
+     "options": "Black-Glossy-38",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "49831CE6-768B-408B-A205-72198E028AC0",
+     "options": "Black-Mesh-42",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "4B139E17-6A62-47C6-8DEB-2AE0746711B9",
+     "options": "Brown-Glossy-39",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "58DEADE8-C215-4F08-8B4E-EDA31DB06547",
+     "options": "Black-Mesh-45",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "5AC2273A-2286-43DB-80D6-F2C0E6571662",
+     "options": "Brown-Glossy-45",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "627969BD-42BE-473A-B7B1-FF183B7DB1F9",
+     "options": "Brown-Mesh-46",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "65D81B04-3A26-4BA8-93FF-7C69BE734E5B",
+     "options": "Brown-Mesh-41",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "6B256BEB-3110-4EFC-85F1-57A98E28CB63",
+     "options": "Brown-Glossy-46",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "6BF09E83-73A9-4D66-A0DD-F3C7C229A403",
+     "options": "Brown-Glossy-44",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "7129CAF8-4705-4F97-BC13-DB636C3EA96B",
+     "options": "Black-Glossy-39",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "78B4B10C-64E1-49DB-9300-661C0A73CF00",
+     "options": "Black-Glossy-47",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "7BC1821A-01E0-4F21-A92B-3F9C55D1EECB",
+     "options": "Black-Glossy-44",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "7C27E99E-D691-4849-BF7A-FC657B44AA68",
+     "options": "Black-Mesh-46",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "86887384-0AC7-4361-8B8D-4AC29EAFD295",
+     "options": "Brown-Mesh-48",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "8D9E46F4-AD5C-429D-8512-ED52C8F8EAE8",
+     "options": "Brown-Glossy-40",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "91852301-458D-477D-977A-8E5341E69387",
+     "options": "Black-Glossy-42",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "9486723A-80F9-4572-9E94-4005C7A7FBBC",
+     "options": "Brown-Mesh-43",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "9868158E-9B88-464E-9C8E-3824DBF9DEA5",
+     "options": "Brown-Glossy-42",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "A178B564-1368-49C2-9F12-801D8143A39A",
+     "options": "Brown-Glossy-38",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "A5B0EBE4-A5B9-4C90-B90C-3713816EEF63",
+     "options": "Brown-Mesh-47",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "A6993E95-72B4-4EEF-AC9E-7386D2636873",
+     "options": "Black-Mesh-44",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "AC181753-0CC8-4848-B70E-33EDD40906E9",
+     "options": "Black-Glossy-43",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "B78C7EA2-15CE-45C3-B0E0-77FBCFB8453E",
+     "options": "Brown-Glossy-43",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "B7F14947-2B63-4791-A4C1-372D9007E109",
+     "options": "Brown-Glossy-41",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "B9366865-1EAA-4E63-B71D-DA71396AA238",
+     "options": "Black-Glossy-41",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "BDAFD451-657C-4DD4-90CD-A95242DFF861",
+     "options": "Black-Mesh-38",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "BF194B21-867C-49DE-8802-D84A11BD9554",
+     "options": "Brown-Mesh-42",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "C79A14CF-A653-415C-B090-034EEDAE1789",
+     "options": "Brown-Mesh-39",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "CEB1382F-0D0C-4110-A5C7-847D271AC6F9",
+     "options": "Black-Glossy-40",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "D36D9F24-3823-4865-AD28-C71721C29606",
+     "options": "Brown-Mesh-38",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "DE2DC61A-D312-4C79-943A-0795D41B2919",
+     "options": "Brown-Glossy-47",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "EB6C36FF-25E0-4481-9C0F-7192987B8F0F",
+     "options": "Black-Mesh-40",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "F6E86751-6D78-4EA8-9007-E275D4393CC8",
+     "options": "Black-Glossy-46",
+     "costUsd": 8.55,
+     "stock": 20000
+    },
+    {
+     "id": "FB14F6ED-BBD5-4BF0-B859-FB658D4241CA",
+     "options": "Black-Mesh-43",
+     "costUsd": 8.55,
+     "stock": 20000
+    }
+   ],
    "siteId": "cj-56A9161D-10A0-4E6B-BAC3-44A70B93AA8F",
    "title": "Casual pointed toe shoes men leather shoes men",
    "department": "men",
@@ -8928,8 +12798,217 @@
   },
   {
    "id": "E0820C98-0149-47E8-8534-59F334CA0C1E",
-   "ok": false,
-   "error": "CJ /product/query?pid=E0820C98-0149-47E8-8534-59F334CA0C1E failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 53cb7877dea646fba2cb9b1d14fd5779)",
+   "ok": true,
+   "name": "Large Size Leather Shoes Men 48 Leather British Shoes Men",
+   "saleStatus": "3",
+   "minCostUsd": 11.35,
+   "maxCostUsd": 11.35,
+   "totalStock": 660000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.91,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0F2B85A2-CEA3-481A-BF5C-7B261067CE91",
+     "options": "Blue-38",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "10F6F2CC-7499-4C55-A2C4-468E60794E30",
+     "options": "Black-39",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "1455FE4F-5756-46EB-AF65-CEFCF673FC08",
+     "options": "Brown-44",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "1E12F7C8-2399-4657-83CB-0CE547706603",
+     "options": "Black-44",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "200B1A73-C60E-45F0-867D-B6BF017BF44A",
+     "options": "Brown-45",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "293684B8-8BB0-4577-8507-591AE66D9465",
+     "options": "Brown-39",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "2B32A418-F98D-4F0E-9928-375EB6ECF363",
+     "options": "Blue-46",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "3755A1E0-4F27-44C7-A326-57599BAEC373",
+     "options": "Black-41",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "3A521756-BD01-4EED-A5D3-825B51AA35F9",
+     "options": "Blue-47",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "4E48ACCC-0B94-432B-9832-7EA73B2A997A",
+     "options": "Black-40",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "4EED638E-D1E7-4C65-8A87-B9652F529D58",
+     "options": "Brown-42",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "50A49D7E-CFD6-42B6-9734-8F95C24AC4F6",
+     "options": "Black-48",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "5308B3BD-0AAE-4894-8699-786D06078399",
+     "options": "Blue-43",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "53BEA85B-73DA-46AC-ABD3-2E95304319A4",
+     "options": "Blue-40",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "56D87DF9-DD11-4B28-9E37-7C8DF960ED27",
+     "options": "Black-46",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "66111F84-8292-4239-90F8-E97B5B554CBB",
+     "options": "Brown-40",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "78BD0B56-C13B-4E80-A163-BF1B8E12BA41",
+     "options": "Black-38",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "80540708-8BE0-4BA4-930B-1A58481818A3",
+     "options": "Blue-41",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "837DA3AD-683C-49FD-8512-2DE680111B9B",
+     "options": "Brown-47",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "8947ED86-BACC-44A3-BCD5-67D0E7D03E02",
+     "options": "Brown-48",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "8F52CF41-9742-4768-8A0C-EF18572CA3C9",
+     "options": "Black-43",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "984F5C7F-017C-407A-A510-5BE065678219",
+     "options": "Black-47",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "9EDFA94B-B010-459B-8FF2-4E171B19C944",
+     "options": "Blue-44",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "A14CF093-5258-468A-AE8E-4C949D1D5E1F",
+     "options": "Blue-45",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "A985D7C2-0F85-4A17-A243-B8CB212547A3",
+     "options": "Brown-43",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "C46E1B11-53B9-4C81-8239-B203357A8D8D",
+     "options": "Blue-42",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "C8FE8ECE-49E0-48C8-8BBE-51DE8D523DF5",
+     "options": "Brown-41",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "CDC61A82-5DF8-4368-BF25-ED3A7E91E05B",
+     "options": "Brown-38",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "D246F5E2-71ED-477F-891D-D0954AE5DAAF",
+     "options": "Brown-46",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "F9D2AF54-9C41-473F-86A1-B517C55AC8CA",
+     "options": "Black-45",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "FBAAAE06-9838-439D-B211-32D89DCF7C4F",
+     "options": "Blue-39",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "FC1C232F-924A-4434-834A-EA825890760E",
+     "options": "Black-42",
+     "costUsd": 11.35,
+     "stock": 20000
+    },
+    {
+     "id": "FF0EBE36-58F6-4CC6-BC18-1A5B04A3309C",
+     "options": "Blue-48",
+     "costUsd": 11.35,
+     "stock": 20000
+    }
+   ],
    "siteId": "cj-E0820C98-0149-47E8-8534-59F334CA0C1E",
    "title": "Large Size Leather Shoes Men 48 Leather British Shoes Men",
    "department": "men",
@@ -8938,8 +13017,139 @@
   },
   {
    "id": "1597531101088722944",
-   "ok": false,
-   "error": "CJ /product/query?pid=1597531101088722944 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 2d1dad15971c405d8bbb038698a5ab0d)",
+   "ok": true,
+   "name": "Men's Business Suit Oxford Leather Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 30.93,
+   "maxCostUsd": 30.93,
+   "totalStock": 251578,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1597531101164220416",
+     "options": "Red-38",
+     "costUsd": 30.93,
+     "stock": 10377
+    },
+    {
+     "id": "1597531101164220417",
+     "options": "Red-39",
+     "costUsd": 30.93,
+     "stock": 12962
+    },
+    {
+     "id": "1597531101164220418",
+     "options": "Red-40",
+     "costUsd": 30.93,
+     "stock": 13358
+    },
+    {
+     "id": "1597531101168414720",
+     "options": "Red-41",
+     "costUsd": 30.93,
+     "stock": 11707
+    },
+    {
+     "id": "1597531101168414721",
+     "options": "Red-42",
+     "costUsd": 30.93,
+     "stock": 11774
+    },
+    {
+     "id": "1597531101168414722",
+     "options": "Red-43",
+     "costUsd": 30.93,
+     "stock": 13613
+    },
+    {
+     "id": "1597531101172609024",
+     "options": "Red-44",
+     "costUsd": 30.93,
+     "stock": 12557
+    },
+    {
+     "id": "1597531101172609025",
+     "options": "Red-45",
+     "costUsd": 30.93,
+     "stock": 10020
+    },
+    {
+     "id": "1597531101172609026",
+     "options": "Red-46",
+     "costUsd": 30.93,
+     "stock": 14250
+    },
+    {
+     "id": "1597531101172609027",
+     "options": "Red-47",
+     "costUsd": 30.93,
+     "stock": 14933
+    },
+    {
+     "id": "1597531101172609028",
+     "options": "Black-38",
+     "costUsd": 30.93,
+     "stock": 12777
+    },
+    {
+     "id": "1597531101172609029",
+     "options": "Black-39",
+     "costUsd": 30.93,
+     "stock": 10881
+    },
+    {
+     "id": "1597531101176803328",
+     "options": "Black-40",
+     "costUsd": 30.93,
+     "stock": 11673
+    },
+    {
+     "id": "1597531101176803329",
+     "options": "Black-41",
+     "costUsd": 30.93,
+     "stock": 12646
+    },
+    {
+     "id": "1597531101176803330",
+     "options": "Black-42",
+     "costUsd": 30.93,
+     "stock": 12243
+    },
+    {
+     "id": "1597531101176803331",
+     "options": "Black-43",
+     "costUsd": 30.93,
+     "stock": 14371
+    },
+    {
+     "id": "1597531101180997632",
+     "options": "Black-44",
+     "costUsd": 30.93,
+     "stock": 13062
+    },
+    {
+     "id": "1597531101180997633",
+     "options": "Black-45",
+     "costUsd": 30.93,
+     "stock": 14762
+    },
+    {
+     "id": "1597531101180997634",
+     "options": "Black-46",
+     "costUsd": 30.93,
+     "stock": 10305
+    },
+    {
+     "id": "1597531101180997635",
+     "options": "Black-47",
+     "costUsd": 30.93,
+     "stock": 13307
+    }
+   ],
    "siteId": "cj-1597531101088722944",
    "title": "Men's Business Suit Oxford Leather Shoes",
    "department": "men",
@@ -8948,8 +13158,151 @@
   },
   {
    "id": "77877EA4-0633-4095-A7F4-6514F42F32E8",
-   "ok": false,
-   "error": "CJ /product/query?pid=77877EA4-0633-4095-A7F4-6514F42F32E8 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 808b5d3fb4d04dc79e3066ae1f8429bc)",
+   "ok": true,
+   "name": "Oxford business dress shoes",
+   "saleStatus": "3",
+   "minCostUsd": 8.99,
+   "maxCostUsd": 8.99,
+   "totalStock": 279502,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 16.78,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1C939B07-814E-4BAF-9670-FE0D0EE1CF52",
+     "options": "Brown-45",
+     "costUsd": 8.99,
+     "stock": 13651
+    },
+    {
+     "id": "1D9160AD-DF3F-483F-999A-EB12001533E3",
+     "options": "Brown-42",
+     "costUsd": 8.99,
+     "stock": 11950
+    },
+    {
+     "id": "207C43F5-3FD9-4D3B-9D7E-C159F99CBC79",
+     "options": "Brown-38",
+     "costUsd": 8.99,
+     "stock": 12828
+    },
+    {
+     "id": "2C293122-BDE4-4734-9D46-C775951E9649",
+     "options": "Black-40",
+     "costUsd": 8.99,
+     "stock": 12932
+    },
+    {
+     "id": "529F54EA-AC7A-45A3-BAD7-FC72567FA5B8",
+     "options": "Brown-47",
+     "costUsd": 8.99,
+     "stock": 12054
+    },
+    {
+     "id": "557D8633-3426-42DE-AC4C-89ACF8DD66F1",
+     "options": "Black-48",
+     "costUsd": 8.99,
+     "stock": 13406
+    },
+    {
+     "id": "56194B49-B357-4552-B67F-DFACBCD34873",
+     "options": "Brown-39",
+     "costUsd": 8.99,
+     "stock": 13473
+    },
+    {
+     "id": "5B01103A-EDB4-42F3-8F1E-601FEFE79181",
+     "options": "Brown-43",
+     "costUsd": 8.99,
+     "stock": 11128
+    },
+    {
+     "id": "5B3A0D95-9931-4573-8822-AD1FA8AEEC95",
+     "options": "Brown-44",
+     "costUsd": 8.99,
+     "stock": 14895
+    },
+    {
+     "id": "6EFD1697-3AC5-492C-A4B1-2CCBC3A99D45",
+     "options": "Black-47",
+     "costUsd": 8.99,
+     "stock": 11332
+    },
+    {
+     "id": "7D80634F-DA28-4BC7-8498-C7A849718F6A",
+     "options": "Brown-40",
+     "costUsd": 8.99,
+     "stock": 10262
+    },
+    {
+     "id": "8BCE769B-C982-4DF0-8238-2C154EC3B8AA",
+     "options": "Black-43",
+     "costUsd": 8.99,
+     "stock": 11269
+    },
+    {
+     "id": "984F2506-265F-48F1-AAAC-9D7F6ECE4944",
+     "options": "Black-41",
+     "costUsd": 8.99,
+     "stock": 11436
+    },
+    {
+     "id": "9ACBBAE0-6DCF-4176-95FD-C0E00BC870BC",
+     "options": "Brown-41",
+     "costUsd": 8.99,
+     "stock": 13472
+    },
+    {
+     "id": "A66B9C04-F139-4B9B-8A50-074A9945D6B7",
+     "options": "Black-39",
+     "costUsd": 8.99,
+     "stock": 13868
+    },
+    {
+     "id": "B373FE24-0A81-4015-8546-47AA9F45C81F",
+     "options": "Black-44",
+     "costUsd": 8.99,
+     "stock": 11122
+    },
+    {
+     "id": "CA2E4901-E132-4991-93CB-E30406204DB9",
+     "options": "Black-38",
+     "costUsd": 8.99,
+     "stock": 13002
+    },
+    {
+     "id": "CA3B171B-24A4-4EF5-A013-7FD1F4121A41",
+     "options": "Black-46",
+     "costUsd": 8.99,
+     "stock": 12940
+    },
+    {
+     "id": "CDCE89E3-66F6-4360-9173-7856DF2FE8C5",
+     "options": "Black-45",
+     "costUsd": 8.99,
+     "stock": 14634
+    },
+    {
+     "id": "D811414A-A73A-4060-8242-FEC9D220200A",
+     "options": "Brown-48",
+     "costUsd": 8.99,
+     "stock": 14918
+    },
+    {
+     "id": "EED95BE3-7EA9-4663-91BA-0243E4F8B4A3",
+     "options": "Black-42",
+     "costUsd": 8.99,
+     "stock": 12916
+    },
+    {
+     "id": "FF988B09-D0B7-422B-9E60-2167290BFAA0",
+     "options": "Brown-46",
+     "costUsd": 8.99,
+     "stock": 12014
+    }
+   ],
    "siteId": "cj-77877EA4-0633-4095-A7F4-6514F42F32E8",
    "title": "Oxford business dress shoes",
    "department": "men",
