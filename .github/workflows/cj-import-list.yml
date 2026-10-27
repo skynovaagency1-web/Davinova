@@ -3,6 +3,10 @@ name: Import picked CJ products
 # Imports the CJ products listed in scripts/cj-import-list.json (picked by eye), then checks their photos.
 on:
   workflow_dispatch:
+  # Manual runs need this file on the default branch; on any other branch, editing the list starts a run.
+  push:
+    branches-ignore: [main]
+    paths: [scripts/cj-import-list.json]
 
 permissions:
   contents: write
