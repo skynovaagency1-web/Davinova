@@ -13,7 +13,7 @@
 import { readFileSync } from 'node:fs';
 import { jewelryStoreCollectionGroups, menStoreCollectionGroups, storeCollectionGroups, suggestStoreCollection } from '../src/lib/storeCollectionTaxonomy.ts';
 
-const SITE = process.env.SITE ?? 'https://feature-3d-fashion-storefron.davinova.pages.dev';
+const SITE = process.env.SITE ?? 'https://davinova.com';
 const PASSWORD = process.env.ADMIN_PASSWORD ?? '';
 const TARGET = Number(process.env.TARGET ?? 6);
 const MAX_IMPORTS = Number(process.env.MAX_IMPORTS ?? 120);
