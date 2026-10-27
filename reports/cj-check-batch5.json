@@ -1,10 +1,10 @@
 {
- "checkedAt": "2026-10-27T12:44:08.082Z",
+ "checkedAt": "2026-10-27T12:49:44.650Z",
  "results": [
   {
    "id": "2512110328191630200",
    "ok": false,
-   "error": "CJ /product/query?pid=2512110328191630200 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 46a8f70c010c4bebbefac4e55f64a477)",
+   "error": "CJ /product/query?pid=2512110328191630200 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c0b62e3b571f464e9d52953adb7d2735)",
    "siteId": "cj-2512110328191630200",
    "title": "Britishstyle Wool Herringbone Blazer Men's Plussize Formal Wear Business And Fashion Suit",
    "department": "men",
@@ -103,49 +103,8 @@
   },
   {
    "id": "5762DF19-7832-4650-9B84-78DC878FB2FC",
-   "ok": true,
-   "name": "Stainless steel business mesh strap men's watch",
-   "saleStatus": "3",
-   "minCostUsd": 9.03,
-   "maxCostUsd": 9.03,
-   "totalStock": null,
-   "shipping": {
-    "name": "CJPacket Super Pure Electricity",
-    "priceUsd": 5.74,
-    "days": "5-11"
-   },
-   "variants": [
-    {
-     "id": "2FD00311-A4F9-4D20-9093-8B7A54C4C8A1",
-     "options": "Rose gold",
-     "costUsd": 9.03,
-     "stock": null
-    },
-    {
-     "id": "4F8CC077-0BD2-4803-BF41-A4594F4743BD",
-     "options": "White",
-     "costUsd": 9.03,
-     "stock": null
-    },
-    {
-     "id": "60D9C35F-308F-4B53-AFC3-A733449624EE",
-     "options": "Golden",
-     "costUsd": 9.03,
-     "stock": null
-    },
-    {
-     "id": "8B10862F-6FB9-4750-B6C9-B9DE2080ABE4",
-     "options": "White black",
-     "costUsd": 9.03,
-     "stock": null
-    },
-    {
-     "id": "F8C677E6-8EC1-492D-B929-532D0F8DC293",
-     "options": "Black",
-     "costUsd": 9.03,
-     "stock": null
-    }
-   ],
+   "ok": false,
+   "error": "CJ /product/query?pid=5762DF19-7832-4650-9B84-78DC878FB2FC failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 7dab8723fd5a4fc784479e6267f90cf6)",
    "siteId": "cj-5762DF19-7832-4650-9B84-78DC878FB2FC",
    "title": "Stainless steel business mesh strap men's watch",
    "department": "men",
@@ -155,7 +114,7 @@
   {
    "id": "1395674561487441920",
    "ok": false,
-   "error": "CJ /product/query?pid=1395674561487441920 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request a650d4b190334ed3b197ca3fab9e8cd6)",
+   "error": "CJ /product/query?pid=1395674561487441920 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 791915207808497ea08dc114fdbf89c2)",
    "siteId": "cj-1395674561487441920",
    "title": "Alarm Clock Calendar Business Quartz Electronic Men's Watch",
    "department": "men",
@@ -498,7 +457,7 @@
   {
    "id": "1356872896106074112",
    "ok": false,
-   "error": "CJ /product/query?pid=1356872896106074112 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 41e17806623249fbb6192fe5dad9fd6d)",
+   "error": "CJ /product/query?pid=1356872896106074112 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 1ab3666c0f3d43c9bd31438079444565)",
    "siteId": "cj-1356872896106074112",
    "title": "Tourbillon Automatic Skeleton Mechanical Watch",
    "department": "men",
@@ -955,7 +914,7 @@
   {
    "id": "1477466927751368704",
    "ok": false,
-   "error": "CJ /product/query?pid=1477466927751368704 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 0c944e3b10f24a438e71a9c97a78945b)",
+   "error": "CJ /product/query?pid=1477466927751368704 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 3946797f362e418c9c98e969e0132c98)",
    "siteId": "cj-1477466927751368704",
    "title": "Steel Belt Senior Men's Watch Simple Quartz Waterproof Men's Watch",
    "department": "men",
@@ -1241,7 +1200,7 @@
   {
    "id": "D9849B95-2C32-44AB-9B11-4A5B463BFCBE",
    "ok": false,
-   "error": "CJ /product/query?pid=D9849B95-2C32-44AB-9B11-4A5B463BFCBE failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 539a6499140142018857653c878d5d92)",
+   "error": "CJ /product/query?pid=D9849B95-2C32-44AB-9B11-4A5B463BFCBE failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request da611aa27dd746fea3ddcda18f737f7a)",
    "siteId": "cj-D9849B95-2C32-44AB-9B11-4A5B463BFCBE",
    "title": "Steel belt movement quartz watch male",
    "department": "men",
@@ -1250,67 +1209,8 @@
   },
   {
    "id": "5F360288-38F0-4EB5-94BB-D4E572870A90",
-   "ok": true,
-   "name": "Large dial steel band quartz watch",
-   "saleStatus": "3",
-   "minCostUsd": 10.43,
-   "maxCostUsd": 10.43,
-   "totalStock": null,
-   "shipping": {
-    "name": "CJPacket Super Pure Electricity",
-    "priceUsd": 7.94,
-    "days": "5-11"
-   },
-   "variants": [
-    {
-     "id": "0AFEF608-CC8B-4452-AAB3-E0A717097E8E",
-     "options": "2Blue",
-     "costUsd": 10.43,
-     "stock": null
-    },
-    {
-     "id": "0B46CA95-6490-4D92-ACD8-CCD04C466E09",
-     "options": "2Gold",
-     "costUsd": 10.43,
-     "stock": null
-    },
-    {
-     "id": "46BEB74B-93A0-4CC4-B200-794FF103A4CE",
-     "options": "2Black",
-     "costUsd": 10.43,
-     "stock": null
-    },
-    {
-     "id": "4904F978-1044-4276-ADD0-DC88E97945A6",
-     "options": "1White",
-     "costUsd": 10.43,
-     "stock": null
-    },
-    {
-     "id": "5A523E23-D218-444F-BA08-2299E5BD90DA",
-     "options": "2White",
-     "costUsd": 10.43,
-     "stock": null
-    },
-    {
-     "id": "6B4D1126-D881-4D2C-B779-0E92730FFE2E",
-     "options": "1Gold",
-     "costUsd": 10.43,
-     "stock": null
-    },
-    {
-     "id": "71820754-BBC7-4F9A-8554-51164D5A91EE",
-     "options": "1Black",
-     "costUsd": 10.43,
-     "stock": null
-    },
-    {
-     "id": "FBA6D788-566A-4CC7-92B1-EAFB00EF6CD7",
-     "options": "1Blue",
-     "costUsd": 10.43,
-     "stock": null
-    }
-   ],
+   "ok": false,
+   "error": "CJ /product/query?pid=5F360288-38F0-4EB5-94BB-D4E572870A90 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c28efc96292840b9afa41c2bd1f95e30)",
    "siteId": "cj-5F360288-38F0-4EB5-94BB-D4E572870A90",
    "title": "Large dial steel band quartz watch",
    "department": "men",
@@ -1320,7 +1220,7 @@
   {
    "id": "1550397581057077248",
    "ok": false,
-   "error": "CJ /product/query?pid=1550397581057077248 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 6444829ff086472ba607b7a8f238f7e1)",
+   "error": "CJ /product/query?pid=1550397581057077248 failed with HTTP 200: Insufficient API points. Used today: 76110, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 7cd0d409a80f47f1851801ba2af13e44)",
    "siteId": "cj-1550397581057077248",
    "title": "Men's Multifunctional Steel Band Quartz Watch",
    "department": "men",
@@ -2064,8 +1964,211 @@
   },
   {
    "id": "1405005791894835200",
-   "ok": false,
-   "error": "CJ /product/query?pid=1405005791894835200 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request fe1dc138108f4c08bb8c336c7f0f1296)",
+   "ok": true,
+   "name": "Straw Wedge Sandals, Women's Bohemian Size Sandals, Ethnic Style Women's Shoes",
+   "saleStatus": "3",
+   "minCostUsd": 8.69,
+   "maxCostUsd": 9.95,
+   "totalStock": 746656,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 16.17,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1405005793329287168",
+     "options": "Black-35",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793337675776",
+     "options": "Black-36",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793350258688",
+     "options": "Black-37",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793354452992",
+     "options": "Black-38",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793362841600",
+     "options": "Black-39",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793371230208",
+     "options": "Black-40",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793379618816",
+     "options": "Black-41",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793383813120",
+     "options": "Black-42",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793392201728",
+     "options": "Blue-35",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793400590336",
+     "options": "Blue-36",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793404784640",
+     "options": "Blue-37",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793417367552",
+     "options": "Blue-38",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793425756160",
+     "options": "Blue-39",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793434144768",
+     "options": "Blue-40",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793438339072",
+     "options": "Blue-41",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793446727680",
+     "options": "Blue-42",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793455116288",
+     "options": "Beige-35",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793463504896",
+     "options": "Beige-36",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793471893504",
+     "options": "Beige-37",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793480282112",
+     "options": "Beige-38",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793492865024",
+     "options": "Beige-39",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793497059328",
+     "options": "Beige-40",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793505447936",
+     "options": "Beige-41",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793513836544",
+     "options": "Beige-42",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793522225152",
+     "options": "Pink-35",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793526419456",
+     "options": "Pink-36",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793534808064",
+     "options": "Pink-37",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793543196672",
+     "options": "Pink-38",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793555779584",
+     "options": "Pink-39",
+     "costUsd": 8.69,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793564168192",
+     "options": "Pink-40",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793568362496",
+     "options": "Pink-41",
+     "costUsd": 9.95,
+     "stock": 23333
+    },
+    {
+     "id": "1405005793576751104",
+     "options": "Pink-42",
+     "costUsd": 9.95,
+     "stock": 23333
+    }
+   ],
    "siteId": "cj-1405005791894835200",
    "title": "Straw Wedge Sandals, Women's Bohemian Size Sandals, Ethnic Style Women's Shoes",
    "department": "women",
@@ -4076,7 +4179,7 @@
   {
    "id": "1372041862252204032",
    "ok": false,
-   "error": "CJ /product/query?pid=1372041862252204032 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 6ea63026c44e4d519c7079fb717cd86a)",
+   "error": "CJ /product/query?pid=1372041862252204032 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request ba24e169cfba48e095aaadc78d531787)",
    "siteId": "cj-1372041862252204032",
    "title": "Black High Heels Women Stiletto Professional Leather Shoes Pointed Toe",
    "department": "women",
@@ -4476,7 +4579,7 @@
   {
    "id": "2511130732271634500",
    "ok": false,
-   "error": "CJ /product/query?pid=2511130732271634500 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 52761b31f28943d3b1fc02522f268457)",
+   "error": "CJ /product/query?pid=2511130732271634500 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request b1e64df41ec34bb1b7d115063b1f22ff)",
    "siteId": "cj-2511130732271634500",
    "title": "Pointed Toe Shallow Mouth Red Bottom High Heels Women",
    "department": "women",
@@ -5239,7 +5342,7 @@
   {
    "id": "97FBFE13-1AF6-4CF9-A497-A5877C4627CB",
    "ok": false,
-   "error": "CJ /product/query?pid=97FBFE13-1AF6-4CF9-A497-A5877C4627CB failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 2aed73f7909f4e5db8c86d967304f1f9)",
+   "error": "CJ /product/query?pid=97FBFE13-1AF6-4CF9-A497-A5877C4627CB failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request df172128e9784cc487c2789f7f0b6f3e)",
    "siteId": "cj-97FBFE13-1AF6-4CF9-A497-A5877C4627CB",
    "title": "Leather Martin boots mid-high military boots autumn",
    "department": "men",
@@ -5519,7 +5622,7 @@
   {
    "id": "1366690387258904576",
    "ok": false,
-   "error": "CJ /product/query?pid=1366690387258904576 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request b4f2718c902b45119ae3a62db344a5c7)",
+   "error": "CJ /product/query?pid=1366690387258904576 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 554ab8923b0f4047a47260786fa1fd65)",
    "siteId": "cj-1366690387258904576",
    "title": "British Set Foot Leather Boots Business Men's Boots",
    "department": "men",
@@ -5676,7 +5779,7 @@
   {
    "id": "1395292522233860096",
    "ok": false,
-   "error": "CJ /product/query?pid=1395292522233860096 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request bffb792377c0441b8e45f72f605f80d0)",
+   "error": "CJ /product/query?pid=1395292522233860096 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 1de4f40233584f6e8a6366965de064a7)",
    "siteId": "cj-1395292522233860096",
    "title": "Martin Boots Men'S Leather British Short Boots Hand-Stitched Large Size Men'S Retro Leather Boots",
    "department": "men",
@@ -7312,7 +7415,7 @@
   {
    "id": "EBDF9192-1117-4252-8D4F-1C5AFA5A98C1",
    "ok": false,
-   "error": "CJ /product/query?pid=EBDF9192-1117-4252-8D4F-1C5AFA5A98C1 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 93559a40e8304904805eb6912f7414db)",
+   "error": "CJ /product/query?pid=EBDF9192-1117-4252-8D4F-1C5AFA5A98C1 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 540ba63e61e14a9ab76e02320f19a973)",
    "siteId": "cj-EBDF9192-1117-4252-8D4F-1C5AFA5A98C1",
    "title": "Women's leather  boots",
    "department": "women",
@@ -7976,7 +8079,7 @@
   {
    "id": "2505110155371611300",
    "ok": false,
-   "error": "CJ /product/query?pid=2505110155371611300 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 33a82c683c974e24b2fc260898410077)",
+   "error": "CJ /product/query?pid=2505110155371611300 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request f1c51cce86464ffa9cda6128e56fde53)",
    "siteId": "cj-2505110155371611300",
    "title": "British Round Toe Men's Leather Shoes Men",
    "department": "men",
@@ -8367,7 +8470,7 @@
   {
    "id": "2511290531301604700",
    "ok": false,
-   "error": "CJ /product/query?pid=2511290531301604700 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 2e028b945c144b759c90a144e5235b9d)",
+   "error": "CJ /product/query?pid=2511290531301604700 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 73bd2065458443e6908d095dd55a0ef3)",
    "siteId": "cj-2511290531301604700",
    "title": "New Casual Shoes Fashionable Snakeskin Cuban Leather Shoes For Men",
    "department": "men",
@@ -8686,7 +8789,7 @@
   {
    "id": "2408090753141620800",
    "ok": false,
-   "error": "CJ /product/query?pid=2408090753141620800 failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 9ef51c011cb74d6d83f97922b6a91ded)",
+   "error": "CJ /product/query?pid=2408090753141620800 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 16f363b914fa4108a685ec1d1e345024)",
    "siteId": "cj-2408090753141620800",
    "title": "Casual Fashion Brogue Fringed Leather Shoes Men",
    "department": "men",
@@ -8696,7 +8799,7 @@
   {
    "id": "1415267221663518720",
    "ok": false,
-   "error": "CJ /product/query?pid=1415267221663518720 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 09f70fb37e20426189b5c769d562a30e)",
+   "error": "CJ /product/query?pid=1415267221663518720 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request ca67323911c2496ab84a7078c53b84f3)",
    "siteId": "cj-1415267221663518720",
    "title": "Fall New Style Peas Shoes Men Casual Leather Shoes",
    "department": "men",
@@ -8706,7 +8809,7 @@
   {
    "id": "2601060935231615900",
    "ok": false,
-   "error": "CJ /product/query?pid=2601060935231615900 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 40eb361138424cc8b7594199052fa2a6)",
+   "error": "CJ /product/query?pid=2601060935231615900 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 06dd9751e3154577a8fc653b0331076a)",
    "siteId": "cj-2601060935231615900",
    "title": "Business Formal Wear Leather Shoes Men",
    "department": "men",
@@ -8716,7 +8819,7 @@
   {
    "id": "2603130304041608300",
    "ok": false,
-   "error": "CJ /product/query?pid=2603130304041608300 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 2d58c71764c44d7eabf3a10500b20a62)",
+   "error": "CJ /product/query?pid=2603130304041608300 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a0ff858f0456436fa229bf8c46e854a5)",
    "siteId": "cj-2603130304041608300",
    "title": "Casual Formal Business Leather Shoes Men",
    "department": "men",
@@ -8726,7 +8829,7 @@
   {
    "id": "D5DAE71B-9DF4-4011-A643-BBBE7A8B6FBE",
    "ok": false,
-   "error": "CJ /product/query?pid=D5DAE71B-9DF4-4011-A643-BBBE7A8B6FBE failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 182aee7140e04f9f8eaac2890e45c898)",
+   "error": "CJ /product/query?pid=D5DAE71B-9DF4-4011-A643-BBBE7A8B6FBE failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 555864317da04df2a4c7ad8611f5d167)",
    "siteId": "cj-D5DAE71B-9DF4-4011-A643-BBBE7A8B6FBE",
    "title": "Retro Soft Sole Leather Square Toe Breathable Oxford Business Shoes",
    "department": "men",
@@ -8736,7 +8839,7 @@
   {
    "id": "1439159903380967424",
    "ok": false,
-   "error": "CJ /product/query?pid=1439159903380967424 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 65b95607e9fe41019ec1ae2a82f80d71)",
+   "error": "CJ /product/query?pid=1439159903380967424 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request bfc74708ddb9492bb70abf8600b1378a)",
    "siteId": "cj-1439159903380967424",
    "title": "New Summer Business  Oxford Leather  Trend Snake Embossed Cowhide Shoes",
    "department": "men",
@@ -8746,7 +8849,7 @@
   {
    "id": "A5B76818-447F-41FA-85DA-40687CFB141C",
    "ok": false,
-   "error": "CJ /product/query?pid=A5B76818-447F-41FA-85DA-40687CFB141C failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 713b1b08611f4d5a9e392931f64d131b)",
+   "error": "CJ /product/query?pid=A5B76818-447F-41FA-85DA-40687CFB141C failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 3d01fe481e804957ba82504c316af1ff)",
    "siteId": "cj-A5B76818-447F-41FA-85DA-40687CFB141C",
    "title": "Plus Shoes Men Suede Leather Shoes Solid Color",
    "department": "men",
@@ -8756,7 +8859,7 @@
   {
    "id": "1356084424822886400",
    "ok": false,
-   "error": "CJ /product/query?pid=1356084424822886400 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 8c19f37f9a494fd8abcc7836720278c5)",
+   "error": "CJ /product/query?pid=1356084424822886400 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 1e5a9f77bc37415b9644fdd7d918b584)",
    "siteId": "cj-1356084424822886400",
    "title": "Tassel Men's Shoes Peas Shoes British Leather Shoes Men",
    "department": "men",
@@ -8766,7 +8869,7 @@
   {
    "id": "2503011507331624200",
    "ok": false,
-   "error": "CJ /product/query?pid=2503011507331624200 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 9704ba5ab60c4269a4fae678267aba0f)",
+   "error": "CJ /product/query?pid=2503011507331624200 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 36d22080bcb74729ab7c440249bb4b48)",
    "siteId": "cj-2503011507331624200",
    "title": "Fashion New Brogue Leather Shoes Men",
    "department": "men",
@@ -8776,7 +8879,7 @@
   {
    "id": "1445559203799371776",
    "ok": false,
-   "error": "CJ /product/query?pid=1445559203799371776 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 7a43ae5a81754ebcad6e22851f79832d)",
+   "error": "CJ /product/query?pid=1445559203799371776 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 84a448a19b28401dbacf23dffea810da)",
    "siteId": "cj-1445559203799371776",
    "title": "Men Leather Lazy Breathable Casual Shoes",
    "department": "men",
@@ -8786,7 +8889,7 @@
   {
    "id": "1364017916672086016",
    "ok": false,
-   "error": "CJ /product/query?pid=1364017916672086016 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 12cbafcf9597421398b04239b6bbad84)",
+   "error": "CJ /product/query?pid=1364017916672086016 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 17493d19f27e40a0a52f42bf56508f7b)",
    "siteId": "cj-1364017916672086016",
    "title": "Men's Large Size Casual Leather Shoes Men Hairstylist Leather Shoes",
    "department": "men",
@@ -8796,7 +8899,7 @@
   {
    "id": "1390908300337483776",
    "ok": false,
-   "error": "CJ /product/query?pid=1390908300337483776 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 81179fdd3e9b4a45b02b16aaec9e3589)",
+   "error": "CJ /product/query?pid=1390908300337483776 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c7028b177fe1482c8388b226e7fd3a7b)",
    "siteId": "cj-1390908300337483776",
    "title": "Business Oxford Shoes Formal Dress High-End Casual Shoes Men's Shoes",
    "department": "men",
@@ -8806,7 +8909,7 @@
   {
    "id": "1427823518363553792",
    "ok": false,
-   "error": "CJ /product/query?pid=1427823518363553792 failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 439bf924d71042788d299bb2ebabe970)",
+   "error": "CJ /product/query?pid=1427823518363553792 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 557a0bfbc95346919c21da5f8e058d7f)",
    "siteId": "cj-1427823518363553792",
    "title": "Formal Business Leather Shoes Men's Leather Black Pointed Toe Oxford",
    "department": "men",
@@ -8816,7 +8919,7 @@
   {
    "id": "56A9161D-10A0-4E6B-BAC3-44A70B93AA8F",
    "ok": false,
-   "error": "CJ /product/query?pid=56A9161D-10A0-4E6B-BAC3-44A70B93AA8F failed with HTTP 200: Insufficient API points. Used today: 75940, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request b5fdfe3928a14d4e9c21b58990b00605)",
+   "error": "CJ /product/query?pid=56A9161D-10A0-4E6B-BAC3-44A70B93AA8F failed with HTTP 429: Too Many Requests, QPS limit is 1 time/1second (request 9b76a9a72522479b82a27b97895c6f77)",
    "siteId": "cj-56A9161D-10A0-4E6B-BAC3-44A70B93AA8F",
    "title": "Casual pointed toe shoes men leather shoes men",
    "department": "men",
@@ -8825,213 +8928,8 @@
   },
   {
    "id": "E0820C98-0149-47E8-8534-59F334CA0C1E",
-   "ok": true,
-   "name": "Large Size Leather Shoes Men 48 Leather British Shoes Men",
-   "saleStatus": "3",
-   "minCostUsd": 11.35,
-   "maxCostUsd": 11.35,
-   "totalStock": 660000,
-   "shipping": null,
-   "variants": [
-    {
-     "id": "0F2B85A2-CEA3-481A-BF5C-7B261067CE91",
-     "options": "Blue-38",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "10F6F2CC-7499-4C55-A2C4-468E60794E30",
-     "options": "Black-39",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "1455FE4F-5756-46EB-AF65-CEFCF673FC08",
-     "options": "Brown-44",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "1E12F7C8-2399-4657-83CB-0CE547706603",
-     "options": "Black-44",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "200B1A73-C60E-45F0-867D-B6BF017BF44A",
-     "options": "Brown-45",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "293684B8-8BB0-4577-8507-591AE66D9465",
-     "options": "Brown-39",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "2B32A418-F98D-4F0E-9928-375EB6ECF363",
-     "options": "Blue-46",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "3755A1E0-4F27-44C7-A326-57599BAEC373",
-     "options": "Black-41",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "3A521756-BD01-4EED-A5D3-825B51AA35F9",
-     "options": "Blue-47",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "4E48ACCC-0B94-432B-9832-7EA73B2A997A",
-     "options": "Black-40",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "4EED638E-D1E7-4C65-8A87-B9652F529D58",
-     "options": "Brown-42",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "50A49D7E-CFD6-42B6-9734-8F95C24AC4F6",
-     "options": "Black-48",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "5308B3BD-0AAE-4894-8699-786D06078399",
-     "options": "Blue-43",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "53BEA85B-73DA-46AC-ABD3-2E95304319A4",
-     "options": "Blue-40",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "56D87DF9-DD11-4B28-9E37-7C8DF960ED27",
-     "options": "Black-46",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "66111F84-8292-4239-90F8-E97B5B554CBB",
-     "options": "Brown-40",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "78BD0B56-C13B-4E80-A163-BF1B8E12BA41",
-     "options": "Black-38",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "80540708-8BE0-4BA4-930B-1A58481818A3",
-     "options": "Blue-41",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "837DA3AD-683C-49FD-8512-2DE680111B9B",
-     "options": "Brown-47",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "8947ED86-BACC-44A3-BCD5-67D0E7D03E02",
-     "options": "Brown-48",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "8F52CF41-9742-4768-8A0C-EF18572CA3C9",
-     "options": "Black-43",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "984F5C7F-017C-407A-A510-5BE065678219",
-     "options": "Black-47",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "9EDFA94B-B010-459B-8FF2-4E171B19C944",
-     "options": "Blue-44",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "A14CF093-5258-468A-AE8E-4C949D1D5E1F",
-     "options": "Blue-45",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "A985D7C2-0F85-4A17-A243-B8CB212547A3",
-     "options": "Brown-43",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "C46E1B11-53B9-4C81-8239-B203357A8D8D",
-     "options": "Blue-42",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "C8FE8ECE-49E0-48C8-8BBE-51DE8D523DF5",
-     "options": "Brown-41",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "CDC61A82-5DF8-4368-BF25-ED3A7E91E05B",
-     "options": "Brown-38",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "D246F5E2-71ED-477F-891D-D0954AE5DAAF",
-     "options": "Brown-46",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "F9D2AF54-9C41-473F-86A1-B517C55AC8CA",
-     "options": "Black-45",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "FBAAAE06-9838-439D-B211-32D89DCF7C4F",
-     "options": "Blue-39",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "FC1C232F-924A-4434-834A-EA825890760E",
-     "options": "Black-42",
-     "costUsd": 11.35,
-     "stock": 20000
-    },
-    {
-     "id": "FF0EBE36-58F6-4CC6-BC18-1A5B04A3309C",
-     "options": "Blue-48",
-     "costUsd": 11.35,
-     "stock": 20000
-    }
-   ],
+   "ok": false,
+   "error": "CJ /product/query?pid=E0820C98-0149-47E8-8534-59F334CA0C1E failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 53cb7877dea646fba2cb9b1d14fd5779)",
    "siteId": "cj-E0820C98-0149-47E8-8534-59F334CA0C1E",
    "title": "Large Size Leather Shoes Men 48 Leather British Shoes Men",
    "department": "men",
@@ -9041,7 +8939,7 @@
   {
    "id": "1597531101088722944",
    "ok": false,
-   "error": "CJ /product/query?pid=1597531101088722944 failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request dbdf35bb3a3943ed9a180b3214235e55)",
+   "error": "CJ /product/query?pid=1597531101088722944 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 2d1dad15971c405d8bbb038698a5ab0d)",
    "siteId": "cj-1597531101088722944",
    "title": "Men's Business Suit Oxford Leather Shoes",
    "department": "men",
@@ -9051,7 +8949,7 @@
   {
    "id": "77877EA4-0633-4095-A7F4-6514F42F32E8",
    "ok": false,
-   "error": "CJ /product/query?pid=77877EA4-0633-4095-A7F4-6514F42F32E8 failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request ae7222e00b834c77810e660cd3e862b8)",
+   "error": "CJ /product/query?pid=77877EA4-0633-4095-A7F4-6514F42F32E8 failed with HTTP 200: Insufficient API points. Used today: 76140, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 808b5d3fb4d04dc79e3066ae1f8429bc)",
    "siteId": "cj-77877EA4-0633-4095-A7F4-6514F42F32E8",
    "title": "Oxford business dress shoes",
    "department": "men",
