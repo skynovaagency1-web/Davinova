@@ -9,10 +9,13 @@ import { isCurvyLook } from '../../lib/curvyLooks';
 
 export type Card = { key: string; label: string; line: string; to: string; items: Product[] };
 
+// Cover photos picked by eye for the cards the owner asked about (2026-10-27): red patent stilettos, olive leather tote.
+const COVERS: Record<string, string> = { 'womens-shoes': 'cj-1514869860055134208', 'womens-bags': 'cj-1721364713369505792' };
+
 /** A glass card with a popped-out photo of one product from the set; empty sets say "Coming soon". */
 export function IndexCard({ card }: { card: Card }) {
   const cutoutFor = useCutouts();
-  const cover = card.items.find((product) => cutoutFor(product.id));
+  const cover = card.items.find((product) => product.id === COVERS[card.key] && cutoutFor(product.id)) ?? card.items.find((product) => cutoutFor(product.id));
   const [title, sub] = titleParts(card.label);
   return <Link to={card.to} className={card.items.length ? 'nova-collection-card' : 'nova-collection-card is-empty'}>
     <span className={`nova-collection-card__img${cover ? ' nova-collection-card__img--pop' : ''}`}>{cover && <img src={cutoutFor(cover.id)} alt="" loading="lazy" />}</span>
