@@ -719,6 +719,8 @@ button.w-icon { border: 0; }
 .dm__fx--glow span { color: #fff; text-shadow: 0 0 6px var(--dm-accent), 0 0 12px var(--dm-accent); }
 .dm__fx--deep span { text-shadow: 1px 1px 0 var(--dm-accent), 2px 2px 0 var(--dm-accent), 3px 3px 0 var(--dm-accent); }
 .dm__fx--hollow span { color: transparent; -webkit-text-stroke: 1.2px var(--dm-ink); }
+.dm__texttabs button { display: inline-flex; align-items: center; gap: 4px; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+.dm__texttabs .dm__icon { padding: 8px; min-width: 0; }
 .dm__sublabel { font-size: 12px; color: var(--dm-soft); margin-right: 2px; }
 .dm__fonts button { font-size: 20px; }
 .dm__fonts small { font: 500 9px/1 'DM Sans', sans-serif; letter-spacing: .06em; color: var(--dm-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }

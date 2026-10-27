@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Eraser, ImagePlus, LoaderCircle, Lock, Trash2, Type, Undo2 } from 'lucide-react';
+import { Eraser, ImagePlus, LoaderCircle, Lock, Plus, Trash2, Type, Undo2 } from 'lucide-react';
 import { CUSTOM_PRODUCTS, MAX_CUSTOM_QUANTITY, type CustomProduct, type CustomProductKey } from '../../lib/customDesign';
 import { formatMoney } from '../../lib/format';
 
@@ -62,7 +62,7 @@ const EFFECTS = [
 type EffectId = typeof EFFECTS[number]['id'];
 const INKS = ['#2E2019', '#FBF1E2', '#8E735B', '#CDB69E', '#111111', '#FFFFFF', '#9C2F3A', '#C8A15A'];
 
-interface TextLayer { value: string; font: FontId; color: string; size: number; x: number; y: number; effect: EffectId; accent: string; curve: number; spacing: number; align: CanvasTextAlign }
+interface TextLayer { value: string; font: FontId; color: string; size: number; x: number; y: number; effect: EffectId; accent: string; curve: number; spacing: number; align: CanvasTextAlign; rotate: number }
 interface ImageLayer { img: HTMLImageElement; name: string; w: number; x: number; y: number; original?: HTMLImageElement }
 type Layer = 'image' | 'text';
 interface Status { ready: boolean; printAreas: Partial<Record<CustomProductKey, { width: number; height: number }>> }
@@ -80,15 +80,14 @@ function fittedBox(product: CustomProduct, area: { width: number; height: number
 function fontOf(id: FontId) { return FONTS.find((font) => font.id === id) ?? FONTS[0]; }
 
 /** Draws the design into a print-area canvas of any size; used for the live view and the final print file. */
-function drawDesign(ctx: CanvasRenderingContext2D, width: number, height: number, image: ImageLayer | null, text: TextLayer) {
+function drawDesign(ctx: CanvasRenderingContext2D, width: number, height: number, image: ImageLayer | null, texts: TextLayer[]) {
   ctx.clearRect(0, 0, width, height);
   if (image) {
     const w = image.w * width;
     const h = w * (image.img.naturalHeight / image.img.naturalWidth);
     ctx.drawImage(image.img, image.x * width - w / 2, image.y * height - h / 2, w, h);
   }
-  const value = text.value.trim();
-  if (value) drawText(ctx, width, height, value, text);
+  texts.forEach((text) => { const value = text.value.trim(); if (value) drawText(ctx, width, height, value, text); });
 }
 
 type Glyph = { ch: string; x: number; y: number; rot: number };
@@ -136,6 +135,11 @@ function drawText(ctx: CanvasRenderingContext2D, width: number, height: number, 
   ctx.font = `${font.style} ${font.weight} ${px}px ${font.family}`;
   ctx.textBaseline = 'middle';
   ctx.lineJoin = 'round';
+  if (text.rotate) {
+    ctx.translate(text.x * width, text.y * height);
+    ctx.rotate((text.rotate * Math.PI) / 180);
+    ctx.translate(-text.x * width, -text.y * height);
+  }
   const lines = (font.upper ? value.toUpperCase() : value).split('\n').slice(0, 3);
   const glyphs = layoutText(ctx, lines, text.x * width, text.y * height, px, text, width);
   const straightLine = glyphs.length === lines.length && !text.curve && !text.spacing;
@@ -188,9 +192,8 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 let remover: Promise<(input: string) => Promise<{ toCanvas: () => HTMLCanvasElement | OffscreenCanvas }[]>> | null = null;
 async function removeBackground(img: HTMLImageElement): Promise<HTMLImageElement> {
   remover ??= import('@huggingface/transformers').then(async ({ pipeline }) => {
-    const webgpu = typeof navigator !== 'undefined' && 'gpu' in navigator;
-    const run = await pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: webgpu ? 'webgpu' : 'wasm' })
-      .catch(() => pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: 'wasm' }));
+    // WASM works on every phone; WebGPU is often missing or broken, so it is not used.
+    const run = await pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: 'wasm' });
     return run as unknown as (input: string) => Promise<{ toCanvas: () => HTMLCanvasElement | OffscreenCanvas }[]>;
   });
   remover.catch(() => { remover = null; });
@@ -214,7 +217,21 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
   const [size, setSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
   const [image, setImage] = useState<ImageLayer | null>(null);
-  const [text, setText] = useState<TextLayer>({ value: '', font: 'serif', color: product.colors[0].ink, size: 0.12, x: 0.5, y: 0.5, effect: 'plain', accent: '#C8A15A', curve: 0, spacing: 0, align: 'center' });
+  const [texts, setTexts] = useState<TextLayer[]>([{ value: '', font: 'serif', color: product.colors[0].ink, size: 0.12, x: 0.5, y: 0.5, effect: 'plain', accent: '#C8A15A', curve: 0, spacing: 0, align: 'center', rotate: 0 }]);
+  const [current, setCurrent] = useState(0);
+  const text = texts[Math.min(current, texts.length - 1)];
+  // Edits the selected text box; several boxes let shoppers place words side by side.
+  const setText = (next: TextLayer | ((layer: TextLayer) => TextLayer), index = current) => setTexts((list) => list.map((layer, i) => i === index ? (typeof next === 'function' ? next(layer) : next) : layer));
+  const addText = () => {
+    setTexts((list) => [...list, { ...text, value: '', curve: 0, rotate: 0, y: Math.min(0.85, text.y + 0.18) }]);
+    setCurrent(texts.length);
+    setActive('text');
+  };
+  const removeText = () => {
+    if (texts.length === 1) { setText({ ...text, value: '' }); return; }
+    setTexts((list) => list.filter((_, i) => i !== current));
+    setCurrent(Math.max(0, current - 1));
+  };
   const [active, setActive] = useState<Layer>('text');
   const [rights, setRights] = useState(false);
   const [code, setCode] = useState('');
@@ -224,7 +241,7 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
   const [error, setError] = useState(params.get('checkout') === 'cancelled' ? 'Checkout was cancelled. Your design is still here if you want to try again.' : '');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
-  const drag = useRef<{ layer: Layer; dx: number; dy: number } | null>(null);
+  const drag = useRef<{ layer: Layer; index: number; dx: number; dy: number } | null>(null);
   const [, setFontsReady] = useState(0);
 
   useEffect(() => {
@@ -252,12 +269,12 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
     setProductKey(key);
     const keep = next.colors.find((item) => item.name === colorName) ?? next.colors[0];
     setColorName(keep.name);
-    setText((current) => ({ ...current, color: current.color === color.ink ? keep.ink : current.color }));
+    setTexts((list) => list.map((layer) => ({ ...layer, color: layer.color === color.ink ? keep.ink : layer.color })));
     if (next.sizes.length && !next.sizes.includes(size)) setSize('M');
   };
   const pickColor = (name: string) => {
     const next = product.colors.find((item) => item.name === name)!;
-    setText((current) => ({ ...current, color: current.color === color.ink ? next.ink : current.color }));
+    setTexts((list) => list.map((layer) => ({ ...layer, color: layer.color === color.ink ? next.ink : layer.color })));
     setColorName(name);
   };
 
@@ -269,8 +286,8 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
     canvas.width = Math.max(1, Math.round(rect.width * ratio));
     canvas.height = Math.max(1, Math.round(rect.height * ratio));
     const ctx = canvas.getContext('2d');
-    if (ctx) drawDesign(ctx, canvas.width, canvas.height, image, text);
-  }, [image, text]);
+    if (ctx) drawDesign(ctx, canvas.width, canvas.height, image, texts);
+  }, [image, texts]);
   useEffect(() => { redraw(); });
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -302,7 +319,8 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
       const cut = await removeBackground(image.img);
       setImage((layer) => layer && { ...layer, img: cut, original: layer.original ?? layer.img });
       setActive('image');
-    } catch {
+    } catch (reason) {
+      console.error('Background removal failed', reason instanceof Error ? reason.stack ?? reason.message : String(reason));
       setError('The background could not be removed on this device. Try again, or upload a PNG that already has a transparent background.');
     } finally { setCutting(false); }
   }
@@ -312,8 +330,19 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
     const rect = event.currentTarget.getBoundingClientRect();
     return { x: (event.clientX - rect.left) / rect.width, y: (event.clientY - rect.top) / rect.height };
   }
+  function hitText(p: { x: number; y: number }): number {
+    for (let i = texts.length - 1; i >= 0; i -= 1) {
+      const t = texts[i];
+      const reach = t.size * (1.2 + Math.abs(t.curve) * 2);
+      const sideways = Math.abs(Math.sin((t.rotate * Math.PI) / 180)) > 0.7;
+      const dx = Math.abs(p.x - t.x);
+      const dy = Math.abs(p.y - t.y) * (area.height / area.width);
+      if (t.value.trim() && (sideways ? dx < reach && dy < 0.45 : dx < 0.45 && dy < reach)) return i;
+    }
+    return -1;
+  }
   function hit(p: { x: number; y: number }): Layer | null {
-    if (text.value.trim() && Math.abs(p.x - text.x) < 0.45 && Math.abs(p.y - text.y) * (area.height / area.width) < text.size * (1.2 + Math.abs(text.curve) * 2)) return 'text';
+    if (hitText(p) >= 0) return 'text';
     if (image) {
       const h = image.w * (image.img.naturalHeight / image.img.naturalWidth) * (area.width / area.height);
       if (Math.abs(p.x - image.x) < image.w / 2 && Math.abs(p.y - image.y) < h / 2) return 'image';
@@ -325,9 +354,12 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
     const p = point(event);
     const layer = hit(p) ?? (active === 'image' && image ? 'image' : text.value.trim() ? 'text' : null);
     if (!layer) return;
-    const origin = layer === 'image' ? image! : text;
-    drag.current = { layer, dx: p.x - origin.x, dy: p.y - origin.y };
+    const found = hitText(p);
+    const index = layer === 'text' && found >= 0 ? found : current;
+    const origin = layer === 'image' ? image! : texts[index];
+    drag.current = { layer, index, dx: p.x - origin.x, dy: p.y - origin.y };
     setActive(layer);
+    if (layer === 'text') setCurrent(index);
     event.currentTarget.setPointerCapture(event.pointerId);
   }
   function onMove(event: React.PointerEvent<HTMLCanvasElement>) {
@@ -337,12 +369,12 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
     const x = clamp(p.x - current.dx);
     const y = clamp(p.y - current.dy);
     if (current.layer === 'image') setImage((layer) => layer && { ...layer, x, y });
-    else setText((layer) => ({ ...layer, x, y }));
+    else setText((layer) => ({ ...layer, x, y }), current.index);
   }
   const onUp = () => { drag.current = null; };
 
   const dpi = image ? Math.round(image.img.naturalWidth / (image.w * product.print.inches)) : 0;
-  const hasDesign = Boolean(image || text.value.trim());
+  const hasDesign = Boolean(image || texts.some((layer) => layer.value.trim()));
 
   async function buy() {
     setError('');
@@ -355,7 +387,7 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
       const print = document.createElement('canvas');
       print.width = Math.round(area.width * scale);
       print.height = Math.round(area.height * scale);
-      drawDesign(print.getContext('2d')!, print.width, print.height, image, text);
+      drawDesign(print.getContext('2d')!, print.width, print.height, image, texts);
       const printBlob = await toBlob(print, 'image/png');
 
       // Preview: the design on the piece, for your approval page and the Stripe checkout.
@@ -449,6 +481,11 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
         <fieldset className="dm__group">
           <legend>4 · Text</legend>
           <div className="dm__layer">
+            <div className="dm__sizes dm__texttabs" role="group" aria-label="Text boxes">
+              {texts.map((layer, i) => <button key={i} type="button" className={i === current ? 'is-on' : ''} onClick={() => { setCurrent(i); setActive('text'); }}>{layer.value.trim() ? layer.value.trim().split('\n')[0].slice(0, 10) : `Text ${i + 1}`}</button>)}
+              {texts.length < 5 && <button type="button" onClick={addText}><Plus size={14} /> Add text</button>}
+              {(texts.length > 1 || text.value) && <button type="button" className="dm__icon" onClick={removeText} aria-label="Delete this text"><Trash2 size={15} /></button>}
+            </div>
             <label className="dm__text"><Type size={16} /><textarea rows={2} maxLength={60} placeholder="Your words (up to 3 lines)" value={text.value} onFocus={() => setActive('text')} onChange={(event) => setText({ ...text, value: event.target.value.split('\n').slice(0, 3).join('\n') })} /></label>
             <div className="dm__fonts">{FONTS.map((item) => <button key={item.id} type="button" className={item.id === text.font ? 'is-on' : ''} style={{ fontFamily: item.family, fontStyle: item.style, fontWeight: item.weight }} onClick={() => setText({ ...text, font: item.id })}>{item.upper ? 'AA' : 'Aa'}<small>{item.label}</small></button>)}</div>
             <div className="dm__swatches dm__swatches--ink">{INKS.map((ink) => <button key={ink} type="button" aria-label={'Text colour ' + ink} className={ink === text.color ? 'is-on' : ''} style={{ background: ink }} onClick={() => setText({ ...text, color: ink })} />)}</div>
@@ -456,6 +493,7 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
             {text.effect !== 'plain' && text.effect !== 'hollow' && <div className="dm__swatches dm__swatches--ink"><span className="dm__sublabel">{text.effect === 'outline' ? 'Outline' : text.effect === 'glow' ? 'Glow' : text.effect === 'deep' ? 'Depth' : 'Shadow'} colour</span>{INKS.map((ink) => <button key={ink} type="button" aria-label={'Effect colour ' + ink} className={ink === text.accent ? 'is-on' : ''} style={{ background: ink }} onClick={() => setText({ ...text, accent: ink })} />)}</div>}
             <label>Size <input type="range" min="0.04" max="0.3" step="0.005" value={text.size} onChange={(event) => { setActive('text'); setText({ ...text, size: Number(event.target.value) }); }} /></label>
             <label>Curve <input type="range" min="-1" max="1" step="0.05" value={text.curve} onChange={(event) => { setActive('text'); setText({ ...text, curve: Math.abs(Number(event.target.value)) < 0.05 ? 0 : Number(event.target.value) }); }} /></label>
+            <label>Rotate <input type="range" min="-180" max="180" step="1" value={text.rotate} onChange={(event) => { setActive('text'); const v = Number(event.target.value); setText({ ...text, rotate: [-90, 0, 90].find((snap) => Math.abs(v - snap) < 4) ?? v }); }} /></label>
             <label>Spacing <input type="range" min="0" max="0.6" step="0.02" value={text.spacing} onChange={(event) => { setActive('text'); setText({ ...text, spacing: Number(event.target.value) }); }} /></label>
             {!text.curve && <div className="dm__sizes" role="group" aria-label="Line alignment">{(['left', 'center', 'right'] as const).map((item) => <button key={item} type="button" className={item === text.align ? 'is-on' : ''} onClick={() => setText({ ...text, align: item })}>{item[0].toUpperCase() + item.slice(1)}</button>)}</div>}
           </div>
