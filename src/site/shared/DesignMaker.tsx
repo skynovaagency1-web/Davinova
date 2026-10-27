@@ -189,12 +189,14 @@ let remover: Promise<(input: string) => Promise<{ toCanvas: () => HTMLCanvasElem
 async function removeBackground(img: HTMLImageElement): Promise<HTMLImageElement> {
   remover ??= import('@huggingface/transformers').then(async ({ pipeline }) => {
     // WASM works on every phone; WebGPU is often missing or broken, so it is not used.
-    const run = await pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: 'wasm' });
+    const run = await pipeline('background-removal', 'onnx-community/ormbg-ONNX', { dtype: 'uint8', device: 'wasm', progress_callback: (info: { status: string; file?: string }) => { if (info.status !== 'progress') console.info('bg-remover', info.status, info.file ?? '', Math.round(performance.now())); } });
     return run as unknown as (input: string) => Promise<{ toCanvas: () => HTMLCanvasElement | OffscreenCanvas }[]>;
   });
   remover.catch(() => { remover = null; });
   const run = await remover;
+  console.info('bg-remover start', Math.round(performance.now()));
   const [result] = await run(img.src);
+  console.info('bg-remover done', Math.round(performance.now()));
   const out = result.toCanvas();
   const blob = out instanceof HTMLCanvasElement ? await toBlob(out, 'image/png') : await (out as OffscreenCanvas).convertToBlob({ type: 'image/png' });
   return loadImage(URL.createObjectURL(blob));

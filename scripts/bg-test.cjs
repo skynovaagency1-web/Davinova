@@ -11,14 +11,14 @@ const { chromium } = require('playwright');
   await page.setInputFiles('input[type=file]', 'public/images/hero-model.webp');
   await page.click('button:has-text("Remove background")');
   const t0 = Date.now();
-  for (let i = 0; i < 180; i++) {
+  for (let i = 0; i < 420; i++) {
     await page.waitForTimeout(1000);
     const state = await page.evaluate(() => ({
       back: !!document.querySelector('button')?.closest('section') && [...document.querySelectorAll('button')].some((b) => b.textContent.includes('Bring the background back')),
       error: document.querySelector('.dm__error')?.textContent || '',
     }));
     if (state.back || state.error) { console.log('RESULT after', Math.round((Date.now() - t0) / 1000), 's', JSON.stringify(state)); break; }
-    if (i === 179) console.log('RESULT timeout');
+    if (i === 419) console.log('RESULT timeout');
   }
   await page.locator('.dm__stage').screenshot({ path: 'bg-result.png' });
   await browser.close();
