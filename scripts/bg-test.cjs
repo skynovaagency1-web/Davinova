@@ -14,7 +14,7 @@ const { chromium } = require('playwright');
   for (let i = 0; i < 420; i++) {
     await page.waitForTimeout(1000);
     const state = await page.evaluate(() => ({
-      back: !!document.querySelector('button')?.closest('section') && [...document.querySelectorAll('button')].some((b) => b.textContent.includes('Bring the background back')),
+      back: [...document.querySelectorAll('button')].some((b) => b.textContent.includes('Bring the background back')), alpha: (() => { const c = document.querySelector('.dm__canvas'); const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let clear = 0; for (let i = 3; i < d.length; i += 4) if (d[i] < 10) clear += 1; return Math.round(100 * clear / (d.length / 4)); })(),
       error: document.querySelector('.dm__error')?.textContent || '',
     }));
     if (state.back || state.error) { console.log('RESULT after', Math.round((Date.now() - t0) / 1000), 's', JSON.stringify(state)); break; }
