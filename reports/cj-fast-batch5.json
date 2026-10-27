@@ -1,0 +1,728 @@
+{
+ "checkedAt": "2026-10-27T12:46:39.565Z",
+ "countries": [
+  "US"
+ ],
+ "results": [
+  {
+   "siteId": "cj-1529297515718389760",
+   "vid": "1529297515865190400",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request b87bbd479a874ea985dda17d024fc234)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1368019439999651840",
+   "vid": "1368019441513795584",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 13e7a73e8a0a45bfaff06692588c658c)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-5762DF19-7832-4650-9B84-78DC878FB2FC",
+   "vid": "2FD00311-A4F9-4D20-9093-8B7A54C4C8A1",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 16423dba0b954a5295e4c6e47a23818e)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-C11FA7CE-83F5-4E8A-9FAD-9DBCAE010382",
+   "vid": "828D7CCF-523E-4BBD-9687-A05956B42CDE",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 1607ec8953cb40599ec965ca66648200)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-32D43A84-CAA8-41B1-8575-8122956A2E63",
+   "vid": "2E4A6105-8379-46B7-A0CF-51F1D9FC3E45",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request f5771949f571441db39ad4f3b46fbdfb)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1492398450745151488",
+   "vid": "1492398450866786304",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 75970, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request fbb4b7933d854e7ca0e74c62abad61ad)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1492691566131810304",
+   "vid": "1492691566266028032",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.74,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.97,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1598574649015808000",
+   "vid": "1598574649166802944",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.93,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.64,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1492690590557671424",
+   "vid": "1492690590696083456",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 6.11,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.84,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-7EB465D7-4580-49E7-9E7D-F148E1288CAC",
+   "vid": "7CFF1F2E-11DE-4131-A7FB-433CC6E883A4",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 5.38,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Sensitive",
+      "priceUsd": 6.54,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1366713579843227648",
+   "vid": "1366713581206376448",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 441ecde0d6134e07b9542b0c93e6d4d3)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-AC8D4AE5-3511-437D-AA69-8512C36164B0",
+   "vid": "3B9D3343-0556-42C7-816D-4EE0634F677A",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request ac21ec3e55764dfb98d9a57575e13902)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-05088019-3E8B-4336-AAB7-7475C86F904B",
+   "vid": "3A2C1046-1037-48D0-903D-ED835B5318DE",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c3a2f9f1a42b471b9e268fc4440cf581)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-0DAEABF4-259B-48CC-B53A-E907B7992462",
+   "vid": "2508210712051629800",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 0e823b269ee34d0c8a42f6c32469d122)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-39530A7D-F049-469D-9C98-92F11E39D449",
+   "vid": "1D14F29D-0D9F-451D-8980-5F99ECE2FADA",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 88ce678f71b8498ca1f92bcff13466eb)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-D84E860C-32B2-49A4-A437-59465161BFA1",
+   "vid": "55FD7258-38BA-480A-86F8-41670771EE71",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 236670ee0f1b4ed493f3162a9bf1b428)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-0C122969-341D-406B-AA53-064DB0D8BE1B",
+   "vid": "4F595CB9-7324-4AF5-8072-CD688059D90E",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request e1e4038a31d34df698ef7aaca4169a34)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-A74C15AC-E374-44EF-A806-B80FCA93FC7F",
+   "vid": "773B9234-249B-4546-BA3F-795EAEF0E082",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 33a659aea8ef43f3a6dc3bed504b9ec7)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-5782A06B-FAEA-4A77-A8E1-9967217F65DE",
+   "vid": "0F6E131D-A6EE-4CC7-9499-84A904275544",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request f9e83a514add4609b5e58a2086f1af2f)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1388702483748098048",
+   "vid": "1388702485199327232",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 65d434b1ae9b41fd839586266b449f24)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-0C8AF76C-AEAF-492B-9FD9-CA0FC826015E",
+   "vid": "42A7A080-C729-46BD-935E-BC5D76326783",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request fb0b8a266e594440a122edad402ede64)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1386874370177241088",
+   "vid": "1386874371599110144",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 69d4eb6faabc448da13d8e19fe13408a)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1395917012554878976",
+   "vid": "1395917013955776512",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request acc9532b521d4f368f24dd4f52387248)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1404352858920456192",
+   "vid": "1404352860442988544",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 17e7c44aec9d4cb19ebc6b691c751c40)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1391592415948836864",
+   "vid": "1391592417324568576",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request dd10a0ec129d438890210d88592b98f7)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1381476135610748928",
+   "vid": "1382230354437476352",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 72a02c858aed4917984a3e8bccda5bc2)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-132CF755-EAA2-4EEE-A9DD-BD116674B71B",
+   "vid": "1372018606942064640",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a19fe034b2d04d56830106e52dfb6f36)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-5F360288-38F0-4EB5-94BB-D4E572870A90",
+   "vid": "0AFEF608-CC8B-4452-AAB3-E0A717097E8E",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 9262bf6843f54ee385a846db2c92b3cf)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1525035168510259200",
+   "vid": "1525035168598339584",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a743297f15404a80b0c361265272720c)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-81F357EB-7364-4341-A8FC-2C167A97152B",
+   "vid": "30017107-E5C4-4BF5-8457-0D7604DF397E",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 0b32cdca58254aebbfca933d85597f7e)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1386211650029359104",
+   "vid": "1386589828849733632",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a3d3d663e67748149af2e21e16915f1f)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-3A997133-0397-4E77-95F0-3071CD71110A",
+   "vid": "09979DF1-C3F7-4F90-924A-A4D373E4DD0B",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request bcd372473e194c89b381c9bb184d3e18)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1394922436939616256",
+   "vid": "1394922438290182144",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 6f3900be8f594039baa4e0acfc7a3cc1)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-CB06D4AF-C4EF-4696-8226-B6A991D3068B",
+   "vid": "0541F66B-8385-4E8B-B72E-6EB357AE9473",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request ab1e050357b14593ac89a8507c0ac0f0)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-11B9D938-6656-4FEB-BCF0-5EAFED30313E",
+   "vid": "0A110177-7136-4770-ADC9-2BDB8FE38E65",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request cbf20cacd9b14a469e8a8a09c611b430)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-2407300227181624800",
+   "vid": "2407300227181625100",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request e1bcd2b3ae6c445a9c3ac905c73101a3)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-ACC80D8A-FB3D-4F8B-8499-8558D1CCB2AF",
+   "vid": "05A32D6C-6563-4D34-B25E-044C5A2942F0",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 6b5c83a9ae4045298f20523dfc293f91)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-A280C8D7-093A-4182-BF5F-342AB1890C8F",
+   "vid": "09F38B22-8F90-499A-B999-5F899D3A7D8D",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 7ba44ae30ae94b00bd0f83f3b8393dda)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-2506290349211619900",
+   "vid": "2506290349221610100",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 9562ab0796844866807d90dcfab13d96)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1374668545585188864",
+   "vid": "1374668546914783232",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 34f8268d2c8a41fdafd96187c967b5b8)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1412649998327353344",
+   "vid": "1412649999900217344",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request f75fe1a9e90045e6ab40d00ed7f5601d)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1449631436641538048",
+   "vid": "1449631436687675392",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request cfff2cd7d18e4a4bbf50a8a8dd0cc576)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1423958207830822912",
+   "vid": "1423958209126862848",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 8ebe1cbc9b004e31aa9f83e2b62008b7)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1782666229287755776",
+   "vid": "1782666229363253248",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request c979ce9af82142dda145460d9e1b8486)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-2605290706591638500",
+   "vid": "2605290706591639200",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76010, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a0aaa12a50e2402a9a9a524c282e579b)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-2512201026011639800",
+   "vid": "2512201026021630000",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 15.56,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 16.83,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1410107800750788608",
+   "vid": "1410107802210406400",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 13.23,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 14.48,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1365508543196827648",
+   "vid": "1365508544664834048",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 14.95,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 16.14,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2608261011231606300",
+   "vid": "2608261011231607300",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request fdd55d21909d43518937467e7bfad4bb)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-28C22740-C252-4993-8FED-2FE2C7381C33",
+   "vid": "23A0ACDA-4672-4F7B-85CB-21F253E3612E",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 43db15af424843f98ebfe6d2b456ea97)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1379323171689336832",
+   "vid": "2504170309331623500",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 765313a800ae4b1b84773689e7ba2752)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1419830226355097600",
+   "vid": "1419830229022674944",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 5e3d6c6ec85b48b184ce432253902735)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-2510151010401600200",
+   "vid": "2510151010401600500",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request e0e77d45354841be881b0d1ee93a0ae2)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1424935786662465536",
+   "vid": "1424935789225185280",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 93e6c84a624d444f9a035e7dfe76b2f5)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-425262B4-956C-4E4C-A0F4-19B050E74E76",
+   "vid": "007F9C1A-6E4A-46DC-8B63-34FBA9C1037B",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request abe70521110842a6bc2b94d60bde44a0)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-8FA095AE-88A5-4ADA-A67E-F30E6A355238",
+   "vid": "01A70E94-FF4F-4814-8E6D-13F7F0A40960",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 88bc3f53966c434695213111e23cd2b6)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-57926F2B-3F72-4250-BB99-C855F8B4B3BC",
+   "vid": "05282A91-D950-46D8-85C9-E996AC1A071A",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 0a09445c9fad4638b7f48ff776a31af4)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-3D604467-C9DB-4106-8B67-964237CC82F0",
+   "vid": "05468197-2D1E-4605-91BF-DEB33E8DA708",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 37328380853f4e2693c55dc026d671c4)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-3D506005-2523-4510-8888-2262766DDE34",
+   "vid": "11593BE5-51DB-4556-BF1D-9A79822323FB",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 95b0cc6ad4d8442994b2ba54fcea4bf7)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-4860026B-D6D6-4172-AC2A-C7A23820C41F",
+   "vid": "0B715FAC-18EA-4B27-8C55-78E4C783C222",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 5e0c9959fa814f3aa30d48f2e47dd78e)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-CCBF23F4-C09D-4214-82BA-BD9F59D8D30D",
+   "vid": "040C9A39-83B9-4958-8FEF-EF06A0E6301E",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 5676e662d18a4083a8c8249f9a1b9e0b)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-2501030135581603400",
+   "vid": "2501030135581609100",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request f267e6205fb1428aa8f258597f4c4fee)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-11247310-B6DB-4C94-BA50-47F6FB557B48",
+   "vid": "0D271460-DF4E-4B40-B408-C0D643A1F90E",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 56adb92bc3664f0c96926a33b71ba9ce)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-16810F18-EB42-4AAA-9F06-4781B0515F08",
+   "vid": "33213F70-F3C0-43F7-AE2C-F28431EBAADC",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 0bb0306918874517b82fb1b1a3952a51)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1422126432741625856",
+   "vid": "1422126435446951936",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 3ec9a806293e46979b5cc72028c924f2)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1FCE1728-0DC2-4AE1-8627-70A3DCFB2017",
+   "vid": "029839BF-A32F-45F9-9416-74B698CE074D",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request d475a573fba7400a932287770dc7e74a)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-2D4E70E4-D71E-4844-B233-C785439BC7C4",
+   "vid": "071A9DCC-BCE0-468C-A0E5-5B02C56A7D11",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a526906b57f34d159bcb81a5efe969c5)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-AFDA76F9-7BA3-48B3-9368-9C0DF18F7DC2",
+   "vid": "1178C597-7357-4581-8FEB-AF1FBD423976",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request badaa63d7f074421a1ef27f0c9e6b153)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-8322EA27-30CE-4B8C-937D-C5D7744D8961",
+   "vid": "362ACC75-01DA-41AB-9F47-AC9EAE83E8BB",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request fbfd7d4e232d432fb42fb59f1c574e29)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-04D7E553-FCA6-42AB-AD15-93940B0D774C",
+   "vid": "00B69B96-D9A8-433B-BC07-5C65168700F5",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 87dd2ca9995a4955b683904e72d1738b)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1380393888233164800",
+   "vid": "1380393889646645248",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request a03967a1de7b4a36b6c0b56eb7fcd1c8)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1746837965768241152",
+   "vid": "1746837965889875968",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 5b25638abe5e41438e75810999cb31d7)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-E0820C98-0149-47E8-8534-59F334CA0C1E",
+   "vid": "0F2B85A2-CEA3-481A-BF5C-7B261067CE91",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 200: Insufficient API points. Used today: 76040, Remaining: 0, Required: 10. To increase your daily points, grow your CJ transaction amount. For details, please refer to: https://developers.cjdropshipping.cn/en/api/api2/stand (request 58b76f62bfb74226965589fa4bea6a9d)"
+    }
+   }
+  }
+ ]
+}

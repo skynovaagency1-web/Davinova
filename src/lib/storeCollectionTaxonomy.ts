@@ -393,15 +393,19 @@ export const jewelryStoreCollectionGroups: StoreCollectionGroup[] = [
       jewelrySub('engagement-rings', 'Engagement Rings', 'engagement ring', 'moissanite ring'),
       jewelrySub('fashion', 'Fashion Jewelry', 'statement earrings', 'statement necklace'),
       jewelrySub('fine', 'Fine Jewelry', '925 silver necklace', 'pearl earrings'),
+      jewelrySub('silver-necklaces', 'Silver Necklaces', '925 sterling silver necklace', 'gold vermeil necklace'),
+      jewelrySub('silver-bracelets', 'Silver Bracelets', '925 sterling silver bracelet', 'gold vermeil bracelet'),
       jewelrySub('womens-watches', 'Women’s Watches', 'women watch', 'ladies watch'),
       jewelrySub('mens-wedding-bands', 'Men’s Wedding Bands', 'men wedding band', 'men ring'),
       jewelrySub('cufflinks', 'Cufflinks & Tie Clips', 'cufflinks', 'tie clip'),
       jewelrySub('mens-chains-bracelets', 'Men’s Chains & Bracelets', 'men chain necklace', 'men bracelet'),
+      jewelrySub('mens-silver-chains', 'Men’s Silver Necklaces', 'men 925 sterling silver chain'),
+      jewelrySub('mens-silver-bracelets', 'Men’s Silver Bracelets', 'men 925 sterling silver bracelet'),
       jewelrySub('mens-watches', 'Men’s Watches', 'men watch', 'men wrist watch'),
     ],
   },
 ];
-export const MEN_JEWELRY = ['mens-wedding-bands', 'cufflinks', 'mens-chains-bracelets', 'mens-watches'];
+export const MEN_JEWELRY = ['mens-wedding-bands', 'cufflinks', 'mens-chains-bracelets', 'mens-silver-chains', 'mens-silver-bracelets', 'mens-watches'];
 
 function hasPhrase(text: string, phrase: string): boolean {
   const normalizedPhrase = normalizeStoreText(phrase);

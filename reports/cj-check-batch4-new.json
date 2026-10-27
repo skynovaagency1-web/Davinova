@@ -1,0 +1,1069 @@
+{
+ "checkedAt": "2026-10-27T12:10:13.949Z",
+ "results": [
+  {
+   "id": "2610110652211604600",
+   "ok": true,
+   "name": "Men's Wedding Stage And Banquet Host Formal Suit, 2-Piece Set",
+   "saleStatus": "3",
+   "minCostUsd": 55.38,
+   "maxCostUsd": 55.38,
+   "totalStock": 64889,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 31.39,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2610110652211605400",
+     "options": "Black-XS",
+     "costUsd": 55.38,
+     "stock": 7553
+    },
+    {
+     "id": "2610110652211605401",
+     "options": "Black-S",
+     "costUsd": 55.38,
+     "stock": 7611
+    },
+    {
+     "id": "2610110652211605402",
+     "options": "Black-M",
+     "costUsd": 55.38,
+     "stock": 9455
+    },
+    {
+     "id": "2610110652211605403",
+     "options": "Black-L",
+     "costUsd": 55.38,
+     "stock": 6843
+    },
+    {
+     "id": "2610110652211605404",
+     "options": "Black-XL",
+     "costUsd": 55.38,
+     "stock": 9470
+    },
+    {
+     "id": "2610110652211605405",
+     "options": "Black-2XL",
+     "costUsd": 55.38,
+     "stock": 6819
+    },
+    {
+     "id": "2610110652211605406",
+     "options": "Black-3XL",
+     "costUsd": 55.38,
+     "stock": 9768
+    },
+    {
+     "id": "2610110652211605407",
+     "options": "Black-4XL",
+     "costUsd": 55.38,
+     "stock": 7370
+    }
+   ],
+   "siteId": "cj-2610110652211604600",
+   "title": "Men's Wedding Stage And Banquet Host Formal Suit, 2-Piece Set",
+   "department": "men",
+   "collection": "mens-formal",
+   "sub": "tuxedos-and-dinner-jackets"
+  },
+  {
+   "id": "2407050727541629500",
+   "ok": true,
+   "name": "Men's Slim Fit Business Banquet Suit",
+   "saleStatus": "3",
+   "minCostUsd": 29.62,
+   "maxCostUsd": 41.29,
+   "totalStock": 1098148,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 25.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2407050727541629700",
+     "options": "Picture Color 1 Brown-XXS",
+     "costUsd": 41.29,
+     "stock": 12060
+    },
+    {
+     "id": "2407050727541629800",
+     "options": "Picture Color 1 Brown-XS",
+     "costUsd": 41.29,
+     "stock": 12984
+    },
+    {
+     "id": "2407050727551620000",
+     "options": "Picture Color 1 Brown-S",
+     "costUsd": 41.29,
+     "stock": 14125
+    },
+    {
+     "id": "2407050727551620200",
+     "options": "Picture Color 1 Brown-M",
+     "costUsd": 41.29,
+     "stock": 11700
+    },
+    {
+     "id": "2407050727551620300",
+     "options": "Picture Color 1 Brown-L",
+     "costUsd": 41.29,
+     "stock": 11735
+    },
+    {
+     "id": "2407050727551620500",
+     "options": "Picture Color 1 Brown-XL",
+     "costUsd": 41.29,
+     "stock": 13243
+    },
+    {
+     "id": "2407050727551620700",
+     "options": "Picture Color 1 Brown-XXL",
+     "costUsd": 41.29,
+     "stock": 14701
+    },
+    {
+     "id": "2407050727551620900",
+     "options": "Picture Color 1 Brown-XXXL",
+     "costUsd": 41.29,
+     "stock": 13159
+    },
+    {
+     "id": "2407050727551621100",
+     "options": "Picture Color 1 Brown-XXXXL",
+     "costUsd": 41.29,
+     "stock": 12930
+    },
+    {
+     "id": "2407050727551621200",
+     "options": "Picture Color 1 Brown-5XL",
+     "costUsd": 41.29,
+     "stock": 11395
+    },
+    {
+     "id": "2407050727551621400",
+     "options": "Picture 2 Wine Red-XXS",
+     "costUsd": 41.29,
+     "stock": 10269
+    },
+    {
+     "id": "2407050727551621500",
+     "options": "Picture 2 Wine Red-XS",
+     "costUsd": 41.29,
+     "stock": 11963
+    },
+    {
+     "id": "2407050727551621700",
+     "options": "Picture 2 Wine Red-S",
+     "costUsd": 41.29,
+     "stock": 10240
+    },
+    {
+     "id": "2407050727551621900",
+     "options": "Picture 2 Wine Red-M",
+     "costUsd": 41.29,
+     "stock": 13807
+    },
+    {
+     "id": "2407050727551622000",
+     "options": "Picture 2 Wine Red-L",
+     "costUsd": 41.29,
+     "stock": 14490
+    },
+    {
+     "id": "2407050727551622200",
+     "options": "Picture 2 Wine Red-XL",
+     "costUsd": 41.29,
+     "stock": 13325
+    },
+    {
+     "id": "2407050727551622300",
+     "options": "Picture 2 Wine Red-XXL",
+     "costUsd": 41.29,
+     "stock": 13037
+    },
+    {
+     "id": "2407050727551622500",
+     "options": "Picture 2 Wine Red-XXXL",
+     "costUsd": 41.29,
+     "stock": 10916
+    },
+    {
+     "id": "2407050727551622600",
+     "options": "Picture 2 Wine Red-XXXXL",
+     "costUsd": 41.29,
+     "stock": 11883
+    },
+    {
+     "id": "2407050727551622800",
+     "options": "Picture 2 Wine Red-5XL",
+     "costUsd": 41.29,
+     "stock": 11332
+    },
+    {
+     "id": "2407050727551622900",
+     "options": "Color As In Picture 3 Black-XXS",
+     "costUsd": 41.29,
+     "stock": 14665
+    },
+    {
+     "id": "2407050727551623100",
+     "options": "Color As In Picture 3 Black-XS",
+     "costUsd": 41.29,
+     "stock": 13586
+    },
+    {
+     "id": "2407050727551623200",
+     "options": "Color As In Picture 3 Black-S",
+     "costUsd": 41.29,
+     "stock": 14219
+    },
+    {
+     "id": "2407050727551623400",
+     "options": "Color As In Picture 3 Black-M",
+     "costUsd": 41.29,
+     "stock": 10429
+    },
+    {
+     "id": "2407050727551623600",
+     "options": "Color As In Picture 3 Black-L",
+     "costUsd": 41.29,
+     "stock": 10682
+    },
+    {
+     "id": "2407050727551623700",
+     "options": "Color As In Picture 3 Black-XL",
+     "costUsd": 41.29,
+     "stock": 13792
+    },
+    {
+     "id": "2407050727551624100",
+     "options": "Color As In Picture 3 Black-XXL",
+     "costUsd": 41.29,
+     "stock": 13976
+    },
+    {
+     "id": "2407050727551624300",
+     "options": "Color As In Picture 3 Black-XXXL",
+     "costUsd": 41.29,
+     "stock": 10349
+    },
+    {
+     "id": "2407050727551624400",
+     "options": "Color As In Picture 3 Black-XXXXL",
+     "costUsd": 41.29,
+     "stock": 13815
+    },
+    {
+     "id": "2407050727551624600",
+     "options": "Color As In Picture 3 Black-5XL",
+     "costUsd": 41.29,
+     "stock": 10435
+    },
+    {
+     "id": "2407050727551624700",
+     "options": "Image 4 Dark Green-XXS",
+     "costUsd": 41.29,
+     "stock": 10362
+    },
+    {
+     "id": "2407050727551624900",
+     "options": "Image 4 Dark Green-XS",
+     "costUsd": 41.29,
+     "stock": 11888
+    },
+    {
+     "id": "2407050727551625000",
+     "options": "Image 4 Dark Green-S",
+     "costUsd": 41.29,
+     "stock": 10849
+    },
+    {
+     "id": "2407050727551625400",
+     "options": "Image 4 Dark Green-M",
+     "costUsd": 41.29,
+     "stock": 13618
+    },
+    {
+     "id": "2407050727551625600",
+     "options": "Image 4 Dark Green-L",
+     "costUsd": 41.29,
+     "stock": 11598
+    },
+    {
+     "id": "2407050727551625700",
+     "options": "Image 4 Dark Green-XL",
+     "costUsd": 41.29,
+     "stock": 14885
+    },
+    {
+     "id": "2407050727551625900",
+     "options": "Image 4 Dark Green-XXL",
+     "costUsd": 41.29,
+     "stock": 11256
+    },
+    {
+     "id": "2407050727551626100",
+     "options": "Image 4 Dark Green-XXXL",
+     "costUsd": 41.29,
+     "stock": 12350
+    },
+    {
+     "id": "2407050727551626200",
+     "options": "Image 4 Dark Green-XXXXL",
+     "costUsd": 41.29,
+     "stock": 13906
+    },
+    {
+     "id": "2407050727551626400",
+     "options": "Image 4 Dark Green-5XL",
+     "costUsd": 41.29,
+     "stock": 11130
+    },
+    {
+     "id": "2407050727551626500",
+     "options": "Picture Color 5 Pink-XXS",
+     "costUsd": 41.29,
+     "stock": 10937
+    },
+    {
+     "id": "2407050727551626700",
+     "options": "Picture Color 5 Pink-XS",
+     "costUsd": 41.29,
+     "stock": 12514
+    },
+    {
+     "id": "2407050727551626800",
+     "options": "Picture Color 5 Pink-S",
+     "costUsd": 41.29,
+     "stock": 10660
+    },
+    {
+     "id": "2407050727551627000",
+     "options": "Picture Color 5 Pink-M",
+     "costUsd": 41.29,
+     "stock": 13224
+    },
+    {
+     "id": "2407050727551627100",
+     "options": "Picture Color 5 Pink-L",
+     "costUsd": 41.29,
+     "stock": 12022
+    },
+    {
+     "id": "2407050727551627300",
+     "options": "Picture Color 5 Pink-XL",
+     "costUsd": 41.29,
+     "stock": 12700
+    },
+    {
+     "id": "2407050727551627500",
+     "options": "Picture Color 5 Pink-XXL",
+     "costUsd": 41.29,
+     "stock": 11778
+    },
+    {
+     "id": "2407050727551627600",
+     "options": "Picture Color 5 Pink-XXXL",
+     "costUsd": 41.29,
+     "stock": 11006
+    },
+    {
+     "id": "2407050727551627800",
+     "options": "Picture Color 5 Pink-XXXXL",
+     "costUsd": 41.29,
+     "stock": 12133
+    },
+    {
+     "id": "2407050727551627900",
+     "options": "Picture Color 5 Pink-5XL",
+     "costUsd": 41.29,
+     "stock": 13659
+    },
+    {
+     "id": "2407050727551628100",
+     "options": "Picture Color Navy Blue-XXS",
+     "costUsd": 41.29,
+     "stock": 11920
+    },
+    {
+     "id": "2407050727551628200",
+     "options": "Picture Color Navy Blue-XS",
+     "costUsd": 41.29,
+     "stock": 10811
+    },
+    {
+     "id": "2407050727551628400",
+     "options": "Picture Color Navy Blue-S",
+     "costUsd": 41.29,
+     "stock": 14177
+    },
+    {
+     "id": "2407050727551628500",
+     "options": "Picture Color Navy Blue-M",
+     "costUsd": 41.29,
+     "stock": 13516
+    },
+    {
+     "id": "2407050727551628700",
+     "options": "Picture Color Navy Blue-L",
+     "costUsd": 41.29,
+     "stock": 12787
+    },
+    {
+     "id": "2407050727551628800",
+     "options": "Picture Color Navy Blue-XL",
+     "costUsd": 41.29,
+     "stock": 11746
+    },
+    {
+     "id": "2407050727551629000",
+     "options": "Picture Color Navy Blue-XXL",
+     "costUsd": 41.29,
+     "stock": 11185
+    },
+    {
+     "id": "2407050727551629100",
+     "options": "Picture Color Navy Blue-XXXL",
+     "costUsd": 41.29,
+     "stock": 13858
+    },
+    {
+     "id": "2407050727551629300",
+     "options": "Picture Color Navy Blue-XXXXL",
+     "costUsd": 41.29,
+     "stock": 12718
+    },
+    {
+     "id": "2407050727551629400",
+     "options": "Picture Color Navy Blue-5XL",
+     "costUsd": 41.29,
+     "stock": 10769
+    },
+    {
+     "id": "2407050727551629600",
+     "options": "Silver-XXS",
+     "costUsd": 41.29,
+     "stock": 12154
+    },
+    {
+     "id": "2407050727551629700",
+     "options": "Silver-XS",
+     "costUsd": 41.29,
+     "stock": 12734
+    },
+    {
+     "id": "2407050727551629900",
+     "options": "Silver-S",
+     "costUsd": 41.29,
+     "stock": 14204
+    },
+    {
+     "id": "2407050727561620000",
+     "options": "Silver-M",
+     "costUsd": 41.29,
+     "stock": 11419
+    },
+    {
+     "id": "2407050727561620200",
+     "options": "Silver-L",
+     "costUsd": 41.29,
+     "stock": 12931
+    },
+    {
+     "id": "2407050727561620400",
+     "options": "Silver-XL",
+     "costUsd": 41.29,
+     "stock": 13788
+    },
+    {
+     "id": "2407050727561620500",
+     "options": "Silver-XXL",
+     "costUsd": 41.29,
+     "stock": 10082
+    },
+    {
+     "id": "2407050727561620700",
+     "options": "Silver-XXXL",
+     "costUsd": 41.29,
+     "stock": 14202
+    },
+    {
+     "id": "2407050727561620800",
+     "options": "Silver-XXXXL",
+     "costUsd": 41.29,
+     "stock": 14821
+    },
+    {
+     "id": "2407050727561621000",
+     "options": "Silver-5XL",
+     "costUsd": 41.29,
+     "stock": 13553
+    },
+    {
+     "id": "2407240829431606000",
+     "options": "Coffee-5XL",
+     "costUsd": 41.29,
+     "stock": 12377
+    },
+    {
+     "id": "2407240829431609300",
+     "options": "Coffee-L",
+     "costUsd": 41.29,
+     "stock": 11104
+    },
+    {
+     "id": "2407240829431609500",
+     "options": "Coffee-M",
+     "costUsd": 41.29,
+     "stock": 11907
+    },
+    {
+     "id": "2407240829431609600",
+     "options": "Coffee-S",
+     "costUsd": 41.29,
+     "stock": 10803
+    },
+    {
+     "id": "2407240829431609800",
+     "options": "Coffee-XL",
+     "costUsd": 41.29,
+     "stock": 12933
+    },
+    {
+     "id": "2407240829431609900",
+     "options": "Coffee-XS",
+     "costUsd": 41.29,
+     "stock": 12499
+    },
+    {
+     "id": "2407240829441600100",
+     "options": "Coffee-XXL",
+     "costUsd": 41.29,
+     "stock": 10987
+    },
+    {
+     "id": "2407240829441600200",
+     "options": "Coffee-XXS",
+     "costUsd": 41.29,
+     "stock": 11604
+    },
+    {
+     "id": "2407240829441600400",
+     "options": "Coffee-XXXL",
+     "costUsd": 41.29,
+     "stock": 14561
+    },
+    {
+     "id": "2407240829441600600",
+     "options": "Coffee-XXXXL",
+     "costUsd": 41.29,
+     "stock": 13778
+    },
+    {
+     "id": "2510011111201626700",
+     "options": "HSTZ28-L",
+     "costUsd": 29.67,
+     "stock": 9461
+    },
+    {
+     "id": "2510011111201626900",
+     "options": "HSTZ28-M",
+     "costUsd": 29.67,
+     "stock": 7217
+    },
+    {
+     "id": "2510011111201627000",
+     "options": "HSTZ28-S",
+     "costUsd": 29.67,
+     "stock": 7686
+    },
+    {
+     "id": "2510011111201627200",
+     "options": "HSTZ28-XL",
+     "costUsd": 29.67,
+     "stock": 5936
+    },
+    {
+     "id": "2510011111201627300",
+     "options": "HSTZ28-XXL",
+     "costUsd": 29.67,
+     "stock": 6762
+    },
+    {
+     "id": "2510011111201627500",
+     "options": "HSTZ28-XXXL",
+     "costUsd": 29.67,
+     "stock": 9166
+    },
+    {
+     "id": "2510011111201627600",
+     "options": "HSTZ28-XXXXL",
+     "costUsd": 29.67,
+     "stock": 7371
+    },
+    {
+     "id": "2510240603541603400",
+     "options": "HSTZ15-L",
+     "costUsd": 29.62,
+     "stock": 7972
+    },
+    {
+     "id": "2510240603541603900",
+     "options": "HSTZ15-M",
+     "costUsd": 29.62,
+     "stock": 7847
+    },
+    {
+     "id": "2510240603541604100",
+     "options": "HSTZ15-S",
+     "costUsd": 29.62,
+     "stock": 5790
+    },
+    {
+     "id": "2510240603541604300",
+     "options": "HSTZ15-XL",
+     "costUsd": 29.62,
+     "stock": 5409
+    },
+    {
+     "id": "2510240603541604500",
+     "options": "HSTZ15-XXL",
+     "costUsd": 29.62,
+     "stock": 7918
+    },
+    {
+     "id": "2510240603541605100",
+     "options": "HSTZ15-XXXL",
+     "costUsd": 29.62,
+     "stock": 7589
+    },
+    {
+     "id": "2510240603541605300",
+     "options": "HSTZ15-XXXXL",
+     "costUsd": 29.62,
+     "stock": 8379
+    }
+   ],
+   "siteId": "cj-2407050727541629500",
+   "title": "Men's Slim Fit Business Banquet Suit",
+   "department": "men",
+   "collection": "mens-formal",
+   "sub": "wedding-suits"
+  },
+  {
+   "id": "2101866882013458434",
+   "ok": true,
+   "name": "Black Beaded Trim Double-Breasted Tuxedo Suit Set",
+   "saleStatus": "3",
+   "minCostUsd": 74.63,
+   "maxCostUsd": 74.63,
+   "totalStock": 47656,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2101866882126704642",
+     "options": "Black-S",
+     "costUsd": 74.63,
+     "stock": 9708
+    },
+    {
+     "id": "2101866882126704643",
+     "options": "Black-M",
+     "costUsd": 74.63,
+     "stock": 8681
+    },
+    {
+     "id": "2101866882126704644",
+     "options": "Black-L",
+     "costUsd": 74.63,
+     "stock": 8027
+    },
+    {
+     "id": "2101866882126704645",
+     "options": "Black-XL",
+     "costUsd": 74.63,
+     "stock": 7261
+    },
+    {
+     "id": "2101866882126704646",
+     "options": "Black-2XL",
+     "costUsd": 74.63,
+     "stock": 7975
+    },
+    {
+     "id": "2101866882126704647",
+     "options": "Black-3XL",
+     "costUsd": 74.63,
+     "stock": 6004
+    }
+   ],
+   "siteId": "cj-2101866882013458434",
+   "title": "Black Beaded Trim Double-Breasted Tuxedo Suit Set",
+   "department": "men",
+   "collection": "mens-formal",
+   "sub": "wedding-suits"
+  },
+  {
+   "id": "1792836037266382848",
+   "ok": true,
+   "name": "Men's Suit Set Fashionable Casual Suit Wedding Dress Two-piece Set",
+   "saleStatus": "3",
+   "minCostUsd": 66.37,
+   "maxCostUsd": 66.37,
+   "totalStock": 87938,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 30.93,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1792836037350268928",
+     "options": "Suit-XXXXL",
+     "costUsd": 66.37,
+     "stock": 11008
+    },
+    {
+     "id": "1792836037413183488",
+     "options": "Suit-S Code",
+     "costUsd": 66.37,
+     "stock": 13318
+    },
+    {
+     "id": "1792836037480292352",
+     "options": "Suit-M",
+     "costUsd": 66.37,
+     "stock": 14031
+    },
+    {
+     "id": "1792836037543206912",
+     "options": "Suit-L",
+     "costUsd": 66.37,
+     "stock": 13453
+    },
+    {
+     "id": "1792836037606121472",
+     "options": "Suit-XL",
+     "costUsd": 66.37,
+     "stock": 13568
+    },
+    {
+     "id": "1792836037681618944",
+     "options": "Suit-2XL",
+     "costUsd": 66.37,
+     "stock": 11496
+    },
+    {
+     "id": "1792836037748727808",
+     "options": "Suit-3XL",
+     "costUsd": 66.37,
+     "stock": 11064
+    }
+   ],
+   "siteId": "cj-1792836037266382848",
+   "title": "Men's Suit Set Fashionable Casual Suit Wedding Dress Two-piece Set",
+   "department": "men",
+   "collection": "mens-formal",
+   "sub": "wedding-suits"
+  },
+  {
+   "id": "FFA3066D-0E97-4593-98ED-A8EE797FF982",
+   "ok": true,
+   "name": "steel mesh belt men's watch",
+   "saleStatus": "3",
+   "minCostUsd": 11.08,
+   "maxCostUsd": 11.08,
+   "totalStock": null,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 6.66,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "369F36CD-68DE-4CB4-801F-94991E7743B9",
+     "options": "Silver",
+     "costUsd": 11.08,
+     "stock": null
+    },
+    {
+     "id": "7199E41F-2C5B-4825-8654-8B9B96EBBDC2",
+     "options": "Black",
+     "costUsd": 11.08,
+     "stock": null
+    },
+    {
+     "id": "953CA867-DB75-4895-B871-F0B91BE0B5AC",
+     "options": "Gold",
+     "costUsd": 11.08,
+     "stock": null
+    },
+    {
+     "id": "C109B448-6815-47BB-AF1D-37AEC13C86D4",
+     "options": "Blue",
+     "costUsd": 11.08,
+     "stock": null
+    },
+    {
+     "id": "E56C37EF-B4E8-4953-B291-917404770DC0",
+     "options": "Black rose",
+     "costUsd": 11.08,
+     "stock": null
+    }
+   ],
+   "siteId": "cj-FFA3066D-0E97-4593-98ED-A8EE797FF982",
+   "title": "steel mesh belt men's watch",
+   "department": "women",
+   "collection": "jewelry-and-watches",
+   "sub": "womens-watches"
+  },
+  {
+   "id": "66020A8E-8CE8-4170-8254-F6B85F8714E6",
+   "ok": true,
+   "name": "NAVIFORCE Steel Band Quartz Watch",
+   "saleStatus": "3",
+   "minCostUsd": 22.89,
+   "maxCostUsd": 22.89,
+   "totalStock": null,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 7.4,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0C461B85-D69A-428A-88A4-18FAC43F4923",
+     "options": "Blue",
+     "costUsd": 22.89,
+     "stock": null
+    },
+    {
+     "id": "44D88A05-1BB5-47CF-BC26-67B7BF4B7C68",
+     "options": "Brown",
+     "costUsd": 22.89,
+     "stock": null
+    },
+    {
+     "id": "7202DF33-6182-427F-8C0A-4CF33254E340",
+     "options": "Black",
+     "costUsd": 22.89,
+     "stock": null
+    },
+    {
+     "id": "9AF88F46-29B8-4E3B-BB1A-951EB155417A",
+     "options": "Silver",
+     "costUsd": 22.89,
+     "stock": null
+    },
+    {
+     "id": "AC9C7F6C-8679-4FE1-906C-95EACCC9239A",
+     "options": "Gold",
+     "costUsd": 22.89,
+     "stock": null
+    }
+   ],
+   "siteId": "cj-66020A8E-8CE8-4170-8254-F6B85F8714E6",
+   "title": "NAVIFORCE Steel Band Quartz Watch",
+   "department": "men",
+   "collection": "jewelry-and-watches",
+   "sub": "mens-watches"
+  },
+  {
+   "id": "1415156884201148416",
+   "ok": true,
+   "name": "Men's Business Watch Waterproof Watch Stainless Steel Strap",
+   "saleStatus": "3",
+   "minCostUsd": 36.88,
+   "maxCostUsd": 36.88,
+   "totalStock": 155260,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 8.12,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1415156885572685824",
+     "options": "Steel belt gold and white",
+     "costUsd": 36.88,
+     "stock": 33717
+    },
+    {
+     "id": "1415156885581074432",
+     "options": "Steel belt golden green",
+     "costUsd": 36.88,
+     "stock": 28389
+    },
+    {
+     "id": "1415156885589463040",
+     "options": "Steel belt rose blue",
+     "costUsd": 36.88,
+     "stock": 27615
+    },
+    {
+     "id": "1415156885597851648",
+     "options": "Steel Band Blue",
+     "costUsd": 36.88,
+     "stock": 31802
+    },
+    {
+     "id": "1415156885606240256",
+     "options": "Steel belt black",
+     "costUsd": 36.88,
+     "stock": 33737
+    }
+   ],
+   "siteId": "cj-1415156884201148416",
+   "title": "Men's Business Watch Waterproof Watch Stainless Steel Strap",
+   "department": "men",
+   "collection": "jewelry-and-watches",
+   "sub": "mens-watches"
+  },
+  {
+   "id": "2102137006589665281",
+   "ok": true,
+   "name": "Womens Pointed Closed Toe Heels Stiletto Slingback High Heel For Women Dressy Pumps For Wedding And Office Work Or Going Out",
+   "saleStatus": "3",
+   "minCostUsd": 65.99,
+   "maxCostUsd": 65.99,
+   "totalStock": 200,
+   "shipping": null,
+   "variants": [
+    {
+     "id": "2102137006870683649",
+     "options": "White Pu",
+     "costUsd": 65.99,
+     "stock": 50
+    },
+    {
+     "id": "2102137006870683650",
+     "options": "Black Suede",
+     "costUsd": 65.99,
+     "stock": 50
+    },
+    {
+     "id": "2102137006870683651",
+     "options": "Brown",
+     "costUsd": 65.99,
+     "stock": 50
+    },
+    {
+     "id": "2102137006870683652",
+     "options": "Red Patent",
+     "costUsd": 65.99,
+     "stock": 50
+    }
+   ],
+   "siteId": "cj-2102137006589665281",
+   "title": "Womens Pointed Closed Toe Heels Stiletto Slingback High Heel For Women Dressy Pumps For Wedding And Office Work Or Going Out",
+   "department": "women",
+   "collection": "womens-shoes",
+   "sub": "pumps"
+  },
+  {
+   "id": "2501020804421629300",
+   "ok": true,
+   "name": "Diamond Steel Strap Waterproof Quartz Watch",
+   "saleStatus": "3",
+   "minCostUsd": 15.67,
+   "maxCostUsd": 15.67,
+   "totalStock": null,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 5.28,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2501020804421629500",
+     "options": "11S9848L02 Watch",
+     "costUsd": 15.67,
+     "stock": null
+    }
+   ],
+   "siteId": "cj-2501020804421629300",
+   "title": "Diamond Steel Strap Waterproof Quartz Watch",
+   "department": "women",
+   "collection": "jewelry-and-watches",
+   "sub": "womens-watches"
+  },
+  {
+   "id": "6476CAC2-6707-49B4-ADC9-6FC0204E5B75",
+   "ok": true,
+   "name": "Quartz watch with steel belt for ladies",
+   "saleStatus": "3",
+   "minCostUsd": 28.68,
+   "maxCostUsd": 28.68,
+   "totalStock": null,
+   "shipping": {
+    "name": "CJPacket Super Pure Electricity",
+    "priceUsd": 7.58,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2CD4E7F2-BF87-44B6-BD0E-E54DA5BAB5D0",
+     "options": "Gold white female",
+     "costUsd": 28.68,
+     "stock": null
+    },
+    {
+     "id": "6152298F-226F-4399-8E07-2C1EB5AF914F",
+     "options": "Gold black male",
+     "costUsd": 28.68,
+     "stock": null
+    },
+    {
+     "id": "6F286D36-90B4-435D-8C55-3DD81EE92C64",
+     "options": "White steel male",
+     "costUsd": 28.68,
+     "stock": null
+    },
+    {
+     "id": "82BBE457-4D52-42B7-BF1A-B5EEF2ADF25A",
+     "options": "Gold black female",
+     "costUsd": 28.68,
+     "stock": null
+    },
+    {
+     "id": "A40FF8DA-CBD5-4E49-AF42-E4698379BA0F",
+     "options": "Black steel female",
+     "costUsd": 28.68,
+     "stock": null
+    },
+    {
+     "id": "BE83649B-3041-4480-B16F-5A6CD2443F0A",
+     "options": "Black steel male",
+     "costUsd": 28.68,
+     "stock": null
+    },
+    {
+     "id": "EFEA7B02-DCB6-408B-A7B9-6EEDFB4181FC",
+     "options": "White steel female",
+     "costUsd": 28.68,
+     "stock": null
+    },
+    {
+     "id": "F5407909-FDAB-4F80-9F42-7B2DF2EADD55",
+     "options": "Gold white male",
+     "costUsd": 28.68,
+     "stock": null
+    }
+   ],
+   "siteId": "cj-6476CAC2-6707-49B4-ADC9-6FC0204E5B75",
+   "title": "Quartz watch with steel belt for ladies",
+   "department": "women",
+   "collection": "jewelry-and-watches",
+   "sub": "womens-watches"
+  }
+ ]
+}

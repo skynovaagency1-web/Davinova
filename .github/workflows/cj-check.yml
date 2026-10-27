@@ -35,6 +35,7 @@ jobs:
           RETRY: ${{ fromJSON(steps.request.outputs.json).retry || '' }}
           UNPRICED: ${{ fromJSON(steps.request.outputs.json).unpriced || '' }}
           OUT: ${{ fromJSON(steps.request.outputs.json).out || '' }}
+          IDS_FILE: ${{ fromJSON(steps.request.outputs.json).ids_file || '' }}
       - name: Commit report
         run: |
           git config user.name "davinova-bot"
