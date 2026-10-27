@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [feature/3d-fashion-storefront]
-    paths: [scripts/review-photos.json, scripts/review_sheets.py]
+    paths: [scripts/review-photos.json, scripts/review_sheets.py, scripts/review-urls.json, scripts/review_urls.py]
 
 permissions:
   contents: write
@@ -19,6 +19,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install pillow
       - run: python scripts/review_sheets.py
+        env:
+          CATALOG_URL: https://davinova.com/api/catalog?all=1
+      - run: '[ ! -f scripts/review-urls.json ] || python scripts/review_urls.py'
       - name: Push sheets
         run: |
           cd review

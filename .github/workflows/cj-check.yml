@@ -3,7 +3,7 @@ name: Check products against CJ
 on:
   # Editing scripts/cj-check.json on this branch starts a run (manual runs need this file on the default branch).
   push:
-    branches: [feature/3d-fashion-storefront]
+    branches-ignore: [main]
     paths: [scripts/cj-check.json]
   workflow_dispatch:
     inputs:

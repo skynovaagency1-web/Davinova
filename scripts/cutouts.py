@@ -23,6 +23,8 @@ import numpy as np
 from PIL import Image
 from rembg import new_session, remove
 
+from watch_upright import is_watch, upright
+
 CATALOG_URL = os.environ.get('CATALOG_URL', 'https://feature-3d-fashion-storefron.davinova.pages.dev/api/catalog?all=1')
 HERO_URL = 'https://images.unsplash.com/photo-1568251188392-ae32f898cb3b?auto=format&fit=crop&w=1400&q=85'
 FACE_MODEL = os.path.join(os.path.dirname(__file__), 'models', 'face_detection_yunet_2023mar.onnx')
@@ -289,14 +291,16 @@ def main() -> int:
                     reasons.append(f'{index}: {problem}')
                     continue
                 chosen = index
-                finish(cutout).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
+                # Owner (2026-10-27): every watch stands upright, dial facing the shopper.
+                finish(upright(cutout, pid) if is_watch(product) else cutout).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
                 break
             except Exception as error:
                 reasons.append(f'{index}: failed {error}')
         if repick and not hair:
             try:
                 image = open_photo(images[pick]['url'])
-                finish(remove(image, session=object_session if kind == 'object' else session)).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
+                cutout = remove(image, session=object_session if kind == 'object' else session)
+                finish(upright(cutout, pid) if is_watch(product) else cutout).save(os.path.join(OUT, f'{pid}.webp'), 'WEBP', quality=86, method=6)
                 chosen = pick
             except Exception as error:
                 reasons.append(f'{pick}: failed {error}')
