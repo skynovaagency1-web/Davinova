@@ -6,6 +6,7 @@ import { MEN_FORMAL } from '../../lib/storeCollectionTaxonomy';
 import { WomenCard as ProductCard } from '../women/WomenCard';
 import { MEN_OCCASIONS, menOccasionPath } from './menFormal';
 import { isFullLook, useCutouts } from '../../lib/useCutouts';
+import { TRENDING_LOOKS } from '../../lib/trendingLooks';
 
 const inOccasion = (product: Product, occasion: (typeof MEN_OCCASIONS)[number]) =>
   product.storeSubcategory === occasion.sub || (product.storeCollection === MEN_FORMAL && product.collectionCategory === occasion.key);
@@ -15,7 +16,7 @@ export function MenTrending({ products }: { products: Product[] }) {
   const [tab, setTab] = useState('all');
   const cutoutFor = useCutouts();
   const groups = useMemo(() => {
-    const full = (product: Product) => isFullLook(cutoutFor(product.id), product.storeCollection);
+    const full = (product: Product) => TRENDING_LOOKS.has(product.id) && isFullLook(cutoutFor(product.id), product.storeCollection);
     const rank = (items: Product[]) => items.filter(full).sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.images.length - a.images.length);
     return MEN_OCCASIONS.map((occasion) => rank(products.filter((product) => inOccasion(product, occasion))));
   }, [products, cutoutFor]);

@@ -5,12 +5,13 @@ import type { Product } from '../../types/product';
 import { WomenCard } from './WomenCard';
 import { categoryPath, stockedGroups } from '../../lib/categories';
 import { isFullLook, useCutouts } from '../../lib/useCutouts';
+import { TRENDING_LOOKS } from '../../lib/trendingLooks';
 
-/** "Trending now": a ranked rail with occasion tabs. Only whole looks on a real model (owner's rule), featured first. */
+/** "Trending now": a ranked rail with occasion tabs. Only hand-checked whole looks on a real model (owner's rule), featured first. */
 export function TrendingRail({ products }: { products: Product[] }) {
   const [tab, setTab] = useState<string>('all');
   const cutoutFor = useCutouts();
-  const looks = useMemo(() => products.filter((product) => product.images[0]?.url && isFullLook(cutoutFor(product.id), product.storeCollection)), [products, cutoutFor]);
+  const looks = useMemo(() => products.filter((product) => product.images[0]?.url && TRENDING_LOOKS.has(product.id) && isFullLook(cutoutFor(product.id), product.storeCollection)), [products, cutoutFor]);
   const tabs = useMemo(() => [['all', 'All'] as const, ...stockedGroups(looks).slice(0, 4).map(({ group }) => [group.slug, group.label] as const)], [looks]);
   const list = useMemo(() => looks
     .filter((product) => tab === 'all' || product.storeCollection === tab)
