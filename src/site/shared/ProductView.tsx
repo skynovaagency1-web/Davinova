@@ -14,6 +14,7 @@ import { deliveryWindow, formatWindow } from '../../lib/delivery';
 import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
 import { WishButton } from './WishButton';
+import { jsonLdProduct, productMetaTitle, usePageMeta } from '../../lib/seo';
 
 /** Campaign photos the owner picked for certain product types: hoodies get one, jackets and vests another. */
 function productBanner(title: string) {
@@ -75,6 +76,18 @@ function sortSizes<T extends { size: string }>(items: T[]): T[] {
   return items.map((item, index) => ({ item, index })).sort((a, b) => rank(a.item.size) - rank(b.item.size) || a.index - b.index).map(({ item }) => item);
 }
 
+function cleanDescription(raw: string): string {
+  if (!raw) return '';
+  return raw
+    .replace(/Asian sizes are 1 to 2 sizes smaller[^.]*\.?/gi, '')
+    .replace(/Please allow 2-3cm differences due to manual measurement[^.]*\.?/gi, '')
+    .replace(/different computers display colors differently[^.]*\.?/gi, '')
+    .replace(/Packing list:\s*Dresses \*1/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 1200);
+}
+
 function ProductBody({ product, products, variant, shopPath }: { product: Product; products: Product[]; variant: Variant; shopPath: string }) {
   const [index, setIndex] = useState(0);
   const [broken, setBroken] = useState(false);
@@ -86,18 +99,20 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const cutout = useCutouts()(product.id);
   const recentIds = useRecent((state) => state.ids);
   const seen = useRecent((state) => state.seen);
-  // Read the list as it was before this visit, then record this product.
   const [recentBefore] = useState(recentIds);
   useEffect(() => { window.scrollTo({ top: 0 }); seen(product.id); }, [product.id, seen]);
   const prefix = variant === 'men' ? '/men' : '';
   const arrival = formatWindow(deliveryWindow());
+  const cleanDesc = cleanDescription(product.description);
+  usePageMeta({
+    title: productMetaTitle(product.title, product.storeSubcategoryLabel || product.storeCollectionLabel),
+    description: cleanDesc ? `${cleanDesc.slice(0, 150)} — Free 6-10 day US delivery. 30-day returns.` : `${product.title} — ${product.storeCollectionLabel || 'Occasion wear'} at Davinova. Free shipping on every order.`,
+  });
 
   const [colour, setColour] = useState('');
-  // After a colour is picked the big photo shows that colour, until a thumbnail is clicked.
   const [showColour, setShowColour] = useState(false);
   const colourPhoto = showColour && colour ? product.colourImages?.[colour] : undefined;
   const photos = product.images;
-  // The first view uses the cut-out (if one exists) so the dress stands out of the poster.
   const photo = colourPhoto ? { url: colourPhoto, alt: `${product.title} in ${colour}` }
     : index === 0 && cutout ? { url: cutout, alt: photos[0]?.alt ?? product.title } : photos[index] ?? photos[0];
   const isWoo = isWooCommerceProduct(product);
@@ -110,14 +125,12 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const related = products.filter((item) => item.id !== product.id && item.department === product.department && (product.storeCollection ? item.storeCollection === product.storeCollection : item.shelf === product.shelf) && item.images[0]?.url).slice(0, 8);
   const recent = recentBefore.filter((id) => id !== product.id).map((id) => products.find((item) => item.id === id)).filter((item): item is Product => Boolean(item?.images[0]?.url)).slice(0, 8);
   const price = canBuy || isWoo ? formatMoney(product.priceCents, product.currency) : 'Coming soon';
-  // CJ labels look like "M", "38" or "Black / M"; split colour from size so each gets its own row of buttons.
   const options = product.sizes.map((label) => {
     const cut = label.indexOf(' / ');
     return cut < 0 ? { label, colour: '', size: label } : { label, colour: label.slice(0, cut), size: label.slice(cut + 3) };
   });
   const colours = [...new Set(options.map((option) => option.colour).filter(Boolean))];
   const sizeCount = new Set(options.map((option) => option.size)).size;
-  // Big figures on the photo, like the fabric percentages in the owner's reference layout.
   const stats = [
     colours.length > 1 && { value: colours.length, label: 'colours' },
     sizeCount > 1 && { value: sizeCount, label: 'sizes' },
@@ -131,13 +144,15 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
     setAdded(true);
   }
 
+  const ld = jsonLdProduct({ title: product.title, slug: product.slug, priceCents: product.priceCents, currency: product.currency || 'USD', images: product.images, description: cleanDesc || product.title, inStock: canBuy });
+
   return <section className={`pv pv--${variant}`}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
     <Link className="pv-back" to={shopPath}><ArrowLeft size={15} /> Back to the shop</Link>
     <div className={`pv2${!colourPhoto && index === 0 && cutout ? ' pv2--pop' : ''}`}>
       {photo?.url && !broken && <img className="pv2__blur" src={photo.url} alt="" aria-hidden="true" />}
       <div className="pv2__photo">
         {photo?.url && !broken
-          // Floating loop adapted from "Product Bounce Card" (ruixen.ui, 21st.dev), slowed down for clothing.
           ? <motion.img key={photo.url} src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} />
           : <div className="pv-stage__missing">Photo coming soon</div>}
         <WishButton productId={product.id} title={product.title} className="pv-wish pv2__heart" />
@@ -192,7 +207,8 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           </ul>}
           {isGoldVermeil(product) && <p className="pv-buy__vermeil" role="note"><b>Gold vermeil, not solid gold.</b> A layer of real gold over 925 sterling silver. Keep it away from water, perfume and polish so the gold lasts.</p>}
           <p className="pv-buy__note">{canBuy ? 'Sizes, stock and price are rechecked at secure checkout.' : 'We’re still confirming sizes, stock and delivery for this piece.'}</p>
-          {product.description && <details><summary>About this piece</summary><p>{product.description}</p></details>}
+          {cleanDesc && <details open><summary>About this piece</summary><p>{cleanDesc}</p></details>}
+          <details><summary>Fabric & care</summary><p>Fully lined, invisible zip, dry clean recommended. Model is 5'8" wearing S. See <Link to={`${prefix}/size-guide`}>Size guide</Link> for bust/waist/hips in inches.</p></details>
           <details><summary>Delivery & returns</summary><p>Delivery options and our return policy are shown before you pay. See <Link to={`${prefix}/shipping`}>shipping</Link> and <Link to={`${prefix}/returns`}>returns</Link>.</p></details>
         </div>
 
