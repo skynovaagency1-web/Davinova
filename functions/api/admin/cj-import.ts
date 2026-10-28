@@ -146,11 +146,11 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
         'cj', 'cj', detail.id, null, detail.id, 0, collectionCategory, itemCostCents, 0, 0, 'USD',
         occasion, department, 'Not verified', 'Not verified', 'Not verified', 'Not verified', JSON.stringify(tags), 1, 0,
       ),
-      ...images.map((url, index) => env.DB.prepare(
+            ...images.map((url, index) => env.DB.prepare(
         'INSERT INTO product_images (id, product_id, url, alt, position, is_primary) VALUES (?,?,?,?,?,?)',
       ).bind(
         `cjimg-${detail.id}-${index + 1}`, productKey, url,
-                `${detail.name.slice(0, 120)} — ${index === 0 ? 'front view' : 'angle ' + (index + 1)} | Davinova`,
+        `${detail.name.slice(0, 120)} — ${index === 0 ? 'front view' : 'angle ' + (index + 1)} | Davinova`,
         index, index === 0 ? 1 : 0,
       )),
       ...detail.variants.map((variant, index) => {
