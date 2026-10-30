@@ -1,3 +1,4 @@
+import { cleanDescription } from './cleanDescription';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -192,7 +193,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           </ul>}
           {isGoldVermeil(product) && <p className="pv-buy__vermeil" role="note"><b>Gold vermeil, not solid gold.</b> A layer of real gold over 925 sterling silver. Keep it away from water, perfume and polish so the gold lasts.</p>}
           <p className="pv-buy__note">{canBuy ? 'Sizes, stock and price are rechecked at secure checkout.' : 'We’re still confirming sizes, stock and delivery for this piece.'}</p>
-          {product.description && <details><summary>About this piece</summary><p>{product.description}</p></details>}
+          {product.description && <details><summary>About this piece</summary><p>{cleanDescription(product.description)}</p></details>}
           <details><summary>Delivery & returns</summary><p>Delivery options and our return policy are shown before you pay. See <Link to={`${prefix}/shipping`}>shipping</Link> and <Link to={`${prefix}/returns`}>returns</Link>.</p></details>
         </div>
 
