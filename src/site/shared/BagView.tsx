@@ -9,9 +9,12 @@ import { useCart } from '../../store/cart';
 import { startCheckout } from './checkout';
 import { BUNDLE_TIERS, FREE_GIFT, computeOffer, type DiscountCode } from '../../lib/offers';
 import { useCutouts } from '../../lib/useCutouts';
+import { giftCardUse, isGiftCode, type GiftCardBalance } from '../../lib/giftCards';
 
 const CODE_KEY = 'davinova-code';
-function savedCode() { try { return sessionStorage.getItem(CODE_KEY) ?? ''; } catch { return ''; } }
+const GIFT_KEY = 'davinova-gift';
+function saved(key: string) { try { return sessionStorage.getItem(key) ?? ''; } catch { return ''; } }
+function remember(key: string, value: string) { try { if (value) sessionStorage.setItem(key, value); else sessionStorage.removeItem(key); } catch { /* private mode */ } }
 
 /** The bag is shared by both storefronts; the variant only changes its look and the "keep shopping" link. */
 export function BagView({ variant }: { variant: 'women' | 'men' }) {
@@ -21,7 +24,8 @@ export function BagView({ variant }: { variant: 'women' | 'men' }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const shopPath = variant === 'men' ? '/men/shop' : '/shop';
-  const [codeInput, setCodeInput] = useState(savedCode);
+  const [codeInput, setCodeInput] = useState(() => saved(CODE_KEY));
+  const [gift, setGift] = useState<GiftCardBalance | null>(null);
   const [code, setCode] = useState<DiscountCode | null>(null);
   const [codeError, setCodeError] = useState('');
   const cutoutFor = useCutouts();
@@ -32,6 +36,7 @@ export function BagView({ variant }: { variant: 'women' | 'men' }) {
   const subtotal = lines.reduce((sum, item) => sum + item.product.priceCents * item.quantity, 0);
   const pieces = lines.reduce((sum, item) => sum + item.quantity, 0);
   const offer = computeOffer(subtotal, pieces, code);
+  const giftCents = gift ? giftCardUse(gift.balanceCents, subtotal - offer.discountCents) : 0;
   const nextTier = [...BUNDLE_TIERS].reverse().find((tier) => pieces < tier.minItems);
   const currency = lines[0]?.product.currency;
 
@@ -45,25 +50,40 @@ export function BagView({ variant }: { variant: 'women' | 'men' }) {
     return pool.map((product, index) => ({ product, key: (index * 2654435761 + day * 97) % 1000003 })).sort((a, b) => a.key - b.key).slice(0, 4).map(({ product }) => product);
   }, [products, items, variant, cutoutFor]);
 
+  // One box for both: gift cards (DVG-…) are kept alongside a discount code, so both can be used together.
   async function applyCode(value: string) {
     const clean = value.trim();
     setCodeError('');
-    if (!clean) { setCode(null); try { sessionStorage.removeItem(CODE_KEY); } catch { /* private mode */ } return; }
+    if (!clean) { setCode(null); remember(CODE_KEY, ''); return; }
+    if (isGiftCode(clean)) {
+      const response = await fetch(`/api/gift-cards/balance?code=${encodeURIComponent(clean)}`).catch(() => null);
+      const data = await response?.json().catch(() => ({})) as { gift?: GiftCardBalance; error?: string } | undefined;
+      if (!response?.ok || !data?.gift) { setCodeError(data?.error || 'That gift card is not valid.'); return; }
+      setGift(data.gift);
+      remember(GIFT_KEY, data.gift.code);
+      setCodeInput(code?.code ?? '');
+      return;
+    }
     const response = await fetch(`/api/offers?code=${encodeURIComponent(clean)}`).catch(() => null);
     const data = await response?.json().catch(() => ({})) as { code?: DiscountCode; error?: string } | undefined;
     if (!response?.ok || !data?.code) { setCode(null); setCodeError(data?.error || 'That code is not valid.'); return; }
     setCode(data.code);
-    try { sessionStorage.setItem(CODE_KEY, data.code.code); } catch { /* private mode */ }
+    remember(CODE_KEY, data.code.code);
   }
+  const removeGift = () => { setGift(null); remember(GIFT_KEY, ''); };
+  useEffect(() => {
+    if (codeInput) void applyCode(codeInput);
+    const giftCode = saved(GIFT_KEY);
+    if (giftCode) void applyCode(giftCode);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { if (codeInput) void applyCode(codeInput); }, []);
+  }, []);
 
   async function checkout() {
     if (busy || lines.length === 0) return;
     setBusy(true);
     setError('');
     try {
-      await startCheckout(lines, offer.source === 'code' ? code?.code : '');
+      await startCheckout(lines, offer.source === 'code' ? code?.code : '', giftCents ? gift?.code : '');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Secure checkout could not be created.');
       setBusy(false);
@@ -104,12 +124,13 @@ export function BagView({ variant }: { variant: 'women' | 'men' }) {
           <aside className="bag__summary">
             <div><span>Subtotal</span><strong>{formatMoney(subtotal, currency)}</strong></div>
             {offer.discountCents > 0 && <div className="bag__save"><span>{offer.label}</span><strong>−{formatMoney(offer.discountCents, currency)}</strong></div>}
+            {giftCents > 0 && <div className="bag__save"><span>Gift card {gift!.code} <button type="button" className="bag__giftx" aria-label="Remove gift card" onClick={removeGift}><X size={12} /></button></span><strong>−{formatMoney(giftCents, currency)}</strong></div>}
             {offer.giftEligible && <div className="bag__save"><span><Gift size={14} /> Free gift: {FREE_GIFT.title}</span><strong>Free</strong></div>}
             <div><span>Shipping</span><span>At checkout</span></div>
-            {offer.discountCents > 0 && <div className="bag__total"><span>Total before shipping</span><strong>{formatMoney(subtotal - offer.discountCents, currency)}</strong></div>}
+            {offer.discountCents + giftCents > 0 && <div className="bag__total"><span>Total before shipping</span><strong>{formatMoney(subtotal - offer.discountCents - giftCents, currency)}</strong></div>}
             <form className="bag__code" onSubmit={(event) => { event.preventDefault(); void applyCode(codeInput); }}>
               <Tag size={14} />
-              <input value={codeInput} onChange={(event) => setCodeInput(event.target.value.toUpperCase())} placeholder="Discount code" aria-label="Discount code" maxLength={32} />
+              <input value={codeInput} onChange={(event) => setCodeInput(event.target.value.toUpperCase())} placeholder="Discount or gift card code" aria-label="Discount or gift card code" maxLength={32} />
               <button type="submit">Apply</button>
             </form>
             {codeError && <p className="bag__codeerr" role="alert">{codeError}</p>}

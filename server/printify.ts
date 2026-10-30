@@ -1,3 +1,4 @@
+import { rewardReferrer } from './giftCards';
 import { bundlePieces, CUSTOM_PRODUCTS, customProduct, type CustomColor, type CustomProduct, type CustomProductKey, type PrintableKey } from '../src/lib/customDesign';
 import { sendTransactionalEmail } from './email';
 
@@ -320,6 +321,7 @@ export async function syncPrintifyTracking(env: PrintifyEnv): Promise<void> {
         env.DB.prepare("UPDATE printify_orders SET status='shipped',tracking_number=?,tracking_url=?,error_message=NULL,next_retry_at=NULL,updated_at=datetime('now') WHERE order_id=?").bind(tracking, url, row.order_id),
         env.DB.prepare("UPDATE orders SET status='shipped',tracking_number=?,tracking_url=?,updated_at=datetime('now') WHERE id=?").bind(tracking, url, row.order_id),
       ]);
+      await rewardReferrer(env, row.order_id).catch((error) => console.error('Referral reward failed:', error instanceof Error ? error.message : error));
       await sendTransactionalEmail({
         to: row.email, subject: 'Your Davinova order ' + row.order_number + ' is on its way',
         html: '<div style="font-family:Arial,sans-serif;color:#262321;max-width:560px;margin:auto"><p style="letter-spacing:.16em;text-transform:uppercase;font-size:11px">DAVINOVA</p><h1 style="font-family:Georgia,serif;font-weight:normal">Your design is on its way.</h1><p>Order <strong>' + escapeHtml(row.order_number) + '</strong> has been printed and shipped.</p><p>Tracking number: <strong>' + escapeHtml(tracking) + '</strong></p><p><a href="' + escapeHtml(url) + '" style="display:inline-block;background:#262321;color:#fffaf5;text-decoration:none;padding:13px 18px">Track your delivery</a></p><p style="font-size:12px;color:#817872">Carrier updates can take a little time to appear.</p></div>',

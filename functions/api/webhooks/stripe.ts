@@ -1,6 +1,7 @@
 import { createApprovalToken } from '../../../server/auth';
 import type { CJEnv } from '../../../server/cj';
 import { sendTransactionalEmail } from '../../../server/email';
+import { activateGiftCard, applyGiftUse } from '../../../server/giftCards';
 
 type Env = CJEnv & {
   STRIPE_SECRET_KEY?: string;
@@ -320,6 +321,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       if (claim.state === 'duplicate') return reply({ received: true, duplicate: true });
       if (claim.state === 'busy') return reply({ error: 'Webhook event is already being processed; retry shortly.' }, 503);
       activeClaimToken = claim.token;
+      // A refunded gift card purchase switches the card off.
+      if (charge?.metadata?.gift_card_id) {
+        await env.DB.prepare("UPDATE gift_cards SET status='void', balance_cents=0 WHERE id=?").bind(charge.metadata.gift_card_id).run();
+      }
       if (orderId) {
         const full = charge?.refunded === true;
         await env.DB.batch([
@@ -349,6 +354,24 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const session = event.data?.object;
     if (!session?.id || session.mode !== 'payment') {
       return reply({ error: 'Webhook does not contain a valid payment Checkout Session.' }, 400);
+    }
+    if (session.metadata?.kind === 'gift_card') {
+      const giftId = String(session.metadata.gift_card_id || '');
+      const claim = await claimEvent(env, event.id);
+      if (claim.state === 'duplicate') return reply({ received: true, duplicate: true });
+      if (claim.state === 'busy') return reply({ error: 'Webhook event is already being processed; retry shortly.' }, 503);
+      activeClaimToken = claim.token;
+      let result: string = 'waiting';
+      if (event.type === 'checkout.session.async_payment_failed' || event.type === 'checkout.session.expired') {
+        await env.DB.prepare("UPDATE gift_cards SET status='void' WHERE id=? AND status='pending' AND payment_reference=?").bind(giftId, session.id).run();
+        result = 'void';
+      } else if (session.payment_status === 'paid' && session.status === 'complete' && String(session.currency || '').toLowerCase() === 'usd') {
+        result = await activateGiftCard(env, giftId, session.id, Number(session.amount_total), String(session.customer_details?.email || session.customer_email || '').trim().toLowerCase());
+        if (result === 'mismatch') console.error('Gift card payment did not match the stored card:', giftId);
+      }
+      await recordEvent(env, event, session, activeClaimToken!);
+      activeClaimToken = null;
+      return reply({ received: true, giftCard: result });
     }
     const orderId = String(session.metadata?.order_id || session.client_reference_id || '');
     if (!orderId) return reply({ error: 'Checkout Session has no order reference.' }, 400);
@@ -453,6 +476,13 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         crypto.randomUUID(), order.id,
         JSON.stringify({ checkoutSessionId: session.id, currency, amountTotal: paidTotal }),
       ).run();
+      // Take the gift card amount off the card now that payment is confirmed.
+      if (await applyGiftUse(env.DB, order.id) === 'short') {
+        await env.DB.batch([
+          env.DB.prepare("UPDATE orders SET status='needs_attention', updated_at=datetime('now') WHERE id=?").bind(order.id),
+          env.DB.prepare("INSERT INTO order_events (id, order_id, event_type, from_status, to_status, message, metadata_json) VALUES (?, ?, 'gift_card_short', 'pending_approval', 'needs_attention', 'The gift card used on this order no longer had enough balance. Check it before fulfilment.', '{}')").bind(crypto.randomUUID(), order.id),
+        ]);
+      }
     }
 
     // Claim the notification slot atomically: a partial unique index on

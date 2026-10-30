@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Eraser, ImagePlus, LoaderCircle, Lock, Plus, Trash2, Type, Undo2 } from 'lucide-react';
 import { CUSTOM_PRODUCTS, MAX_CUSTOM_QUANTITY, type CustomProduct, type CustomProductKey } from '../../lib/customDesign';
 import { formatMoney } from '../../lib/format';
+import { isGiftCode } from '../../lib/giftCards';
 
 /** Design-your-own: the customer picks a piece, adds a picture and/or text, sees it live, and pays. Printify prints it. */
 
@@ -439,7 +440,7 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
       setBusy('Opening secure checkout…');
       const response = await fetch('/api/custom/checkout', {
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ designId: savedBody.designId, size: orderSize, quantity, dept, ...(code.trim() ? { code: code.trim() } : {}) }),
+        body: JSON.stringify({ designId: savedBody.designId, size: orderSize, quantity, dept, ...(code.trim() ? { [isGiftCode(code) ? 'giftCode' : 'code']: code.trim() } : {}) }),
       });
       const result = await response.json().catch(() => ({})) as { url?: string; error?: string };
       if (!response.ok || !result.url?.startsWith('https://checkout.stripe.com/')) throw new Error(result.error || 'Secure checkout could not be opened.');
@@ -535,7 +536,7 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
             <div className="dm__qty"><button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="One less">−</button><span>{quantity}</span><button type="button" onClick={() => setQuantity(Math.min(MAX_CUSTOM_QUANTITY, quantity + 1))} aria-label="One more">+</button></div>
             <strong className="dm__price">{formatMoney(product.priceCents * quantity)}</strong>
           </div>
-          <input className="dm__code" type="text" placeholder="Promo code (optional)" value={code} maxLength={32} onChange={(event) => setCode(event.target.value.replace(/\s/g, ''))} aria-label="Promo code" />
+          <input className="dm__code" type="text" placeholder="Promo or gift card code (optional)" value={code} maxLength={32} onChange={(event) => setCode(event.target.value.replace(/\s/g, ''))} aria-label="Promo code" />
           <label className="dm__rights"><input type="checkbox" checked={rights} onChange={(event) => setRights(event.target.checked)} /> I own this picture or have the right to print it (no brand logos or other people’s artwork).</label>
           <button type="button" className="dm__cta" disabled={Boolean(busy) || status?.ready === false} onClick={() => void buy()}>
             {busy ? <><LoaderCircle size={16} className="viewer-spinner" /> {busy}</> : status?.ready === false ? 'Custom orders open very soon' : <><Lock size={15} /> Buy now · free delivery</>}
