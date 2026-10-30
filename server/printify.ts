@@ -1,4 +1,4 @@
-import { CUSTOM_PRODUCTS, customProduct, type CustomProduct, type CustomProductKey } from '../src/lib/customDesign';
+import { bundlePieces, CUSTOM_PRODUCTS, customProduct, type CustomColor, type CustomProduct, type CustomProductKey, type PrintableKey } from '../src/lib/customDesign';
 import { sendTransactionalEmail } from './email';
 
 /**
@@ -21,16 +21,20 @@ export interface PrintifyEnv {
 const API = 'https://api.printify.com/v1';
 
 /** Printify catalogue titles to look for, best first. PRINTIFY_BLUEPRINT_TEE etc. override them. */
-const BLUEPRINT_TITLES: Record<CustomProductKey, RegExp[]> = {
+const BLUEPRINT_TITLES: Record<PrintableKey, RegExp[]> = {
   tee: [/^unisex jersey short sleeve tee$/i, /jersey short sleeve tee/i],
   hoodie: [/^unisex heavy blend.{0,3} hooded sweatshirt$/i, /heavy blend.*hooded sweatshirt/i],
   tote: [/^cotton tote bag$/i, /^cotton tote$/i, /^tote bag$/i],
   mug: [/^ceramic mug,? \(?11oz\)?$/i, /^ceramic mug.*11\s?oz/i, /^accent coffee mug.*11\s?oz/i],
+  cap: [/^trucker caps$/i, /trucker cap/i],
+  joggers: [/^unisex sweatpants$/i, /heavy blend.*sweatpants/i],
 };
+/** Printify catalogue ids picked by hand (2026-10-28): OTTO Trucker Caps (printed, DTF) and Gildan Unisex Sweatpants (DTG). */
+const DEFAULT_BLUEPRINT: Partial<Record<PrintableKey, number>> = { cap: 1128, joggers: 1398 };
 
 interface CatalogVariant { id: number; color: string; size: string }
 export interface PrintifyCatalog {
-  productKey: CustomProductKey; blueprintId: number; printProviderId: number; title: string;
+  productKey: PrintableKey; blueprintId: number; printProviderId: number; title: string;
   variants: CatalogVariant[]; front: { width: number; height: number } | null;
 }
 interface ApiVariant { id: number; options?: Record<string, string>; placeholders?: { position: string; width: number; height: number }[] }
@@ -59,16 +63,31 @@ export function customSetupProblem(env: PrintifyEnv): string | null {
 
 function norm(value: string | undefined): string { return (value || '').trim().toLowerCase(); }
 
-function covers(variants: ApiVariant[], product: CustomProduct): CatalogVariant[] {
+/** Our colour name against Printify's: exact first, then a two-tone name that starts with it ("Black/White" for Black). */
+function colorScore(theirs: string | undefined, ours: string): number {
+  if (!theirs) return 1;
+  if (norm(theirs) === norm(ours)) return 2;
+  return norm(theirs).split('/')[0].trim() === norm(ours) ? 1 : 0;
+}
+
+/** Every colour a printable piece is sold in: its own, plus those of the bundles it is part of. */
+function colorsFor(key: PrintableKey): CustomColor[] {
+  const all = [...customProduct(key)!.colors, ...CUSTOM_PRODUCTS.filter((item) => item.parts?.includes(key)).flatMap((item) => item.colors)];
+  return all.filter((color, index) => all.findIndex((other) => norm(other.name) === norm(color.name)) === index);
+}
+
+function covers(variants: ApiVariant[], product: CustomProduct, colors: CustomColor[]): CatalogVariant[] {
   const found: CatalogVariant[] = [];
-  for (const color of product.colors) {
+  for (const color of colors) {
     for (const size of product.sizes.length ? product.sizes : ['']) {
-      const match = variants.find((variant) => {
+      let match: ApiVariant | undefined;
+      let score = 0;
+      for (const variant of variants) {
         const options = variant.options || {};
-        const colorOk = !options.color || norm(options.color) === norm(color.name);
-        const sizeOk = !size || norm(options.size) === norm(size);
-        return colorOk && sizeOk;
-      });
+        if (size && norm(options.size) !== norm(size)) continue;
+        const next = colorScore(options.color, color.name);
+        if (next > score) { match = variant; score = next; }
+      }
       if (match) found.push({ id: match.id, color: color.name, size });
     }
   }
@@ -76,18 +95,21 @@ function covers(variants: ApiVariant[], product: CustomProduct): CatalogVariant[
 }
 
 /** Finds the Printify blueprint, a print provider that offers every colour and size, and the variant ids; cached in D1. */
-export async function resolveCatalog(env: PrintifyEnv, key: CustomProductKey, refresh = false): Promise<PrintifyCatalog> {
+export async function resolveCatalog(env: PrintifyEnv, key: PrintableKey, refresh = false): Promise<PrintifyCatalog> {
+  const product = customProduct(key)!;
+  const colors = colorsFor(key);
   if (!refresh) {
-    const row = await env.DB.prepare('SELECT blueprint_id,print_provider_id,title,variants_json FROM printify_catalog WHERE product_key=?')
-      .bind(key).first<{ blueprint_id: number; print_provider_id: number; title: string; variants_json: string }>();
+    const row = await env.DB.prepare("SELECT blueprint_id,print_provider_id,title,variants_json,resolved_at < datetime('now','-6 hours') AS stale FROM printify_catalog WHERE product_key=?")
+      .bind(key).first<{ blueprint_id: number; print_provider_id: number; title: string; variants_json: string; stale: number }>();
     if (row) {
       const stored = JSON.parse(row.variants_json) as { variants: CatalogVariant[]; front: PrintifyCatalog['front'] };
-      return { productKey: key, blueprintId: row.blueprint_id, printProviderId: row.print_provider_id, title: row.title, variants: stored.variants, front: stored.front };
+      // A colour added since the last lookup (like the jogging-set colours) triggers a fresh lookup, at most every 6 hours.
+      const missing = colors.some((color) => !stored.variants.some((variant) => norm(variant.color) === norm(color.name)));
+      if (!missing || !row.stale) return { productKey: key, blueprintId: row.blueprint_id, printProviderId: row.print_provider_id, title: row.title, variants: stored.variants, front: stored.front };
     }
   }
-  const product = customProduct(key)!;
-  const wanted = product.colors.length * Math.max(1, product.sizes.length);
-  const overrideBlueprint = Number(env['PRINTIFY_BLUEPRINT_' + key.toUpperCase()] || 0);
+  const wanted = colors.length * Math.max(1, product.sizes.length);
+  const overrideBlueprint = Number(env['PRINTIFY_BLUEPRINT_' + key.toUpperCase()] || DEFAULT_BLUEPRINT[key] || 0);
   let blueprint: { id: number; title: string } | undefined;
   if (overrideBlueprint) {
     blueprint = await api<{ id: number; title: string }>(env, `/catalog/blueprints/${overrideBlueprint}.json`);
@@ -110,7 +132,7 @@ export async function resolveCatalog(env: PrintifyEnv, key: CustomProductKey, re
   for (const provider of providers.slice(0, 8)) {
     const data = await api<{ variants?: ApiVariant[] }>(env, `/catalog/blueprints/${blueprint.id}/print_providers/${provider.id}/variants.json`);
     const variants = data.variants || [];
-    const matched = covers(variants, product);
+    const matched = covers(variants, product, colors);
     if (!best || matched.length > best.variants.length) {
       const first = variants.find((variant) => variant.id === matched[0]?.id);
       const front = first?.placeholders?.find((placeholder) => placeholder.position === 'front');
@@ -129,6 +151,25 @@ export async function resolveCatalog(env: PrintifyEnv, key: CustomProductKey, re
 export function findVariant(catalog: PrintifyCatalog, color: string, size: string): CatalogVariant | undefined {
   const product = customProduct(catalog.productKey)!;
   return catalog.variants.find((variant) => norm(variant.color) === norm(color) && (!product.sizes.length || norm(variant.size) === norm(size)));
+}
+
+/** The Printify pieces behind one order line: itself, or each piece of a jogging set. */
+export function linePieces(productKey: CustomProductKey, size: string): { key: PrintableKey; size: string }[] | null {
+  const product = customProduct(productKey);
+  if (!product) return null;
+  if (product.parts) return bundlePieces(product, size);
+  return [{ key: productKey as PrintableKey, size }];
+}
+
+/** Checks every piece of a line is on offer; returns what is missing, or null. */
+export async function missingPiece(env: PrintifyEnv, productKey: CustomProductKey, color: string, size: string): Promise<string | null> {
+  const pieces = linePieces(productKey, size);
+  if (!pieces) return 'Pick a size for each piece.';
+  for (const piece of pieces) {
+    const catalog = await resolveCatalog(env, piece.key);
+    if (!findVariant(catalog, color, piece.size)) return `${customProduct(piece.key)!.name} in ${color} ${piece.size}`;
+  }
+  return null;
 }
 
 /** Cached print areas, so the design maker exports files at Printify's exact shape. */
@@ -163,8 +204,8 @@ export async function customApprovalPreview(env: PrintifyEnv, order: ApprovalOrd
   if (!problem) {
     try {
       for (const line of lines) {
-        const catalog = await resolveCatalog(env, line.product_key);
-        if (!findVariant(catalog, line.color, line.size)) { problem = `Printify does not offer ${line.product_title} in ${line.color} ${line.size}.`; break; }
+        const missing = await missingPiece(env, line.product_key, line.color, line.size);
+        if (missing) { problem = `Printify does not offer ${missing}.`; break; }
       }
     } catch (error) { problem = error instanceof Error ? error.message : 'Printify could not be reached.'; }
   }
@@ -204,10 +245,15 @@ export async function placePrintifyOrder(env: PrintifyEnv, order: ApprovalOrder,
     const [firstName, lastName] = splitName(address.name || '');
     const items = [];
     for (const line of lines) {
-      const catalog = await resolveCatalog(env, line.product_key);
-      const variant = findVariant(catalog, line.color, line.size);
-      if (!variant) throw new Error(`Printify does not offer ${line.product_title} in ${line.color} ${line.size}.`);
-      items.push({ print_provider_id: catalog.printProviderId, blueprint_id: catalog.blueprintId, variant_id: variant.id, print_areas: { front: designFileUrl(env, line.design_id, 'print') }, quantity: line.quantity, external_id: line.id });
+      const pieces = linePieces(line.product_key, line.size);
+      if (!pieces) throw new Error(`The sizes saved for ${line.product_title} could not be read.`);
+      // A jogging set is several Printify items with the same design; each keeps its own external id.
+      for (const [index, piece] of pieces.entries()) {
+        const catalog = await resolveCatalog(env, piece.key);
+        const variant = findVariant(catalog, line.color, piece.size);
+        if (!variant) throw new Error(`Printify does not offer ${customProduct(piece.key)!.name} in ${line.color} ${piece.size}.`);
+        items.push({ print_provider_id: catalog.printProviderId, blueprint_id: catalog.blueprintId, variant_id: variant.id, print_areas: { front: designFileUrl(env, line.design_id, 'print') }, quantity: line.quantity, external_id: pieces.length > 1 ? `${line.id}-${index + 1}` : line.id });
+      }
     }
     const shop = await shopId(env);
     const created = await api<{ id?: string }>(env, `/shops/${shop}/orders.json`, {

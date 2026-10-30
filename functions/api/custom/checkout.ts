@@ -1,5 +1,5 @@
-import { customProduct, MAX_CUSTOM_QUANTITY, ONE_SIZE } from '../../../src/lib/customDesign';
-import { customSetupProblem, designFileUrl, findVariant, resolveCatalog, type PrintifyEnv } from '../../../server/printify';
+import { bundlePieces, bundleSizeLabel, customProduct, MAX_CUSTOM_QUANTITY, ONE_SIZE } from '../../../src/lib/customDesign';
+import { customSetupProblem, designFileUrl, missingPiece, type PrintifyEnv } from '../../../server/printify';
 import { currentCustomer } from '../../../server/accounts';
 import { checkoutSettings, resolveCheckoutReturnOrigin, stripeConfiguration } from '../checkout';
 import { loadDiscountCode } from '../../../server/offers';
@@ -38,17 +38,18 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
   const product = customProduct(design?.product_key);
   if (!design || !product) return reply({ error: 'This design was not found. Please save it again.' }, 404);
   const size = product.sizes.length ? String(body.size || '') : ONE_SIZE;
-  if (product.sizes.length && !product.sizes.includes(size)) return reply({ error: 'Pick a size first.' }, 400);
+  if (product.parts ? !bundlePieces(product, size) : product.sizes.length && !product.sizes.includes(size)) return reply({ error: 'Pick a size first.' }, 400);
 
   try {
-    const catalog = await resolveCatalog(env, product.key);
-    if (!findVariant(catalog, design.color, size)) return reply({ error: `${product.name} in ${design.color} ${size} is not available right now.` }, 409);
+    const missing = await missingPiece(env, product.key, design.color, size);
+    if (missing) return reply({ error: `${missing} is not available right now.` }, 409);
   } catch (error) {
     console.error('Printify catalogue lookup failed:', error instanceof Error ? error.message : error);
     return reply({ error: 'Custom orders are paused for a moment. No payment was taken; please try again later.' }, 503);
   }
 
-  const title = `${product.name} · ${design.color}${product.sizes.length ? ' · ' + size : ''} (your design)`;
+  const sizeLabel = product.parts ? bundleSizeLabel(size) : size;
+  const title = `${product.name} · ${design.color}${product.sizes.length ? ' · ' + sizeLabel : ''} (your design)`;
   const subtotal = product.priceCents * quantity;
   const orderId = crypto.randomUUID();
   const orderNumber = `DV-${crypto.randomUUID().replaceAll('-', '').slice(0, 12).toUpperCase()}`;
