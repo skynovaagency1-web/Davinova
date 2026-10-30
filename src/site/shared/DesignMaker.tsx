@@ -8,6 +8,10 @@ import { formatMoney } from '../../lib/format';
 
 type Box = { x: number; y: number; w: number; h: number };
 /** Each mockup is drawn in a 400 x 440 box; `print` is where the design sits, before it is fitted to Printify's exact shape. */
+const hoodieSvg = (fill: string, line: string) => `<path d="M140 52 Q200 6 260 52 L330 80 Q358 150 374 396 L334 404 L304 196 L304 420 L96 420 L96 196 L66 404 L26 396 Q42 150 70 80 Z" fill="${fill}" stroke="${line}" stroke-width="2" stroke-linejoin="round"/><path d="M146 54 Q200 120 254 54 Q234 20 200 18 Q166 20 146 54 Z" fill="${fill}" stroke="${line}" stroke-width="2"/><path d="M186 104 L182 150 M214 104 L218 150" stroke="${line}" stroke-width="2" fill="none"/><path d="M150 330 L250 330 L262 392 L138 392 Z" fill="none" stroke="${line}" stroke-width="1.6" opacity=".7"/>`;
+const joggersSvg = (fill: string, line: string) => `<rect x="118" y="40" width="164" height="30" rx="8" fill="${fill}" stroke="${line}" stroke-width="2"/><path d="M190 56 Q196 76 186 88 M210 56 Q204 76 214 88" stroke="${line}" stroke-width="1.6" fill="none"/><path d="M120 66 L280 66 L300 392 Q300 404 288 404 L222 404 Q212 404 212 394 L200 176 L188 394 Q188 404 178 404 L112 404 Q100 404 100 392 Z" fill="${fill}" stroke="${line}" stroke-width="2" stroke-linejoin="round"/><path d="M104 380 L184 380 M216 380 L296 380" stroke="${line}" stroke-width="1.6" opacity=".7"/>`;
+const setSvg = (fill: string, line: string) => `<g transform="translate(-8 70) scale(.62)">${hoodieSvg(fill, line)}</g><g transform="translate(196 92) scale(.56)">${joggersSvg(fill, line)}</g>`;
+
 const MOCKUPS: Record<CustomProductKey, { print: Box; draw: (fill: string, line: string) => string }> = {
   tee: {
     print: { x: 135, y: 118, w: 130, h: 156 },
@@ -15,7 +19,7 @@ const MOCKUPS: Record<CustomProductKey, { print: Box; draw: (fill: string, line:
   },
   hoodie: {
     print: { x: 140, y: 160, w: 120, h: 120 },
-    draw: (fill, line) => `<path d="M140 52 Q200 6 260 52 L330 80 Q358 150 374 396 L334 404 L304 196 L304 420 L96 420 L96 196 L66 404 L26 396 Q42 150 70 80 Z" fill="${fill}" stroke="${line}" stroke-width="2" stroke-linejoin="round"/><path d="M146 54 Q200 120 254 54 Q234 20 200 18 Q166 20 146 54 Z" fill="${fill}" stroke="${line}" stroke-width="2"/><path d="M186 104 L182 150 M214 104 L218 150" stroke="${line}" stroke-width="2" fill="none"/><path d="M150 330 L250 330 L262 392 L138 392 Z" fill="none" stroke="${line}" stroke-width="1.6" opacity=".7"/>`,
+    draw: (fill, line) => hoodieSvg(fill, line),
   },
   tote: {
     print: { x: 120, y: 190, w: 160, h: 160 },
@@ -24,6 +28,22 @@ const MOCKUPS: Record<CustomProductKey, { print: Box; draw: (fill: string, line:
   mug: {
     print: { x: 96, y: 180, w: 186, h: 87 },
     draw: (fill, line) => `<path d="M290 170 Q360 170 360 240 Q360 310 290 310" fill="none" stroke="${line}" stroke-width="22" stroke-linecap="round"/><path d="M290 170 Q360 170 360 240 Q360 310 290 310" fill="none" stroke="${fill}" stroke-width="17" stroke-linecap="round"/><path d="M80 110 L300 110 L300 360 Q300 384 276 384 L104 384 Q80 384 80 360 Z" fill="${fill}" stroke="${line}" stroke-width="2"/><ellipse cx="190" cy="110" rx="110" ry="14" fill="${fill}" stroke="${line}" stroke-width="2"/>`,
+  },
+  cap: {
+    print: { x: 128, y: 150, w: 144, h: 74 },
+    draw: (fill, line) => `<path d="M64 262 Q60 112 200 100 Q340 112 336 262 Z" fill="${fill}" stroke="${line}" stroke-width="2" stroke-linejoin="round"/><path d="M200 100 L200 262 M130 112 Q112 180 118 262 M270 112 Q288 180 282 262" stroke="${line}" stroke-width="1.4" fill="none" opacity=".6"/><circle cx="200" cy="102" r="9" fill="${fill}" stroke="${line}" stroke-width="2"/><path d="M52 262 Q200 236 348 262 Q376 300 320 318 Q200 292 80 318 Q24 300 52 262 Z" fill="${fill}" stroke="${line}" stroke-width="2" stroke-linejoin="round"/>`,
+  },
+  joggers: {
+    print: { x: 124, y: 104, w: 62, h: 124 },
+    draw: (fill, line) => joggersSvg(fill, line),
+  },
+  set: {
+    print: { x: 79, y: 169, w: 74, h: 74 },
+    draw: (fill, line) => setSvg(fill, line),
+  },
+  couple: {
+    print: { x: 79, y: 169, w: 74, h: 74 },
+    draw: (fill, line) => `${setSvg(fill, line)}<g font-family="Archivo, sans-serif" font-weight="800"><circle cx="352" cy="58" r="30" fill="${line}"/><text x="352" y="67" text-anchor="middle" font-size="26" fill="#fff">×2</text></g>`,
   },
 };
 
@@ -215,6 +235,8 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
   const [colorName, setColorName] = useState(product.colors[0].name);
   const color = product.colors.find((item) => item.name === colorName) ?? product.colors[0];
   const [size, setSize] = useState('M');
+  // Jogging sets: one size per piece and person, stored as "M/L" (top/bottom), people joined by "+".
+  const [pieceSizes, setPieceSizes] = useState<string[]>(['M', 'M', 'M', 'M']);
   const [quantity, setQuantity] = useState(1);
   const [image, setImage] = useState<ImageLayer | null>(null);
   const [texts, setTexts] = useState<TextLayer[]>([{ value: '', font: 'serif', color: product.colors[0].ink, size: 0.12, x: 0.5, y: 0.5, effect: 'plain', accent: '#C8A15A', curve: 0, spacing: 0, align: 'center', rotate: 0 }]);
@@ -260,7 +282,10 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
     void loadAll();
   }, []);
 
-  const area = status?.printAreas[productKey] ?? product.print;
+  const area = status?.printAreas[product.parts?.[0] ?? productKey] ?? product.print;
+  const orderSize = product.parts
+    ? Array.from({ length: product.people ?? 1 }, (_, person) => product.parts!.map((_, index) => pieceSizes[person * product.parts!.length + index]).join('/')).join('+')
+    : size;
   const box = useMemo(() => fittedBox(product, area), [product, area]);
   const dark = isDark(color.hex);
 
@@ -414,7 +439,7 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
       setBusy('Opening secure checkout…');
       const response = await fetch('/api/custom/checkout', {
         method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ designId: savedBody.designId, size, quantity, dept, ...(code.trim() ? { code: code.trim() } : {}) }),
+        body: JSON.stringify({ designId: savedBody.designId, size: orderSize, quantity, dept, ...(code.trim() ? { code: code.trim() } : {}) }),
       });
       const result = await response.json().catch(() => ({})) as { url?: string; error?: string };
       if (!response.ok || !result.url?.startsWith('https://checkout.stripe.com/')) throw new Error(result.error || 'Secure checkout could not be opened.');
@@ -451,7 +476,7 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
         <fieldset className="dm__group">
           <legend>1 · Piece</legend>
           <div className="dm__pieces">{CUSTOM_PRODUCTS.map((item) => <button key={item.key} type="button" className={item.key === productKey ? 'is-on' : ''} onClick={() => pickProduct(item.key)}>
-            <b>{item.key[0].toUpperCase() + item.key.slice(1)}</b><span>{formatMoney(item.priceCents)}</span>
+            <b>{item.label}</b><span>{formatMoney(item.priceCents)}</span>
           </button>)}</div>
           <p className="dm__note">{product.line}</p>
         </fieldset>
@@ -459,7 +484,13 @@ export function DesignMaker({ dept }: { dept: 'women' | 'men' }) {
         <fieldset className="dm__group">
           <legend>2 · Colour{product.sizes.length ? ' & size' : ''}</legend>
           <div className="dm__swatches">{product.colors.map((item) => <button key={item.name} type="button" title={item.name} aria-label={item.name} className={item.name === color.name ? 'is-on' : ''} style={{ background: item.hex }} onClick={() => pickColor(item.name)} />)}<span>{color.name}</span></div>
-          {product.sizes.length > 0 && <div className="dm__sizes">{product.sizes.map((item) => <button key={item} type="button" className={item === size ? 'is-on' : ''} onClick={() => setSize(item)}>{item}</button>)}</div>}
+          {product.parts && Array.from({ length: product.people ?? 1 }, (_, person) => product.parts!.map((part, index) => {
+            const slot = person * product.parts!.length + index;
+            return <div key={slot} className="dm__sizerow"><span className="dm__sublabel">{(product.people ?? 1) > 1 ? `${person ? 'Partner' : 'You'} · ` : ''}{part === 'hoodie' ? 'Hoodie size' : 'Joggers size'}</span>
+              <div className="dm__sizes">{product.sizes.map((item) => <button key={item} type="button" className={item === pieceSizes[slot] ? 'is-on' : ''} onClick={() => setPieceSizes((list) => list.map((value, i) => i === slot ? item : value))}>{item}</button>)}</div>
+            </div>;
+          }))}
+          {product.sizes.length > 0 && !product.parts && <div className="dm__sizes">{product.sizes.map((item) => <button key={item} type="button" className={item === size ? 'is-on' : ''} onClick={() => setSize(item)}>{item}</button>)}</div>}
         </fieldset>
 
         <fieldset className="dm__group">
