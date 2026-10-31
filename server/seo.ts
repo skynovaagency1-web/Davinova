@@ -3,6 +3,7 @@
  * description per product and category, a share picture, and schema.org data (product price and stock, the
  * shop itself) so Google can show rich results without running the app first.
  */
+import { cleanSupplierText } from '../src/lib/productText';
 import { brand } from '../src/config/brand';
 import { menStoreCollectionGroups, storeCollectionGroups } from '../src/lib/storeCollectionTaxonomy';
 
@@ -36,7 +37,7 @@ const STATIC: Record<string, [string, string]> = {
 
 const esc = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const clip = (value: string, max = 158) => (value.length > max ? `${value.slice(0, max - 1).replace(/\s+\S*$/, '')}…` : value);
-const plain = (html: string) => html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+const plain = (html: string) => cleanSupplierText(html.replace(/<[^>]*>/g, ' '));
 
 function organisation(): object[] {
   return [

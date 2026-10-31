@@ -1,3 +1,4 @@
+import { cleanSupplierText } from '../src/lib/productText';
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 
 const SITE = 'https://davinova.com';
@@ -19,7 +20,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     .all<{ id: string; slug: string; title: string; description: string; price_cents: number; compare_at_cents: number | null; currency: string; department: string; image: string | null; variants: number }>();
 
   const esc = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const plain = (html: string) => html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  const plain = (html: string) => cleanSupplierText(html.replace(/<[^>]*>/g, ' '));
   const items = (results ?? []).filter((row) => row.image && (!manifest || typeof manifest[row.id] === 'string')).map((row) => {
     const link = `${SITE}${row.department === 'men' ? '/men' : ''}/product/${encodeURIComponent(row.slug)}`;
     const currency = row.currency || 'USD';
