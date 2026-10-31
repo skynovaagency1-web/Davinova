@@ -1,5 +1,5 @@
 import { checkoutSettings, resolveCheckoutReturnOrigin, stripeConfiguration } from '../checkout';
-import { newCode } from '../../../server/giftCards';
+import { ensureGiftTables, newCode } from '../../../server/giftCards';
 import { GIFT_AMOUNTS_CENTS } from '../../../src/lib/giftCards';
 
 type Env = { DB: D1Database; STRIPE_SECRET_KEY?: string; STRIPE_MODE?: string; SITE_URL?: string; CJ_LIVE_ORDERS_ENABLED?: string; CJ_SANDBOX?: string };
@@ -30,6 +30,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
   const message = text(body.message, 400);
   const page = `${site}${body.dept === 'men' ? '/men' : ''}/gift-cards`;
 
+  await ensureGiftTables(env.DB);
   const id = crypto.randomUUID();
   const code = newCode('DVG');
   await env.DB.prepare("INSERT INTO gift_cards (id, code, kind, status, initial_cents, recipient_email, recipient_name, sender_name, message) VALUES (?, ?, 'gift', 'pending', ?, ?, ?, ?, ?)")

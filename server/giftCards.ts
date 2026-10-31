@@ -14,6 +14,21 @@ function escapeHtml(value: string): string {
 const money = (cents: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cents / 100);
 const site = (env: GiftEnv) => (env.SITE_URL || 'https://davinova.com').replace(/\/$/, '');
 
+/** Same as migrations/0012_gift_cards.sql; run on first use so the live database needs no manual step. */
+const SCHEMA = [
+  `CREATE TABLE IF NOT EXISTS gift_cards ( id TEXT PRIMARY KEY, code TEXT NOT NULL UNIQUE COLLATE NOCASE, kind TEXT NOT NULL DEFAULT 'gift' CHECK (kind IN ('gift','referral')), status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','active','void')), initial_cents INTEGER NOT NULL CHECK (initial_cents > 0), balance_cents INTEGER NOT NULL DEFAULT 0 CHECK (balance_cents >= 0), currency TEXT NOT NULL DEFAULT 'USD', buyer_email TEXT, recipient_email TEXT, recipient_name TEXT, sender_name TEXT, message TEXT, payment_reference TEXT, created_at TEXT NOT NULL DEFAULT (datetime('now')), activated_at TEXT )`,
+  `CREATE INDEX IF NOT EXISTS gift_cards_payment ON gift_cards(payment_reference)`,
+  `CREATE TABLE IF NOT EXISTS gift_card_uses ( id TEXT PRIMARY KEY, gift_card_id TEXT NOT NULL REFERENCES gift_cards(id), order_id TEXT NOT NULL UNIQUE, amount_cents INTEGER NOT NULL CHECK (amount_cents > 0), status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','applied','short')), created_at TEXT NOT NULL DEFAULT (datetime('now')) )`,
+  `CREATE TABLE IF NOT EXISTS referral_codes ( code TEXT PRIMARY KEY COLLATE NOCASE, email TEXT NOT NULL UNIQUE COLLATE NOCASE, created_at TEXT NOT NULL DEFAULT (datetime('now')), last_sent_at TEXT )`,
+  `CREATE TABLE IF NOT EXISTS referral_rewards ( id TEXT PRIMARY KEY, code TEXT NOT NULL, order_id TEXT NOT NULL UNIQUE, friend_email TEXT NOT NULL UNIQUE COLLATE NOCASE, gift_card_id TEXT, created_at TEXT NOT NULL DEFAULT (datetime('now')) )`,
+];
+let schemaReady = false;
+export async function ensureGiftTables(db: D1Database): Promise<void> {
+  if (schemaReady) return;
+  await db.batch(SCHEMA.map((statement) => db.prepare(statement)));
+  schemaReady = true;
+}
+
 /** Codes like DVG-7KQM-P4XZ: no 0/O or 1/I, so they read cleanly from an email. */
 export function newCode(prefix: string): string {
   const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
