@@ -4,6 +4,8 @@ import { currentCustomer } from '../../../server/accounts';
 import { checkoutSettings, resolveCheckoutReturnOrigin, stripeConfiguration } from '../checkout';
 import { loadDiscountCode } from '../../../server/offers';
 import { computeOffer } from '../../../src/lib/offers';
+import { giftCardUse } from '../../../src/lib/giftCards';
+import { loadGiftCard } from '../../../server/giftCards';
 
 type Env = PrintifyEnv & {
   STRIPE_SECRET_KEY?: string; STRIPE_MODE?: string; STRIPE_SHIPPING_COUNTRIES?: string; STRIPE_SHIPPING_FEE_CENTS?: string;
@@ -58,23 +60,26 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
   const offer = computeOffer(subtotal, 1, code);
   const discount = offer.source === 'code' ? Math.min(offer.discountCents, subtotal - 50) : 0;
   if (body.code && !discount) return reply({ error: offer.codeNote || 'This code is not valid.' }, 400);
-  const total = subtotal + settings.shippingFeeCents - discount;
+  const giftCard = await loadGiftCard(env.DB, body.giftCode).catch(() => null);
+  const giftCents = giftCard ? giftCardUse(giftCard.balanceCents, subtotal - discount) : 0;
+  const total = subtotal + settings.shippingFeeCents - discount - giftCents;
 
   await env.DB.batch([
     env.DB.prepare(`INSERT INTO orders (id,order_number,email,status,payment_provider,payment_status,subtotal_cents,shipping_cents,discount_cents,total_cents,currency,shipping_address_json,shipping_method)
-      VALUES (?,?,?,'pending_payment','stripe','unpaid',?,?,?,?,'USD','{}','standard')`).bind(orderId, orderNumber, `pending+${orderId}@checkout.invalid`, subtotal, settings.shippingFeeCents, discount, total),
+      VALUES (?,?,?,'pending_payment','stripe','unpaid',?,?,?,?,'USD','{}','standard')`).bind(orderId, orderNumber, `pending+${orderId}@checkout.invalid`, subtotal, settings.shippingFeeCents, discount + giftCents, total),
+    ...(giftCents ? [env.DB.prepare('INSERT INTO gift_card_uses (id,gift_card_id,order_id,amount_cents) VALUES (?,?,?,?)').bind(crypto.randomUUID(), giftCard!.id, orderId, giftCents)] : []),
     env.DB.prepare('INSERT INTO custom_order_items (id,order_id,design_id,product_key,product_title,color,size,quantity,unit_price_cents) VALUES (?,?,?,?,?,?,?,?,?)')
       .bind(crypto.randomUUID(), orderId, design.id, product.key, title, design.color, size, quantity, product.priceCents),
     env.DB.prepare("INSERT INTO order_events (id,order_id,event_type,to_status,message,metadata_json) VALUES (?,?,'stripe_checkout_created','pending_payment','Stripe Checkout session requested for a custom design.',?)")
-      .bind(crypto.randomUUID(), orderId, JSON.stringify({ designId: design.id, product: product.key, code: discount ? code?.code : undefined, discountCents: discount })),
+      .bind(crypto.randomUUID(), orderId, JSON.stringify({ designId: design.id, product: product.key, code: discount ? code?.code : undefined, discountCents: discount, giftCard: giftCents ? giftCard!.code : undefined, giftCents: giftCents || undefined })),
   ]);
 
   let couponId = '';
-  if (discount) {
+  if (discount + giftCents) {
     const coupon = await fetch('https://api.stripe.com/v1/coupons', {
       method: 'POST',
       headers: { Authorization: `Bearer ${stripe.secret}`, 'Content-Type': 'application/x-www-form-urlencoded', 'Idempotency-Key': `davinova-custom-coupon-${orderId}` },
-      body: new URLSearchParams({ amount_off: String(discount), currency: 'usd', duration: 'once', max_redemptions: '1', name: offer.label.slice(0, 40) }).toString(),
+      body: new URLSearchParams({ amount_off: String(discount + giftCents), currency: 'usd', duration: 'once', max_redemptions: '1', name: [discount ? offer.label : '', giftCents ? `Gift card ${giftCard!.code}` : ''].filter(Boolean).join(' + ').slice(0, 40) }).toString(),
     }).then((response) => response.json() as Promise<{ id?: string }>).catch(() => ({} as { id?: string }));
     if (!coupon.id) {
       await env.DB.prepare("UPDATE orders SET status='cancelled',updated_at=datetime('now') WHERE id=?").bind(orderId).run();

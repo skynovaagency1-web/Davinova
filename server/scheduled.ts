@@ -2,6 +2,7 @@ import { getCJOrderDetails, isCJDryRun } from './cj';
 import type { CJEnv } from './cj';
 import { sendTransactionalEmail } from './email';
 import { syncPrintifyTracking, type PrintifyEnv } from './printify';
+import { rewardReferrer } from './giftCards';
 interface Env extends CJEnv { RESEND_API_KEY?:string; EMAIL_FROM?:string }
 interface ScheduledEvent {cron:string;scheduledTime:number}
 interface TrackRow {
@@ -31,6 +32,7 @@ export async function scheduled(_event:ScheduledEvent,env:Env,_ctx:ExecutionCont
         .bind(tracking,trackingUrl,row.supplier_order_row_id).run();
       await env.DB.prepare("UPDATE orders SET status='shipped',tracking_number=?,tracking_url=?,updated_at=datetime('now') WHERE id=?")
         .bind(tracking,trackingUrl,row.order_id).run();
+      await rewardReferrer(env,row.order_id).catch((error)=>console.error('Referral reward failed:',error instanceof Error?error.message:error));
       if((!row.tracking_email_sent_at || row.tracking_number!==tracking) && row.customer_email){
         await sendTransactionalEmail({
           to:row.customer_email,subject:'Your Davinova order '+row.order_number+' is on its way',

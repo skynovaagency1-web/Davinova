@@ -3,6 +3,8 @@ import { currentCustomer } from '../../server/accounts';
 import type { CJEnv, CJVariantStockRow } from '../../server/cj';
 import { loadDiscountCode } from '../../server/offers';
 import { FREE_GIFT, computeOffer, type Offer } from '../../src/lib/offers';
+import { giftCardUse } from '../../src/lib/giftCards';
+import { loadGiftCard } from '../../server/giftCards';
 
 type Env = CJEnv & {
   STRIPE_SECRET_KEY?: string;
@@ -293,7 +295,7 @@ async function createStripeSession(
 }
 
 /** A one-time Stripe coupon carrying the bundle or code saving computed on the server. */
-async function createCoupon(secret: string, orderId: string, offer: Offer, currency: string): Promise<string> {
+async function createCoupon(secret: string, orderId: string, offer: Pick<Offer, 'discountCents' | 'label'>, currency: string): Promise<string> {
   const form = new URLSearchParams({
     amount_off: String(offer.discountCents),
     currency: currency.toLowerCase(),
@@ -387,9 +389,15 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       if (gift && gift.currency.toUpperCase() !== currency) gift = null;
     }
 
+    // A gift card pays on top of any offer; it is taken off the card once Stripe confirms payment.
+    const giftCard = await loadGiftCard(env.DB, (body as Record<string, unknown>).giftCode).catch(() => null);
+    const giftCents = giftCard && currency === 'USD' ? giftCardUse(giftCard.balanceCents, subtotalCents - offer.discountCents) : 0;
+    const discountCents = offer.discountCents + giftCents;
+    const discountLabel = [offer.label, giftCents ? `Gift card ${giftCard!.code}` : ''].filter(Boolean).join(' + ');
+
     const orderId = crypto.randomUUID();
     const orderNumber = `DV-${crypto.randomUUID().replaceAll('-', '').slice(0, 12).toUpperCase()}`;
-    const provisionalTotal = subtotalCents + settings.shippingFeeCents - offer.discountCents;
+    const provisionalTotal = subtotalCents + settings.shippingFeeCents - discountCents;
     const placeholderEmail = `pending+${orderId}@checkout.invalid`;
 
     const statements = [
@@ -399,7 +407,8 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
            subtotal_cents, shipping_cents, discount_cents, total_cents, currency,
            shipping_address_json, shipping_method)
         VALUES (?, ?, ?, 'pending_payment', 'stripe', 'unpaid', ?, ?, ?, ?, ?, '{}', 'standard')
-      `).bind(orderId, orderNumber, placeholderEmail, subtotalCents, settings.shippingFeeCents, offer.discountCents, provisionalTotal, currency),
+      `).bind(orderId, orderNumber, placeholderEmail, subtotalCents, settings.shippingFeeCents, discountCents, provisionalTotal, currency),
+      ...(giftCents ? [env.DB.prepare('INSERT INTO gift_card_uses (id, gift_card_id, order_id, amount_cents) VALUES (?, ?, ?, ?)').bind(crypto.randomUUID(), giftCard!.id, orderId, giftCents)] : []),
       ...[...prepared, ...(gift ? [{ product: gift, quantity: 1, free: true }] : [])].map(({ product, quantity, ...rest }) => env.DB.prepare(`
         INSERT INTO order_items
           (id, order_id, product_id, variant_id, cj_product_id, cj_variant_id,
@@ -415,14 +424,14 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       )),
       env.DB.prepare(
         "INSERT INTO order_events (id, order_id, event_type, to_status, message, metadata_json) VALUES (?, ?, 'stripe_checkout_created', 'pending_payment', 'Stripe Checkout session requested.', ?)",
-      ).bind(crypto.randomUUID(), orderId, JSON.stringify({ itemCount: prepared.length, offer: offer.source, offerLabel: offer.label, discountCents: offer.discountCents, code: offer.source === 'code' ? code?.code : undefined, freeGift: Boolean(gift) })),
+      ).bind(crypto.randomUUID(), orderId, JSON.stringify({ itemCount: prepared.length, offer: offer.source, offerLabel: offer.label, discountCents: offer.discountCents, code: offer.source === 'code' ? code?.code : undefined, freeGift: Boolean(gift), giftCard: giftCents ? giftCard!.code : undefined, giftCents: giftCents || undefined })),
     ];
 
     await env.DB.batch(statements);
 
     let session: StripeCheckoutSession;
     try {
-      const couponId = offer.discountCents > 0 ? await createCoupon(stripe.secret, orderId, offer, currency) : '';
+      const couponId = discountCents > 0 ? await createCoupon(stripe.secret, orderId, { discountCents, label: discountLabel }, currency) : '';
       session = await createStripeSession(
         stripe.secret, returnSite, settings.countries,
         settings.shippingFeeCents, settings.shippingLabel, settings.autoTax,
@@ -451,7 +460,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       !Number.isSafeInteger(actualTotal) ||
       actualSubtotal !== subtotalCents ||
       actualShipping !== settings.shippingFeeCents ||
-      actualDiscount !== offer.discountCents ||
+      actualDiscount !== discountCents ||
       actualTotal !== actualSubtotal + actualShipping + actualTax - actualDiscount
     ) {
       // Expire a session that does not match our order snapshot before exposing it.

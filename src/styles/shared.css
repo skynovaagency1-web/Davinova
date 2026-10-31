@@ -777,3 +777,16 @@ button.w-icon { border: 0; }
 .dm-banner--men { color: #ececea; background: linear-gradient(120deg, rgba(73, 73, 73, .78), rgba(165, 170, 163, .35)); border-color: rgba(191, 191, 190, .3); }
 .dm-banner--men .dm-cta-link { color: #2b2b2b; background: linear-gradient(120deg, #ececea, #a5aaa3); }
 @media (max-width: 640px) { .dm-banner { padding: 22px 18px; } .dm-banner .dm-cta-link { width: 100%; } }
+.bag__giftx { background: none; border: 0; color: inherit; padding: 0 2px; cursor: pointer; opacity: .7; display: inline-flex; }
+.gift__form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin: 4px 0 12px; }
+.gift__form label { display: grid; gap: 5px; font-size: 12px; letter-spacing: .06em; opacity: .9; }
+.gift__form input, .gift__form textarea { width: 100%; padding: 11px 14px; border: 1px solid rgba(255, 255, 255, .22); border-radius: 14px; background: rgba(255, 255, 255, .07); color: inherit; font: 400 14px 'Archivo', sans-serif; backdrop-filter: blur(10px); resize: vertical; }
+.gift__form .gift__wide, .gift__form .gift__buy { grid-column: 1 / -1; }
+.gift__form .gift__buy { justify-self: start; opacity: 1; cursor: pointer; }
+.gift__form .gift__buy:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 560px) { .gift__form { grid-template-columns: 1fr; } }
+.extra .bag__code { border-color: rgba(255, 255, 255, .24); background: rgba(255, 255, 255, .08); backdrop-filter: blur(12px); max-width: 460px; }
+.extra .bag__code input { color: inherit; }
+.extra .bag__code input::placeholder { color: inherit; opacity: .55; }
+.extra .bag__code button { background: #fbf1e2; color: #2e2019; cursor: pointer; }
+.jw--men.extra .bag__code button { background: #1b1b1b; color: #eee; }
