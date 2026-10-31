@@ -150,7 +150,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
         'INSERT INTO product_images (id, product_id, url, alt, position, is_primary) VALUES (?,?,?,?,?,?)',
       ).bind(
         `cjimg-${detail.id}-${index + 1}`, productKey, url,
-        `CJ catalogue image for ${detail.name.slice(0, 150)}; commercial use rights not verified`,
+        `${detail.name.slice(0, 150)}${index ? `, view ${index + 1}` : ''} | Davinova`,
         index, index === 0 ? 1 : 0,
       )),
       ...detail.variants.map((variant, index) => {
