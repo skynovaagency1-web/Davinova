@@ -73,9 +73,9 @@ function toProduct(row: CatalogueRow): Product | null {
     tags: Array.isArray(row.tags) ? row.tags : [],
     sizes: Array.isArray(row.sizes) ? row.sizes.filter((size): size is string => typeof size === 'string' && size.length > 0 && size.length <= 40) : [],
     colourImages: row.colourImages && typeof row.colourImages === 'object'
-      ? Object.fromEntries(Object.entries(row.colourImages).filter((entry): entry is [string, string] => typeof entry[1] === 'string' && entry[1].startsWith('https://')))
+      ? Object.fromEntries(Object.entries(row.colourImages).filter((entry): entry is [string, string] => typeof entry[1] === 'string' && /^(https:\/\/|\/img\/)/.test(entry[1])))
       : undefined,
-    images: row.images.filter((image) => image && typeof image.url === 'string' && image.url.startsWith('https://')),
+    images: row.images.filter((image) => image && typeof image.url === 'string' && /^(https:\/\/|\/img\/)/.test(image.url)),
     featured: row.featured === true,
     browseOnly: row.browseOnly !== false,
   };

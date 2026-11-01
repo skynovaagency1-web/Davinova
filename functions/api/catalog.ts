@@ -1,5 +1,6 @@
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 import { cleanTitle, imageAlt } from '../../src/lib/productText';
+import { siteImage } from '../../src/lib/imageProxy';
 import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 
 type DbProduct = {
@@ -60,7 +61,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   for (const row of results) {
     // Products whose photo failed the photo check are never shown, so don't send them.
     if (shown && !shown.has(row.id)) continue;
-    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url, alt: imageAlt(alt, cleanTitle(row.title)) }));
+    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url: siteImage(url), alt: imageAlt(alt, cleanTitle(row.title)) }));
     const variantRows = sizesByProduct.get(row.id) ?? [];
     const verified = row.supplier_verified === 1;
     // Each active variant's label is unique per product ("M", "38", "Black / M") and is what checkout matches on.
@@ -71,7 +72,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const colourImages: Record<string, string> = {};
     for (const variant of sizes.length ? variantRows : []) {
       const cut = variant.size.indexOf(' / ');
-      if (cut > 0 && variant.image_url && /^https:\/\//.test(variant.image_url)) colourImages[variant.size.slice(0, cut)] ??= variant.image_url;
+      if (cut > 0 && variant.image_url && /^https:\/\//.test(variant.image_url)) colourImages[variant.size.slice(0, cut)] ??= siteImage(variant.image_url);
     }
     const purchasable = verified && row.has_sellable_variant === 1 && row.price_cents > 0 && row.cost_cents > 0 && sizes.length > 0;
     const productTags = safeJsonArray(row.tags_json);
