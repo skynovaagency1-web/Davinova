@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cleanSupplierText, imageAlt } from './productText';
+import { cleanSupplierText, imageAlt, cleanTitle, colourLabel } from './productText';
 
 describe('supplier text', () => {
   it('keeps the product details and drops supplier notes', () => {
@@ -15,4 +15,24 @@ describe('supplier text', () => {
     expect(imageAlt('CJ catalogue image for Red satin dress; commercial use rights not verified', 'x')).toBe('Red satin dress | Davinova');
     expect(imageAlt('', 'Red satin dress')).toBe('Red satin dress');
   });
+});
+
+describe('cleanTitle', () => {
+  it.each([
+    ["Straw Crossbody Bags For Women Beach Crescent Bag Summer Chic Woven Handbag Shoulder Purse Adjustable Strap", 'Straw Crossbody Bag'],
+    ["Watch Men's Quartz Watch Stainless Steel Band Men's Watch", 'Quartz Watch'],
+    ["Anti-theft Swipe Card Holder Men's Card Holder Wallet", 'Anti-Theft Swipe Card Holder'],
+    ['Champagne Dress High Heels Stiletto Crystal Bridesmaid Wedding Shoes', 'Champagne Dress High Heels'],
+    ['Men Taupe Shawl Lapel One Button 2 Pieces Suit Blazer & Pants Set', 'Taupe Shawl Lapel Suit Blazer'],
+    ['Women Cotton Linen A Line Dress Summer Elegant Round Neck Plus Size Loose Casual Dress', 'Cotton Linen A-Line Dress'],
+    ['Automatic skeleton mechanical watch', 'Automatic Skeleton Mechanical Watch'],
+    ['925 Sterling Silver 2 Karat Moissanite Necklace For Women', '925 Sterling Silver 2 Karat Moissanite Necklace'],
+  ])('%s', (raw, expected) => expect(cleanTitle(raw)).toBe(expected));
+
+  it('leaves short clean names alone', () => expect(cleanTitle('Satin Midi Dress')).toBe('Satin Midi Dress'));
+});
+
+describe('colourLabel', () => {
+  it.each([['picture color', 'As pictured'], ['A', 'Style A'], ['offwhite', 'Off-white'], ['wine red', 'Wine red'], ['Black', 'Black'], ['caramel color', 'Caramel']])(
+    '%s', (raw, expected) => expect(colourLabel(raw)).toBe(expected));
 });
