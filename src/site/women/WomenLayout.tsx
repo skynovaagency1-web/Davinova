@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { lazy, Suspense, useEffect, useState, type CSSProperties } from 'react';
 import { SearchButton } from '../shared/SearchOverlay';
 import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
@@ -12,9 +12,7 @@ import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
 import { MoodBar, MoodLayer } from '../shared/Mood';
 import { HangingBag } from '../shared/HangingBag';
-import { SupportHelper } from '../shared/SupportHelper';
 import { PromoBar } from '../shared/PromoBar';
-import { WelcomePopup } from '../shared/WelcomePopup';
 import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
 import { BEAUTY_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
@@ -22,6 +20,11 @@ import { isCurvyLook } from '../../lib/curvyLooks';
 import type { Product } from '../../types/product';
 import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
+import { pageTitle } from '../../lib/pageTitles';
+
+// Nova and the welcome offer appear after a few seconds, so they load after the page.
+const SupportHelper = lazy(() => import('../shared/SupportHelper').then((m) => ({ default: m.SupportHelper })));
+const WelcomePopup = lazy(() => import('../shared/WelcomePopup').then((m) => ({ default: m.WelcomePopup })));
 
 const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing' && !BEAUTY_COLLECTIONS.includes(group.slug));
 
@@ -53,10 +56,12 @@ export function WomenLayout() {
   const signedIn = useAccount((state) => Boolean(state.account));
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
 
+  const slug = /\/product\/([^/?#]+)/.exec(pathname)?.[1];
+  const productName = slug ? products.find((product) => product.slug === decodeURIComponent(slug))?.title : undefined;
+  useEffect(() => { setOpen(false); }, [pathname, search]);
   useEffect(() => {
-    setOpen(false);
-    document.title = 'Davinova — Occasion dresses';
-  }, [pathname, search]);
+    document.title = pageTitle(pathname, search, productName) ?? 'Davinova — Occasion dresses';
+  }, [pathname, search, productName]);
 
   return <div className="w-shell">
     <CloudSky />
@@ -109,7 +114,9 @@ export function WomenLayout() {
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="women" className="mood-bar--float" />
-    <SupportHelper dept="women" />
-    <WelcomePopup dept="women" />
+    <Suspense fallback={null}>
+      <SupportHelper dept="women" />
+      <WelcomePopup dept="women" />
+    </Suspense>
   </div>;
 }

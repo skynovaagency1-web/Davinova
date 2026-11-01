@@ -6,6 +6,7 @@ import { usePaged } from '../shared/usePaged';
 import { isFloating, useCutouts, usePhotoTier } from '../../lib/useCutouts';
 import { WomenCard } from './WomenCard';
 import { STYLE_CATEGORIES, matchesStyle } from '../shared/styleCategories';
+import { CATEGORY_INTROS } from '../../lib/categoryIntros';
 import { CATEGORY_GROUPS, categoryGroup, inCategory, stockedGroups, titleParts } from '../../lib/categories';
 
 const fits = [['all', 'All fits'], ['standard', 'Slim'], ['curvy', 'Curvy']] as const;
@@ -64,6 +65,7 @@ export function WomenShop() {
     <div className="w-shop__band">
       <h1><i>{styleLabel ?? (fit === 'curvy' ? 'Curvy' : small)}</i><b>{big}</b></h1>
       <p>{loading ? 'Loading the collection…' : filtered.length ? `${filtered.length} looks` : 'Coming soon'}</p>
+      {group && CATEGORY_INTROS[group.slug] && <p className="w-shop__intro">{CATEGORY_INTROS[group.slug]}</p>}
     </div>
     <div className="w-filters glass">
       <div className="w-filters__row" role="group" aria-label="Category">

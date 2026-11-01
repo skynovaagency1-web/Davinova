@@ -20,11 +20,21 @@ export function WelcomePopup({ dept }: { dept: 'women' | 'men' }) {
 
   useEffect(() => {
     if (quiet || seen()) return;
-    const show = () => { if (!seen()) { setOpen(true); markSeen(); } };
-    const timer = window.setTimeout(show, 30000);
+    // One popup at a time: wait while the Nova chat is open, and on phones only after the visitor has scrolled.
+    let scrolled = !window.matchMedia('(max-width: 700px)').matches;
+    let timer = 0;
+    const show = () => {
+      if (seen()) return;
+      if (!scrolled || document.querySelector('.helper__panel')) { timer = window.setTimeout(show, 15000); return; }
+      setOpen(true); markSeen();
+      window.dispatchEvent(new Event('davinova:popup'));
+    };
+    timer = window.setTimeout(show, 30000);
+    const onScroll = () => { if (window.scrollY > 400) scrolled = true; };
     const leave = (event: MouseEvent) => { if (event.clientY <= 0) show(); };
+    window.addEventListener('scroll', onScroll, { passive: true });
     document.addEventListener('mouseout', leave);
-    return () => { window.clearTimeout(timer); document.removeEventListener('mouseout', leave); };
+    return () => { window.clearTimeout(timer); window.removeEventListener('scroll', onScroll); document.removeEventListener('mouseout', leave); };
   }, [quiet]);
 
   async function submit(event: FormEvent) {
