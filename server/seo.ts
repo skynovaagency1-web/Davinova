@@ -3,7 +3,7 @@
  * description per product and category, a share picture, and schema.org data (product price and stock, the
  * shop itself) so Google can show rich results without running the app first.
  */
-import { cleanSupplierText } from '../src/lib/productText';
+import { cleanSupplierText, cleanTitle } from '../src/lib/productText';
 import { brand } from '../src/config/brand';
 import { menStoreCollectionGroups, storeCollectionGroups } from '../src/lib/storeCollectionTaxonomy';
 
@@ -54,6 +54,7 @@ async function productSeo(db: D1Database, slug: string, canonical: string): Prom
       (SELECT COUNT(*) FROM product_variants v WHERE v.product_id = p.id AND v.active = 1) AS in_stock
     FROM products p WHERE p.slug = ? AND p.active = 1`).bind(slug).first<ProductRow>();
   if (!row) return null;
+  row.title = cleanTitle(row.title);
   const description = clip(plain(row.description) || `${row.title}, with free tracked shipping from ${BRAND}.`);
   const image = row.image ?? DEFAULT_IMAGE;
   const product: Record<string, unknown> = {

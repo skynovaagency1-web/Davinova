@@ -1,4 +1,4 @@
-import { cleanSupplierText } from '../src/lib/productText';
+import { cleanSupplierText, cleanTitle } from '../src/lib/productText';
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 
 const SITE = 'https://davinova.com';
@@ -28,8 +28,8 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const onSale = row.compare_at_cents && row.compare_at_cents > row.price_cents;
     return `<item>
 <g:id>${esc(row.id)}</g:id>
-<title>${esc(row.title.slice(0, 150))}</title>
-<description>${esc((plain(row.description) || row.title).slice(0, 4900))}</description>
+<title>${esc(cleanTitle(row.title).slice(0, 150))}</title>
+<description>${esc((plain(row.description) || cleanTitle(row.title)).slice(0, 4900))}</description>
 <link>${esc(link)}</link>
 <g:image_link>${esc(row.image as string)}</g:image_link>
 <g:availability>${row.variants > 0 ? 'in_stock' : 'out_of_stock'}</g:availability>
