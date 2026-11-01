@@ -1,10 +1,8 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { lazy, Suspense, useEffect, useState, type CSSProperties } from 'react';
 import { SearchButton } from '../shared/SearchOverlay';
 import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
-import { SupportHelper } from '../shared/SupportHelper';
 import { PromoBar } from '../shared/PromoBar';
-import { WelcomePopup } from '../shared/WelcomePopup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Heart, Home, Menu, ShoppingBag, UserRound, X } from 'lucide-react';
@@ -19,6 +17,10 @@ import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { pageTitle } from '../../lib/pageTitles';
+
+// Nova and the welcome offer appear after a few seconds, so they load after the page.
+const SupportHelper = lazy(() => import('../shared/SupportHelper').then((m) => ({ default: m.SupportHelper })));
+const WelcomePopup = lazy(() => import('../shared/WelcomePopup').then((m) => ({ default: m.WelcomePopup })));
 
 const links = [
   ['/men/shop', 'All formal'],
@@ -105,7 +107,9 @@ export function MenLayout() {
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="men" className="mood-bar--float" />
-    <SupportHelper dept="men" />
-    <WelcomePopup dept="men" />
+    <Suspense fallback={null}>
+      <SupportHelper dept="men" />
+      <WelcomePopup dept="men" />
+    </Suspense>
   </div>;
 }
