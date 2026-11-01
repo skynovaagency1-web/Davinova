@@ -61,7 +61,7 @@ export function WomenHome() {
       <PosterSides products={heels.length >= 2 ? heels : inCollection(WOMEN_SHOES)} picks={POSTER_PICKS.heels}><HeelPoster /></PosterSides>
     </section>
     <section className="w-watch-feature">
-      <div className="w-sec-head"><h2>New: <b>beauty</b></h2><p className="w-sec-head__note">Fragrance, lips and glow for every woman.</p></div>
+      <div className="w-sec-head"><h2>New: <b>beauty</b></h2><p className="w-sec-head__note">Makeup, skin care, nails and hair to finish the look.</p></div>
       <PosterSides products={inCollection(...BEAUTY_COLLECTIONS)} picks={POSTER_PICKS.beauty}><BeautyPoster /></PosterSides>
     </section>
     {onModelWithImages.length > 0 && <section className="w-new">

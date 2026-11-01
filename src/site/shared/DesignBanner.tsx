@@ -8,8 +8,8 @@ export function DesignBanner({ dept }: { dept: 'women' | 'men' }) {
     <div className="dm-banner__copy">
       <span className="nova-chip">New · Design your own</span>
       <h2>Your picture. <b>Your words.</b></h2>
-      <p>Put your own photo or text on a tee, hoodie, tote or mug. See it live, then we print it just for you. From ${from.toFixed(2)}.</p>
+      <p>Put your own photo or text on a tee, hoodie, cap, joggers, a matching set, a tote or a mug. See it live, then we print it just for you. From ${from.toFixed(2)}.</p>
     </div>
-    <Link className="dm-cta-link" to={dept === 'men' ? '/men/custom/design' : '/custom/design'}>Start designing →<small>Tee · Hoodie · Tote · Mug</small></Link>
+    <Link className="dm-cta-link" to={dept === 'men' ? '/men/custom/design' : '/custom/design'}>Start designing →<small>{CUSTOM_PRODUCTS.map((product) => product.label).join(' · ')}</small></Link>
   </section>;
 }
