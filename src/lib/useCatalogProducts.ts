@@ -4,6 +4,8 @@ import { previewFirstCjDress } from '../data/previewFirstCjDress';
 import { fetchWooCommerceProducts, isWooCommerceConfigured } from './woocommerce';
 import { shelfFor } from './shelves';
 import { loadCutouts } from './useCutouts';
+import { FLOATING_COLLECTIONS, JEWELRY_COLLECTION } from './storeCollectionTaxonomy';
+import { TRENDING_LOOKS } from './trendingLooks';
 
 interface CatalogueRow {
   id: string;
@@ -87,6 +89,10 @@ function toProduct(row: CatalogueRow): Product | null {
 const SHOW_NON_US_PLUGS = false;
 const NON_US_PLUG = /\b(eu|european|uk|british|au|australian) (plug|standard)\b/i;
 
+const NOT_CLOTHING = new Set([...FLOATING_COLLECTIONS, JEWELRY_COLLECTION, 'accessories', 'mens-accessories']);
+/** Clothing collections: everything except bags, shoes, accessories, jewelry and beauty. */
+export const isClothing = (item: { storeCollection?: string }) => Boolean(item.storeCollection) && !NOT_CLOTHING.has(item.storeCollection ?? '');
+
 /** A sub-category needs this many pieces to get its own link; smaller ones show under their category. */
 export const MIN_SUBCATEGORY_ITEMS = 6;
 
@@ -116,6 +122,8 @@ function loadCjCatalogue(): Promise<Product[]> {
           .filter((item) => item.shelf !== 'hidden')
           // Only products whose photo passed the photo check (whole model, nothing cut off) are shown.
           .filter((item) => typeof cutouts[item.id] === 'string')
+          // Clothes are only shown on a whole model or on their own, never on half a model (owner, 2026-11-01).
+          .filter((item) => TRENDING_LOOKS.has(item.id) || !(isClothing(item) && String(cutouts[item.id]).endsWith('.model.webp')))
           // Tools with a European, UK or Australian plug wait until we ship there (owner, 2026-10-23).
           .filter((item) => SHOW_NON_US_PLUGS || !NON_US_PLUG.test(item.title))
           // Pieces customers can't buy yet ("Coming soon") make the shop look unfinished, so they wait off the shelves.
