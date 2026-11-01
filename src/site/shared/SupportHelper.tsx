@@ -86,9 +86,15 @@ export function SupportHelper({ dept }: { dept: Dept }) {
   useEffect(() => {
     if (buying) { setGreeting(false); return; }
     if (hidden || read(SEEN_KEY)) return;
-    const timer = window.setTimeout(() => { setGreeting(true); write('session', SEEN_KEY); }, 7000);
+    const timer = window.setTimeout(() => { if (document.querySelector('.welcome')) return; setGreeting(true); write('session', SEEN_KEY); }, 7000);
     return () => window.clearTimeout(timer);
   }, [hidden, buying]);
+  // The welcome offer opening closes Nova's greeting bubble, so only one thing covers the page.
+  useEffect(() => {
+    const quiet = () => setGreeting(false);
+    window.addEventListener('davinova:popup', quiet);
+    return () => window.removeEventListener('davinova:popup', quiet);
+  }, []);
   useEffect(() => { end.current?.scrollIntoView({ block: 'end' }); }, [messages, open]);
 
   function closeGreeting() {
