@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-27T18:45:02.770Z",
+ "checkedAt": "2026-11-01T21:40:06.031Z",
  "countries": [
   "US"
  ],
@@ -514,9 +514,9 @@
    "countries": {
     "US": {
      "cheapest": {
-      "name": "CJPacket Postal",
-      "priceUsd": 4.57,
-      "days": "5-9"
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 4.82,
+      "days": "5-11"
      },
      "fast": {
       "name": "YunExpress Ordinary",
@@ -1216,9 +1216,9 @@
    "countries": {
     "US": {
      "cheapest": {
-      "name": "CJPacket Postal",
-      "priceUsd": 4.32,
-      "days": "5-9"
+      "name": "CJPacket Super Pure Electricity",
+      "priceUsd": 4.82,
+      "days": "5-11"
      },
      "fast": {
       "name": "YunExpress Ordinary",
