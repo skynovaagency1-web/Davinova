@@ -1,5 +1,5 @@
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
-import { imageAlt } from '../../src/lib/productText';
+import { cleanTitle, imageAlt } from '../../src/lib/productText';
 import { siteImage } from '../../src/lib/imageProxy';
 import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 
@@ -61,7 +61,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   for (const row of results) {
     // Products whose photo failed the photo check are never shown, so don't send them.
     if (shown && !shown.has(row.id)) continue;
-    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url: siteImage(url), alt: imageAlt(alt, row.title) }));
+    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url: siteImage(url), alt: imageAlt(alt, cleanTitle(row.title)) }));
     const variantRows = sizesByProduct.get(row.id) ?? [];
     const verified = row.supplier_verified === 1;
     // Each active variant's label is unique per product ("M", "38", "Black / M") and is what checkout matches on.
@@ -78,7 +78,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const productTags = safeJsonArray(row.tags_json);
     const storeAssignment = assignmentFromStoreTags(productTags);
     products.push({
-      id: row.id, slug: row.slug, title: row.title, description: row.description,
+      id: row.id, slug: row.slug, title: cleanTitle(row.title), description: row.description,
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
       currency: row.currency, occasion: row.occasion, collectionCategory: row.collection_category,
       department: row.department === 'men' ? 'men' : 'women',

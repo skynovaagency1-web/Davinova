@@ -15,6 +15,7 @@ import { deliveryWindow, formatWindow } from '../../lib/delivery';
 import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
 import { WishButton } from './WishButton';
+import { colourLabel } from '../../lib/productText';
 
 /** Campaign photos the owner picked for certain product types: hoodies get one, jackets and vests another. */
 function productBanner(title: string) {
@@ -99,7 +100,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const colourPhoto = showColour && colour ? product.colourImages?.[colour] : undefined;
   const photos = product.images;
   // The first view uses the cut-out (if one exists) so the dress stands out of the poster.
-  const photo = colourPhoto ? { url: colourPhoto, alt: `${product.title} in ${colour}` }
+  const photo = colourPhoto ? { url: colourPhoto, alt: `${product.title} in ${colourLabel(colour)}` }
     : index === 0 && cutout ? { url: cutout, alt: photos[0]?.alt ?? product.title } : photos[index] ?? photos[0];
   const isWoo = isWooCommerceProduct(product);
   const canBuy = isWoo ? isProductPurchasable(product) : !product.browseOnly && product.supplierVerified && product.sizes.length > 0;
@@ -170,7 +171,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           {!isWoo && canBuy && <div className="pv-buy__sizes">
             {colours.length > 0 && <>
               <span>Choose your colour {sizeHint && !colour && <em>· pick one first</em>}</span>
-              <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }}>{product.colourImages?.[item] && <img src={product.colourImages[item]} alt="" loading="lazy" />}{item}</button>)}</div>
+              <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }}>{product.colourImages?.[item] && <img src={product.colourImages[item]} alt="" loading="lazy" />}{colourLabel(item)}</button>)}</div>
             </>}
             {(!colours.length || colour) && <>
               <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}<Link className="pv-buy__guide" to={`${prefix}/size-guide`}>Size guide</Link></span>
