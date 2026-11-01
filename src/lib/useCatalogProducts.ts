@@ -87,6 +87,19 @@ function toProduct(row: CatalogueRow): Product | null {
 const SHOW_NON_US_PLUGS = false;
 const NON_US_PLUG = /\b(eu|european|uk|british|au|australian) (plug|standard)\b/i;
 
+/** A sub-category needs this many pieces to get its own link; smaller ones show under their category. */
+export const MIN_SUBCATEGORY_ITEMS = 6;
+
+/** Sub-categories with only a few pieces look unfinished: their pieces stay in the parent category, without the sub link. */
+export function foldThinSubcategories(products: Product[]): Product[] {
+  const counts = new Map<string, number>();
+  const key = (item: Product) => `${item.department}|${item.storeCollection}|${item.storeSubcategory}`;
+  for (const item of products) if (item.storeSubcategory) counts.set(key(item), (counts.get(key(item)) ?? 0) + 1);
+  return products.map((item) => (item.storeSubcategory && (counts.get(key(item)) ?? 0) < MIN_SUBCATEGORY_ITEMS
+    ? { ...item, storeSubcategory: undefined, storeSubcategoryLabel: undefined }
+    : item));
+}
+
 let cjCatalogueRequest: Promise<Product[]> | null = null;
 
 function loadCjCatalogue(): Promise<Product[]> {
@@ -104,8 +117,11 @@ function loadCjCatalogue(): Promise<Product[]> {
           // Only products whose photo passed the photo check (whole model, nothing cut off) are shown.
           .filter((item) => typeof cutouts[item.id] === 'string')
           // Tools with a European, UK or Australian plug wait until we ship there (owner, 2026-10-23).
-          .filter((item) => SHOW_NON_US_PLUGS || !NON_US_PLUG.test(item.title));
+          .filter((item) => SHOW_NON_US_PLUGS || !NON_US_PLUG.test(item.title))
+          // Pieces customers can't buy yet ("Coming soon") make the shop look unfinished, so they wait off the shelves.
+          .filter((item) => !item.browseOnly);
       })
+      .then(foldThinSubcategories)
       .catch((cause: unknown) => {
         cjCatalogueRequest = null; // allow a retry on the next page visit
         throw cause;
