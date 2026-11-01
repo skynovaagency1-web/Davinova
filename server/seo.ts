@@ -5,6 +5,7 @@
  */
 import { cleanSupplierText, cleanTitle } from '../src/lib/productText';
 import { brand } from '../src/config/brand';
+import { STATIC_PAGES as STATIC, categoryTitle } from '../src/lib/pageTitles';
 import { menStoreCollectionGroups, storeCollectionGroups } from '../src/lib/storeCollectionTaxonomy';
 
 export interface PageSeo { title: string; description: string; image: string; type: 'website' | 'product'; jsonLd: object[] }
@@ -13,27 +14,6 @@ const SITE = 'https://davinova.com';
 const DEFAULT_IMAGE = `${SITE}/images/og-davinova.jpg`;
 const BRAND = 'Davinova';
 
-const STATIC: Record<string, [string, string]> = {
-  '/': ['Davinova — Occasion dresses, bags, shoes & beauty', 'Wedding guest, cocktail and evening dresses, bags, shoes, jewelry and beauty, with free tracked shipping.'],
-  '/shop': ['Shop all — Davinova', 'Every Davinova piece in one place: occasion dresses, tops, bottoms, outerwear, bags and shoes.'],
-  '/categories': ['Categories — Davinova', 'Browse Davinova by category: dresses, tops and sets, bottoms, outerwear, bags, shoes and accessories.'],
-  '/beauty': ['Health, beauty & hair — Davinova', 'Makeup, skin care, nail art, hair, wigs and beauty tools, picked to go with the dress.'],
-  '/custom': ['Davinova Custom — wedding party tees, robes & totes', 'Our own designs for the bride, her bridesmaids and the groom’s crew, printed when you order.'],
-  '/jewelry': ['Jewelry & watches — Davinova', 'Bridal sets, engagement rings, wedding hair pieces, fine and fashion jewelry, and women’s watches.'],
-  '/watches': ['Watches — Davinova', 'Watches to finish the look, for her and for him.'],
-  '/plus-size': ['Plus-size occasion wear — Davinova', 'Curvy wedding guest, cocktail and evening looks on real plus-size models.'],
-  '/about': ['About — Davinova', 'Davinova: occasion wear for her and for him, chosen piece by piece.'],
-  '/shipping': ['Shipping — Davinova', 'Free tracked shipping to the United States, Canada, New Zealand and the UAE.'],
-  '/returns': ['Returns — Davinova', 'How returns work at Davinova.'],
-  '/size-guide': ['Size guide — Davinova', 'Find your size for Davinova dresses, suits and shoes.'],
-  '/faq': ['FAQ — Davinova', 'Answers about orders, shipping, sizes, returns and payment.'],
-  '/contact': ['Contact — Davinova', 'Get in touch with Davinova.'],
-  '/men': ['Davinova Men — suits, tuxedos & formalwear', 'Wedding suits, tuxedos, blazers, shirts, shoes, watches and accessories for every occasion.'],
-  '/men/shop': ['Shop men — Davinova', 'Every Davinova menswear piece: suits, tuxedos, shirts, outerwear, shoes and bags.'],
-  '/men/categories': ['Men’s categories — Davinova', 'Browse Davinova menswear by category.'],
-  '/men/custom': ['Davinova Custom for men — tees for the groom’s crew', 'Blank tees with your print or ours, made when you order.'],
-  '/men/jewelry': ['Men’s jewelry & watches — Davinova', 'Wedding bands, cufflinks, chains and men’s watches.'],
-};
 
 const esc = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const clip = (value: string, max = 158) => (value.length > max ? `${value.slice(0, max - 1).replace(/\s+\S*$/, '')}…` : value);
@@ -83,12 +63,12 @@ function categorySeo(bare: string, params: URLSearchParams): PageSeo | null {
     if (!group) return null;
     const sub = group.subcategories.find((item) => item.slug === params.get('sub'));
     const name = sub ? sub.label : group.label;
-    return { title: `${name} — ${BRAND}`, description: `Shop ${name.toLowerCase()} at ${BRAND}${sub ? `, part of ${group.label.toLowerCase()}` : ''}. Free tracked shipping.`, image: DEFAULT_IMAGE, type: 'website', jsonLd: [] };
+    return { title: categoryTitle(bare, params) ?? `${name} — ${BRAND}`, description: `Shop ${name.toLowerCase()} at ${BRAND}${sub ? `, part of ${group.label.toLowerCase()}` : ''}. Free tracked shipping.`, image: DEFAULT_IMAGE, type: 'website', jsonLd: [] };
   }
   if (bare === '/men/shop' && params.get('cat')) {
     const sub = menStoreCollectionGroups.flatMap((group) => group.subcategories).find((item) => item.slug === params.get('cat'));
     if (!sub) return null;
-    return { title: `${sub.label} for men — ${BRAND}`, description: `Shop men’s ${sub.label.toLowerCase()} at ${BRAND}. Free tracked shipping.`, image: DEFAULT_IMAGE, type: 'website', jsonLd: [] };
+    return { title: categoryTitle(bare, params) ?? `${sub.label} for men — ${BRAND}`, description: `Shop men’s ${sub.label.toLowerCase()} at ${BRAND}. Free tracked shipping.`, image: DEFAULT_IMAGE, type: 'website', jsonLd: [] };
   }
   return null;
 }

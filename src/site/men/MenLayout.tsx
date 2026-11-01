@@ -17,6 +17,8 @@ import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
 import { MEN_CATEGORIES, menCategoryPath } from './menFormal';
 import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
+import { useCatalogProducts } from '../../lib/useCatalogProducts';
+import { pageTitle } from '../../lib/pageTitles';
 
 const links = [
   ['/men/shop', 'All formal'],
@@ -28,16 +30,19 @@ const links = [
 /** The men's storefront: its own header, menu, colours and footer, separate from the women's shop. */
 export function MenLayout() {
   const { pathname, search } = useLocation();
+  const { products } = useCatalogProducts();
   const [open, setOpen] = useState(false);
   const wished = useWishlist((state) => state.ids.length);
   const signedIn = useAccount((state) => Boolean(state.account));
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
   const current = pathname + search;
 
+  const slug = /\/product\/([^/?#]+)/.exec(pathname)?.[1];
+  const productName = slug ? products.find((product) => product.slug === decodeURIComponent(slug))?.title : undefined;
+  useEffect(() => { setOpen(false); }, [pathname, search]);
   useEffect(() => {
-    setOpen(false);
-    document.title = 'Davinova Homme — Formalwear';
-  }, [pathname, search]);
+    document.title = pageTitle(pathname, search, productName) ?? 'Davinova Homme — Formalwear';
+  }, [pathname, search, productName]);
 
   return <div className="m-shell">
     <CloudSky />

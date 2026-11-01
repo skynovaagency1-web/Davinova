@@ -22,6 +22,7 @@ import { isCurvyLook } from '../../lib/curvyLooks';
 import type { Product } from '../../types/product';
 import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
+import { pageTitle } from '../../lib/pageTitles';
 
 const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing' && !BEAUTY_COLLECTIONS.includes(group.slug));
 
@@ -53,10 +54,12 @@ export function WomenLayout() {
   const signedIn = useAccount((state) => Boolean(state.account));
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
 
+  const slug = /\/product\/([^/?#]+)/.exec(pathname)?.[1];
+  const productName = slug ? products.find((product) => product.slug === decodeURIComponent(slug))?.title : undefined;
+  useEffect(() => { setOpen(false); }, [pathname, search]);
   useEffect(() => {
-    setOpen(false);
-    document.title = 'Davinova — Occasion dresses';
-  }, [pathname, search]);
+    document.title = pageTitle(pathname, search, productName) ?? 'Davinova — Occasion dresses';
+  }, [pathname, search, productName]);
 
   return <div className="w-shell">
     <CloudSky />
