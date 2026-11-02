@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import { CategoryHero } from '../shared/CategoryHero';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
@@ -125,12 +126,7 @@ export function GroupPage({ slug }: { slug: 'accessories' | 'couple-parent-child
   if (slug === 'accessories') cards.unshift({ key: 'jewelry', label: 'Jewelry & Watches', line: 'Sets, rings and watches', to: '/jewelry', items: [] });
 
   return <section className="jw jw--women idx">
-    <header className="jw__head">
-      <span className="jw__kicker">Davinova · {group.label}</span>
-      <h1>{group.label}</h1>
-      <p>{slug === 'accessories' ? 'The finishing touches: bags, jewelry, watches and more.' : 'Matching looks for couples, parents and little ones.'}</p>
-      <Link to={categoryPath(slug)} className="idx__all">Shop all {group.label} →</Link>
-    </header>
+    <CategoryHero dept="women" keys={[slug]} label={group.label} products={items} to={categoryPath(slug)} count={loading ? undefined : `${items.length} pieces`} />
     {!loading && <div className="nova-collections__grid">{cards.map((card) => <IndexCard key={card.key} card={card} />)}</div>}
   </section>;
 }

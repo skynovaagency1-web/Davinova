@@ -5,6 +5,7 @@ import { usePaged } from '../shared/usePaged';
 import { isFloating, useCutouts, usePhotoTier } from '../../lib/useCutouts';
 import { WomenCard as ProductCard } from '../women/WomenCard';
 import { MEN_CATEGORIES, MEN_OCCASIONS, formalMen } from './menFormal';
+import { CategoryHero } from '../shared/CategoryHero';
 
 const tabs = [['all', 'ALL'], ['wedding-guest', 'WEDDING'], ['cocktail-party', 'BLACK TIE'], ['maxi-holiday', 'HOLIDAY']] as const;
 const sorts = [['featured', 'FEATURED'], ['price-low', 'PRICE ↑'], ['price-high', 'PRICE ↓']] as const;
@@ -46,7 +47,12 @@ export function MenShop() {
     setParams(next, { replace: true });
   }
 
+  const occasionSub = MEN_OCCASIONS.find((item) => item.key === occasion)?.sub;
+  const heroSub = cat !== 'all' ? cat : occasionSub;
+  const heroLabel = cat !== 'all' ? MEN_CATEGORIES.find((item) => item.sub === cat)?.short ?? 'Formal' : MEN_OCCASIONS.find((item) => item.key === occasion)?.title ?? 'Formalwear';
+
   return <section className="m-shop">
+    <CategoryHero dept="men" keys={[heroSub, 'men-all']} label={heroLabel} products={filtered} count={loading ? undefined : `${filtered.length} looks`} />
     <div className="m-shop__head">
       <h1>INDEX <i>/ FORMAL</i></h1>
       <span className="m-shop__count">{loading ? '…' : String(filtered.length).padStart(3, '0')} LOOKS</span>

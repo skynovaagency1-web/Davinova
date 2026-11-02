@@ -2,13 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { BEAUTY_COLLECTIONS, storeCollectionGroups } from '../../lib/storeCollectionTaxonomy';
 import { WomenCard } from './WomenCard';
-import { BeautyPoster } from './BeautyPoster';
-
-const promises = [
-  ['Every shade', 'Picked to flatter every skin tone and every size.'],
-  ['The finishing touch', 'Nails, fragrance and glow to go with the dress.'],
-  ['Gift-ready', 'Chosen to give, or to keep for yourself.'],
-] as const;
+import { CategoryHero } from '../shared/CategoryHero';
 
 const BEAUTY = /\b(perfume|fragrance|lipstick|lip gloss|makeup|make-up|skincare|serum|cosmetic|nail polish|eyeshadow|highlighter)\b/i;
 const GROUPS = storeCollectionGroups.filter((group) => BEAUTY_COLLECTIONS.includes(group.slug));
@@ -23,15 +17,7 @@ export function BeautyPage() {
   const total = filed.length + loose.length;
 
   return <section className="w-watches">
-    <div className="w-watches__hero">
-      <div className="w-watches__copy">
-        <span className="nova-chip">New · Davinova Beauty</span>
-        <h1>Health, <b>beauty</b> &amp; hair</h1>
-        <p>Nails, fragrance and glow to finish every look, for every woman.</p>
-        <ul>{promises.map(([title, line]) => <li key={title}><strong>{title}</strong><span>{line}</span></li>)}</ul>
-      </div>
-      <BeautyPoster linked={false} />
-    </div>
+    <CategoryHero dept="women" keys={['beauty']} label="Beauty" products={[...filed, ...loose]} count={loading ? undefined : `${total} pieces`} />
 
     {GROUPS.map((group) => {
       const items = filed.filter((product) => product.storeCollection === group.slug);
