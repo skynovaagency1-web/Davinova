@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { WomenCard } from '../women/WomenCard';
+import { CategoryHero } from './CategoryHero';
 import { JEWELRY_TYPES, jewelryMenu, jewelryPath, jewelryTypeOf, type Dept, type JewelryType } from './jewelry';
 
 /** Jewelry & Watches: one page per sub-menu item, with the other items as tabs. */
@@ -17,11 +18,7 @@ export function JewelryPage({ dept }: { dept: Dept }) {
   const info = current ? JEWELRY_TYPES[current] : { label: 'Jewelry & Watches', line: 'Wedding sets, rings and watches to finish the look' };
 
   return <section className={`jw jw--${dept}`}>
-    <header className="jw__head">
-      <span className="jw__kicker">Davinova · Jewelry & Watches</span>
-      <h1>{info.label}</h1>
-      <p>{info.line}</p>
-    </header>
+    <CategoryHero dept={dept} keys={[current, `jewelry-${dept}`]} label={info.label} products={pieces} count={loading ? undefined : `${pieces.length} pieces`} />
     <nav className="jw__groups" aria-label="Jewelry & Watches">
       <Link to={jewelryPath(dept)} className={!current ? 'active' : ''}>All</Link>
       {jewelryMenu(dept).map((group) => <div key={group.title} className="jw__group">

@@ -1,14 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { WomenCard } from './WomenCard';
-import { WatchPoster } from './WatchPoster';
+import { CategoryHero } from '../shared/CategoryHero';
 import { jewelryTypeOf } from '../shared/jewelry';
-
-const promises = [
-  ['Made to be worn', 'Everyday watches that still feel like an occasion.'],
-  ['Gift-ready', 'Chosen to give, or to keep for yourself.'],
-  ['Matched to the dress', 'Gold, rose and silver tones picked to sit with our collections.'],
-] as const;
 
 /** Watches: the campaign poster up top, then every product on the watches shelf. */
 export function WatchesPage() {
@@ -16,15 +10,7 @@ export function WatchesPage() {
   const watches = products.filter((product) => jewelryTypeOf(product) === 'womens-watches');
 
   return <section className="w-watches">
-    <div className="w-watches__hero">
-      <div className="w-watches__copy">
-        <span className="nova-chip">New · Davinova Time</span>
-        <h1>The <b>watch</b> edit</h1>
-        <p>The finishing touch for every look. Pieces you reach for, from the wedding to the Monday after.</p>
-        <ul>{promises.map(([title, line]) => <li key={title}><strong>{title}</strong><span>{line}</span></li>)}</ul>
-      </div>
-      <WatchPoster linked={false} />
-    </div>
+    <CategoryHero dept="women" keys={['womens-watches']} label="Watches" products={watches} count={loading ? undefined : `${watches.length} pieces`} />
 
     <div className="w-sec-head"><h2>All <b>watches</b></h2><p className="w-sec-head__note">{loading ? 'Loading…' : `${watches.length} pieces`}</p></div>
     {watches.length > 0
