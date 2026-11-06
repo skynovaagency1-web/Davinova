@@ -52,7 +52,10 @@ const lookup = <T,>(table: Record<string, T>, item: Product) => keysOf(item).map
 export function ProductView({ variant }: { variant: Variant }) {
   const { slug } = useParams();
   const { products, loading } = useCatalogProducts();
-  const product = products.find((item) => item.slug === slug);
+  const listed = products.find((item) => item.slug === slug);
+  const detail = useProductDetail(slug);
+  // The shop list is kept light; this page adds the full photo set, colour photos and description.
+  const product = listed && detail?.id === listed.id ? { ...listed, images: detail.images.length ? detail.images : listed.images, description: detail.description, colourImages: detail.colourImages } : listed;
   const shopPath = variant === 'men' ? '/men/shop' : '/shop';
 
   if (!product) {
@@ -62,6 +65,25 @@ export function ProductView({ variant }: { variant: Variant }) {
     </section>;
   }
   return <ProductBody key={product.id} product={product} products={products} variant={variant} shopPath={shopPath} />;
+}
+
+type Detail = Pick<Product, 'id' | 'images' | 'description' | 'colourImages'>;
+const details = new Map<string, Promise<Detail | undefined>>();
+
+/** Full photos and description for one product, fetched once per visit. */
+function useProductDetail(slug: string | undefined) {
+  const [detail, setDetail] = useState<Detail>();
+  useEffect(() => {
+    if (!slug) return;
+    let alive = true;
+    if (!details.has(slug)) details.set(slug, fetch(`/api/catalog?slug=${encodeURIComponent(slug)}`)
+      .then((response) => (response.ok ? response.json() : { products: [] }))
+      .then((data: { products?: Detail[] }) => data.products?.[0])
+      .catch(() => { details.delete(slug); return undefined; }));
+    details.get(slug)!.then((value) => { if (alive) setDetail(value); });
+    return () => { alive = false; };
+  }, [slug]);
+  return detail;
 }
 
 const sizeOrder = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '1XL', '2XL', 'XXXL', '3XL', '4XL', '5XL', '6XL'];

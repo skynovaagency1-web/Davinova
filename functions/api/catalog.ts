@@ -1,5 +1,5 @@
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
-import { cleanTitle, imageAlt } from '../../src/lib/productText';
+import { cleanSupplierText, cleanTitle, imageAlt } from '../../src/lib/productText';
 import { siteImage } from '../../src/lib/imageProxy';
 import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 
@@ -33,8 +33,12 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   const cacheKey = new Request(url.toString(), { method: 'GET' });
   const cached = await cache?.match(cacheKey);
   if (cached) return cached;
-  // ?all=1 (used by the import and photo-check scripts) includes products not yet shown.
-  const shown = url.searchParams.get('all') === '1' ? undefined : await photoCheckedIds(env, request);
+  // ?all=1 (used by the import and photo-check scripts) includes products not yet shown, with every field.
+  const all = url.searchParams.get('all') === '1';
+  // ?slug=… is one product page: full photos and description. The shop list stays light (owner: site was slow).
+  const slug = url.searchParams.get('slug');
+  const full = all || Boolean(slug);
+  const shown = all ? undefined : await photoCheckedIds(env, request);
 
   const base = `SELECT id,slug,title,description,price_cents,compare_at_cents,cost_cents,currency,occasion,
     collection_category,department,color,length,sleeve,neckline,tags_json,featured,supplier,catalog_source,
@@ -44,8 +48,8 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     CASE WHEN EXISTS (SELECT 1 FROM product_variants v WHERE v.product_id=products.id AND v.active=1 AND v.cj_variant_id IS NOT NULL AND v.available_stock > 0) THEN 1 ELSE 0 END AS has_sellable_variant
     FROM products
     WHERE active=1 AND supplier='cj' AND catalog_source='cj' AND cj_product_id IS NOT NULL AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')`;
-  const filter = collection ? ' AND collection_category=?' : '';
-  const binds = collection ? [collection] : [];
+  const filter = (collection ? ' AND collection_category=?' : '') + (slug ? ' AND slug=?' : '');
+  const binds = [...(collection ? [collection] : []), ...(slug ? [slug] : [])];
   const ids = `SELECT id FROM products WHERE active=1 AND supplier='cj' AND catalog_source='cj' AND cj_product_id IS NOT NULL AND collection_category IN ('wedding-guest','cocktail-party','maxi-holiday')${filter}`;
   // One round trip for products, images and sizes. Querying per product made ~400 sequential calls for 200 products.
   const [productsResult, imagesResult, variantsResult] = await env.DB.batch([
@@ -61,7 +65,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   for (const row of results) {
     // Products whose photo failed the photo check are never shown, so don't send them.
     if (shown && !shown.has(row.id)) continue;
-    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, 8).map(({ url, alt }) => ({ url: siteImage(url), alt: imageAlt(alt, cleanTitle(row.title)) }));
+    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, full ? 8 : 2).map(({ url, alt }) => ({ url: siteImage(url), alt: imageAlt(alt, cleanTitle(row.title)) }));
     const variantRows = sizesByProduct.get(row.id) ?? [];
     const verified = row.supplier_verified === 1;
     // Each active variant's label is unique per product ("M", "38", "Black / M") and is what checkout matches on.
@@ -70,15 +74,17 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
       : [];
     // The supplier's photo for each colour, so the product page can switch the big photo when a colour is picked.
     const colourImages: Record<string, string> = {};
-    for (const variant of sizes.length ? variantRows : []) {
+    for (const variant of full && sizes.length ? variantRows : []) {
       const cut = variant.size.indexOf(' / ');
       if (cut > 0 && variant.image_url && /^https:\/\//.test(variant.image_url)) colourImages[variant.size.slice(0, cut)] ??= siteImage(variant.image_url);
     }
     const purchasable = verified && row.has_sellable_variant === 1 && row.price_cents > 0 && row.cost_cents > 0 && sizes.length > 0;
+    // "Coming soon" pieces are never shown in the shop, so the list doesn't send them.
+    if (!all && !purchasable) continue;
     const productTags = safeJsonArray(row.tags_json);
     const storeAssignment = assignmentFromStoreTags(productTags);
     products.push({
-      id: row.id, slug: row.slug, title: cleanTitle(row.title), description: row.description,
+      id: row.id, slug: row.slug, title: cleanTitle(row.title), description: all ? row.description : slug ? cleanSupplierText(row.description ?? '') : '',
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
       currency: row.currency, occasion: row.occasion, collectionCategory: row.collection_category,
       department: row.department === 'men' ? 'men' : 'women',
@@ -107,7 +113,7 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
 
   const response = Response.json({ products }, {
     headers: {
-      'Cache-Control': 'public, max-age=60, s-maxage=300',
+      'Cache-Control': 'public, max-age=300, s-maxage=900, stale-while-revalidate=86400',
       'X-Content-Type-Options': 'nosniff',
     },
   });
