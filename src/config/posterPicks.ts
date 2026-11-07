@@ -16,9 +16,9 @@ export const POSTER_PICKS = {
     'cj-1751863891438604288', // Rhinestone stiletto sandals
   ],
   beauty: [
-    'cj-2099394278128222210', // LED makeup mirror
+    'cj-2406290637071622300', // Diamond makeup brush set
     'cj-2502120233461627900', // Ceramic straightener, white and silver
-    'cj-2605090717201617200', // Gold nano hydrating mist
+    'cj-8F52355A-DAC8-495A-A9AC-67F08D6A281C', // 18-colour rose eyeshadow palette
     'cj-38C9988C-C4A0-46B8-AC72-2E2B53556CF9', // Champagne curling iron
   ],
   menShoes: [

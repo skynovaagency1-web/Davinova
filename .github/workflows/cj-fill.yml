@@ -43,6 +43,7 @@ jobs:
           PLUS: ${{ fromJSON(steps.request.outputs.json).plus || '' }}
           MEN: ${{ fromJSON(steps.request.outputs.json).men || '' }}
           JEWELRY: ${{ fromJSON(steps.request.outputs.json).jewelry || '' }}
+          FLOOR: ${{ fromJSON(steps.request.outputs.json).floor || '' }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

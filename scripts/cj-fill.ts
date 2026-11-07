@@ -248,7 +248,8 @@ async function main() {
     let need = Math.max(0, TARGET - have) * 5; // extra, because the photo check hides most CJ photos
     if (!need) continue;
     let added = 0;
-    const floor = qualityFloor(group.slug, sub.slug);
+    // FLOOR raises the minimum CJ cost for a run (owner wants premium pieces only, 2026-11-07).
+    const floor = Math.max(qualityFloor(group.slug, sub.slug), Number(process.env.FLOOR ?? 0));
     const words = WOMEN_OBJECTS[sub.slug] && !menStoreCollectionGroups.includes(group) ? WOMEN_OBJECTS[sub.slug].search : JEWELRY ? JEWELRY_SEARCH[sub.slug] ?? [sub.label] : MEN ? MEN_SEARCH[sub.slug] ?? [sub.label] : PLUS ? [`plus size ${sub.label.replace(/Women’s|Woman|Ladies|Lady/g, '').trim()}`, ...PLUS_SEARCH] : [sub.label.replace(/Women’s|Woman|Ladies|Lady/g, 'women').replace(/&/g, ' ').replace(/\s+/g, ' ').trim(), ...sub.matchTerms.slice(1, 5)];
     for (const keyword of [...new Set(words)]) {
       for (let page = 1; page <= (PLUS ? 10 : 5) && need > 0 && imported < MAX_IMPORTS; page++) {
