@@ -6,6 +6,8 @@ export interface AccountEnv { DB?: D1Database; RESEND_API_KEY?: string; EMAIL_FR
 export interface Customer { id: string; email: string; first_name: string | null; last_name: string | null; address_json: string; sizes_json: string; wishlist_json: string }
 
 export const SESSION_COOKIE = 'dv_session';
+/** One-time state for Sign in with Google. */
+export const GOOGLE_STATE_COOKIE = 'dv_google_state';
 const SESSION_DAYS = 60;
 export const CODE_MINUTES = 10;
 export const MAX_CODE_ATTEMPTS = 5;
@@ -39,7 +41,7 @@ function randomToken(): string {
   return [...crypto.getRandomValues(new Uint8Array(32))].map((byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
-function readCookie(request: Request, name: string): string {
+export function readCookie(request: Request, name: string): string {
   for (const part of (request.headers.get('Cookie') || '').split(';')) {
     const [key, ...rest] = part.trim().split('=');
     if (key === name) return rest.join('=');

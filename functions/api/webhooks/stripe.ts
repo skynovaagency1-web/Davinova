@@ -2,6 +2,7 @@ import { createApprovalToken } from '../../../server/auth';
 import type { CJEnv } from '../../../server/cj';
 import { sendTransactionalEmail } from '../../../server/email';
 import { activateGiftCard, applyGiftUse } from '../../../server/giftCards';
+import { completeTopup } from '../../../server/rewards';
 
 type Env = CJEnv & {
   STRIPE_SECRET_KEY?: string;
@@ -354,6 +355,24 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const session = event.data?.object;
     if (!session?.id || session.mode !== 'payment') {
       return reply({ error: 'Webhook does not contain a valid payment Checkout Session.' }, 400);
+    }
+    if (session.metadata?.kind === 'wallet_topup') {
+      const topupId = String(session.metadata.topup_id || '');
+      const claim = await claimEvent(env, event.id);
+      if (claim.state === 'duplicate') return reply({ received: true, duplicate: true });
+      if (claim.state === 'busy') return reply({ error: 'Webhook event is already being processed; retry shortly.' }, 503);
+      activeClaimToken = claim.token;
+      let result: string = 'waiting';
+      if (event.type === 'checkout.session.async_payment_failed' || event.type === 'checkout.session.expired') {
+        await env.DB.prepare("UPDATE wallet_topups SET status='void' WHERE id=? AND status='pending' AND session_id=?").bind(topupId, session.id).run().catch(() => undefined);
+        result = 'void';
+      } else if (session.payment_status === 'paid' && session.status === 'complete' && String(session.currency || '').toLowerCase() === 'usd') {
+        result = await completeTopup(env.DB, topupId, session.id, Number(session.amount_total));
+        if (result === 'mismatch') console.error('Balance top-up did not match the stored top-up:', topupId);
+      }
+      await recordEvent(env, event, session, activeClaimToken!);
+      activeClaimToken = null;
+      return reply({ received: true, topup: result });
     }
     if (session.metadata?.kind === 'gift_card') {
       const giftId = String(session.metadata.gift_card_id || '');

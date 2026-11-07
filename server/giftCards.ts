@@ -1,4 +1,5 @@
 import { sendTransactionalEmail } from './email';
+import { rewardShippedOrder } from './rewards';
 import { REFERRAL, type GiftCardBalance } from '../src/lib/giftCards';
 
 export interface GiftEnv {
@@ -153,6 +154,12 @@ export async function sendReferralCode(env: GiftEnv, email: string, code: string
  * the referrer gets a $15 gift card by email. Each friend counts once.
  */
 export async function rewardReferrer(env: GiftEnv, orderId: string): Promise<void> {
+  await rewardFirstReferral(env, orderId);
+  // Club points for the buyer and credit on every order of an invited friend (after the first-order link above is made).
+  await rewardShippedOrder(env.DB, orderId).catch((error) => console.error('Club reward failed:', error instanceof Error ? error.message : error));
+}
+
+async function rewardFirstReferral(env: GiftEnv, orderId: string): Promise<void> {
   const row = await env.DB.prepare(`
     SELECT o.email, r.code, r.email AS referrer FROM orders o
     JOIN order_events e ON e.order_id=o.id AND e.event_type='stripe_checkout_created'

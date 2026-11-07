@@ -23,6 +23,14 @@ const BeautyPage = lazy(() => import('./site/women/BeautyPage').then((m) => ({ d
 const JewelryPage = lazy(() => import('./site/shared/JewelryPage').then((m) => ({ default: m.JewelryPage })));
 const WishlistPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.WishlistPage })));
 const AccountPage = lazy(() => import('./site/shared/AccountPage').then((m) => ({ default: m.AccountPage })));
+const CheckInPage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.CheckInPage })));
+const InvitePage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.InvitePage })));
+const RatesPage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.RatesPage })));
+const TeamPage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.TeamPage })));
+const EarningsPage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.EarningsPage })));
+const LevelPage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.LevelPage })));
+const HowItWorksPage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.HowItWorksPage })));
+const ClubFaqPage = lazy(() => import('./site/shared/ClubPages').then((m) => ({ default: m.ClubFaqPage })));
 const GiftCardPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.GiftCardPage })));
 const ReferralPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.ReferralPage })));
 const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
@@ -66,6 +74,14 @@ export default function App() {
         <Route path="jewelry/:type" element={<JewelryPage dept="men" />} />
         <Route path="wishlist" element={<WishlistPage dept="men" />} />
         <Route path="account" element={<AccountPage dept="men" />} />
+        <Route path="account/check-in" element={<CheckInPage dept="men" />} />
+        <Route path="account/invite" element={<InvitePage dept="men" />} />
+        <Route path="account/rates" element={<RatesPage dept="men" />} />
+        <Route path="account/team" element={<TeamPage dept="men" />} />
+        <Route path="account/earnings" element={<EarningsPage dept="men" />} />
+        <Route path="account/level" element={<LevelPage dept="men" />} />
+        <Route path="account/how-it-works" element={<HowItWorksPage dept="men" />} />
+        <Route path="account/club-faq" element={<ClubFaqPage dept="men" />} />
         <Route path="gift-cards" element={<GiftCardPage dept="men" />} />
         <Route path="refer" element={<ReferralPage dept="men" />} />
         <Route path="*" element={<NotFoundPage />} />
@@ -87,6 +103,14 @@ export default function App() {
         <Route path="jewelry/:type" element={<JewelryPage dept="women" />} />
         <Route path="wishlist" element={<WishlistPage dept="women" />} />
         <Route path="account" element={<AccountPage dept="women" />} />
+        <Route path="account/check-in" element={<CheckInPage dept="women" />} />
+        <Route path="account/invite" element={<InvitePage dept="women" />} />
+        <Route path="account/rates" element={<RatesPage dept="women" />} />
+        <Route path="account/team" element={<TeamPage dept="women" />} />
+        <Route path="account/earnings" element={<EarningsPage dept="women" />} />
+        <Route path="account/level" element={<LevelPage dept="women" />} />
+        <Route path="account/how-it-works" element={<HowItWorksPage dept="women" />} />
+        <Route path="account/club-faq" element={<ClubFaqPage dept="women" />} />
         <Route path="gift-cards" element={<GiftCardPage dept="women" />} />
         <Route path="refer" element={<ReferralPage dept="women" />} />
         <Route path="product/:slug" element={<ProductView variant="women" />} />
