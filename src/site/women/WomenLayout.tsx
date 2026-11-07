@@ -42,8 +42,8 @@ function drawerSections(products: Product[]) {
   const accessories = groupSection('accessories', 'Accessories', '/accessories');
   accessories.subs.unshift({ to: '/jewelry', label: 'Jewelry & Watches' }, { to: '/beauty', label: 'Health, Beauty & Hair' }, { to: '/custom', label: 'Custom' });
   const slim = fitSection('standard', 'Slim', '/slim');
-  // Couple & Parent-Child sits under Slim; its own types are listed on its page.
-  slim.subs.push({ to: '/couple', label: 'Couple & Parent-Child Clothing' });
+  // Couple Clothing sits under Slim; its own types are listed on its page.
+  if (has('couple-parent-child-clothing')) slim.subs.push({ to: '/couple', label: 'Couple Clothing' });
   return [slim, fitSection('curvy', 'Plus size', '/plus-size'), accessories];
 }
 
