@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { BEAUTY_COLLECTIONS, WOMEN_BAGS, WOMEN_SHOES } from '../../lib/storeCollectionTaxonomy';
-import { isFullLook, useCutouts } from '../../lib/useCutouts';
+import { isFullLook, useCutouts, usePhotoTier } from '../../lib/useCutouts';
 import { NovaHero } from './NovaHero';
 import { CollectionCards } from './CollectionCards';
 import { ReachFeature } from './ReachFeature';
@@ -23,6 +23,11 @@ import { PosterSides } from '../shared/PosterSides';
 import { POSTER_PICKS } from '../../config/posterPicks';
 import { Exemplaire } from './Exemplaire';
 
+const KIDS = /\b(girls?|girl's|kids?|child|children|baby|babies|toddlers?|infants?|princess|flower girl)\b/i;
+/** Children's pieces (flower girl dresses, family sets) stay on their own pages, never on the home page. */
+const isKidsPiece = (product: { title: string; storeCollection?: string; storeSubcategory?: string }) =>
+  product.storeSubcategory === 'flower-girl-dresses' || product.storeCollection === 'couple-parent-child-clothing' || KIDS.test(product.title);
+
 /** Women's home: hero, both shops, categories, collections, trending, featured look, guides and new arrivals. */
 export function WomenHome() {
   const { products } = useCatalogProducts();
@@ -31,13 +36,15 @@ export function WomenHome() {
   const withImages = women.filter((product) => product.images[0]?.url);
   // Home rails show whole looks on a model only; headless floating garments stay on their collection pages (owner's rule).
   const cutoutFor = useCutouts();
-  const onModel = women.filter((product) => isFullLook(cutoutFor(product.id), product.storeCollection));
+  // Grown-up looks only, on a real model (owner, 2026-11-07): no children's pieces and no dresses on a mannequin.
+  const tier = usePhotoTier();
+  const onModel = women.filter((product) => isFullLook(cutoutFor(product.id), product.storeCollection) && tier(product) < 2 && !isKidsPiece(product));
   // Pieces from each poster's own category, shown on both sides of it.
   const shown = products.filter((product) => product.department !== 'men' && product.images[0]?.url);
   const inCollection = (...slugs: string[]) => shown.filter((product) => slugs.includes(product.storeCollection ?? ''));
   // True high heels only: no flats, boots, wedges, slippers or chunky/low heels beside the "Step into power" poster.
   // Real handbags, totes and clutches only beside "The bag you reach for": no wallets, pouches, backpacks or small accessories.
-  const bags = inCollection(WOMEN_BAGS).filter((product) => /bag|tote|clutch|satchel|hobo|purse/i.test(product.title) && !/wallet|coin|card|pouch|backpack|cosmetic|makeup|keychain|key chain|phone|storage|organizer|strap only/i.test(product.title));
+  const bags = inCollection(WOMEN_BAGS).filter((product) => /bag|tote|clutch|satchel|hobo|purse|crossbody|handbag|shoulder/i.test(product.title) && !/wallet|coin|card|pouch|backpack|cosmetic|makeup|keychain|key chain|phone|storage|organizer|strap|charm|chain only/i.test(product.title));
   const heels = inCollection(WOMEN_SHOES).filter((product) => /high.?heel|stiletto|pump/i.test(product.title) && !/flat|boot|slipper|wedge|chunky|low|sneaker|slide|mary jane/i.test(product.title));
   const onModelWithImages = onModel.filter((product) => product.images[0]?.url);
 
