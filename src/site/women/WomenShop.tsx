@@ -10,6 +10,15 @@ import { CATEGORY_INTROS } from '../../lib/categoryIntros';
 import { CategoryHero } from '../shared/CategoryHero';
 import { CATEGORY_GROUPS, categoryGroup, inCategory, stockedGroups, titleParts } from '../../lib/categories';
 
+const SHELVES = [
+  { key: 'clothing', label: 'Clothing', slugs: ['tops-and-sets', 'bottoms', 'womens-denim', 'womens-sweaters', 'womens-sweatshirts-hoodies', 'womens-jackets', 'outerwear-and-jackets', 'couple-parent-child-clothing', 'parent-child-clothing'] },
+  { key: 'weddings', label: 'Weddings', slugs: ['weddings'] },
+  { key: 'events', label: 'Events & Parties', slugs: ['weddings-and-events'] },
+  { key: 'shoes', label: 'Shoes', slugs: ['womens-shoes'] },
+  { key: 'bags', label: 'Bags', slugs: ['womens-bags'] },
+  { key: 'accessories', label: 'Accessories', slugs: ['accessories'] },
+  { key: 'beauty', label: 'Beauty & Wellness', slugs: ['makeup', 'skin-care', 'nail-art-and-tools', 'beauty-tools', 'hair-and-accessories', 'hair-weaves', 'food-and-health'] },
+];
 const fits = [['all', 'All fits'], ['standard', 'Slim'], ['curvy', 'Curvy']] as const;
 const sorts = [['featured', 'Featured'], ['price-low', 'Price ↑'], ['price-high', 'Price ↓'], ['name', 'A–Z']] as const;
 
@@ -65,7 +74,10 @@ export function WomenShop() {
   // Only the categories show; hovering (or tapping) one opens its types underneath.
   const [open, setOpen] = useState('');
   const subsOf = (slug: string) => categoryGroup(slug)?.subcategories.filter((item) => women.some((product) => product.storeCollection === slug && product.storeSubcategory === item.slug)) ?? [];
-  const openGroup = open ? categoryGroup(open) : undefined;
+  // Top level: Clothing, Weddings, Events, Shoes, Bags, Accessories, Beauty (owner, 2026-11-07).
+  const shelves = SHELVES.map((shelf) => ({ ...shelf, groups: shelf.slugs.map((slug) => groups.find((item) => item.slug === slug)).filter((item): item is NonNullable<typeof item> => Boolean(item) && stocked.includes(item!)) })).filter((shelf) => shelf.groups.length);
+  const shelfOf = (slug: string) => shelves.find((shelf) => shelf.groups.some((item) => item.slug === slug));
+  const openShelf = shelves.find((shelf) => shelf.key === open);
   function go(category: string, type: string) {
     const query = new URLSearchParams(params);
     query.set('category', category);
@@ -83,13 +95,15 @@ export function WomenShop() {
     <div className="w-filters glass" onMouseLeave={() => setOpen('')}>
       <div className="w-filters__row" role="group" aria-label="Category">
         <button type="button" className={collection === 'all' ? 'active' : ''} onMouseEnter={() => setOpen('')} onClick={() => pick('all')}>All</button>
-        {groups.map((item) => <button key={item.slug} type="button" aria-expanded={open === item.slug} className={`${collection === item.slug ? 'active' : ''}${open === item.slug ? ' open' : ''}`} onMouseEnter={() => setOpen(subsOf(item.slug).length ? item.slug : '')} onFocus={() => setOpen(subsOf(item.slug).length ? item.slug : '')} onClick={() => { pick(item.slug); setOpen(subsOf(item.slug).length ? item.slug : ''); }}>{item.label}{subsOf(item.slug).length > 0 && <span className="w-filters__caret" aria-hidden="true">▾</span>}</button>)}
+        {shelves.map((shelf) => <button key={shelf.key} type="button" aria-expanded={open === shelf.key} className={`${shelf.groups.some((item) => item.slug === collection) ? 'active' : ''}${open === shelf.key ? ' open' : ''}`} onMouseEnter={() => setOpen(shelf.key)} onClick={() => setOpen(shelf.key)}>{shelf.label}<span className="w-filters__caret" aria-hidden="true">▾</span></button>)}
       </div>
-      {openGroup && <div className="w-filters__subs" role="group" aria-label={`${openGroup.label} types`}>
-        <button type="button" className={collection === openGroup.slug && !sub ? 'active' : ''} onClick={() => go(openGroup.slug, '')}>All {openGroup.label}</button>
-        {subsOf(openGroup.slug).map((item) => <button key={item.slug} type="button" className={collection === openGroup.slug && sub === item.slug ? 'active' : ''} onClick={() => go(openGroup.slug, item.slug)}>{item.label}</button>)}
+      {openShelf && <div className={`w-filters__subs${openShelf.groups.length > 1 ? ' w-filters__subs--cols' : ''}`} role="group" aria-label={`${openShelf.label} types`}>
+        {openShelf.groups.map((item) => <div key={item.slug} className="w-filters__col">
+          <button type="button" className={`w-filters__head${collection === item.slug && !sub ? ' active' : ''}`} onClick={() => go(item.slug, '')}>{openShelf.groups.length > 1 ? item.label : `All ${item.label}`}</button>
+          {subsOf(item.slug).map((type) => <button key={type.slug} type="button" className={collection === item.slug && sub === type.slug ? 'active' : ''} onClick={() => go(item.slug, type.slug)}>{type.label}</button>)}
+        </div>)}
       </div>}
-      {group && sub && !openGroup && <div className="w-filters__trail"><span>{group.label}</span> › <b>{subLabel}</b><button type="button" onClick={() => set('sub', '', '')} aria-label="Show all">✕</button></div>}
+      {group && !openShelf && <div className="w-filters__trail"><span>{shelfOf(group.slug)?.label}</span> › {sub ? <><span>{group.label}</span> › <b>{subLabel}</b></> : <b>{group.label}</b>}<button type="button" onClick={() => (sub ? set('sub', '', '') : pick('all'))} aria-label="Clear">✕</button></div>}
       <div className="w-filters__tools">
         <div className="w-fit" role="group" aria-label="Size fit">
           <span className="w-fit__label">Size fit</span>

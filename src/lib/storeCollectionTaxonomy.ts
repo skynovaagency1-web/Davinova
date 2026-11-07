@@ -34,6 +34,11 @@ function subcategory(label: string, ...matchTerms: string[]): StoreSubcategoryOp
   };
 }
 
+/** Same as subcategory() but keeps an existing slug when the shown name changes. */
+function renamed(slug: string, label: string, ...matchTerms: string[]): StoreSubcategoryOption {
+  return { slug, label, matchTerms: [label, ...matchTerms] };
+}
+
 export const WOMEN_BAGS = 'womens-bags';
 export const WOMEN_SHOES = 'womens-shoes';
 /** Pieces shown floating on their own (never on a model): bags, shoes and men's accessories. */
@@ -92,7 +97,7 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
   },
   {
     slug: BEAUTY_HEALTH,
-    label: 'Food & Health',
+    label: 'Health & Wellness',
     subcategories: [
       // Wellness tools only: nothing to eat, drink or take as medicine.
       subcategory('Health Care Products', 'massager', 'posture corrector', 'facial roller', 'gua sha'),
@@ -161,18 +166,32 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Scarves & Wraps', 'scarf', 'scarves', 'wrap', 'wraps', 'shawl'),
       subcategory('Belts & Cummerbunds', 'belt', 'belts', 'cummerbund', 'cummerbunds'),
       subcategory('Women’s Hats & Caps', 'hat', 'hats', 'cap', 'caps', 'beanie', 'baseball cap'),
+      subcategory('Women’s Sunglasses', 'sunglasses', 'sun glasses'),
+      subcategory('Women’s Gloves', 'gloves', 'leather gloves', 'evening gloves'),
+      subcategory('Silk Scarves', 'silk scarf', 'silk scarves', 'satin scarf'),
     ],
   },
   {
     slug: 'couple-parent-child-clothing',
-    label: 'Couple & Parent-Child Clothing',
+    // Couples only; family looks moved to Parent-Child Clothing (owner, 2026-11-07). Slugs kept for old links.
+    label: 'Couple Clothing',
     subcategories: [
-      subcategory('Couple & Parent-Child Sweatshirts', 'family sweatshirt', 'matching sweatshirt', 'parent child sweatshirt', 'couple sweatshirt'),
-      subcategory('Couple & Parent-Child Short-Sleeves', 'family t shirt', 'matching t shirt', 'parent child t shirt', 'couple t shirt', 'short sleeve tee'),
-      subcategory('Couple & Parent-Child Jackets', 'family jacket', 'matching jacket', 'parent child jacket', 'couple jacket'),
-      subcategory('Couple & Parent-Child Tops', 'family top', 'matching top', 'parent child top', 'couple top'),
-      subcategory('Couple & Parent-Child Suits', 'family suit', 'matching suit', 'parent child suit', 'couple suit'),
-      subcategory('Couple & Parent-Child Pants', 'family pants', 'matching pants', 'parent child pants', 'couple pants'),
+      renamed('couple-and-parent-child-sweatshirts', 'Couple Sweatshirts', 'couple sweatshirt', 'couple hoodie'),
+      renamed('couple-and-parent-child-short-sleeves', 'Couple T-Shirts', 'couple t shirt', 'couple tee'),
+      renamed('couple-and-parent-child-jackets', 'Couple Jackets', 'couple jacket'),
+      renamed('couple-and-parent-child-tops', 'Couple Tops', 'couple top', 'couple shirt'),
+      renamed('couple-and-parent-child-suits', 'Couple Sets', 'couple suit', 'couple set'),
+      renamed('couple-and-parent-child-pants', 'Couple Pants', 'couple pants'),
+    ],
+  },
+  {
+    slug: 'parent-child-clothing',
+    label: 'Parent-Child Clothing',
+    subcategories: [
+      subcategory('Mother-Daughter Dresses', 'mother daughter dress', 'mommy and me dress', 'mom and me dress'),
+      subcategory('Family Matching Sets', 'family matching set', 'parent child set', 'family suit'),
+      subcategory('Family Matching Tops', 'family matching top', 'parent child top', 'family t shirt', 'family sweatshirt', 'family hoodie'),
+      subcategory('Family Matching Pajamas', 'family pajamas', 'matching pajamas', 'family christmas pajamas'),
     ],
   },
   {
@@ -280,15 +299,22 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
     ],
   },
   {
+    // Weddings and events are separate categories (owner, 2026-11-07); the old slug stays for events.
+    slug: 'weddings',
+    label: 'Weddings',
+    subcategories: [
+      subcategory('Wedding Dresses', 'wedding dress', 'wedding dresses', 'bridal gown', 'bride dress'),
+      subcategory('Bridesmaid Dresses', 'bridesmaid', 'bridesmaid dress'),
+      subcategory('Flower Girl Dresses', 'flower girl dress', 'flower-girl dress'),
+    ],
+  },
+  {
     slug: 'weddings-and-events',
-    label: 'Weddings & Events',
+    label: 'Events & Parties',
     subcategories: [
       subcategory('Cocktail Dresses', 'cocktail dress', 'cocktail dresses', 'party dress', 'party dresses'),
       subcategory('Evening Dresses', 'evening dress', 'evening dresses', 'evening gown', 'formal gown', 'formal evening dress'),
-      subcategory('Bridesmaid Dresses', 'bridesmaid', 'bridesmaid dress'),
       subcategory('Prom Dresses', 'prom dress', 'prom dresses'),
-      subcategory('Wedding Dresses', 'wedding dress', 'wedding dresses', 'bridal gown', 'bride dress'),
-      subcategory('Flower Girl Dresses', 'flower girl dress', 'flower-girl dress'),
     ],
   },
 ];
@@ -440,19 +466,25 @@ export function suggestStoreCollection(
   const hasAny = (...terms: string[]) => terms.some((term) => hasPhrase(text, term));
 
   // Family matching ranges belong in their own collection before matching the garment type.
-  if (hasAny('couple parent child', 'parent child', 'parent and child', 'mommy and me', 'mom and me', 'matching family', 'family matching')) {
+  if (hasAny('parent child', 'parent and child', 'mommy and me', 'mom and me', 'matching family', 'family matching', 'mother daughter', 'family pajamas')) {
+    const kind = hasAny('pajama', 'pajamas', 'sleepwear') ? 'Family Matching Pajamas'
+      : hasAny('dress', 'dresses') ? 'Mother-Daughter Dresses'
+        : hasAny('set', 'sets', 'suit', 'suits', 'outfit') ? 'Family Matching Sets' : 'Family Matching Tops';
+    return assignmentFor('parent-child-clothing', kind);
+  }
+  if (hasAny('couple', 'couples', 'lovers')) {
     const type = hasAny('sweatshirt', 'sweatshirts', 'hoodie', 'hoodies')
-      ? 'Couple & Parent-Child Sweatshirts'
+      ? 'Couple Sweatshirts'
       : hasAny('short sleeve', 'short sleeved', 't shirt', 'tee shirt', 'short sleeve tee')
-        ? 'Couple & Parent-Child Short-Sleeves'
+        ? 'Couple T-Shirts'
         : hasAny('jacket', 'jackets')
-          ? 'Couple & Parent-Child Jackets'
+          ? 'Couple Jackets'
           : hasAny('suit', 'suits')
-            ? 'Couple & Parent-Child Suits'
+            ? 'Couple Sets'
             : hasAny('pant', 'pants', 'trouser', 'trousers')
-              ? 'Couple & Parent-Child Pants'
+              ? 'Couple Pants'
               : hasAny('top', 'tops', 'shirt', 'shirts', 'blouse', 'blouses')
-                ? 'Couple & Parent-Child Tops'
+                ? 'Couple Tops'
                 : undefined;
     return assignmentFor('couple-parent-child-clothing', type);
   }
@@ -521,10 +553,10 @@ export function suggestStoreCollection(
 
     { group: 'weddings-and-events', label: 'Cocktail Dresses', terms: ['cocktail dress', 'cocktail dresses', 'party dress', 'party dresses'] },
     { group: 'weddings-and-events', label: 'Evening Dresses', terms: ['evening dress', 'evening dresses', 'evening gown', 'formal gown'] },
-    { group: 'weddings-and-events', label: 'Bridesmaid Dresses', terms: ['bridesmaid', 'bridesmaid dress'] },
+    { group: 'weddings', label: 'Bridesmaid Dresses', terms: ['bridesmaid', 'bridesmaid dress'] },
     { group: 'weddings-and-events', label: 'Prom Dresses', terms: ['prom dress', 'prom dresses'] },
-    { group: 'weddings-and-events', label: 'Flower Girl Dresses', terms: ['flower girl dress', 'flower-girl dress'] },
-    { group: 'weddings-and-events', label: 'Wedding Dresses', terms: ['wedding dress', 'wedding dresses', 'bridal gown', 'bride dress'] },
+    { group: 'weddings', label: 'Flower Girl Dresses', terms: ['flower girl dress', 'flower-girl dress'] },
+    { group: 'weddings', label: 'Wedding Dresses', terms: ['wedding dress', 'wedding dresses', 'bridal gown', 'bride dress'] },
 
     { group: 'bottoms', label: 'Women’s Flare Pants', terms: ['flare pants', 'flared pants', 'flare trousers', 'bell bottom pants'] },
     { group: 'bottoms', label: 'Women’s Straight-Leg Pants', terms: ['straight leg pants', 'straight leg trousers'] },
