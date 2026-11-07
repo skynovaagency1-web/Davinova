@@ -64,7 +64,7 @@ export const CATEGORY_HEROES: Record<string, HeroCopy> = {
   // Women: shoes
   'womens-shoes': { scene: 'pedestal', picks: ['cj-2406080543561613000', 'cj-2406080319241618000', 'cj-2406261520121622800', 'cj-2411110251451625200'], title: 'The *evening* / heel', text: 'Heels, flats, sandals and boots picked to go with the dress.', features: SHOE_FEATURES },
   pumps: { scene: 'pedestal', picks: ['cj-2406080543561613000', 'cj-2406080319241618000', 'cj-2406261520121622800', 'cj-2406180559271624200'], title: 'The *Nova* / stiletto', text: 'A sculpted heel, a clean line and a shine made for the aisle.', features: SHOE_FEATURES },
-  'woman-sandals': { scene: 'pedestal', picks: ['cj-1630388438891909120', 'cj-1783680345863368704'], title: 'The *summer* / sandal', text: 'Strappy sandals for garden weddings and warm evenings.', features: SHOE_FEATURES },
+  'woman-sandals': { scene: 'pedestal', picks: ['cj-11B9D938-6656-4FEB-BCF0-5EAFED30313E', 'cj-1417297659437387776'], title: 'The *summer* / sandal', text: 'Strappy sandals for garden weddings and warm evenings.', features: SHOE_FEATURES },
   flats: { scene: 'pedestal', title: 'The *easy* / flat', text: 'Flats for dancing all night, without giving up the look.', features: SHOE_FEATURES },
   'woman-boots': { scene: 'pedestal', picks: ['cj-2411110251451625200', 'cj-2410200900451607100', 'cj-2506051526231611000', 'cj-2501251235371629500'], title: 'The *city* / boot', text: 'Ankle and knee boots for the colder months.', features: SHOE_FEATURES },
   'vulcanize-shoes': { scene: 'pedestal', picks: ['cj-1773307956126289920', 'cj-1381909663775330304', 'cj-2406150621011628600'], title: 'The *off-duty* / sneaker', text: 'Clean sneakers for the days around the event.', features: SHOE_FEATURES },
