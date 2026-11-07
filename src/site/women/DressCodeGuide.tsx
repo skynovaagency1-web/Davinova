@@ -11,7 +11,9 @@ const codes = [
 /** "What to wear to…": a quick dress-code guide that sends each code to the matching edit. */
 export function DressCodeGuide({ title = 'What to wear to' }: { title?: string }) {
   return <section className="w-codes">
-    <div className="w-sec-head"><h2>{title} <b>…</b></h2><p className="w-sec-head__note">Not sure what the invitation means? Start here.</p></div>
+    <div className="w-sec-head"><h2>{title} <b>…</b></h2><p className="w-sec-head__note">Not sure what the invitation means? Start here.</p>
+      {/* A plain link, not <Link>: /wedding-guest is a standalone HTML page outside the React router. */}
+      <a href="/wedding-guest" className="w-codes__edit">See the Wedding Guest Edit <ArrowUpRight size={15} /></a></div>
     <div className="w-codes__grid">{codes.map((code) => <Link key={code.no} to={code.to} className="w-code">
       <span className="w-code__no">{code.no}</span>
       <strong>{code.title}</strong>

@@ -20,6 +20,16 @@ describe('admin middleware', () => {
     expect(response.status).toBe(200);
   });
 
+  it('serves the standalone wedding guest page untouched, without localising its head', async () => {
+    const html = '<title>Davinova Wedding Guest Edit</title><p>hi</p>';
+    const response = await onRequest({
+      request: request('/wedding-guest'),
+      next: async () => new Response(html, { headers: { 'Content-Type': 'text/html' } }),
+      env: {},
+    });
+    expect(await response.text()).toBe(html);
+  });
+
   it('always lets the token-authenticated cj-approve endpoint through', async () => {
     const response = await onRequest({ request: request('/api/admin/cj-approve'), next: next(), env: {} });
     expect(response.status).toBe(200);
