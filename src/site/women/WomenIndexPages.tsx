@@ -80,7 +80,7 @@ export function FitsPage() {
       <h1>Find your fit</h1>
       <p>Shop dresses cut for your shape. Every product page lists its exact sizes.</p>
     </header>
-    {!loading && <div className="nova-collections__grid">{cards.map((card) => <IndexCard key={card.key} card={card} />)}</div>}
+    {!loading && <div className="nova-collections__grid">{cards.filter((card) => card.items.length || card.key === 'jewelry').map((card) => <IndexCard key={card.key} card={card} />)}</div>}
   </section>;
 }
 
@@ -103,7 +103,7 @@ export function FitCategoriesPage({ fit }: { fit: 'standard' | 'curvy' }) {
   const cards: Card[] = CLOTHING_GROUPS
     .map((group) => ({ key: group.slug, label: group.label, line: '', to: `${categoryPath(group.slug)}&fit=${fit}`, items: all.filter((product) => product.storeCollection === group.slug) }))
     .sort((a, b) => b.items.length - a.items.length);
-  if (fit === 'standard') cards.push({ key: 'couple', label: 'Couple & Parent-Child Clothing', line: '', to: '/couple', items: women(products).filter((product) => product.storeCollection === 'couple-parent-child-clothing') });
+  if (fit === 'standard') cards.push({ key: 'couple', label: 'Couple Clothing', line: '', to: '/couple', items: women(products).filter((product) => product.storeCollection === 'couple-parent-child-clothing') });
 
   return <section className="jw jw--women idx">
     <header className="jw__head">
@@ -111,7 +111,7 @@ export function FitCategoriesPage({ fit }: { fit: 'standard' | 'curvy' }) {
       <h1>{section.label}</h1>
       <p>{section.line}</p>
     </header>
-    {!loading && <div className="nova-collections__grid">{cards.map((card) => <IndexCard key={card.key} card={card} />)}</div>}
+    {!loading && <div className="nova-collections__grid">{cards.filter((card) => card.items.length || card.key === 'jewelry').map((card) => <IndexCard key={card.key} card={card} />)}</div>}
   </section>;
 }
 
@@ -127,6 +127,6 @@ export function GroupPage({ slug }: { slug: 'accessories' | 'couple-parent-child
 
   return <section className="jw jw--women idx">
     <CategoryHero dept="women" keys={[slug]} label={group.label} products={items} to={categoryPath(slug)} count={loading ? undefined : `${items.length} pieces`} />
-    {!loading && <div className="nova-collections__grid">{cards.map((card) => <IndexCard key={card.key} card={card} />)}</div>}
+    {!loading && <div className="nova-collections__grid">{cards.filter((card) => card.items.length || card.key === 'jewelry').map((card) => <IndexCard key={card.key} card={card} />)}</div>}
   </section>;
 }
