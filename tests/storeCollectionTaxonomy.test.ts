@@ -31,8 +31,10 @@ describe('Davinova store collection taxonomy', () => {
       'Outerwear & Jackets',
       'Weddings',
       'Events & Parties',
+      'Date Night & Party',
+      'Formal Wear',
     ]);
-    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(131);
+    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(137);
   });
 
   it('sorts denim jackets into the denim collection and correct subcategory', () => {

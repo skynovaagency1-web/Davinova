@@ -23,7 +23,7 @@ def minimum(row) -> float:
         return 28.99
     if collection in ('womens-bags', 'womens-shoes') or BAG_OR_SHOE.search(sub):
         return 44.99
-    if re.search(r'dress(?!-shirt|-shoe)|suits|tuxedo', sub):
+    if collection in ('date-night-and-party', 'formal-wear') or re.search(r'dress(?!-shirt|-shoe)|suits|tuxedo', sub):
         return 48.99
     return 24.99
 

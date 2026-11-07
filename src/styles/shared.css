@@ -934,3 +934,5 @@ button.w-icon { border: 0; }
 .acct__stages b { position: absolute; top: -8px; right: -12px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: #d9634a; color: #fff; font-size: 11px; font-style: normal; display: grid; place-items: center; }
 .acct__more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 6px; }
 @media (max-width: 560px) { .acct__stages a { font-size: 11px; } .acct__more a, .acct__more button { font-size: 12px; } }
+.club__warn { margin: 12px 0; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(214, 140, 60, .55); background: rgba(214, 140, 60, .14); font-size: 14px; line-height: 1.45; }
+.club__warn b { display: block; margin-bottom: 2px; }

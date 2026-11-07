@@ -179,6 +179,7 @@ export function CheckInPage({ dept }: { dept: Dept }) {
           <div><strong>{streak}</strong> / 7 days<em>{streak} {streak === 1 ? 'day' : 'days'}</em></div>
           <i style={{ ['--p' as string]: `${(streak / 7) * 100}%` }} />
         </section>
+        <p className="club__warn" role="note"><b>Don't break your streak!</b> Check in every day. If you miss a day, your streak starts again from Day 1.</p>
         <section className="acct__card">
           <h2>Your progress</h2>
           <ol className="club__days">{CHECKIN_POINTS.map((_, index) => {
@@ -195,7 +196,7 @@ export function CheckInPage({ dept }: { dept: Dept }) {
             ? <p className="club__ok">✓ Come back tomorrow!</p>
             : <button type="button" className="club__primary club__wide" onClick={() => void claim()} disabled={busy}>{busy ? 'Checking in…' : `Check in today · +${checkinPoints(nextDay, level.boost)} points`}</button>}
           {note && <p className="acct__note" role="status">{note}</p>}
-          <p className="acct__note">{POINTS_PER_BLOCK} points = {money(BLOCK_CENTS)} of balance. Turn them into balance from your <Link to={`${base(dept)}/account`}>dashboard</Link>. Missing a day starts the streak again at day 1.</p>
+          <p className="acct__note">{POINTS_PER_BLOCK} points = {money(BLOCK_CENTS)} of balance. Turn them into balance from your <Link to={`${base(dept)}/account`}>dashboard</Link>.</p>
         </section>
       </>;
     }}

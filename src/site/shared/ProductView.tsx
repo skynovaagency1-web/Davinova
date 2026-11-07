@@ -35,6 +35,8 @@ const usesByCollection: Record<string, string[]> = {
   'prom-dresses': ['for prom night', 'for the photos', 'for the after-party'],
   'flower-girl-dresses': ['for the aisle', 'for the photos', 'for the reception'],
   'weddings-and-events': ['for the ceremony', 'for the reception', 'for the after-party'],
+  'date-night-and-party': ['for date night', 'for the party', 'for the club'],
+  'formal-wear': ['for the office', 'for the ceremony', 'for the gala'],
   'couple-parent-child-clothing': ['for date night', 'for the holidays', 'for days out together'],
   'parent-child-clothing': ['for family photos', 'for the holidays', 'for days out together'],
   weddings: ['for the ceremony', 'for the first dance', 'for the photos'],
@@ -45,7 +47,7 @@ const usesByCollection: Record<string, string[]> = {
 };
 const wordByCollection: Record<string, string> = {
   'cocktail-dresses': 'Cocktail', 'evening-dresses': 'Evening', 'wedding-dresses': 'Bridal', 'bridesmaid-dresses': 'Bridesmaid', 'prom-dresses': 'Prom', 'flower-girl-dresses': 'Flower girl',
-  'weddings-and-events': 'Occasion', 'couple-parent-child-clothing': 'Together', 'parent-child-clothing': 'Family', weddings: 'Bridal', 'womens-sweaters': 'Knit', 'womens-denim': 'Denim', 'tops-and-sets': 'Everyday', accessories: 'Finish', watches: 'Time',
+  'weddings-and-events': 'Occasion', 'date-night-and-party': 'Night out', 'formal-wear': 'Tailored', 'couple-parent-child-clothing': 'Together', 'parent-child-clothing': 'Family', weddings: 'Bridal', 'womens-sweaters': 'Knit', 'womens-denim': 'Denim', 'tops-and-sets': 'Everyday', accessories: 'Finish', watches: 'Time',
 };
 const keysOf = (item: Product) => [item.storeSubcategory, item.storeCollection, item.shelf].filter((key): key is string => Boolean(key));
 const lookup = <T,>(table: Record<string, T>, item: Product) => keysOf(item).map((key) => table[key]).find((value) => value !== undefined);
