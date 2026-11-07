@@ -1,0 +1,467 @@
+{
+ "checkedAt": "2026-11-07T14:42:53.319Z",
+ "countries": [
+  "US"
+ ],
+ "results": [
+  {
+   "siteId": "cj-1791751520392843264",
+   "vid": "1791751520468340736",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 11.32,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 12.3,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2075130484984541185",
+   "vid": "2075130485081010178",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 18,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 19.57,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2610270137181620000",
+   "vid": "2610270137181621100",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 17.39,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 18.88,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2601211019011607900",
+   "vid": "2601211019011608200",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 14.66,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 15.79,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2095342086189146114",
+   "vid": "2095342086419832833",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 18.46,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 20.08,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2607211118201626200",
+   "vid": "2607211118201627000",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 19.52,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 21.28,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2097522537801555970",
+   "vid": "2097522537952550913",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 18,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 19.57,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2097518029809754113",
+   "vid": "2097518030099161089",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 14.37,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 15.78,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2603240110241622900",
+   "vid": "2603240110241623300",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 16.33,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 17.68,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-AFB04F8B-ED74-45BC-BB22-B0701298D396",
+   "vid": "4F7F0284-9C00-45ED-A456-07EFF32DA33F",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 8.89,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 9.6,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1423904778064367616",
+   "vid": "1423904779377184768",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 13.15,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 14.39,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1544242829382397952",
+   "vid": "1544242829495644160",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 8.89,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 9.6,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2601080931501628000",
+   "vid": "2601080931501628200",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 9.5,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 10.3,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2602050925001637900",
+   "vid": "2610210805591638700",
+   "countries": {
+    "US": {
+     "error": "CJ /logistic/freightCalculate failed with HTTP 429: Too Many Requests, One IP Address QPS limit is 10 times/1seconds (request 313439d1fa474b039413e224b9f6bb77)"
+    }
+   }
+  },
+  {
+   "siteId": "cj-1770282190048337920",
+   "vid": "1770282190128029696",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 14.66,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 15.79,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-9CFE4259-7F79-4840-A1B1-7FEEC14E95E7",
+   "vid": "082AFCD4-46F4-4B58-9988-C506F3481361",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 12.54,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 13.69,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1628659784247422976",
+   "vid": "1628659784343891968",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 13,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 14.22,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-7139C929-ADFB-44F7-88A2-5C0C39F45705",
+   "vid": "09F0F953-95DA-42B8-B044-A247218CA24A",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 14.51,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 15.63,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-2609030908551618200",
+   "vid": "2609030908551619400",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 11.63,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 12.65,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-82C69070-873D-47B7-97C8-B0C43FF03F3A",
+   "vid": "3D30FA6E-CABF-4C3D-A7E0-ABC99BF99A58",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 9.04,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 9.78,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-65E91C62-E625-4C1A-8F9D-8D3CD7AC7712",
+   "vid": "22D2AA43-5072-49E1-A8D2-547E5C845433",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 8.89,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 9.6,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-A076491C-793C-46F1-B964-864358EB5224",
+   "vid": "22F0F03F-FB9B-49AA-BDB0-3B9E248DFCD3",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 8.89,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 9.6,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-F5BCB2F8-D808-47E9-82E7-6FEBFA1E29E6",
+   "vid": "0D0C297E-F22A-4AD7-8713-23994FDD9FCF",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 8.89,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 9.6,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-9885B08E-C1D2-4440-B46D-CFE6F682DBC0",
+   "vid": "0DDFF3C3-621D-41A2-9C7C-8F9BBACD7F2C",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 8.58,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 9.25,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-1378975209121517568",
+   "vid": "1378975210484666368",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 11.93,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 13,
+      "days": "4-7"
+     }
+    }
+   }
+  },
+  {
+   "siteId": "cj-F72426D6-6D68-4F0C-9A85-50158E3E762B",
+   "vid": "0BA78732-79A0-4013-BC1B-7D95552AE552",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 12.33,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 13.45,
+      "days": "4-7"
+     }
+    }
+   }
+  }
+ ]
+}

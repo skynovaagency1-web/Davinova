@@ -1,0 +1,1563 @@
+{
+ "checkedAt": "2026-11-07T14:40:18.660Z",
+ "results": [
+  {
+   "id": "1791751520392843264",
+   "ok": true,
+   "name": "Lace Embroidery Dress Women",
+   "saleStatus": "3",
+   "minCostUsd": 18,
+   "maxCostUsd": 18,
+   "totalStock": 151340,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 11.32,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1791751520468340736",
+     "options": "Black-2XL",
+     "costUsd": 18,
+     "stock": 12011
+    },
+    {
+     "id": "1791751520531255296",
+     "options": "Black-3XL",
+     "costUsd": 18,
+     "stock": 11100
+    },
+    {
+     "id": "1791751520598364160",
+     "options": "Black-S",
+     "costUsd": 18,
+     "stock": 13831
+    },
+    {
+     "id": "1791751520661278720",
+     "options": "Black-M",
+     "costUsd": 18,
+     "stock": 14386
+    },
+    {
+     "id": "1791751520719998976",
+     "options": "Black-L",
+     "costUsd": 18,
+     "stock": 11896
+    },
+    {
+     "id": "1791751520782913536",
+     "options": "Black-XL",
+     "costUsd": 18,
+     "stock": 14545
+    },
+    {
+     "id": "1791751520841633792",
+     "options": "Apricot-2XL",
+     "costUsd": 18,
+     "stock": 11147
+    },
+    {
+     "id": "1791751520900354048",
+     "options": "Apricot-3XL",
+     "costUsd": 18,
+     "stock": 12193
+    },
+    {
+     "id": "1791751520959074304",
+     "options": "Apricot-S",
+     "costUsd": 18,
+     "stock": 12535
+    },
+    {
+     "id": "1791751521021988864",
+     "options": "Apricot-M",
+     "costUsd": 18,
+     "stock": 13813
+    },
+    {
+     "id": "1791751521089097728",
+     "options": "Apricot-L",
+     "costUsd": 18,
+     "stock": 10731
+    },
+    {
+     "id": "1791751521156206592",
+     "options": "Apricot-XL",
+     "costUsd": 18,
+     "stock": 13152
+    }
+   ],
+   "siteId": "cj-1791751520392843264",
+   "title": "Lace Embroidery Dress Women",
+   "department": "women"
+  },
+  {
+   "id": "2075130484984541185",
+   "ok": true,
+   "name": "Leopard Print Double Breasted Blazer & Midi Pencil Skirt 2-Piece Suit Set",
+   "saleStatus": "3",
+   "minCostUsd": 37.81,
+   "maxCostUsd": 37.81,
+   "totalStock": 62031,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2075130485081010178",
+     "options": "Red-S",
+     "costUsd": 37.81,
+     "stock": 14513
+    },
+    {
+     "id": "2075130485081010179",
+     "options": "Red-M",
+     "costUsd": 37.81,
+     "stock": 10584
+    },
+    {
+     "id": "2075130485081010180",
+     "options": "Red-L",
+     "costUsd": 37.81,
+     "stock": 11642
+    },
+    {
+     "id": "2075130485081010181",
+     "options": "Red-XL",
+     "costUsd": 37.81,
+     "stock": 12313
+    },
+    {
+     "id": "2075130485081010182",
+     "options": "Red-2XL",
+     "costUsd": 37.81,
+     "stock": 12979
+    }
+   ],
+   "siteId": "cj-2075130484984541185",
+   "title": "Leopard Print Double Breasted Blazer & Midi Pencil Skirt 2-Piece Suit Set",
+   "department": "men"
+  },
+  {
+   "id": "2610270137181620000",
+   "ok": true,
+   "name": "Elegant Business Casual Two Piece Set - Blazer and Midi Skirt Suit for Women Office Wear",
+   "saleStatus": "3",
+   "minCostUsd": 53.75,
+   "maxCostUsd": 53.75,
+   "totalStock": 69087,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 17.39,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2610270137181621100",
+     "options": "Wine Red-S",
+     "costUsd": 53.75,
+     "stock": 5194
+    },
+    {
+     "id": "2610270137181621101",
+     "options": "Wine Red-M",
+     "costUsd": 53.75,
+     "stock": 8322
+    },
+    {
+     "id": "2610270137181621102",
+     "options": "Wine Red-L",
+     "costUsd": 53.75,
+     "stock": 9755
+    },
+    {
+     "id": "2610270137181621103",
+     "options": "Wine Red-XL",
+     "costUsd": 53.75,
+     "stock": 6370
+    },
+    {
+     "id": "2610270137181621104",
+     "options": "Wine Red-XXL",
+     "costUsd": 53.75,
+     "stock": 6396
+    },
+    {
+     "id": "2610270137181621105",
+     "options": "Navy Blue-S",
+     "costUsd": 53.75,
+     "stock": 6175
+    },
+    {
+     "id": "2610270137181621106",
+     "options": "Navy Blue-M",
+     "costUsd": 53.75,
+     "stock": 5150
+    },
+    {
+     "id": "2610270137181621107",
+     "options": "Navy Blue-L",
+     "costUsd": 53.75,
+     "stock": 7392
+    },
+    {
+     "id": "2610270137181621108",
+     "options": "Navy Blue-XL",
+     "costUsd": 53.75,
+     "stock": 5366
+    },
+    {
+     "id": "2610270137181621109",
+     "options": "Navy Blue-XXL",
+     "costUsd": 53.75,
+     "stock": 8967
+    }
+   ],
+   "siteId": "cj-2610270137181620000",
+   "title": "Elegant Business Casual Two Piece Set - Blazer and Midi Skirt Suit for Women Office Wear",
+   "department": "women"
+  },
+  {
+   "id": "2601211019011607900",
+   "ok": true,
+   "name": "Two Piece Formal Suit Womens Hand Stitched Pearl Blazer And Skirt Set",
+   "saleStatus": "3",
+   "minCostUsd": 47.93,
+   "maxCostUsd": 47.93,
+   "totalStock": 41886,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.66,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2601211019011608200",
+     "options": "White-S",
+     "costUsd": 47.93,
+     "stock": 8528
+    },
+    {
+     "id": "2601211019011608500",
+     "options": "White-M",
+     "costUsd": 47.93,
+     "stock": 5481
+    },
+    {
+     "id": "2601211019011608800",
+     "options": "White-L",
+     "costUsd": 47.93,
+     "stock": 9046
+    },
+    {
+     "id": "2601211019011609000",
+     "options": "Black And White Beads-S",
+     "costUsd": 47.93,
+     "stock": 6196
+    },
+    {
+     "id": "2601211019011609300",
+     "options": "Black And White Beads-M",
+     "costUsd": 47.93,
+     "stock": 5659
+    },
+    {
+     "id": "2601211019011609600",
+     "options": "Black And White Beads-L",
+     "costUsd": 47.93,
+     "stock": 6976
+    }
+   ],
+   "siteId": "cj-2601211019011607900",
+   "title": "Two Piece Formal Suit Womens Hand Stitched Pearl Blazer And Skirt Set",
+   "department": "women"
+  },
+  {
+   "id": "2095342086189146114",
+   "ok": true,
+   "name": "Classic Elegant 3D Floral Suit Set",
+   "saleStatus": "3",
+   "minCostUsd": 28.69,
+   "maxCostUsd": 28.69,
+   "totalStock": 161734,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18.46,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2095342086419832833",
+     "options": "Black-S",
+     "costUsd": 28.69,
+     "stock": 9620
+    },
+    {
+     "id": "2095342086419832834",
+     "options": "Black-M",
+     "costUsd": 28.69,
+     "stock": 8745
+    },
+    {
+     "id": "2095342086419832835",
+     "options": "Black-L",
+     "costUsd": 28.69,
+     "stock": 5957
+    },
+    {
+     "id": "2095342086419832836",
+     "options": "Black-XL",
+     "costUsd": 28.69,
+     "stock": 7882
+    },
+    {
+     "id": "2095342086419832837",
+     "options": "Black-2XL",
+     "costUsd": 28.69,
+     "stock": 7841
+    },
+    {
+     "id": "2095342086419832838",
+     "options": "Black-3XL",
+     "costUsd": 28.69,
+     "stock": 6431
+    },
+    {
+     "id": "2095342086419832839",
+     "options": "Black-4XL",
+     "costUsd": 28.69,
+     "stock": 8544
+    },
+    {
+     "id": "2095342086419832840",
+     "options": "Beige-S",
+     "costUsd": 28.69,
+     "stock": 8212
+    },
+    {
+     "id": "2095342086419832841",
+     "options": "Beige-M",
+     "costUsd": 28.69,
+     "stock": 8522
+    },
+    {
+     "id": "2095342086419832842",
+     "options": "Beige-L",
+     "costUsd": 28.69,
+     "stock": 8010
+    },
+    {
+     "id": "2095342086419832843",
+     "options": "Beige-XL",
+     "costUsd": 28.69,
+     "stock": 9498
+    },
+    {
+     "id": "2095342086419832844",
+     "options": "Beige-2XL",
+     "costUsd": 28.69,
+     "stock": 5737
+    },
+    {
+     "id": "2095342086419832845",
+     "options": "Beige-3XL",
+     "costUsd": 28.69,
+     "stock": 6652
+    },
+    {
+     "id": "2095342086419832846",
+     "options": "Beige-4XL",
+     "costUsd": 28.69,
+     "stock": 9831
+    },
+    {
+     "id": "2095342086419832847",
+     "options": "Brown-S",
+     "costUsd": 28.69,
+     "stock": 9394
+    },
+    {
+     "id": "2095342086419832848",
+     "options": "Brown-M",
+     "costUsd": 28.69,
+     "stock": 5053
+    },
+    {
+     "id": "2095342086419832849",
+     "options": "Brown-L",
+     "costUsd": 28.69,
+     "stock": 5432
+    },
+    {
+     "id": "2095342086419832850",
+     "options": "Brown-XL",
+     "costUsd": 28.69,
+     "stock": 8458
+    },
+    {
+     "id": "2095342086419832851",
+     "options": "Brown-2XL",
+     "costUsd": 28.69,
+     "stock": 5479
+    },
+    {
+     "id": "2095342086419832852",
+     "options": "Brown-3XL",
+     "costUsd": 28.69,
+     "stock": 8916
+    },
+    {
+     "id": "2095342086419832853",
+     "options": "Brown-4XL",
+     "costUsd": 28.69,
+     "stock": 7520
+    }
+   ],
+   "siteId": "cj-2095342086189146114",
+   "title": "Classic Elegant 3D Floral Suit Set",
+   "department": "women"
+  },
+  {
+   "id": "2607211118201626200",
+   "ok": true,
+   "name": "Korean-style Designer Blazer And Trousers Set For Women",
+   "saleStatus": "3",
+   "minCostUsd": 45.98,
+   "maxCostUsd": 45.98,
+   "totalStock": 29350,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 19.52,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2607211118201627000",
+     "options": "Blue-S",
+     "costUsd": 45.98,
+     "stock": 7241
+    },
+    {
+     "id": "2607211118201627500",
+     "options": "Blue-M",
+     "costUsd": 45.98,
+     "stock": 5728
+    },
+    {
+     "id": "2607211118201627900",
+     "options": "Blue-L",
+     "costUsd": 45.98,
+     "stock": 9530
+    },
+    {
+     "id": "2607211118201628400",
+     "options": "Blue-XL",
+     "costUsd": 45.98,
+     "stock": 6851
+    }
+   ],
+   "siteId": "cj-2607211118201626200",
+   "title": "Korean-style Designer Blazer And Trousers Set For Women",
+   "department": "women"
+  },
+  {
+   "id": "2097522537801555970",
+   "ok": true,
+   "name": "Cream 2 Piece Suit Black Scarf Lapel Blazer & Wide Leg Pants",
+   "saleStatus": "3",
+   "minCostUsd": 43.12,
+   "maxCostUsd": 43.12,
+   "totalStock": 48993,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 18,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2097522537952550913",
+     "options": "Cream-XS",
+     "costUsd": 43.12,
+     "stock": 6520
+    },
+    {
+     "id": "2097522537952550914",
+     "options": "Cream-S",
+     "costUsd": 43.12,
+     "stock": 9688
+    },
+    {
+     "id": "2097522537952550915",
+     "options": "Cream-M",
+     "costUsd": 43.12,
+     "stock": 9458
+    },
+    {
+     "id": "2097522537952550916",
+     "options": "Cream-L",
+     "costUsd": 43.12,
+     "stock": 7641
+    },
+    {
+     "id": "2097522537952550917",
+     "options": "Cream-XL",
+     "costUsd": 43.12,
+     "stock": 7432
+    },
+    {
+     "id": "2097522537952550918",
+     "options": "Cream-2XL",
+     "costUsd": 43.12,
+     "stock": 8254
+    }
+   ],
+   "siteId": "cj-2097522537801555970",
+   "title": "Cream 2 Piece Suit Black Scarf Lapel Blazer & Wide Leg Pants",
+   "department": "women"
+  },
+  {
+   "id": "2097518029809754113",
+   "ok": true,
+   "name": "Women Blazers Suit Set With Chinese Knot Tassel",
+   "saleStatus": "3",
+   "minCostUsd": 27.36,
+   "maxCostUsd": 27.36,
+   "totalStock": 102341,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.37,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2097518030099161089",
+     "options": "White-S",
+     "costUsd": 27.36,
+     "stock": 7044
+    },
+    {
+     "id": "2097518030099161090",
+     "options": "White-M",
+     "costUsd": 27.36,
+     "stock": 8956
+    },
+    {
+     "id": "2097518030099161091",
+     "options": "White-L",
+     "costUsd": 27.36,
+     "stock": 5600
+    },
+    {
+     "id": "2097518030099161092",
+     "options": "White-XL",
+     "costUsd": 27.36,
+     "stock": 5736
+    },
+    {
+     "id": "2097518030099161093",
+     "options": "White-2XL",
+     "costUsd": 27.36,
+     "stock": 9375
+    },
+    {
+     "id": "2097518030099161094",
+     "options": "White-3XL",
+     "costUsd": 27.36,
+     "stock": 9452
+    },
+    {
+     "id": "2097518030099161095",
+     "options": "White-4XL",
+     "costUsd": 27.36,
+     "stock": 5806
+    },
+    {
+     "id": "2097518030099161096",
+     "options": "Black-S",
+     "costUsd": 27.36,
+     "stock": 7302
+    },
+    {
+     "id": "2097518030099161097",
+     "options": "Black-M",
+     "costUsd": 27.36,
+     "stock": 6761
+    },
+    {
+     "id": "2097518030099161098",
+     "options": "Black-L",
+     "costUsd": 27.36,
+     "stock": 5908
+    },
+    {
+     "id": "2097518030099161099",
+     "options": "Black-XL",
+     "costUsd": 27.36,
+     "stock": 6528
+    },
+    {
+     "id": "2097518030099161100",
+     "options": "Black-2XL",
+     "costUsd": 27.36,
+     "stock": 6689
+    },
+    {
+     "id": "2097518030099161101",
+     "options": "Black-3XL",
+     "costUsd": 27.36,
+     "stock": 9166
+    },
+    {
+     "id": "2097518030099161102",
+     "options": "Black-4XL",
+     "costUsd": 27.36,
+     "stock": 8018
+    }
+   ],
+   "siteId": "cj-2097518029809754113",
+   "title": "Women Blazers Suit Set With Chinese Knot Tassel",
+   "department": "women"
+  },
+  {
+   "id": "2603240110241622900",
+   "ok": true,
+   "name": "Gold-stamped Bandage Slip Bodycon Dress",
+   "saleStatus": "3",
+   "minCostUsd": 34.66,
+   "maxCostUsd": 34.66,
+   "totalStock": 37742,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 16.33,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2603240110241623300",
+     "options": "Gold-XS",
+     "costUsd": 34.66,
+     "stock": 8012
+    },
+    {
+     "id": "2603240110241623700",
+     "options": "Gold-S",
+     "costUsd": 34.66,
+     "stock": 5490
+    },
+    {
+     "id": "2603240110241624000",
+     "options": "Gold-M",
+     "costUsd": 34.66,
+     "stock": 7004
+    },
+    {
+     "id": "2603240110241624400",
+     "options": "Gold-L",
+     "costUsd": 34.66,
+     "stock": 9685
+    },
+    {
+     "id": "2603240110241624800",
+     "options": "Gold-XL",
+     "costUsd": 34.66,
+     "stock": 7551
+    }
+   ],
+   "siteId": "cj-2603240110241622900",
+   "title": "Gold-stamped Bandage Slip Bodycon Dress",
+   "department": "women"
+  },
+  {
+   "id": "AFB04F8B-ED74-45BC-BB22-B0701298D396",
+   "ok": true,
+   "name": "Evening dress women's party dress",
+   "saleStatus": "3",
+   "minCostUsd": 17.38,
+   "maxCostUsd": 17.38,
+   "totalStock": 32935,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 8.89,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "4F7F0284-9C00-45ED-A456-07EFF32DA33F",
+     "options": "Orange-L",
+     "costUsd": 17.38,
+     "stock": 10455
+    },
+    {
+     "id": "8624608A-CEE8-4913-A2F3-CFFA442BC25F",
+     "options": "Orange-M",
+     "costUsd": 17.38,
+     "stock": 10752
+    },
+    {
+     "id": "C761C256-4A72-417E-9B71-992A4D58CE5E",
+     "options": "Orange-S",
+     "costUsd": 17.38,
+     "stock": 11728
+    }
+   ],
+   "siteId": "cj-AFB04F8B-ED74-45BC-BB22-B0701298D396",
+   "title": "Evening dress women's party dress",
+   "department": "women"
+  },
+  {
+   "id": "1423904778064367616",
+   "ok": true,
+   "name": "Hot Sale Package Hip Skirt Sexy Cocktail Party Bodycon Bandage Dress",
+   "saleStatus": "3",
+   "minCostUsd": 15.41,
+   "maxCostUsd": 15.41,
+   "totalStock": 90896,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.15,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1423904779377184768",
+     "options": "Blue-S",
+     "costUsd": 15.41,
+     "stock": 28607
+    },
+    {
+     "id": "1423904779385573376",
+     "options": "Blue-M",
+     "costUsd": 15.41,
+     "stock": 31624
+    },
+    {
+     "id": "1423904779393961984",
+     "options": "Blue-L",
+     "costUsd": 15.41,
+     "stock": 30665
+    }
+   ],
+   "siteId": "cj-1423904778064367616",
+   "title": "Hot Sale Package Hip Skirt Sexy Cocktail Party Bodycon Bandage Dress",
+   "department": "women"
+  },
+  {
+   "id": "1544242829382397952",
+   "ok": true,
+   "name": "Women's Plaid Tie Agaric Slip Dress",
+   "saleStatus": "3",
+   "minCostUsd": 11.08,
+   "maxCostUsd": 11.08,
+   "totalStock": 137790,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 8.89,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1544242829495644160",
+     "options": "Pink-S",
+     "costUsd": 11.08,
+     "stock": 44753
+    },
+    {
+     "id": "1544242829499838464",
+     "options": "Pink-M",
+     "costUsd": 11.08,
+     "stock": 46825
+    },
+    {
+     "id": "1544242829504032768",
+     "options": "Pink-L",
+     "costUsd": 11.08,
+     "stock": 46212
+    }
+   ],
+   "siteId": "cj-1544242829382397952",
+   "title": "Women's Plaid Tie Agaric Slip Dress",
+   "department": "women"
+  },
+  {
+   "id": "2601080931501628000",
+   "ok": true,
+   "name": "Satin Slip Dress For Women Autumn Season Pure And Alluring",
+   "saleStatus": "3",
+   "minCostUsd": 13.43,
+   "maxCostUsd": 13.43,
+   "totalStock": 18929,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 9.5,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2601080931501628200",
+     "options": "Streamer Pink-S",
+     "costUsd": 13.43,
+     "stock": 5345
+    },
+    {
+     "id": "2601080931501628400",
+     "options": "Streamer Pink-M",
+     "costUsd": 13.43,
+     "stock": 5098
+    },
+    {
+     "id": "2601080931501628500",
+     "options": "Streamer Pink-L",
+     "costUsd": 13.43,
+     "stock": 8486
+    }
+   ],
+   "siteId": "cj-2601080931501628000",
+   "title": "Satin Slip Dress For Women Autumn Season Pure And Alluring",
+   "department": "women"
+  },
+  {
+   "id": "2602050925001637900",
+   "ok": true,
+   "name": "V-neck Lace-panel Long Satin Slip Dress",
+   "saleStatus": "3",
+   "minCostUsd": 11.28,
+   "maxCostUsd": 11.44,
+   "totalStock": 30388,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 8.89,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2602050925001638700",
+     "options": "White-S",
+     "costUsd": 11.44,
+     "stock": 7996
+    },
+    {
+     "id": "2602050925001638900",
+     "options": "White-M",
+     "costUsd": 11.44,
+     "stock": 7421
+    },
+    {
+     "id": "2602050925001639400",
+     "options": "White-L",
+     "costUsd": 11.44,
+     "stock": 9523
+    },
+    {
+     "id": "2610210805591638700",
+     "options": "White-XL",
+     "costUsd": 11.28,
+     "stock": 5448
+    }
+   ],
+   "siteId": "cj-2602050925001637900",
+   "title": "V-neck Lace-panel Long Satin Slip Dress",
+   "department": "women"
+  },
+  {
+   "id": "1770282190048337920",
+   "ok": true,
+   "name": "High-grade Bandage Tassel Dress French Dress Women",
+   "saleStatus": "3",
+   "minCostUsd": 29.75,
+   "maxCostUsd": 29.75,
+   "totalStock": 40729,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.66,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1770282190128029696",
+     "options": "Black-S",
+     "costUsd": 29.75,
+     "stock": 13336
+    },
+    {
+     "id": "1770282190195138560",
+     "options": "Black-M",
+     "costUsd": 29.75,
+     "stock": 14567
+    },
+    {
+     "id": "1770282190262247424",
+     "options": "Black-L",
+     "costUsd": 29.75,
+     "stock": 12826
+    }
+   ],
+   "siteId": "cj-1770282190048337920",
+   "title": "High-grade Bandage Tassel Dress French Dress Women",
+   "department": "women"
+  },
+  {
+   "id": "9CFE4259-7F79-4840-A1B1-7FEEC14E95E7",
+   "ok": true,
+   "name": "Bag hip sequin dress",
+   "saleStatus": "3",
+   "minCostUsd": 11.08,
+   "maxCostUsd": 11.08,
+   "totalStock": 251423,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 12.54,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "082AFCD4-46F4-4B58-9988-C506F3481361",
+     "options": "White-S",
+     "costUsd": 11.08,
+     "stock": 12104
+    },
+    {
+     "id": "0C4EAADC-C2B2-41B2-B4F2-429D7CCAC8A2",
+     "options": "Red-S",
+     "costUsd": 11.08,
+     "stock": 11246
+    },
+    {
+     "id": "0EE5AF37-5892-489A-9913-03C353F3B910",
+     "options": "Gold-XXL",
+     "costUsd": 11.08,
+     "stock": 10036
+    },
+    {
+     "id": "502BD74A-5B63-4313-A7E9-B66D23BCB491",
+     "options": "Green-XXL",
+     "costUsd": 11.08,
+     "stock": 12563
+    },
+    {
+     "id": "5587FF45-2F06-4EFA-A113-3CF015AD8E84",
+     "options": "Red-M",
+     "costUsd": 11.08,
+     "stock": 12055
+    },
+    {
+     "id": "5B2121B3-5550-4147-AE7A-D501E6A71E51",
+     "options": "Gold-S",
+     "costUsd": 11.08,
+     "stock": 11543
+    },
+    {
+     "id": "7C3F16D5-5CE3-47FC-AD59-94741F753FB0",
+     "options": "Green-S",
+     "costUsd": 11.08,
+     "stock": 13213
+    },
+    {
+     "id": "7CC83DB2-8F3B-457C-97BE-47F5C65A03BF",
+     "options": "White-M",
+     "costUsd": 11.08,
+     "stock": 14843
+    },
+    {
+     "id": "7FFCDA32-B3F4-4F92-968B-21C7519F6CF3",
+     "options": "Green-L",
+     "costUsd": 11.08,
+     "stock": 12839
+    },
+    {
+     "id": "80625BAF-7164-4112-BC1C-0FF00A2997FD",
+     "options": "Green-XL",
+     "costUsd": 11.08,
+     "stock": 13821
+    },
+    {
+     "id": "9067147B-DE0E-41C1-96CB-D415B509EE1E",
+     "options": "White-XXL",
+     "costUsd": 11.08,
+     "stock": 14632
+    },
+    {
+     "id": "94B297BD-D488-4095-B74E-170553F8162C",
+     "options": "Red-XXL",
+     "costUsd": 11.08,
+     "stock": 12924
+    },
+    {
+     "id": "ABFA545B-0231-4311-87A0-930A54D567AA",
+     "options": "Green-M",
+     "costUsd": 11.08,
+     "stock": 14287
+    },
+    {
+     "id": "AC71A247-5751-4176-B40C-91D8417EA046",
+     "options": "White-L",
+     "costUsd": 11.08,
+     "stock": 11654
+    },
+    {
+     "id": "B543795C-CB79-4DDA-B7BF-CE3CFA88DFFE",
+     "options": "Gold-M",
+     "costUsd": 11.08,
+     "stock": 13236
+    },
+    {
+     "id": "C07BDB1B-A911-4BE7-9DAD-40068086588C",
+     "options": "Red-XL",
+     "costUsd": 11.08,
+     "stock": 11130
+    },
+    {
+     "id": "CB366878-B838-4556-8942-E006C47A6AAD",
+     "options": "Gold-XL",
+     "costUsd": 11.08,
+     "stock": 13532
+    },
+    {
+     "id": "CF509CC2-2D26-4F9D-9401-E5996D5B3F96",
+     "options": "White-XL",
+     "costUsd": 11.08,
+     "stock": 10561
+    },
+    {
+     "id": "DE08077F-301B-4921-8106-BE2795BD4A4A",
+     "options": "Gold-L",
+     "costUsd": 11.08,
+     "stock": 12794
+    },
+    {
+     "id": "F4FA69B5-26EB-460F-89B6-6D6B97A7E3D4",
+     "options": "Red-L",
+     "costUsd": 11.08,
+     "stock": 12410
+    }
+   ],
+   "siteId": "cj-9CFE4259-7F79-4840-A1B1-7FEEC14E95E7",
+   "title": "Bag hip sequin dress",
+   "department": "women"
+  },
+  {
+   "id": "1628659784247422976",
+   "ok": true,
+   "name": "Women's Sequin Red Velvet Strapless Sequin Dress",
+   "saleStatus": "3",
+   "minCostUsd": 18.7,
+   "maxCostUsd": 18.7,
+   "totalStock": 87390,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1628659784343891968",
+     "options": "Red-S",
+     "costUsd": 18.7,
+     "stock": 14569
+    },
+    {
+     "id": "1628659784402612224",
+     "options": "Red-M",
+     "costUsd": 18.7,
+     "stock": 10302
+    },
+    {
+     "id": "1628659784461332480",
+     "options": "Red-L",
+     "costUsd": 18.7,
+     "stock": 13041
+    },
+    {
+     "id": "1628659784524247040",
+     "options": "Red-XL",
+     "costUsd": 18.7,
+     "stock": 10095
+    },
+    {
+     "id": "1628659784582967296",
+     "options": "Red-2XL",
+     "costUsd": 18.7,
+     "stock": 14392
+    },
+    {
+     "id": "1628659784645881856",
+     "options": "Red-3XL",
+     "costUsd": 18.7,
+     "stock": 10102
+    },
+    {
+     "id": "1628659784700407808",
+     "options": "Red-4XL",
+     "costUsd": 18.7,
+     "stock": 14889
+    }
+   ],
+   "siteId": "cj-1628659784247422976",
+   "title": "Women's Sequin Red Velvet Strapless Sequin Dress",
+   "department": "women"
+  },
+  {
+   "id": "7139C929-ADFB-44F7-88A2-5C0C39F45705",
+   "ok": true,
+   "name": "Slingback sequin dress",
+   "saleStatus": "3",
+   "minCostUsd": 20.28,
+   "maxCostUsd": 20.28,
+   "totalStock": 53017,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 14.51,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "09F0F953-95DA-42B8-B044-A247218CA24A",
+     "options": "Blue-S",
+     "costUsd": 20.28,
+     "stock": 11956
+    },
+    {
+     "id": "3CB3FF15-8957-4775-8764-0AA3E1F487DF",
+     "options": "Blue-L",
+     "costUsd": 20.28,
+     "stock": 14500
+    },
+    {
+     "id": "9CD453EA-62AF-4E12-8EC6-057BAEF2F875",
+     "options": "Blue-M",
+     "costUsd": 20.28,
+     "stock": 13813
+    },
+    {
+     "id": "C389589D-108F-4C0F-8B07-8E5EFF937DBF",
+     "options": "Blue-XL",
+     "costUsd": 20.28,
+     "stock": 12748
+    }
+   ],
+   "siteId": "cj-7139C929-ADFB-44F7-88A2-5C0C39F45705",
+   "title": "Slingback sequin dress",
+   "department": "women"
+  },
+  {
+   "id": "2609030908551618200",
+   "ok": true,
+   "name": "Sequins Sleeveless High Slit Evening Dress One Shoulder Bodycon Sexy Party Dress",
+   "saleStatus": "3",
+   "minCostUsd": 21.28,
+   "maxCostUsd": 21.28,
+   "totalStock": 31350,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 11.63,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2609030908551619400",
+     "options": "Black-XS",
+     "costUsd": 21.28,
+     "stock": 8960
+    },
+    {
+     "id": "2609030908551619401",
+     "options": "Black-S",
+     "costUsd": 21.28,
+     "stock": 9635
+    },
+    {
+     "id": "2609030908551619402",
+     "options": "Black-M",
+     "costUsd": 21.28,
+     "stock": 6046
+    },
+    {
+     "id": "2609030908551619403",
+     "options": "Black-L",
+     "costUsd": 21.28,
+     "stock": 6709
+    }
+   ],
+   "siteId": "cj-2609030908551618200",
+   "title": "Sequins Sleeveless High Slit Evening Dress One Shoulder Bodycon Sexy Party Dress",
+   "department": "women"
+  },
+  {
+   "id": "82C69070-873D-47B7-97C8-B0C43FF03F3A",
+   "ok": true,
+   "name": "Evening dress women's party dress",
+   "saleStatus": "3",
+   "minCostUsd": 17.82,
+   "maxCostUsd": 17.82,
+   "totalStock": 38353,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 9.04,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "3D30FA6E-CABF-4C3D-A7E0-ABC99BF99A58",
+     "options": "Beige-L",
+     "costUsd": 17.82,
+     "stock": 13451
+    },
+    {
+     "id": "5BA39F96-9AFE-4981-8199-8B87CEBC230F",
+     "options": "Beige-S",
+     "costUsd": 17.82,
+     "stock": 10150
+    },
+    {
+     "id": "76BEE94C-B4FB-48AA-943B-5CC830758752",
+     "options": "Beige-M",
+     "costUsd": 17.82,
+     "stock": 14752
+    }
+   ],
+   "siteId": "cj-82C69070-873D-47B7-97C8-B0C43FF03F3A",
+   "title": "Evening dress women's party dress",
+   "department": "women",
+   "collection": "weddings-and-events",
+   "sub": "cocktail-dresses"
+  },
+  {
+   "id": "65E91C62-E625-4C1A-8F9D-8D3CD7AC7712",
+   "ok": true,
+   "name": "Evening dress women's party dress",
+   "saleStatus": "3",
+   "minCostUsd": 18.54,
+   "maxCostUsd": 18.54,
+   "totalStock": 34381,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 8.89,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "22D2AA43-5072-49E1-A8D2-547E5C845433",
+     "options": "Black-L",
+     "costUsd": 18.54,
+     "stock": 11468
+    },
+    {
+     "id": "42A59D3D-6D83-4024-AB04-70137005FE71",
+     "options": "Black-S",
+     "costUsd": 18.54,
+     "stock": 10683
+    },
+    {
+     "id": "C1349F0A-FC1E-4FBD-8E90-45933D26C506",
+     "options": "Black-M",
+     "costUsd": 18.54,
+     "stock": 12230
+    }
+   ],
+   "siteId": "cj-65E91C62-E625-4C1A-8F9D-8D3CD7AC7712",
+   "title": "Evening dress women's party dress",
+   "department": "women",
+   "collection": "weddings-and-events",
+   "sub": "cocktail-dresses"
+  },
+  {
+   "id": "A076491C-793C-46F1-B964-864358EB5224",
+   "ok": true,
+   "name": "Evening dress women's party dress",
+   "saleStatus": "3",
+   "minCostUsd": 18.4,
+   "maxCostUsd": 18.4,
+   "totalStock": 33869,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 8.89,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "22F0F03F-FB9B-49AA-BDB0-3B9E248DFCD3",
+     "options": "Light yellow-L",
+     "costUsd": 18.4,
+     "stock": 12117
+    },
+    {
+     "id": "519CD3E0-9B71-4ADF-9056-B8BE0FBCCD59",
+     "options": "Light yellow-M",
+     "costUsd": 18.4,
+     "stock": 11673
+    },
+    {
+     "id": "FB2D70D9-E58C-4B16-B5BF-DE2D34F4AC26",
+     "options": "Light yellow-S",
+     "costUsd": 18.4,
+     "stock": 10079
+    }
+   ],
+   "siteId": "cj-A076491C-793C-46F1-B964-864358EB5224",
+   "title": "Evening dress women's party dress",
+   "department": "women",
+   "collection": "weddings-and-events",
+   "sub": "cocktail-dresses"
+  },
+  {
+   "id": "F5BCB2F8-D808-47E9-82E7-6FEBFA1E29E6",
+   "ok": true,
+   "name": "Evening dress women's party dress",
+   "saleStatus": "3",
+   "minCostUsd": 22.32,
+   "maxCostUsd": 22.32,
+   "totalStock": 39807,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 8.89,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0D0C297E-F22A-4AD7-8713-23994FDD9FCF",
+     "options": "Pink-L",
+     "costUsd": 22.32,
+     "stock": 13897
+    },
+    {
+     "id": "27D65BED-D90D-4669-B54D-575192B6BA93",
+     "options": "Pink-M",
+     "costUsd": 22.32,
+     "stock": 13402
+    },
+    {
+     "id": "EF44C080-0C92-4BF7-B9B0-2B77CFAEAF4F",
+     "options": "Pink-S",
+     "costUsd": 22.32,
+     "stock": 12508
+    }
+   ],
+   "siteId": "cj-F5BCB2F8-D808-47E9-82E7-6FEBFA1E29E6",
+   "title": "Evening dress women's party dress",
+   "department": "women",
+   "collection": "weddings-and-events",
+   "sub": "cocktail-dresses"
+  },
+  {
+   "id": "9885B08E-C1D2-4440-B46D-CFE6F682DBC0",
+   "ok": true,
+   "name": "Evening dress women's party dress",
+   "saleStatus": "3",
+   "minCostUsd": 20.42,
+   "maxCostUsd": 20.42,
+   "totalStock": 33833,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 8.58,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "0DDFF3C3-621D-41A2-9C7C-8F9BBACD7F2C",
+     "options": "Apricot-S",
+     "costUsd": 20.42,
+     "stock": 12008
+    },
+    {
+     "id": "20EC418B-5FFB-4D6C-B042-667D606CD01B",
+     "options": "Apricot-M",
+     "costUsd": 20.42,
+     "stock": 10778
+    },
+    {
+     "id": "B3910A1B-C365-42DA-98E4-4A33520BFDB7",
+     "options": "Apricot-L",
+     "costUsd": 20.42,
+     "stock": 11047
+    }
+   ],
+   "siteId": "cj-9885B08E-C1D2-4440-B46D-CFE6F682DBC0",
+   "title": "Evening dress women's party dress",
+   "department": "women",
+   "collection": "weddings-and-events",
+   "sub": "cocktail-dresses"
+  },
+  {
+   "id": "1378975209121517568",
+   "ok": true,
+   "name": "Stitching Fringe Dress Party Dress",
+   "saleStatus": "3",
+   "minCostUsd": 22.45,
+   "maxCostUsd": 22.45,
+   "totalStock": 120000,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 11.93,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "1378975210484666368",
+     "options": "Brown-S",
+     "costUsd": 22.45,
+     "stock": 40000
+    },
+    {
+     "id": "1378975210530803712",
+     "options": "Brown-M",
+     "costUsd": 22.45,
+     "stock": 40000
+    },
+    {
+     "id": "1378975210568552448",
+     "options": "Brown-L",
+     "costUsd": 22.45,
+     "stock": 40000
+    }
+   ],
+   "siteId": "cj-1378975209121517568",
+   "title": "Stitching Fringe Dress Party Dress",
+   "department": "women",
+   "collection": "weddings-and-events",
+   "sub": "cocktail-dresses"
+  },
+  {
+   "id": "F72426D6-6D68-4F0C-9A85-50158E3E762B",
+   "ok": true,
+   "name": "Party dress",
+   "saleStatus": "3",
+   "minCostUsd": 17.8,
+   "maxCostUsd": 19.35,
+   "totalStock": 249878,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 12.33,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "05716B68-2569-4B75-86F2-38AB7876C7F5",
+     "options": "Red-M",
+     "costUsd": 19.35,
+     "stock": 13857
+    },
+    {
+     "id": "0BA78732-79A0-4013-BC1B-7D95552AE552",
+     "options": "Black-XL",
+     "costUsd": 17.8,
+     "stock": 14751
+    },
+    {
+     "id": "1910871F-EA07-4AB1-AA22-279134150377",
+     "options": "White-XS",
+     "costUsd": 17.8,
+     "stock": 10104
+    },
+    {
+     "id": "1BF10292-6F25-49C5-AC20-5CFE84E0A086",
+     "options": "Black-M",
+     "costUsd": 17.8,
+     "stock": 10537
+    },
+    {
+     "id": "1CB71682-4A53-48DD-88B2-62623181EF77",
+     "options": "Ginger-M",
+     "costUsd": 17.8,
+     "stock": 10408
+    },
+    {
+     "id": "3612BB35-D6A4-47B2-8F5C-5016880A3BEB",
+     "options": "Ginger-XS",
+     "costUsd": 17.8,
+     "stock": 12344
+    },
+    {
+     "id": "36B0905D-DA1D-4651-9423-AF4663CE658A",
+     "options": "Red-XL",
+     "costUsd": 19.35,
+     "stock": 11310
+    },
+    {
+     "id": "40B3CF24-2829-4415-9E74-89C0327DFA66",
+     "options": "White-L",
+     "costUsd": 17.8,
+     "stock": 10833
+    },
+    {
+     "id": "41C35C45-86C9-4320-8DFB-46D6F2E593E5",
+     "options": "Ginger-S",
+     "costUsd": 17.8,
+     "stock": 11679
+    },
+    {
+     "id": "4B04B09A-4F42-40D2-AA3A-F6D92087AAC4",
+     "options": "Ginger-XL",
+     "costUsd": 17.8,
+     "stock": 13275
+    },
+    {
+     "id": "5F670248-D1A0-4FC2-AFEA-54349412B38C",
+     "options": "White-XL",
+     "costUsd": 17.8,
+     "stock": 12549
+    },
+    {
+     "id": "6466BA1E-F223-455C-81BF-84CFC738C7C1",
+     "options": "White-S",
+     "costUsd": 17.8,
+     "stock": 12751
+    },
+    {
+     "id": "856ED477-C02D-4C15-936E-CDEB057F4143",
+     "options": "Red-S",
+     "costUsd": 19.35,
+     "stock": 14250
+    },
+    {
+     "id": "8DDC6F98-1597-4145-9A73-89A2AAC03AB8",
+     "options": "Black-L",
+     "costUsd": 17.8,
+     "stock": 12802
+    },
+    {
+     "id": "AF7E91E0-2F9E-46BC-BA80-5ADFF0000FEE",
+     "options": "Black-XS",
+     "costUsd": 17.8,
+     "stock": 14889
+    },
+    {
+     "id": "B585A8EB-E8B0-4768-AD22-0179BB856BA2",
+     "options": "White-M",
+     "costUsd": 17.8,
+     "stock": 12874
+    },
+    {
+     "id": "C27E7382-CA5F-49CA-BE9F-77C26C1B53E8",
+     "options": "Ginger-L",
+     "costUsd": 17.8,
+     "stock": 14775
+    },
+    {
+     "id": "F27E54D7-FBA1-4185-AD95-FB54809D24BD",
+     "options": "Black-S",
+     "costUsd": 17.8,
+     "stock": 10240
+    },
+    {
+     "id": "F72A79F0-FAD1-4916-89C4-A78ED68C691B",
+     "options": "Red-XS",
+     "costUsd": 19.35,
+     "stock": 13556
+    },
+    {
+     "id": "FFD96ADA-4B2D-44E1-8C45-B879617C2B8D",
+     "options": "Red-L",
+     "costUsd": 19.35,
+     "stock": 12094
+    }
+   ],
+   "siteId": "cj-F72426D6-6D68-4F0C-9A85-50158E3E762B",
+   "title": "Party dress",
+   "department": "women",
+   "collection": "weddings-and-events",
+   "sub": "cocktail-dresses"
+  }
+ ]
+}
