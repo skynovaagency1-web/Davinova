@@ -14,6 +14,8 @@ const SHELVES = [
   { key: 'clothing', label: 'Clothing', slugs: ['tops-and-sets', 'bottoms', 'womens-denim', 'womens-sweaters', 'womens-sweatshirts-hoodies', 'womens-jackets', 'outerwear-and-jackets', 'couple-parent-child-clothing', 'parent-child-clothing'] },
   { key: 'weddings', label: 'Weddings', slugs: ['weddings'] },
   { key: 'events', label: 'Events & Parties', slugs: ['weddings-and-events'] },
+  { key: 'date', label: 'Date & Party', slugs: ['date-night-and-party'] },
+  { key: 'formal', label: 'Formal', slugs: ['formal-wear'] },
   { key: 'shoes', label: 'Shoes', slugs: ['womens-shoes'] },
   { key: 'bags', label: 'Bags', slugs: ['womens-bags'] },
   { key: 'accessories', label: 'Accessories', slugs: ['accessories'] },

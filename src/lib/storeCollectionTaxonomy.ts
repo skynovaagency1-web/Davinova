@@ -317,6 +317,25 @@ export const storeCollectionGroups: StoreCollectionGroup[] = [
       subcategory('Prom Dresses', 'prom dress', 'prom dresses'),
     ],
   },
+  {
+    // Sexy date-night and party looks, and women's formal wear (owner, 2026-11-07).
+    slug: 'date-night-and-party',
+    label: 'Date Night & Party',
+    subcategories: [
+      subcategory('Bodycon Dresses', 'bodycon dress', 'bandage dress', 'latex dress', 'pu leather dress', 'vinyl dress'),
+      subcategory('Sequin & Fringe', 'sequin dress', 'sequined dress', 'glitter dress', 'fringe dress', 'tassel dress'),
+      subcategory('Satin & Slip Dresses', 'satin slip dress', 'silk slip dress', 'satin dress'),
+    ],
+  },
+  {
+    slug: 'formal-wear',
+    label: 'Formal Wear',
+    subcategories: [
+      subcategory('Pantsuits', 'pantsuit', 'pant suit', 'blazer and trousers set', 'trouser suit'),
+      subcategory('Skirt Suits', 'skirt suit', 'blazer and skirt set'),
+      subcategory('Tailored Dresses', 'blazer dress', 'tailored dress', 'sheath dress'),
+    ],
+  },
 ];
 
 export function normalizeStoreText(value: string): string {
