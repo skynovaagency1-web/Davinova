@@ -104,6 +104,8 @@ const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'clutches-and-evening-bags': { search: ['women evening clutch', 'wedding clutch bag', 'rhinestone evening bag', 'women party clutch'], fit: /\b(clutch(es)?|evening bags?|party bags?)\b/i },
   handbags: { search: ['women leather handbag', 'women shoulder bag', 'women crossbody bag'], fit: /\b(handbags?|shoulder bags?|crossbody|top handle)\b/i },
   totes: { search: ['women genuine leather tote handbag', 'women leather tote', 'women cowhide tote bag', 'women tote bag'], fit: /\btotes?\b/i },
+  // Floor-length evening gowns on a model: satin A-line, off-shoulder, sequin mermaid (owner's pick, 2026-11-07).
+  'evening-dresses': { search: ['satin a-line evening gown floor length', 'off shoulder satin evening dress long', 'sequin mermaid evening gown', 'strapless satin evening gown', 'women formal evening gown long', 'v-neck satin long evening dress'], fit: /\b(gown|evening dress(es)?|maxi|floor[- ]length|mermaid|long dress)\b/i },
   // Women's Luggage & Bags, named like CJ's categories (user, 2026-10-23).
   'woman-wallets': { search: ['women wallet', 'women long wallet', 'women card holder', 'women coin purse'], fit: /\b(wallets?|card (holder|case)s?|coin purses?|purses?)\b/i },
   'womens-crossbody-bags': { search: ['women crossbody bag', 'women sling bag', 'women small crossbody bag'], fit: /\b(crossbody|cross-body|sling bags?)\b/i },
