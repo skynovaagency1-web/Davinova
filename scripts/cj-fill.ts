@@ -195,7 +195,7 @@ const MEN_PIECES = ['mens-wedding-bands', 'mens-chains-bracelets', 'mens-watches
 // Things that share jewelry words but are not jewelry (or are for kids, pets, phones).
 const NOT_JEWELRY = /\b(smart ?watch|watch ?band|watch ?strap|phone ?case|jewelry ?box|storage|display|stand|organizer|holder|tool|kit|beads? for|diy|keychain|key ?ring|nose|belly|tattoo|smart)\b/i;
 const ONLY = (process.env.ONLY ?? '').split(',').map((value) => value.trim()).filter(Boolean);
-const DRESS_FIRST = ['weddings-and-events', 'tops-and-sets:lady-dresses', 'womens-sweaters:womens-sweater-dresses', 'womens-denim:womens-denim-dresses', 'womens-sweatshirts-hoodies:womens-sweatshirt-dresses'];
+const DRESS_FIRST = ['weddings-and-events', 'weddings', 'tops-and-sets:lady-dresses', 'womens-sweaters:womens-sweater-dresses', 'womens-denim:womens-denim-dresses', 'womens-sweatshirts-hoodies:womens-sweatshirt-dresses'];
 const NOT_FOR_STORE = /\b(kids?|child|children|toddler|baby|boys?|pet|dog|cat|pajamas?|pyjamas?|lingerie|costume|cosplay|halloween)\b/i;
 
 type Search = { items: { id: string; name: string; category: string; minPriceUsd: number | null; listedCount: number | null }[] };
@@ -265,7 +265,7 @@ async function main() {
           if (need <= 0 || imported >= MAX_IMPORTS || known.has(item.id)) continue;
           if (!((item.minPriceUsd ?? 0) >= floor) || !qualityScore(item)) continue;
           if (PLUS && !PLUS_TITLE.test(item.name)) continue;
-          if (NOT_FOR_STORE.test(item.name) && sub.slug !== 'flower-girl-dresses' && group.slug !== 'couple-parent-child-clothing') continue;
+          if (NOT_FOR_STORE.test(item.name) && sub.slug !== 'flower-girl-dresses' && group.slug !== 'couple-parent-child-clothing' && group.slug !== 'parent-child-clothing') continue;
           if (JEWELRY) {
             if (NOT_JEWELRY.test(item.name) || !JEWELRY_FITS[sub.slug]?.test(item.name)) continue;
             if (MEN_PIECES.includes(sub.slug) && (!MEN_TITLE.test(item.name) || WOMEN_TITLE.test(item.name))) continue;

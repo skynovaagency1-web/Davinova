@@ -671,3 +671,11 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-fit button { padding: 7px 12px; border-radius: 9px; border: 0; background: transparent; color: var(--amber-text); font: 600 12px/1 var(--nova-display); }
 .w-fit button.active { background: #e9c99b; color: #2a1d16; }
 @media (max-width: 980px) { .w-filters__tools .w-filters__sort:last-child { margin-left: 0; } }
+.w-filters__subs--cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 4px 14px; align-items: start; }
+.w-filters__col { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.w-filters__subs:not(.w-filters__subs--cols) .w-filters__col { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+.w-filters__subs--cols .w-filters__col button { padding: 6px 10px; }
+.w-filters__head { font-weight: 700 !important; letter-spacing: .02em; color: #e9c99b !important; }
+.w-filters__subs--cols .w-filters__head { text-transform: uppercase; font-size: 11px !important; letter-spacing: .1em; }
+.w-filters__head.active { color: #2a1d16 !important; }
+.w-filters__col button { text-align: left; }

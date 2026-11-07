@@ -18,7 +18,7 @@ export function Exemplaire({ products }: { products: Product[] }) {
   const cutoutFor = useCutouts();
   const looks = useMemo(() => {
     const worn = products.filter((product) => cutoutFor(product.id) && !cutoutFor(product.id)?.endsWith('.float.webp'));
-    const dresses = worn.filter((product) => product.storeCollection === 'weddings-and-events');
+    const dresses = worn.filter((product) => (product.storeCollection === 'weddings-and-events' || product.storeCollection === 'weddings'));
     return [...dresses, ...worn.filter((product) => !dresses.includes(product))].slice(0, COUNT);
   }, [products, cutoutFor]);
   const [active, setActive] = useState(0);

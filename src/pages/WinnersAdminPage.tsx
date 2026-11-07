@@ -14,7 +14,7 @@ const NICHES: Niche[] = [
   { label: 'Wedding guest dresses', q: 'wedding guest dress', collection: 'weddings-and-events', subcategory: 'evening-dresses', floor: 10 },
   { label: 'Cocktail dresses', q: 'cocktail party dress', collection: 'weddings-and-events', subcategory: 'cocktail-dresses', floor: 10 },
   { label: 'Satin maxi dresses', q: 'satin maxi dress', collection: 'tops-and-sets', subcategory: 'lady-dresses', floor: 10 },
-  { label: 'Bridesmaid dresses', q: 'bridesmaid dress', collection: 'weddings-and-events', subcategory: 'bridesmaid-dresses', floor: 10 },
+  { label: 'Bridesmaid dresses', q: 'bridesmaid dress', collection: 'weddings', subcategory: 'bridesmaid-dresses', floor: 10 },
   { label: 'Men’s wedding suits', q: 'men slim fit wedding suit', collection: 'mens-formal', subcategory: 'wedding-suits', floor: 10 },
   { label: 'Tuxedos', q: 'men tuxedo', collection: 'mens-formal', subcategory: 'tuxedos-and-dinner-jackets', floor: 10 },
   { label: 'Men’s watches', q: 'men stainless steel watch', collection: 'jewelry-and-watches', subcategory: 'mens-watches', floor: 8 },

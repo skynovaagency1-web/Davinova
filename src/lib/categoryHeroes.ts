@@ -70,7 +70,8 @@ export const CATEGORY_HEROES: Record<string, HeroCopy> = {
   'vulcanize-shoes': { scene: 'pedestal', picks: ['cj-1773307956126289920', 'cj-1381909663775330304', 'cj-2406150621011628600'], title: 'The *off-duty* / sneaker', text: 'Clean sneakers for the days around the event.', features: SHOE_FEATURES },
   'woman-slippers': { scene: 'pedestal', title: 'The *soft* / slipper', text: 'Slippers for getting ready, and the morning after.', features: SHOE_FEATURES },
   // Women: dresses and clothes
-  'weddings-and-events': { scene: 'pedestal', title: 'Dressed / for the / *moment*', text: 'Wedding guest, cocktail and evening dresses chosen piece by piece.', features: DRESS_FEATURES },
+  'weddings-and-events': { scene: 'pedestal', title: 'Dressed / for the / *moment*', text: 'Cocktail, evening and prom dresses chosen piece by piece.', features: DRESS_FEATURES },
+  weddings: { scene: 'pedestal', title: 'Your / *forever* / look', text: 'Wedding, bridesmaid and flower girl dresses for the big day.', features: DRESS_FEATURES },
   'cocktail-dresses': { scene: 'pedestal', title: 'Made for / the *toast*', text: 'Cocktail dresses for the party after the vows.', features: DRESS_FEATURES },
   'evening-dresses': { scene: 'pedestal', title: 'After / *dark*', text: 'Long evening dresses for black tie and the grand entrance.', features: DRESS_FEATURES },
   'bridesmaid-dresses': { scene: 'pedestal', title: 'Side by side, / in *style*', text: 'Bridesmaid dresses that flatter every figure in the line-up.', features: DRESS_FEATURES },
@@ -86,7 +87,8 @@ export const CATEGORY_HEROES: Record<string, HeroCopy> = {
   'womens-sweaters': { scene: 'mono', ghost: 'KNIT', title: 'Knit / *together*', text: 'Cardigans, knit sets and sweater dresses.' },
   'womens-denim': { scene: 'mono', ghost: 'DENIM', title: 'Blue, / *reborn*', text: 'Denim tops, jackets, skirts and dresses.' },
   accessories: { scene: 'stage', title: 'The *finishing* / touch', text: 'Scarves, belts, hats and the last details of the look.' },
-  'couple-parent-child-clothing': { scene: 'stage', title: 'Better / *together*', text: 'Matching looks for couples, parents and little ones.' },
+  'couple-parent-child-clothing': { scene: 'stage', title: 'Better / *together*', text: 'Matching looks for couples.' },
+  'parent-child-clothing': { scene: 'stage', title: 'Family, / *matched*', text: 'Matching looks for parents and little ones.' },
   // Women: beauty
   beauty: { scene: 'pedestal', title: 'Beauty, / *passed on*', text: 'Nails, glow and hair to finish every look, for every woman.', features: BEAUTY_FEATURES },
   makeup: { scene: 'pedestal', title: 'Glow / *on cue*', text: 'Lipsticks, palettes and brushes for the big day.', features: BEAUTY_FEATURES },
@@ -95,7 +97,7 @@ export const CATEGORY_HEROES: Record<string, HeroCopy> = {
   'hair-and-accessories': { scene: 'pedestal', title: 'Crowning / *glory*', text: 'Hair pins, bands and pieces for the up-do.', features: BEAUTY_FEATURES },
   'hair-weaves': { scene: 'pedestal', title: 'Crowning / *glory*', text: 'Hair weaves and bundles for your look.', features: BEAUTY_FEATURES },
   'beauty-tools': { scene: 'pedestal', title: 'Tools / of the *trade*', text: 'Irons, mirrors and skin tools for getting ready.', features: BEAUTY_FEATURES },
-  'food-and-health': { scene: 'pedestal', title: 'Feel / *well*', text: 'Care for before and after the big day.', features: BEAUTY_FEATURES },
+  'food-and-health': { scene: 'pedestal', title: 'Feel / *well*', text: 'Wellness tools for before and after the big day.', features: BEAUTY_FEATURES },
   // Jewelry & watches
   'womens-watches': WATCH,
   'mens-watches': { ...WATCH, text: 'Steel, gold and leather watches for the suit, the ceremony and every day after.' },
