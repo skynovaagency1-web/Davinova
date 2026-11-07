@@ -660,6 +660,7 @@ const dictionary: Dictionary = {
     "Lady Dresses": "Robes",
     "What to wear to": "Que porter pour",
     "Not sure what the invitation means? Start here.": "Vous ne savez pas ce que signifie l’invitation ? Commencez ici.",
+    "See the Wedding Guest Edit": "Voir la sélection Invitée de mariage",
     "Curvy": "Curvy",
     "Featured": "Sélection",
     "Price ↑": "Prix ↑",

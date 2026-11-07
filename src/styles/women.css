@@ -286,6 +286,7 @@
 .w-trend__more { display: inline-block; margin-top: 10px; font-weight: 700; color: var(--nova-lilac); }
 
 /* Dress-code guide */
+.w-codes__edit { display: inline-flex; gap: 6px; align-items: center; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
 .w-codes__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .w-code { position: relative; display: grid; align-content: start; gap: 10px; min-height: 250px; padding: 24px; border-radius: 28px; background: #fff; box-shadow: 0 18px 50px rgba(90, 50, 15, .08); transition: transform .35s cubic-bezier(.2, .7, .2, 1), background .35s, color .35s; }
 .w-code__no { font: 500 12px 'IBM Plex Mono', monospace; color: var(--nova-muted); }

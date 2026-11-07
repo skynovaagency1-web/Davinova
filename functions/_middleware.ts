@@ -2,6 +2,9 @@ import { localiseHtml } from '../server/lang';
 interface Env { ADMIN_PASSWORD?: string; DB?: D1Database }
 interface Context { request: Request; next: () => Promise<Response>; env: Env }
 
+/** Self-contained HTML files in public/ (e.g. the Wedding Guest Edit), with and without the .html Pages strips. */
+const STANDALONE_PAGES = new Set(['/wedding-guest', '/wedding-guest.html', '/wedding-guest/']);
+
 const MAX_FAILURES = 5;
 const LOCKOUT_MINUTES = 15;
 
@@ -61,6 +64,8 @@ export async function onRequest(context: Context): Promise<Response> {
     url.hostname = 'davinova.com';
     return Response.redirect(url.toString(), 301);
   }
+  // Standalone pages ship their own <title> and head, so they are served byte-for-byte, never localised.
+  if (STANDALONE_PAGES.has(url.pathname)) return context.next();
   // Pages get their language and hreflang links; files and the API pass straight through.
   if (!url.pathname.startsWith('/api/')) {
     const response = await context.next();
