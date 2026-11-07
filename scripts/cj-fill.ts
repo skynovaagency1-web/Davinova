@@ -103,14 +103,17 @@ const NOT_TAILORING = /\b(tracksuit|sweatsuit|swimsuit|jogging|sports? suit|paja
 const WOMEN_OBJECTS: Record<string, { search: string[]; fit: RegExp }> = {
   'clutches-and-evening-bags': { search: ['women evening clutch', 'wedding clutch bag', 'rhinestone evening bag', 'women party clutch'], fit: /\b(clutch(es)?|evening bags?|party bags?)\b/i },
   handbags: { search: ['women leather handbag', 'women shoulder bag', 'women crossbody bag'], fit: /\b(handbags?|shoulder bags?|crossbody|top handle)\b/i },
-  totes: { search: ['women tote bag', 'women leather tote'], fit: /\btotes?\b/i },
+  totes: { search: ['women genuine leather tote handbag', 'women leather tote', 'women cowhide tote bag', 'women tote bag'], fit: /\btotes?\b/i },
+  // Floor-length evening gowns on a model: satin A-line, off-shoulder, sequin mermaid (owner's pick, 2026-11-07).
+  'evening-dresses': { search: ['satin a-line evening gown floor length', 'off shoulder satin evening dress long', 'sequin mermaid evening gown', 'strapless satin evening gown', 'women formal evening gown long', 'v-neck satin long evening dress'], fit: /\b(gown|evening dress(es)?|maxi|floor[- ]length|mermaid|long dress)\b/i },
   // Women's Luggage & Bags, named like CJ's categories (user, 2026-10-23).
   'woman-wallets': { search: ['women wallet', 'women long wallet', 'women card holder', 'women coin purse'], fit: /\b(wallets?|card (holder|case)s?|coin purses?|purses?)\b/i },
   'womens-crossbody-bags': { search: ['women crossbody bag', 'women sling bag', 'women small crossbody bag'], fit: /\b(crossbody|cross-body|sling bags?)\b/i },
   'bag-accessories': { search: ['bag strap replacement', 'bag charm pendant', 'purse organizer insert', 'bag chain strap'], fit: /\b(bag (straps?|charms?|chains?|organi[sz]ers?)|straps? for bags?|purse (organi[sz]ers?|inserts?|charms?))\b/i },
   'evening-bags': { search: ['women evening bag', 'rhinestone evening bag', 'women party bag', 'pearl evening bag'], fit: /\b(evening bags?|party bags?|dinner bags?|banquet bags?)\b/i },
   'fashion-backpacks': { search: ['women fashion backpack', 'women mini backpack', 'women leather backpack'], fit: /\bbackpacks?\b/i },
-  'shoulder-bags': { search: ['women shoulder bag', 'women leather handbag', 'women top handle bag', 'women underarm bag'], fit: /\b(shoulder bags?|handbags?|top handle|underarm bags?|hobo)\b/i },
+  // Structured leather top-handle handbags, the look the owner picked (2026-11-07).
+  'shoulder-bags': { search: ['women genuine leather top handle handbag', 'women leather tote handbag structured', 'women cowhide handbag', 'women crocodile pattern leather handbag', 'women leather satchel bag', 'women leather handbag', 'women top handle bag'], fit: /\b(shoulder bags?|handbags?|top handle|underarm bags?|hobo)\b/i },
   clutches: { search: ['women evening clutch', 'wedding clutch bag', 'women envelope clutch', 'women party clutch'], fit: /\bclutch(es)?\b/i },
   // Health, Beauty & Hair: Nail Art & Tools (user, 2026-10-23).
   'nail-glitters': { search: ['nail glitter powder', 'chrome nail powder', 'holographic nail glitter', 'nail sequins flakes'], fit: /\bnails?\b.*\b(glitter|powder|chrome|sequins?|flakes?)\b|\b(glitter|chrome|holographic)\b.*\bnails?\b/i },
