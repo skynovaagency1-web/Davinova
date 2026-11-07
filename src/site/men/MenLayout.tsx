@@ -56,11 +56,11 @@ export function MenLayout() {
       <Link to="/men" className="m-wordmark" aria-label="Davinova Homme home"><Logo tone="metal" sub="HOMME" /></Link>
       <nav className="m-nav" aria-label="Men's navigation">{links.map(([to, label], index) => <Link key={to} to={to} className={current === to ? 'active' : ''}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}
         <div className="m-nav__drop">
-          <Link to={jewelryPath('men')} className={pathname.startsWith('/men/jewelry') ? 'active' : ''}><i>05</i>Jewelry &amp; Watches</Link>
-          <div className="m-nav__menu">{jewelryMenu('men').map((group) => <div key={group.title}>
-            <span>{group.title}</span>
-            {group.items.map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}
-          </div>)}</div>
+          <Link to="/men/categories" className={pathname.startsWith('/men/categories') || pathname.startsWith('/men/jewelry') ? 'active' : ''}><i>05</i>Categories</Link>
+          <div className="m-nav__menu">
+            <div><span>Clothing</span>{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}</div>
+            <div><Link to={jewelryPath('men')}><span>Jewelry &amp; Watches</span></Link>{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
+          </div>
         </div>
         <Link to="/men/custom/design" className={pathname.startsWith('/men/custom') ? 'active' : ''}><i>06</i>Design yours</Link>
       </nav>
@@ -76,9 +76,7 @@ export function MenLayout() {
     <AnimatePresence>
       {open && <motion.nav className="m-drawer" aria-label="Men's mobile navigation" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}>
         {links.map(([to, label], index) => <Link key={to} to={to}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}
-        <div className="drawer-sub">{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}</div>
-        <Link to={jewelryPath('men')}><i>05</i>Jewelry &amp; Watches</Link>
-        <div className="drawer-sub">{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
+        <div className="drawer-sub">{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}<Link to={jewelryPath('men')}>Jewelry &amp; Watches</Link></div>
         <Link to="/men/custom/design"><i>06</i>Design your own</Link>
         <Link to="/men/categories"><i>↗</i>All categories</Link>
         <Link to="/men/wishlist"><i>♡</i>Wishlist</Link>
