@@ -9160,18 +9160,14 @@
   "v": 3
  },
  "cj-1427908193249529856": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: faded cutout",
-   "4: faded cutout",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/13d0bcf8-9b5c-44b3-9e88-c5c747754746.jpg",
+  "v": 3
  },
  "cj-1428200750198165504": {
   "fix": 1,
@@ -11142,19 +11138,16 @@
   "v": 3
  },
  "cj-1456452261432659968": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "kept": 1,
+  "photo": 1,
   "rejected": [
-   "0: half-body shot",
-   "1: no face (headless or cropped)",
-   "2: half-body shot",
-   "3: faded cutout",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: half-body shot",
-   "7: cut off at the bottom"
+   "floating 0: cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/2e4b27fa-36dc-4145-a2b5-245362c2485d.jpg",
+  "v": 3
  },
  "cj-1456808790031732736": {
   "fix": 1,
@@ -11361,17 +11354,14 @@
   "v": 3
  },
  "cj-1460836727575941120": {
-  "photo": null,
-  "rejected": [
-   "0: half-body shot",
-   "1: cut off at the bottom",
-   "2: cut off at the bottom",
-   "3: cut off at the bottom",
-   "4: cut off at the bottom",
-   "5: cut off at the bottom"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/bc26fd48-0e9f-4c68-96c0-ad7a4cd77032.jpg",
+  "v": 3
  },
  "cj-1460857153215664128": {
   "fix": 1,
@@ -12760,17 +12750,17 @@
   "v": 3
  },
  "cj-1505126575212343296": {
-  "photo": null,
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
+  "photo": 2,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)"
+   "floating 0: cut off at the edge",
+   "floating 1: cut off at the edge"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/219a2f38-c1b3-43bf-94e8-cbb2226ab959.jpg",
+  "v": 3
  },
  "cj-1505922482988134400": {
   "fix": 1,
@@ -15225,18 +15215,14 @@
   "v": 3
  },
  "cj-1565209695869218816": {
-  "photo": null,
-  "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: product too small",
-   "6: no face (headless or cropped)"
-  ],
-  "url": null,
-  "v": 2
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
+  "photo": 0,
+  "rejected": [],
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/3ec3d687-26ff-4a82-ad43-c7f27fd8e754.jpg",
+  "v": 3
  },
  "cj-1565750397246124032": {
   "fix": 1,
@@ -16700,18 +16686,16 @@
   "v": 3
  },
  "cj-1591698516416671744": {
-  "photo": null,
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
+  "photo": 1,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: no face (headless or cropped)",
-   "6: collage or several figures"
+   "floating 0: collage or several figures"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://cf.cjdropshipping.com/a118a854-ff21-4f2e-abf3-40813a1293ad.jpg",
+  "v": 3
  },
  "cj-1591989016210190336": {
   "fix": 1,
@@ -21919,19 +21903,18 @@
   "v": 3
  },
  "cj-1710830682760552448": {
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
   "photo": null,
   "rejected": [
-   "0: cut off at the bottom",
-   "1: cut off at the bottom",
-   "2: half-body shot",
-   "3: cut off at the bottom",
-   "4: cut off at the bottom",
-   "5: half-body shot",
-   "6: half-body shot",
-   "7: half-body shot"
+   "floating 0: cut off at the bottom",
+   "floating 1: cut off at the bottom",
+   "floating 2: cut off at the edge"
   ],
+  "skip": [],
   "url": null,
-  "v": 2
+  "v": 3
  },
  "cj-1710849945449799680": {
   "fix": 1,
@@ -43708,19 +43691,16 @@
   "v": 3
  },
  "cj-2410020135311612700": {
-  "photo": null,
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
+  "photo": 1,
   "rejected": [
-   "0: cut off at the bottom",
-   "1: no face (headless or cropped)",
-   "2: faded cutout",
-   "3: no face (headless or cropped)",
-   "4: faded cutout",
-   "5: no face (headless or cropped)",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "floating 0: cut off at the bottom"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2024/10/02/01/3129bb7c-c366-43e6-863b-65e04431b93f_trans.jpeg",
+  "v": 3
  },
  "cj-2410020714291611700": {
   "floating": false,
@@ -48231,19 +48211,17 @@
   "v": 3
  },
  "cj-2501310910581629000": {
-  "photo": null,
+  "fix": 1,
+  "floating": true,
+  "kept": 1,
+  "photo": 2,
   "rejected": [
-   "0: cut off at the bottom",
-   "1: faded cutout",
-   "2: no face (headless or cropped)",
-   "3: no face (headless or cropped)",
-   "4: no face (headless or cropped)",
-   "5: half-body shot",
-   "6: no face (headless or cropped)",
-   "7: no face (headless or cropped)"
+   "floating 0: cut off at the bottom",
+   "floating 1: faded cutout"
   ],
-  "url": null,
-  "v": 2
+  "skip": [],
+  "url": "https://oss-cf.cjdropshipping.com/product/2025/01/31/09/4d7a7b07-2a7d-4d6f-833f-641b3068bbe9_trans.jpeg",
+  "v": 3
  },
  "cj-2502020727491619300": {
   "floating": false,
@@ -59064,19 +59042,18 @@
   "v": 3
  },
  "cj-2603301127201619200": {
+  "fix": 1,
+  "floating": false,
+  "kept": 1,
   "photo": null,
   "rejected": [
-   "0: no face (headless or cropped)",
-   "1: no face (headless or cropped)",
-   "2: cut off at the bottom",
-   "3: no face (headless or cropped)",
-   "4: cut off at the bottom",
-   "5: no face (headless or cropped)",
-   "6: cut off at the bottom",
-   "7: cut off at the bottom"
+   "floating 0: cut off at the edge",
+   "floating 1: cut off at the edge",
+   "floating 2: cut off at the bottom"
   ],
+  "skip": [],
   "url": null,
-  "v": 2
+  "v": 3
  },
  "cj-2603301215011634200": {
   "fix": 1,
