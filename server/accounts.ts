@@ -127,3 +127,11 @@ export async function accountView(db: D1Database, customer: Customer) {
     }),
   };
 }
+
+/** Google keys as pasted in Cloudflare, cleaned of stray spaces, quotes and a trailing full stop. */
+export function googleKeys(env: { GOOGLE_CLIENT_ID?: string; GOOGLE_CLIENT_SECRET?: string }): { id: string; secret: string } | null {
+  const clean = (value?: string) => (value || '').trim().replace(/^["']+|["']+$/g, '').replace(/[.\s]+$/, '').trim();
+  const id = clean(env.GOOGLE_CLIENT_ID);
+  const secret = clean(env.GOOGLE_CLIENT_SECRET);
+  return id && secret ? { id, secret } : null;
+}
