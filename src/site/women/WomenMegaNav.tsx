@@ -45,6 +45,10 @@ export function WomenMegaNav() {
           <Link to={categoryPath(group.slug)} className="w-mega__group">{group.label}</Link>
           {group.subcategories.filter((sub) => count(group.slug, sub.slug)).map((sub) => <Link key={sub.slug} to={categoryPath(group.slug, sub.slug)}>{sub.label}</Link>)}
         </div>)}
+        <div className="w-mega__links">
+          <Link to="/jewelry" className="w-mega__group">Jewelry &amp; Watches</Link>
+          {jewelryMenu('women').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('women', item)}>{JEWELRY_TYPES[item].label}</Link>)}
+        </div>
       </div>
     </Item>
     <Item label="Fits" to="/fits" active={active} setActive={setActive}>
@@ -52,14 +56,6 @@ export function WomenMegaNav() {
         <Link to="/shop?fit=standard">Slim</Link>
         <Link to="/shop?fit=curvy">Curvy</Link>
         <Link to="/shop">All fits</Link>
-      </div>
-    </Item>
-    <Item label="Jewelry & Watches" to="/jewelry" active={active} setActive={setActive}>
-      <div className="w-mega__cols">
-        {jewelryMenu('women').map((group) => <div key={group.title} className="w-mega__links">
-          <span className="w-mega__group">{group.title}</span>
-          {group.items.map((item) => <Link key={item} to={jewelryPath('women', item)}>{JEWELRY_TYPES[item].label}</Link>)}
-        </div>)}
       </div>
     </Item>
     <Link to="/custom/design" className="w-mega__trigger">Design yours</Link>
