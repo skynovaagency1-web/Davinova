@@ -1,4 +1,4 @@
-import { GOOGLE_STATE_COOKIE as STATE_COOKIE, createSession, readCookie, sessionCookie, validEmail, type Customer } from '../../../../server/accounts';
+import { GOOGLE_STATE_COOKIE as STATE_COOKIE, createSession, googleKeys, readCookie, sessionCookie, validEmail, type Customer } from '../../../../server/accounts';
 
 type Env = { DB?: D1Database; GOOGLE_CLIENT_ID?: string; GOOGLE_CLIENT_SECRET?: string };
 
@@ -13,7 +13,8 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
   const state = url.searchParams.get('state') || '';
   const dept = state.split('.')[1] === 'men' ? 'men' : 'women';
   const fail = (why: string) => new Response(null, { status: 302, headers: { Location: home(url.origin, dept, `?google=${why}`), 'Set-Cookie': clearState, 'Cache-Control': 'no-store' } });
-  if (!env.DB || !env.GOOGLE_CLIENT_ID || !env.GOOGLE_CLIENT_SECRET) return fail('off');
+  const keys = googleKeys(env);
+  if (!env.DB || !keys) return fail('off');
   const saved = readCookie(request, STATE_COOKIE);
   if (!saved || saved !== state || !/^[a-f0-9]{48}\.(men|women)$/.test(state)) return fail('expired');
   const code = url.searchParams.get('code');
@@ -23,7 +24,7 @@ export async function onRequestGet({ request, env }: { request: Request; env: En
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
-      code, client_id: env.GOOGLE_CLIENT_ID, client_secret: env.GOOGLE_CLIENT_SECRET,
+      code, client_id: keys.id, client_secret: keys.secret,
       redirect_uri: `${url.origin}/api/account/google/callback`, grant_type: 'authorization_code',
     }).toString(),
   }).then((response) => response.ok ? response.json() as Promise<{ access_token?: string }> : null).catch(() => null);
