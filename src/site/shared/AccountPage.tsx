@@ -159,7 +159,7 @@ function More({ dept, onSignOut }: { dept: Dept; onSignOut: () => void }) {
     { to: `${base(dept)}/contact`, label: 'Contact', icon: Headphones },
   ];
   return <section className="acct__card">
-    <h2>More</h2>
+    <h2>More options</h2>
     <div className="acct__more">
       {items.map(({ to, label, icon: Icon }) => to.startsWith('#')
         ? <a key={label} href={to}><Icon size={22} /><span>{label}</span></a>

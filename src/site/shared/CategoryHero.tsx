@@ -4,6 +4,7 @@ import type { Product } from '../../types/product';
 import { heroFor, type HeroIcon } from '../../lib/categoryHeroes';
 import { useCutouts } from '../../lib/useCutouts';
 import { TRENDING_LOOKS } from '../../lib/trendingLooks';
+import { t } from '../../lib/i18n';
 import '../../styles/hero.css';
 
 type Props = {
@@ -40,7 +41,7 @@ export function CategoryHero({ dept, keys, label, products, count, to }: Props) 
     return () => window.clearInterval(timer);
   }, [photos]);
 
-  const lines = hero.title.split('/').map((line) => line.trim());
+  const lines = t(hero.title).split('/').map((line) => line.trim());
   const cta = <>Shop now <span aria-hidden="true">→</span></>;
   const scroll = () => (ref.current?.nextElementSibling as HTMLElement | null)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
@@ -48,7 +49,7 @@ export function CategoryHero({ dept, keys, label, products, count, to }: Props) 
     {hero.scene === 'mono' && <span className="chero__ghost" aria-hidden="true">{hero.ghost ?? label.toUpperCase()}</span>}
     <div className="chero__copy">
       <span className="chero__kicker">Davinova · {label}</span>
-      <h1 className="chero__title">{lines.map((line, index) => <span key={index}>{gold(line)}</span>)}</h1>
+      <h1 className="chero__title" data-no-translate>{lines.map((line, index) => <span key={index}>{gold(line)}</span>)}</h1>
       <p className="chero__text">{hero.text}</p>
       <div className="chero__actions">
         {to ? <Link to={to} className="chero__cta">{cta}</Link> : <button type="button" className="chero__cta" onClick={scroll}>{cta}</button>}
