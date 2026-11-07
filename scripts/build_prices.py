@@ -46,6 +46,15 @@ def label(options: str):
 def main() -> int:
     check, fast = json.load(open(sys.argv[1]))['results'], json.load(open(sys.argv[2]))['results']
     quotes = {row['siteId']: row['countries'].get('US') or {} for row in fast}
+    # The CJ check has no shop category; take it from the picked-imports list so the category minimum applies.
+    try:
+        picked = {'cj-' + pick['id']: pick for pick in json.load(open('scripts/cj-import-list.json'))}
+    except FileNotFoundError:
+        picked = {}
+    for row in check:
+        pick = picked.get(row.get('siteId'))
+        if pick and not row.get('sub') and not row.get('collection'):
+            row['sub'], row['collection'] = pick['subcategory'], pick['collection']
     priced, variants, skipped = [], [], []
     for row in check:
         stocked = [v for v in row.get('variants') or [] if v.get('costUsd') and (v.get('stock') or 0) > 0]
