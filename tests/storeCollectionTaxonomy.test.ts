@@ -13,14 +13,15 @@ describe('Davinova store collection taxonomy', () => {
       'Bags',
       'Shoes',
       'Nail Art & Tools',
-      'Food & Health',
+      'Health & Wellness',
       'Hair & Accessories',
       'Skin Care',
       'Hair Weaves',
       'Makeup',
       'Beauty Tools',
       'Accessories',
-      'Couple & Parent-Child Clothing',
+      'Couple Clothing',
+      'Parent-Child Clothing',
       'Women’s Jackets',
       'Women’s Sweatshirts & Hoodies',
       'Women’s Sweaters',
@@ -28,9 +29,10 @@ describe('Davinova store collection taxonomy', () => {
       'Tops & Sets',
       'Bottoms',
       'Outerwear & Jackets',
-      'Weddings & Events',
+      'Weddings',
+      'Events & Parties',
     ]);
-    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(124);
+    expect(storeCollectionGroups.reduce((count, group) => count + group.subcategories.length, 0)).toBe(131);
   });
 
   it('sorts denim jackets into the denim collection and correct subcategory', () => {
@@ -49,15 +51,19 @@ describe('Davinova store collection taxonomy', () => {
     });
   });
 
-  it('sorts cocktail dresses under Weddings & Events', () => {
+  it('sorts cocktail dresses under Events & Parties', () => {
     expect(suggestStoreCollection('Elegant Satin Cocktail Dress')).toMatchObject({
       collection: 'weddings-and-events',
       subcategory: 'cocktail-dresses',
     });
   });
 
-  it('keeps matching family clothes in Couple & Parent-Child Clothing', () => {
+  it('sorts family clothes into Parent-Child and couple clothes into Couple', () => {
     expect(suggestStoreCollection('Matching Parent-Child Sweatshirts')).toMatchObject({
+      collection: 'parent-child-clothing',
+      subcategory: 'family-matching-tops',
+    });
+    expect(suggestStoreCollection('Matching Couple Sweatshirts')).toMatchObject({
       collection: 'couple-parent-child-clothing',
       subcategory: 'couple-and-parent-child-sweatshirts',
     });
