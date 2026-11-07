@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { isCurvyLook } from '../../lib/curvyLooks';
@@ -62,31 +62,43 @@ export function WomenShop() {
     setParams(query, { replace: true });
   }
 
+  // Only the categories show; hovering (or tapping) one opens its types underneath.
+  const [open, setOpen] = useState('');
+  const subsOf = (slug: string) => categoryGroup(slug)?.subcategories.filter((item) => women.some((product) => product.storeCollection === slug && product.storeSubcategory === item.slug)) ?? [];
+  const openGroup = open ? categoryGroup(open) : undefined;
+  function go(category: string, type: string) {
+    const query = new URLSearchParams(params);
+    query.set('category', category);
+    if (type) query.set('sub', type); else query.delete('sub');
+    setParams(query, { replace: true });
+    setOpen('');
+  }
+
   return <section className="w-shop">
     {group && !style && fit === 'all' ? <CategoryHero dept="women" keys={[sub, group.slug]} label={subLabel ?? group.label} products={filtered} count={loading ? undefined : filtered.length ? `${filtered.length} pieces` : 'Coming soon'} /> : <div className="w-shop__band">
       <h1><i>{styleLabel ?? (fit === 'curvy' ? 'Curvy' : small)}</i><b>{big}</b></h1>
       <p>{loading ? 'Loading the collection…' : filtered.length ? `${filtered.length} looks` : 'Coming soon'}</p>
       {group && CATEGORY_INTROS[group.slug] && <p className="w-shop__intro">{CATEGORY_INTROS[group.slug]}</p>}
     </div>}
-    <div className="w-filters glass">
+    <div className="w-filters glass" onMouseLeave={() => setOpen('')}>
       <div className="w-filters__row" role="group" aria-label="Category">
-        <button type="button" className={collection === 'all' ? 'active' : ''} onClick={() => pick('all')}>All</button>
-        {groups.map((item) => <button key={item.slug} type="button" className={collection === item.slug ? 'active' : ''} onClick={() => pick(item.slug)}>{item.label}</button>)}
+        <button type="button" className={collection === 'all' ? 'active' : ''} onMouseEnter={() => setOpen('')} onClick={() => pick('all')}>All</button>
+        {groups.map((item) => <button key={item.slug} type="button" aria-expanded={open === item.slug} className={`${collection === item.slug ? 'active' : ''}${open === item.slug ? ' open' : ''}`} onMouseEnter={() => setOpen(subsOf(item.slug).length ? item.slug : '')} onFocus={() => setOpen(subsOf(item.slug).length ? item.slug : '')} onClick={() => { pick(item.slug); setOpen(subsOf(item.slug).length ? item.slug : ''); }}>{item.label}{subsOf(item.slug).length > 0 && <span className="w-filters__caret" aria-hidden="true">▾</span>}</button>)}
       </div>
-      {group && <div className="w-filters__row" role="group" aria-label="Type">
-        <button type="button" className={!sub ? 'active' : ''} onClick={() => set('sub', '', '')}>All {group.label}</button>
-        {group.subcategories.filter((item) => women.some((product) => product.storeCollection === group.slug && product.storeSubcategory === item.slug)).map((item) => <button key={item.slug} type="button" className={sub === item.slug ? 'active' : ''} onClick={() => set('sub', item.slug, '')}>{item.label}</button>)}
+      {openGroup && <div className="w-filters__subs" role="group" aria-label={`${openGroup.label} types`}>
+        <button type="button" className={collection === openGroup.slug && !sub ? 'active' : ''} onClick={() => go(openGroup.slug, '')}>All {openGroup.label}</button>
+        {subsOf(openGroup.slug).map((item) => <button key={item.slug} type="button" className={collection === openGroup.slug && sub === item.slug ? 'active' : ''} onClick={() => go(openGroup.slug, item.slug)}>{item.label}</button>)}
       </div>}
-      <div className="w-filters__row" role="group" aria-label="Style">
-        <button type="button" className={!style ? 'active' : ''} onClick={() => set('style', '', '')}>Any style</button>
-        {STYLE_CATEGORIES.map(({ key, label }) => <button key={key} type="button" className={style === key ? 'active' : ''} onClick={() => set('style', style === key ? '' : key, '')}>{label}</button>)}
+      {group && sub && !openGroup && <div className="w-filters__trail"><span>{group.label}</span> › <b>{subLabel}</b><button type="button" onClick={() => set('sub', '', '')} aria-label="Show all">✕</button></div>}
+      <div className="w-filters__tools">
+        <div className="w-fit" role="group" aria-label="Size fit">
+          <span className="w-fit__label">Size fit</span>
+          {fits.map(([value, label]) => <button key={value} type="button" className={fit === value ? 'active' : ''} onClick={() => set('fit', value, 'all')}>{label}</button>)}
+        </div>
+        <label className="w-filters__sort">Style<select value={style} onChange={(event) => set('style', event.target.value, '')}><option value="">Any style</option>{STYLE_CATEGORIES.map(({ key, label }) => <option key={key} value={key}>{label}</option>)}</select></label>
+        {colours.length > 1 && <label className="w-filters__sort">Colour<select value={colour} onChange={(event) => set('color', event.target.value, '')}><option value="">Any colour</option>{colours.map((value) => <option key={value} value={value}>{value}</option>)}</select></label>}
+        <label className="w-filters__sort">Sort<select value={sort} onChange={(event) => set('sort', event.target.value, 'featured')}>{sorts.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
       </div>
-      <div className="w-filters__row" role="group" aria-label="Fit">{fits.map(([value, label]) => <button key={value} type="button" className={fit === value ? 'active' : ''} onClick={() => set('fit', value, 'all')}>{label}</button>)}</div>
-      {colours.length > 1 && <div className="w-filters__row" role="group" aria-label="Colour">
-        <button type="button" className={!colour ? 'active' : ''} onClick={() => set('color', '', '')}>Any colour</button>
-        {colours.map((value) => <button key={value} type="button" className={colour === value ? 'active' : ''} onClick={() => set('color', colour === value ? '' : value, '')}>{value}</button>)}
-      </div>}
-      <label className="w-filters__sort">Sort<select value={sort} onChange={(event) => set('sort', event.target.value, 'featured')}>{sorts.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
     </div>
     {!loading && filtered.length === 0 && <p className="w-shop__empty">{group && !fit.includes('curvy') && !colour && !style ? 'The first pieces are on their way.' : 'Nothing matches these filters yet.'}</p>}
     {floating.length > 0 && onModel.length > 0 && <div className="look-switch" role="group" aria-label="Photo style">
