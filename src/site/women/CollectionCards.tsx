@@ -4,15 +4,20 @@ import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
 import { editorialImages } from '../../lib/editorialImages';
 import { categoryPath, stockedGroups } from '../../lib/categories';
-import { useCutouts } from '../../lib/useCutouts';
+import { isFullLook, useCutouts } from '../../lib/useCutouts';
+import { TRENDING_LOOKS } from '../../lib/trendingLooks';
+import { isKidsPiece } from '../../lib/kids';
 
 /** Featured collections as rounded cards with a photo, a two-weight title and an arrow chip. */
 export function CollectionCards({ products }: { products: Product[] }) {
   const cutoutFor = useCutouts();
   const cards = stockedGroups(products).map(({ group, items }) => {
     const words = group.label.split(' ');
-    const popper = items.find((product) => cutoutFor(product.id));
-    const cover = items.find((product) => product.images[0]?.url)?.images[0]?.url;
+    // The pop-out photo must be a whole adult model, head to toe: checked-by-eye looks first, never a child
+    // or a half-body cut (those showed cut-off legs).
+    const adults = items.filter((product) => !isKidsPiece(product) && isFullLook(cutoutFor(product.id), product.storeCollection));
+    const popper = adults.find((product) => TRENDING_LOOKS.has(product.id)) ?? adults[0];
+    const cover = items.filter((product) => !isKidsPiece(product)).find((product) => product.images[0]?.url)?.images[0]?.url;
     // The line under the title names the types this category actually has in stock.
     const line = group.subcategories.filter((sub) => items.some((product) => product.storeSubcategory === sub.slug)).slice(0, 3).map((sub) => sub.label).join(' · ');
     return {
