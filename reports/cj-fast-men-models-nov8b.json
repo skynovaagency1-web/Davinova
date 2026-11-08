@@ -1,0 +1,26 @@
+{
+ "checkedAt": "2026-11-08T14:57:57.477Z",
+ "countries": [
+  "US"
+ ],
+ "results": [
+  {
+   "siteId": "cj-2509260822551625300",
+   "vid": "2509260822551625500",
+   "countries": {
+    "US": {
+     "cheapest": {
+      "name": "LuWei Ordinary US",
+      "priceUsd": 13.76,
+      "days": "5-11"
+     },
+     "fast": {
+      "name": "YunExpress Ordinary",
+      "priceUsd": 15.08,
+      "days": "4-7"
+     }
+    }
+   }
+  }
+ ]
+}
