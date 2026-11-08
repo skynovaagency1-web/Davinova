@@ -2981,7 +2981,7 @@
  },
  "cj-1376730184245448704": {
   "floating": false,
-  "photo": null,
+  "photo": "owner-model",
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
@@ -2993,7 +2993,8 @@
    "floating 2: clothes covered by a hand or bag"
   ],
   "url": null,
-  "v": 3
+  "v": 3,
+  "kept": 1
  },
  "cj-1376763015659130880": {
   "floating": false,
@@ -6631,13 +6632,15 @@
   "v": 3
  },
  "cj-1403525996090626048": {
-  "photo": 2,
+  "photo": "owner-model",
   "rejected": [
    "0: cut off at the bottom",
    "1: clothes covered by a hand or bag"
   ],
   "url": "https://cf.cjdropshipping.com/1623461415919.jpg",
-  "v": "garment-1"
+  "v": 3,
+  "kept": 1,
+  "floating": false
  },
  "cj-1403528266664513536": {
   "fix": 1,
@@ -7045,10 +7048,12 @@
   "v": 2
  },
  "cj-1405822637829132288": {
-  "photo": 0,
+  "photo": "owner-model",
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/1624009085643.jpg",
-  "v": "garment-1"
+  "v": 3,
+  "kept": 1,
+  "floating": false
  },
  "cj-1405864304565161984": {
   "floating": false,
@@ -26424,10 +26429,12 @@
   "v": 3
  },
  "cj-1778320215491751936": {
-  "photo": 0,
+  "photo": "owner-model",
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/d325cb60-fab9-4b14-8f1b-286b4aed516d.jpg",
-  "v": "garment-1"
+  "v": 3,
+  "kept": 1,
+  "floating": false
  },
  "cj-1778327224748347392": {
   "floating": false,
@@ -27877,7 +27884,7 @@
   "v": 3
  },
  "cj-1795000334524358656": {
-  "photo": 5,
+  "photo": "owner-model",
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
@@ -27886,7 +27893,9 @@
    "4: no face (headless or cropped)"
   ],
   "url": "https://cf.cjdropshipping.com/quick/product/7174546a-88b3-4315-8fc9-0f26bd8e3522.jpg",
-  "v": 2
+  "v": 3,
+  "kept": 1,
+  "floating": false
  },
  "cj-1795001553905000448": {
   "floating": false,
@@ -27972,10 +27981,12 @@
   "v": 3
  },
  "cj-1795331123610918912": {
-  "photo": 0,
+  "photo": "owner-model",
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/7fa765bd-fde3-4f41-a004-59956b88e215.jpg",
-  "v": "garment-1"
+  "v": 3,
+  "kept": 1,
+  "floating": false
  },
  "cj-1795333297774530560": {
   "photo": 0,
@@ -38989,7 +39000,7 @@
  },
  "cj-2406140236131600400": {
   "floating": false,
-  "photo": null,
+  "photo": "owner-model",
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
@@ -39004,7 +39015,8 @@
    "floating 2: clothes cut off at the edge"
   ],
   "url": null,
-  "v": 3
+  "v": 3,
+  "kept": 1
  },
  "cj-2406140316551609100": {
   "photo": 3,
@@ -41234,10 +41246,12 @@
   "v": 3
  },
  "cj-2406280528441618200": {
-  "photo": 0,
+  "photo": "owner-model",
   "rejected": [],
   "url": "https://cf.cjdropshipping.com/quick/product/21138ecb-ac9d-4312-be8b-236be427e7d8.jpg",
-  "v": "garment-1"
+  "v": 3,
+  "kept": 1,
+  "floating": false
  },
  "cj-2406280537531627200": {
   "floating": false,
@@ -47861,10 +47875,12 @@
   "v": 3
  },
  "cj-2501150756191615500": {
-  "photo": 0,
+  "photo": "owner-model",
   "rejected": [],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/01/15/07/a340ecdd-2cf0-4925-b5b1-9772aee88d52.jpg",
-  "v": "garment-1"
+  "v": 3,
+  "kept": 1,
+  "floating": false
  },
  "cj-2501150834271620600": {
   "floating": true,
@@ -51257,7 +51273,7 @@
  },
  "cj-2504210155411604400": {
   "floating": false,
-  "photo": null,
+  "photo": "owner-model",
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
@@ -51269,7 +51285,8 @@
    "floating 2: cut off at the bottom"
   ],
   "url": null,
-  "v": 3
+  "v": 3,
+  "kept": 1
  },
  "cj-2504210225471601200": {
   "fix": 1,
@@ -54860,8 +54877,8 @@
   "v": 3
  },
  "cj-2507310640101627800": {
-  "floating": true,
-  "photo": 1,
+  "floating": false,
+  "photo": "owner-model",
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
@@ -54871,7 +54888,8 @@
    "floating 0: clothes cut off at the edge"
   ],
   "url": "https://oss-cf.cjdropshipping.com/product/2025/07/31/06/7141ffba-2240-439b-8c78-1f2e02ec70e1.jpg",
-  "v": 3
+  "v": 3,
+  "kept": 1
  },
  "cj-2507310916521626000": {
   "fix": 1,
