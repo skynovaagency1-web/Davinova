@@ -11,8 +11,9 @@ import { Logo } from '../shared/Logo';
 import { DeptSwitch } from '../shared/DeptSwitch';
 import { CloudSky } from '../shared/Cloud';
 import { MoodBar, MoodLayer } from '../shared/Mood';
-import { JEWELRY_TYPES, jewelryMenu, jewelryPath } from '../shared/jewelry';
+import { jewelryPath } from '../shared/jewelry';
 import { MEN_CATEGORIES, menCategoryPath } from './menFormal';
+import { MenMegaNav } from './MenMegaNav';
 import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
@@ -37,7 +38,6 @@ export function MenLayout() {
   const wished = useWishlist((state) => state.ids.length);
   const signedIn = useAccount((state) => Boolean(state.account));
   const count = useCart((state) => state.items.reduce((sum, item) => sum + item.quantity, 0));
-  const current = pathname + search;
 
   const slug = /\/product\/([^/?#]+)/.exec(pathname)?.[1];
   const productName = slug ? products.find((product) => product.slug === decodeURIComponent(slug))?.title : undefined;
@@ -54,16 +54,7 @@ export function MenLayout() {
     <header className="m-header">
       <button type="button" className="m-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
       <Link to="/men" className="m-wordmark" aria-label="Davinova Homme home"><Logo tone="metal" sub="HOMME" /></Link>
-      <nav className="m-nav" aria-label="Men's navigation">{links.map(([to, label], index) => <Link key={to} to={to} className={current === to ? 'active' : ''}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}
-        <div className="m-nav__drop">
-          <Link to="/men/categories" className={pathname.startsWith('/men/categories') || pathname.startsWith('/men/jewelry') ? 'active' : ''}><i>05</i>Categories</Link>
-          <div className="m-nav__menu">
-            <div><span>Clothing</span>{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}</div>
-            <div><Link to={jewelryPath('men')}><span>Jewelry &amp; Watches</span></Link>{jewelryMenu('men').flatMap((group) => group.items).map((item) => <Link key={item} to={jewelryPath('men', item)}>{JEWELRY_TYPES[item].label}</Link>)}</div>
-          </div>
-        </div>
-        <Link to="/men/custom/design" className={pathname.startsWith('/men/custom') ? 'active' : ''}><i>06</i>Design yours</Link>
-      </nav>
+      <MenMegaNav />
       <div className="m-header__right">
         <Link to="/men" className="m-home" aria-label="Home"><Home size={16} /></Link>
         <SearchButton department="men" className="m-home" />
