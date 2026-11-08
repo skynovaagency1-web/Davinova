@@ -56216,7 +56216,7 @@
  },
  "cj-2509260822551625300": {
   "floating": false,
-  "photo": null,
+  "photo": "owner-model",
   "rejected": [
    "0: no face (headless or cropped)",
    "1: no face (headless or cropped)",
@@ -56231,7 +56231,8 @@
    "floating 2: clothes cut off at the edge"
   ],
   "url": null,
-  "v": 3
+  "v": 3,
+  "kept": 1
  },
  "cj-2509270135371625900": {
   "fix": 1,

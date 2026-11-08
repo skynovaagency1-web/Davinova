@@ -13,6 +13,7 @@ export const MODEL_PHOTOS: ReadonlySet<string> = new Set([
   'cj-1778320215491751936',
   'cj-2507310640101627800',
   'cj-1405822637829132288',
+  'cj-2509260822551625300',
 ]);
 
 /** The owner's on-model photo for a product, or undefined. Pass the site origin for absolute links (feeds, SEO). */
