@@ -6,6 +6,7 @@
 import { cleanSupplierText, cleanTitle } from '../src/lib/productText';
 import { brand } from '../src/config/brand';
 import { STATIC_PAGES as STATIC, categoryTitle } from '../src/lib/pageTitles';
+import { modelPhoto } from '../src/lib/modelPhotos';
 import { menStoreCollectionGroups, storeCollectionGroups } from '../src/lib/storeCollectionTaxonomy';
 
 export interface PageSeo { title: string; description: string; image: string; type: 'website' | 'product'; jsonLd: object[] }
@@ -36,7 +37,7 @@ async function productSeo(db: D1Database, slug: string, canonical: string): Prom
   if (!row) return null;
   row.title = cleanTitle(row.title);
   const description = clip(plain(row.description) || `${row.title}, with free tracked shipping from ${BRAND}.`);
-  const image = row.image ?? DEFAULT_IMAGE;
+  const image = modelPhoto(row.id, SITE) ?? row.image ?? DEFAULT_IMAGE;
   const product: Record<string, unknown> = {
     '@context': 'https://schema.org', '@type': 'Product', name: row.title, description, image: [image], sku: row.id,
     brand: { '@type': 'Brand', name: BRAND }, url: canonical,

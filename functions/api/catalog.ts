@@ -1,6 +1,7 @@
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 import { cleanSupplierText, cleanTitle, imageAlt } from '../../src/lib/productText';
 import { siteImage } from '../../src/lib/imageProxy';
+import { modelPhoto } from '../../src/lib/modelPhotos';
 import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 
 type DbProduct = {
@@ -65,7 +66,10 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   for (const row of results) {
     // Products whose photo failed the photo check are never shown, so don't send them.
     if (shown && !shown.has(row.id)) continue;
-    const imageRows = (imagesByProduct.get(row.id) ?? []).slice(0, full ? 8 : 2).map(({ url, alt }) => ({ url: siteImage(url), alt: imageAlt(alt, cleanTitle(row.title)) }));
+    const ownPhoto = modelPhoto(row.id);
+    // The owner's on-model photo goes first; the supplier's mannequin shots follow.
+    const imageRows = [...(ownPhoto ? [{ url: ownPhoto, alt: null }] : []), ...(imagesByProduct.get(row.id) ?? [])]
+      .slice(0, full ? 8 : 2).map(({ url, alt }) => ({ url: ownPhoto === url ? url : siteImage(url), alt: imageAlt(alt, cleanTitle(row.title)) }));
     const variantRows = sizesByProduct.get(row.id) ?? [];
     const verified = row.supplier_verified === 1;
     // Each active variant's label is unique per product ("M", "38", "Black / M") and is what checkout matches on.
