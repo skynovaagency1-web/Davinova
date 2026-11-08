@@ -1,0 +1,404 @@
+{
+ "checkedAt": "2026-11-08T14:57:18.523Z",
+ "results": [
+  {
+   "id": "2509260822551625300",
+   "ok": true,
+   "name": "Linen Leisure Single Button Lightweight Business Pure Color Flat Collar Suit Jacket Men",
+   "saleStatus": "3",
+   "minCostUsd": 24.88,
+   "maxCostUsd": 24.88,
+   "totalStock": 461373,
+   "shipping": {
+    "name": "LuWei Ordinary US",
+    "priceUsd": 13.76,
+    "days": "5-11"
+   },
+   "variants": [
+    {
+     "id": "2509260822551625500",
+     "options": "Dark Red-XXS",
+     "costUsd": 24.88,
+     "stock": 7319
+    },
+    {
+     "id": "2509260822551625600",
+     "options": "Dark Red-L",
+     "costUsd": 24.88,
+     "stock": 5773
+    },
+    {
+     "id": "2509260822551625800",
+     "options": "Dark Red-4XL",
+     "costUsd": 24.88,
+     "stock": 6806
+    },
+    {
+     "id": "2509260822551626200",
+     "options": "Dark Red-XS",
+     "costUsd": 24.88,
+     "stock": 5997
+    },
+    {
+     "id": "2509260822551626500",
+     "options": "Dark Red-XL",
+     "costUsd": 24.88,
+     "stock": 7528
+    },
+    {
+     "id": "2509260822551626700",
+     "options": "Dark Red-S",
+     "costUsd": 24.88,
+     "stock": 5834
+    },
+    {
+     "id": "2509260822551627000",
+     "options": "Dark Red-XXL",
+     "costUsd": 24.88,
+     "stock": 9490
+    },
+    {
+     "id": "2509260822551627200",
+     "options": "Dark Red-M",
+     "costUsd": 24.88,
+     "stock": 7850
+    },
+    {
+     "id": "2509260822551627500",
+     "options": "Dark Red-3XL",
+     "costUsd": 24.88,
+     "stock": 5760
+    },
+    {
+     "id": "2509260822551627700",
+     "options": "Gray-XXS",
+     "costUsd": 24.88,
+     "stock": 7411
+    },
+    {
+     "id": "2509260822551627900",
+     "options": "Gray-L",
+     "costUsd": 24.88,
+     "stock": 9491
+    },
+    {
+     "id": "2509260822551628100",
+     "options": "Gray-4XL",
+     "costUsd": 24.88,
+     "stock": 7687
+    },
+    {
+     "id": "2509260822551628500",
+     "options": "Gray-XS",
+     "costUsd": 24.88,
+     "stock": 6740
+    },
+    {
+     "id": "2509260822551628700",
+     "options": "Gray-XL",
+     "costUsd": 24.88,
+     "stock": 9487
+    },
+    {
+     "id": "2509260822551629400",
+     "options": "Gray-S",
+     "costUsd": 24.88,
+     "stock": 9494
+    },
+    {
+     "id": "2509260822551629500",
+     "options": "Gray-XXL",
+     "costUsd": 24.88,
+     "stock": 5213
+    },
+    {
+     "id": "2509260822551629700",
+     "options": "Gray-M",
+     "costUsd": 24.88,
+     "stock": 5621
+    },
+    {
+     "id": "2509260822551629900",
+     "options": "Gray-3XL",
+     "costUsd": 24.88,
+     "stock": 6467
+    },
+    {
+     "id": "2509260822561620100",
+     "options": "Black-XXS",
+     "costUsd": 24.88,
+     "stock": 7117
+    },
+    {
+     "id": "2509260822561620300",
+     "options": "Black-L",
+     "costUsd": 24.88,
+     "stock": 5868
+    },
+    {
+     "id": "2509260822561620500",
+     "options": "Black-4XL",
+     "costUsd": 24.88,
+     "stock": 8614
+    },
+    {
+     "id": "2509260822561620700",
+     "options": "Black-XS",
+     "costUsd": 24.88,
+     "stock": 7270
+    },
+    {
+     "id": "2509260822561621100",
+     "options": "Black-XL",
+     "costUsd": 24.88,
+     "stock": 6943
+    },
+    {
+     "id": "2509260822561621300",
+     "options": "Black-S",
+     "costUsd": 24.88,
+     "stock": 8829
+    },
+    {
+     "id": "2509260822561621500",
+     "options": "Black-XXL",
+     "costUsd": 24.88,
+     "stock": 8741
+    },
+    {
+     "id": "2509260822561621700",
+     "options": "Black-M",
+     "costUsd": 24.88,
+     "stock": 9240
+    },
+    {
+     "id": "2509260822561621900",
+     "options": "Black-3XL",
+     "costUsd": 24.88,
+     "stock": 5601
+    },
+    {
+     "id": "2509260822561622100",
+     "options": "Sky Blue-XXS",
+     "costUsd": 24.88,
+     "stock": 8051
+    },
+    {
+     "id": "2509260822561622200",
+     "options": "Sky Blue-L",
+     "costUsd": 24.88,
+     "stock": 9235
+    },
+    {
+     "id": "2509260822561622400",
+     "options": "Sky Blue-4XL",
+     "costUsd": 24.88,
+     "stock": 6956
+    },
+    {
+     "id": "2509260822561622600",
+     "options": "Sky Blue-XS",
+     "costUsd": 24.88,
+     "stock": 5870
+    },
+    {
+     "id": "2509260822561622700",
+     "options": "Sky Blue-XL",
+     "costUsd": 24.88,
+     "stock": 6016
+    },
+    {
+     "id": "2509260822561622900",
+     "options": "Sky Blue-S",
+     "costUsd": 24.88,
+     "stock": 5290
+    },
+    {
+     "id": "2509260822561623100",
+     "options": "Sky Blue-XXL",
+     "costUsd": 24.88,
+     "stock": 8407
+    },
+    {
+     "id": "2509260822561623200",
+     "options": "Sky Blue-M",
+     "costUsd": 24.88,
+     "stock": 5438
+    },
+    {
+     "id": "2509260822561623400",
+     "options": "Sky Blue-3XL",
+     "costUsd": 24.88,
+     "stock": 9931
+    },
+    {
+     "id": "2509260822561623600",
+     "options": "Blue-XXS",
+     "costUsd": 24.88,
+     "stock": 7626
+    },
+    {
+     "id": "2509260822561623700",
+     "options": "Blue-L",
+     "costUsd": 24.88,
+     "stock": 5729
+    },
+    {
+     "id": "2509260822561623900",
+     "options": "Blue-4XL",
+     "costUsd": 24.88,
+     "stock": 8766
+    },
+    {
+     "id": "2509260822561624100",
+     "options": "Blue-XS",
+     "costUsd": 24.88,
+     "stock": 9166
+    },
+    {
+     "id": "2509260822561624300",
+     "options": "Blue-XL",
+     "costUsd": 24.88,
+     "stock": 5111
+    },
+    {
+     "id": "2509260822561624500",
+     "options": "Blue-S",
+     "costUsd": 24.88,
+     "stock": 6696
+    },
+    {
+     "id": "2509260822561624600",
+     "options": "Blue-XXL",
+     "costUsd": 24.88,
+     "stock": 6587
+    },
+    {
+     "id": "2509260822561624800",
+     "options": "Blue-M",
+     "costUsd": 24.88,
+     "stock": 6398
+    },
+    {
+     "id": "2509260822561625000",
+     "options": "Blue-3XL",
+     "costUsd": 24.88,
+     "stock": 6275
+    },
+    {
+     "id": "2509260822561625100",
+     "options": "Beige-XXS",
+     "costUsd": 24.88,
+     "stock": 8011
+    },
+    {
+     "id": "2509260822561625300",
+     "options": "Beige-L",
+     "costUsd": 24.88,
+     "stock": 5212
+    },
+    {
+     "id": "2509260822561625500",
+     "options": "Beige-4XL",
+     "costUsd": 24.88,
+     "stock": 9781
+    },
+    {
+     "id": "2509260822561625700",
+     "options": "Beige-XS",
+     "costUsd": 24.88,
+     "stock": 5788
+    },
+    {
+     "id": "2509260822561625900",
+     "options": "Beige-XL",
+     "costUsd": 24.88,
+     "stock": 8324
+    },
+    {
+     "id": "2509260822561626100",
+     "options": "Beige-S",
+     "costUsd": 24.88,
+     "stock": 5140
+    },
+    {
+     "id": "2509260822561626200",
+     "options": "Beige-XXL",
+     "costUsd": 24.88,
+     "stock": 7905
+    },
+    {
+     "id": "2509260822561626400",
+     "options": "Beige-M",
+     "costUsd": 24.88,
+     "stock": 6049
+    },
+    {
+     "id": "2509260822561626600",
+     "options": "Beige-3XL",
+     "costUsd": 24.88,
+     "stock": 9607
+    },
+    {
+     "id": "2509260822561626700",
+     "options": "Khaki-XXS",
+     "costUsd": 24.88,
+     "stock": 7113
+    },
+    {
+     "id": "2509260822561626900",
+     "options": "Khaki-L",
+     "costUsd": 24.88,
+     "stock": 9871
+    },
+    {
+     "id": "2509260822561627100",
+     "options": "Khaki-4XL",
+     "costUsd": 24.88,
+     "stock": 5358
+    },
+    {
+     "id": "2509260822561627200",
+     "options": "Khaki-XS",
+     "costUsd": 24.88,
+     "stock": 8863
+    },
+    {
+     "id": "2509260822561627400",
+     "options": "Khaki-XL",
+     "costUsd": 24.88,
+     "stock": 8764
+    },
+    {
+     "id": "2509260822561627600",
+     "options": "Khaki-S",
+     "costUsd": 24.88,
+     "stock": 7706
+    },
+    {
+     "id": "2509260822561627800",
+     "options": "Khaki-XXL",
+     "costUsd": 24.88,
+     "stock": 9089
+    },
+    {
+     "id": "2509260822561627900",
+     "options": "Khaki-M",
+     "costUsd": 24.88,
+     "stock": 7800
+    },
+    {
+     "id": "2509260822561628100",
+     "options": "Khaki-3XL",
+     "costUsd": 24.88,
+     "stock": 5253
+    }
+   ],
+   "siteId": "cj-2509260822551625300",
+   "title": "Linen Leisure Single Button Lightweight Business Pure Color Flat Collar Suit Jacket Men",
+   "department": "men",
+   "collection": "mens-formal",
+   "sub": "linen-and-summer-suits"
+  }
+ ]
+}
