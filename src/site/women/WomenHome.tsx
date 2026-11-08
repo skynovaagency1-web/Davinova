@@ -22,11 +22,8 @@ import { HeelPoster } from './HeelPoster';
 import { PosterSides } from '../shared/PosterSides';
 import { POSTER_PICKS } from '../../config/posterPicks';
 import { Exemplaire } from './Exemplaire';
+import { isKidsPiece } from '../../lib/kids';
 
-const KIDS = /\b(girls?|girl's|kids?|child|children|baby|babies|toddlers?|infants?|princess|flower girl)\b/i;
-/** Children's pieces (flower girl dresses, family sets) stay on their own pages, never on the home page. */
-const isKidsPiece = (product: { title: string; storeCollection?: string; storeSubcategory?: string }) =>
-  product.storeSubcategory === 'flower-girl-dresses' || product.storeCollection === 'couple-parent-child-clothing' || product.storeCollection === 'parent-child-clothing' || KIDS.test(product.title);
 
 /** Women's home: hero, both shops, categories, collections, trending, featured look, guides and new arrivals. */
 export function WomenHome() {
