@@ -1,4 +1,4 @@
-/* "Complete the look" (owner's reference, 2026-11-15): glowing glass cards around the model, light lines to each piece. */
+/* "Complete the look" (live 2026-11-15) (owner's reference, 2026-11-15): glowing glass cards around the model, light lines to each piece. */
 .looks { --lk-text: #fbf1e2; --lk-soft: rgba(251, 241, 226, .7); --lk-glass: rgba(255, 245, 230, .07); --lk-line: rgba(251, 241, 226, .28); --lk-a: #f4d9b4; --lk-b: #e88fb0; --lk-glow: rgba(244, 196, 140, .55); --lk-btn: linear-gradient(110deg, #f4e2c8, #cdb69e 55%, #8e735b);
   position: relative; margin: 18px clamp(12px, 2.6vw, 40px) 40px; padding: clamp(22px, 3vw, 40px); border-radius: 36px; color: var(--lk-text);
   background: radial-gradient(70% 55% at 50% 40%, rgba(255, 220, 170, .14), transparent 70%), rgba(40, 18, 5, .35);
