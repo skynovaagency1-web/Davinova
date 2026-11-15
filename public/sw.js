@@ -1,3 +1,5 @@
+/* eslint-env serviceworker */
+/* global self, caches, fetch, URL, Response */
 /* Davinova app service worker: makes the site installable and quick to reopen.
    Pages always come from the network first (so prices and stock stay live);
    built files, fonts and photos are kept on the phone for speed and offline use. */
