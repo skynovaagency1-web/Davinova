@@ -153,6 +153,8 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   ].filter((stat): stat is { value: number; label: string } => Boolean(stat)).slice(0, 2);
   const sizeChoices = sortSizes(options.filter((option) => !colours.length || option.colour === colour));
 
+  /** Arrows under the photo walk through the first six photos, like the reference's 01 / 05 counter. */
+  function step(by: number) { const count = Math.min(photos.length, 6); setIndex((current) => (current + by + count) % count); setShowColour(false); setBroken(false); }
   function pickColour(item: string) { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }
   // The small tile in the corner shows the next style that has its own photo, like the owner's reference.
   const withPhoto = colours.filter((item) => product.colourImages?.[item]);
@@ -172,6 +174,8 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
         {photo?.url && !broken && <motion.img key={photo.url} className="pv2__blur" src={photo.url} alt="" aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 0.75 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }} />}
       </AnimatePresence>
       <div className="pv2__photo">
+        {/* The piece stands on a tall glass card and breaks out over its top edge (owner's reference, 2026-11-15). */}
+        {photo?.url && !broken && <span className="pv2__card" aria-hidden="true" />}
         <AnimatePresence initial={false} mode="popLayout">
           {photo?.url && !broken
             // A new style flies in from the next-style tile (bottom right) while the old one lifts away.
@@ -181,6 +185,15 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
             </motion.div>
             : <div key="missing" className="pv-stage__missing">Photo coming soon</div>}
         </AnimatePresence>
+        {photos.length > 1 && <div className="pv2__count">
+          <button type="button" onClick={() => step(-1)} aria-label="Previous photo"><ArrowLeft size={16} /></button>
+          <span>{String(index + 1).padStart(2, '0')} / {String(Math.min(photos.length, 6)).padStart(2, '0')}</span>
+          <button type="button" onClick={() => step(1)} aria-label="Next photo"><ArrowRight size={16} /></button>
+        </div>}
+        {!nextColour && related[0] && <Link className="pv2__teaser" to={productPath(related[0])}>
+          <span><b>{related[0].title}</b><small>From {formatMoney(related[0].priceCents, related[0].currency)}</small><em>See it <ArrowRight size={12} /></em></span>
+          <img src={related[0].images[0].url} alt="" loading="lazy" />
+        </Link>}
         {nextColour && product.colourImages?.[nextColour] && <button type="button" className="pv2__next" onClick={() => pickColour(nextColour)} aria-label={`Show ${colourLabel(nextColour)}`}>
           <img src={product.colourImages[nextColour]} alt="" />
           <span>{colourLabel(nextColour)}</span>
