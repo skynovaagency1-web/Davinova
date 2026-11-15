@@ -20,6 +20,7 @@ import { BagPoster } from './BagPoster';
 import { BeautyPoster } from './BeautyPoster';
 import { HeelPoster } from './HeelPoster';
 import { PosterSides } from '../shared/PosterSides';
+import { AppPoster, LooksPoster } from '../shared/PromoPosters';
 import { POSTER_PICKS } from '../../config/posterPicks';
 import { Exemplaire } from './Exemplaire';
 import { isKidsPiece } from '../../lib/kids';
@@ -59,6 +60,7 @@ export function WomenHome() {
       <PosterSides products={bags.length >= 2 ? bags : inCollection(WOMEN_BAGS)} picks={POSTER_PICKS.bags}><BagPoster /></PosterSides>
     </section>
     <DressCodeGuide />
+    <LooksPoster dept="women" />
     <CurvyEdit products={women} />
     <section className="w-watch-feature">
       <div className="w-sec-head"><h2>New: <b>heels</b></h2><p className="w-sec-head__note">Red patent, sky-high, made to be seen.</p></div>
@@ -72,6 +74,7 @@ export function WomenHome() {
       <div className="w-new__head"><h2>New <b>in</b></h2><Link to="/shop" className="w-new__all">See all <ArrowRight size={16} /></Link></div>
       <div className="w-new__rail">{onModelWithImages.slice(10, 22).map((product, index) => <WomenCard key={product.id} product={product} index={index} />)}</div>
     </section>}
+    <AppPoster dept="women" />
     <Perks variant="women" />
   </>;
 }

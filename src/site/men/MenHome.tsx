@@ -13,6 +13,7 @@ import { ShoePoster } from './ShoePoster';
 import { MenWatchPoster } from './MenWatchPoster';
 import { CustomPoster } from './CustomPoster';
 import { PosterSides } from '../shared/PosterSides';
+import { AppPoster, LooksPoster } from '../shared/PromoPosters';
 import { POSTER_PICKS } from '../../config/posterPicks';
 import { ShopSplit } from '../shared/ShopSplit';
 import { Perks } from '../shared/Perks';
@@ -114,6 +115,7 @@ export function MenHome() {
       <div className="w-sec-head"><h2>New: <b>shoes</b></h2><p className="w-sec-head__note">Patent, polished, made for the entrance.</p></div>
       <PosterSides products={shoes} picks={POSTER_PICKS.menShoes}><ShoePoster /></PosterSides>
     </section>
+    <LooksPoster dept="men" />
 
     <section className="w-codes">
       <div className="w-sec-head"><h2 className="m-h2-block">Dress code, <b>decoded</b></h2><p className="w-sec-head__note">What each invitation really means, and what to wear.</p></div>
@@ -132,6 +134,7 @@ export function MenHome() {
     </section>
 
     <div className="m-split-wrap"><ShopSplit womenImages={women.filter((product) => product.images[0]?.url).slice(0, 24).map((product) => product.images[0].url)} menImages={menDoorImages(products)} womenCount={women.length} menCount={men.length} /></div>
+    <AppPoster dept="men" />
     <Perks variant="men" />
   </>;
 }

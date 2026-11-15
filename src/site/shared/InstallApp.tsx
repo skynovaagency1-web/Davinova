@@ -14,7 +14,7 @@ function useInstallable() {
 }
 
 /** iPhone has no install button: show the two taps instead. */
-function IOSSteps({ dept, onClose }: { dept: 'women' | 'men'; onClose: () => void }) {
+export function InstallSteps({ dept, onClose }: { dept: 'women' | 'men'; onClose: () => void }) {
   return <div className={`app-offer app-offer--sheet app-offer--${dept}`} role="dialog" aria-label="Add Davinova to your home screen">
     <button type="button" className="app-offer__x" aria-label="Close" onClick={onClose}><X size={16} /></button>
     <img src="/icon-192.png" alt="" width="48" height="48" />
@@ -33,7 +33,7 @@ export function InstallLink({ dept, className }: { dept: 'women' | 'men'; classN
   if (!ok && !ios) return null;
   return <>
     <button type="button" className={className} onClick={async () => { if ((await promptInstall()) === 'ios') setIos(true); }}>Get the app</button>
-    {ios && <IOSSteps dept={dept} onClose={() => setIos(false)} />}
+    {ios && <InstallSteps dept={dept} onClose={() => setIos(false)} />}
   </>;
 }
 
@@ -46,7 +46,9 @@ export function InstallApp({ dept }: { dept: 'women' | 'men' }) {
   const quiet = /\/(cart|bag|checkout|order-confirmation|account|admin|approve-cj)/.test(pathname);
 
   useEffect(() => {
-    if (!ok || quiet || dismissed() || !window.matchMedia('(max-width: 700px)').matches) return;
+    if (!ok || quiet) return;
+    if (new URLSearchParams(window.location.search).get('get') === 'app') { setOpen(true); return; }
+    if (dismissed() || !window.matchMedia('(max-width: 700px)').matches) return;
     let scrolled = false;
     let timer = 0;
     const show = () => {
@@ -60,7 +62,7 @@ export function InstallApp({ dept }: { dept: 'women' | 'men' }) {
   }, [ok, quiet]);
 
   const close = () => { setOpen(false); setIos(false); markDismissed(); };
-  if (ios) return <IOSSteps dept={dept} onClose={close} />;
+  if (ios) return <InstallSteps dept={dept} onClose={close} />;
   if (!open || !ok) return null;
   return <div className={`app-offer app-offer--${dept}`} role="dialog" aria-label="Get the Davinova app">
     <img src="/icon-192.png" alt="" width="44" height="44" />
