@@ -15,7 +15,6 @@ import { deliveryWindow, formatWindow } from '../../lib/delivery';
 import { useCutouts } from '../../lib/useCutouts';
 import type { Product, ProductSize } from '../../types/product';
 import { WishButton } from './WishButton';
-import { WatchExplode, isWatch } from './WatchExplode';
 import { colourLabel } from '../../lib/productText';
 
 /** Campaign photos the owner picked for certain product types: hoodies get one, jackets and vests another. */
@@ -170,7 +169,6 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           ? <motion.img key={photo.url} src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} />
           : <div className="pv-stage__missing">Photo coming soon</div>}
         <WishButton productId={product.id} title={product.title} className="pv-wish pv2__heart" />
-        {isWatch(product) && <WatchExplode product={product} src={cutout ?? photos[0]?.url} variant={variant} />}
         {stats.length > 0 && <ul className="pv2__stats">{stats.map((stat) => <li key={stat.label}><b>{stat.value}</b>{stat.label}</li>)}</ul>}
       </div>
 
