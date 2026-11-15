@@ -343,3 +343,9 @@ html:has(.m-shell), body:has(.m-shell) { background: #262626; }
 @media (max-width: 980px) { .m-mega { display: none; } }
 .m-shell .m-mega .w-mega__cols--cats a.w-mega__group { padding: 6px 12px 4px; color: #a5aaa3; font-size: 11px; }
 .m-shell .m-mega .w-mega__cols--cats a.w-mega__group:hover { color: #fff; }
+
+/* "New fashion" (the look page): a glowing sage glass pill in the menu. */
+.m-mega .nf-link { border: 1px solid rgba(165, 190, 170, .55); background: linear-gradient(120deg, rgba(120, 150, 128, .28), rgba(255, 255, 255, .08)); box-shadow: 0 0 18px -2px rgba(150, 200, 170, .5), inset 0 1px 0 rgba(255, 255, 255, .2); animation: nf-glow-m 2.8s ease-in-out infinite; }
+.m-mega .nf-link span, .m-drawer .nf-link span { background: linear-gradient(100deg, #e9efe9 20%, #a5c4ad 40%, #ffffff 50%, #a5c4ad 60%, #e9efe9 80%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: nf-shine 3.2s linear infinite; }
+.m-mega .nf-link::after { background: #bff0cf; box-shadow: 0 0 8px #bff0cf; }
+@keyframes nf-glow-m { 50% { box-shadow: 0 0 28px 2px rgba(150, 200, 170, .65), inset 0 1px 0 rgba(255, 255, 255, .28); } }

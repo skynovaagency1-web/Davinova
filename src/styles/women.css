@@ -680,3 +680,13 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .w-filters__subs--cols .w-filters__head { text-transform: uppercase; font-size: 11px !important; letter-spacing: .1em; }
 .w-filters__head.active { color: #2a1d16 !important; }
 .w-filters__col button { text-align: left; }
+
+/* "New fashion" (the look page): a glowing glass pill in the menu, so it stands out from the plain links. */
+.nf-link { position: relative; isolation: isolate; border-radius: 999px; }
+.w-mega .nf-link { padding: 8px 16px !important; margin: 0 4px; border: 1px solid rgba(255, 222, 180, .8); background: linear-gradient(120deg, rgba(46, 32, 25, .78), rgba(90, 69, 54, .6)); box-shadow: 0 0 18px -2px rgba(205, 182, 158, .55), inset 0 1px 0 rgba(255, 255, 255, .25); animation: nf-glow 2.8s ease-in-out infinite; }
+.nf-link span { background: linear-gradient(100deg, #fbf1e2 20%, #cdb69e 40%, #ffffff 50%, #cdb69e 60%, #fbf1e2 80%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: nf-shine 3.2s linear infinite; font-weight: 600; }
+.w-mega .nf-link::after { content: ''; position: absolute; top: 4px; right: 6px; width: 6px; height: 6px; border-radius: 50%; background: #ffd9a8; box-shadow: 0 0 8px #ffd9a8; animation: nf-dot 1.6s ease-in-out infinite; }
+.drawer-about.nf-link span { font-weight: 700; }
+@keyframes nf-shine { from { background-position: 125% 0; } to { background-position: -125% 0; } }
+@keyframes nf-glow { 50% { box-shadow: 0 0 28px 2px rgba(205, 182, 158, .7), inset 0 1px 0 rgba(255, 255, 255, .3); } }
+@keyframes nf-dot { 50% { opacity: .3; transform: scale(.7); } }
