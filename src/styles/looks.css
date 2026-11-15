@@ -1,0 +1,109 @@
+/* "Complete the look" (owner's reference, 2026-11-15): glowing glass cards around the model, light lines to each piece. */
+.looks { --lk-text: #fbf1e2; --lk-soft: rgba(251, 241, 226, .7); --lk-glass: rgba(255, 245, 230, .07); --lk-line: rgba(251, 241, 226, .28); --lk-a: #f4d9b4; --lk-b: #e88fb0; --lk-glow: rgba(244, 196, 140, .55); --lk-btn: linear-gradient(110deg, #f4e2c8, #cdb69e 55%, #8e735b);
+  position: relative; margin: 18px clamp(12px, 2.6vw, 40px) 40px; padding: clamp(22px, 3vw, 40px); border-radius: 36px; color: var(--lk-text);
+  background: radial-gradient(70% 55% at 50% 40%, rgba(255, 220, 170, .14), transparent 70%), rgba(40, 18, 5, .35);
+  border: 1px solid var(--lk-line); box-shadow: 0 30px 80px rgba(30, 12, 2, .3), inset 0 1px 0 rgba(255, 245, 230, .2);
+  backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); overflow: hidden; isolation: isolate; }
+.looks--men { --lk-text: #ecedea; --lk-soft: rgba(236, 237, 234, .66); --lk-glass: rgba(255, 255, 255, .06); --lk-line: rgba(191, 191, 190, .3); --lk-a: #e3e7e0; --lk-b: #7fd4e8; --lk-glow: rgba(127, 212, 232, .5); --lk-btn: linear-gradient(135deg, #e3e7e0, #a5aaa3 60%, #868b84);
+  background: radial-gradient(70% 55% at 50% 40%, rgba(127, 212, 232, .1), transparent 70%), rgba(30, 30, 32, .45); }
+/* faint grid, like the reference's holographic room */
+.looks::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(var(--lk-line) 1px, transparent 1px), linear-gradient(90deg, var(--lk-line) 1px, transparent 1px); background-size: 56px 56px; opacity: .18; mask-image: radial-gradient(80% 70% at 50% 45%, #000 20%, transparent 80%); }
+
+.looks__head { text-align: center; max-width: 640px; margin: 0 auto 10px; }
+.looks__eyebrow { font: 600 11px/1 'IBM Plex Mono', monospace; letter-spacing: .18em; text-transform: uppercase; color: var(--lk-soft); }
+.looks__head h1 { margin: 12px 0 8px; font-size: clamp(30px, 4.4vw, 54px); line-height: 1; letter-spacing: -.01em; }
+.looks__head p { margin: 0; color: var(--lk-soft); font-size: 14px; line-height: 1.5; }
+.looks__empty { padding: 120px 0; text-align: center; color: var(--lk-soft); }
+
+.looks__stage { position: relative; display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr) minmax(260px, 320px); gap: clamp(16px, 2.6vw, 40px); align-items: center; margin-top: 18px; min-height: min(760px, 82vh); }
+.looks__lines { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: visible; }
+.looks__stop-a { stop-color: var(--lk-a); }
+.looks__stop-b { stop-color: var(--lk-b); }
+.looks__line { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 900; stroke-dashoffset: 900; animation: looks-draw 1.4s cubic-bezier(.22, 1, .36, 1) forwards; }
+.looks__line-glow { fill: none; stroke: var(--lk-glow); stroke-width: 6; opacity: .45; }
+.looks__dot { fill: #fff; filter: drop-shadow(0 0 6px var(--lk-b)); }
+@keyframes looks-draw { to { stroke-dashoffset: 0; } }
+
+/* warm light coves curving over the room (photo 2) */
+.looks__arch { position: absolute; z-index: -1; pointer-events: none; border: 2px solid transparent; border-top-color: var(--lk-a); border-radius: 50% 50% 0 0 / 100% 100% 0 0; filter: drop-shadow(0 0 12px var(--lk-glow)); opacity: .55; }
+.looks__arch--a { left: 14%; right: 14%; top: 22%; height: 64%; }
+.looks__arch--b { left: 26%; right: 26%; top: 28%; height: 56%; opacity: .3; }
+
+/* tile wall (photo 2) with neon outlines and light lines (photo 1) */
+.looks__wall { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.looks__card { position: relative; display: grid; gap: 6px; padding: 10px 10px 12px; border-radius: 18px; background: var(--lk-glass); border: 1px solid var(--lk-line); color: inherit;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .04), 0 0 24px -8px var(--lk-glow), inset 0 1px 0 rgba(255, 255, 255, .2);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s, border-color .35s; }
+.looks__card:hover { transform: translateY(-4px); border-color: var(--lk-a); box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 0 38px -4px var(--lk-glow), inset 0 1px 0 rgba(255, 255, 255, .25); }
+.looks__card img { width: 100%; aspect-ratio: 1; object-fit: contain; border-radius: 12px; background: rgba(255, 255, 255, .92); }
+.looks__card-meta { display: grid; gap: 2px; text-transform: uppercase; }
+.looks__card-meta b { font: 600 11px/1.2 'IBM Plex Mono', monospace; letter-spacing: .12em; }
+.looks__card-meta small { font: 500 10px/1.2 'IBM Plex Mono', monospace; letter-spacing: .12em; color: var(--lk-soft); }
+.looks__card-price { position: absolute; top: 16px; right: 16px; padding: 4px 8px; border-radius: 999px; background: rgba(20, 12, 6, .65); color: #fff; font-size: 11px; font-weight: 700; }
+
+/* the model, standing on a glossy floor with her reflection (photo 2) */
+.looks__model { position: relative; z-index: 1; display: grid; justify-items: center; align-self: end; }
+.looks__body { position: relative; z-index: 1; height: min(640px, 70vh); width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 26px 30px rgba(0, 0, 0, .35)); }
+.looks__reflection { height: min(640px, 70vh); max-height: 120px; width: auto; max-width: 100%; object-fit: cover; object-position: bottom; transform: scaleY(-1); opacity: .28; filter: blur(1.5px); mask-image: linear-gradient(to top, #000, transparent 85%); -webkit-mask-image: linear-gradient(to top, #000, transparent 85%); margin-top: -2px; }
+.looks__floor { position: absolute; bottom: 90px; left: 50%; width: 70%; height: 46px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, var(--lk-glow), transparent); filter: blur(6px); }
+
+/* frosted collection panel (photo 2) */
+.looks__panel { position: relative; z-index: 2; display: grid; gap: 12px; padding: 26px 22px; border-radius: 26px; text-align: center; background: linear-gradient(160deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .05)); border: 1px solid var(--lk-line);
+  box-shadow: 0 0 40px -10px var(--lk-glow), inset 0 1px 0 rgba(255, 255, 255, .3); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); }
+.looks__panel h2 { margin: 0; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.05; letter-spacing: .04em; text-transform: uppercase; }
+.looks__edition { font-size: 13px; color: var(--lk-soft); font-style: italic; }
+.looks__price { font-size: 30px; letter-spacing: .02em; }
+.looks__size-row { display: grid; gap: 6px; text-align: left; }
+.looks__size-row > span { font: 600 10px/1 'IBM Plex Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--lk-soft); }
+.looks__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.looks__chips button { min-width: 38px; padding: 7px 8px; border-radius: 8px; border: 1px solid var(--lk-line); background: transparent; color: inherit; font: 600 12px/1 inherit; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.looks__chips button:hover { border-color: var(--lk-a); }
+.looks__chips button.active { background: var(--lk-text); color: #1f1712; border-color: transparent; }
+.looks__swatches { display: grid; gap: 8px; text-align: left; }
+.looks__swatches > span { font: 600 10px/1.4 'IBM Plex Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--lk-soft); }
+.looks__swatches div { display: flex; gap: 8px; }
+.looks__swatches i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .6); box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+.looks__add { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; border: 0; border-radius: 999px; background: var(--lk-btn); color: #1f1712; font: 700 13px/1 inherit; letter-spacing: .04em; cursor: pointer; white-space: nowrap; box-shadow: 0 0 26px -6px var(--lk-glow); transition: transform .25s, opacity .25s; }
+.looks__add:hover:not(:disabled) { transform: translateY(-2px); }
+.looks__add:disabled { opacity: .6; cursor: not-allowed; }
+.looks__add--done { background: transparent; color: inherit; border: 1px solid var(--lk-a); }
+.looks__ghost { padding: 12px 16px; border-radius: 999px; border: 1px solid var(--lk-line); color: inherit; font-size: 13px; transition: background .2s, border-color .2s; }
+.looks__ghost:hover { background: rgba(255, 255, 255, .08); border-color: var(--lk-a); }
+.looks__arrows { display: flex; justify-content: center; gap: 10px; margin-top: 4px; }
+.looks__nav { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--lk-line); background: transparent; color: inherit; cursor: pointer; transition: background .2s; }
+.looks__nav:hover { background: rgba(255, 255, 255, .1); }
+.looks__dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.looks__dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: var(--lk-line); cursor: pointer; transition: width .3s, background .3s; }
+.looks__dots button.active { width: 26px; background: var(--lk-a); }
+
+/* Hover light: the spot on the body, its line and its tile glow together. */
+.looks__figure { position: relative; display: inline-block; line-height: 0; }
+.looks__spot { position: absolute; z-index: 3; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: radial-gradient(circle, #fff 0 22%, var(--lk-b) 38%, transparent 72%); box-shadow: 0 0 0 1px rgba(255, 255, 255, .55), 0 0 14px var(--lk-glow); animation: looks-pulse 2.6s ease-in-out infinite; transition: transform .3s cubic-bezier(.2, .7, .2, 1); }
+.looks__spot::before { content: ""; position: absolute; inset: -34px; border-radius: 50%; background: radial-gradient(circle, var(--lk-glow), transparent 65%); opacity: 0; transform: scale(.4); transition: opacity .35s, transform .45s cubic-bezier(.2, .7, .2, 1); pointer-events: none; }
+.looks__spot.is-active { transform: scale(1.35); animation: none; }
+.looks__spot.is-active::before { opacity: 1; transform: scale(1); }
+.looks__spot-tip { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translate(-50%, 6px); padding: 6px 10px; border-radius: 999px; white-space: nowrap; background: rgba(20, 12, 6, .72); border: 1px solid var(--lk-line); color: #fff; font: 600 10px/1 'IBM Plex Mono', monospace; letter-spacing: .1em; text-transform: uppercase; opacity: 0; pointer-events: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: opacity .25s, transform .25s; }
+.looks__spot.is-active .looks__spot-tip { opacity: 1; transform: translate(-50%, 0); }
+@keyframes looks-pulse { 0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, .55), 0 0 10px var(--lk-glow); } 50% { box-shadow: 0 0 0 6px rgba(255, 255, 255, .08), 0 0 22px var(--lk-glow); } }
+.looks__lines g { transition: opacity .3s; }
+.looks__lines--focus g { opacity: .25; }
+.looks__lines--focus g.is-active { opacity: 1; }
+.looks__lines g.is-active .looks__line { stroke-width: 2.6; }
+.looks__lines g.is-active .looks__line-glow { stroke-width: 12; opacity: .8; }
+.looks__card.is-active { transform: translateY(-4px); border-color: var(--lk-a); box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 0 44px -2px var(--lk-glow), inset 0 1px 0 rgba(255, 255, 255, .3); }
+
+@media (max-width: 1180px) and (min-width: 981px) { .looks__stage { grid-template-columns: 240px minmax(0, 1fr) 260px; } .looks__wall { grid-template-columns: 1fr; } .looks__wall > :nth-child(n+4) { display: none; } }
+
+/* Phones and tablets: model first, then the panel, then the pieces 2 per row; no lines (owner: 2 per row on phones). */
+@media (max-width: 980px) {
+  .looks { margin: 12px 10px 28px; padding: 18px 12px; border-radius: 26px; }
+  .looks__stage { grid-template-columns: 1fr; min-height: 0; gap: 16px; }
+  .looks__model { order: -2; }
+  .looks__body { height: min(460px, 60vh); }
+  .looks__reflection { height: min(460px, 60vh); max-height: 70px; }
+  .looks__floor { bottom: 60px; }
+  .looks__panel { order: -1; }
+  .looks__panel h2 { font-size: 22px; overflow-wrap: anywhere; }
+  .looks__lines, .looks__arch { display: none; }
+  .looks__spot { width: 14px; height: 14px; margin: -7px 0 0 -7px; }
+}

@@ -31,6 +31,7 @@ export function WomenMegaNav() {
     <Item label="Shop" to="/shop" active={active} setActive={setActive}>
       <div className="w-mega__links">
         <Link to="/shop">Everything</Link>
+        <Link to="/looks">Complete the look</Link>
         <Link to="/shop?sort=price-low">Under budget first</Link>
         <Link to="/shop?fit=standard">Slim fit</Link>
         <Link to="/shop?fit=curvy">Plus size &amp; curvy</Link>

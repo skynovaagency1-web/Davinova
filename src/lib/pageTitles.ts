@@ -3,6 +3,8 @@ import { menStoreCollectionGroups, storeCollectionGroups } from './storeCollecti
 /** Title and search description for each fixed page, shared by the server (first load) and the browser tab (later pages). */
 export const STATIC_PAGES: Record<string, [string, string]> = {
   '/': ['Davinova — Occasion dresses, bags, shoes & beauty', 'Wedding guest, cocktail and evening dresses, bags, shoes, jewelry and beauty, with free tracked shipping.'],
+  '/looks': ['Complete the look — Davinova', 'Whole outfits styled head to toe: the dress, heels, bag and jewelry, added to your bag in one tap.'],
+  '/men/looks': ['Complete the look — Davinova Homme', 'Whole outfits styled head to toe: the suit, shoes, tie, belt and watch, added to your bag in one tap.'],
   '/shop': ['Shop all — Davinova', 'Every Davinova piece in one place: occasion dresses, tops, bottoms, outerwear, bags and shoes.'],
   '/categories': ['Categories — Davinova', 'Browse Davinova by category: dresses, tops and sets, bottoms, outerwear, bags, shoes and accessories.'],
   '/beauty': ['Health, beauty & hair — Davinova', 'Makeup, skin care, nail art, hair, wigs and beauty tools, picked to go with the dress.'],
