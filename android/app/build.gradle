@@ -1,0 +1,51 @@
+// Davinova for Google Play: a Trusted Web Activity that opens https://davinova.com full screen.
+// The shop itself lives in the website; this wrapper only adds the icon, splash and store listing.
+plugins { id 'com.android.application' }
+
+def twa = [
+    host: 'davinova.com',
+    launchUrl: '/?source=app-android',
+    name: 'Davinova',
+    themeColor: '#2E2019',
+    navColor: '#2E2019',
+    backgroundColor: '#2E2019',
+]
+
+android {
+    namespace 'com.davinova.app'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'com.davinova.app'
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName '1.0.0'
+        manifestPlaceholders = [hostName: twa.host, defaultUrl: "https://${twa.host}${twa.launchUrl}", launcherName: twa.name]
+        resValue 'string', 'appName', twa.name
+        resValue 'string', 'launchUrl', "https://${twa.host}${twa.launchUrl}"
+        resValue 'color', 'colorPrimary', twa.themeColor
+        resValue 'color', 'navigationColor', twa.navColor
+        resValue 'color', 'backgroundColor', twa.backgroundColor
+        resValue 'string', 'assetStatements', "[{ \\\"relation\\\": [\\\"delegate_permission/common.handle_all_urls\\\"], \\\"target\\\": {\\\"namespace\\\": \\\"web\\\", \\\"site\\\": \\\"https://${twa.host}\\\"}}]"
+    }
+    signingConfigs {
+        upload {
+            // Upload key lives outside the repo; set these four env vars to sign a release.
+            storeFile System.getenv('DAVINOVA_KEYSTORE') ? file(System.getenv('DAVINOVA_KEYSTORE')) : null
+            storePassword System.getenv('DAVINOVA_KEYSTORE_PASSWORD')
+            keyAlias System.getenv('DAVINOVA_KEY_ALIAS') ?: 'upload'
+            keyPassword System.getenv('DAVINOVA_KEY_PASSWORD') ?: System.getenv('DAVINOVA_KEYSTORE_PASSWORD')
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (System.getenv('DAVINOVA_KEYSTORE')) signingConfig signingConfigs.upload
+        }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.7.4'
+}

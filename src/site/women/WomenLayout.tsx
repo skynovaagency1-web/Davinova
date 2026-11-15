@@ -13,6 +13,8 @@ import { CloudSky } from '../shared/Cloud';
 import { MoodBar, MoodLayer } from '../shared/Mood';
 import { HangingBag } from '../shared/HangingBag';
 import { PromoBar } from '../shared/PromoBar';
+import { InstallLink } from '../shared/InstallApp';
+import { AppShell } from '../shared/AppShell';
 import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
 import { BEAUTY_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
@@ -24,6 +26,7 @@ import { pageTitle } from '../../lib/pageTitles';
 
 // Nova and the welcome offer appear after a few seconds, so they load after the page.
 const SupportHelper = lazy(() => import('../shared/SupportHelper').then((m) => ({ default: m.SupportHelper })));
+const InstallApp = lazy(() => import('../shared/InstallApp').then((m) => ({ default: m.InstallApp })));
 const WelcomePopup = lazy(() => import('../shared/WelcomePopup').then((m) => ({ default: m.WelcomePopup })));
 
 const CLOTHING = CATEGORY_GROUPS.filter((group) => group.slug !== 'accessories' && group.slug !== 'couple-parent-child-clothing' && !BEAUTY_COLLECTIONS.includes(group.slug));
@@ -94,6 +97,7 @@ export function WomenLayout() {
         <Link to="/gift-cards" className="drawer-about">Gift cards</Link>
         <Link to="/refer" className="drawer-about">Refer a friend</Link>
         <Link to="/about" className="drawer-about">About the founder</Link>
+        <InstallLink dept="women" className="drawer-about app-link" />
         <Link to="/men" className="w-drawer__switch">Men's shop ↗</Link>
       </motion.nav>}
     </AnimatePresence>
@@ -108,15 +112,17 @@ export function WomenLayout() {
       <NewsletterSignup dept="women" />
       <div className="w-footer__row">
         <p>Dresses for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></nav>
+        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><InstallLink dept="women" className="app-link" /><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></nav>
       </div>
       <SocialLinks />
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="women" className="mood-bar--float" />
+    <AppShell dept="women" />
     <Suspense fallback={null}>
       <SupportHelper dept="women" />
       <WelcomePopup dept="women" />
+      <InstallApp dept="women" />
     </Suspense>
   </div>;
 }

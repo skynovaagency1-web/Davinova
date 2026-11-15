@@ -971,3 +971,76 @@ button.w-icon { border: 0; }
 /* keep the corner tiles clear of the Nova helper, which sits bottom right */
 .pv2__next { right: auto; left: 22px; }
 @media (max-width: 980px) { .pv2__next { left: 14px; top: 16px; bottom: auto; } }
+
+/* Davinova app: install offer (shared/InstallApp.tsx). Frosted glass in each shop's palette. */
+.app-link { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: inherit; }
+.app-link--drawer::before { content: '⬇'; display: inline-block; width: 2.2em; font-style: normal; opacity: .6; }
+.app-offer { --a-bg: rgba(46, 32, 25, .72); --a-text: #fbf1e2; --a-soft: rgba(251, 241, 226, .72); --a-accent: #cdb69e; --a-ink: #2e2019; --a-line: rgba(205, 182, 158, .38);
+  position: fixed; left: 12px; right: 12px; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); z-index: 70; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 10px;
+  padding: 10px 10px 10px 12px; border-radius: 20px; color: var(--a-text); background: linear-gradient(135deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .02)), var(--a-bg);
+  border: 1px solid var(--a-line); box-shadow: 0 18px 50px rgba(15, 8, 4, .45), inset 0 1px 0 rgba(255, 255, 255, .18); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  animation: app-offer-in .55s cubic-bezier(.22, 1, .36, 1) both; overflow: hidden; }
+.app-offer::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .22) 48%, transparent 66%); transform: translateX(-120%); animation: app-offer-sweep 3.6s 1s ease-in-out infinite; }
+.app-offer--men { --a-bg: rgba(43, 44, 43, .74); --a-text: #ecedea; --a-soft: rgba(236, 237, 234, .72); --a-accent: #a5aaa3; --a-ink: #1d1e1d; --a-line: rgba(191, 191, 190, .34); }
+.app-offer img { border-radius: 12px; box-shadow: 0 0 0 1px var(--a-line), 0 0 18px rgba(205, 182, 158, .35); }
+.app-offer strong { display: block; font-size: .95rem; letter-spacing: .02em; }
+.app-offer span { display: block; font-size: .76rem; color: var(--a-soft); line-height: 1.3; }
+.app-offer__go { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border: 0; border-radius: 999px; font: 600 .82rem/1 inherit; color: var(--a-ink); background: var(--a-accent); box-shadow: 0 0 20px rgba(205, 182, 158, .45); cursor: pointer; }
+.app-offer__x { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--a-line); border-radius: 50%; color: var(--a-text); background: rgba(255, 255, 255, .06); cursor: pointer; }
+.app-offer--sheet { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 22px 18px 18px; gap: 8px; }
+.app-offer--sheet .app-offer__x { position: absolute; top: 10px; right: 10px; z-index: 1; }
+.app-offer--sheet ol { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: .88rem; color: var(--a-soft); }
+.app-offer--sheet li { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.app-offer--sheet li b { color: var(--a-text); }
+@media (min-width: 701px) { .app-offer { left: auto; right: 24px; width: 380px; } }
+@keyframes app-offer-in { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes app-offer-sweep { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+/* Opened from the home screen: no browser bar, so keep content clear of the notch. */
+@media (display-mode: standalone) { body { padding-top: env(safe-area-inset-top); } }
+
+/* Davinova app mode (html.is-app): liquid-glass bottom bar ("rudder") and opening film, after the DaviGoo guide.
+   Light from the top left, shadows fall down-right, white glow line under the big button. Espresso + pale bronze. */
+.rudder { --r-glass: rgba(255, 245, 230, .16); --r-rim: rgba(255, 245, 230, .5); --r-ink: #fff; --r-chip: #2e2019; --r-accent: linear-gradient(135deg, #e9d6bc, #b08a63); --r-shadow: rgba(30, 18, 10, .45);
+  position: fixed; z-index: 75; left: 50%; transform: translateX(-50%); bottom: calc(10px + env(safe-area-inset-bottom, 0px)); width: min(420px, calc(100% - 24px)); height: 68px;
+  display: grid; grid-template-columns: 1fr 96px 1fr; align-items: center; border-radius: 22px; border: 1px solid var(--r-rim);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .28), rgba(255, 255, 255, 0) 55%), linear-gradient(0deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, 0) 35%), var(--r-glass), rgba(46, 32, 25, .62);
+  box-shadow: 10px 14px 30px var(--r-shadow), inset 0 1px 0 rgba(255, 255, 255, .35); backdrop-filter: blur(22px) saturate(1.5); -webkit-backdrop-filter: blur(22px) saturate(1.5); }
+.rudder--men { --r-chip: #1d1e1d; --r-accent: linear-gradient(135deg, #e6e8e3, #8f978c); --r-shadow: rgba(10, 12, 10, .5); background: linear-gradient(180deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, 0) 55%), var(--r-glass), rgba(43, 44, 43, .66); }
+.rudder a { color: var(--r-ink); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.rudder__tab { display: grid; justify-items: center; gap: 3px; font: 600 11px/1 'DM Sans', system-ui, sans-serif; letter-spacing: 1.2px; text-transform: uppercase; text-shadow: 0 1px 3px rgba(60, 45, 34, .45); transition: transform .15s; }
+.rudder__tab i { display: grid; place-items: center; width: 38px; height: 30px; border-radius: 999px; transition: background .25s, box-shadow .25s; }
+.rudder__tab.is-on i { background: var(--r-chip); box-shadow: 0 0 0 1px var(--r-rim), 0 6px 14px rgba(0, 0, 0, .3); }
+.rudder__tab:active { transform: translateY(1px); }
+.rudder__bag { position: relative; justify-self: center; display: grid; place-items: center; width: 72px; height: 72px; margin-top: -30px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, .7);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 50%), linear-gradient(0deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0) 33%), var(--r-accent);
+  color: #2e2019 !important; box-shadow: 10px 14px 18px var(--r-shadow); transition: transform .15s; }
+.rudder__bag::after { content: ''; position: absolute; left: 16%; right: 16%; bottom: -12px; height: 8px; border-radius: 8px; background: #fff; opacity: .85; box-shadow: 0 0 14px 2px rgba(255, 255, 255, .8); animation: rudder-glow 2.8s ease-in-out infinite; }
+.rudder__bag:active { transform: translateY(1px); }
+.rudder__bag b { position: absolute; top: -6px; right: -6px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; display: grid; place-items: center; font: 700 12px/1 'DM Sans', sans-serif; color: #fff; background: #2e2019; border: 1px solid var(--r-rim); }
+@keyframes rudder-glow { 0%, 100% { opacity: .55; } 50% { opacity: .95; } }
+/* Leave room for the bar; lift Nova, the mood bar and the install card above it. */
+.is-app body { padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px)); }
+.is-app .helper { bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important; }
+.is-app .w-shell > .mood-bar--float, .is-app .m-shell > .mood-bar--float { bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+.is-app .w-bag, .is-app .m-bag { display: none !important; }
+
+.app-film { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; align-content: center; gap: 22px; cursor: pointer;
+  background: radial-gradient(120% 80% at 20% 10%, #5a4536 0%, #3c2a21 45%, #2e2019 100%); transition: opacity .6s ease, transform .6s cubic-bezier(.22, 1, .36, 1); }
+.app-film--men { background: radial-gradient(120% 80% at 20% 10%, #4a4c49 0%, #2b2c2b 50%, #1d1e1d 100%); }
+.app-film.is-out { opacity: 0; transform: scale(1.06); pointer-events: none; }
+.app-film__logo { width: min(72vw, 320px); animation: app-film-rise 1.4s .2s cubic-bezier(.22, 1, .36, 1) both; }
+.app-film__logo .logo { display: block; width: 100%; }
+.app-film__logo .logo__word { width: 100%; height: auto; }
+.app-film__halo { position: absolute; width: 70vmin; height: 70vmin; border-radius: 50%; background: radial-gradient(circle, rgba(233, 214, 188, .32), transparent 65%); filter: blur(10px); animation: app-film-halo 2.6s ease-out both; }
+.app-film__line { width: 46%; max-width: 200px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, #fff, transparent); box-shadow: 0 0 14px rgba(255, 255, 255, .9); transform: scaleX(0); animation: app-film-line 1s 1.1s cubic-bezier(.22, 1, .36, 1) forwards; }
+.app-film small { position: absolute; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); font: 500 11px/1 'DM Sans', sans-serif; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(251, 241, 226, .55); }
+@keyframes app-film-rise { from { opacity: 0; transform: translateY(18px) scale(.94); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes app-film-halo { from { opacity: 0; transform: scale(.4); } 60% { opacity: 1; } to { opacity: .8; transform: scale(1); } }
+@keyframes app-film-line { to { transform: scaleX(1); } }
+/* The shells give direct children position: relative; keep the app layers fixed. */
+.w-shell > .rudder, .m-shell > .rudder { position: fixed !important; z-index: 75 !important; }
+.w-shell > .app-film, .m-shell > .app-film { position: fixed !important; z-index: 2000 !important; }
+.app-film--women .logo__word { filter: brightness(3.2) sepia(.4) drop-shadow(0 0 12px rgba(233, 214, 188, .45)); }
+.app-film--men .logo__word { filter: brightness(1.6) drop-shadow(0 0 12px rgba(255, 255, 255, .35)); }
+.w-shell > .app-offer, .m-shell > .app-offer { position: fixed !important; z-index: 70 !important; }
+.is-app body:has(.app-film:not(.is-out)) .helper, .is-app body:has(.app-film:not(.is-out)) .mood-bar--float { visibility: hidden; }
