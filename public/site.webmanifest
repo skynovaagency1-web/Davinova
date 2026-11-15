@@ -1,1 +1,25 @@
-{ "name": "Davinova", "short_name": "Davinova", "icons": [ { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }, { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" } ], "theme_color": "#4a2410", "background_color": "#f8f0e4", "display": "standalone" }
+{
+  "id": "/",
+  "name": "Davinova",
+  "short_name": "Davinova",
+  "description": "Occasion dresses, menswear, bags, shoes, jewelry and watches with free tracked shipping.",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2E2019",
+  "background_color": "#2E2019",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Women", "url": "/?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Men", "url": "/men?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "My bag", "url": "/bag?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Track order", "url": "/track?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

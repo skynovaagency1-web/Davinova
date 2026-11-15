@@ -3,6 +3,7 @@ import { SearchButton } from '../shared/SearchOverlay';
 import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { PromoBar } from '../shared/PromoBar';
+import { InstallLink } from '../shared/InstallApp';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Heart, Home, Menu, ShoppingBag, UserRound, X } from 'lucide-react';
@@ -21,6 +22,7 @@ import { pageTitle } from '../../lib/pageTitles';
 
 // Nova and the welcome offer appear after a few seconds, so they load after the page.
 const SupportHelper = lazy(() => import('../shared/SupportHelper').then((m) => ({ default: m.SupportHelper })));
+const InstallApp = lazy(() => import('../shared/InstallApp').then((m) => ({ default: m.InstallApp })));
 const WelcomePopup = lazy(() => import('../shared/WelcomePopup').then((m) => ({ default: m.WelcomePopup })));
 
 const links = [
@@ -75,6 +77,7 @@ export function MenLayout() {
         <Link to="/men/gift-cards"><i>↗</i>Gift cards</Link>
         <Link to="/men/refer"><i>↗</i>Refer a friend</Link>
         <Link to="/men/about"><i>↗</i>About the founder</Link>
+        <InstallLink dept="men" className="app-link app-link--drawer" />
         <Link to="/"><i>↗</i>Women's shop</Link>
       </motion.nav>}
     </AnimatePresence>
@@ -90,7 +93,7 @@ export function MenLayout() {
       <NewsletterSignup dept="men" />
       <div className="w-footer__row">
         <p>Formalwear for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/account">My account</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/track">Track order</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
+        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/account">My account</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/track">Track order</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><InstallLink dept="men" className="app-link" /><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
       </div>
       <SocialLinks />
       <small>© {new Date().getFullYear()} Davinova</small>
@@ -99,6 +102,7 @@ export function MenLayout() {
     <Suspense fallback={null}>
       <SupportHelper dept="men" />
       <WelcomePopup dept="men" />
+      <InstallApp dept="men" />
     </Suspense>
   </div>;
 }

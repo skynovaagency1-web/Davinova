@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { translateDocument } from './lib/i18n';
+import { setupApp } from './lib/installApp';
 import './styles/index.css';
 import './styles/women.css';
 import './styles/men.css';
@@ -13,6 +14,8 @@ try {
   const ref = new URLSearchParams(window.location.search).get('ref');
   if (ref && /^[A-Za-z0-9-]{4,32}$/.test(ref)) sessionStorage.setItem('davinova-code', ref.toUpperCase());
 } catch { /* private mode */ }
+
+setupApp();
 
 // The dictionary loads first so French and Spanish pages never flash English.
 void translateDocument().finally(() => {
