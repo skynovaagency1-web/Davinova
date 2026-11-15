@@ -46,6 +46,7 @@ export function MenMegaNav() {
     <Item no="01" label="Shop" to="/men/shop" isCurrent={pathname === '/men/shop' && !occasion && !search.includes('cat=')} active={active} setActive={setActive}>
       <div className="w-mega__links">
         <Link to="/men/shop">Everything</Link>
+        <Link to="/men/looks">Complete the look</Link>
         <Link to="/men/shop?sort=price-low">Under budget first</Link>
         <Link to="/men/categories">All categories</Link>
         <Link to={jewelryPath('men')}>Jewelry &amp; Watches</Link>

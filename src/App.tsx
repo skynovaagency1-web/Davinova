@@ -35,6 +35,7 @@ const GiftCardPage = lazy(() => import('./site/shared/ExtraPages').then((m) => (
 const ReferralPage = lazy(() => import('./site/shared/ExtraPages').then((m) => ({ default: m.ReferralPage })));
 const AboutPage = lazy(() => import('./site/shared/AboutPage').then((m) => ({ default: m.AboutPage })));
 const HelpPage = lazy(() => import('./site/shared/HelpPages').then((m) => ({ default: m.HelpPage })));
+const LooksPage = lazy(() => import('./site/shared/LooksPage').then((m) => ({ default: m.LooksPage })));
 const MenCategoriesPage = lazy(() => import('./site/men/MenCategoriesPage').then((m) => ({ default: m.MenCategoriesPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
 const OrdersAdminPage = lazy(() => import('./pages/OrdersAdminPage').then((m) => ({ default: m.OrdersAdminPage })));
@@ -60,6 +61,7 @@ export default function App() {
         <Route path="bag" element={<BagView variant="men" />} />
         <Route path="about" element={<AboutPage dept="men" />} />
         <Route path="categories" element={<MenCategoriesPage />} />
+        <Route path="looks" element={<LooksPage dept="men" />} />
         <Route path="custom" element={<CustomPage dept="men" />} />
         <Route path="custom/design" element={<DesignMaker dept="men" />} />
         <Route path="track" element={<HelpPage dept="men" slug="track" />} />
@@ -118,6 +120,7 @@ export default function App() {
         <Route path="cart" element={<BagView variant="women" />} />
         <Route path="order-confirmation" element={<OrderConfirmationPage />} />
         <Route path="about" element={<AboutPage dept="women" />} />
+        <Route path="looks" element={<LooksPage dept="women" />} />
         <Route path="track" element={<HelpPage dept="women" slug="track" />} />
         <Route path="shipping" element={<HelpPage dept="women" slug="shipping" />} />
         <Route path="returns" element={<HelpPage dept="women" slug="returns" />} />
