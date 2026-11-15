@@ -936,3 +936,13 @@ button.w-icon { border: 0; }
 @media (max-width: 560px) { .acct__stages a { font-size: 11px; } .acct__more a, .acct__more button { font-size: 12px; } }
 .club__warn { margin: 12px 0; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(214, 140, 60, .55); background: rgba(214, 140, 60, .14); font-size: 14px; line-height: 1.45; }
 .club__warn b { display: block; margin-bottom: 2px; }
+
+/* Style switch (owner's reference, 2026-11-15): the chosen style flies in, the stage takes its colour, the next style waits in the corner. */
+.pv2__shot { display: grid; place-items: center; width: 100%; }
+.pv2__shot > img { width: 100%; max-height: 82vh; object-fit: contain; filter: drop-shadow(0 30px 30px rgba(35, 20, 8, .18)); }
+.pv2:not(.pv2--pop) .pv2__shot > img { border-radius: calc(var(--radius) - 6px); max-height: 78vh; width: auto; max-width: 100%; }
+.pv2__next { position: absolute; right: 22px; bottom: 24px; z-index: 2; display: grid; justify-items: center; gap: 6px; width: 92px; padding: 8px 8px 10px; border-radius: 18px; border: 1px solid var(--line); background: rgba(255, 255, 255, .22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--ink); font: 600 10px/1.2 'IBM Plex Mono', monospace; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: transform .3s cubic-bezier(.2, .7, .2, 1), background .3s; }
+.pv2__next img { width: 74px; height: 74px; object-fit: contain; border-radius: 12px; mix-blend-mode: multiply; }
+.pv2__next span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pv2__next:hover { transform: translateY(-4px) rotate(-2deg); background: rgba(255, 255, 255, .4); }
+@media (max-width: 980px) { .pv2__shot > img { max-height: 60vh; } .pv2__next { right: 14px; bottom: 16px; width: 74px; } .pv2__next img { width: 58px; height: 58px; } }

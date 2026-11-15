@@ -1,7 +1,7 @@
 import { cleanDescription } from './cleanDescription';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Check, Lock, RotateCcw, ShoppingBag, Truck } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { formatMoney } from '../../lib/format';
@@ -153,6 +153,11 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   ].filter((stat): stat is { value: number; label: string } => Boolean(stat)).slice(0, 2);
   const sizeChoices = sortSizes(options.filter((option) => !colours.length || option.colour === colour));
 
+  function pickColour(item: string) { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }
+  // The small tile in the corner shows the next style that has its own photo, like the owner's reference.
+  const withPhoto = colours.filter((item) => product.colourImages?.[item]);
+  const nextColour = withPhoto.length > 1 ? withPhoto[(withPhoto.indexOf(colour) + 1) % withPhoto.length] : undefined;
+
   function addToBag() {
     if (!size) { setSizeHint(true); return; }
     add(product, size);
@@ -162,12 +167,24 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   return <section className={`pv pv--${variant}`}>
     <Link className="pv-back" to={shopPath}><ArrowLeft size={15} /> Back to the shop</Link>
     <div className={`pv2${!colourPhoto && index === 0 && cutout ? ' pv2--pop' : ''}`}>
-      {photo?.url && !broken && <img className="pv2__blur" src={photo.url} alt="" aria-hidden="true" />}
+      {/* The blurred copy tints the whole stage in the chosen style's colour (owner's reference: the background follows the colour). */}
+      <AnimatePresence initial={false}>
+        {photo?.url && !broken && <motion.img key={photo.url} className="pv2__blur" src={photo.url} alt="" aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 0.75 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }} />}
+      </AnimatePresence>
       <div className="pv2__photo">
-        {photo?.url && !broken
-          // Floating loop adapted from "Product Bounce Card" (ruixen.ui, 21st.dev), slowed down for clothing.
-          ? <motion.img key={photo.url} src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} />
-          : <div className="pv-stage__missing">Photo coming soon</div>}
+        <AnimatePresence initial={false} mode="popLayout">
+          {photo?.url && !broken
+            // A new style flies in from the next-style tile (bottom right) while the old one lifts away.
+            ? <motion.div key={photo.url} className="pv2__shot" initial={{ opacity: 0, x: 140, y: 120, scale: 0.55, rotate: 6 }} animate={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0 }} exit={{ opacity: 0, x: -120, y: -140, scale: 0.6, rotate: -6 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
+              {/* Floating loop adapted from "Product Bounce Card" (ruixen.ui, 21st.dev), slowed down for clothing. */}
+              <motion.img src={photo.url} alt={photo.alt || product.title} onError={() => setBroken(true)} animate={still ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} />
+            </motion.div>
+            : <div key="missing" className="pv-stage__missing">Photo coming soon</div>}
+        </AnimatePresence>
+        {nextColour && product.colourImages?.[nextColour] && <button type="button" className="pv2__next" onClick={() => pickColour(nextColour)} aria-label={`Show ${colourLabel(nextColour)}`}>
+          <img src={product.colourImages[nextColour]} alt="" />
+          <span>{colourLabel(nextColour)}</span>
+        </button>}
         <WishButton productId={product.id} title={product.title} className="pv-wish pv2__heart" />
         {stats.length > 0 && <ul className="pv2__stats">{stats.map((stat) => <li key={stat.label}><b>{stat.value}</b>{stat.label}</li>)}</ul>}
       </div>
@@ -197,7 +214,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           {!isWoo && canBuy && <div className="pv-buy__sizes">
             {colours.length > 0 && <>
               <span>Choose your colour {sizeHint && !colour && <em>· pick one first</em>}</span>
-              <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => { setColour(item); setShowColour(true); setBroken(false); setSize(''); setAdded(false); setSizeHint(false); }}>{product.colourImages?.[item] && <img src={product.colourImages[item]} alt="" loading="lazy" />}{colourLabel(item)}</button>)}</div>
+              <div role="group" aria-label="Colours">{colours.map((item) => <button key={item} type="button" className={colour === item ? 'active' : ''} aria-pressed={colour === item} onClick={() => pickColour(item)}>{product.colourImages?.[item] && <img src={product.colourImages[item]} alt="" loading="lazy" />}{colourLabel(item)}</button>)}</div>
             </>}
             {(!colours.length || colour) && <>
               <span>Choose your size {sizeHint && !size && <em>· pick one first</em>}<Link className="pv-buy__guide" to={`${prefix}/size-guide`}>Size guide</Link></span>
