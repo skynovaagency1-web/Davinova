@@ -107,3 +107,32 @@
   .looks__lines, .looks__arch { display: none; }
   .looks__spot { width: 14px; height: 14px; margin: -7px 0 0 -7px; }
 }
+
+/* REA study of the two references (2026-11-15):
+   photo 1 - cards carry a two-tone neon edge (light at the top, accent at the bottom) and little HUD ticks; faint light streaks cross the room.
+   photo 2 - tiles are backlit (glow from inside the edge), a light cove runs along the floor, and the floor mirrors the tiles too. */
+.looks { --lk-edge: linear-gradient(180deg, var(--lk-a), rgba(255, 255, 255, .12) 45%, var(--lk-b)); }
+.looks::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
+  background: linear-gradient(100deg, transparent 18%, rgba(255, 255, 255, .05) 19%, transparent 21%, transparent 62%, rgba(255, 255, 255, .04) 63%, transparent 66%); mix-blend-mode: screen; }
+.looks__card { isolation: isolate; box-shadow: 0 0 0 1px rgba(255, 255, 255, .04), 0 0 24px -8px var(--lk-glow), inset 0 0 22px -10px var(--lk-glow), inset 0 1px 0 rgba(255, 255, 255, .2); }
+.looks__card::before { content: ""; position: absolute; inset: 0; z-index: -1; padding: 1px; border-radius: inherit; background: var(--lk-edge); opacity: .7; pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); transition: opacity .35s; }
+.looks__card::after { content: ""; position: absolute; top: 5px; left: 16px; right: 16px; height: 2px; pointer-events: none;
+  background: linear-gradient(90deg, var(--lk-a) 0 14px, transparent 14px calc(100% - 22px), var(--lk-a) calc(100% - 22px) calc(100% - 12px), transparent calc(100% - 12px) calc(100% - 8px), var(--lk-a) calc(100% - 8px)); opacity: .6; }
+.looks__card:hover::before, .looks__card.is-active::before { opacity: 1; }
+.looks__card:hover, .looks__card.is-active { box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 0 44px -2px var(--lk-glow), 0 14px 30px -14px var(--lk-b), inset 0 0 26px -8px var(--lk-glow), inset 0 1px 0 rgba(255, 255, 255, .3); }
+.looks__card-price { top: 18px; }
+.looks__panel::before { content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit; background: var(--lk-edge); opacity: .55; pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+.looks__line { stroke-linejoin: round; }
+.looks__line-glow { stroke-linejoin: round; }
+/* light cove along the floor and the floor's mirror of the tiles and panel */
+.looks__stage::after { content: ""; position: absolute; left: 27%; right: 28%; bottom: 58px; height: 2px; z-index: 0; pointer-events: none; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--lk-a) 18%, #fff 50%, var(--lk-a) 82%, transparent); box-shadow: 0 0 18px 2px var(--lk-glow); opacity: .55; }
+@supports (-webkit-box-reflect: below) {
+  .looks__wall, .looks__panel { -webkit-box-reflect: below 10px linear-gradient(transparent 78%, rgba(255, 255, 255, .14)); }
+}
+@media (max-width: 980px) {
+  .looks::after, .looks__stage::after { display: none; }
+  .looks__wall, .looks__panel { -webkit-box-reflect: unset; }
+}

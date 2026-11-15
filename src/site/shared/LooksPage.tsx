@@ -157,6 +157,20 @@ export function LooksPage({ dept }: { dept: Dept }) {
 /** Cut-outs vary in pose and width, so spots are pulled toward the centre line, which is always on the body. */
 const onBody = (x: number) => 0.5 + (x - 0.5) * 0.55;
 
+/** Photo 1's light lines run like circuit traces: straight out of the tile, a 45° run, then straight into the body, with soft corners. */
+function circuit(x1: number, y1: number, x2: number, y2: number, lane: number) {
+  const dy = y2 - y1;
+  const span = x2 - x1;
+  const run = Math.min(Math.abs(dy), Math.max(0, span * 0.6));
+  const start = x1 + Math.max(14, (span - run) * (0.25 + (lane % 3) * 0.12));
+  const knee = start + run;
+  const dir = Math.sign(dy) || 1;
+  const r = Math.min(10, run / 2, Math.abs(dy) / 2);
+  if (run < 1) return `M${x1},${y1} H${x2}`;
+  const k = r * 0.7071;
+  return `M${x1},${y1} H${start - r} Q${start},${y1} ${start + k},${y1 + dir * k} L${knee - k},${y1 + dir * (Math.abs(dy) - k)} Q${knee},${y2} ${knee + r},${y2} H${x2}`;
+}
+
 /** Tile wall on the left, the model in the middle (with its reflection), the look panel on the right, light lines between. */
 function Stage({ look, cutout, photoOf, panel }: { look: ReturnType<typeof buildLooks>[number]; cutout?: string; photoOf: (product: Product) => string | undefined; panel: ReactNode }) {
   const stage = useRef<HTMLDivElement>(null);
@@ -174,15 +188,14 @@ function Stage({ look, cutout, photoOf, panel }: { look: ReturnType<typeof build
       const body = model.current?.getBoundingClientRect();
       if (!root || !body || window.innerWidth < 980) { setPaths([]); return; }
       setBox({ w: root.width, h: root.height });
-      setPaths(look.pieces.map(({ slot, product }) => {
+      setPaths(look.pieces.map(({ slot, product }, i) => {
         const card = cards.current[product.id]?.getBoundingClientRect();
         if (!card) return { key: product.id, d: '' };
         const x1 = card.right - root.left;
         const y1 = card.top + card.height / 2 - root.top;
         const x2 = body.left + body.width * onBody(slot.at[0]) - root.left;
         const y2 = body.top + body.height * slot.at[1] - root.top;
-        const bend = (x2 - x1) * 0.5;
-        return { key: product.id, d: `M${x1},${y1} C${x1 + bend},${y1} ${x2 - bend},${y2} ${x2},${y2}` };
+        return { key: product.id, d: circuit(x1, y1, x2, y2, i) };
       }));
     };
     draw();
