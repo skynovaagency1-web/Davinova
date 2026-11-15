@@ -14,6 +14,7 @@ import { MoodBar, MoodLayer } from '../shared/Mood';
 import { HangingBag } from '../shared/HangingBag';
 import { PromoBar } from '../shared/PromoBar';
 import { InstallLink } from '../shared/InstallApp';
+import { AppShell } from '../shared/AppShell';
 import { CATEGORY_GROUPS, categoryPath } from '../../lib/categories';
 import { BEAUTY_COLLECTIONS } from '../../lib/storeCollectionTaxonomy';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
@@ -117,6 +118,7 @@ export function WomenLayout() {
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="women" className="mood-bar--float" />
+    <AppShell dept="women" />
     <Suspense fallback={null}>
       <SupportHelper dept="women" />
       <WelcomePopup dept="women" />

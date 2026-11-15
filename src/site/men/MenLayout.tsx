@@ -4,6 +4,7 @@ import { SocialLinks } from '../shared/SocialLinks';
 import { NewsletterSignup } from '../shared/NewsletterSignup';
 import { PromoBar } from '../shared/PromoBar';
 import { InstallLink } from '../shared/InstallApp';
+import { AppShell } from '../shared/AppShell';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Heart, Home, Menu, ShoppingBag, UserRound, X } from 'lucide-react';
@@ -99,6 +100,7 @@ export function MenLayout() {
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="men" className="mood-bar--float" />
+    <AppShell dept="men" />
     <Suspense fallback={null}>
       <SupportHelper dept="men" />
       <WelcomePopup dept="men" />

@@ -9,6 +9,16 @@ export function isStandalone() {
   return window.matchMedia('(display-mode: standalone)').matches || (navigator as Navigator & { standalone?: boolean }).standalone === true;
 }
 
+/** Running as the installed app (home screen, Google Play) rather than in a browser tab. */
+export function isAppMode() {
+  if (isStandalone()) return true;
+  try {
+    const source = new URLSearchParams(window.location.search).get('source') ?? '';
+    if (source.startsWith('app')) sessionStorage.setItem('davinova-app', '1');
+    return sessionStorage.getItem('davinova-app') === '1';
+  } catch { return false; }
+}
+
 export function isIOS() {
   const ua = navigator.userAgent;
   return /iPhone|iPad|iPod/.test(ua) || (ua.includes('Macintosh') && navigator.maxTouchPoints > 1);
@@ -16,7 +26,7 @@ export function isIOS() {
 
 /** True when tapping our button can install the app (Android/desktop prompt, or iPhone instructions). */
 export function canInstall() {
-  if (isStandalone()) return false;
+  if (isAppMode()) return false;
   return deferred !== null || isIOS();
 }
 
@@ -42,7 +52,7 @@ function track(name: string) {
 export function setupApp() {
   window.addEventListener('beforeinstallprompt', (event) => { event.preventDefault(); deferred = event as InstallEvent; notify(); });
   window.addEventListener('appinstalled', () => { deferred = null; notify(); track('app_installed'); });
-  if (isStandalone()) track('app_open');
+  if (isAppMode()) { document.documentElement.classList.add('is-app'); track('app_open'); }
   if (import.meta.env.PROD && 'serviceWorker' in navigator) {
     window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(() => { /* site still works without it */ }); });
   }
