@@ -46,12 +46,13 @@ export function MenMegaNav() {
     <Item no="01" label="Shop" to="/men/shop" isCurrent={pathname === '/men/shop' && !occasion && !search.includes('cat=')} active={active} setActive={setActive}>
       <div className="w-mega__links">
         <Link to="/men/shop">Everything</Link>
-        <Link to="/men/looks">Complete the look</Link>
+        <Link to="/men/looks">New fashion</Link>
         <Link to="/men/shop?sort=price-low">Under budget first</Link>
         <Link to="/men/categories">All categories</Link>
         <Link to={jewelryPath('men')}>Jewelry &amp; Watches</Link>
       </div>
     </Item>
+    <Link to="/men/looks" className={`w-mega__trigger nf-link${pathname === '/men/looks' ? ' active' : ''}`}><i>✦</i><span>New fashion</span></Link>
     <Item no="02" label="Occasions" to={menOccasionPath(MEN_OCCASIONS[0].key)} isCurrent={Boolean(occasion)} active={active} setActive={setActive}>
       <div className="w-mega__links">
         {MEN_OCCASIONS.map((item) => <Link key={item.key} to={menOccasionPath(item.key)}><b>{item.title}</b><small>{item.line}</small></Link>)}

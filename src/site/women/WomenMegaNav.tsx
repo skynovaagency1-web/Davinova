@@ -31,7 +31,7 @@ export function WomenMegaNav() {
     <Item label="Shop" to="/shop" active={active} setActive={setActive}>
       <div className="w-mega__links">
         <Link to="/shop">Everything</Link>
-        <Link to="/looks">Complete the look</Link>
+        <Link to="/looks">New fashion</Link>
         <Link to="/shop?sort=price-low">Under budget first</Link>
         <Link to="/shop?fit=standard">Slim fit</Link>
         <Link to="/shop?fit=curvy">Plus size &amp; curvy</Link>
@@ -39,6 +39,7 @@ export function WomenMegaNav() {
         <Link to="/fits">All fits</Link>
       </div>
     </Item>
+    <Link to="/looks" className="w-mega__trigger nf-link"><span>New fashion</span></Link>
     <Item label="Categories" to="/categories" active={active} setActive={setActive}>
       <div className="w-mega__cols w-mega__cols--cats">
         {/* Only types that have pieces; a group with none is left out. */}

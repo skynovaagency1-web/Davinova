@@ -71,6 +71,7 @@ export function MenLayout() {
       {open && <motion.nav className="m-drawer" aria-label="Men's mobile navigation" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}>
         {links.map(([to, label], index) => <Link key={to} to={to}><i>{String(index + 1).padStart(2, '0')}</i>{label}</Link>)}
         <div className="drawer-sub">{MEN_CATEGORIES.map((item) => <Link key={item.sub} to={menCategoryPath(item.sub)}>{item.short}</Link>)}<Link to={jewelryPath('men')}>Jewelry &amp; Watches</Link></div>
+        <Link to="/men/looks" className="nf-link"><i>✦</i><span>New fashion</span></Link>
         <Link to="/men/custom/design"><i>06</i>Design your own</Link>
         <Link to="/men/categories"><i>↗</i>All categories</Link>
         <Link to="/men/wishlist"><i>♡</i>Wishlist</Link>

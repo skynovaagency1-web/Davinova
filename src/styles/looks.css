@@ -136,3 +136,16 @@
   .looks::after, .looks__stage::after { display: none; }
   .looks__wall, .looks__panel { -webkit-box-reflect: unset; }
 }
+
+/* New fashion (2026-11-15): the bag sits in the model's hand; customers swap pieces or take them off ("Build your look"). */
+.looks__held { position: absolute; z-index: 2; overflow: hidden; pointer-events: none; filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .35)); }
+.looks__held img { position: absolute; width: auto; max-width: none; }
+.looks__slot { display: grid; gap: 6px; }
+.looks__slot .looks__card img { transition: opacity .3s; }
+.looks__slot.is-off .looks__card { opacity: .42; filter: grayscale(.7); }
+.looks__swap { display: flex; align-items: center; justify-content: center; gap: 6px; }
+.looks__swap button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 28px; min-width: 28px; padding: 0 8px; border-radius: 999px; border: 1px solid var(--lk-line); background: var(--lk-glass); color: inherit; font: 600 10px/1 'IBM Plex Mono', monospace; letter-spacing: .06em; white-space: nowrap; text-transform: uppercase; cursor: pointer; backdrop-filter: blur(8px); transition: border-color .25s, box-shadow .25s, transform .2s; }
+.looks__swap button:hover { border-color: var(--lk-a); box-shadow: 0 0 18px -4px var(--lk-glow); transform: translateY(-1px); }
+.looks__swap .looks__wear { flex: 1; max-width: 120px; }
+.looks__eyebrow--new { display: inline-block; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--lk-a); color: #fff; box-shadow: 0 0 22px -4px var(--lk-glow); }
+@media (max-width: 980px) { .looks__swap button { height: 32px; min-width: 32px; } }
