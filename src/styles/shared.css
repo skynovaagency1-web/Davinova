@@ -1057,3 +1057,26 @@ button.w-icon { border: 0; }
 .promo-poster__go::after { content: ''; position: absolute; left: 16%; right: 16%; bottom: -10px; height: 6px; border-radius: 6px; background: #fff; opacity: .8; box-shadow: 0 0 12px 2px rgba(255, 255, 255, .85); animation: rudder-glow 2.8s ease-in-out infinite; }
 .promo-poster--men .promo-poster__go { color: #1d1e1d; background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 55%), linear-gradient(135deg, #f0f1ee, #8f978c); }
 .promo-poster--app .promo-poster__go { position: relative; left: 50%; bottom: auto; margin-top: 22px; }
+/* Space beside the home posters: product cards (looks) or glass info panels (app). */
+.promo-wrap { margin: 56px auto; padding: 0 16px; }
+.promo-wrap .promo-poster { width: 100%; margin: 0; }
+.app-sides { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px) minmax(0, 1fr); gap: clamp(16px, 3vw, 48px); align-items: center; max-width: 1240px; }
+.app-sides__col { display: grid; gap: 16px; align-content: center; }
+.app-sides__kicker { font: 600 12px/1 'DM Sans', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: var(--a-soft, rgba(251, 241, 226, .75)); text-align: center; }
+.app-side { position: relative; display: grid; grid-template-columns: 44px 1fr; grid-template-rows: auto auto; column-gap: 14px; row-gap: 4px; align-items: center; padding: 16px 18px; border-radius: 20px; color: #fff;
+  border: 1px solid rgba(255, 245, 230, .5); background: linear-gradient(180deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, 0) 55%), rgba(255, 245, 230, .1); box-shadow: 10px 14px 28px rgba(20, 10, 4, .32), inset 0 1px 0 rgba(255, 255, 255, .4);
+  backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); animation: app-side-float 6s ease-in-out infinite; }
+.app-side:nth-child(odd) { animation-delay: -3s; }
+.app-side i { grid-row: 1 / 3; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; color: #2e2019; background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 55%), linear-gradient(135deg, #f3e3cc, #b08a63); }
+.app-sides--men .app-side i { color: #1d1e1d; background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 55%), linear-gradient(135deg, #f0f1ee, #8f978c); }
+.app-side strong { font: 700 15px/1.2 'DM Sans', sans-serif; text-shadow: 0 1px 3px rgba(60, 45, 34, .45); }
+.app-side span { font: 400 13px/1.35 'DM Sans', sans-serif; color: rgba(255, 255, 255, .82); }
+@keyframes app-side-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@media (max-width: 900px) {
+  .app-sides { grid-template-columns: 1fr 1fr; }
+  .app-sides > .promo-poster { grid-column: 1 / -1; grid-row: 1; max-width: 420px; justify-self: center; }
+  .app-side { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 14px 10px; }
+  .app-side i { grid-row: auto; }
+}
+.promo-wrap > .promo-poster { max-width: 520px; margin: 0 auto; }
+@media (max-width: 600px) { .app-sides { grid-template-columns: 1fr; } .app-sides__col { display: none; } }
