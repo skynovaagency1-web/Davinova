@@ -6,7 +6,7 @@ import type { Product, ProductSize } from '../../types/product';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
 import { useCutouts, isFullLook } from '../../lib/useCutouts';
 import { TRENDING_LOOKS } from '../../lib/trendingLooks';
-import { BAG_BOX, HAND_BAGS, LOOK_HANDS, LOOK_HOLDING } from '../../lib/lookHands';
+import { ITEM_BOX, LOOK_FIT, WEARABLE } from '../../lib/lookHands';
 import { JEWELRY_COLLECTION, WOMEN_BAGS, WOMEN_SHOES } from '../../lib/storeCollectionTaxonomy';
 import { isKidsPiece } from '../../lib/kids';
 import { formatMoney } from '../../lib/format';
@@ -23,20 +23,20 @@ const sub = (collection: string, ...subs: string[]) => (product: Product) => pro
 // The reference: glowing glass cards on both sides of the model, each joined by a light line to where the piece is worn.
 const SLOTS: Record<Dept, Slot[]> = {
   women: [
-    { key: 'necklace', label: 'Necklace', side: 'left', at: [0.5, 0.2], pick: sub(JEWELRY_COLLECTION, 'silver-necklaces', 'fine', 'bridal-sets') },
-    { key: 'bag', label: 'Bag', side: 'left', at: [0.3, 0.5], pick: (product) => product.storeCollection === WOMEN_BAGS && HAND_BAGS.women.includes(product.id) },
+    { key: 'necklace', label: 'Necklace', side: 'left', at: [0.5, 0.2], pick: (product) => Boolean(WEARABLE.women.necklace?.includes(product.id)) },
+    { key: 'bag', label: 'Bag', side: 'left', at: [0.3, 0.5], pick: (product) => product.storeCollection === WOMEN_BAGS && Boolean(WEARABLE.women.bag?.includes(product.id)) },
     { key: 'shoes', label: 'Heels', side: 'left', at: [0.45, 0.95], pick: sub(WOMEN_SHOES, 'pumps', 'woman-sandals') },
-    { key: 'hair', label: 'Hair jewel', side: 'right', at: [0.55, 0.05], pick: sub(JEWELRY_COLLECTION, 'wedding-hair') },
-    { key: 'bracelet', label: 'Bracelet', side: 'right', at: [0.7, 0.48], pick: sub(JEWELRY_COLLECTION, 'silver-bracelets') },
-    { key: 'watch', label: 'Watch', side: 'right', at: [0.68, 0.52], pick: sub(JEWELRY_COLLECTION, 'womens-watches') },
+    { key: 'hair', label: 'Hair jewel', side: 'right', at: [0.55, 0.05], pick: (product) => Boolean(WEARABLE.women.hair?.includes(product.id)) },
+    { key: 'bracelet', label: 'Bracelet', side: 'right', at: [0.7, 0.48], pick: (product) => Boolean(WEARABLE.women.bracelet?.includes(product.id)) },
+    { key: 'watch', label: 'Watch', side: 'right', at: [0.68, 0.52], pick: (product) => Boolean(WEARABLE.women.watch?.includes(product.id)) },
   ],
   men: [
     { key: 'tie', label: 'Tie', side: 'left', at: [0.5, 0.24], pick: sub('mens-accessories', 'ties-and-bow-ties') },
     { key: 'belt', label: 'Belt', side: 'left', at: [0.5, 0.45], pick: sub('mens-accessories', 'belts-and-suspenders') },
     { key: 'shoes', label: 'Shoes', side: 'left', at: [0.45, 0.96], pick: sub('mens-accessories', 'formal-shoes') },
     { key: 'cufflinks', label: 'Cufflinks', side: 'right', at: [0.27, 0.53], pick: sub(JEWELRY_COLLECTION, 'cufflinks') },
-    { key: 'watch', label: 'Watch', side: 'right', at: [0.73, 0.52], pick: sub(JEWELRY_COLLECTION, 'mens-watches') },
-    { key: 'bag', label: 'Briefcase', side: 'right', at: [0.78, 0.62], pick: (product) => HAND_BAGS.men.includes(product.id) },
+    { key: 'watch', label: 'Watch', side: 'right', at: [0.73, 0.52], pick: (product) => Boolean(WEARABLE.men.watch?.includes(product.id)) },
+    { key: 'bag', label: 'Briefcase', side: 'right', at: [0.78, 0.62], pick: (product) => Boolean(WEARABLE.men.bag?.includes(product.id)) },
   ],
 };
 
@@ -62,7 +62,7 @@ export interface LookPiece { slot: Slot; options: Product[]; start: number }
 function buildLooks(products: Product[], dept: Dept, hasCutout: (product: Product) => boolean, day: number) {
   const random = seeded(day * 31 + (dept === 'men' ? 7 : 3));
   const shop = products.filter((product) => product.department === dept && product.priceCents > 0 && !product.browseOnly);
-  const heroes = shuffle(shop.filter((product) => TRENDING_LOOKS.has(product.id) && !LOOK_HOLDING.has(product.id) && product.storeCollection !== JEWELRY_COLLECTION && !isKidsPiece(product) && hasCutout(product) && heroRank(product, dept) >= 0), random)
+  const heroes = shuffle(shop.filter((product) => TRENDING_LOOKS.has(product.id) && Boolean(LOOK_FIT[product.id]) && product.storeCollection !== JEWELRY_COLLECTION && !isKidsPiece(product) && hasCutout(product) && heroRank(product, dept) >= 0), random)
     .sort((a, b) => heroRank(a, dept) - heroRank(b, dept));
   const pools = SLOTS[dept].map((slot) => shuffle(shop.filter((product) => slot.pick(product) && product.images[0]?.url), random));
   return heroes.slice(0, 24).map((hero, index) => {
@@ -72,7 +72,7 @@ function buildLooks(products: Product[], dept: Dept, hasCutout: (product: Produc
       // Bags skip the neutral tier so all the hand-picked bags take turns.
       const score = (product: Product) => (colour && colourOf(product) === colour ? 0 : slot.key !== 'bag' && NEUTRAL.test(product.title) ? 1 : 2);
       const options = [...pools[s]].sort((a, b) => score(a) - score(b));
-      return { slot, options, start: options.length ? (index * 5 + s * 3) % Math.min(options.length, 10) : 0 };
+      return { slot, options, start: options.length ? (index * 3 + s * 7) % Math.min(options.length, 10) : 0 };
     }).filter((piece) => piece.options.length > 0);
     return { hero, pieces };
   });
@@ -190,11 +190,30 @@ function circuit(x1: number, y1: number, x2: number, y2: number, lane: number) {
 /** Tile wall on the left, the model in the middle (with its reflection), the look panel on the right, light lines between. */
 type Chosen = { slot: Slot; options: Product[]; product: Product; on: boolean };
 function Stage({ dept, hero, pieces, onSwap, onToggle, cutout, photoOf, panel }: { dept: Dept; hero: Product; pieces: Chosen[]; onSwap: (key: string, by: number) => void; onToggle: (key: string) => void; cutout?: string; photoOf: (product: Product) => string | undefined; panel: ReactNode }) {
-  // The bag goes into the model's free hand (found per photo), so the outfit is complete.
-  const hand = LOOK_HANDS[hero.id];
-  const held = pieces.find((piece) => piece.slot.key === 'bag' && piece.on);
-  const bagBox = held && BAG_BOX[held.product.id];
-  const spot = (slot: Slot): [number, number] => (slot.key === 'bag' && hand && held ? [hand[0], hand[1] + 0.07] : [onBody(slot.at[0]), slot.at[1]]);
+  // Every piece is put on the model (owner, 2026-11-16): bag in the free hand, necklace at the neck, hair jewel on the head,
+  // watch and bracelet on the wrists. Shoes stay on their card: the gowns cover the feet.
+  const fit = LOOK_FIT[hero.id];
+  const wearing = (key: string) => pieces.find((piece) => piece.slot.key === key && piece.on && ITEM_BOX[piece.product.id]);
+  const spot = (slot: Slot): [number, number] => {
+    if (fit && wearing(slot.key)) {
+      if (slot.key === 'bag') return [fit.hand[0], fit.hand[1] + 0.07];
+      // Jewellery spots sit just beside the piece so they never cover it.
+      const out = (x: number, w: number) => x + (x >= 0.5 ? 1 : -1) * (w / 2 + 0.035);
+      if (slot.key === 'necklace') return [fit.neck[0] + fit.neck[2] / 2 + 0.04, fit.neck[1] + 0.03];
+      if (slot.key === 'hair') return [fit.head[0] + fit.head[2] / 2 + 0.03, fit.head[1] - 0.02];
+      if (slot.key === 'watch') return [out(fit.watch[0], fit.watch[2]), fit.watch[1]];
+      if (slot.key === 'bracelet') return [out(fit.bracelet[0], fit.bracelet[2]), fit.bracelet[1]];
+    }
+    return [onBody(slot.at[0]), slot.at[1]];
+  };
+  /** Where and how big each worn piece is drawn: left/top in %, size, and how it hangs from that point. */
+  const placements = fit ? ([
+    ['bag', { left: fit.hand[0], top: fit.hand[1] }],
+    ['necklace', { left: fit.neck[0], top: fit.neck[1], width: fit.neck[2] }],
+    ['hair', { left: fit.head[0], top: fit.head[1], width: fit.head[2] }],
+    ['watch', { left: fit.watch[0], top: fit.watch[1], width: fit.watch[2] }],
+    ['bracelet', { left: fit.bracelet[0], top: fit.bracelet[1], width: fit.bracelet[2], rotate: fit.bracelet[3] }],
+  ] as const) : [];
   const worn = pieces.filter((piece) => piece.on);
   const stage = useRef<HTMLDivElement>(null);
   const model = useRef<HTMLImageElement>(null);
@@ -267,9 +286,18 @@ function Stage({ dept, hero, pieces, onSwap, onToggle, cutout, photoOf, panel }:
       {cutout && <div className="looks__figure">
         <img ref={model} className="looks__body" src={cutout} alt={hero.title} />
         <AnimatePresence>
-          {hand && held && bagBox && <motion.span key={held.product.id} className="looks__held" style={{ left: `${hand[0] * 100}%`, top: `${hand[1] * 100}%`, height: `${Math.min(dept === 'men' ? 20 : 17, 22 / bagBox[4])}%`, aspectRatio: String(bagBox[4]), x: '-50%', y: '-8%', transformOrigin: '50% 0' }} initial={{ opacity: 0, scale: 0.85, rotate: -6 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
-            <img src={photoOf(held.product)} alt="" style={{ height: `${100 / (bagBox[3] - bagBox[1])}%`, top: `${(-bagBox[1] / (bagBox[3] - bagBox[1])) * 100}%`, left: `${(-bagBox[0] / (bagBox[2] - bagBox[0])) * 100}%` }} />
-          </motion.span>}
+          {placements.map(([key, at]) => {
+            const piece = wearing(key);
+            const box = piece && ITEM_BOX[piece.product.id];
+            if (!piece || !box) return null;
+            const size = key === 'bag'
+              ? { height: `${Math.min(dept === 'men' ? 20 : 17, 22 / box[4])}%` }
+              : { width: `${('width' in at ? at.width : 0) * 100}%` };
+            const hang = key === 'bag' ? '-8%' : key === 'necklace' ? '0%' : key === 'hair' ? '-100%' : '-50%';
+            return <motion.span key={`${key}-${piece.product.id}`} className={`looks__worn looks__worn--${key}`} style={{ left: `${at.left * 100}%`, top: `${at.top * 100}%`, ...size, aspectRatio: String(box[4]), x: '-50%', y: hang, rotate: 'rotate' in at ? at.rotate : 0, transformOrigin: '50% 0' }} initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.6 }} transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}>
+              <img src={photoOf(piece.product)} alt="" style={{ height: `${100 / (box[3] - box[1])}%`, top: `${(-box[1] / (box[3] - box[1])) * 100}%`, left: `${(-box[0] / (box[2] - box[0])) * 100}%` }} />
+            </motion.span>;
+          })}
         </AnimatePresence>
         {worn.map(({ slot, product }) => <Link key={product.id} to={productPath(product)} className={`looks__spot${active === product.id ? ' is-active' : ''}`} style={{ left: `${spot(slot)[0] * 100}%`, top: `${spot(slot)[1] * 100}%` }} onMouseEnter={hover(product.id)} onMouseLeave={hover(null)} onFocus={hover(product.id)} onBlur={hover(null)} aria-label={`${slot.label}: ${product.title}`}>
           <span className="looks__spot-tip">{slot.label} · {formatMoney(product.priceCents, product.currency)}</span>
