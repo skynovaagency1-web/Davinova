@@ -3,6 +3,7 @@ import { cleanSupplierText, cleanTitle, imageAlt } from '../../src/lib/productTe
 import { siteImage } from '../../src/lib/imageProxy';
 import { modelPhoto } from '../../src/lib/modelPhotos';
 import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
+import { isChildrensWedding } from '../../src/lib/kids';
 
 type DbProduct = {
   id: string; slug: string; title: string; description: string;
@@ -87,6 +88,8 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     if (!all && !purchasable) continue;
     const productTags = safeJsonArray(row.tags_json);
     const storeAssignment = assignmentFromStoreTags(productTags);
+    // No children's pieces in the Weddings category (owner, 2026-11-16).
+    if (!all && isChildrensWedding(row.title, storeAssignment?.collection, storeAssignment?.subcategory)) continue;
     products.push({
       id: row.id, slug: row.slug, title: cleanTitle(row.title), description: all ? row.description : slug ? cleanSupplierText(row.description ?? '') : '',
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
