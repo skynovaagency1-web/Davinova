@@ -25,12 +25,12 @@ export function langUrl(lang: string, bare: string, search = ''): string {
   return `${SITE}${lang === 'en' ? '' : `/${lang}`}${lang !== 'en' && bare === '/' ? '' : bare}${search}`;
 }
 
-interface HtmlElement { setAttribute(name: string, value: string): void; setInnerContent(content: string): void; append(content: string, options: { html: boolean }): void }
+interface HtmlElement { setAttribute(name: string, value: string): void; setInnerContent(content: string): void; append(content: string, options: { html: boolean }): void; prepend(content: string, options: { html: boolean }): void }
 interface Rewriter { on(selector: string, handler: { element(element: HtmlElement): void }): Rewriter; transform(response: Response): Response }
 declare const HTMLRewriter: { new (): Rewriter };
 
 /** Sets <html lang>, the title and description, the hreflang links and the page's search and share details. */
-export async function localiseHtml(response: Response, url: URL, db?: D1Database): Promise<Response> {
+export async function localiseHtml(response: Response, url: URL, db?: D1Database, country?: string): Promise<Response> {
   const { lang, bare } = splitLang(url.pathname);
   const head = HEAD[lang];
   const canonical = langUrl(lang, bare, url.search);
@@ -47,6 +47,12 @@ export async function localiseHtml(response: Response, url: URL, db?: D1Database
     .on('html', { element: (element) => element.setAttribute('lang', lang) })
     .on('title', { element: (element) => element.setInnerContent(title) })
     .on('meta[name="description"]', { element: (element) => element.setAttribute('content', description) })
-    .on('head', { element: (element) => element.append(links, { html: true }) })
+    .on('head', {
+      element: (element) => {
+        // The visitor's country (from Cloudflare) decides whether analytics wait for cookie consent; see index.html.
+        if (country && /^[A-Z]{2}$/.test(country)) element.prepend(`<script>window.__DV_CC="${country}"</script>`, { html: true });
+        element.append(links, { html: true });
+      },
+    })
     .transform(response);
 }

@@ -22,6 +22,7 @@ import { isCurvyLook } from '../../lib/curvyLooks';
 import type { Product } from '../../types/product';
 import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
+import { CookieBanner, openCookieSettings } from '../shared/CookieBanner';
 import { pageTitle } from '../../lib/pageTitles';
 
 // Nova and the welcome offer appear after a few seconds, so they load after the page.
@@ -113,13 +114,14 @@ export function WomenLayout() {
       <NewsletterSignup dept="women" />
       <div className="w-footer__row">
         <p>Dresses for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><InstallLink dept="women" className="app-link" /><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></nav>
+        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><InstallLink dept="women" className="app-link" /><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link><button type="button" className="footer-cookie-link" onClick={openCookieSettings}>Cookie settings</button></nav>
       </div>
       <SocialLinks />
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="women" className="mood-bar--float" />
     <AppShell dept="women" />
+    <CookieBanner dept="women" />
     <Suspense fallback={null}>
       <SupportHelper dept="women" />
       <WelcomePopup dept="women" />

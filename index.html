@@ -2,20 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-THBDWSJM');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-04MW49TTYM"></script>
+    <!-- Analytics: Google Tag Manager + GA4 load only after consent for visitors in Europe (EEA, UK, Switzerland).
+         The middleware sets window.__DV_CC from Cloudflare's country; the time zone is the fallback. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-04MW49TTYM');
+      (function(w,d){
+        var EU='AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO GB CH'.split(' ');
+        var cc=(w.__DV_CC||'').toUpperCase(), tz='';
+        try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+        w.__dvNeedsConsent = cc && cc!=='XX' ? EU.indexOf(cc)>=0 : /^(Europe\/|Atlantic\/(Azores|Madeira|Canary|Reykjavik|Faroe)|Arctic\/)/.test(tz);
+        var loaded=false;
+        w.__dvLoadAnalytics=function(){
+          if(loaded)return; loaded=true;
+          gtag('js', new Date()); gtag('config', 'G-04MW49TTYM');
+          w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+          ['https://www.googletagmanager.com/gtm.js?id=GTM-THBDWSJM','https://www.googletagmanager.com/gtag/js?id=G-04MW49TTYM'].forEach(function(src){
+            var j=d.createElement('script'); j.async=true; j.src=src; d.head.appendChild(j);
+          });
+        };
+        var choice=null; try{choice=localStorage.getItem('davinova-consent');}catch(e){}
+        if(choice==='granted' || (!w.__dvNeedsConsent && choice!=='denied')) w.__dvLoadAnalytics();
+      })(window,document);
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#4a2410" />
@@ -37,9 +45,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THBDWSJM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
