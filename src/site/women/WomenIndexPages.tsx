@@ -11,7 +11,11 @@ import { isCurvyLook } from '../../lib/curvyLooks';
 export type Card = { key: string; label: string; line: string; to: string; items: Product[] };
 
 // Cover photos picked by eye for the cards the owner asked about (2026-10-27): red patent stilettos, olive leather tote.
-const COVERS: Record<string, string> = { 'womens-shoes': 'cj-1514869860055134208', 'womens-bags': 'cj-1721364713369505792' };
+// Hand-picked whole-look covers, so no card shows a headless or cropped photo.
+const COVERS: Record<string, string> = {
+  'womens-shoes': 'cj-1514869860055134208', 'womens-bags': 'cj-1721364713369505792',
+  'mens-formal': 'cj-2099687243007574018', 'mens-everyday': 'cj-1747828416734310400',
+};
 
 /** A glass card with a popped-out photo of one product from the set; empty sets say "Coming soon". */
 export function IndexCard({ card }: { card: Card }) {
