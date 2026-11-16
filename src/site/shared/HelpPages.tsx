@@ -142,7 +142,8 @@ const HELP_PAGES: Page[] = [
       <h2>Your rights</h2>
       <p>You can ask to see, correct or delete your personal data, or object to how it's used, by emailing <Mail />.</p>
       <h2>Cookies</h2>
-      <p>We use only the storage needed for the site to work, such as remembering your shopping bag.</p>
+      <p>We use the storage needed for the site to work, such as remembering your shopping bag. With your consent, we also use Google Analytics (Google Tag Manager) cookies to measure visits and improve the shop; they are kept for up to 13 months.</p>
+      <p>In Europe these analytics cookies stay off until you press Accept, and refusing is just as easy. You can change your choice at any time from "Cookie settings" at the bottom of every page.</p>
     </>,
   },
   {

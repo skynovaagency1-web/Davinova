@@ -3,6 +3,12 @@ import type { Dictionary } from '../lib/i18n';
 
 const dictionary: Dictionary = {
   text: {
+    "Cookies.": "Cookies.",
+    "We'd like to use analytics cookies (Google Analytics) to see how the shop is used and make it better. They're off unless you accept.": "Nous aimerions utiliser des cookies de mesure d’audience (Google Analytics) pour voir comment la boutique est utilisée et l’améliorer. Ils restent désactivés sauf si vous acceptez.",
+    "Learn more": "En savoir plus",
+    "Refuse": "Refuser",
+    "Accept": "Accepter",
+    "Cookie settings": "Gestion des cookies",
     "Join the list at the bottom of the page to hear first. In the meantime, find the suit to wear on the day.": "Inscrivez-vous en bas de la page pour être prévenu en premier. En attendant, trouvez le costume à porter le jour J.",
     "Shop suits →": "Voir les costumes →",
     "Printed when you order": "Imprimé à la commande",

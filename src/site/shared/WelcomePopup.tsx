@@ -25,7 +25,7 @@ export function WelcomePopup({ dept }: { dept: 'women' | 'men' }) {
     let timer = 0;
     const show = () => {
       if (seen()) return;
-      if (!scrolled || document.querySelector('.helper__panel')) { timer = window.setTimeout(show, 15000); return; }
+      if (!scrolled || document.querySelector('.helper__panel, .cookies')) { timer = window.setTimeout(show, 15000); return; }
       setOpen(true); markSeen();
       window.dispatchEvent(new Event('davinova:popup'));
     };

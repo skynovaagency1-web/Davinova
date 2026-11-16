@@ -19,6 +19,7 @@ import { MenMegaNav } from './MenMegaNav';
 import { useWishlist } from '../../store/wishlist';
 import { useAccount } from '../../store/account';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
+import { CookieBanner, openCookieSettings } from '../shared/CookieBanner';
 import { pageTitle } from '../../lib/pageTitles';
 
 // Nova and the welcome offer appear after a few seconds, so they load after the page.
@@ -95,13 +96,14 @@ export function MenLayout() {
       <NewsletterSignup dept="men" />
       <div className="w-footer__row">
         <p>Formalwear for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/account">My account</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/track">Track order</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><InstallLink dept="men" className="app-link" /><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link></nav>
+        <nav aria-label="Footer"><Link to="/men/about">About</Link><Link to="/men/wishlist">Wishlist</Link><Link to="/men/account">My account</Link><Link to="/men/gift-cards">Gift cards</Link><Link to="/men/refer">Refer a friend</Link><Link to="/men/categories">Categories</Link><Link to="/men/track">Track order</Link><Link to="/men/shipping">Shipping</Link><Link to="/men/returns">Returns</Link><Link to="/men/size-guide">Size guide</Link><Link to="/men/faq">FAQ</Link><Link to="/men/contact">Contact</Link><InstallLink dept="men" className="app-link" /><Link to="/men/privacy">Privacy</Link><Link to="/men/terms">Terms</Link><button type="button" className="footer-cookie-link" onClick={openCookieSettings}>Cookie settings</button></nav>
       </div>
       <SocialLinks />
       <small>© {new Date().getFullYear()} Davinova</small>
     </footer>
     <MoodBar dept="men" className="mood-bar--float" />
     <AppShell dept="men" />
+    <CookieBanner dept="men" />
     <Suspense fallback={null}>
       <SupportHelper dept="men" />
       <WelcomePopup dept="men" />
