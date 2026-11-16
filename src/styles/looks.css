@@ -138,8 +138,11 @@
 }
 
 /* New fashion (2026-11-15): the bag sits in the model's hand; customers swap pieces or take them off ("Build your look"). */
-.looks__held { position: absolute; z-index: 2; overflow: hidden; pointer-events: none; filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .35)); }
-.looks__held img { position: absolute; width: auto; max-width: none; }
+.looks__worn { position: absolute; z-index: 2; overflow: hidden; pointer-events: none; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .3)); }
+.looks__worn img { position: absolute; width: auto; max-width: none; }
+.looks__worn--bag { filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .35)); }
+.looks__worn--watch { border-radius: 50%; }
+.looks__worn--necklace, .looks__worn--hair, .looks__worn--watch, .looks__worn--bracelet { filter: drop-shadow(0 0 3px rgba(255, 255, 255, .55)) drop-shadow(0 2px 3px rgba(0, 0, 0, .35)); }
 .looks__slot { display: grid; gap: 6px; }
 .looks__slot .looks__card img { transition: opacity .3s; }
 .looks__slot.is-off .looks__card { opacity: .42; filter: grayscale(.7); }
