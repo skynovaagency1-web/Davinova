@@ -1,3 +1,4 @@
+import { servedCountries } from '../../../server/shippingCountries';
 import { createApprovalToken } from '../../../server/auth';
 import type { CJEnv } from '../../../server/cj';
 import { sendTransactionalEmail } from '../../../server/email';
@@ -107,8 +108,7 @@ export async function verifyStripeWebhookSignature(
 }
 
 function isOrderCountryAllowed(env: Env, code: string): boolean {
-  const allowed = (env.STRIPE_SHIPPING_COUNTRIES || '').split(',').map((country) => country.trim().toUpperCase()).filter(Boolean);
-  return allowed.includes(code.toUpperCase());
+  return servedCountries(env).includes(code.toUpperCase());
 }
 function addressFromSession(session: StripeSession) {
   const shipping = session.collected_information?.shipping_details || session.shipping_details;

@@ -1,9 +1,12 @@
+import { euSalesOpen, iossNumber, isEuDelivery } from './shippingCountries';
 const CJ_API_BASE = 'https://developers.cjdropshipping.com/api2.0/v1';
 const TOKEN_CACHE_KEY = 'cj_auth_tokens';
 const encoder = new TextEncoder();
 
 export interface CJEnv {
   DB: D1Database;
+  EU_SALES_OPEN?: string;
+  IOSS_NUMBER?: string;
   CJ_API_KEY?: string;
   CJ_TOKEN_ENCRYPTION_KEY?: string;
   CJ_LOGISTIC_NAME?: string;
@@ -171,7 +174,7 @@ async function request<T>(env: CJEnv, path: string, init: RequestInit = {}): Pro
   return result.envelope.data as T;
 }
 
-export function buildCJCreateOrderPayload(input: CJOrderInput, logisticName: string, sandbox: boolean, fromCountryCode = 'CN'): Record<string, unknown> {
+export function buildCJCreateOrderPayload(input: CJOrderInput, logisticName: string, sandbox: boolean, fromCountryCode = 'CN', ioss = ''): Record<string, unknown> {
   if (!input.orderNumber.trim() || input.products.length === 0) throw new Error('An order number and at least one product are required.');
   const address = input.shipping;
   if (!address.name.trim() || !address.address1.trim() || !address.city.trim() || !address.province.trim() ||
@@ -203,6 +206,8 @@ export function buildCJCreateOrderPayload(input: CJOrderInput, logisticName: str
     shopLogisticsType: 2,
     orderFlow: 1,
     isSandbox: sandbox ? 1 : 0,
+    // EU parcels are declared under our own IOSS (iossType 2), so the customer pays nothing at the door.
+    ...(ioss && isEuDelivery(address.countryCode) ? { iossType: 2, iossNumber: ioss } : {}),
     products: input.products.map((line) => ({
       vid: line.cjVariantId,
       quantity: line.quantity,
@@ -227,13 +232,16 @@ export async function createCJOrder(
     throw new Error('Live supplier purchases are disabled. Enable CJ_LIVE_ORDERS_ENABLED only after sandbox and end-to-end tests.');
   }
   // Free express delivery: CJ_LOGISTIC_NAME can pin one line, otherwise pick the fast line quoted for these exact items and country.
-  let logisticName = env.CJ_LOGISTIC_NAME?.trim() || '';
+  // The pinned line is for the US-first setup; EU parcels always use the fast line CJ quotes for that country.
+  const toEu = isEuDelivery(input.shipping.countryCode);
+  if (toEu && !euSalesOpen(env)) throw new Error('EU orders are switched off until IOSS is set up.');
+  let logisticName = toEu ? '' : env.CJ_LOGISTIC_NAME?.trim() || '';
   if (!logisticName) {
     const quotes = await calculateCJOrderFreight(env, input.products, input.shipping.countryCode, env.CJ_FROM_COUNTRY_CODE || 'CN');
     logisticName = pickFastLine(quotes)?.name ?? '';
     if (!logisticName) throw new Error('CJ quoted no usable shipping line for ' + input.shipping.countryCode.toUpperCase() + '; choose one in CJ before ordering.');
   }
-  const payload = buildCJCreateOrderPayload(input, logisticName, sandbox, env.CJ_FROM_COUNTRY_CODE || 'CN');
+  const payload = buildCJCreateOrderPayload(input, logisticName, sandbox, env.CJ_FROM_COUNTRY_CODE || 'CN', iossNumber(env));
 
   // Every provider ID is persisted by onProgress before proceeding; partial failures require manual reconciliation.
   const created = await request<CreateOrderData>(env, '/shopping/order/createOrderV3', { method: 'POST', body: JSON.stringify(payload) });
