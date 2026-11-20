@@ -1,6 +1,16 @@
 // Products whose photo shows one whole model, head to toe, checked by eye on 2026-10-27 (owner's rule for Trending now).
 // The automatic photo check let flat lays, vests and cropped legs through, so the rails use this list instead.
 export const TRENDING_LOOKS: ReadonlySet<string> = new Set([
+  // Men's linen shirts on the owner's ChatGPT models (2026-11-20, batch 4), checked by eye.
+  'cj-2503120536241602800',
+  'cj-1681599485203460096',
+  'cj-1390242239581655040',
+  'cj-2507200651121624200',
+  'cj-1682949941997608960',
+  'cj-2605270516201626500',
+  'cj-2406270706031608000',
+  'cj-2507210748551615400',
+  'cj-AB068643-4DE6-41AA-89A2-93A6DE15F657',
   // Men's suits on the owner's ChatGPT models (2026-11-08), checked by eye.
   'cj-1376730184245448704',
   'cj-1403525996090626048',
