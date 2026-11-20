@@ -1,3 +1,4 @@
+import { EU_VAT_NOTE, isEuDelivery, servedCountries } from '../../server/shippingCountries';
 import { queryCJVariantStock } from '../../server/cj';
 import { currentCustomer } from '../../server/accounts';
 import type { CJEnv, CJVariantStockRow } from '../../server/cj';
@@ -11,6 +12,8 @@ type Env = CJEnv & {
   STRIPE_SECRET_KEY?: string;
   STRIPE_MODE?: string;
   STRIPE_SHIPPING_COUNTRIES?: string;
+  EU_SALES_OPEN?: string;
+  IOSS_NUMBER?: string;
   STRIPE_SHIPPING_FEE_CENTS?: string;
   STRIPE_SHIPPING_LABEL?: string;
   STRIPE_AUTOMATIC_TAX?: string;
@@ -101,10 +104,7 @@ export function checkoutSettings(env: Env): { site: string; countries: string[];
     return reply({ error: 'SITE_URL must use HTTPS (HTTP is only allowed for local Stripe tests).' }, 503);
   }
 
-  const countries = (env.STRIPE_SHIPPING_COUNTRIES || '')
-    .split(',')
-    .map((value) => value.trim().toUpperCase())
-    .filter(Boolean);
+  const countries = servedCountries(env);
 
   if (countries.length === 0 || countries.some((code) => !/^[A-Z]{2}$/.test(code))) {
     return reply({ error: 'Configure STRIPE_SHIPPING_COUNTRIES with the destinations you actually serve.' }, 503);
@@ -249,6 +249,9 @@ async function createStripeSession(
   form.set('billing_address_collection', 'required');
 
   countries.forEach((country, index) => form.set(`shipping_address_collection[allowed_countries][${index}]`, country));
+
+  // EU countries are only listed once IOSS is set up; buyers then see that VAT is already included.
+  if (countries.some(isEuDelivery)) form.set('custom_text[shipping_address][message]', EU_VAT_NOTE);
 
   form.set('shipping_options[0][shipping_rate_data][type]', 'fixed_amount');
   form.set('shipping_options[0][shipping_rate_data][fixed_amount][amount]', String(shippingFeeCents));
