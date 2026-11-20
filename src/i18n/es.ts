@@ -341,6 +341,8 @@ const dictionary: Dictionary = {
     "Subtotal": "Subtotal",
     "At checkout": "Al pagar",
     "Preparing checkout…": "Preparando el pago…",
+    "Prices are shown in euros. Checkout is charged in US dollars:": "Los precios se muestran en euros. El pago se cobra en dólares estadounidenses:",
+    "before shipping. Your bank converts it.": "antes del envío. Tu banco hace la conversión.",
     "Prices, sizes and stock are rechecked before payment.": "Precios, tallas y stock se comprueban antes del pago.",
     "Checkout": "Pagar",
     "Continue shopping": "Seguir comprando",

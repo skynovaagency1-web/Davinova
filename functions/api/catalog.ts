@@ -4,6 +4,8 @@ import { siteImage } from '../../src/lib/imageProxy';
 import { modelPhoto } from '../../src/lib/modelPhotos';
 import { assignmentFromStoreTags, publicProductTags } from '../../src/lib/storeCollectionTaxonomy';
 import { isChildrensWedding } from '../../src/lib/kids';
+import { isOffNiche } from '../../src/lib/niche';
+import { productCopy } from '../../src/lib/productCopy';
 
 type DbProduct = {
   id: string; slug: string; title: string; description: string;
@@ -90,8 +92,12 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
     const storeAssignment = assignmentFromStoreTags(productTags);
     // No children's pieces in the Weddings category (owner, 2026-11-16).
     if (!all && isChildrensWedding(row.title, storeAssignment?.collection, storeAssignment?.subcategory)) continue;
+    // Off-niche gadgets, hair tools and loungewear are never shown (owner, 2026-11-18).
+    if (!all && isOffNiche(row.title, storeAssignment?.collection, storeAssignment?.subcategory)) continue;
+    // Hand-written name and description when we have one (src/lib/productCopy.ts), else the tidied CJ text.
+    const copy = all ? undefined : productCopy(row.id);
     products.push({
-      id: row.id, slug: row.slug, title: cleanTitle(row.title), description: all ? row.description : slug ? cleanSupplierText(row.description ?? '') : '',
+      id: row.id, slug: row.slug, title: copy?.title ?? cleanTitle(row.title), description: all ? row.description : slug ? copy?.description ?? cleanSupplierText(row.description ?? '') : '',
       priceCents: row.price_cents, compareAtCents: row.compare_at_cents ?? undefined,
       currency: row.currency, occasion: row.occasion, collectionCategory: row.collection_category,
       department: row.department === 'men' ? 'men' : 'women',

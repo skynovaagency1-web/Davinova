@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, Gift, Minus, Plus, Tag, X } from 'lucide-react';
 import { useCatalogProducts } from '../../lib/useCatalogProducts';
-import { formatMoney } from '../../lib/format';
+import { formatMoney, formatUsd } from '../../lib/format';
+import { DISPLAY_CURRENCY } from '../../lib/currency';
 import { getWooCommercePageUrl, isWooCommerceConfigured } from '../../lib/woocommerce';
 import { productPath } from '../../lib/storefront';
 import { useCart } from '../../store/cart';
@@ -141,6 +142,7 @@ export function BagView({ variant }: { variant: 'women' | 'men' }) {
               <i style={{ ['--p' as string]: `${Math.min(100, ((FREE_GIFT.thresholdCents - offer.giftRemainingCents) / FREE_GIFT.thresholdCents) * 100)}%` }} />
             </div>
             <button type="button" className="bag__cta" disabled={busy} onClick={() => void checkout()}>{busy ? 'Preparing checkout…' : 'Secure checkout'} <ArrowRight size={16} /></button>
+            {DISPLAY_CURRENCY === 'EUR' && <p className="bag__fx">Prices are shown in euros. Checkout is charged in US dollars: {formatUsd(subtotal - offer.discountCents - giftCents)} before shipping. Your bank converts it.</p>}
             <p>Prices, sizes and stock are rechecked before payment.</p>
           </aside>
         </div>}
