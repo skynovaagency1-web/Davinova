@@ -19,7 +19,7 @@ function baseEnv(db: FakeD1) {
     STRIPE_SECRET_KEY: 'sk_test_x',
     STRIPE_WEBHOOK_SECRET: 'whsec_test_secret_for_unit_tests_only',
     STRIPE_MODE: 'test',
-    STRIPE_SHIPPING_COUNTRIES: 'FR',
+    STRIPE_SHIPPING_COUNTRIES: 'US',
     RESEND_API_KEY: 're_test',
     EMAIL_FROM: 'orders@davinova.com',
     OWNER_EMAIL: 'owner@davinova.com',
@@ -41,7 +41,7 @@ function sessionObject() {
     customer_details: {
       email: 'customer@example.com',
       name: 'Jane Doe',
-      address: { line1: '1 Rue de Paris', city: 'Paris', postal_code: '75001', country: 'FR' },
+      address: { line1: '1 Main Street', city: 'Austin', state: 'TX', postal_code: '78701', country: 'US' },
     },
     currency: 'usd',
     amount_total: 8900,

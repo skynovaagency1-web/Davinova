@@ -1,3 +1,4 @@
+import { EU_VAT_NOTE, isEuDelivery } from '../../../server/shippingCountries';
 import { bundlePieces, bundleSizeLabel, customProduct, MAX_CUSTOM_QUANTITY, ONE_SIZE } from '../../../src/lib/customDesign';
 import { customSetupProblem, designFileUrl, missingPiece, type PrintifyEnv } from '../../../server/printify';
 import { currentCustomer } from '../../../server/accounts';
@@ -100,6 +101,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
   form.set('phone_number_collection[enabled]', 'true');
   form.set('billing_address_collection', 'required');
   settings.countries.forEach((country, index) => form.set(`shipping_address_collection[allowed_countries][${index}]`, country));
+  if (settings.countries.some(isEuDelivery)) form.set('custom_text[shipping_address][message]', EU_VAT_NOTE);
   form.set('shipping_options[0][shipping_rate_data][type]', 'fixed_amount');
   form.set('shipping_options[0][shipping_rate_data][fixed_amount][amount]', String(settings.shippingFeeCents));
   form.set('shipping_options[0][shipping_rate_data][fixed_amount][currency]', 'usd');

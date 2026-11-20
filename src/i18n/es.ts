@@ -3,6 +3,9 @@ import type { Dictionary } from '../lib/i18n';
 
 const dictionary: Dictionary = {
   text: {
+    "Europe is opening soon. When it does, prices for EU addresses will include VAT, so there is nothing more to pay on delivery.": "Europa abre pronto. Entonces los precios para direcciones de la UE incluirán el IVA, sin nada más que pagar en la entrega.",
+    "Price includes VAT. Free delivery, nothing more to pay on arrival.": "IVA incluido. Envío gratis, nada más que pagar al recibirlo.",
+    "Delivery to Europe opens soon. Join the list below to hear first.": "Los envíos a Europa abren pronto. Suscríbete abajo para enterarte primero.",
     "Cookies.": "Cookies.",
     "We'd like to use analytics cookies (Google Analytics) to see how the shop is used and make it better. They're off unless you accept.": "Nos gustaría usar cookies de analítica (Google Analytics) para ver cómo se usa la tienda y mejorarla. Están desactivadas a menos que las aceptes.",
     "Learn more": "Más información",
