@@ -114,7 +114,7 @@ export function WomenLayout() {
       <NewsletterSignup dept="women" />
       <div className="w-footer__row">
         <p>Dresses for the moments you'll keep.</p>
-        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><InstallLink dept="women" className="app-link" /><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link><button type="button" className="footer-cookie-link" onClick={openCookieSettings}>Cookie settings</button></nav>
+        <nav aria-label="Footer"><Link to="/about">About</Link><Link to="/wishlist">Wishlist</Link><Link to="/account">My account</Link><Link to="/gift-cards">Gift cards</Link><Link to="/refer">Refer a friend</Link><Link to="/track">Track order</Link><Link to="/shipping">Shipping</Link><Link to="/returns">Returns</Link><Link to="/size-guide">Size guide</Link><Link to="/faq">FAQ</Link><Link to="/contact">Contact</Link><InstallLink dept="women" className="app-link" /><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link><Link to="/legal">Legal notice</Link><button type="button" className="footer-cookie-link" onClick={openCookieSettings}>Cookie settings</button></nav>
       </div>
       <SocialLinks />
       <small>© {new Date().getFullYear()} Davinova</small>

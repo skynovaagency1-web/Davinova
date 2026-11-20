@@ -6,7 +6,7 @@ import { langUrl } from '../server/lang';
 
 const PAGES = [
   '/', '/shop', '/categories', '/fits', '/slim', '/plus-size', '/accessories', '/couple', '/watches', '/jewelry',
-  '/beauty', '/custom', '/gift-cards', '/refer', '/about', '/shipping', '/returns', '/size-guide', '/faq', '/contact', '/privacy', '/terms',
+  '/beauty', '/custom', '/gift-cards', '/refer', '/about', '/shipping', '/returns', '/size-guide', '/faq', '/contact', '/privacy', '/terms', '/legal',
   '/men', '/men/shop', '/men/categories', '/men/custom', '/men/jewelry', '/men/gift-cards', '/men/refer', '/men/about',
   '/men/shipping', '/men/returns', '/men/size-guide', '/men/faq', '/men/contact',
 ];

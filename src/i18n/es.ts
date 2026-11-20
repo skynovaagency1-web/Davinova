@@ -3,6 +3,9 @@ import type { Dictionary } from '../lib/i18n';
 
 const dictionary: Dictionary = {
   text: {
+    "Legal notice": "Aviso legal",
+    "Who runs Davinova, and how to reach us.": "Quién gestiona Davinova y cómo contactarnos.",
+    "Product safety": "Seguridad de los productos",
     "Europe is opening soon. When it does, prices for EU addresses will include VAT, so there is nothing more to pay on delivery.": "Europa abre pronto. Entonces los precios para direcciones de la UE incluirán el IVA, sin nada más que pagar en la entrega.",
     "Price includes VAT. Free delivery, nothing more to pay on arrival.": "IVA incluido. Envío gratis, nada más que pagar al recibirlo.",
     "Delivery to Europe opens soon. Join the list below to hear first.": "Los envíos a Europa abren pronto. Suscríbete abajo para enterarte primero.",
