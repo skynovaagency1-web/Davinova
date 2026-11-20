@@ -53,6 +53,7 @@ export default function App() {
   return <BrowserRouter basename={BASENAME}><Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
+      <Route path="/admin" element={<Navigate to="/admin/orders" replace />} />
       <Route path="/admin/orders" element={<OrdersAdminPage />} />
       <Route path="/admin/tax" element={<TaxReportsAdminPage />} />
       <Route path="/admin/winners" element={<WinnersAdminPage />} />
