@@ -1,3 +1,4 @@
+import { LEGAL } from '../../config/legal';
 import { useRegion } from '../../lib/useRegion';
 import { cleanDescription } from './cleanDescription';
 import { useEffect, useState } from 'react';
@@ -256,6 +257,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
           {canBuy && region?.eu && <p className="pv-buy__note pv-buy__note--eu">{region.euOpen ? 'Price includes VAT. Free delivery, nothing more to pay on arrival.' : 'Delivery to Europe opens soon. Join the list below to hear first.'}</p>}
           <p className="pv-buy__note">{canBuy ? 'Sizes, stock and price are rechecked at secure checkout.' : 'We’re still confirming sizes, stock and delivery for this piece.'}</p>
           {product.description && <details><summary>About this piece</summary><p>{cleanDescription(product.description)}</p></details>}
+          <details><summary>Product safety</summary><p>Responsible person in the EU: {LEGAL.owner} ({LEGAL.tradeName}), {LEGAL.address}. Questions or a safety concern? Email <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>.</p></details>
           <details><summary>Delivery & returns</summary><p>Delivery options and our return policy are shown before you pay. See <Link to={`${prefix}/shipping`}>shipping</Link> and <Link to={`${prefix}/returns`}>returns</Link>.</p></details>
         </div>
 

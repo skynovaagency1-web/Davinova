@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import type { Dept } from './jewelry';
 import { TrackOrder } from './TrackOrder';
+import { LEGAL } from '../../config/legal';
 
 const SUPPORT_EMAIL = 'contact@davinova.com';
 
@@ -160,6 +161,26 @@ const HELP_PAGES: Page[] = [
       <p>We describe and photograph products as accurately as we can. Small differences in colour and measurements can occur.</p>
       <h2>Questions</h2>
       <p>Email <Mail /> and we'll help.</p>
+    </>,
+  },
+  {
+    slug: 'legal', label: 'Legal notice', title: 'Mentions légales', intro: 'Who runs Davinova, and how to reach us.',
+    body: () => <>
+      <h2>Éditeur du site</h2>
+      <p>{LEGAL.owner}, {LEGAL.status}, nom commercial <b>{LEGAL.tradeName}</b>.<br />
+        SIREN {LEGAL.siren} · SIRET {LEGAL.siret}<br />
+        {LEGAL.address}<br />
+        Téléphone : <a href={`tel:${LEGAL.phone.replaceAll(' ', '')}`}>{LEGAL.phone}</a> · E-mail : <Mail /></p>
+      <h2>Directeur de la publication</h2>
+      <p>{LEGAL.owner}</p>
+      <h2>TVA</h2>
+      <p>{LEGAL.vat}</p>
+      <h2>Hébergeur</h2>
+      <p>{LEGAL.host}</p>
+      <h2>Sécurité des produits (UE)</h2>
+      <p>Personne responsable dans l’Union européenne pour les produits vendus sur ce site : {LEGAL.owner} ({LEGAL.tradeName}), {LEGAL.address}, <Mail />. Pour signaler un problème de sécurité sur un produit, écrivez-nous avec votre numéro de commande.</p>
+      <h2>Médiation de la consommation</h2>
+      <p>En cas de litige, contactez-nous d’abord à <Mail />. Vous pouvez aussi utiliser la plateforme européenne de règlement des litiges : <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noreferrer">ec.europa.eu/consumers/odr</a>.</p>
     </>,
   },
 ];

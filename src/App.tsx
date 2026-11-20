@@ -72,6 +72,7 @@ export default function App() {
         <Route path="contact" element={<HelpPage dept="men" slug="contact" />} />
         <Route path="privacy" element={<HelpPage dept="men" slug="privacy" />} />
         <Route path="terms" element={<HelpPage dept="men" slug="terms" />} />
+        <Route path="legal" element={<HelpPage dept="men" slug="legal" />} />
         <Route path="jewelry" element={<JewelryPage dept="men" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="men" />} />
         <Route path="wishlist" element={<WishlistPage dept="men" />} />
@@ -129,6 +130,7 @@ export default function App() {
         <Route path="contact" element={<HelpPage dept="women" slug="contact" />} />
         <Route path="privacy" element={<HelpPage dept="women" slug="privacy" />} />
         <Route path="terms" element={<HelpPage dept="women" slug="terms" />} />
+        <Route path="legal" element={<HelpPage dept="women" slug="legal" />} />
         <Route path="approve-cj" element={<ApprovalPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

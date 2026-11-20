@@ -4,6 +4,9 @@ import { frenchProductText } from '../lib/productCopy';
 
 const dictionary: Dictionary = {
   text: {
+    "Legal notice": "Mentions légales",
+    "Who runs Davinova, and how to reach us.": "Qui gère Davinova, et comment nous joindre.",
+    "Product safety": "Sécurité des produits",
     ...frenchProductText(),
     "Europe is opening soon. When it does, prices for EU addresses will include VAT, so there is nothing more to pay on delivery.": "L’Europe ouvre bientôt. Les prix pour les adresses dans l’UE incluront alors la TVA : rien de plus à payer à la livraison.",
     "Price includes VAT. Free delivery, nothing more to pay on arrival.": "Prix TTC. Livraison offerte, rien de plus à payer à la réception.",
