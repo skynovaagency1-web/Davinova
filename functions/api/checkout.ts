@@ -1,4 +1,6 @@
-import { EU_VAT_NOTE, isEuDelivery, servedCountries } from '../../server/shippingCountries';
+import { destinationProblem, isEuDelivery, servedCountries } from '../../server/shippingCountries';
+import { quoteTax, type TaxQuote } from '../../server/tax';
+import { ensureOrderTaxColumns } from '../../server/orderTax';
 import { queryCJVariantStock } from '../../server/cj';
 import { currentCustomer } from '../../server/accounts';
 import type { CJEnv, CJVariantStockRow } from '../../server/cj';
@@ -108,11 +110,7 @@ export function checkoutSettings(env: Env): { site: string; countries: string[];
   const countries = servedCountries(env);
 
   if (countries.length === 0 || countries.some((code) => !/^[A-Z]{2}$/.test(code))) {
-    return reply({ error: 'Configure STRIPE_SHIPPING_COUNTRIES with the destinations you actually serve.' }, 503);
-  }
-
-  if (new Set(countries).size !== countries.length || countries.length > 100) {
-    return reply({ error: 'STRIPE_SHIPPING_COUNTRIES must contain unique country codes.' }, 503);
+    return reply({ error: 'No delivery countries are configured.' }, 503);
   }
 
   if (env.STRIPE_SHIPPING_FEE_CENTS === undefined || env.STRIPE_SHIPPING_FEE_CENTS.trim() === '') {
@@ -223,11 +221,32 @@ async function loadApprovedProduct(env: Env, item: CartLineInput): Promise<Check
   return row;
 }
 
+/** One inclusive Stripe tax rate per country and rate (shows "Includes VAT 20%" in checkout), created once and kept in D1. */
+async function stripeTaxRate(secret: string, mode: string, db: D1Database, quote: TaxQuote): Promise<string> {
+  const percent = Math.round(quote.vatRate * 1000) / 10;
+  const key = `${mode}:${quote.country}:${percent}`;
+  await db.prepare("CREATE TABLE IF NOT EXISTS stripe_tax_rates ( key TEXT PRIMARY KEY, stripe_id TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now')) )").run();
+  const cached = await db.prepare('SELECT stripe_id FROM stripe_tax_rates WHERE key=?').bind(key).first<{ stripe_id: string }>();
+  if (cached?.stripe_id) return cached.stripe_id;
+  const form = new URLSearchParams({
+    display_name: quote.country === 'FR' ? 'TVA' : 'VAT', inclusive: 'true', percentage: String(percent),
+    country: quote.country, jurisdiction: quote.country, tax_type: 'vat', description: `EU IOSS VAT ${quote.country}`,
+  });
+  const response = await fetch('https://api.stripe.com/v1/tax_rates', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${secret}`, 'Content-Type': 'application/x-www-form-urlencoded', 'Idempotency-Key': `davinova-taxrate-${key}` },
+    body: form.toString(),
+  });
+  const data = await response.json() as { id?: string };
+  if (!response.ok || !data.id) throw new Error('Stripe could not create the VAT rate.');
+  await db.prepare('INSERT OR IGNORE INTO stripe_tax_rates (key, stripe_id) VALUES (?, ?)').bind(key, data.id).run();
+  return data.id;
+}
+
 async function createStripeSession(
   secret: string,
   site: string,
-  countries: string[],
-  shippingFeeCents: number,
+  quote: TaxQuote,
   shippingLabel: string,
   autoTax: boolean,
   orderId: string,
@@ -235,8 +254,9 @@ async function createStripeSession(
   products: Array<{ product: CheckoutProduct; quantity: number }>,
   customerEmail = '',
   couponId = '',
+  taxRateId = '',
 ): Promise<StripeCheckoutSession> {
-  const currency = products[0].product.currency.toLowerCase();
+  const currency = quote.currency.toLowerCase();
   const form = new URLSearchParams();
 
   form.set('mode', 'payment');
@@ -249,17 +269,17 @@ async function createStripeSession(
   form.set('phone_number_collection[enabled]', 'true');
   form.set('billing_address_collection', 'required');
 
-  countries.forEach((country, index) => form.set(`shipping_address_collection[allowed_countries][${index}]`, country));
-
-  // EU countries are only listed once IOSS is set up; buyers then see that VAT is already included.
-  if (countries.some(isEuDelivery)) form.set('custom_text[shipping_address][message]', EU_VAT_NOTE);
+  // The country was chosen in the bag (it decides VAT and currency), so Stripe only accepts an address there.
+  form.set('shipping_address_collection[allowed_countries][0]', quote.country);
+  // VAT / DDU notice next to the pay button. The IOSS number is never shown to customers.
+  form.set('custom_text[submit][message]', quote.notice);
 
   form.set('shipping_options[0][shipping_rate_data][type]', 'fixed_amount');
-  form.set('shipping_options[0][shipping_rate_data][fixed_amount][amount]', String(shippingFeeCents));
+  form.set('shipping_options[0][shipping_rate_data][fixed_amount][amount]', String(quote.shippingCents));
   form.set('shipping_options[0][shipping_rate_data][fixed_amount][currency]', currency);
   form.set('shipping_options[0][shipping_rate_data][display_name]', shippingLabel);
 
-  if (autoTax) form.set('automatic_tax[enabled]', 'true');
+  if (autoTax && !taxRateId) form.set('automatic_tax[enabled]', 'true');
   if (couponId) form.set('discounts[0][coupon]', couponId);
 
   form.set('metadata[order_id]', orderId);
@@ -269,8 +289,9 @@ async function createStripeSession(
 
   products.forEach(({ product, quantity }, index) => {
     form.set(`line_items[${index}][quantity]`, String(quantity));
-    form.set(`line_items[${index}][price_data][currency]`, product.currency.toLowerCase());
-    form.set(`line_items[${index}][price_data][unit_amount]`, String(product.price_cents));
+    form.set(`line_items[${index}][price_data][currency]`, currency);
+    form.set(`line_items[${index}][price_data][unit_amount]`, String(quote.unitCents[index]));
+    if (taxRateId) form.set(`line_items[${index}][tax_rates][0]`, taxRateId);
     form.set(`line_items[${index}][price_data][product_data][name]`, product.product_title.slice(0, 200));
     form.set(`line_items[${index}][price_data][product_data][metadata][product_id]`, product.product_id);
     form.set(`line_items[${index}][price_data][product_data][metadata][variant_id]`, product.variant_id);
@@ -349,6 +370,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
   const items = normalizeCart((body as Record<string, unknown>).items);
   if (!items) return reply({ error: 'Your bag is invalid. Check item sizes and quantities, then try again.' }, 400);
+  const rawCountry = (body as Record<string, unknown>).country;
+  const country = typeof rawCountry === 'string' ? rawCountry.trim().toUpperCase() : '';
+  const countryProblem = destinationProblem(env, country);
+  if (countryProblem) return reply({ error: countryProblem }, 400);
 
   try {
     const prepared: Array<{ product: CheckoutProduct; quantity: number }> = [];
@@ -397,13 +422,18 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
     // A gift card pays on top of any offer; it is taken off the card once Stripe confirms payment.
     const giftCard = await loadGiftCard(env.DB, (body as Record<string, unknown>).giftCode).catch(() => null);
-    const giftCents = giftCard && currency === 'USD' ? giftCardUse(giftCard.balanceCents, subtotalCents - offer.discountCents) : 0;
-    const discountCents = offer.discountCents + giftCents;
+    // Gift cards are in US dollars, so they pay for US-dollar orders (outside the EU) only.
+    const giftCents = giftCard && currency === 'USD' && !isEuDelivery(country) ? giftCardUse(giftCard.balanceCents, subtotalCents - offer.discountCents) : 0;
+    // VAT case, charge currency and the amounts Stripe will charge (server/tax.ts).
+    const quote = quoteTax(country, prepared.map((line) => ({ usdCents: line.product.price_cents, quantity: line.quantity })), offer.discountCents + giftCents, settings.shippingFeeCents);
+    const chargeSubtotal = quote.unitCents.reduce((sum, unit, index) => sum + unit * prepared[index].quantity, 0);
+    const discountCents = quote.discountCents;
+    await ensureOrderTaxColumns(env.DB);
     const discountLabel = [offer.label, giftCents ? `Gift card ${giftCard!.code}` : ''].filter(Boolean).join(' + ');
 
     const orderId = crypto.randomUUID();
     const orderNumber = `DV-${crypto.randomUUID().replaceAll('-', '').slice(0, 12).toUpperCase()}`;
-    const provisionalTotal = subtotalCents + settings.shippingFeeCents - discountCents;
+    const provisionalTotal = chargeSubtotal + quote.shippingCents - discountCents;
     const placeholderEmail = `pending+${orderId}@checkout.invalid`;
 
     const statements = [
@@ -411,11 +441,12 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         INSERT INTO orders
           (id, order_number, email, status, payment_provider, payment_status,
            subtotal_cents, shipping_cents, discount_cents, total_cents, currency,
-           shipping_address_json, shipping_method)
-        VALUES (?, ?, ?, 'pending_payment', 'stripe', 'unpaid', ?, ?, ?, ?, ?, '{}', 'standard')
-      `).bind(orderId, orderNumber, placeholderEmail, subtotalCents, settings.shippingFeeCents, discountCents, provisionalTotal, currency),
+           shipping_address_json, shipping_method, shipping_country, ioss_eligible, eu_vat_rate_applied, tax_case)
+        VALUES (?, ?, ?, 'pending_payment', 'stripe', 'unpaid', ?, ?, ?, ?, ?, '{}', 'standard', ?, ?, ?, ?)
+      `).bind(orderId, orderNumber, placeholderEmail, chargeSubtotal, quote.shippingCents, discountCents, provisionalTotal, quote.currency,
+        quote.country, quote.iossEligible ? 1 : 0, quote.vatRate, quote.taxCase),
       ...(giftCents ? [env.DB.prepare('INSERT INTO gift_card_uses (id, gift_card_id, order_id, amount_cents) VALUES (?, ?, ?, ?)').bind(crypto.randomUUID(), giftCard!.id, orderId, giftCents)] : []),
-      ...[...prepared, ...(gift ? [{ product: gift, quantity: 1, free: true }] : [])].map(({ product, quantity, ...rest }) => env.DB.prepare(`
+      ...[...prepared.map((line, index) => ({ ...line, unit: quote.unitCents[index] })), ...(gift ? [{ product: gift, quantity: 1, free: true, unit: 0 }] : [])].map(({ product, quantity, unit, ...rest }) => env.DB.prepare(`
         INSERT INTO order_items
           (id, order_id, product_id, variant_id, cj_product_id, cj_variant_id,
            product_title, sku, size, color, quantity, unit_price_cents,
@@ -425,7 +456,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         crypto.randomUUID(), orderId, product.product_id, product.variant_id,
         product.cj_product_id, product.cj_variant_id, product.product_title,
         product.cj_sku || product.sku || null, product.size, product.color,
-        quantity, 'free' in rest ? 0 : product.price_cents, product.cost_cents,
+        quantity, 'free' in rest ? 0 : unit, product.cost_cents,
         `https://www.cjdropshipping.com/product/${product.cj_product_id}.html`,
       )),
       env.DB.prepare(
@@ -437,13 +468,14 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
     let session: StripeCheckoutSession;
     try {
-      const couponId = discountCents > 0 ? await createCoupon(stripe.secret, orderId, { discountCents, label: discountLabel }, currency) : '';
+      const couponId = discountCents > 0 ? await createCoupon(stripe.secret, orderId, { discountCents, label: discountLabel }, quote.currency) : '';
+      const taxRateId = quote.taxCase === 'A' ? await stripeTaxRate(stripe.secret, stripe.mode, env.DB, quote) : '';
       session = await createStripeSession(
-        stripe.secret, returnSite, settings.countries,
-        settings.shippingFeeCents, settings.shippingLabel, settings.autoTax,
+        stripe.secret, returnSite, quote,
+        settings.shippingLabel, settings.autoTax,
         orderId, orderNumber, prepared,
         (await currentCustomer(request, env.DB).catch(() => null))?.email ?? '',
-        couponId,
+        couponId, taxRateId,
       );
     } catch (error) {
       await env.DB.prepare(
@@ -460,14 +492,16 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const actualTax = Number(session.total_details?.amount_tax ?? 0);
     const actualDiscount = Number(session.total_details?.amount_discount ?? 0);
 
+    // Inclusive VAT (case A) is already inside the prices, so it is not added on top.
+    const addedTax = quote.taxCase === 'A' ? 0 : actualTax;
     if (
-      actualCurrency !== currency ||
+      actualCurrency !== quote.currency ||
       !Number.isSafeInteger(actualSubtotal) ||
       !Number.isSafeInteger(actualTotal) ||
-      actualSubtotal !== subtotalCents ||
-      actualShipping !== settings.shippingFeeCents ||
+      actualSubtotal !== chargeSubtotal ||
+      actualShipping !== quote.shippingCents ||
       actualDiscount !== discountCents ||
-      actualTotal !== actualSubtotal + actualShipping + actualTax - actualDiscount
+      actualTotal !== actualSubtotal + actualShipping + addedTax - actualDiscount
     ) {
       // Expire a session that does not match our order snapshot before exposing it.
       await fetch(`https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(session.id!)}/expire`, {

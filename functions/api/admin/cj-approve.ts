@@ -1,4 +1,5 @@
 import { consumeApprovalToken, getApprovalTokenOrderId } from '../../../server/auth';
+import { ensureOrderTaxColumns } from '../../../server/orderTax';
 import { createCJOrder, isCJDryRun, queryCJVariantStock } from '../../../server/cj';
 import type { CJEnv, CJOrderInput, CJOrderLine, CJShippingAddress } from '../../../server/cj';
 import { customApprovalPreview, customLines, isPrintifyDryRun, placePrintifyOrder } from '../../../server/printify';
@@ -7,7 +8,7 @@ import type { PrintifyEnv } from '../../../server/printify';
 type Env = CJEnv & PrintifyEnv;
 interface StoreOrder {
   id: string; order_number: string; email: string; payment_status: string; status: string;
-  total_cents: number; currency: string; shipping_address_json: string; payment_reference: string | null;
+  total_cents: number; currency: string; shipping_address_json: string; payment_reference: string | null; ioss_eligible?: number | null;
 }
 interface StoreOrderLine {
   order_item_id: string; product_title: string; size: string; color: string; quantity: number;
@@ -43,7 +44,8 @@ function shippingAddress(order: StoreOrder): CJShippingAddress {
   };
 }
 async function getOrder(env: Env,id: string): Promise<StoreOrder | null> {
-  return env.DB.prepare('SELECT id,order_number,email,payment_status,status,total_cents,currency,shipping_address_json,payment_reference FROM orders WHERE id=?')
+  await ensureOrderTaxColumns(env.DB);
+  return env.DB.prepare('SELECT id,order_number,email,payment_status,status,total_cents,currency,shipping_address_json,payment_reference,ioss_eligible FROM orders WHERE id=?')
     .bind(id).first<StoreOrder>();
 }
 async function getLines(env: Env,id: string): Promise<StoreOrderLine[]> {
@@ -71,7 +73,7 @@ function toCJInput(order: StoreOrder,lines: StoreOrderLine[]): CJOrderInput {
     variantOptions:[line.color,line.size].filter(Boolean).join('-'),storeProductId:line.product_id || '',
     storeProductImg:line.image_url || undefined,storeProductName:line.product_title,
   }));
-  return {orderNumber:order.order_number,shipping:shippingAddress(order),products};
+  return {orderNumber:order.order_number,shipping:shippingAddress(order),products,iossEligible:order.ioss_eligible===1};
 }
 async function resolveToken(request: Request,env: Env): Promise<{token:string;orderId:string}|Response> {
   if(!sameOrigin(request)) return json({error:'Cross-origin approval requests are not allowed.'},403);

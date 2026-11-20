@@ -79,6 +79,7 @@ export function OrdersAdminPage() {
       </form>}
       {error && <p role="alert" style={{ color: '#a1301b', margin: 0 }}>{error}</p>}
       {orders && <button type="button" onClick={() => void load()} style={{ ...button, justifySelf: 'start', background: '#efe5dc', color: '#292522' }}>Refresh</button>}
+      {orders && <a href="/admin/tax" style={{ ...button, justifySelf: 'start', background: '#efe5dc', color: '#292522', textDecoration: 'none' }}>Tax &amp; URSSAF Reports</a>}
       {orders && <button type="button" onClick={() => void exportSubscribers()} style={{ ...button, justifySelf: 'start', background: '#efe5dc', color: '#292522' }}>Download newsletter subscribers (CSV)</button>}
       {orders?.map((order) => {
         const cost = order.items.reduce((sum, item) => sum + item.unit_cost_cents * item.quantity, 0);
