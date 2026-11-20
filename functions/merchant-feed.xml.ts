@@ -1,8 +1,18 @@
+import { isOffNiche } from '../src/lib/niche';
+import { productCopy } from '../src/lib/productCopy';
+import { assignmentFromStoreTags } from '../src/lib/storeCollectionTaxonomy';
 import { cleanSupplierText, cleanTitle } from '../src/lib/productText';
 import { modelPhoto } from '../src/lib/modelPhotos';
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 
 const SITE = 'https://davinova.com';
+
+function offNiche(row: { title: string; tags_json: string }): boolean {
+  let tags: string[] = [];
+  try { tags = JSON.parse(row.tags_json || '[]'); } catch { /* no tags */ }
+  const place = assignmentFromStoreTags(tags);
+  return isOffNiche(row.title, place?.collection, place?.subcategory);
+}
 
 /**
  * Product feed for Google Merchant Center (free listings in Google Shopping and the Products tab).
@@ -14,23 +24,23 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   if (cached) return cached;
 
   const manifest = await loadManifest(env, request);
-  const { results } = await env.DB.prepare(`SELECT p.id, p.slug, p.title, p.description, p.price_cents, p.compare_at_cents, p.currency, p.department,
+  const { results } = await env.DB.prepare(`SELECT p.id, p.slug, p.title, p.description, p.tags_json, p.price_cents, p.compare_at_cents, p.currency, p.department,
       (SELECT url FROM product_images i WHERE i.product_id = p.id ORDER BY i.is_primary DESC, i.position LIMIT 1) AS image,
       (SELECT COUNT(*) FROM product_variants v WHERE v.product_id = p.id AND v.active = 1) AS variants
     FROM products p WHERE p.active = 1 AND p.price_cents > 0`)
-    .all<{ id: string; slug: string; title: string; description: string; price_cents: number; compare_at_cents: number | null; currency: string; department: string; image: string | null; variants: number }>();
+    .all<{ id: string; slug: string; title: string; description: string; price_cents: number; compare_at_cents: number | null; currency: string; department: string; tags_json: string; image: string | null; variants: number }>();
 
   const esc = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const plain = (html: string) => cleanSupplierText(html.replace(/<[^>]*>/g, ' '));
-  const items = (results ?? []).filter((row) => row.image && (!manifest || typeof manifest[row.id] === 'string')).map((row) => {
+  const items = (results ?? []).filter((row) => row.image && (!manifest || typeof manifest[row.id] === 'string') && !offNiche(row)).map((row) => {
     const link = `${SITE}${row.department === 'men' ? '/men' : ''}/product/${encodeURIComponent(row.slug)}`;
     const currency = row.currency || 'USD';
     const price = `${(row.price_cents / 100).toFixed(2)} ${currency}`;
     const onSale = row.compare_at_cents && row.compare_at_cents > row.price_cents;
     return `<item>
 <g:id>${esc(row.id)}</g:id>
-<title>${esc(cleanTitle(row.title).slice(0, 150))}</title>
-<description>${esc((plain(row.description) || cleanTitle(row.title)).slice(0, 4900))}</description>
+<title>${esc((productCopy(row.id)?.title ?? cleanTitle(row.title)).slice(0, 150))}</title>
+<description>${esc((productCopy(row.id)?.description ?? (plain(row.description) || cleanTitle(row.title))).slice(0, 4900))}</description>
 <link>${esc(link)}</link>
 <g:image_link>${esc(modelPhoto(row.id, SITE) ?? (row.image as string))}</g:image_link>
 <g:availability>${row.variants > 0 ? 'in_stock' : 'out_of_stock'}</g:availability>

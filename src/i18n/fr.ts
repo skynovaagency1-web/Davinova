@@ -1,8 +1,10 @@
 // Generated from the English text on the site; edit the wording here.
 import type { Dictionary } from '../lib/i18n';
+import { frenchProductText } from '../lib/productCopy';
 
 const dictionary: Dictionary = {
   text: {
+    ...frenchProductText(),
     "Europe is opening soon. When it does, prices for EU addresses will include VAT, so there is nothing more to pay on delivery.": "L’Europe ouvre bientôt. Les prix pour les adresses dans l’UE incluront alors la TVA : rien de plus à payer à la livraison.",
     "Price includes VAT. Free delivery, nothing more to pay on arrival.": "Prix TTC. Livraison offerte, rien de plus à payer à la réception.",
     "Delivery to Europe opens soon. Join the list below to hear first.": "La livraison en Europe ouvre bientôt. Inscrivez-vous plus bas pour être prévenu en premier.",
@@ -344,6 +346,8 @@ const dictionary: Dictionary = {
     "Subtotal": "Sous-total",
     "At checkout": "Au paiement",
     "Preparing checkout…": "Préparation du paiement…",
+    "Prices are shown in euros. Checkout is charged in US dollars:": "Les prix sont affichés en euros. Le paiement est débité en dollars US :",
+    "before shipping. Your bank converts it.": "avant livraison. Votre banque fait la conversion.",
     "Prices, sizes and stock are rechecked before payment.": "Prix, tailles et stock sont revérifiés avant le paiement.",
     "Checkout": "Paiement",
     "Continue shopping": "Continuer mes achats",

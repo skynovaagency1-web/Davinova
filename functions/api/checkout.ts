@@ -6,6 +6,7 @@ import { loadDiscountCode } from '../../server/offers';
 import { FREE_GIFT, computeOffer, type Offer } from '../../src/lib/offers';
 import { giftCardUse } from '../../src/lib/giftCards';
 import { cleanTitle } from '../../src/lib/productText';
+import { productCopy } from '../../src/lib/productCopy';
 import { loadGiftCard } from '../../server/giftCards';
 
 type Env = CJEnv & {
@@ -199,7 +200,7 @@ async function loadApprovedProduct(env: Env, item: CartLineInput): Promise<Check
     ORDER BY v.active DESC, COALESCE(v.available_stock, 0) DESC
     LIMIT 1
   `).bind(item.productId, item.size).first<CheckoutProduct>();
-  if (row?.product_title) row.product_title = cleanTitle(row.product_title);
+  if (row?.product_title) row.product_title = productCopy(item.productId)?.title ?? cleanTitle(row.product_title);
 
   if (
     !row ||
