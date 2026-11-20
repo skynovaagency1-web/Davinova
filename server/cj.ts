@@ -24,7 +24,8 @@ export interface CJOrderLine {
   orderItemId: string; cjProductId: string; cjVariantId: string; quantity: number;
   variantOptions: string; storeProductId: string; storeProductImg?: string; storeProductName: string;
 }
-export interface CJOrderInput { orderNumber: string; shipping: CJShippingAddress; products: CJOrderLine[] }
+/** iossEligible: EU order of €150 or less whose VAT was collected at checkout (orders.ioss_eligible). */
+export interface CJOrderInput { orderNumber: string; shipping: CJShippingAddress; products: CJOrderLine[]; iossEligible?: boolean }
 export interface CJOrderProgress {
   step: 'created' | 'cart_added' | 'confirmed' | 'parent_generated' | 'paid';
   cjOrderId?: string; shipmentOrderId?: string; payId?: string;
@@ -206,8 +207,9 @@ export function buildCJCreateOrderPayload(input: CJOrderInput, logisticName: str
     shopLogisticsType: 2,
     orderFlow: 1,
     isSandbox: sandbox ? 1 : 0,
-    // EU parcels are declared under our own IOSS (iossType 2), so the customer pays nothing at the door.
-    ...(ioss && isEuDelivery(address.countryCode) ? { iossType: 2, iossNumber: ioss } : {}),
+    // EU parcels of €150 or less are declared under our own IOSS (iossType 2): VAT was paid at checkout.
+    // Bigger EU parcels go without IOSS (iossType 1, DDU): the carrier collects VAT and duties on delivery.
+    ...(isEuDelivery(address.countryCode) ? (ioss && input.iossEligible === true ? { iossType: 2, iossNumber: ioss } : { iossType: 1 }) : {}),
     products: input.products.map((line) => ({
       vid: line.cjVariantId,
       quantity: line.quantity,
@@ -232,10 +234,10 @@ export async function createCJOrder(
     throw new Error('Live supplier purchases are disabled. Enable CJ_LIVE_ORDERS_ENABLED only after sandbox and end-to-end tests.');
   }
   // Free express delivery: CJ_LOGISTIC_NAME can pin one line, otherwise pick the fast line quoted for these exact items and country.
-  // The pinned line is for the US-first setup; EU parcels always use the fast line CJ quotes for that country.
+  // The pinned line is for the US; every other country uses the fast line CJ quotes for it.
   const toEu = isEuDelivery(input.shipping.countryCode);
   if (toEu && !euSalesOpen(env)) throw new Error('EU orders are switched off until IOSS is set up.');
-  let logisticName = toEu ? '' : env.CJ_LOGISTIC_NAME?.trim() || '';
+  let logisticName = input.shipping.countryCode.toUpperCase() === 'US' ? env.CJ_LOGISTIC_NAME?.trim() || '' : '';
   if (!logisticName) {
     const quotes = await calculateCJOrderFreight(env, input.products, input.shipping.countryCode, env.CJ_FROM_COUNTRY_CODE || 'CN');
     logisticName = pickFastLine(quotes)?.name ?? '';

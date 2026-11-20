@@ -23,6 +23,8 @@ export interface FakeOrder extends Row {
   currency: string;
 }
 
+const ORDER_COLUMNS = ['shipping_country', 'eur_exchange_rate', 'net_subtotal_eur', 'shipping_fee_eur', 'eu_vat_rate_applied', 'eu_vat_collected_eur', 'total_paid_eur', 'ioss_eligible', 'tax_case', 'paid_at'];
+
 export class FakeD1 {
   orders = new Map<string, FakeOrder>();
   orderItems: Row[] = [];
@@ -48,6 +50,10 @@ export class FakeD1 {
         run: async () => this.exec(statement, args),
         first: async <T>() => this.queryFirst(statement, args) as T | null,
       }),
+      run: async () => this.exec(statement, []),
+      first: async <T>() => this.queryFirst(statement, []) as T | null,
+      // PRAGMA table_info(orders): report every tax column as present (server/orderTax.ts).
+      all: async () => ({ results: statement.startsWith('PRAGMA table_info') ? ORDER_COLUMNS.map((name) => ({ name })) : [] }),
     };
   }
 
@@ -58,6 +64,14 @@ export class FakeD1 {
   }
 
   private exec(sql: string, args: unknown[]): { meta: { changes: number } } {
+    if (sql.startsWith('CREATE TABLE IF NOT EXISTS') || sql.startsWith('CREATE INDEX IF NOT EXISTS')) return { meta: { changes: 0 } };
+    if (sql.startsWith('UPDATE orders SET shipping_country=?')) {
+      const order = this.orders.get(args[8] as string);
+      if (!order) return { meta: { changes: 0 } };
+      ['shipping_country', 'eur_exchange_rate', 'net_subtotal_eur', 'shipping_fee_eur', 'eu_vat_rate_applied', 'eu_vat_collected_eur', 'total_paid_eur', 'ioss_eligible']
+        .forEach((name, index) => { (order as Row)[name] = args[index]; });
+      return { meta: { changes: 1 } };
+    }
     if (sql.startsWith('INSERT OR IGNORE INTO webhook_events')) {
       const [id, payloadJson] = args as [string, string];
       if (this.webhookEvents.has(id)) return { meta: { changes: 0 } };
@@ -137,12 +151,13 @@ export class FakeD1 {
       return { meta: { changes: 1 } };
     }
     if (sql.startsWith('INSERT INTO orders')) {
-      const [id, orderNumber, email, subtotalCents, shippingCents, totalCents, currency] = args as
-        [string, string, string, number, number, number, string];
+      const [id, orderNumber, email, subtotalCents, shippingCents, discountCents, totalCents, currency, shippingCountry, iossEligible, vatRate] = args as
+        [string, string, string, number, number, number, number, string, string, number, number];
       this.orders.set(id, {
         id, order_number: orderNumber, email, status: 'pending_payment',
         payment_provider: 'stripe', payment_status: 'unpaid', payment_reference: undefined as unknown as string,
-        subtotal_cents: subtotalCents, shipping_cents: shippingCents, total_cents: totalCents, currency,
+        subtotal_cents: subtotalCents, shipping_cents: shippingCents, discount_cents: discountCents, total_cents: totalCents, currency,
+        shipping_country: shippingCountry, ioss_eligible: iossEligible, eu_vat_rate_applied: vatRate,
       });
       return { meta: { changes: 1 } };
     }
@@ -238,6 +253,8 @@ export class FakeD1 {
   }
 
   private queryFirst(sql: string, args: unknown[]): Row | null {
+    if (sql.startsWith('SELECT usd_to_eur FROM fx_rates')) return { usd_to_eur: 0.86 };
+    if (sql.startsWith('SELECT COALESCE(SUM(amount_cents),0) AS cents FROM gift_card_uses')) return { cents: 0 };
     if (sql.startsWith('SELECT event_type, processed_at FROM webhook_events')) {
       const [id] = args as [string];
       return this.webhookEvents.get(id) ?? null;

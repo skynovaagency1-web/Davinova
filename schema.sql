@@ -41,7 +41,10 @@ CREATE TABLE IF NOT EXISTS orders (
   subtotal_cents INTEGER NOT NULL DEFAULT 0, shipping_cents INTEGER NOT NULL DEFAULT 0, discount_cents INTEGER NOT NULL DEFAULT 0,
   total_cents INTEGER NOT NULL DEFAULT 0, currency TEXT NOT NULL DEFAULT 'USD', shipping_address_json TEXT NOT NULL DEFAULT '{}',
   shipping_method TEXT NOT NULL DEFAULT 'standard', tracking_number TEXT, tracking_url TEXT, notes TEXT,
-  created_at TEXT NOT NULL DEFAULT (datetime('now')), updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  created_at TEXT NOT NULL DEFAULT (datetime('now')), updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+  shipping_country TEXT, eur_exchange_rate REAL, net_subtotal_eur REAL, shipping_fee_eur REAL,
+  eu_vat_rate_applied REAL NOT NULL DEFAULT 0, eu_vat_collected_eur REAL NOT NULL DEFAULT 0, total_paid_eur REAL,
+  ioss_eligible INTEGER NOT NULL DEFAULT 0, tax_case TEXT, paid_at TEXT
 );
 CREATE TABLE IF NOT EXISTS order_items (
   id TEXT PRIMARY KEY, order_id TEXT NOT NULL REFERENCES orders(id) ON DELETE CASCADE, product_id TEXT REFERENCES products(id),
@@ -93,3 +96,7 @@ CREATE TABLE IF NOT EXISTS admin_auth_attempts (
   ip TEXT PRIMARY KEY, failures INTEGER NOT NULL DEFAULT 0, locked_until TEXT,
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+
+CREATE INDEX IF NOT EXISTS idx_orders_paid_at ON orders(paid_at);
+CREATE TABLE IF NOT EXISTS fx_rates ( day TEXT PRIMARY KEY, usd_to_eur REAL NOT NULL, source TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now')) );
+CREATE TABLE IF NOT EXISTS stripe_tax_rates ( key TEXT PRIMARY KEY, stripe_id TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT (datetime('now')) );

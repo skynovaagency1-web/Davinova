@@ -558,6 +558,8 @@
 .bag__code { display: flex !important; align-items: center; gap: 8px; padding: 6px 6px 6px 14px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); background: color-mix(in srgb, #fff 55%, transparent); }
 .bag__code input { flex: 1; min-width: 0; border: 0; background: transparent; font: 600 13px var(--nova-display); letter-spacing: .08em; color: var(--ink); outline: none; }
 .bag__code button { padding: 8px 14px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font: 700 12px var(--nova-display); }
+.bag__country { display: flex !important; align-items: center; justify-content: space-between; gap: 10px; }
+.bag__country select { flex: 1; max-width: 62%; padding: 9px 12px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); background: color-mix(in srgb, #fff 55%, transparent); color: var(--ink); font: 600 13px var(--nova-display); }
 .bag__summary .bag__codeerr { color: #b3261e; }
 .bag__summary .bag__nudge { padding: 10px 12px; border-radius: 14px; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--ink); font-size: 13px; }
 .bag__gift { display: grid !important; gap: 8px; font-size: 13px; }

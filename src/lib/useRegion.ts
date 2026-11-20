@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export type Region = { country: string; eu: boolean; euOpen: boolean };
+export type Region = { country: string; eu: boolean; euOpen: boolean; countries?: string[] };
 
 let cached: Promise<Region | null> | null = null;
 function loadRegion(): Promise<Region | null> {
