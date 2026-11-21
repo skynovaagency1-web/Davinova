@@ -1,5 +1,5 @@
 import { localiseHtml } from '../server/lang';
-interface Env { ADMIN_PASSWORD?: string; DB?: D1Database }
+interface Env { ADMIN_PASSWORD?: string; DB?: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 interface Context { request: Request & { cf?: { country?: string } }; next: () => Promise<Response>; env: Env }
 
 /** Self-contained HTML files in public/ (e.g. the Wedding Guest Edit), with and without the .html Pages strips. */
@@ -69,7 +69,7 @@ export async function onRequest(context: Context): Promise<Response> {
   // Pages get their language and hreflang links; files and the API pass straight through.
   if (!url.pathname.startsWith('/api/')) {
     const response = await context.next();
-    return (response.headers.get('Content-Type') ?? '').includes('text/html') ? localiseHtml(response, url, context.env.DB, context.request.cf?.country) : response;
+    return (response.headers.get('Content-Type') ?? '').includes('text/html') ? localiseHtml(response, url, context.env, context.request.cf?.country) : response;
   }
   if (!url.pathname.startsWith('/api/admin/')) return context.next();
   // This exact endpoint verifies a high-entropy, expiring, one-use approval token itself.

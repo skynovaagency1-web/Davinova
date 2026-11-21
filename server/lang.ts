@@ -4,6 +4,7 @@
  * shows each visitor their language instead of treating the copies as duplicates.
  */
 import { pageSeo, seoTags } from './seo';
+import { prerenderHtml } from './prerender';
 
 const SITE = 'https://davinova.com';
 export const LANG_PREFIXES = ['fr', 'es'] as const;
@@ -25,12 +26,13 @@ export function langUrl(lang: string, bare: string, search = ''): string {
   return `${SITE}${lang === 'en' ? '' : `/${lang}`}${lang !== 'en' && bare === '/' ? '' : bare}${search}`;
 }
 
-interface HtmlElement { setAttribute(name: string, value: string): void; setInnerContent(content: string): void; append(content: string, options: { html: boolean }): void; prepend(content: string, options: { html: boolean }): void }
+interface HtmlElement { setAttribute(name: string, value: string): void; setInnerContent(content: string, options?: { html: boolean }): void; append(content: string, options: { html: boolean }): void; prepend(content: string, options: { html: boolean }): void }
 interface Rewriter { on(selector: string, handler: { element(element: HtmlElement): void }): Rewriter; transform(response: Response): Response }
 declare const HTMLRewriter: { new (): Rewriter };
 
 /** Sets <html lang>, the title and description, the hreflang links and the page's search and share details. */
-export async function localiseHtml(response: Response, url: URL, db?: D1Database, country?: string): Promise<Response> {
+export async function localiseHtml(response: Response, url: URL, env: { DB?: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }, country?: string): Promise<Response> {
+  const db = env.DB;
   const { lang, bare } = splitLang(url.pathname);
   const head = HEAD[lang];
   const canonical = langUrl(lang, bare, url.search);
@@ -43,7 +45,10 @@ export async function localiseHtml(response: Response, url: URL, db?: D1Database
     + `<link rel="canonical" href="${canonical}" />`
     + `<meta property="og:locale" content="${head.locale}" />`
     + seoTags(seo ?? { title, description, image: 'https://davinova.com/images/og-davinova.jpg', type: 'website', jsonLd: [] }, canonical);
+  // Readable content for search engines; the app replaces it on start.
+  const body = await prerenderHtml(env, url, lang, bare, seo).catch(() => '');
   return new HTMLRewriter()
+    .on('div#root', { element: (element) => { if (body) element.setInnerContent(body, { html: true }); } })
     .on('html', { element: (element) => element.setAttribute('lang', lang) })
     .on('title', { element: (element) => element.setInnerContent(title) })
     .on('meta[name="description"]', { element: (element) => element.setAttribute('content', description) })
