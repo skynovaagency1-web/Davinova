@@ -690,3 +690,27 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 @keyframes nf-shine { from { background-position: 125% 0; } to { background-position: -125% 0; } }
 @keyframes nf-glow { 50% { box-shadow: 0 0 28px 2px rgba(205, 182, 158, .7), inset 0 1px 0 rgba(255, 255, 255, .3); } }
 @keyframes nf-dot { 50% { opacity: .3; transform: scale(.7); } }
+
+/* "Wedding Guest Edit" highlight in the main menu and the phone menu (owner, 2026-11-21): dusty-rose pill with dark text and a "New" tag. */
+.wg-pill { display: inline-flex; align-items: center; gap: 7px; flex: none; margin: 0 4px; padding: 7px 8px 7px 15px; border-radius: 999px; background: linear-gradient(120deg, #f0b8ae, #eaa79c 55%, #e29a8e); color: #2e2019; font: 700 13px/1 var(--nova-display); white-space: nowrap; text-decoration: none; border: 1px solid rgba(255, 236, 228, .75); box-shadow: 0 6px 18px -8px rgba(234, 167, 156, .9), inset 0 1px 0 rgba(255, 255, 255, .45); transition: transform .25s cubic-bezier(.2, .7, .2, 1), box-shadow .25s, filter .25s; }
+.wg-pill:hover, .wg-pill:focus-visible { transform: translateY(-1px); filter: brightness(1.05); box-shadow: 0 10px 24px -8px rgba(234, 167, 156, 1), 0 0 0 3px rgba(234, 167, 156, .25), inset 0 1px 0 rgba(255, 255, 255, .55); }
+.wg-pill:focus-visible { outline: 2px solid #fbf1e2; outline-offset: 2px; }
+.wg-pill__new { padding: 4px 7px; border-radius: 999px; background: #2e2019; color: #fbe4dc; font: 700 9px/1 var(--nova-display); letter-spacing: .08em; text-transform: uppercase; }
+.w-drawer .wg-pill--drawer { align-self: flex-start; margin: 6px 0 10px; padding: 10px 10px 10px 18px; font-size: 15px; }
+/* Keep every menu item on one line with the pill in (from 1261px; narrower laptops wrap two-word links as before), and the pill drops "Edit" on smaller laptops. */
+@media (min-width: 1261px) {
+  .w-header { grid-template-columns: minmax(max-content, 1fr) auto 1fr; }
+  .w-mega__trigger { white-space: nowrap; }
+}
+@media (min-width: 981px) and (max-width: 1360px) { .wg-pill__more { display: none; } .w-mega .wg-pill { padding-left: 12px; } }
+@media (min-width: 981px) and (max-width: 1260px) {
+  .w-mega { gap: 0; }
+  .w-mega .w-mega__trigger { padding: 8px 7px; }
+  .w-mega .wg-pill { position: relative; margin: 0 2px; padding: 7px 11px; font-size: 12px; }
+  .w-mega .wg-pill__new { position: absolute; top: -7px; right: -4px; padding: 3px 5px; font-size: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
+}
+@media (min-width: 981px) and (max-width: 1060px) {
+  .w-header { padding-left: 14px; }
+  .w-header__right { gap: 2px; }
+  .w-mega .w-mega__trigger { padding: 8px 5px; font-size: 12.5px; }
+}
