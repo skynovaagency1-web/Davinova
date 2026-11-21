@@ -697,20 +697,24 @@ html:has(.w-shell), body:has(.w-shell) { background: #3a1a08; }
 .wg-pill:focus-visible { outline: 2px solid #fbf1e2; outline-offset: 2px; }
 .wg-pill__new { padding: 4px 7px; border-radius: 999px; background: #2e2019; color: #fbe4dc; font: 700 9px/1 var(--nova-display); letter-spacing: .08em; text-transform: uppercase; }
 .w-drawer .wg-pill--drawer { align-self: flex-start; margin: 6px 0 10px; padding: 10px 10px 10px 18px; font-size: 15px; }
-/* Keep every menu item on one line with the pill in (from 1261px; narrower laptops wrap two-word links as before), and the pill drops "Edit" on smaller laptops. */
-@media (min-width: 1261px) {
-  .w-header { grid-template-columns: minmax(max-content, 1fr) auto 1fr; }
-  .w-mega__trigger { white-space: nowrap; }
+/* Desktop: the DAVINOVA logo has its own glass bar above the menu (owner, 2026-11-21); the menu bar keeps links and icons only. */
+.w-logobar { display: none; }
+@media (min-width: 981px) {
+  .w-logobar { position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; margin: 10px clamp(12px, 2.6vw, 40px) 0; padding: 14px 24px; border-radius: 999px; background: linear-gradient(120deg, rgba(255, 245, 230, .1), rgba(255, 245, 230, .18) 50%, rgba(255, 245, 230, .1)); border: 1px solid var(--amber-line, rgba(255, 236, 214, .35)); box-shadow: 0 12px 40px rgba(30, 12, 2, .22), inset 0 1px 0 rgba(255, 255, 255, .18); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); }
+  .w-logobar::before { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 35%, rgba(255, 240, 220, .22) 50%, transparent 65%); transform: translateX(-100%); animation: w-logobar-sweep 6s ease-in-out infinite; pointer-events: none; }
+  .w-logobar::after { content: ''; position: absolute; left: 50%; bottom: 0; width: min(420px, 40%); height: 1px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, rgba(255, 222, 190, .8), transparent); pointer-events: none; }
+  .w-logobar__logo { position: relative; z-index: 1; display: inline-flex; }
+  .w-logobar .logo { color: var(--amber-text, #fbf1e2); }
+  .w-logobar .logo__word { height: 34px; }
+  .w-header > .w-wordmark { display: none; }
+  .w-header { grid-template-columns: 1fr auto; gap: 12px; }
+  .w-mega__trigger, .w-switch, .w-bag { white-space: nowrap; }
 }
-@media (min-width: 981px) and (max-width: 1360px) { .wg-pill__more { display: none; } .w-mega .wg-pill { padding-left: 12px; } }
-@media (min-width: 981px) and (max-width: 1260px) {
+@keyframes w-logobar-sweep { 0%, 15% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+@media (min-width: 981px) and (max-width: 1180px) { .wg-pill__more { display: none; } .w-mega .wg-pill { padding-left: 12px; } }
+@media (min-width: 981px) and (max-width: 1100px) {
   .w-mega { gap: 0; }
-  .w-mega .w-mega__trigger { padding: 8px 7px; }
-  .w-mega .wg-pill { position: relative; margin: 0 2px; padding: 7px 11px; font-size: 12px; }
-  .w-mega .wg-pill__new { position: absolute; top: -7px; right: -4px; padding: 3px 5px; font-size: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
-}
-@media (min-width: 981px) and (max-width: 1060px) {
+  .w-mega .w-mega__trigger { padding: 8px 6px; font-size: 12.5px; }
   .w-header { padding-left: 14px; }
   .w-header__right { gap: 2px; }
-  .w-mega .w-mega__trigger { padding: 8px 5px; font-size: 12.5px; }
 }

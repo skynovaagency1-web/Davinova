@@ -72,6 +72,8 @@ export function WomenLayout() {
     <MoodLayer dept="women" />
     <PromoBar dept="women" />
     <DeptSwitch active="women" />
+    {/* Desktop: the logo sits alone in its own glass bar, so the menu below has room (owner, 2026-11-21). */}
+    <div className="w-logobar"><Link to="/" className="w-logobar__logo" aria-label="Davinova home"><Logo /></Link></div>
     <header className="w-header">
       <button type="button" className="w-header__menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? <X size={20} /> : <Menu size={20} />}</button>
       <WomenMegaNav />
