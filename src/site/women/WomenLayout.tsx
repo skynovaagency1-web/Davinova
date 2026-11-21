@@ -89,7 +89,7 @@ export function WomenLayout() {
       {open && <motion.nav className="w-drawer" aria-label="Mobile" initial={{ clipPath: 'circle(0% at 30px 30px)' }} animate={{ clipPath: 'circle(150% at 30px 30px)' }} exit={{ clipPath: 'circle(0% at 30px 30px)' }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
         <Link to="/" className="drawer-about">Home</Link>
         <Link to="/looks" className="drawer-about nf-link"><span>✦ New fashion</span></Link>
-        <Link to="/wedding-guest" className="wg-pill wg-pill--drawer"><span className="wg-pill__label">Wedding Guest</span><span className="wg-pill__new">New</span></Link>
+        <a href="/wedding-guest" className="wg-pill wg-pill--drawer"><span className="wg-pill__label">Wedding Guest</span><span className="wg-pill__new">New</span></a>
         {drawerSections(products).map((section, index) => <motion.div key={section.to} className="drawer-title" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 + index * 0.05 }}>
           <Link to={section.to}>{section.label}</Link>
           {section.subs.length > 0 && <div className="drawer-sub">{section.subs.map((sub) => <Link key={sub.to} to={sub.to}>{sub.label}</Link>)}</div>}
