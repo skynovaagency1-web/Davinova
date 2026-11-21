@@ -8,6 +8,7 @@ import { brand } from '../src/config/brand';
 import { STATIC_PAGES as STATIC, categoryTitle } from '../src/lib/pageTitles';
 import { modelPhoto } from '../src/lib/modelPhotos';
 import { menStoreCollectionGroups, storeCollectionGroups } from '../src/lib/storeCollectionTaxonomy';
+import { JEWELRY_TYPES, type JewelryType } from '../src/site/shared/jewelry';
 
 export interface PageSeo { title: string; description: string; image: string; type: 'website' | 'product'; jsonLd: object[] }
 
@@ -82,6 +83,11 @@ export async function pageSeo(db: D1Database | undefined, bare: string, params: 
   }
   const category = categorySeo(bare, params);
   if (category) return category;
+  const jewelry = bare.match(/^\/(men\/)?jewelry\/([^/]+)$/);
+  if (jewelry && jewelry[2] in JEWELRY_TYPES) {
+    const type = JEWELRY_TYPES[jewelry[2] as JewelryType];
+    return { title: `${type.label}${jewelry[1] ? ' for men' : ''} — ${BRAND}`, description: `${type.line}. Shop ${type.label.toLowerCase()} at ${BRAND}, with free tracked shipping.`, image: DEFAULT_IMAGE, type: 'website', jsonLd: [] };
+  }
   const known = STATIC[bare];
   if (!known) return null;
   return { title: known[0], description: known[1], image: DEFAULT_IMAGE, type: 'website', jsonLd: bare === '/' ? organisation() : [] };
