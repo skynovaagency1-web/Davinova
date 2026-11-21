@@ -2,6 +2,8 @@
 // The automatic photo check let flat lays, vests and cropped legs through, so the rails use this list instead.
 export const TRENDING_LOOKS: ReadonlySet<string> = new Set([
   // Men's linen shirts on the owner's ChatGPT models (2026-11-20, batch 4), checked by eye.
+  'cj-2505120946481619800',
+  'cj-2604040346241628200',
   'cj-2503120536241602800',
   'cj-1681599485203460096',
   'cj-1390242239581655040',
