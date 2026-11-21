@@ -11,7 +11,10 @@ jobs:
         with:
           node-version: 20
           cache: npm
+      # The GPU build of onnxruntime (used only by local photo scripts) is no longer downloadable; the CPU build is enough.
       - run: npm install
+        env:
+          ONNXRUNTIME_NODE_INSTALL_CUDA: skip
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
