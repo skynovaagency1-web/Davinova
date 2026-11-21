@@ -60,6 +60,7 @@ export function WomenMegaNav() {
         <Link to="/shop">All fits</Link>
       </div>
     </Item>
+    <Link to="/wedding-guest" className="wg-pill"><span className="wg-pill__label">Wedding Guest<span className="wg-pill__more"> Edit</span></span><span className="wg-pill__new">New</span></Link>
     <Link to="/custom/design" className="w-mega__trigger">Design yours</Link>
     <Link to="/about" className="w-mega__trigger">About</Link>
   </nav>;
