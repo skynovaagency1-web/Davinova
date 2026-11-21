@@ -1,3 +1,5 @@
+import { LEGAL } from '../../config/legal';
+import { useRegion } from '../../lib/useRegion';
 import { cleanDescription } from './cleanDescription';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -139,6 +141,7 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
   const banner = productBanner(product.title);
   const related = products.filter((item) => item.id !== product.id && item.department === product.department && (product.storeCollection ? item.storeCollection === product.storeCollection : item.shelf === product.shelf) && item.images[0]?.url).slice(0, 8);
   const recent = recentBefore.filter((id) => id !== product.id).map((id) => products.find((item) => item.id === id)).filter((item): item is Product => Boolean(item?.images[0]?.url)).slice(0, 8);
+  const region = useRegion();
   const price = canBuy || isWoo ? formatMoney(product.priceCents, product.currency) : 'Coming soon';
   // CJ labels look like "M", "38" or "Black / M"; split colour from size so each gets its own row of buttons.
   const options = product.sizes.map((label) => {
@@ -251,8 +254,10 @@ function ProductBody({ product, products, variant, shopPath }: { product: Produc
             <li><Lock size={14} aria-hidden="true" />Secure checkout</li>
           </ul>}
           {isGoldVermeil(product) && <p className="pv-buy__vermeil" role="note"><b>Gold vermeil, not solid gold.</b> A layer of real gold over 925 sterling silver. Keep it away from water, perfume and polish so the gold lasts.</p>}
+          {canBuy && region?.eu && <p className="pv-buy__note pv-buy__note--eu">{region.euOpen ? 'Price includes VAT. Free delivery, nothing more to pay on arrival.' : 'Delivery to Europe opens soon. Join the list below to hear first.'}</p>}
           <p className="pv-buy__note">{canBuy ? 'Sizes, stock and price are rechecked at secure checkout.' : 'We’re still confirming sizes, stock and delivery for this piece.'}</p>
           {product.description && <details><summary>About this piece</summary><p>{cleanDescription(product.description)}</p></details>}
+          <details><summary>Product safety</summary><p>Responsible person in the EU: {LEGAL.owner} ({LEGAL.tradeName}), {LEGAL.address}. Questions or a safety concern? Email <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>.</p></details>
           <details><summary>Delivery & returns</summary><p>Delivery options and our return policy are shown before you pay. See <Link to={`${prefix}/shipping`}>shipping</Link> and <Link to={`${prefix}/returns`}>returns</Link>.</p></details>
         </div>
 

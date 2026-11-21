@@ -14,6 +14,18 @@ export const MODEL_PHOTOS: ReadonlySet<string> = new Set([
   'cj-2507310640101627800',
   'cj-1405822637829132288',
   'cj-2509260822551625300',
+  // Batch 4 (2026-11-20): linen shirts, checked by eye against the CJ garment.
+  'cj-2503120536241602800',
+  'cj-1681599485203460096',
+  'cj-1390242239581655040',
+  'cj-2507200651121624200',
+  'cj-1682949941997608960',
+  'cj-2605270516201626500',
+  'cj-2406270706031608000',
+  'cj-2507210748551615400',
+  'cj-AB068643-4DE6-41AA-89A2-93A6DE15F657',
+  'cj-2505120946481619800',
+  'cj-2604040346241628200',
 ]);
 
 /** The owner's on-model photo for a product, or undefined. Pass the site origin for absolute links (feeds, SEO). */

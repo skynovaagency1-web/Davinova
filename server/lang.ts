@@ -36,7 +36,7 @@ export async function localiseHtml(response: Response, url: URL, env: { DB?: D1D
   const { lang, bare } = splitLang(url.pathname);
   const head = HEAD[lang];
   const canonical = langUrl(lang, bare, url.search);
-  const seo = await pageSeo(db, bare, url.searchParams, canonical);
+  const seo = await pageSeo(db, bare, url.searchParams, canonical, lang as 'en' | 'fr' | 'es');
   // Product names stay in English; the site-wide title and description are translated.
   const title = seo && (seo.type === 'product' || lang === 'en') ? seo.title : head.title;
   const description = seo && (seo.type === 'product' || lang === 'en') ? seo.description : head.description;

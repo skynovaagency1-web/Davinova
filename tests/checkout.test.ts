@@ -82,7 +82,7 @@ describe('POST /api/checkout', () => {
     const { calls } = mockFetch();
 
     const response = await onRequestPost({
-      request: request({ items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
+      request: request({ country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
       env: baseEnv(db),
     });
 
@@ -109,7 +109,7 @@ describe('POST /api/checkout', () => {
     const { calls } = mockFetch();
 
     await onRequestPost({
-      request: request({ items: [{ productId: 'prod-1', size: 'M', quantity: 1, priceCents: 1 }] }),
+      request: request({ country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1, priceCents: 1 }] }),
       env: baseEnv(db),
     });
 
@@ -125,7 +125,7 @@ describe('POST /api/checkout', () => {
     const { fn } = mockFetch();
 
     const response = await onRequestPost({
-      request: request({ items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
+      request: request({ country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
       env: baseEnv(db),
     });
 
@@ -141,7 +141,7 @@ describe('POST /api/checkout', () => {
     const { fn } = mockFetch();
 
     const response = await onRequestPost({
-      request: request({ items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
+      request: request({ country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
       env: baseEnv(db),
     });
 
@@ -164,7 +164,7 @@ describe('POST /api/checkout', () => {
     const { fn } = mockFetch();
 
     const response = await onRequestPost({
-      request: request({ items: [
+      request: request({ country: 'US', items: [
         { productId: 'prod-1', size: 'M', quantity: 1 },
         { productId: 'prod-2', size: 'M', quantity: 1 },
       ] }),
@@ -182,7 +182,7 @@ describe('POST /api/checkout', () => {
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ error: { message: 'down' } }), { status: 500 })));
 
     const response = await onRequestPost({
-      request: request({ items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
+      request: request({ country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
       env: baseEnv(db),
     });
 
@@ -199,7 +199,7 @@ describe('POST /api/checkout', () => {
     const { calls } = mockFetch({ amount_subtotal: 100, amount_total: 600 });
 
     const response = await onRequestPost({
-      request: request({ items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
+      request: request({ country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
       env: baseEnv(db),
     });
 
@@ -222,7 +222,7 @@ describe('POST /api/checkout', () => {
     mockFetch({ amount_subtotal: 8900, amount_total: 8900, total_details: { amount_shipping: 0, amount_tax: 0, amount_discount: 0 } });
 
     const response = await onRequestPost({
-      request: request({ items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
+      request: request({ country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }),
       env: baseEnv(db),
     });
 
@@ -238,7 +238,7 @@ describe('POST /api/checkout', () => {
 
     const response = await onRequestPost({
       request: request(
-        { items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] },
+        { country: 'US', items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] },
         { Origin: 'https://attacker.example' },
       ),
       env: baseEnv(db),
@@ -260,8 +260,21 @@ describe('POST /api/checkout', () => {
 
   it('rejects an empty cart', async () => {
     const db = new FakeD1();
-    const response = await onRequestPost({ request: request({ items: [] }), env: baseEnv(db) });
+    const response = await onRequestPost({ request: request({ country: 'US', items: [] }), env: baseEnv(db) });
     expect(response.status).toBe(400);
+  });
+
+  it('rejects blocked countries and the EU while it is closed, before any Stripe call', async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    for (const country of ['GB', 'RU', 'FR', '']) {
+      const db = new FakeD1();
+      seedPurchasableProduct(db);
+      const response = await onRequestPost({ request: request({ country, items: [{ productId: 'prod-1', size: 'M', quantity: 1 }] }), env: baseEnv(db) });
+      expect(response.status).toBe(400);
+      expect(db.orders.size).toBe(0);
+    }
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it('rejects a cart with more than five distinct lines', async () => {
@@ -275,7 +288,7 @@ describe('POST /api/checkout', () => {
     const db = new FakeD1();
     seedPurchasableProduct(db);
     const response = await onRequestPost({
-      request: request({ items: [
+      request: request({ country: 'US', items: [
         { productId: 'prod-1', size: 'M', quantity: 1 },
         { productId: 'prod-1', size: 'm', quantity: 1 },
       ] }),

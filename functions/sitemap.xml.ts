@@ -1,3 +1,4 @@
+import { isOffNiche } from '../src/lib/niche';
 interface Env { DB: D1Database; ASSETS?: { fetch: (input: Request | string) => Promise<Response> } }
 import { assignmentFromStoreTags } from '../src/lib/storeCollectionTaxonomy';
 import { jewelryMenu, jewelryPath } from '../src/site/shared/jewelry';
@@ -5,7 +6,7 @@ import { langUrl } from '../server/lang';
 
 const PAGES = [
   '/', '/shop', '/categories', '/fits', '/slim', '/plus-size', '/accessories', '/couple', '/watches', '/jewelry',
-  '/beauty', '/custom', '/gift-cards', '/refer', '/about', '/shipping', '/returns', '/size-guide', '/faq', '/contact', '/privacy', '/terms',
+  '/beauty', '/custom', '/gift-cards', '/refer', '/about', '/shipping', '/returns', '/size-guide', '/faq', '/contact', '/privacy', '/terms', '/legal',
   '/men', '/men/shop', '/men/categories', '/men/custom', '/men/jewelry', '/men/gift-cards', '/men/refer', '/men/about',
   '/men/shipping', '/men/returns', '/men/size-guide', '/men/faq', '/men/contact',
 ];
@@ -17,18 +18,19 @@ export async function onRequestGet({ env, request }: { env: Env; request: Reques
   if (cached) return cached;
 
   const shown = await shownIds(env, request);
-  const { results } = await env.DB.prepare(`SELECT id,slug,department,tags_json FROM products
+  const { results } = await env.DB.prepare(`SELECT id,slug,title,department,tags_json FROM products
     WHERE active=1 AND supplier='cj' AND cj_product_id IS NOT NULL`)
-    .all<{ id: string; slug: string; department: string; tags_json: string }>();
+    .all<{ id: string; slug: string; title: string; department: string; tags_json: string }>();
   const urls = new Set(PAGES);
   for (const dept of ['women', 'men'] as const) for (const group of jewelryMenu(dept)) for (const type of group.items) urls.add(jewelryPath(dept, type));
   for (const row of results ?? []) {
     if (shown && !shown.has(row.id)) continue;
     const men = row.department === 'men';
-    urls.add(`${men ? '/men' : ''}/product/${row.slug}`);
     let tags: string[] = [];
     try { tags = JSON.parse(row.tags_json); } catch { /* no tags */ }
     const place = assignmentFromStoreTags(tags);
+    if (isOffNiche(row.title, place?.collection, place?.subcategory)) continue;
+    urls.add(`${men ? '/men' : ''}/product/${row.slug}`);
     if (!men && place?.collection) {
       urls.add(`/shop?category=${place.collection}`);
       if (place.subcategory) urls.add(`/shop?category=${place.collection}&sub=${place.subcategory}`);

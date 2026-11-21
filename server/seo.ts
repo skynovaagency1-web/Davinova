@@ -1,3 +1,4 @@
+import { productCopy, type CopyLang } from '../src/lib/productCopy';
 /**
  * Search and share details for each page, added to the HTML before it leaves the server: a real title and
  * description per product and category, a share picture, and schema.org data (product price and stock, the
@@ -30,14 +31,15 @@ function organisation(): object[] {
 
 interface ProductRow { id: string; slug: string; title: string; description: string; price_cents: number; currency: string; department: string; image: string | null; in_stock: number }
 
-async function productSeo(db: D1Database, slug: string, canonical: string): Promise<PageSeo | null> {
+async function productSeo(db: D1Database, slug: string, canonical: string, lang: CopyLang = 'en'): Promise<PageSeo | null> {
   const row = await db.prepare(`SELECT p.id, p.slug, p.title, p.description, p.price_cents, p.currency, p.department,
       (SELECT url FROM product_images i WHERE i.product_id = p.id ORDER BY i.is_primary DESC, i.position LIMIT 1) AS image,
       (SELECT COUNT(*) FROM product_variants v WHERE v.product_id = p.id AND v.active = 1) AS in_stock
     FROM products p WHERE p.slug = ? AND p.active = 1`).bind(slug).first<ProductRow>();
   if (!row) return null;
-  row.title = cleanTitle(row.title);
-  const description = clip(plain(row.description) || `${row.title}, with free tracked shipping from ${BRAND}.`);
+  const copy = productCopy(row.id, lang);
+  row.title = copy?.title ?? cleanTitle(row.title);
+  const description = clip(copy?.description ?? (plain(row.description) || `${row.title}, with free tracked shipping from ${BRAND}.`));
   const image = modelPhoto(row.id, SITE) ?? row.image ?? DEFAULT_IMAGE;
   const product: Record<string, unknown> = {
     '@context': 'https://schema.org', '@type': 'Product', name: row.title, description, image: [image], sku: row.id,
@@ -76,10 +78,10 @@ function categorySeo(bare: string, params: URLSearchParams): PageSeo | null {
 }
 
 /** The search and share details for one page, or null to keep the defaults in index.html. */
-export async function pageSeo(db: D1Database | undefined, bare: string, params: URLSearchParams, canonical: string): Promise<PageSeo | null> {
+export async function pageSeo(db: D1Database | undefined, bare: string, params: URLSearchParams, canonical: string, lang: CopyLang = 'en'): Promise<PageSeo | null> {
   const product = bare.match(/^\/(?:men\/)?product\/([^/]+)$/);
   if (product && db) {
-    try { return await productSeo(db, decodeURIComponent(product[1]), canonical); } catch { return null; }
+    try { return await productSeo(db, decodeURIComponent(product[1]), canonical, lang); } catch { return null; }
   }
   const category = categorySeo(bare, params);
   if (category) return category;

@@ -39,6 +39,7 @@ const LooksPage = lazy(() => import('./site/shared/LooksPage').then((m) => ({ de
 const MenCategoriesPage = lazy(() => import('./site/men/MenCategoriesPage').then((m) => ({ default: m.MenCategoriesPage })));
 const NotFoundPage = lazy(() => import('./pages/InfoPages').then((m) => ({ default: m.NotFoundPage })));
 const OrdersAdminPage = lazy(() => import('./pages/OrdersAdminPage').then((m) => ({ default: m.OrdersAdminPage })));
+const TaxReportsAdminPage = lazy(() => import('./pages/TaxReportsAdminPage').then((m) => ({ default: m.TaxReportsAdminPage })));
 const WinnersAdminPage = lazy(() => import('./pages/WinnersAdminPage').then((m) => ({ default: m.WinnersAdminPage })));
 const CJCatalogAdminPage = lazy(() => import('./pages/CJCatalogAdminPage').then((m) => ({ default: m.CJCatalogAdminPage })));
 
@@ -52,7 +53,9 @@ export default function App() {
   return <BrowserRouter basename={BASENAME}><Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/admin/cj-catalog" element={<CJCatalogAdminPage />} />
+      <Route path="/admin" element={<Navigate to="/admin/orders" replace />} />
       <Route path="/admin/orders" element={<OrdersAdminPage />} />
+      <Route path="/admin/tax" element={<TaxReportsAdminPage />} />
       <Route path="/admin/winners" element={<WinnersAdminPage />} />
       <Route path="/men" element={<MenLayout />}>
         <Route index element={<MenHome />} />
@@ -72,6 +75,7 @@ export default function App() {
         <Route path="contact" element={<HelpPage dept="men" slug="contact" />} />
         <Route path="privacy" element={<HelpPage dept="men" slug="privacy" />} />
         <Route path="terms" element={<HelpPage dept="men" slug="terms" />} />
+        <Route path="legal" element={<HelpPage dept="men" slug="legal" />} />
         <Route path="jewelry" element={<JewelryPage dept="men" />} />
         <Route path="jewelry/:type" element={<JewelryPage dept="men" />} />
         <Route path="wishlist" element={<WishlistPage dept="men" />} />
@@ -129,6 +133,7 @@ export default function App() {
         <Route path="contact" element={<HelpPage dept="women" slug="contact" />} />
         <Route path="privacy" element={<HelpPage dept="women" slug="privacy" />} />
         <Route path="terms" element={<HelpPage dept="women" slug="terms" />} />
+        <Route path="legal" element={<HelpPage dept="women" slug="legal" />} />
         <Route path="approve-cj" element={<ApprovalPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

@@ -1,3 +1,7 @@
+import { servedCountries } from '../../../server/shippingCountries';
+import { complianceFields } from '../../../server/tax';
+import { usdToEurRate } from '../../../server/fx';
+import { ensureOrderTaxColumns } from '../../../server/orderTax';
 import { createApprovalToken } from '../../../server/auth';
 import type { CJEnv } from '../../../server/cj';
 import { sendTransactionalEmail } from '../../../server/email';
@@ -9,6 +13,8 @@ type Env = CJEnv & {
   STRIPE_WEBHOOK_SECRET?: string;
   STRIPE_MODE?: string;
   STRIPE_SHIPPING_COUNTRIES?: string;
+  EU_SALES_OPEN?: string;
+  IOSS_NUMBER?: string;
   RESEND_API_KEY?: string;
   EMAIL_FROM?: string;
   OWNER_EMAIL?: string;
@@ -58,6 +64,10 @@ interface StoreOrder {
   shipping_cents: number;
   total_cents: number;
   currency: string;
+  discount_cents?: number;
+  shipping_country?: string | null;
+  ioss_eligible?: number | null;
+  eu_vat_rate_applied?: number | null;
 }
 
 function reply(data: unknown, status = 200): Response {
@@ -107,8 +117,7 @@ export async function verifyStripeWebhookSignature(
 }
 
 function isOrderCountryAllowed(env: Env, code: string): boolean {
-  const allowed = (env.STRIPE_SHIPPING_COUNTRIES || '').split(',').map((country) => country.trim().toUpperCase()).filter(Boolean);
-  return allowed.includes(code.toUpperCase());
+  return servedCountries(env).includes(code.toUpperCase());
 }
 function addressFromSession(session: StripeSession) {
   const shipping = session.collected_information?.shipping_details || session.shipping_details;
@@ -395,8 +404,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const orderId = String(session.metadata?.order_id || session.client_reference_id || '');
     if (!orderId) return reply({ error: 'Checkout Session has no order reference.' }, 400);
 
+    await ensureOrderTaxColumns(env.DB);
     const order = await env.DB.prepare(
-      'SELECT id, order_number, email, status, payment_provider, payment_status, payment_reference, subtotal_cents, shipping_cents, total_cents, currency FROM orders WHERE id=? LIMIT 1',
+      'SELECT id, order_number, email, status, payment_provider, payment_status, payment_reference, subtotal_cents, shipping_cents, discount_cents, total_cents, currency, shipping_country, ioss_eligible, eu_vat_rate_applied FROM orders WHERE id=? LIMIT 1',
     ).bind(orderId).first<StoreOrder>();
 
     if (!order || order.payment_provider !== 'stripe' || order.payment_reference !== session.id) {
@@ -457,7 +467,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
 
     const address = addressFromSession(session);
     const email = String(session.customer_details?.email || session.customer_email || '').trim();
-    if (!address || !email || !isOrderCountryAllowed(env, address.countryCode)) {
+    // The VAT case and currency were fixed for the country chosen in the bag, so the address must be in that country.
+    const wrongCountry = Boolean(order.shipping_country && address && address.countryCode !== order.shipping_country.toUpperCase());
+    if (!address || !email || wrongCountry || !isOrderCountryAllowed(env, address.countryCode)) {
       await env.DB.prepare(
         "UPDATE orders SET status='needs_attention', payment_status='paid', updated_at=datetime('now') WHERE id=? AND payment_reference=?",
       ).bind(order.id, session.id).run();
@@ -486,6 +498,18 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         city: address.city, province: address.province, country: address.country,
         countryCode: address.countryCode, postalCode: address.postalCode, phone: address.phone,
       });
+      // Tax / URSSAF record: amounts in EUR at the ECB rate of the payment day (EUR orders: rate 1).
+      const gift = await env.DB.prepare('SELECT COALESCE(SUM(amount_cents),0) AS cents FROM gift_card_uses WHERE order_id=?').bind(order.id).first<{ cents: number }>().catch(() => null);
+      const tax = complianceFields({
+        currency, country: address.countryCode, iossEligible: order.ioss_eligible === 1,
+        vatRate: Number(order.eu_vat_rate_applied || 0), subtotalCents: subtotal,
+        discountCents: Number(session.total_details?.amount_discount ?? order.discount_cents ?? 0),
+        giftCardCents: Number(gift?.cents || 0), shippingCents: shippingAmount,
+        eurRate: currency === 'EUR' ? 1 : await usdToEurRate(env.DB),
+      });
+      await env.DB.prepare(
+        "UPDATE orders SET shipping_country=?, eur_exchange_rate=?, net_subtotal_eur=?, shipping_fee_eur=?, eu_vat_rate_applied=?, eu_vat_collected_eur=?, total_paid_eur=?, ioss_eligible=?, paid_at=datetime('now') WHERE id=?",
+      ).bind(tax.shipping_country, tax.eur_exchange_rate, tax.net_subtotal_eur, tax.shipping_fee_eur, tax.eu_vat_rate_applied, tax.eu_vat_collected_eur, tax.total_paid_eur, tax.ioss_eligible, order.id).run();
       await env.DB.prepare(
         "UPDATE orders SET status='pending_approval', payment_status='paid', email=?, shipping_address_json=?, updated_at=datetime('now') WHERE id=? AND status='pending_payment' AND payment_reference=?",
       ).bind(email, shippingAddressJson, order.id, session.id).run();

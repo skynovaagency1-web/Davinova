@@ -1,9 +1,12 @@
+import { euSalesOpen, iossNumber, isEuDelivery } from './shippingCountries';
 const CJ_API_BASE = 'https://developers.cjdropshipping.com/api2.0/v1';
 const TOKEN_CACHE_KEY = 'cj_auth_tokens';
 const encoder = new TextEncoder();
 
 export interface CJEnv {
   DB: D1Database;
+  EU_SALES_OPEN?: string;
+  IOSS_NUMBER?: string;
   CJ_API_KEY?: string;
   CJ_TOKEN_ENCRYPTION_KEY?: string;
   CJ_LOGISTIC_NAME?: string;
@@ -21,7 +24,8 @@ export interface CJOrderLine {
   orderItemId: string; cjProductId: string; cjVariantId: string; quantity: number;
   variantOptions: string; storeProductId: string; storeProductImg?: string; storeProductName: string;
 }
-export interface CJOrderInput { orderNumber: string; shipping: CJShippingAddress; products: CJOrderLine[] }
+/** iossEligible: EU order of €150 or less whose VAT was collected at checkout (orders.ioss_eligible). */
+export interface CJOrderInput { orderNumber: string; shipping: CJShippingAddress; products: CJOrderLine[]; iossEligible?: boolean }
 export interface CJOrderProgress {
   step: 'created' | 'cart_added' | 'confirmed' | 'parent_generated' | 'paid';
   cjOrderId?: string; shipmentOrderId?: string; payId?: string;
@@ -171,7 +175,7 @@ async function request<T>(env: CJEnv, path: string, init: RequestInit = {}): Pro
   return result.envelope.data as T;
 }
 
-export function buildCJCreateOrderPayload(input: CJOrderInput, logisticName: string, sandbox: boolean, fromCountryCode = 'CN'): Record<string, unknown> {
+export function buildCJCreateOrderPayload(input: CJOrderInput, logisticName: string, sandbox: boolean, fromCountryCode = 'CN', ioss = ''): Record<string, unknown> {
   if (!input.orderNumber.trim() || input.products.length === 0) throw new Error('An order number and at least one product are required.');
   const address = input.shipping;
   if (!address.name.trim() || !address.address1.trim() || !address.city.trim() || !address.province.trim() ||
@@ -203,6 +207,9 @@ export function buildCJCreateOrderPayload(input: CJOrderInput, logisticName: str
     shopLogisticsType: 2,
     orderFlow: 1,
     isSandbox: sandbox ? 1 : 0,
+    // EU parcels of €150 or less are declared under our own IOSS (iossType 2): VAT was paid at checkout.
+    // Bigger EU parcels go without IOSS (iossType 1, DDU): the carrier collects VAT and duties on delivery.
+    ...(isEuDelivery(address.countryCode) ? (ioss && input.iossEligible === true ? { iossType: 2, iossNumber: ioss } : { iossType: 1 }) : {}),
     products: input.products.map((line) => ({
       vid: line.cjVariantId,
       quantity: line.quantity,
@@ -227,13 +234,16 @@ export async function createCJOrder(
     throw new Error('Live supplier purchases are disabled. Enable CJ_LIVE_ORDERS_ENABLED only after sandbox and end-to-end tests.');
   }
   // Free express delivery: CJ_LOGISTIC_NAME can pin one line, otherwise pick the fast line quoted for these exact items and country.
-  let logisticName = env.CJ_LOGISTIC_NAME?.trim() || '';
+  // The pinned line is for the US; every other country uses the fast line CJ quotes for it.
+  const toEu = isEuDelivery(input.shipping.countryCode);
+  if (toEu && !euSalesOpen(env)) throw new Error('EU orders are switched off until IOSS is set up.');
+  let logisticName = input.shipping.countryCode.toUpperCase() === 'US' ? env.CJ_LOGISTIC_NAME?.trim() || '' : '';
   if (!logisticName) {
     const quotes = await calculateCJOrderFreight(env, input.products, input.shipping.countryCode, env.CJ_FROM_COUNTRY_CODE || 'CN');
     logisticName = pickFastLine(quotes)?.name ?? '';
     if (!logisticName) throw new Error('CJ quoted no usable shipping line for ' + input.shipping.countryCode.toUpperCase() + '; choose one in CJ before ordering.');
   }
-  const payload = buildCJCreateOrderPayload(input, logisticName, sandbox, env.CJ_FROM_COUNTRY_CODE || 'CN');
+  const payload = buildCJCreateOrderPayload(input, logisticName, sandbox, env.CJ_FROM_COUNTRY_CODE || 'CN', iossNumber(env));
 
   // Every provider ID is persisted by onProgress before proceeding; partial failures require manual reconciliation.
   const created = await request<CreateOrderData>(env, '/shopping/order/createOrderV3', { method: 'POST', body: JSON.stringify(payload) });

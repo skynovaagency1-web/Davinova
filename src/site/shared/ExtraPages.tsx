@@ -7,7 +7,7 @@ import { WomenCard } from '../women/WomenCard';
 import { jewelryPath, type Dept } from './jewelry';
 import { categoryPath } from '../../lib/categories';
 import { WOMEN_BAGS } from '../../lib/storeCollectionTaxonomy';
-import { formatMoney } from '../../lib/format';
+import { formatMoney, formatUsd } from '../../lib/format';
 import { GIFT_AMOUNTS_CENTS, REFERRAL } from '../../lib/giftCards';
 
 const base = (dept: Dept) => (dept === 'men' ? '/men' : '');
@@ -64,7 +64,7 @@ export function GiftCardPage({ dept }: { dept: Dept }) {
     setBalance('');
     const response = await fetch(`/api/gift-cards/balance?code=${encodeURIComponent(check.trim())}`).catch(() => null);
     const data = await response?.json().catch(() => ({})) as { gift?: { balanceCents: number }; error?: string } | undefined;
-    setBalance(data?.gift ? `Balance: ${formatMoney(data.gift.balanceCents, 'USD')}` : (data?.error || 'That gift card is not valid.'));
+    setBalance(data?.gift ? `Balance: ${formatUsd(data.gift.balanceCents)}` : (data?.error || 'That gift card is not valid.'));
   };
   return <section className={`jw jw--${dept} extra`}>
     <header className="jw__head">
@@ -75,7 +75,7 @@ export function GiftCardPage({ dept }: { dept: Dept }) {
     {params.get('bought') && <p className="bag__notice" role="status">Thank you! The gift card is on its way by email. It can take a minute to arrive.</p>}
     {params.get('checkout') === 'cancelled' && <p className="bag__notice" role="status">Checkout was cancelled. No payment was taken.</p>}
     <div className="gift">
-      <div className={`gift__card gift__card--${dept}`} aria-label={`Gift card preview, ${formatMoney(amount, 'USD')}`}>
+      <div className={`gift__card gift__card--${dept}`} aria-label={`Gift card preview, ${formatUsd(amount)}`}>
         <span className="gift__brand">DAVINOVA</span>
         <span className="gift__amount">${amount / 100}</span>
         <span className="gift__line">{form.recipientName.trim() ? `For ${form.recipientName.trim()}` : 'Gift card · for the moments you\'ll keep'}</span>
@@ -90,7 +90,7 @@ export function GiftCardPage({ dept }: { dept: Dept }) {
           <label>Their email<input {...field('recipientEmail')} type="email" maxLength={120} placeholder="Leave empty to get it yourself" /></label>
           <label>From<input {...field('senderName')} maxLength={60} placeholder="Your name" /></label>
           <label className="gift__wide">Message<textarea {...field('message')} maxLength={400} rows={3} placeholder="Happy wedding day!" /></label>
-          <button type="submit" className="gift__buy" disabled={busy}><Gift size={18} /> {busy ? 'Opening checkout…' : `Buy ${formatMoney(amount, 'USD')} gift card`}</button>
+          <button type="submit" className="gift__buy" disabled={busy}><Gift size={18} /> {busy ? 'Opening checkout…' : `Buy ${formatUsd(amount)} gift card`}</button>
         </form>
         {error && <p className="bag__codeerr" role="alert">{error}</p>}
         <ul>
