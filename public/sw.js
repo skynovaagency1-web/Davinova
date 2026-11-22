@@ -10,7 +10,12 @@ const STATIC = `davinova-static-${VERSION}`;
 const MEDIA = `davinova-media-${VERSION}`;
 const MEDIA_LIMIT = 250;
 
-const SHELL_FILES = ['/', '/offline.html', '/site.webmanifest', '/icon-192.png'];
+// Cloudflare Pages strips .html: it serves the file at /offline and 308s
+// /offline.html to it. The Cache API refuses a redirected response, so caching
+// only /offline.html would throw and leave no offline page at all. Both are
+// listed so this works on Pages and on a plain static server; whichever is not
+// there is skipped below.
+const SHELL_FILES = ['/', '/offline', '/offline.html', '/site.webmanifest', '/icon-192.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
@@ -62,7 +67,9 @@ self.addEventListener('fetch', (event) => {
         // route silently showed the shop front instead of the dress someone
         // had open.
         const cache = await caches.open(SHELL);
-        return (await cache.match(url.pathname === '/' ? '/' : '/offline.html'))
+        if (url.pathname === '/') return (await cache.match('/')) || Response.error();
+        return (await cache.match('/offline'))
+          || (await cache.match('/offline.html'))
           || (await cache.match('/'))
           || Response.error();
       }

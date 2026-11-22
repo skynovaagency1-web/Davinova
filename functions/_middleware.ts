@@ -3,7 +3,14 @@ interface Env { ADMIN_PASSWORD?: string; DB?: D1Database; ASSETS?: { fetch: (inp
 interface Context { request: Request & { cf?: { country?: string } }; next: () => Promise<Response>; env: Env }
 
 /** Self-contained HTML files in public/ (e.g. the Wedding Guest Edit), with and without the .html Pages strips. */
-const STANDALONE_PAGES = new Set(['/wedding-guest', '/wedding-guest.html', '/wedding-guest/']);
+const STANDALONE_PAGES = new Set([
+  '/wedding-guest', '/wedding-guest.html', '/wedding-guest/',
+  // The service worker's offline page. Localising it would replace its title
+  // and description with the shop's, give a noindex page a canonical link and
+  // og tags, and run a D1 query plus a prerender for a page that exists only
+  // when there is no connection.
+  '/offline', '/offline.html', '/offline/',
+]);
 
 const MAX_FAILURES = 5;
 const LOCKOUT_MINUTES = 15;
