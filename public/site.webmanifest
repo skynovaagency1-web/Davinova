@@ -3,23 +3,104 @@
   "name": "Davinova",
   "short_name": "Davinova",
   "description": "Occasion dresses, menswear, bags, shoes, jewelry and watches with free tracked shipping.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "/?source=app",
   "scope": "/",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait",
   "theme_color": "#2E2019",
   "background_color": "#2E2019",
-  "categories": ["shopping", "lifestyle"],
+  "categories": [
+    "shopping",
+    "lifestyle"
+  ],
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/01-home.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Occasion dresses, picked for the moment"
+    },
+    {
+      "src": "/screenshots/03-jewelry.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Jewelry and watches to finish the look"
+    }
   ],
   "shortcuts": [
-    { "name": "Women", "url": "/?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Men", "url": "/men?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
-    { "name": "My bag", "url": "/bag?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Track order", "url": "/track?source=app-shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+    {
+      "name": "Women",
+      "url": "/?source=app-shortcut",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Men",
+      "url": "/men?source=app-shortcut",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "My bag",
+      "url": "/bag?source=app-shortcut",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Track order",
+      "url": "/track?source=app-shortcut",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ]
 }

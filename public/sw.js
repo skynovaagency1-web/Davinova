@@ -2,15 +2,27 @@
 /* global self, caches, fetch, URL, Response */
 /* Davinova app service worker: makes the site installable and quick to reopen.
    Pages always come from the network first (so prices and stock stay live);
-   built files, fonts and photos are kept on the phone for speed and offline use. */
-const VERSION = 'v1';
+   built files, fonts and photos are kept on the phone for speed and offline use.
+   Bump VERSION whenever this file changes, so old caches are cleared. */
+const VERSION = 'v2';
 const SHELL = `davinova-shell-${VERSION}`;
 const STATIC = `davinova-static-${VERSION}`;
 const MEDIA = `davinova-media-${VERSION}`;
 const MEDIA_LIMIT = 250;
 
+const SHELL_FILES = ['/', '/offline.html', '/site.webmanifest', '/icon-192.png'];
+
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(SHELL).then((cache) => cache.addAll(['/', '/site.webmanifest', '/icon-192.png'])).then(() => self.skipWaiting()));
+  event.waitUntil((async () => {
+    const cache = await caches.open(SHELL);
+    // One at a time on purpose: cache.addAll() rejects as a unit, so a single
+    // missing file would stop the worker installing and the shop would quietly
+    // stop being installable, with nothing logged anywhere.
+    for (const file of SHELL_FILES) {
+      try { await cache.add(file); } catch { /* skip what is not there; the rest still installs */ }
+    }
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', (event) => {
@@ -37,7 +49,7 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
   if (PRIVATE.test(url.pathname) || url.pathname === '/sw.js') return;
 
-  // Pages: network first, fall back to the saved app shell when offline.
+  // Pages: network first, the offline page when there is no connection.
   if (request.mode === 'navigate') {
     event.respondWith((async () => {
       try {
@@ -46,7 +58,13 @@ self.addEventListener('fetch', (event) => {
         if (response.ok && url.pathname === '/') (await caches.open(SHELL)).put('/', response.clone());
         return response;
       } catch {
-        return (await caches.match('/', { cacheName: SHELL })) || Response.error();
+        // The home page only for the home page: falling back to it for every
+        // route silently showed the shop front instead of the dress someone
+        // had open.
+        const cache = await caches.open(SHELL);
+        return (await cache.match(url.pathname === '/' ? '/' : '/offline.html'))
+          || (await cache.match('/'))
+          || Response.error();
       }
     })());
     return;
