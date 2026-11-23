@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Offline · Davinova</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2E2019">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; min-height: 100dvh;
+    display: grid; place-items: center; align-content: center; gap: 16px;
+    padding: 24px calc(24px + env(safe-area-inset-right, 0px))
+             calc(24px + env(safe-area-inset-bottom, 0px)) calc(24px + env(safe-area-inset-left, 0px));
+    text-align: center; color: #fbf1e2;
+    background: radial-gradient(120% 80% at 20% 10%, #5a4536 0%, #3c2a21 45%, #2e2019 100%);
+    font: 400 16px/1.6 'Archivo', 'DM Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mark { width: 60px; height: 60px; border-radius: 16px; object-fit: cover; }
+  h1 { margin: 4px 0 0; font-size: 23px; line-height: 1.25; letter-spacing: .4px; font-weight: 600; }
+  p { margin: 0; max-width: 34ch; color: rgba(251, 241, 226, .7); }
+  a {
+    display: inline-block; margin-top: 10px; padding: 13px 28px; border-radius: 999px;
+    background: linear-gradient(135deg, #e9d6bc, #b08a63); color: #2e2019;
+    font-weight: 700; font-size: 15px; text-decoration: none;
+    -webkit-tap-highlight-color: transparent; transition: transform .15s ease, opacity .15s ease;
+  }
+  a:active { transform: translateY(1px); opacity: .92; }
+  small { color: rgba(251, 241, 226, .45); font-size: 13px; }
+</style>
+</head>
+<body>
+  <img class="mark" src="/icon-192.png" alt="Davinova" width="60" height="60">
+  <h1>You&rsquo;re offline</h1>
+  <p>Davinova needs a connection to show live prices and what&rsquo;s in stock.</p>
+  <a href="/">Try again</a>
+  <small>Pages you&rsquo;ve already seen will open as soon as you&rsquo;re back.</small>
+</body>
+</html>
